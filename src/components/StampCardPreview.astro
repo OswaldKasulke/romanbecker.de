@@ -1,0 +1,25 @@
+---
+interface Props {
+  cafeName?: string;
+  stampsTotal?: number;
+  stampsEarned?: number;
+}
+const { cafeName = 'Café Beispiel', stampsTotal = 10, stampsEarned = 3 } = Astro.props;
+---
+<div class="max-w-sm mx-auto rounded-3xl p-8 shadow-2xl text-white" style="background: linear-gradient(135deg, #2C1A0E 0%, #4a2f1a 100%)">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <p class="text-white/40 text-xs font-medium uppercase tracking-widest">Stempelkarte</p>
+      <h3 class="font-bold text-xl">{cafeName}</h3>
+    </div>
+    <span class="text-3xl">☕</span>
+  </div>
+  <div class="grid grid-cols-5 gap-3 mb-6">
+    {Array.from({ length: stampsTotal }).map((_, i) => (
+      <div class={`w-full aspect-square rounded-xl flex items-center justify-center text-lg ${i < stampsEarned ? 'bg-caramel' : 'bg-white/10 opacity-40'}`}>
+        ☕
+      </div>
+    ))}
+  </div>
+  <p class="text-white/40 text-xs">{stampsEarned} von {stampsTotal} Stempel · Noch {stampsTotal - stampsEarned} bis zum Gratis-Kaffee</p>
+</div>

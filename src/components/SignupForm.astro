@@ -1,0 +1,111 @@
+---
+interface Props {
+  apiEndpoint?: string;
+}
+const { apiEndpoint = '/api/submit.php' } = Astro.props;
+---
+<form id="signup-form" class="bg-white rounded-3xl p-8 shadow-xl space-y-5">
+
+  <div>
+    <label class="block text-sm font-semibold text-espresso mb-2">Dein Name</label>
+    <input type="text" id="name" placeholder="Max Mustermann" required
+      class="w-full border border-latte rounded-xl px-4 py-3 text-espresso placeholder-espresso/30 focus:outline-none focus:ring-2 focus:ring-caramel transition" />
+  </div>
+
+  <div>
+    <label class="block text-sm font-semibold text-espresso mb-2">Telefonnummer</label>
+    <input type="tel" id="phone" placeholder="+49 170 1234567" required
+      class="w-full border border-latte rounded-xl px-4 py-3 text-espresso placeholder-espresso/30 focus:outline-none focus:ring-2 focus:ring-caramel transition" />
+  </div>
+
+  <div>
+    <label class="block text-sm font-semibold text-espresso mb-2">Instagram-Account deines Cafés</label>
+    <div class="flex items-center border border-latte rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-caramel transition">
+      <span class="bg-latte/50 px-4 py-3 text-espresso/50 font-medium text-sm select-none">@</span>
+      <input type="text" id="instagram" placeholder="mein.cafe" required
+        class="flex-1 px-3 py-3 text-espresso placeholder-espresso/30 focus:outline-none bg-transparent" />
+    </div>
+  </div>
+
+  <button type="submit"
+    class="w-full bg-caramel text-white font-bold text-lg py-4 rounded-xl hover:bg-espresso transition-colors duration-300 mt-2">
+    Stempelkarte anfordern ☕
+  </button>
+
+  <p class="text-center text-xs text-espresso/40">Keine Kosten. Kein Abo. Wir melden uns bei dir.</p>
+</form>
+
+<!-- Loading -->
+<div id="loading-msg" class="hidden bg-white rounded-3xl p-8 shadow-xl text-center">
+  <div class="text-5xl mb-4 animate-spin inline-block">⚙️</div>
+  <h3 class="text-xl font-bold text-espresso mt-2">Stempelkarte wird erstellt...</h3>
+</div>
+
+<!-- Success -->
+<div id="success-msg" class="hidden bg-white rounded-3xl p-8 shadow-xl text-center">
+  <div class="text-5xl mb-4">🎉</div>
+  <h3 class="text-2xl font-bold text-espresso mb-2">Deine Stempelkarte ist fertig!</h3>
+  <p class="text-espresso/60 mb-6">Schick sie dir jetzt direkt per WhatsApp.</p>
+  <a id="whatsapp-btn" href="#" target="_blank"
+    class="flex items-center justify-center gap-3 bg-[#25D366] text-white font-bold text-lg px-6 py-4 rounded-xl hover:opacity-90 transition mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-white" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.526 5.845L.057 23.885a.5.5 0 0 0 .615.615l6.04-1.469A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.892 0-3.663-.5-5.193-1.374l-.372-.214-3.853.937.957-3.752-.23-.386A9.964 9.964 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+    Per WhatsApp senden
+  </a>
+  <div class="flex gap-3 justify-center mt-2">
+    <a id="apple-link" href="#" target="_blank" class="text-xs text-espresso/50 underline">Apple Wallet</a>
+    <a id="google-link" href="#" target="_blank" class="text-xs text-espresso/50 underline">Google Wallet</a>
+  </div>
+</div>
+
+<!-- Error -->
+<div id="error-msg" class="hidden bg-white rounded-3xl p-8 shadow-xl text-center">
+  <div class="text-5xl mb-4">❌</div>
+  <h3 class="text-xl font-bold text-espresso mb-2">Etwas ist schiefgelaufen</h3>
+  <p id="error-text" class="text-espresso/60 mb-4">Bitte versuche es erneut.</p>
+  <button onclick="resetForm()" class="text-caramel font-semibold underline">Zurück zum Formular</button>
+</div>
+
+<script define:vars={{ apiEndpoint }}>
+  function show(id) {
+    ['signup-form','loading-msg','success-msg','error-msg'].forEach(el => {
+      document.getElementById(el).classList.add('hidden');
+    });
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function resetForm() { show('signup-form'); }
+
+  document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name      = document.getElementById('name').value.trim();
+    const phone     = document.getElementById('phone').value.trim();
+    const instagram = document.getElementById('instagram').value.trim();
+
+    show('loading-msg');
+
+    try {
+      const res  = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, instagram }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Unbekannter Fehler');
+
+      const waText = encodeURIComponent(
+        `Hallo ${name} 👋\n\nHier ist deine digitale Stempelkarte von fuerte.digital:\n\n${data.installLink}\n\nEinfach auf den Link klicken und die Karte in dein Wallet speichern. ☕`
+      );
+      const cleanPhone = phone.replace(/[^0-9+]/g, '');
+      document.getElementById('whatsapp-btn').href = `https://wa.me/${cleanPhone}?text=${waText}`;
+      document.getElementById('apple-link').href   = data.appleLink;
+      document.getElementById('google-link').href  = data.googleLink;
+      show('success-msg');
+    } catch (err) {
+      document.getElementById('error-text').textContent = err.message;
+      show('error-msg');
+    }
+  });
+</script>

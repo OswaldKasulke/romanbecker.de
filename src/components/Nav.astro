@@ -1,0 +1,17 @@
+---
+interface Props {
+  ctaText?: string;
+  ctaHref?: string;
+}
+const { ctaText = 'Jetzt anmelden', ctaHref = '#anmelden' } = Astro.props;
+---
+<nav class="fixed top-0 w-full bg-cream/90 backdrop-blur-sm border-b border-latte z-50">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="font-bold text-xl tracking-tight text-espresso">
+      fuerte<span class="text-caramel">.digital</span>
+    </a>
+    <a href={ctaHref} class="bg-caramel text-white text-sm font-semibold px-5 py-2 rounded-full hover:opacity-90 transition">
+      {ctaText}
+    </a>
+  </div>
+</nav>
