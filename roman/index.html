@@ -204,54 +204,1946 @@
   </script>
 
   <style>
-    /* CSS wird in Task 2 eingefügt */
+    /* ===========================
+       CUSTOM PROPERTIES
+    =========================== */
+    :root {
+      --navy: #0D1B2A;
+      --navy-light: #1B2838;
+      --gold: #C9A84C;
+      --gold-light: #D4BA6A;
+      --white: #ffffff;
+      --off-white: #F8F7F4;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --gray-800: #1f2937;
+
+      --font-base: 'Inter', sans-serif;
+
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+
+      --max-width: 1200px;
+      --nav-height: 72px;
+      --radius: 8px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+      --transition: 0.2s ease;
+    }
+
+    /* ===========================
+       RESET
+    =========================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
+
+    body {
+      font-family: var(--font-base);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--gray-800);
+      background: var(--white);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    /* ===========================
+       TYPOGRAPHY
+    =========================== */
+    h1 { font-size: clamp(1.75rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; }
+    h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.25; }
+    h3 { font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1.3; }
+
+    @media (min-width: 768px) {
+      h1 { font-size: 3rem; }
+      h2 { font-size: 2.25rem; }
+      h3 { font-size: 1.375rem; }
+    }
+
+    /* ===========================
+       LAYOUT
+    =========================== */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .section {
+      padding: var(--space-20) 0;
+    }
+
+    .section--navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .section--gray {
+      background: var(--off-white);
+    }
+
+    .section--navy-light {
+      background: var(--navy-light);
+      color: var(--white);
+    }
+
+    /* ===========================
+       BUTTONS
+    =========================== */
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 1.75rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: 2px solid transparent;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+
+    .btn--primary:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(201, 168, 76, 0.4);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    .btn--secondary:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-1px);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .btn--outline:hover {
+      background: var(--navy);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .btn--gold-outline {
+      background: transparent;
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .btn--gold-outline:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: translateY(-1px);
+    }
+
+    /* ===========================
+       CARDS
+    =========================== */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    /* ===========================
+       GRIDS
+    =========================== */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ===========================
+       SECTION LABELS
+    =========================== */
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-3);
+    }
+
+    .section-title {
+      margin-bottom: var(--space-4);
+    }
+
+    .section-subtitle {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      max-width: 640px;
+      margin-bottom: var(--space-12);
+    }
+
+    .section--navy .section-subtitle,
+    .section--navy-light .section-subtitle {
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ===========================
+       NAV
+    =========================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--navy);
+      height: var(--nav-height);
+      transition: box-shadow var(--transition);
+    }
+
+    .nav__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .nav__logo {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      flex-shrink: 0;
+      line-height: 1.3;
+    }
+
+    .nav__logo span {
+      color: var(--gold);
+    }
+
+    .nav__links {
+      display: none;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .nav__links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav__links a:hover {
+      color: var(--gold);
+    }
+
+    .nav__phone {
+      display: none;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+      transition: color var(--transition);
+    }
+
+    .nav__phone:hover {
+      color: var(--gold-light);
+    }
+
+    .nav__hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-2);
+      flex-shrink: 0;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    .nav__mobile {
+      display: none;
+      flex-direction: column;
+      background: var(--navy-light);
+      padding: var(--space-4) var(--space-6);
+      gap: 0;
+    }
+
+    .nav__mobile.active {
+      display: flex;
+    }
+
+    .nav__mobile a {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: color var(--transition);
+    }
+
+    .nav__mobile a:last-child {
+      border-bottom: none;
+    }
+
+    .nav__mobile a:hover {
+      color: var(--gold);
+    }
+
+    .nav__mobile-phone {
+      color: var(--gold) !important;
+      font-weight: 700 !important;
+      margin-top: var(--space-2);
+    }
+
+    @media (min-width: 768px) {
+      .nav__phone {
+        display: block;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .nav__links {
+        display: flex;
+      }
+
+      .nav__hamburger {
+        display: none;
+      }
+    }
+
+    /* ===========================
+       HERO
+    =========================== */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-height);
+      background-image: url('https://romanbecker.de/wp-content/uploads/2024/05/WhatsApp-Image-2024-05-16-at-23.05.58.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 27, 42, 0.72);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-20) var(--space-6);
+      color: var(--white);
+    }
+
+    .hero__label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-4);
+    }
+
+    .hero__title {
+      max-width: 800px;
+      margin-bottom: var(--space-6);
+    }
+
+    .hero__subline {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: var(--space-8);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+
+    .hero__subline .pipe {
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    .hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    /* ===========================
+       TRUST
+    =========================== */
+    .trust {
+      background: var(--navy-light);
+      padding: var(--space-12) 0;
+    }
+
+    .trust__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6) var(--space-8);
+    }
+
+    @media (min-width: 768px) {
+      .trust__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .trust__grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    .trust__item {
+      text-align: center;
+    }
+
+    .trust__value {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: var(--space-1);
+    }
+
+    .trust__label {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ===========================
+       FÜR WEN CARDS
+    =========================== */
+    .fuer-wen__card {
+      border-left: 4px solid transparent;
+      cursor: pointer;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    .fuer-wen__card:hover {
+      border-left-color: var(--gold);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .fuer-wen__icon {
+      font-size: 2rem;
+      margin-bottom: var(--space-4);
+    }
+
+    .fuer-wen__card h3 {
+      color: var(--navy);
+      margin-bottom: var(--space-3);
+    }
+
+    .fuer-wen__card p {
+      color: var(--gray-600);
+      margin-bottom: var(--space-6);
+      font-size: 0.9375rem;
+    }
+
+    .fuer-wen__card .card-link {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.875rem;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      transition: gap var(--transition);
+    }
+
+    .fuer-wen__card:hover .card-link {
+      gap: var(--space-2);
+    }
+
+    /* ===========================
+       PROZESS
+    =========================== */
+    .prozess__steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 720px;
+      margin: 0 auto var(--space-12);
+    }
+
+    .prozess__step {
+      display: flex;
+      gap: var(--space-6);
+      position: relative;
+    }
+
+    .prozess__step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 48px;
+      bottom: 0;
+      width: 2px;
+      background: var(--gray-200);
+    }
+
+    .prozess__number {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.125rem;
+      z-index: 1;
+    }
+
+    .prozess__text {
+      padding-bottom: var(--space-8);
+    }
+
+    .prozess__text h3 {
+      color: var(--navy);
+      margin-bottom: var(--space-2);
+    }
+
+    .prozess__text p {
+      color: var(--gray-600);
+      font-size: 0.9375rem;
+    }
+
+    .prozess__cta {
+      text-align: center;
+      background: var(--off-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .prozess__cta p {
+      color: var(--gray-600);
+      margin-bottom: var(--space-4);
+    }
+
+    /* ===========================
+       ABOUT
+    =========================== */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+
+    @media (min-width: 768px) {
+      .about__grid {
+        grid-template-columns: 320px 1fr;
+      }
+    }
+
+    .about__image-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .about__image {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--gold);
+      box-shadow: 0 8px 32px rgba(201, 168, 76, 0.25);
+    }
+
+    @media (min-width: 768px) {
+      .about__image {
+        width: 320px;
+        height: 320px;
+      }
+    }
+
+    .about__text .section-label {
+      display: block;
+      margin-bottom: var(--space-2);
+    }
+
+    .about__text h2 {
+      color: var(--navy);
+      margin-bottom: var(--space-4);
+    }
+
+    .about__bio {
+      color: var(--gray-600);
+      margin-bottom: var(--space-6);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    .about__qualifications {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    .about__qualifications h4 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: var(--space-4);
+    }
+
+    .about__qualifications ul {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .about__qualifications li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: 0.9375rem;
+      color: var(--gray-700, #374151);
+    }
+
+    .about__qualifications li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .about__evernest {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      margin-bottom: var(--space-6);
+    }
+
+    /* ===========================
+       REFERENZOBJEKTE
+    =========================== */
+    .listing-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .listing-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .listing-card__badge {
+      background: var(--navy-light);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--space-2) var(--space-3);
+    }
+
+    .listing-card__body {
+      padding: var(--space-6);
+    }
+
+    .listing-card__price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: var(--space-2);
+    }
+
+    .listing-card__location {
+      font-size: 0.875rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+
+    .listing-card__type {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+    }
+
+    .objekte__cta {
+      text-align: center;
+      margin-top: var(--space-12);
+    }
+
+    /* ===========================
+       BEWERTUNGEN
+    =========================== */
+    .reviews__header {
+      text-align: center;
+      margin-bottom: var(--space-12);
+    }
+
+    .reviews__stars {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: var(--space-3);
+      letter-spacing: 0.1em;
+    }
+
+    .reviews__rating {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: var(--space-2);
+    }
+
+    .reviews__count {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      box-shadow: var(--shadow);
+    }
+
+    .review-card__stars {
+      color: var(--gold);
+      font-size: 1.125rem;
+      margin-bottom: var(--space-4);
+    }
+
+    .review-card__text {
+      font-style: italic;
+      color: var(--gray-600);
+      margin-bottom: var(--space-4);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    .review-card__author {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 0.875rem;
+    }
+
+    .reviews__cta {
+      text-align: center;
+      margin-top: var(--space-10, 2.5rem);
+    }
+
+    /* ===========================
+       FAQ
+    =========================== */
+    .faq__list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq__item {
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .faq__question {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: var(--space-6) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      transition: color var(--transition);
+    }
+
+    .faq__question:hover {
+      color: var(--gold);
+    }
+
+    .faq__icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--navy);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .faq__item.active .faq__icon {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .faq__item.active .faq__answer {
+      max-height: 600px;
+    }
+
+    .faq__answer-inner {
+      padding-bottom: var(--space-6);
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.75;
+    }
+
+    .faq__answer-inner p + p {
+      margin-top: var(--space-3);
+    }
+
+    /* ===========================
+       STADTTEILE
+    =========================== */
+    .stadtteile__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 640px) {
+      .stadtteile__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .stadtteile__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .stadtteil-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+      border-left: 3px solid transparent;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .stadtteil-card:hover {
+      border-left-color: var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .stadtteil-card h3 {
+      color: var(--navy);
+      font-size: 1rem;
+      margin-bottom: var(--space-2);
+    }
+
+    .stadtteil-card p {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* ===========================
+       EMPFEHLUNG
+    =========================== */
+    .empfehlung__card {
+      background: var(--navy-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-10, 2.5rem);
+    }
+
+    .empfehlung__card .section-label {
+      display: block;
+      margin-bottom: var(--space-2);
+    }
+
+    .empfehlung__card h3 {
+      color: var(--white);
+      margin-bottom: var(--space-4);
+    }
+
+    .empfehlung__card p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9375rem;
+      margin-bottom: var(--space-6);
+    }
+
+    /* ===========================
+       MAPS
+    =========================== */
+    .maps {
+      padding: 0;
+    }
+
+    .maps iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      display: block;
+    }
+
+    /* ===========================
+       KONTAKT
+    =========================== */
+    .kontakt__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+
+    @media (min-width: 768px) {
+      .kontakt__grid {
+        grid-template-columns: 1fr 360px;
+      }
+    }
+
+    .kontakt__form-wrap h2 {
+      color: var(--white);
+      margin-bottom: var(--space-2);
+    }
+
+    .kontakt__form-wrap .section-subtitle {
+      margin-bottom: var(--space-8);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .form-group label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      color: var(--white);
+      font-size: 0.9375rem;
+      transition: border-color var(--transition), background var(--transition);
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .form-group select option {
+      background: var(--navy-light);
+      color: var(--white);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .kontakt__form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .form-success {
+      display: none;
+      background: rgba(201, 168, 76, 0.15);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+      text-align: center;
+      color: var(--white);
+    }
+
+    .form-success h3 {
+      color: var(--gold);
+      margin-bottom: var(--space-3);
+    }
+
+    .kontakt__info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .kontakt__info-box {
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+    }
+
+    .kontakt__info-box h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: var(--space-4);
+    }
+
+    .kontakt__info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .kontakt__info-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .kontakt__info-item .icon {
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      opacity: 0.7;
+    }
+
+    .kontakt__info-item a {
+      color: var(--gold);
+      transition: color var(--transition);
+    }
+
+    .kontakt__info-item a:hover {
+      color: var(--gold-light);
+    }
+
+    .calendly-placeholder {
+      width: 100%;
+      margin-top: var(--space-2);
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    .footer {
+      background: var(--navy);
+      padding: var(--space-10, 2.5rem) 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer__inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 768px) {
+      .footer__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+
+    .footer__brand {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9375rem;
+    }
+
+    .footer__brand strong {
+      display: block;
+      color: var(--white);
+      margin-bottom: var(--space-1);
+    }
+
+    .footer__brand address {
+      font-style: normal;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.875rem;
+      margin-top: var(--space-2);
+    }
+
+    .footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4) var(--space-6);
+    }
+
+    .footer__links a {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.875rem;
+      transition: color var(--transition);
+    }
+
+    .footer__links a:hover {
+      color: var(--gold);
+    }
+
+    .footer__disclaimer {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* ===========================
+       UTILITIES
+    =========================== */
+    .text-center { text-align: center; }
+    .mt-8 { margin-top: var(--space-8); }
+    .mb-0 { margin-bottom: 0; }
   </style>
 </head>
 <body>
+
   <!-- NAV -->
-  <nav id="nav"></nav>
+  <nav id="nav" class="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">Roman Becker – Immobilienmakler Köln</a>
+      <div class="nav__links">
+        <a href="#fuer-wen">Für Verkäufer</a>
+        <a href="#prozess">Prozess</a>
+        <a href="#ueber-roman">Über Roman</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <a href="tel:+491775156969" class="nav__phone">+49 177 515 69 69</a>
+      <button class="nav__hamburger" aria-label="Menü öffnen" onclick="document.querySelector('.nav__mobile').classList.toggle('active')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile">
+      <a href="#fuer-wen" onclick="this.parentElement.classList.remove('active')">Für Verkäufer</a>
+      <a href="#prozess" onclick="this.parentElement.classList.remove('active')">Prozess</a>
+      <a href="#ueber-roman" onclick="this.parentElement.classList.remove('active')">Über Roman</a>
+      <a href="#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+      <a href="#kontakt" onclick="this.parentElement.classList.remove('active')">Kontakt</a>
+      <a href="tel:+491775156969" class="nav__mobile-phone">+49 177 515 69 69</a>
+    </div>
+  </nav>
 
   <!-- HERO -->
-  <section id="hero"></section>
+  <section id="hero" class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <span class="hero__label">Immobilienmakler Köln &amp; Umgebung</span>
+      <h1 class="hero__title">Ihr diskreter Partner für den Verkauf hochwertiger Immobilien in Köln und Umgebung</h1>
+      <p class="hero__subline">
+        IHK-zertifiziert
+        <span class="pipe">|</span>
+        EVERNEST-Netzwerk
+        <span class="pipe">|</span>
+        380+ Makler deutschlandweit
+        <span class="pipe">|</span>
+        5,0 ★ auf Google
+      </p>
+      <div class="hero__ctas">
+        <a href="#kontakt" class="btn btn--primary">Kostenlose Bewertung anfragen</a>
+        <a href="#ueber-roman" class="btn btn--secondary">Über Roman Becker</a>
+      </div>
+    </div>
+  </section>
 
   <!-- TRUST-LEISTE -->
-  <section id="trust"></section>
+  <section id="trust" class="trust">
+    <div class="container">
+      <div class="trust__grid">
+        <div class="trust__item">
+          <div class="trust__value">380+</div>
+          <div class="trust__label">Makler im Netzwerk</div>
+        </div>
+        <div class="trust__item">
+          <div class="trust__value">38</div>
+          <div class="trust__label">Standorte deutschlandweit</div>
+        </div>
+        <div class="trust__item">
+          <div class="trust__value">10,95 Mio. €</div>
+          <div class="trust__label">Höchstes vermitteltes Objekt</div>
+        </div>
+        <div class="trust__item">
+          <div class="trust__value">5,0 ★</div>
+          <div class="trust__label">Google-Bewertung</div>
+        </div>
+        <div class="trust__item">
+          <div class="trust__value">[ROMAN: X]</div>
+          <div class="trust__label">Objekte verkauft</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FÜR WEN -->
-  <section id="fuer-wen"></section>
+  <section id="fuer-wen" class="section">
+    <div class="container">
+      <span class="section-label">Für Verkäufer</span>
+      <h2 class="section-title">In welcher Situation befinden Sie sich?</h2>
+      <p class="section-subtitle">Egal ob erster Immobilienverkauf, Erbschaft oder Kapitalanlage – ich begleite Sie persönlich durch jeden Schritt.</p>
+      <div class="grid-3">
+
+        <a href="#prozess" class="card fuer-wen__card" style="text-decoration:none">
+          <div class="fuer-wen__icon">🏡</div>
+          <h3>Diskret verkaufen</h3>
+          <p>Sie möchten Ihre Immobilie verkaufen, ohne dass Nachbarn oder Bekannte es direkt mitbekommen. Mit dem EVERNEST-Käuferpool vermarkten wir Off-Market – ohne öffentliches Inserat.</p>
+          <span class="card-link">Zum Prozess &rarr;</span>
+        </a>
+
+        <a href="#faq" class="card fuer-wen__card" style="text-decoration:none">
+          <div class="fuer-wen__icon">📋</div>
+          <h3>Erbschaft &amp; Erbengemeinschaft</h3>
+          <p>Sie haben eine Immobilie geerbt und wissen nicht, wie es weitergeht. Ich kläre Erbschein, Grundbuchauszug und Erbengemeinschaft und begleite Sie diskret bis zum Abschluss.</p>
+          <span class="card-link">Häufige Fragen &rarr;</span>
+        </a>
+
+        <a href="#kontakt" class="card fuer-wen__card" style="text-decoration:none">
+          <div class="fuer-wen__icon">📈</div>
+          <h3>Kapitalanlage &amp; Portfolio</h3>
+          <p>Sie möchten eine Kapitalanlageimmobilie oder ein Portfolio verkaufen. Über das EVERNEST-Netzwerk erreiche ich qualifizierte Investoren bundesweit – schnell und diskret.</p>
+          <span class="card-link">Kontakt aufnehmen &rarr;</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
 
   <!-- PROZESS -->
-  <section id="prozess"></section>
+  <section id="prozess" class="section section--gray">
+    <div class="container">
+      <span class="section-label">Mein Vorgehen</span>
+      <h2 class="section-title">Ihr Weg zum erfolgreichen Verkauf</h2>
+      <p class="section-subtitle">Fünf klare Schritte – transparent, diskret und auf Ihren Zeitplan abgestimmt.</p>
+
+      <div class="prozess__steps">
+        <div class="prozess__step">
+          <div class="prozess__number">1</div>
+          <div class="prozess__text">
+            <h3>Erstbewertung &amp; Strategiegespräch</h3>
+            <p>Wir treffen uns vor Ort. Ich analysiere Lage, Zustand, Baujahr, Energieeffizienz und Marktsituation – und gebe Ihnen eine fundierte, realistische Preiseinschätzung ohne versteckte Agenda.</p>
+          </div>
+        </div>
+        <div class="prozess__step">
+          <div class="prozess__number">2</div>
+          <div class="prozess__text">
+            <h3>Individuelle Verkaufsstrategie</h3>
+            <p>Auf Basis der Bewertung entwickle ich eine Strategie: Off-Market über den Käuferpool, gezielte Ansprache ausgewählter Interessenten oder klassische Vermarktung auf den großen Portalen – je nach Ihrer Situation.</p>
+          </div>
+        </div>
+        <div class="prozess__step">
+          <div class="prozess__number">3</div>
+          <div class="prozess__text">
+            <h3>Professionelle Vermarktung</h3>
+            <p>Professionelle Fotografie, ein hochwertiges Exposé, 3D-Grundrisse und gezielte Ansprache qualifizierter Käufer. Besichtigungen koordiniere ich – Sie müssen nichts selbst organisieren.</p>
+          </div>
+        </div>
+        <div class="prozess__step">
+          <div class="prozess__number">4</div>
+          <div class="prozess__text">
+            <h3>Käuferprüfung &amp; Verhandlung</h3>
+            <p>Ich prüfe Bonität und Finanzierungsnachweis jedes Interessenten bevor Ihre Daten weitergegeben werden. Kaufpreisverhandlungen führe ich in Ihrem Interesse – transparent und ohne unnötigen Zeitdruck.</p>
+          </div>
+        </div>
+        <div class="prozess__step">
+          <div class="prozess__number">5</div>
+          <div class="prozess__text">
+            <h3>Notartermin &amp; Übergabe</h3>
+            <p>Ich begleite Sie bis zur Schlüsselübergabe: Notartermin-Koordination, Kaufvertragsprüfung, Abstimmung mit Steuerberater bei Bedarf. Nach dem Termin sind Sie fertig – ich kümmere mich um den Rest.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prozess__cta">
+        <p>Überzeugen Sie sich selbst: Roman Becker wird auf Google mit <strong>5,0 Sternen</strong> bewertet.</p>
+        <a href="https://maps.app.goo.gl/KheaK3QCedQSAzrVA" target="_blank" rel="noopener" class="btn btn--outline">Google-Bewertungen lesen</a>
+      </div>
+    </div>
+  </section>
 
   <!-- ÜBER ROMAN -->
-  <section id="ueber-roman"></section>
+  <section id="ueber-roman" class="section">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__image-wrap">
+          <img
+            src="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg"
+            alt="Roman Becker – Immobilienmakler Köln"
+            class="about__image"
+            loading="lazy"
+          >
+        </div>
+        <div class="about__text">
+          <span class="section-label">Über Roman Becker</span>
+          <h2>Lokale Expertise. Nationales Netzwerk.</h2>
+          <p class="about__bio">
+            Ich bin Roman Becker, IHK-zertifizierter Immobilienmakler und wohne selbst in Köln-Sülz. Ich kenne die Straßen, die Preisspannen und die Käufer in den Premiumlagen des Kölner Südens und Westens aus erster Hand.
+          </p>
+          <p class="about__bio">
+            Als Familienvater weiß ich, was eine Immobilie für ihre Eigentümer bedeutet – emotional und finanziell. Deshalb nehme ich mir die Zeit, Ihre Situation wirklich zu verstehen, bevor ich eine Empfehlung ausspreche.
+          </p>
+          <p class="about__bio">
+            Ich arbeite unter dem Dach von <strong>EVERNEST</strong> – Deutschlands führendem Immobilienmaklernetzwerk mit 380+ Maklern an 38 Standorten. Das bedeutet für Sie: Persönliche Betreuung durch mich persönlich, kombiniert mit der Reichweite und dem Käuferpool eines der größten deutschen Maklernetzwerke.
+          </p>
+
+          <div class="about__qualifications">
+            <h4>Qualifikationen &amp; Eigenschaften</h4>
+            <ul>
+              <li>IHK-zertifizierter Immobilienmakler</li>
+              <li>Spezialisiert auf hochwertige Wohnimmobilien ab 750.000 €</li>
+              <li>Tiefer Marktkenntnis in Sülz, Lindenthal, Marienburg, Rodenkirchen &amp; Umgebung</li>
+              <li>Zugang zum EVERNEST-Käuferpool mit vorgemerkten Käufern</li>
+              <li>Diskreter Off-Market-Verkauf möglich</li>
+              <li>Erfahrung mit Erbschaftsimmobilien &amp; Erbengemeinschaften</li>
+              <li>Vollständige Begleitung: von der Bewertung bis zur Schlüsselübergabe</li>
+            </ul>
+          </div>
+
+          <p class="about__evernest">
+            EVERNEST ist eines der führenden deutschen Immobilienmaklerunternehmen mit 380+ Maklern, 38 Standorten und einer eigenen Technologieplattform für Bewertung, Vermarktung und Käuferprüfung.
+          </p>
+
+          <a href="#kontakt" class="btn btn--primary">Erstgespräch vereinbaren</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- REFERENZOBJEKTE -->
-  <section id="objekte"></section>
+  <section id="objekte" class="section section--gray">
+    <div class="container">
+      <span class="section-label">Referenzobjekte</span>
+      <h2 class="section-title">Ausgewählte Objekte</h2>
+      <p class="section-subtitle">Eine Auswahl vermittelter und aktueller Objekte aus dem EVERNEST-Portfolio.</p>
+
+      <div class="grid-3">
+        <div class="listing-card">
+          <div class="listing-card__badge">Verkauft</div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">10,95 Mio. €</div>
+            <div class="listing-card__location">Köln-Dellbrück</div>
+            <div class="listing-card__type">Exklusives Einfamilienhaus</div>
+          </div>
+        </div>
+        <div class="listing-card">
+          <div class="listing-card__badge">Verkauft</div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">4,9 Mio. €</div>
+            <div class="listing-card__location">Pulheim</div>
+            <div class="listing-card__type">Immobilienkonvolut</div>
+          </div>
+        </div>
+        <div class="listing-card">
+          <div class="listing-card__badge">Verkauft</div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">3,249 Mio. €</div>
+            <div class="listing-card__location">Langenfeld</div>
+            <div class="listing-card__type">Mehrfamilienhaus</div>
+          </div>
+        </div>
+        <div class="listing-card">
+          <div class="listing-card__badge">Verkauft</div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">949.000 €</div>
+            <div class="listing-card__location">Pulheim</div>
+            <div class="listing-card__type">Grundstück</div>
+          </div>
+        </div>
+        <div class="listing-card">
+          <div class="listing-card__badge">Aktuell</div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">ab 399.000 €</div>
+            <div class="listing-card__location">Köln-Riehl</div>
+            <div class="listing-card__type">Eigentumswohnungen</div>
+          </div>
+        </div>
+        <div class="listing-card">
+          <div class="listing-card__badge">Aktuell</div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">ab 350.000 €</div>
+            <div class="listing-card__location">Pulheim</div>
+            <div class="listing-card__type">Neubau-Wohnungen</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="objekte__cta">
+        <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener" class="btn btn--outline">Alle Objekte bei EVERNEST ansehen</a>
+      </div>
+    </div>
+  </section>
 
   <!-- BEWERTUNGEN -->
-  <section id="bewertungen"></section>
+  <section id="bewertungen" class="section">
+    <div class="container">
+      <div class="reviews__header">
+        <div class="reviews__stars">★★★★★</div>
+        <div class="reviews__rating">5,0 von 5,0</div>
+        <div class="reviews__count">Auf Google bewertet</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">„[ROMAN: Bitte hier Ihre Bewertung einfügen]"</p>
+          <div class="review-card__author">[ROMAN: Name des Kunden]</div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">„[ROMAN: Bitte hier Ihre Bewertung einfügen]"</p>
+          <div class="review-card__author">[ROMAN: Name des Kunden]</div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__stars">★★★★★</div>
+          <p class="review-card__text">„[ROMAN: Bitte hier Ihre Bewertung einfügen]"</p>
+          <div class="review-card__author">[ROMAN: Name des Kunden]</div>
+        </div>
+      </div>
+
+      <div class="reviews__cta">
+        <a href="https://maps.app.goo.gl/KheaK3QCedQSAzrVA" target="_blank" rel="noopener" class="btn btn--outline">Alle Bewertungen auf Google lesen</a>
+      </div>
+    </div>
+  </section>
 
   <!-- FAQ -->
-  <section id="faq"></section>
+  <section id="faq" class="section section--gray">
+    <div class="container">
+      <span class="section-label">Häufige Fragen</span>
+      <h2 class="section-title">Was Eigentümer wissen wollen</h2>
+
+      <div class="faq__list">
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Was kostet ein Makler beim Hausverkauf in Köln?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p><strong>In der Regel 1,785 % + MwSt. für den Verkäufer</strong> – das sind bei einem Kaufpreis von 800.000 € rund 17.000 €. Die gesetzlich geregelte Gesamtprovision beträgt 3,57 % und wird seit 2020 hälftig zwischen Käufer und Verkäufer geteilt.</p>
+              <p>Dafür erhalten Sie professionelle Bewertung, Vermarktung, Käuferprüfung und vollständige Abwicklung bis zum Notartermin – ohne versteckte Kosten.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Wie lange dauert der Verkauf einer Immobilie in Köln?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p><strong>Typischerweise 3–5 Monate</strong> – von der Erstbewertung bis zur Schlüsselübergabe. In gefragten Lagen wie Sülz, Lindenthal oder Marienburg sind kürzere Zeiträume möglich, wenn ein vorgemerkter Käufer aus dem EVERNEST-Pool vorhanden ist.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Was ist meine Immobilie in Köln aktuell wert?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>Das hängt von <strong>Lage, Baujahr, Zustand, Energieeffizienz, Zinslage und eingetragenen Baulasten</strong> ab. Für eine erste Einschätzung können Sie meine Online-Bewertung nutzen – für eine fundierte, marktgerechte Bewertung ist ein Vor-Ort-Termin unerlässlich.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Kann ich meine Immobilie in Köln diskret ohne Portal verkaufen?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p><strong>Ja.</strong> Über das EVERNEST-Netzwerk mit über 380 Maklern und einem vorgemerkten Käuferpool ist ein diskreter Off-Market-Verkauf möglich – ohne öffentliches Inserat auf ImmoScout oder Immowelt. So behalten Sie die Kontrolle darüber, wer von dem Verkauf erfährt.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Was ist der Unterschied zwischen einem lokalen Makler und einem großen Netzwerk?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>Mit Roman Becker erhalten Sie <strong>beides</strong>: Die persönliche Betreuung eines Maklers, der selbst in Sülz wohnt und den Kölner Markt aus eigener Erfahrung kennt – plus die Reichweite und Technologie von EVERNEST mit 380+ Maklern an 38 deutschen Standorten und einem bundesweiten Käuferpool.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Wie läuft der Verkauf einer Erbschaftsimmobilie ab?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>Zuerst werden <strong>Erbschein, Grundbuchauszug und ggf. Erbengemeinschaft</strong> geklärt. Roman Becker begleitet Sie von der ersten Bewertung über die Abstimmung mit Notar und Steuerberater bis zum Verkauf – diskret, ohne Zeitdruck und mit Rücksicht auf die emotionale Situation aller Beteiligten.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Wie finde ich den richtigen Makler für meine hochwertige Immobilie in Köln?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>Das hängt weniger von der Größe des Büros ab als von der Frage: <strong>Wer kennt die Käufer, die für Ihre Immobilie wirklich in Frage kommen – und wer hat Zugang zu ihnen?</strong></p>
+              <p>Über EVERNEST hat Roman Becker Zugang zu einem vorgemerkten Käuferpool und kann bei Bedarf Off-Market vermarkten. Das ist besonders bei Objekten ab 750.000 € entscheidend: Die Käufer in dieser Preisspanne suchen oft nicht über ImmoScout.</p>
+              <p><strong>Empfehlung:</strong> Rufen Sie drei Makler an und fragen Sie konkret: „Wie viele Objekte in meiner Preisspanne haben Sie in den letzten 12 Monaten in dieser Lage verkauft?" – und hören Sie auf Detailkenntnisse statt auf allgemeine Versprechen.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Was prüft ein Makler beim Kaufvertrag und Grundbuch?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p><strong>Grundbuch, Baulastenverzeichnis, Miteigentumsanteile, WEG-Beschlüsse, Instandhaltungsrücklagen und Käuferbonität</strong> – alles bevor es zum Notar geht. Eingetragene Dienstbarkeiten und Baulasten können den Wert erheblich beeinflussen und müssen vor Verhandlungen bekannt sein.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- STADTTEIL-EXPERTISE -->
-  <section id="stadtteile"></section>
+  <section id="stadtteile" class="section">
+    <div class="container">
+      <span class="section-label">Lokale Expertise</span>
+      <h2 class="section-title">Mein Marktgebiet</h2>
+      <p class="section-subtitle">Ich kenne die Preisunterschiede zwischen Straßenzügen – nicht nur zwischen Stadtteilen.</p>
+
+      <div class="stadtteile__grid">
+        <div class="stadtteil-card">
+          <h3>Köln-Sülz</h3>
+          <p>Mein Heimatstadtteil. Gefragte Wohnlage mit Altbaubestand, Familienvillen und stabiler Nachfrage. Typische Preisspanne 800.000 – 2,5 Mio. €.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Köln-Lindenthal</h3>
+          <p>Einer der begehrtesten Kölner Stadtteile. Großbürgerliche Villen, ruhige Wohnstraßen, Universitätsnähe und hohe Eigentumsquote.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Köln-Rodenkirchen</h3>
+          <p>Rheinlage, Einfamilienhauscharakter und hohe Lebensqualität. Starke Nachfrage aus dem gehobenen Segment und von Familien.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Köln-Marienburg</h3>
+          <p>Exklusivste Wohnlage Kölns. Villen, parkähnliche Grundstücke, prominente Nachbarschaft – Preise ab 1,5 Mio. €, ohne Obergrenze.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Köln-Hahnwald</h3>
+          <p>Bewachte Villenkolonie im Süden Kölns. Maximale Privatsphäre, großzügige Grundstücke, ausschließlich hochwertige Objekte.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Köln-Junkersdorf</h3>
+          <p>Ruhige, großzügige Wohnlage im Westen. Beliebte Alternative zu Lindenthal mit großen Grundstücken und gutem Schulumfeld.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Köln-Klettenberg</h3>
+          <p>Charmanter Stadtteil zwischen Sülz und Rodenkirchen. Gründerzeitvillen, hohe Lebensqualität, stabile Wertentwicklung.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Köln-Bayenthal</h3>
+          <p>Beliebte Wohnlage direkt am Rhein. Neubauprojekte und Bestandsobjekte in gehobener Lage, starke Kapitalanlagenachfrage.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Köln-Dellbrück</h3>
+          <p>Aufstrebende Lage im Osten Kölns. Villencharakter, ruhige Wohnstraßen – hier wurde das teuerste Objekt im Portfolio vermittelt.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Pulheim</h3>
+          <p>Attraktives Umland mit direkter Anbindung nach Köln. Wachsende Nachfrage, Neubauaktivität und Konvolut-Transaktionen.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Bergisch Gladbach</h3>
+          <p>Grüne Wohnlage östlich von Köln. Beliebte Ausweichlage für Familien, die mehr Platz und Ruhe suchen als in der Stadt.</p>
+        </div>
+        <div class="stadtteil-card">
+          <h3>Leverkusen</h3>
+          <p>Eigenständige Stadt nördlich von Köln mit vielen Einfamilienhausgebieten und guter Rheinanbindung. Solide Kapitalanlagelagen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- EMPFEHLUNG & NETZWERK -->
-  <section id="empfehlung"></section>
+  <section id="empfehlung" class="section section--navy">
+    <div class="container">
+      <span class="section-label">Netzwerk &amp; Empfehlung</span>
+      <h2 class="section-title" style="color:var(--white)">Zusammenarbeiten oder weiterempfehlen</h2>
+
+      <div class="grid-2">
+        <div class="empfehlung__card">
+          <span class="section-label">Für Netzwerkpartner</span>
+          <h3>Notare, Steuerberater &amp; Rechtsanwälte</h3>
+          <p>Sie betreuen Mandanten, die eine Immobilie verkaufen möchten oder müssen? Ich freue mich über Ihre Empfehlung und garantiere eine diskrete, professionelle Betreuung Ihrer Klienten – selbstverständlich ohne Provision für Sie, sofern berufsrechtlich unzulässig.</p>
+          <a href="#kontakt" class="btn btn--gold-outline">Kontakt aufnehmen</a>
+        </div>
+        <div class="empfehlung__card">
+          <span class="section-label">Für Weiterempfehlungen</span>
+          <h3>Jemanden kennen, der verkaufen möchte?</h3>
+          <p>Wenn Sie jemanden kennen, der eine Immobilie in Köln oder Umgebung verkaufen möchte – ich bin dankbar für jede Empfehlung. Schreiben Sie mir einfach eine kurze WhatsApp-Nachricht.</p>
+          <a href="https://wa.me/491775156969?text=Hallo%20Roman%2C%20ich%20wurde%20empfohlen%20und%20m%C3%B6chte%20mich%20zum%20Thema%20Immobilienverkauf%20beraten%20lassen." target="_blank" rel="noopener" class="btn btn--gold-outline">Per WhatsApp empfehlen</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- GOOGLE MAPS -->
-  <section id="maps"></section>
+  <section id="maps" class="maps">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2513.497530540246!2d6.944748315745!3d50.941671979528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf2561e85e5e3f%3A0x9b8b99cc882c8d41!2sKaiser-Wilhelm-Ring%2017-21%2C%2050672%20K%C3%B6ln!5e0!3m2!1sde!2sde!4v1680000000000!5m2!1sde!2sde"
+      width="100%"
+      height="400"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="EVERNEST Köln – Kaiser-Wilhelm-Ring 17-21, 50672 Köln"
+    ></iframe>
+  </section>
 
   <!-- KONTAKT -->
-  <section id="kontakt"></section>
+  <section id="kontakt" class="section section--navy">
+    <div class="container">
+      <div class="kontakt__grid">
+        <div class="kontakt__form-wrap">
+          <span class="section-label">Kostenlose Erstberatung</span>
+          <h2>Sprechen wir über Ihre Immobilie</h2>
+          <p class="section-subtitle">Unverbindlich, diskret und ohne Zeitdruck. Ich melde mich innerhalb von 24 Stunden bei Ihnen.</p>
+
+          <form id="kontaktForm" class="kontakt__form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" placeholder="Ihr vollständiger Name" required>
+              </div>
+              <div class="form-group">
+                <label for="telefon">Telefon *</label>
+                <input type="tel" id="telefon" name="telefon" placeholder="+49 ..." required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" placeholder="ihre@email.de">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="immobilientyp">Immobilientyp</label>
+                <select id="immobilientyp" name="immobilientyp">
+                  <option value="">Bitte wählen</option>
+                  <option value="haus">Haus</option>
+                  <option value="wohnung">Wohnung</option>
+                  <option value="mfh">Mehrfamilienhaus</option>
+                  <option value="grundstueck">Grundstück</option>
+                  <option value="erbschaft">Erbschaft</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="plz">PLZ der Immobilie</label>
+                <input type="text" id="plz" name="plz" placeholder="z. B. 50939" maxlength="5" pattern="[0-9]{5}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="preisspanne">Geschätzte Preisspanne</label>
+              <select id="preisspanne" name="preisspanne">
+                <option value="">Bitte wählen</option>
+                <option value="bis500">Bis 500.000 €</option>
+                <option value="500-1m">500.000 € – 1 Mio. €</option>
+                <option value="1m-2m">1 Mio. € – 2 Mio. €</option>
+                <option value="ueber2m">Über 2 Mio. €</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="nachricht">Kurze Beschreibung Ihrer Situation</label>
+              <textarea id="nachricht" name="nachricht" placeholder="Was möchten Sie verkaufen? Gibt es besondere Umstände?" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="empfohlen">Empfohlen von (optional)</label>
+              <input type="text" id="empfohlen" name="empfohlen" placeholder="Wer hat mich empfohlen?">
+            </div>
+            <button type="submit" class="btn btn--primary" style="align-self: flex-start;">Anfrage senden</button>
+          </form>
+
+          <div id="formSuccess" class="form-success">
+            <h3>Vielen Dank für Ihre Anfrage!</h3>
+            <p>Ich melde mich innerhalb von 24 Stunden bei Ihnen. Bei dringenden Fragen erreichen Sie mich unter <a href="tel:+491775156969" style="color:var(--gold)">+49 177 515 69 69</a>.</p>
+          </div>
+        </div>
+
+        <div class="kontakt__info">
+          <div class="kontakt__info-box">
+            <h4>Direktkontakt</h4>
+            <div class="kontakt__info-item">
+              <span class="icon">📞</span>
+              <div>
+                <a href="tel:+491775156969">+49 177 515 69 69</a><br>
+                <span style="font-size:0.8125rem;color:rgba(255,255,255,0.5)">Mo – Fr, 9–19 Uhr</span>
+              </div>
+            </div>
+            <div class="kontakt__info-item">
+              <span class="icon">✉️</span>
+              <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a>
+            </div>
+            <div class="kontakt__info-item">
+              <span class="icon">📍</span>
+              <address style="font-style:normal">
+                Kaiser-Wilhelm-Ring 17-21<br>
+                50672 Köln
+              </address>
+            </div>
+            <div class="kontakt__info-item">
+              <span class="icon">📸</span>
+              <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">@roman_becker_immobilien</a>
+            </div>
+          </div>
+
+          <div class="kontakt__info-box">
+            <h4>Termin online buchen</h4>
+            <p style="color:rgba(255,255,255,0.7);font-size:0.875rem;margin-bottom:var(--space-4)">Wählen Sie direkt einen freien Termin für ein Erstgespräch – telefonisch oder vor Ort.</p>
+            <a href="#" class="btn btn--gold-outline calendly-placeholder" onclick="alert('Calendly-Link folgt')">Termin buchen (Calendly)</a>
+          </div>
+
+          <div class="kontakt__info-box">
+            <h4>Öffnungszeiten</h4>
+            <div class="kontakt__info-item">
+              <span class="icon">🕘</span>
+              <div>
+                Montag – Freitag<br>
+                <strong>9:00 – 19:00 Uhr</strong>
+              </div>
+            </div>
+            <p style="color:rgba(255,255,255,0.5);font-size:0.8125rem;margin-top:var(--space-2)">Besichtigungstermine auch samstags auf Anfrage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <footer id="footer"></footer>
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Roman Becker – Immobilienmakler Köln</strong>
+          © 2026 Roman Becker – EVERNEST
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="/impressum">Impressum</a>
+          <a href="/agb">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH tätig. Alle Angaben zu Preisen, Objekten und Statistiken sind unverbindlich und dienen nur zur Orientierung. Irrtümer und Änderungen vorbehalten. Fotos können Symbolcharakter haben. Die Darstellung von Referenzobjekten dient ausschließlich der Veranschaulichung und stellt keine Garantie für vergleichbare Ergebnisse dar.
+      </p>
+    </div>
+  </footer>
 
   <script>
-    // JS wird in Task 8 eingefügt
+    // FAQ Accordion
+    document.querySelectorAll('.faq__question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.parentElement;
+        var wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq__item').forEach(function(el) {
+          el.classList.remove('active');
+          el.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+          el.querySelector('.faq__icon').textContent = '+';
+        });
+        if (!wasActive) {
+          item.classList.add('active');
+          this.setAttribute('aria-expanded', 'true');
+          this.querySelector('.faq__icon').textContent = '−';
+        }
+      });
+    });
+
+    // Contact Form
+    var form = document.getElementById('kontaktForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(form);
+        fetch('submit.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(function(response) {
+          if (response.ok) {
+            form.style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+          }
+        })
+        .catch(function() {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        });
+      });
+    }
+
+    // Nav shadow on scroll
+    var nav = document.querySelector('.nav');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>
