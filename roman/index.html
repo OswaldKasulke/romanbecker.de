@@ -1466,7 +1466,7 @@
   </nav>
 
   <!-- HERO -->
-  <section id="hero" class="hero">
+  <section id="hero" class="hero" aria-label="Sonnenuntergang über Köln-Sülz">
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <span class="hero__label">Immobilienmakler Köln &amp; Umgebung</span>
@@ -1607,7 +1607,7 @@
         <div class="about__image-wrap">
           <img
             src="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg"
-            alt="Roman Becker – Immobilienmakler Köln"
+            alt="Roman Becker, Immobilienmakler in Köln"
             class="about__image"
             loading="lazy"
           >
@@ -2129,8 +2129,7 @@
           }
         })
         .catch(function() {
-          form.style.display = 'none';
-          document.getElementById('formSuccess').style.display = 'block';
+          alert('Es gab ein Problem beim Senden. Bitte rufen Sie direkt an: +49 177 515 69 69');
         });
       });
     }
