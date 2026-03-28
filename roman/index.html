@@ -29,6 +29,9 @@
   <meta name="twitter:description" content="Diskreter Verkauf hochwertiger Immobilien in Köln. IHK-zertifiziert, EVERNEST-Netzwerk.">
   <meta name="twitter:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
 
+  <!-- Hero LCP Preload -->
+  <link rel="preload" as="image" href="https://romanbecker.de/wp-content/uploads/2024/05/WhatsApp-Image-2024-05-16-at-23.05.58.jpeg">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -543,6 +546,10 @@
       cursor: pointer;
       padding: var(--space-2);
       flex-shrink: 0;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
     }
 
     .nav__hamburger span {
@@ -701,11 +708,12 @@
     }
 
     .trust__value {
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-size: clamp(1.25rem, 4vw, 2rem);
       font-weight: 700;
       color: var(--gold);
       line-height: 1;
       margin-bottom: var(--space-1);
+      word-break: break-word;
     }
 
     .trust__label {
@@ -1169,6 +1177,8 @@
       background: var(--navy-light);
       border-radius: var(--radius-lg);
       padding: var(--space-10, 2.5rem);
+      display: flex;
+      flex-direction: column;
     }
 
     .empfehlung__card .section-label {
@@ -1185,6 +1195,7 @@
       color: rgba(255,255,255,0.7);
       font-size: 0.9375rem;
       margin-bottom: var(--space-6);
+      flex: 1;
     }
 
     /* ===========================
@@ -1432,6 +1443,21 @@
     /* ===========================
        UTILITIES
     =========================== */
+    /* === Focus & A11y === */
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
     .text-center { text-align: center; }
     .mt-8 { margin-top: var(--space-8); }
     .mb-0 { margin-bottom: 0; }
@@ -1455,7 +1481,7 @@
         <span></span><span></span><span></span>
       </button>
     </div>
-    <div class="nav__mobile">
+    <div class="nav__mobile" role="menu" aria-label="Hauptmenü">
       <a href="#fuer-wen" onclick="this.parentElement.classList.remove('active')">Für Verkäufer</a>
       <a href="#prozess" onclick="this.parentElement.classList.remove('active')">Prozess</a>
       <a href="#ueber-roman" onclick="this.parentElement.classList.remove('active')">Über Roman</a>
@@ -1524,21 +1550,21 @@
       <div class="grid-3">
 
         <a href="#prozess" class="card fuer-wen__card" style="text-decoration:none">
-          <div class="fuer-wen__icon">🏡</div>
+          <div class="fuer-wen__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <h3>Diskret verkaufen</h3>
           <p>Sie möchten Ihre Immobilie verkaufen, ohne dass Nachbarn oder Bekannte es direkt mitbekommen. Mit dem EVERNEST-Käuferpool vermarkten wir Off-Market – ohne öffentliches Inserat.</p>
           <span class="card-link">Zum Prozess &rarr;</span>
         </a>
 
         <a href="#faq" class="card fuer-wen__card" style="text-decoration:none">
-          <div class="fuer-wen__icon">📋</div>
+          <div class="fuer-wen__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
           <h3>Erbschaft &amp; Erbengemeinschaft</h3>
           <p>Sie haben eine Immobilie geerbt und wissen nicht, wie es weitergeht. Ich kläre Erbschein, Grundbuchauszug und Erbengemeinschaft und begleite Sie diskret bis zum Abschluss.</p>
           <span class="card-link">Häufige Fragen &rarr;</span>
         </a>
 
         <a href="#kontakt" class="card fuer-wen__card" style="text-decoration:none">
-          <div class="fuer-wen__icon">📈</div>
+          <div class="fuer-wen__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           <h3>Kapitalanlage &amp; Portfolio</h3>
           <p>Sie möchten eine Kapitalanlageimmobilie oder ein Portfolio verkaufen. Über das EVERNEST-Netzwerk erreiche ich qualifizierte Investoren bundesweit – schnell und diskret.</p>
           <span class="card-link">Kontakt aufnehmen &rarr;</span>
@@ -1610,6 +1636,8 @@
             alt="Roman Becker, Immobilienmakler in Köln"
             class="about__image"
             loading="lazy"
+            width="320"
+            height="320"
           >
         </div>
         <div class="about__text">
@@ -1962,15 +1990,15 @@
           <h2>Sprechen wir über Ihre Immobilie</h2>
           <p class="section-subtitle">Unverbindlich, diskret und ohne Zeitdruck. Ich melde mich innerhalb von 24 Stunden bei Ihnen.</p>
 
-          <form id="kontaktForm" class="kontakt__form" novalidate>
+          <form id="kontaktForm" class="kontakt__form" action="submit.php" method="POST">
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Name *</label>
-                <input type="text" id="name" name="name" placeholder="Ihr vollständiger Name" required>
+                <input type="text" id="name" name="name" placeholder="Ihr vollständiger Name" required aria-required="true">
               </div>
               <div class="form-group">
                 <label for="telefon">Telefon *</label>
-                <input type="tel" id="telefon" name="telefon" placeholder="+49 ..." required>
+                <input type="tel" id="telefon" name="telefon" placeholder="+49 ..." required aria-required="true">
               </div>
             </div>
             <div class="form-group">
@@ -2025,25 +2053,25 @@
           <div class="kontakt__info-box">
             <h4>Direktkontakt</h4>
             <div class="kontakt__info-item">
-              <span class="icon">📞</span>
+              <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
               <div>
                 <a href="tel:+491775156969">+49 177 515 69 69</a><br>
                 <span style="font-size:0.8125rem;color:rgba(255,255,255,0.5)">Mo – Fr, 9–19 Uhr</span>
               </div>
             </div>
             <div class="kontakt__info-item">
-              <span class="icon">✉️</span>
+              <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
               <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a>
             </div>
             <div class="kontakt__info-item">
-              <span class="icon">📍</span>
+              <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
               <address style="font-style:normal">
                 Kaiser-Wilhelm-Ring 17-21<br>
                 50672 Köln
               </address>
             </div>
             <div class="kontakt__info-item">
-              <span class="icon">📸</span>
+              <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
               <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">@roman_becker_immobilien</a>
             </div>
           </div>
@@ -2057,7 +2085,7 @@
           <div class="kontakt__info-box">
             <h4>Öffnungszeiten</h4>
             <div class="kontakt__info-item">
-              <span class="icon">🕘</span>
+              <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
               <div>
                 Montag – Freitag<br>
                 <strong>9:00 – 19:00 Uhr</strong>
@@ -2080,9 +2108,9 @@
           <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
         </div>
         <div class="footer__links">
-          <a href="/datenschutz">Datenschutz</a>
-          <a href="/impressum">Impressum</a>
-          <a href="/agb">AGB</a>
+          <a href="/roman/datenschutz.html">Datenschutz</a>
+          <a href="/roman/impressum.html">Impressum</a>
+          <a href="/roman/agb.html">AGB</a>
           <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
         </div>
