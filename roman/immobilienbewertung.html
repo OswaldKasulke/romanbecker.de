@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kostenlose Immobilienbewertung Köln – Roman Becker</title>
+  <meta name="description" content="Erhalten Sie eine kostenlose Immobilienbewertung für Köln in unter 2 Minuten. Wohnung, Haus, Mehrfamilienhaus oder Grundstück — jetzt Wert ermitteln.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/immobilienbewertung/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kostenlose Immobilienbewertung Köln – Roman Becker">
+  <meta property="og:description" content="Erhalten Sie eine kostenlose Immobilienbewertung für Köln in unter 2 Minuten.">
+  <meta property="og:url" content="https://romanbecker.de/immobilienbewertung/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================
+       CUSTOM PROPERTIES
+    =========================== */
+    :root {
+      --navy: #0D1B2A;
+      --navy-light: #1B2838;
+      --gold: #C9A84C;
+      --gold-light: #D4BA6A;
+      --white: #ffffff;
+      --off-white: #F8F7F4;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --gray-800: #1f2937;
+
+      --font-base: 'Inter', sans-serif;
+
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+
+      --max-width: 1200px;
+      --nav-height: 72px;
+      --radius: 8px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+      --transition: 0.2s ease;
+    }
+
+    /* ===========================
+       RESET
+    =========================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-base);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--gray-800);
+      background: var(--off-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===========================
+       CONTAINER
+    =========================== */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    /* ===========================
+       NAV
+    =========================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--navy);
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .nav__logo {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    .nav__links {
+      display: none;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 768px) {
+      .nav__links {
+        display: flex;
+      }
+    }
+
+    .nav__links a {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav__links a:hover {
+      color: var(--gold);
+    }
+
+    .nav__phone {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.875rem;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav__phone {
+        display: block;
+      }
+    }
+
+    .nav__hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    @media (min-width: 768px) {
+      .nav__hamburger {
+        display: none;
+      }
+    }
+
+    .nav__hamburger span {
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+    }
+
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: var(--navy-light);
+      padding: var(--space-6);
+      flex-direction: column;
+      gap: var(--space-4);
+      z-index: 999;
+    }
+
+    .nav__mobile.active {
+      display: flex;
+    }
+
+    .nav__mobile a {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      padding: var(--space-2) 0;
+    }
+
+    .nav__mobile-phone {
+      color: var(--gold) !important;
+      font-weight: 600;
+    }
+
+    /* ===========================
+       HERO HEADER
+    =========================== */
+    .page-hero {
+      background: var(--navy);
+      padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-16);
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      color: var(--white);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+    }
+
+    .page-hero h1 span {
+      color: var(--gold);
+    }
+
+    .page-hero p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.0625rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===========================
+       PROGRESS BAR
+    =========================== */
+    .progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-12);
+    }
+
+    .progress__step {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      background: var(--gray-200);
+      color: var(--gray-400);
+      transition: all var(--transition);
+      flex-shrink: 0;
+    }
+
+    .progress__step.active {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .progress__step.done {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .progress__line {
+      width: 24px;
+      height: 2px;
+      background: var(--gray-200);
+      transition: background var(--transition);
+      flex-shrink: 0;
+    }
+
+    .progress__line.done {
+      background: var(--navy);
+    }
+
+    @media (max-width: 480px) {
+      .progress__step {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+      }
+      .progress__line {
+        width: 12px;
+      }
+    }
+
+    /* ===========================
+       FORM AREA
+    =========================== */
+    .form-section {
+      flex: 1;
+      padding: var(--space-12) 0 var(--space-20);
+    }
+
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      max-width: 640px;
+      margin: 0 auto;
+      padding: var(--space-10);
+    }
+
+    @media (max-width: 480px) {
+      .form-card {
+        padding: var(--space-6);
+      }
+    }
+
+    /* ===========================
+       STEPS
+    =========================== */
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .step__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: var(--space-2);
+    }
+
+    .step__subtitle {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      margin-bottom: var(--space-8);
+    }
+
+    /* ===========================
+       RADIO CARDS
+    =========================== */
+    .radio-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (max-width: 480px) {
+      .radio-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .radio-card {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .radio-card input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-card__label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-6) var(--space-4);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius);
+      text-align: center;
+      font-weight: 500;
+      font-size: 0.9375rem;
+      color: var(--gray-800);
+      transition: all var(--transition);
+    }
+
+    .radio-card__label:hover {
+      border-color: var(--gold-light);
+    }
+
+    .radio-card input:checked + .radio-card__label {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.06);
+      color: var(--navy);
+    }
+
+    .radio-card__icon {
+      font-size: 1.75rem;
+    }
+
+    /* ===========================
+       INPUT FIELDS
+    =========================== */
+    .field {
+      margin-bottom: var(--space-6);
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: var(--space-2);
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius);
+      font-family: var(--font-base);
+      font-size: 1rem;
+      color: var(--gray-800);
+      background: var(--white);
+      transition: border-color var(--transition);
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .field input::placeholder {
+      color: var(--gray-400);
+    }
+
+    .field__hint {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+      margin-top: var(--space-1);
+    }
+
+    .field__unit {
+      position: relative;
+    }
+
+    .field__unit input {
+      padding-right: 3.5rem;
+    }
+
+    .field__unit::after {
+      content: attr(data-unit);
+      position: absolute;
+      right: var(--space-4);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      pointer-events: none;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (max-width: 480px) {
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===========================
+       CONDITION RADIO
+    =========================== */
+    .condition-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .condition-option {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .condition-option input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .condition-option__label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-6);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+
+    .condition-option__label:hover {
+      border-color: var(--gold-light);
+    }
+
+    .condition-option input:checked + .condition-option__label {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.06);
+    }
+
+    .condition-option__title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+
+    .condition-option__desc {
+      font-size: 0.8125rem;
+      color: var(--gray-600);
+    }
+
+    /* ===========================
+       BUTTONS
+    =========================== */
+    .step__buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-8);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-base);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn--primary {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .btn--primary:hover {
+      background: var(--gold-light);
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--gray-600);
+      border: 2px solid var(--gray-200);
+    }
+
+    .btn--secondary:hover {
+      border-color: var(--gray-400);
+      color: var(--gray-800);
+    }
+
+    .btn--large {
+      padding: var(--space-4) var(--space-10);
+      font-size: 1rem;
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ===========================
+       RESULT
+    =========================== */
+    .result {
+      text-align: center;
+    }
+
+    .result__icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-6);
+    }
+
+    .result__label {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      margin-bottom: var(--space-2);
+    }
+
+    .result__value {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: var(--space-2);
+    }
+
+    .result__range {
+      font-size: 0.9375rem;
+      color: var(--gray-400);
+      margin-bottom: var(--space-8);
+    }
+
+    .result__note {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: var(--space-6);
+      text-align: left;
+      margin-bottom: var(--space-8);
+    }
+
+    .result__note p {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    .result__note strong {
+      color: var(--gray-800);
+    }
+
+    .result__cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .result__cta .btn {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    /* ===========================
+       GDPR CHECKBOX
+    =========================== */
+    .gdpr {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .gdpr input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .gdpr label {
+      font-size: 0.8125rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    .gdpr a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    /* ===========================
+       VALIDATION
+    =========================== */
+    .field--error input,
+    .field--error select {
+      border-color: #e74c3c;
+    }
+
+    .field__error {
+      font-size: 0.8125rem;
+      color: #e74c3c;
+      margin-top: var(--space-1);
+      display: none;
+    }
+
+    .field--error .field__error {
+      display: block;
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    .footer {
+      background: var(--navy);
+      padding: var(--space-10) 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer__inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 768px) {
+      .footer__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+
+    .footer__brand {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9375rem;
+    }
+
+    .footer__brand strong {
+      display: block;
+      color: var(--white);
+      margin-bottom: var(--space-1);
+    }
+
+    .footer__brand address {
+      font-style: normal;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.875rem;
+      margin-top: var(--space-2);
+    }
+
+    .footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4) var(--space-6);
+    }
+
+    .footer__links a {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.875rem;
+      transition: color var(--transition);
+    }
+
+    .footer__links a:hover {
+      color: var(--gold);
+    }
+
+    .footer__disclaimer {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* ===========================
+       FOCUS & A11Y
+    =========================== */
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/roman/" class="nav__logo">Roman Becker – Immobilienmakler Köln</a>
+      <div class="nav__links">
+        <a href="/roman/">Startseite</a>
+        <a href="/roman/#kontakt">Kontakt</a>
+      </div>
+      <a href="tel:+491775156969" class="nav__phone">+49 177 515 69 69</a>
+      <button class="nav__hamburger" aria-label="Menü öffnen" onclick="document.querySelector('.nav__mobile').classList.toggle('active')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" role="menu" aria-label="Hauptmenü">
+      <a href="/roman/" onclick="this.parentElement.classList.remove('active')">Startseite</a>
+      <a href="/roman/#kontakt" onclick="this.parentElement.classList.remove('active')">Kontakt</a>
+      <a href="tel:+491775156969" class="nav__mobile-phone">+49 177 515 69 69</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Kostenlose <span>Immobilienbewertung</span></h1>
+      <p>Erfahren Sie in unter 2 Minuten, was Ihre Immobilie in Köln aktuell wert ist — unverbindlich und kostenfrei.</p>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section">
+    <div class="container">
+      <div class="form-card">
+
+        <!-- Progress -->
+        <div class="progress" id="progress">
+          <div class="progress__step active" data-step="1">1</div>
+          <div class="progress__line" data-line="1"></div>
+          <div class="progress__step" data-step="2">2</div>
+          <div class="progress__line" data-line="2"></div>
+          <div class="progress__step" data-step="3">3</div>
+          <div class="progress__line" data-line="3"></div>
+          <div class="progress__step" data-step="4">4</div>
+          <div class="progress__line" data-line="4"></div>
+          <div class="progress__step" data-step="5">5</div>
+          <div class="progress__line" data-line="5"></div>
+          <div class="progress__step" data-step="6">6</div>
+          <div class="progress__line" data-line="6"></div>
+          <div class="progress__step" data-step="7">7</div>
+        </div>
+
+        <form id="bewertung" novalidate>
+
+          <!-- STEP 1: Objektart -->
+          <div class="step active" data-step="1">
+            <h2 class="step__title">Was möchten Sie bewerten?</h2>
+            <p class="step__subtitle">Wählen Sie die Art Ihrer Immobilie.</p>
+
+            <div class="radio-cards">
+              <label class="radio-card">
+                <input type="radio" name="objektart" value="wohnung" required>
+                <div class="radio-card__label">
+                  <span class="radio-card__icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><rect x="9" y="18" width="6" height="4"/></svg>
+                  </span>
+                  Wohnung
+                </div>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="objektart" value="haus">
+                <div class="radio-card__label">
+                  <span class="radio-card__icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10a1 1 0 001 1h3v-6h6v6h3a1 1 0 001-1V10"/></svg>
+                  </span>
+                  Haus
+                </div>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="objektart" value="mehrfamilienhaus">
+                <div class="radio-card__label">
+                  <span class="radio-card__icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="18" rx="2"/><line x1="6" y1="8" x2="6" y2="8.01"/><line x1="12" y1="8" x2="12" y2="8.01"/><line x1="18" y1="8" x2="18" y2="8.01"/><line x1="6" y1="12" x2="6" y2="12.01"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="18" y1="12" x2="18" y2="12.01"/><line x1="6" y1="16" x2="6" y2="16.01"/><line x1="12" y1="16" x2="12" y2="16.01"/><line x1="18" y1="16" x2="18" y2="16.01"/></svg>
+                  </span>
+                  Mehrfamilienhaus
+                </div>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="objektart" value="grundstueck">
+                <div class="radio-card__label">
+                  <span class="radio-card__icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21L3 3h18v18H3z" stroke-dasharray="4 2"/><path d="M8 17v-4M12 17v-6M16 17v-2"/></svg>
+                  </span>
+                  Grundstück
+                </div>
+              </label>
+            </div>
+
+            <div class="step__buttons">
+              <div></div>
+              <button type="button" class="btn btn--primary" onclick="nextStep(1)">Weiter</button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Flächen -->
+          <div class="step" data-step="2">
+            <h2 class="step__title">Wie groß ist die Immobilie?</h2>
+            <p class="step__subtitle">Geben Sie die Fläche(n) an.</p>
+
+            <div class="field" id="field-wohnflaeche">
+              <label for="wohnflaeche">Wohnfläche</label>
+              <div class="field__unit" data-unit="m²">
+                <input type="number" id="wohnflaeche" name="wohnflaeche" placeholder="z.B. 120" min="10" max="10000" required>
+              </div>
+              <p class="field__error">Bitte geben Sie die Wohnfläche ein.</p>
+            </div>
+
+            <div class="field" id="field-grundstueck">
+              <label for="grundstuecksflaeche">Grundstücksfläche</label>
+              <div class="field__unit" data-unit="m²">
+                <input type="number" id="grundstuecksflaeche" name="grundstuecksflaeche" placeholder="z.B. 450" min="0" max="100000">
+              </div>
+              <p class="field__hint">Optional bei Wohnungen.</p>
+            </div>
+
+            <div class="step__buttons">
+              <button type="button" class="btn btn--secondary" onclick="prevStep(2)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(2)">Weiter</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Zusatzinfos -->
+          <div class="step" data-step="3">
+            <h2 class="step__title">Weitere Angaben</h2>
+            <p class="step__subtitle" id="step3-subtitle">Helfen Sie uns, den Wert genauer einzuschätzen.</p>
+
+            <!-- Zimmer (Wohnung / Haus) -->
+            <div class="field" id="field-zimmer" style="display:none">
+              <label for="zimmer">Anzahl Zimmer</label>
+              <input type="number" id="zimmer" name="zimmer" placeholder="z.B. 4" min="1" max="30">
+            </div>
+
+            <!-- Wohneinheiten (Mehrfamilienhaus) -->
+            <div class="field" id="field-einheiten" style="display:none">
+              <label for="einheiten">Anzahl Wohneinheiten</label>
+              <input type="number" id="einheiten" name="einheiten" placeholder="z.B. 6" min="2" max="100">
+            </div>
+
+            <!-- Erschließung (Grundstück) -->
+            <div class="field" id="field-erschliessung" style="display:none">
+              <label for="erschliessung">Erschließungsstatus</label>
+              <select id="erschliessung" name="erschliessung">
+                <option value="">Bitte wählen</option>
+                <option value="voll">Voll erschlossen</option>
+                <option value="teil">Teilerschlossen</option>
+                <option value="nicht">Nicht erschlossen</option>
+              </select>
+            </div>
+
+            <div class="step__buttons">
+              <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Kaltmiete -->
+          <div class="step" data-step="4">
+            <h2 class="step__title">Monatliche Kaltmiete</h2>
+            <p class="step__subtitle">Falls die Immobilie vermietet ist oder vermietet werden soll.</p>
+
+            <div class="field">
+              <label for="mietart">Art der Miete</label>
+              <select id="mietart" name="mietart">
+                <option value="">Nicht vermietet / keine Angabe</option>
+                <option value="ist">Ist-Miete (aktuelle Miete)</option>
+                <option value="soll">Soll-Miete (Marktmiete)</option>
+              </select>
+            </div>
+
+            <div class="field" id="field-miete" style="display:none">
+              <label for="miete">Kaltmiete pro Monat</label>
+              <div class="field__unit" data-unit="€">
+                <input type="number" id="miete" name="miete" placeholder="z.B. 1200" min="0" max="100000">
+              </div>
+            </div>
+
+            <div class="step__buttons">
+              <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
+            </div>
+          </div>
+
+          <!-- STEP 5: Zustand + Baujahr -->
+          <div class="step" data-step="5">
+            <h2 class="step__title">Zustand & Baujahr</h2>
+            <p class="step__subtitle">In welchem Zustand befindet sich die Immobilie?</p>
+
+            <div class="condition-options">
+              <label class="condition-option">
+                <input type="radio" name="zustand" value="saniert" required>
+                <div class="condition-option__label">
+                  <div>
+                    <div class="condition-option__title">Saniert / Modernisiert</div>
+                    <div class="condition-option__desc">Kürzlich renoviert, moderne Ausstattung, guter Energiestandard</div>
+                  </div>
+                </div>
+              </label>
+              <label class="condition-option">
+                <input type="radio" name="zustand" value="normal">
+                <div class="condition-option__label">
+                  <div>
+                    <div class="condition-option__title">Normaler Zustand</div>
+                    <div class="condition-option__desc">Gepflegt, keine größeren Mängel, altersgemäßer Zustand</div>
+                  </div>
+                </div>
+              </label>
+              <label class="condition-option">
+                <input type="radio" name="zustand" value="unsaniert">
+                <div class="condition-option__label">
+                  <div>
+                    <div class="condition-option__title">Unsaniert / Renovierungsbedarf</div>
+                    <div class="condition-option__desc">Sanierungsstau, veraltete Haustechnik, energetisch nicht auf Stand</div>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <div class="field" style="margin-top:var(--space-8)">
+              <label for="baujahr">Baujahr</label>
+              <input type="number" id="baujahr" name="baujahr" placeholder="z.B. 1965" min="1800" max="2026">
+            </div>
+
+            <div class="step__buttons">
+              <button type="button" class="btn btn--secondary" onclick="prevStep(5)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(5)">Weiter</button>
+            </div>
+          </div>
+
+          <!-- STEP 6: Kontaktdaten -->
+          <div class="step" data-step="6">
+            <h2 class="step__title">Ihre Kontaktdaten</h2>
+            <p class="step__subtitle">Für den Versand Ihrer persönlichen Bewertung.</p>
+
+            <div class="field-row">
+              <div class="field" id="field-vorname">
+                <label for="vorname">Vorname</label>
+                <input type="text" id="vorname" name="vorname" placeholder="Vorname" required>
+                <p class="field__error">Bitte Vorname eingeben.</p>
+              </div>
+              <div class="field" id="field-nachname">
+                <label for="nachname">Nachname</label>
+                <input type="text" id="nachname" name="nachname" placeholder="Nachname" required>
+                <p class="field__error">Bitte Nachname eingeben.</p>
+              </div>
+            </div>
+
+            <div class="field" id="field-email">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" placeholder="name@beispiel.de" required>
+              <p class="field__error">Bitte gültige E-Mail eingeben.</p>
+            </div>
+
+            <div class="field">
+              <label for="telefon">Telefon (optional)</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="+49 ...">
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="strasse">Straße + Hausnr.</label>
+                <input type="text" id="strasse" name="strasse" placeholder="Musterstraße 12">
+              </div>
+              <div class="field-row" style="grid-template-columns: 100px 1fr">
+                <div class="field">
+                  <label for="plz">PLZ</label>
+                  <input type="text" id="plz" name="plz" placeholder="50939" maxlength="5">
+                </div>
+                <div class="field">
+                  <label for="stadt">Stadt</label>
+                  <input type="text" id="stadt" name="stadt" placeholder="Köln" value="Köln">
+                </div>
+              </div>
+            </div>
+
+            <div class="gdpr">
+              <input type="checkbox" id="gdpr" name="gdpr" required>
+              <label for="gdpr">Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden. <a href="/roman/datenschutz.html">Datenschutzerklärung</a></label>
+            </div>
+
+            <div class="step__buttons">
+              <button type="button" class="btn btn--secondary" onclick="prevStep(6)">Zurück</button>
+              <button type="button" class="btn btn--primary btn--large" onclick="submitForm()">Bewertung anfordern</button>
+            </div>
+          </div>
+
+          <!-- STEP 7: Ergebnis -->
+          <div class="step" data-step="7">
+            <div class="result">
+              <div class="result__icon">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <p class="result__label">Geschätzter Immobilienwert</p>
+              <p class="result__value" id="result-value">—</p>
+              <p class="result__range" id="result-range"></p>
+
+              <div class="result__note">
+                <p><strong>Hinweis:</strong> Dies ist eine automatische Ersteinschätzung auf Basis Ihrer Angaben und aktueller Marktdaten für Köln. Für eine belastbare Bewertung, die Mikrolage, Ausstattung und aktuelle Nachfrage berücksichtigt, empfehle ich ein persönliches Gespräch.</p>
+              </div>
+
+              <div class="result__cta">
+                <a href="tel:+491775156969" class="btn btn--primary btn--large">Jetzt anrufen: +49 177 515 69 69</a>
+                <a href="/roman/#kontakt" class="btn btn--secondary btn--large">Kontaktformular</a>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Roman Becker – Immobilienmakler Köln</strong>
+          &copy; 2026 Roman Becker – EVERNEST
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="/roman/">Startseite</a>
+          <a href="/roman/datenschutz.html">Datenschutz</a>
+          <a href="/roman/impressum.html">Impressum</a>
+          <a href="/roman/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH tätig. Die hier angezeigte Immobilienbewertung ist eine unverbindliche Ersteinschätzung und stellt kein Verkehrswertgutachten dar. Alle Angaben ohne Gewähr.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // ===========================
+    // STATE
+    // ===========================
+    var currentStep = 1;
+    var totalSteps = 7;
+
+    // ===========================
+    // STEP NAVIGATION
+    // ===========================
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      document.querySelector('.step[data-step="' + step + '"]').classList.add('active');
+
+      // Update progress
+      for (var i = 1; i <= totalSteps; i++) {
+        var dot = document.querySelector('.progress__step[data-step="' + i + '"]');
+        var line = document.querySelector('.progress__line[data-line="' + i + '"]');
+        dot.classList.remove('active', 'done');
+        if (i < step) {
+          dot.classList.add('done');
+          dot.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        } else if (i === step) {
+          dot.classList.add('active');
+          dot.textContent = i;
+        } else {
+          dot.textContent = i;
+        }
+        if (line) {
+          line.classList.toggle('done', i < step);
+        }
+      }
+
+      currentStep = step;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextStep(from) {
+      if (!validateStep(from)) return;
+      if (from === 2) prepareStep3();
+      showStep(from + 1);
+    }
+
+    function prevStep(from) {
+      showStep(from - 1);
+    }
+
+    // ===========================
+    // CONDITIONAL FIELDS
+    // ===========================
+    function prepareStep3() {
+      var art = document.querySelector('input[name="objektart"]:checked').value;
+      var fieldZimmer = document.getElementById('field-zimmer');
+      var fieldEinheiten = document.getElementById('field-einheiten');
+      var fieldErschliessung = document.getElementById('field-erschliessung');
+
+      fieldZimmer.style.display = 'none';
+      fieldEinheiten.style.display = 'none';
+      fieldErschliessung.style.display = 'none';
+
+      if (art === 'wohnung' || art === 'haus') {
+        fieldZimmer.style.display = 'block';
+      } else if (art === 'mehrfamilienhaus') {
+        fieldEinheiten.style.display = 'block';
+      } else if (art === 'grundstueck') {
+        fieldErschliessung.style.display = 'block';
+      }
+    }
+
+    // Show/hide miete field
+    document.getElementById('mietart').addEventListener('change', function() {
+      document.getElementById('field-miete').style.display = this.value ? 'block' : 'none';
+    });
+
+    // ===========================
+    // VALIDATION
+    // ===========================
+    function validateStep(step) {
+      var valid = true;
+
+      if (step === 1) {
+        var art = document.querySelector('input[name="objektart"]:checked');
+        if (!art) {
+          valid = false;
+          // Flash the cards
+          document.querySelectorAll('.radio-card__label').forEach(function(el) {
+            el.style.borderColor = '#e74c3c';
+            setTimeout(function() { el.style.borderColor = ''; }, 1500);
+          });
+        }
+      }
+
+      if (step === 2) {
+        var wf = document.getElementById('wohnflaeche');
+        var fieldWf = document.getElementById('field-wohnflaeche');
+        var art = document.querySelector('input[name="objektart"]:checked').value;
+
+        if (art !== 'grundstueck' && (!wf.value || parseFloat(wf.value) < 10)) {
+          fieldWf.classList.add('field--error');
+          valid = false;
+        } else {
+          fieldWf.classList.remove('field--error');
+        }
+
+        // Grundstück needs Grundstücksfläche
+        if (art === 'grundstueck') {
+          var gf = document.getElementById('grundstuecksflaeche');
+          var fieldGf = document.getElementById('field-grundstueck');
+          if (!gf.value || parseFloat(gf.value) < 10) {
+            fieldGf.classList.add('field--error');
+            valid = false;
+          } else {
+            fieldGf.classList.remove('field--error');
+          }
+        }
+      }
+
+      if (step === 5) {
+        var zustand = document.querySelector('input[name="zustand"]:checked');
+        if (!zustand) {
+          valid = false;
+          document.querySelectorAll('.condition-option__label').forEach(function(el) {
+            el.style.borderColor = '#e74c3c';
+            setTimeout(function() { el.style.borderColor = ''; }, 1500);
+          });
+        }
+      }
+
+      if (step === 6) {
+        // Validate required contact fields
+        var fields = [
+          { id: 'vorname', fieldId: 'field-vorname' },
+          { id: 'nachname', fieldId: 'field-nachname' },
+          { id: 'email', fieldId: 'field-email' }
+        ];
+
+        fields.forEach(function(f) {
+          var input = document.getElementById(f.id);
+          var field = document.getElementById(f.fieldId);
+          if (!input.value.trim()) {
+            field.classList.add('field--error');
+            valid = false;
+          } else {
+            field.classList.remove('field--error');
+          }
+        });
+
+        // Email format
+        var email = document.getElementById('email');
+        if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+          document.getElementById('field-email').classList.add('field--error');
+          valid = false;
+        }
+
+        // GDPR
+        if (!document.getElementById('gdpr').checked) {
+          valid = false;
+          var gdprLabel = document.querySelector('.gdpr label');
+          gdprLabel.style.color = '#e74c3c';
+          setTimeout(function() { gdprLabel.style.color = ''; }, 2000);
+        }
+      }
+
+      return valid;
+    }
+
+    // Clear errors on input
+    document.querySelectorAll('.field input, .field select').forEach(function(el) {
+      el.addEventListener('input', function() {
+        this.closest('.field').classList.remove('field--error');
+      });
+    });
+
+    // ===========================
+    // CALCULATION
+    // ===========================
+    function calculateValue() {
+      var art = document.querySelector('input[name="objektart"]:checked').value;
+      var wohnflaeche = parseFloat(document.getElementById('wohnflaeche').value) || 0;
+      var grundstueck = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
+      var zustand = document.querySelector('input[name="zustand"]:checked').value;
+      var baujahr = parseInt(document.getElementById('baujahr').value) || 1980;
+      var miete = parseFloat(document.getElementById('miete').value) || 0;
+      var einheiten = parseInt(document.getElementById('einheiten').value) || 1;
+
+      // Base prices per m² for Köln (2026, konservativ)
+      var basePrices = {
+        wohnung: 3200,
+        haus: 3500,
+        mehrfamilienhaus: 2400,
+        grundstueck: 420
+      };
+
+      // Condition multipliers (conservative)
+      var conditionMult = {
+        saniert: 1.10,
+        normal: 0.95,
+        unsaniert: 0.72
+      };
+
+      // Age factor (conservative)
+      var ageFactor = 1.0;
+      if (baujahr >= 2015) ageFactor = 1.08;
+      else if (baujahr >= 2000) ageFactor = 1.0;
+      else if (baujahr >= 1980) ageFactor = 0.93;
+      else if (baujahr >= 1960) ageFactor = 0.85;
+      else if (baujahr >= 1900) ageFactor = 0.78;
+      else ageFactor = 0.72;
+
+      var value = 0;
+
+      if (art === 'grundstueck') {
+        // Grundstück: price per m² × area
+        var erschliessung = document.getElementById('erschliessung').value;
+        var erschliessungMult = 1.0;
+        if (erschliessung === 'voll') erschliessungMult = 1.0;
+        else if (erschliessung === 'teil') erschliessungMult = 0.75;
+        else if (erschliessung === 'nicht') erschliessungMult = 0.5;
+
+        value = grundstueck * basePrices.grundstueck * erschliessungMult;
+      } else if (art === 'mehrfamilienhaus') {
+        // Mehrfamilienhaus: Ertragswert (rental income × multiplier) or area-based
+        if (miete > 0) {
+          // Ertragswertverfahren: annual rent × multiplier (18-22x)
+          var multiplier = zustand === 'saniert' ? 19 : (zustand === 'normal' ? 17 : 14);
+          value = miete * 12 * multiplier;
+        } else {
+          value = wohnflaeche * basePrices.mehrfamilienhaus * conditionMult[zustand] * ageFactor;
+        }
+      } else {
+        // Wohnung / Haus
+        value = wohnflaeche * basePrices[art] * conditionMult[zustand] * ageFactor;
+
+        // Add ground value for houses with plot
+        if (art === 'haus' && grundstueck > 0) {
+          value += grundstueck * 150 * conditionMult[zustand];
+        }
+      }
+
+      // Round to nearest 5000
+      value = Math.round(value / 5000) * 5000;
+
+      return value;
+    }
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    // ===========================
+    // SUBMIT
+    // ===========================
+    function submitForm() {
+      if (!validateStep(6)) return;
+
+      var value = calculateValue();
+      var low = Math.round(value * 0.9 / 5000) * 5000;
+      var high = Math.round(value * 1.1 / 5000) * 5000;
+
+      document.getElementById('result-value').textContent = formatCurrency(value);
+      document.getElementById('result-range').textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
+
+      showStep(7);
+
+      // Send data via email (submit.php)
+      var formData = new FormData();
+      formData.append('type', 'immobilienbewertung');
+      formData.append('objektart', document.querySelector('input[name="objektart"]:checked').value);
+      formData.append('wohnflaeche', document.getElementById('wohnflaeche').value);
+      formData.append('grundstuecksflaeche', document.getElementById('grundstuecksflaeche').value);
+      formData.append('zustand', document.querySelector('input[name="zustand"]:checked').value);
+      formData.append('baujahr', document.getElementById('baujahr').value);
+      formData.append('miete', document.getElementById('miete').value);
+      formData.append('vorname', document.getElementById('vorname').value);
+      formData.append('nachname', document.getElementById('nachname').value);
+      formData.append('email', document.getElementById('email').value);
+      formData.append('telefon', document.getElementById('telefon').value);
+      formData.append('strasse', document.getElementById('strasse').value);
+      formData.append('plz', document.getElementById('plz').value);
+      formData.append('stadt', document.getElementById('stadt').value);
+      formData.append('ergebnis', formatCurrency(value));
+
+      fetch('/roman/submit.php', {
+        method: 'POST',
+        body: formData
+      }).catch(function() {
+        // Silent fail — result already shown
+      });
+    }
+  </script>
+
+</body>
+</html>
