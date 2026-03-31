@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./roman/
-          server-dir: /public_html/fuertedigital/roman/
+          server-dir: /roman/
           exclude: |
             **/.git*
             **/.git*/**
