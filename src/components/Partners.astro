@@ -1,0 +1,18 @@
+---
+const partners = [
+  'Google Maps',
+  'Apple Wallet',
+  'Google Wallet',
+  'BoomerangMe',
+  'Cloudflare',
+];
+---
+<section class="border-t border-white/[0.06] py-6 px-6 md:px-10" data-reveal>
+  <div class="max-w-[1400px] mx-auto flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
+    {partners.map((name) => (
+      <span class="text-[11px] md:text-xs uppercase tracking-[0.25em] font-medium text-white/[0.15] select-none whitespace-nowrap">
+        {name}
+      </span>
+    ))}
+  </div>
+</section>

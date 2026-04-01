@@ -1,0 +1,112 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'fuerte.digital — Digitalagentur für Kölner Gastronomen' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="bg-night text-sand font-sans antialiased overflow-x-hidden">
+
+  <!-- Noise Texture Overlay -->
+  <div class="fixed inset-0 pointer-events-none z-[9999]" aria-hidden="true">
+    <svg width="100%" height="100%" class="opacity-[0.025]">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)" />
+    </svg>
+  </div>
+
+  <slot />
+
+  <!-- Smooth Scroll (Lenis) -->
+  <script>
+    import('https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.mjs').then(({ default: Lenis }) => {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    });
+  </script>
+
+  <!-- GSAP ScrollTrigger -->
+  <script>
+    async function initAnimations() {
+      const { gsap } = await import('https://cdn.jsdelivr.net/npm/gsap@3.12.7/index.js');
+      const { ScrollTrigger } = await import('https://cdn.jsdelivr.net/npm/gsap@3.12.7/ScrollTrigger.js');
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Reveal elements on scroll
+      document.querySelectorAll('[data-reveal]').forEach((el) => {
+        gsap.from(el, {
+          y: 60,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            once: true,
+          },
+        });
+      });
+
+      // Stagger reveal for groups
+      document.querySelectorAll('[data-reveal-group]').forEach((group) => {
+        const children = group.children;
+        gsap.from(children, {
+          y: 80,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: group,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      });
+
+      // Parallax on glow elements
+      document.querySelectorAll('[data-parallax]').forEach((el) => {
+        const speed = parseFloat(el.dataset.parallax) || 0.3;
+        gsap.to(el, {
+          y: () => speed * 200,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el.parentElement,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      });
+    }
+    initAnimations();
+  </script>
+</body>
+</html>

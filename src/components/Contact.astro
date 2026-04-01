@@ -1,0 +1,97 @@
+---
+---
+<section id="kontakt" class="py-24 md:py-32 px-6 md:px-10">
+  <div class="max-w-[700px] mx-auto">
+
+    <!-- Header -->
+    <div class="mb-14" data-reveal>
+      <h2 class="font-serif text-heading text-sand/90 mb-4">Start now</h2>
+      <p class="text-sand/40 text-base">Erzähl uns von deinem Restaurant. Wir melden uns innerhalb von 24 Stunden.</p>
+    </div>
+
+    <!-- Form -->
+    <form id="contact-form" class="space-y-8" data-reveal>
+      <!-- Name + Restaurant -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="group">
+          <label class="block text-[11px] uppercase tracking-[0.2em] font-medium text-sand/30 mb-3">Name</label>
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Dein Name"
+            class="w-full bg-transparent border-b border-white/[0.08] pb-3 text-sand placeholder:text-sand/20 focus:border-orange/50 focus:outline-none transition-colors duration-300"
+          />
+        </div>
+        <div class="group">
+          <label class="block text-[11px] uppercase tracking-[0.2em] font-medium text-sand/30 mb-3">Restaurant</label>
+          <input
+            type="text"
+            name="restaurant"
+            required
+            placeholder="Name deines Restaurants"
+            class="w-full bg-transparent border-b border-white/[0.08] pb-3 text-sand placeholder:text-sand/20 focus:border-orange/50 focus:outline-none transition-colors duration-300"
+          />
+        </div>
+      </div>
+
+      <!-- E-Mail -->
+      <div>
+        <label class="block text-[11px] uppercase tracking-[0.2em] font-medium text-sand/30 mb-3">E-Mail</label>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="deine@email.de"
+          class="w-full bg-transparent border-b border-white/[0.08] pb-3 text-sand placeholder:text-sand/20 focus:border-orange/50 focus:outline-none transition-colors duration-300"
+        />
+      </div>
+
+      <!-- Nachricht -->
+      <div>
+        <label class="block text-[11px] uppercase tracking-[0.2em] font-medium text-sand/30 mb-3">Nachricht</label>
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Was können wir für dich tun?"
+          class="w-full bg-transparent border-b border-white/[0.08] pb-3 text-sand placeholder:text-sand/20 focus:border-orange/50 focus:outline-none transition-colors duration-300 resize-none"
+        ></textarea>
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="bg-orange text-white font-semibold text-sm px-8 py-3.5 rounded-full hover:bg-orange/85 active:scale-[0.98] transition-all duration-300"
+      >
+        Nachricht senden
+      </button>
+    </form>
+
+    <!-- Oder-Trenner -->
+    <div class="flex items-center gap-4 my-12">
+      <div class="flex-1 h-px bg-white/[0.06]"></div>
+      <span class="text-[11px] uppercase tracking-[0.25em] text-sand/20 font-medium">Oder</span>
+      <div class="flex-1 h-px bg-white/[0.06]"></div>
+    </div>
+
+    <!-- Alternative CTAs -->
+    <div class="flex flex-col sm:flex-row gap-4" data-reveal>
+      <a
+        href="https://book.fuerte.digital"
+        target="_blank"
+        rel="noopener"
+        class="flex-1 text-center text-sm font-medium text-sand/60 border border-white/[0.08] px-6 py-3.5 rounded-full hover:border-white/[0.15] hover:text-sand transition-all duration-300"
+      >
+        Termin buchen
+      </a>
+      <a
+        href="https://wa.me/4901705594140"
+        target="_blank"
+        rel="noopener"
+        class="flex-1 text-center text-sm font-medium text-sand/60 border border-white/[0.08] px-6 py-3.5 rounded-full hover:border-white/[0.15] hover:text-sand transition-all duration-300"
+      >
+        WhatsApp schreiben
+      </a>
+    </div>
+  </div>
+</section>

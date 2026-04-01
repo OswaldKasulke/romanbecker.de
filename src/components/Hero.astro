@@ -1,0 +1,52 @@
+---
+---
+<section class="relative h-screen flex flex-col justify-end overflow-hidden px-6 md:px-10 pb-12 md:pb-16">
+
+  <!-- Gradient Glows -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div
+      class="absolute top-[15%] left-[10%] w-[500px] h-[500px] bg-teal/30 rounded-full blur-[120px] animate-glow-pulse"
+      data-parallax="0.2"
+    ></div>
+    <div
+      class="absolute bottom-[20%] right-[5%] w-[400px] h-[400px] bg-plum/25 rounded-full blur-[100px] animate-glow-pulse"
+      style="animation-delay: -3s;"
+      data-parallax="0.4"
+    ></div>
+    <div
+      class="absolute top-[40%] right-[30%] w-[200px] h-[200px] bg-orange/10 rounded-full blur-[80px] animate-float"
+    ></div>
+  </div>
+
+  <!-- Headline -->
+  <div class="relative z-10 max-w-[1400px] mx-auto w-full">
+    <h1 class="text-display text-sand leading-[0.92] mb-12 md:mb-16">
+      <span class="block">FIND THE</span>
+      <span class="block">FEEL, MAKE</span>
+      <span class="block">IT <em class="font-serif italic font-normal text-sand/80">digital</em></span>
+    </h1>
+
+    <!-- Bottom Row -->
+    <div class="flex items-end justify-between border-t border-white/[0.06] pt-6">
+      <!-- Beschreibung links -->
+      <p class="max-w-[380px] text-sand/50 text-sm md:text-base font-light leading-relaxed">
+        Digitalagentur für Kölner Gastronomen. Wir machen dein Restaurant sichtbar — mit virtuellen Touren, Bonuskarten und digitalen Speisekarten.
+      </p>
+
+      <!-- Scroll Indicator rechts -->
+      <div class="hidden md:flex flex-col items-center gap-3 text-sand/30">
+        <span class="text-[10px] uppercase tracking-[0.3em] font-medium">Scroll</span>
+        <div class="w-px h-12 bg-gradient-to-b from-sand/30 to-transparent relative overflow-hidden">
+          <div class="absolute inset-x-0 top-0 h-4 bg-sand/60 animate-[scroll-line_2s_ease-in-out_infinite]"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes scroll-line {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(400%); }
+    }
+  </style>
+</section>

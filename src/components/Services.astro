@@ -1,0 +1,77 @@
+---
+const services = [
+  {
+    title: '360° Virtuelle Touren',
+    description: 'Dein Restaurant in einer interaktiven 360°-Tour. Gäste erleben dein Lokal, bevor sie einen Tisch reservieren.',
+    tag: 'Immersive',
+    gradient: 'from-teal/40 to-teal/5',
+    iconBg: 'bg-teal/20',
+    href: '/360-touren',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-7 h-7"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  },
+  {
+    title: 'Digitale Bonuskarte',
+    description: 'Stempelkarten, Cashback und Treueprogramme — direkt im Wallet deiner Gäste. Kein Papier, kein Vergessen.',
+    tag: 'Loyalty',
+    gradient: 'from-plum/40 to-plum/5',
+    iconBg: 'bg-plum/20',
+    href: 'https://bonuskarte.digital',
+    external: true,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-7 h-7"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="17" cy="15" r="2"/></svg>`,
+  },
+  {
+    title: 'Digitale Speisekarte',
+    description: 'Elegante QR-Code Speisekarten, die du selbst aktualisierst. Mehrsprachig, mit Fotos, immer aktuell.',
+    tag: 'Menu',
+    gradient: 'from-orange/30 to-orange/5',
+    iconBg: 'bg-orange/15',
+    href: '/digitale-speisekarte',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-7 h-7"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h4"/></svg>`,
+  },
+];
+---
+<section id="services" class="min-h-screen py-24 md:py-32 px-6 md:px-10">
+  <div class="max-w-[1400px] mx-auto">
+
+    <!-- Section Header -->
+    <div class="flex items-baseline justify-between mb-16 md:mb-24 border-b border-white/[0.06] pb-6" data-reveal>
+      <h2 class="font-serif text-heading text-sand/90">Our services</h2>
+      <span class="hidden md:block text-[11px] uppercase tracking-[0.25em] font-medium text-sand/30 border border-white/[0.06] px-4 py-1.5 rounded-full">
+        Was wir machen
+      </span>
+    </div>
+
+    <!-- Service Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6" data-reveal-group>
+      {services.map((service) => (
+        <a
+          href={service.href}
+          target={service.external ? '_blank' : undefined}
+          rel={service.external ? 'noopener' : undefined}
+          class="group relative bg-card rounded-2xl border border-white/[0.06] overflow-hidden hover:border-white/[0.12] hover:-translate-y-1 transition-all duration-500"
+        >
+          <!-- Visual Area -->
+          <div class={`relative h-52 md:h-64 bg-gradient-to-b ${service.gradient} flex items-center justify-center overflow-hidden`}>
+            <div class={`${service.iconBg} w-16 h-16 rounded-2xl flex items-center justify-center text-sand/70 group-hover:scale-110 transition-transform duration-500`}>
+              <Fragment set:html={service.icon} />
+            </div>
+          </div>
+
+          <!-- Info Area -->
+          <div class="p-6 md:p-7">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-lg font-semibold text-sand">{service.title}</h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5 text-sand/30 group-hover:text-orange group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">
+                <path d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+            <p class="text-sm text-sand/40 leading-relaxed mb-4">{service.description}</p>
+            <span class="inline-block text-[10px] uppercase tracking-[0.2em] font-semibold text-sand/25 border border-white/[0.06] px-3 py-1 rounded-full">
+              {service.tag}
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

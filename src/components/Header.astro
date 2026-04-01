@@ -1,0 +1,77 @@
+---
+---
+<header class="fixed top-0 w-full z-50 mix-blend-difference">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="text-white text-lg font-semibold tracking-tight">
+      fuerte<span class="opacity-40">.</span>digital
+    </a>
+
+    <!-- Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#services" class="text-white/60 text-sm font-medium hover:text-white transition-colors duration-300">
+        Services
+      </a>
+      <a href="#kontakt" class="text-white/60 text-sm font-medium hover:text-white transition-colors duration-300">
+        Kontakt
+      </a>
+      <a
+        href="https://book.fuerte.digital"
+        target="_blank"
+        rel="noopener"
+        class="text-white text-sm font-medium px-5 py-2 rounded-full border border-white/20 hover:border-white/50 hover:bg-white/5 transition-all duration-300"
+      >
+        Termin buchen
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="menu-toggle"
+      class="md:hidden text-white w-10 h-10 flex items-center justify-center"
+      aria-label="Menü öffnen"
+    >
+      <svg width="24" height="16" viewBox="0 0 24 16" fill="none">
+        <line x1="0" y1="1" x2="24" y2="1" stroke="currentColor" stroke-width="1.5" class="origin-center transition-transform duration-300" id="line1" />
+        <line x1="0" y1="8" x2="24" y2="8" stroke="currentColor" stroke-width="1.5" class="transition-opacity duration-300" id="line2" />
+        <line x1="0" y1="15" x2="24" y2="15" stroke="currentColor" stroke-width="1.5" class="origin-center transition-transform duration-300" id="line3" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-night/98 backdrop-blur-xl flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-500">
+  <a href="#services" class="text-sand text-3xl font-light tracking-tight hover:text-orange transition-colors" data-menu-link>Services</a>
+  <a href="#kontakt" class="text-sand text-3xl font-light tracking-tight hover:text-orange transition-colors" data-menu-link>Kontakt</a>
+  <a href="https://book.fuerte.digital" target="_blank" rel="noopener" class="text-orange text-3xl font-light tracking-tight" data-menu-link>Termin buchen</a>
+</div>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  let open = false;
+
+  toggle?.addEventListener('click', () => {
+    open = !open;
+    if (open) {
+      menu.classList.remove('opacity-0', 'pointer-events-none');
+      menu.classList.add('opacity-100', 'pointer-events-auto');
+      document.body.style.overflow = 'hidden';
+    } else {
+      menu.classList.add('opacity-0', 'pointer-events-none');
+      menu.classList.remove('opacity-100', 'pointer-events-auto');
+      document.body.style.overflow = '';
+    }
+  });
+
+  document.querySelectorAll('[data-menu-link]').forEach(link => {
+    link.addEventListener('click', () => {
+      open = false;
+      menu.classList.add('opacity-0', 'pointer-events-none');
+      menu.classList.remove('opacity-100', 'pointer-events-auto');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
