@@ -53,7 +53,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 80px;
+  padding: 80px 10%;
   background: linear-gradient(160deg, #FAFAF8 0%, #F0EDE6 100%);
   position: relative;
 }
@@ -73,6 +73,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
   margin-bottom: 40px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
 }
 .cover-agency::before {
@@ -123,7 +124,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 }
 .cover-bottom {
   position: absolute;
-  bottom: 32px; left: 80px; right: 80px;
+  bottom: 32px; left: 10%; right: 10%;
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
@@ -134,7 +135,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .cover-bottom strong { color: var(--text-secondary); font-weight: 600; }
 
 /* CONTENT */
-.content { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+.content { max-width: 1120px; margin: 0 auto; padding: 0 60px; }
 section { padding: 64px 0; border-bottom: 1px solid var(--border-light); }
 .section-num {
   font-family: var(--font-mono);
@@ -602,13 +603,13 @@ td:first-child { color: var(--text); font-weight: 500; }
 }
 
 @media (max-width: 768px) {
-  .cover { padding: 32px; }
+  .cover { padding: 48px 24px; }
   .scores { grid-template-columns: 1fr 1fr; }
   .vs, .screenshot-row { grid-template-columns: 1fr; }
   .toc-grid { grid-template-columns: 1fr; }
   .kf { grid-template-columns: 1fr; }
   .content { padding: 0 20px; }
-  .cover-bottom { left: 32px; right: 32px; }
+  .cover-bottom { left: 24px; right: 24px; }
 }
 </style>
 </head>
