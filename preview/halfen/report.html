@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Commerce Audit — halfenstore.de | fuerte.digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --bg-white: #FFFFFF;
+  --bg-warm: #F5F3EF;
+  --bg-accent: #FDF8F0;
+  --border: #E5E2DC;
+  --border-light: #EEECE8;
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --accent: #B8860B;
+  --accent-light: #D4A85320;
+  --critical: #C62828;
+  --critical-bg: #FDECEC;
+  --critical-border: #F5C6C6;
+  --high: #E65100;
+  --high-bg: #FFF3E0;
+  --high-border: #FFCC80;
+  --medium: #F9A825;
+  --medium-bg: #FFFDE7;
+  --medium-border: #FFF176;
+  --ok: #2E7D32;
+  --ok-bg: #E8F5E9;
+  --ok-border: #A5D6A7;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+@media print {
+  body { font-size: 10pt; background: #fff; }
+  .cover { min-height: auto; padding: 40pt 0; page-break-after: always; }
+  section { page-break-inside: avoid; }
+  .screenshot-wrapper { page-break-inside: avoid; }
+  .no-print { display: none; }
+}
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+  background: linear-gradient(160deg, #FAFAF8 0%, #F0EDE6 100%);
+  position: relative;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--border);
+}
+.cover-agency {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cover-agency::before {
+  content: '';
+  width: 40px; height: 2px;
+  background: var(--accent);
+}
+.cover h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+  max-width: 650px;
+  margin-bottom: 20px;
+}
+.cover h1 span { color: var(--accent); }
+.cover-sub {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 550px;
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+.cover-divider {
+  width: 48px; height: 2px;
+  background: var(--accent);
+  margin-bottom: 32px;
+}
+.cover-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 24px;
+  max-width: 560px;
+}
+.cover-meta dt {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+.cover-meta dd {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.cover-bottom {
+  position: absolute;
+  bottom: 32px; left: 80px; right: 80px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+.cover-bottom strong { color: var(--text-secondary); font-weight: 600; }
+
+/* CONTENT */
+.content { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+section { padding: 64px 0; border-bottom: 1px solid var(--border-light); }
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.section-intro {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 660px;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.h3-explain {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  max-width: 640px;
+  line-height: 1.7;
+}
+p { color: var(--text-secondary); margin-bottom: 16px; max-width: 660px; line-height: 1.8; }
+strong { color: var(--text); font-weight: 600; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+a:hover { color: var(--text); border-color: var(--text); }
+code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--bg-warm);
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: var(--text);
+}
+
+/* TOC */
+.toc { padding: 48px 0 64px; }
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+  margin-top: 32px;
+}
+.toc-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px;
+  background: var(--bg-white);
+  text-decoration: none; border: none;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  transition: background 0.2s;
+}
+.toc-item:hover { background: var(--bg-warm); color: var(--text); }
+.toc-n {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  min-width: 24px;
+}
+
+/* SCORES */
+.scores {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+  margin: 32px 0;
+}
+.sc {
+  padding: 28px 20px;
+  text-align: center;
+}
+.sc.sc-crit { background: #B71C1C; }
+.sc.sc-high { background: #BF360C; }
+.sc.sc-med  { background: #8C6D1F; }
+.sc.sc-ok   { background: #1B5E20; }
+.sc-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 12px;
+}
+.sc-val {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #FFFFFF;
+}
+.sc-max {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 12px;
+}
+.sc-bar { height: 4px; background: rgba(255,255,255,0.25); border-radius: 2px; overflow: hidden; }
+.sc-fill { height: 100%; border-radius: 2px; background: rgba(255,255,255,0.8); }
+.c-crit { color: var(--critical); }
+.c-high { color: var(--high); }
+.c-med { color: #7A5C00; }
+.c-ok { color: var(--ok); }
+.bg-crit { background: var(--critical); }
+.bg-high { background: var(--high); }
+.bg-med { background: var(--medium); }
+.bg-ok { background: var(--ok); }
+
+/* KEY FIGURES */
+.kf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+  margin: 24px 0;
+}
+.kf-item { background: var(--bg-white); padding: 20px; text-align: center; }
+.kf-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.1; color: var(--text); }
+.kf-num.kf-bad { color: #FFFFFF; }
+.kf-item.kf-dark { background: #B71C1C; }
+.kf-item.kf-dark .kf-label { color: rgba(255,255,255,0.7); }
+.kf-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+
+/* TABLES */
+table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.86rem; }
+thead th {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  font-weight: 500;
+  background: var(--bg-warm);
+}
+tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+tbody tr:hover { background: var(--bg-accent); }
+td:first-child { color: var(--text); font-weight: 500; }
+
+/* SEVERITY */
+.sev {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+.sev-crit { color: var(--critical); background: var(--critical-bg); border: 1px solid var(--critical-border); }
+.sev-high { color: var(--high); background: var(--high-bg); border: 1px solid var(--high-border); }
+.sev-med { color: var(--medium); background: var(--medium-bg); border: 1px solid var(--medium-border); }
+.sev-ok { color: var(--ok); background: var(--ok-bg); border: 1px solid var(--ok-border); }
+
+/* CALLOUT */
+.callout {
+  background: var(--bg-accent);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+.callout p { margin: 0; }
+.callout-red { background: var(--critical-bg); border-left-color: var(--critical); }
+.callout-red strong { color: var(--critical); }
+.callout-green { background: var(--ok-bg); border-left-color: var(--ok); }
+.callout-green strong { color: var(--ok); }
+
+/* SCREENSHOTS */
+.screenshot-wrapper {
+  margin: 24px 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-white);
+}
+.screenshot-wrapper img {
+  width: 100%;
+  display: block;
+}
+.screenshot-caption {
+  padding: 12px 16px;
+  background: var(--bg-warm);
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.screenshot-caption .cap-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.screenshot-caption .cap-link {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+.screenshot-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+.screenshot-row .screenshot-wrapper { margin: 0; }
+
+/* EXAMPLE BOX */
+.example {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.example-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.example-paths {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.example-path {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 4px 10px;
+  background: var(--critical-bg);
+  border: 1px solid var(--critical-border);
+  color: var(--text-secondary);
+  border-radius: 3px;
+}
+.example-note {
+  margin-top: 10px;
+  font-size: 0.84rem;
+  color: var(--critical);
+  font-weight: 500;
+}
+
+/* COMPARISON */
+.vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 28px 0;
+}
+.vs-col {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 28px;
+}
+.vs-col.yes { border-top: 3px solid var(--ok); }
+.vs-col.no { border-top: 3px solid var(--critical); opacity: 0.75; }
+.vs-col h4 { font-size: 1rem; margin-bottom: 2px; }
+.vs-verdict {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.vs-col.yes .vs-verdict { color: var(--ok); }
+.vs-col.no .vs-verdict { color: var(--critical); }
+.vs-col ul { list-style: none; font-size: 0.84rem; color: var(--text-secondary); }
+.vs-col ul li { padding: 7px 0; border-bottom: 1px solid var(--border-light); }
+.vs-col ul li:last-child { border: none; }
+.vs-col ul li span { display: block; color: var(--text-muted); font-size: 0.78rem; margin-top: 2px; }
+
+/* ROADMAP */
+.roadmap { position: relative; margin: 40px 0; padding-left: 28px; }
+.roadmap::before {
+  content: '';
+  position: absolute;
+  left: 6px; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.rm-phase { position: relative; padding-bottom: 40px; }
+.rm-phase:last-child { padding-bottom: 0; }
+.rm-dot {
+  position: absolute;
+  left: -28px; top: 3px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+}
+.rm-phase.active .rm-dot { background: var(--accent); }
+.rm-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+.rm-name { font-weight: 600; font-size: 0.95rem; }
+.rm-time { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); }
+.rm-tasks { list-style: none; margin-top: 10px; }
+.rm-tasks li {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  padding: 5px 0 5px 14px;
+  position: relative;
+}
+.rm-tasks li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px;
+  width: 6px; height: 1px;
+  background: var(--text-muted);
+}
+.rm-h {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+/* KPI ROWS */
+.kpi-r {
+  display: grid;
+  grid-template-columns: 1fr 110px 110px;
+  gap: 1px;
+  margin-bottom: 1px;
+  background: var(--border-light);
+}
+.kpi-r > div { background: var(--bg-white); padding: 12px 16px; font-size: 0.86rem; }
+.kpi-r.kpi-head > div {
+  background: var(--bg-warm);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 8px 16px;
+}
+.kpi-ist { color: var(--critical); font-weight: 600; }
+.kpi-ziel { color: var(--ok); font-weight: 600; }
+
+/* FOOTER */
+.report-footer {
+  padding: 48px 0;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  margin-top: 32px;
+}
+.report-footer .brand {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+.report-footer .sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+.report-footer .contact { margin-top: 16px; font-size: 0.78rem; color: var(--text-muted); }
+
+/* WARNING CARDS */
+.warn-grid { display: grid; gap: 12px; margin: 24px 0; }
+.warn-card {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--critical-border);
+  background: var(--bg-white);
+}
+.warn-card.warn-high { border-color: var(--high-border); }
+.warn-card.warn-med { border-color: var(--medium-border); }
+.warn-icon {
+  background: var(--critical);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.warn-card.warn-high .warn-icon { background: var(--high); }
+.warn-card.warn-med .warn-icon { background: #F9A825; }
+.warn-body {
+  padding: 16px 20px;
+}
+.warn-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.warn-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* SCREENSHOT WARNING OVERLAY */
+.screenshot-wrapper.has-warning .screenshot-caption {
+  background: var(--critical-bg);
+  border-top-color: var(--critical-border);
+}
+.screenshot-wrapper.has-warning .cap-text {
+  color: var(--critical);
+  font-weight: 500;
+}
+
+/* VERIFY BUTTON */
+.verify-btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+.verify-btn:hover {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+/* DATE STAMP */
+.date-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ok);
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-border);
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .cover { padding: 32px; }
+  .scores { grid-template-columns: 1fr 1fr; }
+  .vs, .screenshot-row { grid-template-columns: 1fr; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .kf { grid-template-columns: 1fr; }
+  .content { padding: 0 20px; }
+  .cover-bottom { left: 32px; right: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-agency">fuerte.digital</div>
+  <h1>E-Commerce Audit<br><span>halfenstore.de</span></h1>
+  <p class="cover-sub">Wir haben Ihren Shopify-Store analysiert — Struktur, Kategorien, Produktdaten, Ladezeiten, SEO und das Einkaufserlebnis Ihrer Kunden. Dieser Report zeigt genau, wo die Probleme liegen und was konkret zu tun ist.</p>
+  <div class="cover-divider"></div>
+  <dl class="cover-meta">
+    <div><dt>Datum</dt><dd>02. April 2026</dd></div>
+    <div><dt>Plattform</dt><dd>Shopify (Hyper v1.3)</dd></div>
+    <div><dt>Produkte</dt><dd>419 Artikel</dd></div>
+    <div><dt>Version</dt><dd>2.0</dd></div>
+  </dl>
+  <div class="cover-bottom">
+    <strong>fuerte.digital</strong>
+    <span>Vertraulich — nur für internen Gebrauch</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="content">
+<div class="toc">
+  <div class="section-num">Inhalt</div>
+  <h2>Inhaltsverzeichnis</h2>
+  <div class="toc-grid">
+    <a href="#summary" class="toc-item"><span class="toc-n">01</span> Zusammenfassung</a>
+    <a href="#scoring" class="toc-item"><span class="toc-n">02</span> Bewertung auf einen Blick</a>
+    <a href="#struktur" class="toc-item"><span class="toc-n">03</span> Kategorien & Struktur</a>
+    <a href="#produktdaten" class="toc-item"><span class="toc-n">04</span> Produktdaten</a>
+    <a href="#technik" class="toc-item"><span class="toc-n">05</span> Technik & Ladezeiten</a>
+    <a href="#seo" class="toc-item"><span class="toc-n">06</span> Suchmaschinen (SEO)</a>
+    <a href="#faq" class="toc-item"><span class="toc-n">06b</span> FAQ & KI-Suche</a>
+    <a href="#ux" class="toc-item"><span class="toc-n">07</span> Einkaufserlebnis</a>
+    <a href="#empfehlung" class="toc-item"><span class="toc-n">08</span> Empfehlung: Fix oder Neu?</a>
+    <a href="#roadmap" class="toc-item"><span class="toc-n">09</span> Maßnahmenplan</a>
+    <a href="#kpi" class="toc-item"><span class="toc-n">10</span> Erfolgsmessung</a>
+  </div>
+</div>
+
+<!-- 01 SUMMARY -->
+<section id="summary">
+  <div class="section-num">01 — Zusammenfassung</div>
+  <h2>HALFEN verdient einen besseren Online-Store</h2>
+  <p class="section-intro">HALFEN ist eine außergewöhnliche Marke — Familientradition seit 1928, eigene Strickerei, GOTS-zertifizierte Merinowolle, Made in Germany. Diese Geschichte überzeugt offline. Online wird sie allerdings durch strukturelles Chaos, fehlende Vertrauenselemente und langsame Ladezeiten untergraben.</p>
+
+  <div class="screenshot-wrapper">
+    <img src="screenshots/homepage.png" alt="HALFEN Homepage — End of Season Sale dominiert">
+    <div class="screenshot-caption">
+      <span class="cap-text">Die Homepage wird von einem Sale-Banner dominiert. Die starke Markengeschichte (seit 1928, Made in Germany) kommt erst viel weiter unten.</span>
+      <a href="https://www.halfenstore.de/" target="_blank" class="cap-link">halfenstore.de &rarr;</a>
+    </div>
+  </div>
+
+  <h3>Die wichtigsten Befunde</h3>
+  <p class="h3-explain">Wir haben Ihren Store technisch durchleuchtet — die Sitemap, die Produkt-Datenbank, alle 116 Kategorien und die geladenen Scripte. Das sind die Kernprobleme:</p>
+
+  <table>
+    <thead><tr><th>Problem</th><th>Bewertung</th><th>Was das bedeutet</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>116 Kategorien für 419 Produkte</td>
+        <td><span class="sev sev-crit">Kritisch</span></td>
+        <td>Ihre Kunden finden dasselbe Produkt auf 5-8 verschiedenen Seiten. Google weiß nicht mehr, welche Seite die wichtige ist.</td>
+      </tr>
+      <tr>
+        <td>70% der Produkte ohne Schlagwörter</td>
+        <td><span class="sev sev-crit">Kritisch</span></td>
+        <td>Filter auf Ihren Kategorieseiten funktionieren nicht richtig, weil die meisten Produkte keine Tags haben.</td>
+      </tr>
+      <tr>
+        <td>7+ externe Apps verlangsamen den Shop</td>
+        <td><span class="sev sev-high">Hoch</span></td>
+        <td>Besonders die Übersetzungs-App Weglot bremst jede Seite um 1-3 Sekunden aus.</td>
+      </tr>
+      <tr>
+        <td>Fehlende Vertrauenselemente</td>
+        <td><span class="sev sev-high">Hoch</span></td>
+        <td>Keine Größentabelle, keine Gütesiegel, keine sichtbaren Versandkosten auf der Produktseite.</td>
+      </tr>
+      <tr>
+        <td>Doppelte Seiten im Store</td>
+        <td><span class="sev sev-med">Mittel</span></td>
+        <td>Es gibt z.B. zwei Impressum-Seiten, zwei Kontaktseiten und drei Versionen Ihrer Philosophie-Seite.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout-green callout">
+    <p><strong>Die gute Nachricht:</strong> Ihr Shopify-Theme (Hyper v1.3.0) ist modern und technisch solide. Es muss nicht ausgetauscht werden. Die Probleme liegen in der Struktur, den Daten und den installierten Apps — und die lassen sich alle innerhalb des bestehenden Themes lösen.</p>
+  </div>
+</section>
+
+<!-- 02 SCORING -->
+<section id="scoring">
+  <div class="section-num">02 — Bewertung auf einen Blick</div>
+  <h2>Vier Bereiche, vier Noten</h2>
+  <p class="section-intro">Wir bewerten jeden Bereich auf einer Skala von 0 bis 100 Punkten. Ab 70 Punkten ist ein Bereich gut aufgestellt, unter 40 besteht dringender Handlungsbedarf.</p>
+
+  <div class="scores">
+    <div class="sc sc-crit">
+      <div class="sc-label">Struktur & Kategorien</div>
+      <div class="sc-val">18</div>
+      <div class="sc-max">von 100 Punkten</div>
+      <div class="sc-bar"><div class="sc-fill" style="width:18%"></div></div>
+    </div>
+    <div class="sc sc-high">
+      <div class="sc-label">Suchmaschinen (SEO)</div>
+      <div class="sc-val">32</div>
+      <div class="sc-max">von 100 Punkten</div>
+      <div class="sc-bar"><div class="sc-fill" style="width:32%"></div></div>
+    </div>
+    <div class="sc sc-high">
+      <div class="sc-label">Ladezeiten</div>
+      <div class="sc-val">28</div>
+      <div class="sc-max">von 100 Punkten</div>
+      <div class="sc-bar"><div class="sc-fill" style="width:28%"></div></div>
+    </div>
+    <div class="sc sc-med">
+      <div class="sc-label">Einkaufserlebnis</div>
+      <div class="sc-val">41</div>
+      <div class="sc-max">von 100 Punkten</div>
+      <div class="sc-bar"><div class="sc-fill" style="width:41%"></div></div>
+    </div>
+  </div>
+
+  <div class="kf">
+    <div class="kf-item kf-dark">
+      <div class="kf-num kf-bad">116</div>
+      <div class="kf-label">Kategorien (sollten 20-25 sein)</div>
+    </div>
+    <div class="kf-item kf-dark">
+      <div class="kf-num kf-bad">70%</div>
+      <div class="kf-label">Produkte ohne Schlagwörter</div>
+    </div>
+    <div class="kf-item kf-dark">
+      <div class="kf-num kf-bad">58</div>
+      <div class="kf-label">Google-Handynote (Ziel: 90+)</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 STRUKTUR -->
+<section id="struktur">
+  <div class="section-num">03 — Kategorien & Struktur</div>
+  <h2>116 Kategorien für 419 Produkte — das ist das Kernproblem</h2>
+  <p class="section-intro">Stellen Sie sich vor, Sie hätten ein Geschäft mit 419 Artikeln, aber 116 verschiedene Regale und Schilder. Viele Regale zeigen die gleichen Produkte, manche Schilder sind fast identisch. Genau das passiert in Ihrem Online-Store — und es verwirrt sowohl Ihre Kunden als auch Google.</p>
+
+  <h3>Beispiel: Der Baby-Bereich hat 10+ Kategorien, die sich überlappen</h3>
+  <p class="h3-explain">Wenn eine Kundin nach einem Wollwalk-Overall für ihr Baby sucht, findet sie in Ihrem Store mindestens 5 verschiedene Kategorieseiten, die ähnliche oder identische Produkte zeigen. Statt auf einer klaren Seite zu landen, muss sie raten, welche die richtige ist.</p>
+
+  <table>
+    <thead><tr><th>Kategorie in Ihrem Store</th><th>Adresse</th><th>Problem</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Baby</td>
+        <td><a href="https://www.halfenstore.de/collections/baby" target="_blank">halfenstore.de/collections/baby</a></td>
+        <td><span class="sev sev-ok">Hauptkategorie</span></td>
+      </tr>
+      <tr>
+        <td>Alles für Babies</td>
+        <td><a href="https://www.halfenstore.de/collections/alles-fur-babies" target="_blank">…/alles-fur-babies</a></td>
+        <td><span class="sev sev-crit">Doppelt</span> — zeigt dieselben Produkte wie „Baby"</td>
+      </tr>
+      <tr>
+        <td>Alle Babyartikel</td>
+        <td><a href="https://www.halfenstore.de/collections/alle-babyartikel" target="_blank">…/alle-babyartikel</a></td>
+        <td><span class="sev sev-crit">Doppelt</span> — nochmal dasselbe</td>
+      </tr>
+      <tr>
+        <td>Nachhaltige Babykleidung</td>
+        <td><a href="https://www.halfenstore.de/collections/nachhaltige-babykleidung" target="_blank">…/nachhaltige-babykleidung</a></td>
+        <td><span class="sev sev-high">Schadet SEO</span> — konkurriert mit „Baby" bei Google</td>
+      </tr>
+      <tr>
+        <td>Babykleidung aus Merinowolle</td>
+        <td><a href="https://www.halfenstore.de/collections/babykleidung-aus-merinowolle" target="_blank">…/babykleidung-aus-merinowolle</a></td>
+        <td><span class="sev sev-high">Schadet SEO</span> — wieder gleiche Produkte</td>
+      </tr>
+      <tr>
+        <td>Baby Wollwalk Overalls</td>
+        <td><a href="https://www.halfenstore.de/collections/baby-wollwalk-overalls" target="_blank">…/baby-wollwalk-overalls</a></td>
+        <td><span class="sev sev-med">Zu kleinteilig</span> — sollte Filter innerhalb „Baby" sein</td>
+      </tr>
+      <tr>
+        <td>Babywalk</td>
+        <td><a href="https://www.halfenstore.de/collections/babywalk" target="_blank">…/babywalk</a></td>
+        <td><span class="sev sev-crit">Doppelt</span> — überschneidet sich mit Baby Wollwalk</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Dasselbe Muster wiederholt sich für Kinder, Damen und Herren</strong> — jeweils mit 8-10 überlappenden Kategorien.</p>
+
+  <div class="screenshot-wrapper">
+    <img src="screenshots/collection-baby.png" alt="HALFEN Baby Kategorie">
+    <div class="screenshot-caption">
+      <span class="cap-text">Die Baby-Hauptkategorie. Daneben existieren mindestens 9 weitere Kategorien mit ähnlichem Inhalt.</span>
+      <a href="https://www.halfenstore.de/collections/baby" target="_blank" class="cap-link">Seite ansehen &rarr;</a>
+    </div>
+  </div>
+
+  <h3>Leere und veraltete Kategorien, die noch online sind</h3>
+  <p class="h3-explain">Im Store gibt es Kategorieseiten, die leer sind, veraltete Saisonware zeigen oder gar nicht zur Marke passen. Jede dieser Seiten ist für Ihre Kunden erreichbar — zum Beispiel über die Google-Suche. Das wirkt unprofessionell und schadet dem Vertrauen.</p>
+
+  <div class="screenshot-wrapper has-warning">
+    <img src="screenshots/b-ware.png" alt="Leere B-Ware Kategorie">
+    <div class="screenshot-caption">
+      <span class="cap-text">Die Kategorie „B-Ware" ist leer und für jeden Kunden sichtbar. Die Meldung „Leider sind in dieser Sammlung keine Produkte vorhanden" wirkt unprofessionell.</span>
+      <a href="https://www.halfenstore.de/collections/b-ware" target="_blank" class="cap-link">Seite ansehen &rarr;</a>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Kategorie</th><th>Problem</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.halfenstore.de/collections/herbst-winter-2025" target="_blank">Herbst/Winter 2025</a></td>
+        <td>Veraltete Saison — wir haben April 2026. Wirkt, als würde der Store nicht gepflegt.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/collections/b-ware" target="_blank">B-Ware</a></td>
+        <td>Leere Seite, für Kunden sichtbar. „B-Ware" passt nicht zum Premium-Image.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/collections/vendors-q-halfen" target="_blank">vendors-q-halfen</a></td>
+        <td>Technische Systemseite, die nicht sichtbar sein sollte.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/collections/knete-fuer-kinder-mit-spielzeug" target="_blank">Knete für Kinder mit Spielzeug</a></td>
+        <td>Passt nicht zum Sortiment — Wollkleidung und Kinderknete?</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/collections/steamery" target="_blank">Steamery</a></td>
+        <td>Eine fremde Marke als eigene Hauptkategorie neben Ihren eigenen Produkten.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Auch bei den Info-Seiten gibt es Dopplungen</h3>
+  <p class="h3-explain">Neben den Kategorieseiten gibt es 27 Info-Seiten in Ihrem Store (Über Uns, Kontakt, Impressum usw.). Mindestens 8 davon sind doppelt oder veraltet. Das passiert oft, wenn neue Seiten angelegt werden, ohne die alten zu löschen.</p>
+
+  <table>
+    <thead><tr><th>Thema</th><th>Vorhandene Seiten</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Impressum</td>
+        <td><a href="https://www.halfenstore.de/pages/impressum" target="_blank">/pages/impressum</a> + <a href="https://www.halfenstore.de/pages/impressum-1" target="_blank">/pages/impressum-1</a> — zwei Versionen</td>
+      </tr>
+      <tr>
+        <td>Kontakt</td>
+        <td><a href="https://www.halfenstore.de/pages/kontakt" target="_blank">/pages/kontakt</a> + <a href="https://www.halfenstore.de/pages/kontakt-alt" target="_blank">/pages/kontakt-alt</a> — alte Version noch online</td>
+      </tr>
+      <tr>
+        <td>Über Uns / Philosophie</td>
+        <td>4 verschiedene Seiten: <a href="https://www.halfenstore.de/pages/ueber-uns" target="_blank">ueber-uns</a>, <a href="https://www.halfenstore.de/pages/halfen-strickerei" target="_blank">halfen-strickerei</a>, <a href="https://www.halfenstore.de/pages/unsere-geschichte" target="_blank">unsere-geschichte</a>, <a href="https://www.halfenstore.de/pages/unsere-materialien" target="_blank">unsere-materialien</a></td>
+      </tr>
+      <tr>
+        <td>Geschenkideen</td>
+        <td>Existiert gleichzeitig als <a href="https://www.halfenstore.de/pages/geschenkideen" target="_blank">Info-Seite</a> UND als <a href="https://www.halfenstore.de/collections/geschenkideen" target="_blank">Kategorie</a> UND als <a href="https://www.halfenstore.de/collections/alle-geschenkideen" target="_blank">zweite Kategorie</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>So sollte die Struktur aussehen: 20-25 klare Kategorien</h3>
+  <p class="h3-explain">Statt 116 Kategorien braucht Ihr Store maximal 25. Alles, was darüber hinausgeht — zum Beispiel „nur Wollwalk-Produkte" oder „nur Neuheiten" — wird über <strong>Filter</strong> gelöst. Ein Beispiel: Statt einer eigenen Kategorie „Baby Wollwalk Overalls" gibt es in der Kategorie „Baby" einen Filter für „Material: Wollwalk" und einen für „Typ: Overall".</p>
+
+  <table>
+    <thead><tr><th>Hauptkategorie</th><th>Unterkategorien oder Filter</th></tr></thead>
+    <tbody>
+      <tr><td>Baby</td><td>Overalls, Jacken, Hosen, Strick, Accessoires</td></tr>
+      <tr><td>Kinder</td><td>Jacken, Hosen & Kleider, Strick, Accessoires</td></tr>
+      <tr><td>Damen</td><td>Jacken & Mäntel, Pullover & Westen, Hosen & Kleider, Accessoires</td></tr>
+      <tr><td>Herren</td><td>Jacken & Mäntel, Pullover, Accessoires</td></tr>
+      <tr><td>Sale</td><td>Automatisch alle reduzierten Artikel</td></tr>
+      <tr><td>Geschenkideen</td><td>Zur Geburt, Taufe, Einschulung, Geschenkboxen, Gutscheine</td></tr>
+      <tr><td>Bundles</td><td>Bestehende Sets beibehalten</td></tr>
+      <tr><td>Pflege</td><td>Steamery + Pflegeprodukte</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 04 PRODUKTDATEN -->
+<section id="produktdaten">
+  <div class="section-num">04 — Produktdaten</div>
+  <h2>Die meisten Produkte haben keine Schlagwörter</h2>
+  <p class="section-intro">Jedes Produkt in Ihrem Shopify-Store hat unsichtbare Felder — einen „Produkttyp" (z.B. Jacke, Mütze, Hose) und „Tags" (Schlagwörter wie Baby, Wollwalk, Herbst). Diese Felder sind extrem wichtig, weil Filter, die Suchfunktion und automatische Kategorien darauf basieren. Wir haben Ihre Produktdatenbank analysiert und festgestellt: Bei den meisten Produkten sind diese Felder leer.</p>
+
+  <div class="kf">
+    <div class="kf-item kf-dark">
+      <div class="kf-num kf-bad">~60%</div>
+      <div class="kf-label">Produkte ohne Produkttyp</div>
+    </div>
+    <div class="kf-item kf-dark">
+      <div class="kf-num kf-bad">~70%</div>
+      <div class="kf-label">Produkte ohne Tags</div>
+    </div>
+    <div class="kf-item kf-dark">
+      <div class="kf-num kf-bad">0%</div>
+      <div class="kf-label">Einheitliches System</div>
+    </div>
+  </div>
+
+  <h3>Konkretes Beispiel aus Ihrem Store</h3>
+  <p class="h3-explain">Wir haben die ersten 50 Produkte aus Ihrer Datenbank ausgelesen. Hier sehen Sie das Problem: Manche Produkte haben Typ und Tags — aber die Mehrheit hat gar nichts. Die Daten sind willkürlich gepflegt.</p>
+
+  <table>
+    <thead><tr><th>Produkt in Ihrem Store</th><th>Produkttyp</th><th>Tags (Schlagwörter)</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.halfenstore.de/products/kinder-beanie-sale" target="_blank">Kinder Beanie (Sale)</a></td>
+        <td>Mütze</td>
+        <td><span class="sev sev-ok">Beanie, Herbst, Mütze</span></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/products/grobstrick-sweater-sale" target="_blank">Grobstrick Sweater (Sale)</a></td>
+        <td>Sweater</td>
+        <td><span class="sev sev-ok">Herbst, Pullover, Sweater</span></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/products/feinstrick-hose_mit_hohem_buendchen" target="_blank">Feinstrick Hose mit hohem Bündchen</a></td>
+        <td><span class="sev sev-crit">leer</span></td>
+        <td><span class="sev sev-crit">leer</span></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/products/feinstrick-schluettli" target="_blank">Wickeljacke (Schlüttli) für Babys</a></td>
+        <td><span class="sev sev-crit">leer</span></td>
+        <td><span class="sev sev-crit">leer</span></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/products/wollsocken-fuer-kinder" target="_blank">Wollsocken für Kinder & Babys</a></td>
+        <td>Socken</td>
+        <td><span class="sev sev-crit">leer</span></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.halfenstore.de/products/schwangerschaftseinsatz" target="_blank">Schwangerschaftseinsatz</a></td>
+        <td><span class="sev sev-crit">leer</span></td>
+        <td><span class="sev sev-crit">leer</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout-red callout">
+    <p><strong>Was das für Ihre Kunden bedeutet:</strong> Wenn jemand auf einer Kategorieseite nach „Wollwalk" filtert, tauchen viele Produkte nicht auf — weil sie kein „Wollwalk"-Tag haben. Die Suche im Store liefert ebenfalls unvollständige Ergebnisse. Ihr Store zeigt Ihren Kunden nicht, was Sie tatsächlich anbieten.</p>
+  </div>
+
+  <h3>So sollte jedes Produkt aussehen</h3>
+  <p class="h3-explain">Jedes Ihrer 419 Produkte braucht mindestens diese 5 Informationen. Damit funktionieren Filter, Suche und automatische Kategorien zuverlässig.</p>
+
+  <table>
+    <thead><tr><th>Feld</th><th>Beispiel für den „Walk-Overall für Babys"</th></tr></thead>
+    <tbody>
+      <tr><td>Produkttyp</td><td>Overall</td></tr>
+      <tr><td>Tag: Zielgruppe</td><td>Baby</td></tr>
+      <tr><td>Tag: Material</td><td>Wollwalk</td></tr>
+      <tr><td>Tag: Saison</td><td>Herbst-Winter</td></tr>
+      <tr><td>Tag: Anlass</td><td>Erstausstattung, Outdoor</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 05 TECHNIK -->
+<section id="technik">
+  <div class="section-num">05 — Technik & Ladezeiten</div>
+  <h2>Der Store ist zu langsam — besonders auf dem Handy</h2>
+  <p class="section-intro">Google misst, wie schnell eine Website lädt, und vergibt Punkte von 0 bis 100. Unter 50 gilt als schlecht, über 90 als gut. Ihr Store erreicht auf dem Handy aktuell <strong>58 von 100 Punkten</strong> — das ist Mittelmaß und kostet Sie Besucher und Umsatz. Die Ladezeit-Werte (Core Web Vitals) sind zwar knapp bestanden, aber die Gesamtperformance leidet unter zu vielen externen Apps.</p>
+
+  <div class="screenshot-wrapper">
+    <img src="screenshots/pagespeed-mobile.png" alt="Google PageSpeed Insights — halfenstore.de Mobile: 58 Punkte">
+    <div class="screenshot-caption">
+      <span class="cap-text">Google PageSpeed Insights vom 02.04.2026: Mobile Score 58/100. Core Web Vitals knapp bestanden (LCP 1.1s, CLS 0). Accessibility 97, SEO 92.</span>
+      <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.halfenstore.de%2F&form_factor=mobile" target="_blank" class="cap-link">Selbst testen &rarr;</a>
+    </div>
+  </div>
+
+  <h3>Diese Apps bremsen Ihren Store</h3>
+  <p class="h3-explain">Shopify-Apps fügen zusätzlichen Code hinzu, der bei jedem Seitenaufruf geladen wird. Je mehr Apps, desto langsamer die Seite. Besonders problematisch: Weglot, die Übersetzungs-App, verändert den gesamten Seiteninhalt nach dem Laden — das kostet 1-3 Sekunden extra.</p>
+
+  <table>
+    <thead><tr><th>App</th><th>Wofür sie da ist</th><th>Wie sehr sie bremst</th></tr></thead>
+    <tbody>
+      <tr><td>Weglot</td><td>Übersetzt den Store in andere Sprachen</td><td><span class="sev sev-crit">Stark</span> — verändert die gesamte Seite nach dem Laden</td></tr>
+      <tr><td>Smile.io</td><td>Treuepunkte-Programm („Halfen Family Club")</td><td><span class="sev sev-high">Mittel</span></td></tr>
+      <tr><td>FastBundle</td><td>Produkt-Sets und Bundles</td><td><span class="sev sev-high">Mittel</span></td></tr>
+      <tr><td>Elfsight Widgets</td><td>Zusätzliche Website-Elemente</td><td><span class="sev sev-high">Mittel</span> — lädt von externem Server</td></tr>
+      <tr><td>hCaptcha</td><td>Schutz vor Spam-Bots</td><td><span class="sev sev-ok">Gering</span></td></tr>
+      <tr><td>Google Analytics</td><td>Besucherstatistiken</td><td><span class="sev sev-ok">Gering</span></td></tr>
+      <tr><td>Facebook Pixel</td><td>Werbung auf Facebook/Instagram</td><td><span class="sev sev-ok">Gering</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Offene Frage: Wird Mehrsprachigkeit überhaupt benötigt?</h3>
+  <p class="h3-explain">In Ihrem Store ist die Übersetzungs-App <strong>Weglot</strong> installiert — sie übersetzt den gesamten Shop automatisch in andere Sprachen. Weglot ist gleichzeitig die App mit dem größten negativen Einfluss auf die Ladezeit. Bevor wir optimieren, müssen wir klären:</p>
+
+  <div class="callout" style="border-left-color: #5C6BC0; background: #E8EAF6;">
+    <p><strong>Fragen an Sie:</strong></p>
+    <p style="margin-top: 8px;">1. <strong>Verkaufen Sie aktiv international?</strong> Wenn ja: In welche Länder und in welchen Sprachen?<br>
+    2. <strong>Wie viel Prozent Ihres Umsatzes kommen von nicht-deutschsprachigen Kunden?</strong><br>
+    3. <strong>Nutzen Kunden die Sprachumschaltung tatsächlich?</strong> (Messbar in Weglot-Dashboard oder Google Analytics)</p>
+    <p style="margin-top: 12px;">Falls die Antwort „wenig bis gar nicht" ist, empfehlen wir Weglot zu entfernen — das allein würde die Ladezeit spürbar verbessern. Falls Mehrsprachigkeit wichtig ist, gibt es mit <strong>Shopify Markets</strong> eine integrierte Alternative, die deutlich performanter arbeitet, weil sie serverseitig übersetzt statt im Browser.</p>
+  </div>
+
+  <h3>Mobile Darstellung: Cookie-Banner blockiert den gesamten Inhalt</h3>
+  <p class="h3-explain">Auf dem Handy überdeckt das Cookie-Banner den kompletten sichtbaren Bereich. Ihre Kunden sehen beim ersten Besuch weder Produkte noch Ihre Marke — nur einen Cookie-Hinweis. Das ist kein guter erster Eindruck.</p>
+
+  <div class="screenshot-row">
+    <div class="screenshot-wrapper has-warning">
+      <img src="screenshots/mobile-homepage.png" alt="Mobile Homepage — Cookie-Banner">
+      <div class="screenshot-caption">
+        <span class="cap-text">Handy: Cookie-Banner verdeckt die gesamte Homepage — Kunden sehen null Inhalt</span>
+      </div>
+    </div>
+    <div class="screenshot-wrapper has-warning">
+      <img src="screenshots/mobile-product.png" alt="Mobile Produktseite — Cookie-Banner">
+      <div class="screenshot-caption">
+        <span class="cap-text">Handy: Auch auf Produktseiten verdeckt der Banner alles — erster Eindruck zerstört</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>Weitere technische Probleme</h3>
+  <p class="h3-explain">Neben den Apps gibt es weitere technische Bremsen, die einzeln klein wirken, aber zusammen die Ladezeit spürbar verlängern:</p>
+
+  <div class="warn-grid">
+    <div class="warn-card">
+      <div class="warn-icon">!</div>
+      <div class="warn-body">
+        <div class="warn-title">Bilder sind bis zu doppelt so groß wie nötig</div>
+        <div class="warn-desc">Produktfotos werden mit bis zu 3.115 Pixel Breite geladen — ein Handy-Display braucht maximal 1.500 Pixel. Jedes zu große Bild verlangsamt den Seitenaufbau und kostet Ihre Kunden mobiles Datenvolumen.</div>
+      </div>
+    </div>
+    <div class="warn-card warn-high">
+      <div class="warn-icon">!</div>
+      <div class="warn-body">
+        <div class="warn-title">Zu viele Schriftarten-Dateien</div>
+        <div class="warn-desc">Die Schriftarten Figtree und Fraunces werden in mehreren Varianten (Stärken, Stile) geladen. Jede Variante ist eine separate Datei, die der Browser herunterladen muss, bevor Text angezeigt wird.</div>
+      </div>
+    </div>
+    <div class="warn-card warn-med">
+      <div class="warn-icon">!</div>
+      <div class="warn-body">
+        <div class="warn-title">Aufgeblähter CSS-Code</div>
+        <div class="warn-desc">Im Code Ihres Stores sind 14+ Farbschemata definiert, obwohl nur eines davon tatsächlich genutzt wird. Der Rest wird trotzdem bei jedem Seitenaufruf geladen — unnötiger Ballast.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 SEO -->
+<section id="seo">
+  <div class="section-num">06 — Suchmaschinen (SEO)</div>
+  <h2>Google verliert die Übersicht — genau wie Ihre Kunden</h2>
+  <p class="section-intro">Suchmaschinenoptimierung (SEO) bestimmt, ob Ihre Produkte bei Google gefunden werden. Je besser die SEO, desto mehr Kunden kommen kostenlos über die Google-Suche. Das Problem: Die 116 Kategorien verwirren nicht nur Menschen, sondern auch Google.</p>
+
+  <h3>Wie 116 Kategorien Ihr Google-Ranking zerstören</h3>
+  <p class="h3-explain">Wenn jemand „nachhaltige Babykleidung" googelt, findet Google in Ihrem Store gleich 5 Seiten, die dafür in Frage kommen. Google weiß dann nicht, welche die wichtige ist — und zeigt im Zweifel keine davon an. Statt einer starken Seite haben Sie fünf schwache.</p>
+
+  <table>
+    <thead><tr><th>Problem</th><th>Einfach erklärt</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Seiten konkurrieren untereinander</td>
+        <td>„Baby", „Nachhaltige Babykleidung" und „Babykleidung aus Merinowolle" kämpfen alle um dieselben Suchbegriffe — statt dass eine starke Seite ganz oben steht.</td>
+      </tr>
+      <tr>
+        <td>Google muss zu viele Seiten prüfen</td>
+        <td>Google hat ein Budget, wie viele Seiten es pro Website prüft. 116 Kategorien + 419 Produkte + 27 Info-Seiten = Google kommt nicht hinterher.</td>
+      </tr>
+      <tr>
+        <td>Viele Kategorien haben zu wenig Inhalt</td>
+        <td>Kategorien mit nur 2-3 Produkten bewertet Google als „dünne" Seiten ohne Mehrwert — das schadet dem gesamten Store.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Andere Shops ranken besser für Ihre eigenen Produkte</h3>
+  <div class="date-stamp">Echte Google-Suchergebnisse vom 2. April 2026 — klicken Sie auf „Hier testen" um selbst zu prüfen.</div>
+  <p class="h3-explain">Wir haben konkrete Suchbegriffe bei Google eingegeben, die Ihre Kunden verwenden. Das Ergebnis: Händler, die Ihre Produkte weiterverkaufen, stehen bei Google vor Ihrem eigenen Store.</p>
+
+  <div class="warn-grid">
+    <div class="warn-card">
+      <div class="warn-icon">!</div>
+      <div class="warn-body">
+        <div class="warn-title">Suchbegriff: „wollwalk overall baby kaufen" <a href="https://www.google.com/search?q=wollwalk+overall+baby+kaufen" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
+        <div class="warn-desc">
+          <strong>HALFEN taucht auf Seite 1 bei Google nicht auf.</strong> Stattdessen ranken:<br>
+          &bull; cocoome.com (Position 1)<br>
+          &bull; littlegreenie.de (Position 2) — verkauft Ihre Produkte weiter<br>
+          &bull; babyone.de (Position 3)<br>
+          &bull; hug-and-grow.de (Position 8) — verkauft Ihre Produkte weiter<br><br>
+          Das bedeutet: Kunden, die genau Ihr Kernprodukt suchen, finden Sie nicht — sondern kaufen es bei Händlern, die daran mitverdienen.
+        </div>
+      </div>
+    </div>
+    <div class="warn-card warn-high">
+      <div class="warn-icon">!</div>
+      <div class="warn-body">
+        <div class="warn-title">Suchbegriff: „nachhaltige babykleidung merinowolle" <a href="https://www.google.com/search?q=nachhaltige+babykleidung+merinowolle" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
+        <div class="warn-desc">
+          HALFEN erscheint hier — aber gleich <strong>mit zwei verschiedenen URLs</strong>:<br>
+          &bull; Position 2: <code>/collections/baby</code><br>
+          &bull; Position 4: <code>/collections/mitwachsende-babykleidung</code><br><br>
+          Das ist ein typisches Symptom der 116-Kategorien-Problematik: Zwei Ihrer eigenen Seiten konkurrieren gegeneinander, statt dass eine starke Seite auf Position 1 steht. Google nennt das „Keyword-Kannibalisierung".
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Ungenutzte SEO-Chance: Blog</h3>
+  <p class="h3-explain">Ihr „Halfen Magazin" (Blog) hat enormes Potenzial. Aber aktuell verschenken Sie Tausende von möglichen Besuchern, die über Google kommen könnten — kostenlos, ohne Werbebudget.</p>
+
+  <div class="warn-grid">
+    <div class="warn-card warn-high">
+      <div class="warn-icon">!</div>
+      <div class="warn-body">
+        <div class="warn-title">Suchbegriff: „wollwalk pflege tipps" <a href="https://www.google.com/search?q=wollwalk+pflege+tipps" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
+        <div class="warn-desc">
+          <strong>HALFEN taucht bei Google nicht auf</strong> — obwohl Sie als Hersteller die Experten für dieses Thema sind. Stattdessen ranken:<br>
+          &bull; engel-natur.de (Position 1) — ein Wettbewerber<br>
+          &bull; filzundwolle.de (Position 2) — ein Blog<br>
+          &bull; littlegreenie.de (Position 3) — Ihr eigener Händler<br>
+          &bull; utopia.de (Position 8) — ein Magazin<br><br>
+          Ein einziger guter Blog-Artikel zu „Wollwalk pflegen" könnte auf Seite 1 bei Google landen und jeden Monat Hunderte neue Besucher bringen — Besucher, die sich bereits für genau Ihr Produkt interessieren.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Empfehlung:</strong> Starten Sie einen Blog-Content-Plan mit 2 Artikeln pro Monat. Themen mit hohem Suchvolumen, bei denen HALFEN als Hersteller authentisch punkten kann: „Wollwalk richtig pflegen", „Merinowolle vs. Baumwolle für Babys", „Nachhaltige Kinderkleidung — worauf achten?", „Walk-Overall: So finden Sie die richtige Größe".</p>
+  </div>
+</section>
+
+<!-- 06b FAQ & KI-SUCHE -->
+<section id="faq">
+  <div class="section-num">06b — FAQ-Potenzial & KI-Suche</div>
+  <h2>Fragen, die Ihre Kunden googeln — und die Ihr Store nicht beantwortet</h2>
+  <p class="section-intro">Wir haben die häufigsten Fragen recherchiert, die potenzielle Kunden bei Google eingeben, wenn sie sich für Wollwalk, Merinowolle und Babykleidung interessieren. Bei keiner einzigen dieser Fragen erscheint HALFEN auf Seite 1 — obwohl Sie als Hersteller die glaubwürdigste Quelle wären. Stattdessen beantworten Ihre Händler und Wettbewerber diese Fragen und gewinnen die Kunden.</p>
+
+  <div class="date-stamp">Alle Suchergebnisse unten sind echte Google-Suchen vom 2. April 2026 — klicken Sie auf „Hier testen" um das Ergebnis selbst zu prüfen.</div>
+
+  <p>Das ist besonders wichtig, weil <strong>Google und KI-Suchmaschinen</strong> (ChatGPT, Perplexity, Google AI Overviews) FAQ-Inhalte bevorzugt als Antwortquelle nutzen. Wer die Fragen beantwortet, wird zitiert — und bekommt den Kunden.</p>
+
+  <div class="warn-grid" style="margin-top: 24px;">
+    <div class="warn-card">
+      <div class="warn-icon">?</div>
+      <div class="warn-body">
+        <div class="warn-title">„Was zieht man unter einen Wollwalk Overall an?" <a href="https://www.google.com/search?q=was+zieht+man+unter+wollwalk+overall+an" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
+        <div class="warn-desc">
+          <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
+          &bull; nadeloehrle.de (Position 1) — ein Wettbewerber<br>
+          &bull; emmanoah.de (Position 2) — ein Wettbewerber<br>
+          &bull; waldkindergarten-tipps.de (Position 3) — ein Blog<br><br>
+          <em>Chance:</em> Ein FAQ-Eintrag oder Blog-Artikel „Was ziehe ich meinem Baby unter den Wollwalk-Overall an?" mit konkreten Outfit-Empfehlungen für jede Jahreszeit.
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <div class="warn-icon">?</div>
+      <div class="warn-body">
+        <div class="warn-title">„Wollwalk oder Wollfleece — was ist besser für Babys?" <a href="https://www.google.com/search?q=wollwalk+oder+wollfleece+baby+was+ist+besser" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
+        <div class="warn-desc">
+          <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
+          &bull; littlegreenie.de (Position 1) — Ihr eigener Händler<br>
+          &bull; babyboxfamily.com (Position 2) — verkauft Ihre Produkte<br>
+          &bull; hug-and-grow.de (Position 3) — verkauft Ihre Produkte<br><br>
+          <em>Chance:</em> HALFEN als Hersteller kann das glaubwürdiger beantworten als jeder Händler. Ein Vergleichsartikel mit eigenen Produktfotos wäre sehr wirkungsvoll.
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <div class="warn-icon">?</div>
+      <div class="warn-body">
+        <div class="warn-title">„Welche Größe beim Wollwalk Overall für mein Baby?" <a href="https://www.google.com/search?q=wollwalk+overall+baby+welche+gr%C3%B6%C3%9Fe" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
+        <div class="warn-desc">
+          <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
+          &bull; internaht.de (Position 1) — ein Wettbewerber<br>
+          &bull; emmanoah.de (Position 2) — ein Wettbewerber<br>
+          &bull; wichtelkidz.de (Position 3) — ein Wettbewerber<br><br>
+          <em>Chance:</em> Genau hier fehlt auch die Größentabelle im Store. Eine eigene Größenberatungsseite mit Messanleitung könnte gleichzeitig als SEO-Seite und als Kundenhilfe dienen.
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <div class="warn-icon">?</div>
+      <div class="warn-body">
+        <div class="warn-title">„Ist Merinowolle für Babys mit empfindlicher Haut geeignet? Kratzt das?" <a href="https://www.google.com/search?q=merinowolle+baby+allergie+kratzt" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
+        <div class="warn-desc">
+          <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
+          &bull; comazo.de (Position 1)<br>
+          &bull; ofa.de (Position 2)<br>
+          &bull; ritter-decken.de (Position 3)<br><br>
+          <em>Chance:</em> HALFEN verwendet GOTS-zertifizierte, superfeine Merinowolle. Ein FAQ-Eintrag „Kratzt Merinowolle? — Warum unsere Wolle besonders hautfreundlich ist" mit Zertifikats-Verweis wäre ein Trust-Signal UND SEO-Gewinn.
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-card">
+      <div class="warn-icon">?</div>
+      <div class="warn-body">
+        <div class="warn-title">„Ist ein Wollwalk Overall wasserdicht? Was bei Regen?" <a href="https://www.google.com/search?q=wollwalk+overall+wasserdicht+regen" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
+        <div class="warn-desc">
+          <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
+          &bull; littlegreenie.de (Position 1) — Ihr Händler<br>
+          &bull; baby-wetter.de (Position 3) — ein Blog<br>
+          &bull; emmanoah.de (Position 4) — ein Wettbewerber<br><br>
+          <em>Chance:</em> Ein ehrlicher FAQ-Eintrag „Wollwalk und Regen — wasserabweisend ja, wasserdicht nein" mit praktischen Tipps für Eltern.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="border-left-color: #5C6BC0; background: #E8EAF6;">
+    <p><strong>Warum das auch für KI-Suche wichtig ist:</strong> ChatGPT, Perplexity und Google AI Overviews ziehen ihre Antworten aus genau diesen Inhalten. Wer eine gut strukturierte FAQ-Seite mit Schema-Markup hat, wird von KI-Suchmaschinen als Quelle zitiert — mit Link zum Store. Aktuell zitieren diese KI-Tools Ihre Händler und Wettbewerber, nicht Sie.</p>
+  </div>
+
+  <div class="callout-green callout">
+    <p><strong>Empfehlung:</strong> Bauen Sie eine zentrale FAQ-Seite im Store auf und beantworten Sie dort die 15-20 häufigsten Kundenfragen — mit <strong>FAQ-Schema-Markup</strong> (strukturierte Daten für Google). Ergänzen Sie jede Antwort mit Links zu den passenden Produkten. Das kostet ca. 6-8 Stunden einmalig und bringt dauerhaft kostenlosen Traffic über Google und KI-Suchmaschinen.</p>
+  </div>
+</section>
+
+<!-- 07 UX -->
+<section id="ux">
+  <div class="section-num">07 — Einkaufserlebnis</div>
+  <h2>Ihre Kunden finden sich nicht zurecht</h2>
+  <p class="section-intro">Ein gutes Einkaufserlebnis bedeutet: Der Kunde findet schnell, was er sucht, vertraut dem Shop und kauft ohne Hindernisse. Aktuell gibt es an allen drei Stellen Probleme.</p>
+
+  <h3>Problem 1: Zu viele Wege zum gleichen Produkt</h3>
+  <p class="h3-explain">Durch die 116 Kategorien gibt es für eine einzige Suche mehrere Einstiegspunkte. Das verwirrt — und verwirrte Kunden kaufen weniger.</p>
+
+  <div class="example">
+    <div class="example-title">Kundin sucht: „Wollwalk Overall für mein Baby"</div>
+    <p style="font-size:0.85rem; color: var(--text-secondary); margin-bottom: 8px;">Sie findet in Ihrem Store 5 verschiedene Kategorieseiten mit überlappenden Produkten:</p>
+    <div class="example-paths">
+      <a href="https://www.halfenstore.de/collections/baby" target="_blank" class="example-path">/collections/baby</a>
+      <a href="https://www.halfenstore.de/collections/baby-wollwalk-overalls" target="_blank" class="example-path">/collections/baby-wollwalk-overalls</a>
+      <a href="https://www.halfenstore.de/collections/babywalk" target="_blank" class="example-path">/collections/babywalk</a>
+      <a href="https://www.halfenstore.de/collections/walkbekleidung-fuer-babys" target="_blank" class="example-path">/collections/walkbekleidung-fuer-babys</a>
+      <a href="https://www.halfenstore.de/collections/jacken-overalls-fuer-babys" target="_blank" class="example-path">/collections/jacken-overalls-fuer-babys</a>
+    </div>
+    <p class="example-note">5 verschiedene Seiten — welche ist die richtige?</p>
+  </div>
+
+  <div class="example">
+    <div class="example-title">Kunde sucht ein Geschenk zur Geburt</div>
+    <p style="font-size:0.85rem; color: var(--text-secondary); margin-bottom: 8px;">Er findet eine Info-Seite UND mehrere Kategorien — verwirrend:</p>
+    <div class="example-paths">
+      <a href="https://www.halfenstore.de/collections/geschenke-zur-geburt" target="_blank" class="example-path">/collections/geschenke-zur-geburt</a>
+      <a href="https://www.halfenstore.de/pages/geschenkideen" target="_blank" class="example-path">/pages/geschenkideen</a>
+      <a href="https://www.halfenstore.de/collections/geschenkideen" target="_blank" class="example-path">/collections/geschenkideen</a>
+      <a href="https://www.halfenstore.de/collections/alle-geschenkideen" target="_blank" class="example-path">/collections/alle-geschenkideen</a>
+    </div>
+    <p class="example-note">4 verschiedene Seiten — Info-Seiten und Kategorien gemischt</p>
+  </div>
+
+  <h3>Problem 2: Wichtige Vertrauenselemente fehlen auf der Produktseite</h3>
+  <p class="h3-explain">Wenn ein Kunde auf einer Produktseite landet, entscheidet er in Sekunden: Vertraue ich diesem Shop? Kaufe ich hier? Ihr Store macht es ihm schwer, weil wichtige Informationen fehlen oder versteckt sind.</p>
+
+  <div class="screenshot-wrapper">
+    <img src="screenshots/product-page.png" alt="HALFEN Produktseite — Kurze Oversize Jacke">
+    <div class="screenshot-caption">
+      <span class="cap-text">Die Produktseite hat einige gute Ansätze (Breadcrumbs, „Fair & Nachhaltig"), aber es fehlen Größentabelle, Bewertungen und Versandinfos.</span>
+      <a href="https://www.halfenstore.de/products/kurze-oversize-jacke-fuer-damen-aus-wollwalk" target="_blank" class="cap-link">Seite ansehen &rarr;</a>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Was fehlt</th><th>Warum das wichtig ist</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Größentabelle</td>
+        <td><span class="sev sev-crit">Fehlt</span> — Bei Mode-Shops ist eine Größentabelle Pflicht. Ohne bestellen Kunden gar nicht erst oder es gibt viele Retouren.</td>
+      </tr>
+      <tr>
+        <td>Kundenbewertungen</td>
+        <td><span class="sev sev-high">Kaum sichtbar</span> — Die App Smile.io ist installiert, aber Bewertungen werden nicht prominent angezeigt. 92% der Käufer lesen Bewertungen vor dem Kauf.</td>
+      </tr>
+      <tr>
+        <td>Gütesiegel / Trust-Badges</td>
+        <td><span class="sev sev-crit">Keine</span> — Kein Trusted Shops, kein EHI-Siegel. Besonders für Neukunden ein wichtiges Vertrauenssignal.</td>
+      </tr>
+      <tr>
+        <td>USP-Leiste</td>
+        <td><span class="sev sev-high">Fehlt</span> — „Made in Germany", „GOTS-zertifiziert", „Kostenloser Versand ab X€" — diese Stärken sollten auf jeder Seite sofort sichtbar sein, nicht erst nach langem Scrollen.</td>
+      </tr>
+      <tr>
+        <td>Versandkosten auf der Produktseite</td>
+        <td><span class="sev sev-high">Nicht sichtbar</span> — Unklare Versandkosten sind einer der häufigsten Gründe für Kaufabbrüche.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>Was gut ist:</strong> Die Produktseite zeigt bereits „Fair & Nachhaltig", „Deutsche Strickerei" und „Familientradition seit 1928". Das sind gute Ansätze — sie müssen nur prominenter und auf allen Seiten sichtbar sein.</p>
+  </div>
+</section>
+
+<!-- 08 EMPFEHLUNG -->
+<section id="empfehlung">
+  <div class="section-num">08 — Strategische Empfehlung</div>
+  <h2>Fixen — nicht neu bauen</h2>
+  <p class="section-intro">Ein komplett neues Theme würde keines der Probleme lösen: Die 116 Kategorien bleiben, die fehlenden Produktdaten bleiben, die langsamen Apps bleiben. Alle Probleme liegen in der Konfiguration und den Daten — nicht im Theme selbst. Deshalb ist eine Sanierung des bestehenden Stores der klügere Weg.</p>
+
+  <div class="vs">
+    <div class="vs-col no">
+      <h4>Neues Theme / Rebuild</h4>
+      <div class="vs-verdict">Nicht empfohlen</div>
+      <ul>
+        <li>Löst das Kategorie-Chaos? <span>Nein — die 116 Kategorien bleiben</span></li>
+        <li>Löst das Daten-Problem? <span>Nein — fehlende Tags bleiben leer</span></li>
+        <li>Löst das App-Problem? <span>Nein — Weglot bremst auch ein neues Theme</span></li>
+        <li>Zeitaufwand <span>120-200+ Stunden</span></li>
+        <li>SEO-Risiko <span>Hoch — Adressen ändern sich, Google-Rankings gehen verloren</span></li>
+        <li>Kosten <span>8.000-15.000 EUR+</span></li>
+      </ul>
+    </div>
+    <div class="vs-col yes">
+      <h4>Bestehenden Store sanieren</h4>
+      <div class="vs-verdict">Empfohlen</div>
+      <ul>
+        <li>Löst das Kategorie-Chaos? <span>Ja — von 116 auf 25 bereinigen</span></li>
+        <li>Löst das Daten-Problem? <span>Ja — alle 419 Produkte systematisch pflegen</span></li>
+        <li>Löst das App-Problem? <span>Ja — unnötige Apps entfernen/ersetzen</span></li>
+        <li>Zeitaufwand <span>60-100 Stunden</span></li>
+        <li>SEO-Risiko <span>Niedrig — bestehende Adressen bleiben erhalten</span></li>
+        <li>Kosten <span>4.000-8.000 EUR</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 09 ROADMAP -->
+<section id="roadmap">
+  <div class="section-num">09 — Maßnahmenplan</div>
+  <h2>In 8 Wochen zum sauberen Store</h2>
+  <p class="section-intro">Der Plan ist in 6 aufeinander aufbauende Phasen gegliedert. Zuerst werden die Daten vorbereitet, dann die Struktur bereinigt, dann das Einkaufserlebnis verbessert, dann die Geschwindigkeit optimiert und zum Schluss der Content ausgebaut.</p>
+
+  <div class="roadmap">
+    <div class="rm-phase active">
+      <div class="rm-dot"></div>
+      <div class="rm-head">
+        <span class="rm-name">Phase 0: Bestandsaufnahme</span>
+        <span class="rm-time">Woche 1 — 12 Stunden</span>
+      </div>
+      <ul class="rm-tasks">
+        <li>Alle 419 Produkte als CSV exportieren und Lücken dokumentieren <span class="rm-h">2h</span></li>
+        <li>Für jede der 116 Kategorien festhalten: welche Produkte, wie viele, Überschneidungen <span class="rm-h">4h</span></li>
+        <li>Neue Ziel-Struktur (20-25 Kategorien) mit Ihnen abstimmen <span class="rm-h">2h</span></li>
+        <li>Weiterleitungsplan: wohin sollen gelöschte Kategorien umleiten? <span class="rm-h">4h</span></li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-dot"></div>
+      <div class="rm-head">
+        <span class="rm-name">Phase 1: Produktdaten aufräumen</span>
+        <span class="rm-time">Woche 2-3 — 20 Stunden</span>
+      </div>
+      <ul class="rm-tasks">
+        <li>Allen 419 Produkten einen korrekten Produkttyp zuweisen (Overall, Jacke, Mütze, …) <span class="rm-h">8h</span></li>
+        <li>Einheitliches Tag-System einführen: Zielgruppe, Material, Saison, Anlass <span class="rm-h">10h</span></li>
+        <li>Doppelte Produkte in der Sitemap bereinigen <span class="rm-h">2h</span></li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-dot"></div>
+      <div class="rm-head">
+        <span class="rm-name">Phase 2: Kategorien bereinigen</span>
+        <span class="rm-time">Woche 3-4 — 22 Stunden</span>
+      </div>
+      <ul class="rm-tasks">
+        <li>~90 überflüssige Kategorien löschen (mit automatischen Weiterleitungen) <span class="rm-h">8h</span></li>
+        <li>Verbleibende ~25 Kategorien mit guten Titeln, Beschreibungen und Bildern versehen <span class="rm-h">6h</span></li>
+        <li>Filter auf Kategorieseiten aktivieren (basierend auf den neuen Tags) <span class="rm-h">4h</span></li>
+        <li>Navigation/Menü auf die neue Struktur umbauen <span class="rm-h">4h</span></li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-dot"></div>
+      <div class="rm-head">
+        <span class="rm-name">Phase 3: Vertrauen & Quick Wins</span>
+        <span class="rm-time">Woche 4-5 — 16 Stunden</span>
+      </div>
+      <ul class="rm-tasks">
+        <li>Doppelte Info-Seiten zusammenführen (Impressum, Kontakt, Philosophie) <span class="rm-h">3h</span></li>
+        <li>USP-Leiste einbauen: „Made in Germany", „GOTS-zertifiziert", „Kostenloser Versand ab X€" <span class="rm-h">2h</span></li>
+        <li>Trust-Badges (Gütesiegel) auf allen Produktseiten <span class="rm-h">2h</span></li>
+        <li>Größentabelle auf allen Produktseiten <span class="rm-h">3h</span></li>
+        <li>Google-Beschreibungen für die 30 wichtigsten Seiten optimieren <span class="rm-h">6h</span></li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-dot"></div>
+      <div class="rm-head">
+        <span class="rm-name">Phase 4: Geschwindigkeit</span>
+        <span class="rm-time">Woche 5-6 — 17 Stunden</span>
+      </div>
+      <ul class="rm-tasks">
+        <li>Weglot prüfen: Wird Mehrsprachigkeit genutzt? Ggf. durch Shopify Markets ersetzen <span class="rm-h">6h</span></li>
+        <li>Elfsight-Widgets entfernen oder durch eingebaute Shopify-Funktionen ersetzen <span class="rm-h">3h</span></li>
+        <li>Alle Produktbilder komprimieren (WebP-Format, max. 1.500 Pixel breit) <span class="rm-h">4h</span></li>
+        <li>Schriftarten auf das Nötigste reduzieren <span class="rm-h">2h</span></li>
+        <li>Ungenutzten CSS-Code entfernen <span class="rm-h">2h</span></li>
+      </ul>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-dot"></div>
+      <div class="rm-head">
+        <span class="rm-name">Phase 5: Inhalte & Conversion</span>
+        <span class="rm-time">Woche 6-8 — 24 Stunden</span>
+      </div>
+      <ul class="rm-tasks">
+        <li>Produktbeschreibungen überarbeiten: Materialinfos, Pflege, Besonderheiten, Suchbegriffe <span class="rm-h">12h</span></li>
+        <li>Erweiterte Google-Daten einbauen (Bewertungen, FAQ, Breadcrumbs) <span class="rm-h">4h</span></li>
+        <li>Kundenbewertungen prominent auf Produktseiten anzeigen <span class="rm-h">4h</span></li>
+        <li>Blog-Strategie starten: 2 Artikel pro Monat zu Wollwalk, Pflege, Nachhaltigkeit <span class="rm-h">4h</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Gesamtaufwand:</strong> ca. 111 Stunden über 8 Wochen. Geschätzte Kosten: 4.000 - 8.000 EUR, je nach Umsetzungspartner.</p>
+  </div>
+</section>
+
+<!-- 10 KPI -->
+<section id="kpi">
+  <div class="section-num">10 — Erfolgsmessung</div>
+  <h2>Daran messen wir den Erfolg</h2>
+  <p class="section-intro">Nach Abschluss der 8-Wochen-Sanierung sollten sich folgende Werte messbar verbessern:</p>
+
+  <div style="border: 1px solid var(--border-light); margin: 24px 0;">
+    <div class="kpi-r kpi-head">
+      <div>Was wir messen</div>
+      <div>Heute</div>
+      <div>Ziel</div>
+    </div>
+    <div class="kpi-r"><div>Anzahl Kategorien</div><div class="kpi-ist">116</div><div class="kpi-ziel">~25</div></div>
+    <div class="kpi-r"><div>Produkte mit vollständigen Tags</div><div class="kpi-ist">~30%</div><div class="kpi-ziel">100%</div></div>
+    <div class="kpi-r"><div>Google-Geschwindigkeitsnote (Handy)</div><div class="kpi-ist">58</div><div class="kpi-ziel">&gt; 85</div></div>
+    <div class="kpi-r"><div>Besucher über Google-Suche</div><div class="kpi-ist">Basis</div><div class="kpi-ziel">+20%</div></div>
+    <div class="kpi-r"><div>Kaufquote (Conversion Rate)</div><div class="kpi-ist">Basis</div><div class="kpi-ziel">+15-25%</div></div>
+    <div class="kpi-r"><div>Absprungrate auf dem Handy</div><div class="kpi-ist">&gt; 55%</div><div class="kpi-ziel">&lt; 45%</div></div>
+  </div>
+
+  <div style="margin-top: 48px; padding-top: 48px; border-top: 2px solid var(--border);">
+    <div class="section-num">Fazit & nächste Schritte</div>
+    <h2>HALFEN hat alles, was ein erfolgreicher Online-Store braucht — außer einen aufgeräumten Store</h2>
+
+    <p>Lassen Sie uns ehrlich sein: Die Marke HALFEN ist außergewöhnlich. Eine Familientradition seit 1928, eine eigene Strickerei in Deutschland, GOTS-zertifizierte Merinowolle, 28.000 Instagram-Follower und eine treue Community, die Ihre Produkte liebt. Das sind Qualitäten, von denen viele Marken nur träumen können.</p>
+
+    <p>Aber der Online-Store wird dieser Marke aktuell nicht gerecht. Kunden, die über Google, Instagram oder eine Empfehlung zu Ihnen kommen, landen in einem Store mit 116 Kategorien, in dem sie sich verlieren. Produktdaten sind lückenhaft, Ladezeiten zu lang, Vertrauenselemente fehlen. Das Ergebnis: Kunden, die eigentlich kaufen wollten, brechen ab — nicht weil das Produkt nicht überzeugt, sondern weil der Store es ihnen zu schwer macht.</p>
+
+    <p>Das bedeutet auch: <strong>Jeder Euro, den Sie aktuell in Werbung investieren — ob Google Ads, Instagram oder Influencer-Kooperationen — verpufft teilweise</strong>, weil der Store die Besucher nicht konvertiert. Bei einem geschätzten Werbebudget von 20.000 bis 100.000 EUR pro Jahr kann das schnell einen fünfstelligen Betrag an entgangenem Umsatz bedeuten. Nicht weil die Werbung schlecht ist, sondern weil der Store die Kunden am Ende nicht über die Ziellinie bringt. Eine Sanierung für 4.000-8.000 EUR, die Ihre Conversion-Rate um 15-25% steigert, zahlt sich innerhalb weniger Wochen zurück.</p>
+
+    <p><strong>Die entscheidende Erkenntnis dieses Audits:</strong> Die Technik ist nicht das Problem. Ihr Shopify-Theme (Hyper v1.3.0) ist modern, leistungsfähig und regelmäßig aktualisiert. Ein teurer Neuaufbau würde keines der identifizierten Probleme lösen — denn die Probleme liegen in den Daten, der Struktur und der Konfiguration, nicht im Theme.</p>
+
+    <div class="callout" style="margin: 32px 0; border-left-color: var(--ok); background: var(--ok-bg);">
+      <p style="color: var(--text); font-size: 1rem;"><strong>Was wir Ihnen empfehlen:</strong> Eine strukturierte Sanierung in 6 Phasen über 8 Wochen. Geschätzter Aufwand: 60-100 Stunden. Geschätzte Kosten: 4.000-8.000 EUR. Kein Risiko für Ihre bestehenden Google-Rankings, kein Datenverlust, kein Ausfall des Stores.</p>
+    </div>
+
+    <p style="color: var(--text); font-weight: 600; font-size: 1.05rem; margin-top: 32px;">Die drei Hebel mit dem größten Effekt:</p>
+
+    <table style="margin-top: 16px;">
+      <thead><tr><th>Hebel</th><th>Was wir tun</th><th>Was es bringt</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Struktur aufräumen</strong></td>
+          <td>Von 116 auf 25 Kategorien, alle 419 Produkte mit sauberen Daten, klare Navigation</td>
+          <td>Kunden finden sofort, was sie suchen. Google versteht Ihren Store. Filterfunktionen funktionieren endlich.</td>
+        </tr>
+        <tr>
+          <td><strong>2. Vertrauen aufbauen</strong></td>
+          <td>USP-Leiste, Gütesiegel, Größentabelle, sichtbare Bewertungen, Versandinfos auf Produktseiten</td>
+          <td>Mehr Kunden schließen den Kauf ab. Weniger Retouren durch klare Größenangaben. Neukunden fassen schneller Vertrauen.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Geschwindigkeit steigern</strong></td>
+          <td>Weglot prüfen, Bilder komprimieren, unnötige Apps entfernen, Code aufräumen</td>
+          <td>Schnellere Ladezeiten = bessere Google-Platzierung = mehr Besucher = mehr Umsatz. Besonders auf dem Handy.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 32px;">Das Fundament für einen erfolgreichen Online-Store ist bei HALFEN bereits gelegt: ein einzigartiges Produkt, eine starke Geschichte und eine loyale Community. Was fehlt, ist die digitale Bühne, die dieser Marke gerecht wird. Diesen Report haben wir geschrieben, um Ihnen den konkreten Weg dorthin zu zeigen — mit klarem Plan, realistischem Budget und messbaren Ergebnissen.</p>
+
+    <div style="background: var(--bg-warm); border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; margin-top: 32px;">
+      <p style="color: var(--text); font-weight: 600; font-size: 1rem; margin-bottom: 8px;">Bereit für den nächsten Schritt?</p>
+      <p style="margin: 0;">Wir besprechen die Ergebnisse dieses Audits gerne persönlich mit Ihnen — und zeigen im Detail, wie die Umsetzung ablaufen würde. Melden Sie sich bei uns für ein unverbindliches Gespräch.</p>
+      <p style="margin-top: 16px; margin-bottom: 0;"><strong>Daniel Gruederich</strong><br>
+      <span style="color: var(--text-secondary);">fuerte.digital — E-Commerce & Digital Strategy</span><br>
+      <span style="color: var(--text-secondary);">daniel@fuerte.digital</span></p>
+    </div>
+
+    <div style="background: var(--bg-white); border: 1px solid var(--border); border-radius: 6px; padding: 24px 32px; margin-top: 20px;">
+      <p style="color: var(--text); font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">Hinweis zur Umsetzung: Testumgebung</p>
+      <p style="margin: 0;">Alle Änderungen werden zunächst in einer <strong>Staging-Umgebung</strong> (Testversion des Stores) umgesetzt und erst nach Ihrer Freigabe auf den Live-Store übertragen. So können Sie jeden Schritt in Ruhe prüfen und abnehmen, ohne dass Ihre Kunden davon betroffen sind. Shopify bietet hierfür eine integrierte Theme-Vorschau, die wir als geschützte Testumgebung nutzen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <div class="brand">fuerte.digital</div>
+  <div class="sub">E-Commerce & Digital Strategy</div>
+  <div class="contact">Daniel Gruederich &middot; daniel@fuerte.digital &middot; 02.04.2026</div>
+</div>
+
+</div>
+</body>
+</html>

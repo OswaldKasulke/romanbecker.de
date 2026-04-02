@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy via FTP to Starthost
+      - name: Deploy Roman via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -27,3 +27,16 @@ jobs:
             **/.DS_Store
             **/README.md
             **/docs/**
+
+      - name: Deploy Preview via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./preview/
+          server-dir: /preview/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
