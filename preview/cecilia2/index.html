@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cecilia Collantes — Photography & Art</title>
+<meta name="description" content="Cecilia Collantes is an interdisciplinary artist based in Paris, working with painting, photography, and volumetric media.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0a0a0f;
+  --text: #f5f0eb;
+  --gold: #c9a96e;
+  --card: #141418;
+  --text-muted: #8a857f;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section spacing */
+section {
+  padding: 100px 24px;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 140px 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  section {
+    padding: 160px 80px;
+  }
+}
+
+.section-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Section titles */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .hero-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.hero-text {
+  text-align: center;
+  z-index: 1;
+}
+
+@media (min-width: 900px) {
+  .hero-text {
+    text-align: left;
+    flex: 1;
+  }
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 15vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+}
+
+.hero-name-last {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 8vw, 6rem);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  margin-top: 8px;
+}
+
+.hero-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 28px auto;
+}
+
+@media (min-width: 900px) {
+  .hero-line {
+    margin: 28px 0;
+  }
+}
+
+.hero-subtitle {
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+}
+
+@media (min-width: 900px) {
+  .hero-image-wrap {
+    flex: 0 0 40%;
+    max-width: 480px;
+  }
+}
+
+.hero-image-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  pointer-events: none;
+}
+
+.hero-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse at center, rgba(201, 169, 110, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-image-wrap img {
+  width: 100%;
+  display: block;
+}
+
+/* ===== FASHION ===== */
+.fashion-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fashion-row {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .fashion-row {
+    grid-template-columns: 2fr 1fr;
+  }
+  .fashion-row.reverse {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.fashion-row img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fashion-row .img-wrap {
+  overflow: hidden;
+}
+
+.fashion-row .img-wrap:hover img {
+  transform: scale(1.03);
+}
+
+/* ===== PORTRAIT ===== */
+.portrait-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 600px) {
+  .portrait-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.portrait-grid .img-wrap {
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+
+.portrait-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portrait-grid .img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== MOMENTS ===== */
+.moments-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .moments-strip {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 24px;
+    padding-bottom: 16px;
+  }
+
+  .moments-strip::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .moments-strip::-webkit-scrollbar-track {
+    background: var(--card);
+  }
+
+  .moments-strip::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 2px;
+  }
+}
+
+.moments-strip .img-wrap {
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .moments-strip .img-wrap {
+    width: 45vw;
+    max-width: 600px;
+    scroll-snap-align: start;
+  }
+}
+
+.moments-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  transition: transform 0.6s ease;
+}
+
+.moments-strip .img-wrap:hover img {
+  transform: scale(1.03);
+}
+
+/* ===== PAINTING ===== */
+.painting-grid {
+  columns: 1;
+  column-gap: 24px;
+}
+
+@media (min-width: 600px) {
+  .painting-grid {
+    columns: 2;
+  }
+}
+
+@media (min-width: 1000px) {
+  .painting-grid {
+    columns: 3;
+  }
+}
+
+.painting-grid .img-wrap {
+  break-inside: avoid;
+  margin-bottom: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+.painting-grid img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease;
+  filter: drop-shadow(0 4px 24px rgba(201, 169, 110, 0.08));
+}
+
+.painting-grid .img-wrap:hover img {
+  transform: scale(1.03);
+}
+
+/* ===== MURALS ===== */
+.murals-section {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.murals-section .section-title {
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .murals-section .section-title {
+    padding: 0 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .murals-section .section-title {
+    padding: 0 80px;
+  }
+}
+
+.murals-images {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.murals-images img {
+  width: 100%;
+  display: block;
+}
+
+/* ===== MOVING IMAGE ===== */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 600px) {
+  .video-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .video-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.video-card {
+  background: var(--card);
+  overflow: hidden;
+  position: relative;
+  display: block;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(201, 169, 110, 0.1);
+  opacity: 1;
+}
+
+.video-card .thumb-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.video-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.video-card:hover img {
+  transform: scale(1.05);
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, background 0.3s;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.video-card:hover .play-icon {
+  border-color: var(--gold);
+  background: rgba(201, 169, 110, 0.2);
+}
+
+.play-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  margin-left: 3px;
+}
+
+/* ===== BIO ===== */
+.bio-section {
+  background: var(--card);
+}
+
+.bio-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--gold);
+  line-height: 1.5;
+  margin-bottom: 60px;
+  max-width: 900px;
+  border-left: 2px solid var(--gold);
+  padding-left: 24px;
+}
+
+.bio-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  margin-bottom: 60px;
+}
+
+@media (min-width: 768px) {
+  .bio-text {
+    flex-direction: row;
+    gap: 48px;
+  }
+  .bio-text p {
+    flex: 1;
+  }
+}
+
+.bio-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+@media (min-width: 768px) {
+  .bio-lists {
+    flex-direction: row;
+    gap: 80px;
+  }
+}
+
+.bio-lists h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.bio-lists ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bio-lists li {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: var(--text-muted);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 80px 24px 40px;
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding: 100px 48px 40px;
+  }
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-line {
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 60px;
+}
+
+.footer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.footer-links {
+  margin-bottom: 16px;
+}
+
+.footer-links a {
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-enquiry {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 80px;
+  font-style: italic;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, padding 0.4s;
+}
+
+.nav.scrolled {
+  background: rgba(10, 10, 15, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 24px;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: none;
+  gap: 28px;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+.nav-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <span class="nav-logo">CC</span>
+  <div class="nav-links">
+    <a href="#fashion">Fashion</a>
+    <a href="#portrait">Portrait</a>
+    <a href="#moments">Moments</a>
+    <a href="#painting">Painting</a>
+    <a href="#murals">Murals</a>
+    <a href="#film">Film</a>
+    <a href="#bio">Bio</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text reveal">
+      <div class="hero-name">CECILIA</div>
+      <div class="hero-name-last">COLLANTES</div>
+      <div class="hero-line"></div>
+      <div class="hero-subtitle">Photography &amp; Art &middot; Lima &middot; Berlin &middot; New York &middot; Paris</div>
+    </div>
+    <div class="hero-image-wrap reveal" style="transition-delay: 0.2s;">
+      <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1706036679491-V4X54XNE1SIL0DWE01AF/Cecilia+Collantes_Armani-Close-up-.jpeg?format=1500w" alt="Cecilia Collantes portrait" loading="eager">
+    </div>
+  </div>
+</section>
+
+<!-- Fashion -->
+<section id="fashion">
+  <div class="section-inner">
+    <h2 class="section-title reveal">FASHION</h2>
+    <div class="fashion-grid">
+      <div class="fashion-row reveal">
+        <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1696955616901-XETF18V16A01ZRGW283C/INSTA.jpg?format=1000w" alt="Fashion photography" loading="lazy"></div>
+        <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1673309126848-I5YAQI9VQ6RBG3264SFE/Armani-Close-up-.jpg?format=1000w" alt="Fashion photography" loading="lazy"></div>
+      </div>
+      <div class="fashion-row reverse reveal">
+        <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1669632615115-GBLJY60RQW9P7N91OFUQ/_DSC6093_LR.jpg?format=1000w" alt="Fashion photography" loading="lazy"></div>
+        <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1711470796386-VU3KHGZBP9DX6C5CG5XW/_DSC1947_Sofia-Fanego_Dior_by-Luz-Cecilia-Collantes4.jpg?format=1000w" alt="Fashion photography" loading="lazy"></div>
+      </div>
+      <div class="fashion-row reveal">
+        <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1698534943224-NK1F9S2G228OM20B7KE0/_DSC9338.jpg?format=1000w" alt="Fashion photography" loading="lazy"></div>
+        <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1650450200939-2E7RLSKPLMCJKX1B2WV7/_DSC9253.jpg?format=1000w" alt="Fashion photography" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portrait -->
+<section id="portrait">
+  <div class="section-inner">
+    <h2 class="section-title reveal">PORTRAIT</h2>
+    <div class="portrait-grid">
+      <div class="img-wrap reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1710343901267-YEKC8551MINDYT5OESUS/_DSC7598.jpg?format=1000w" alt="Portrait photography" loading="lazy"></div>
+      <div class="img-wrap reveal" style="transition-delay:0.1s;"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1710424200158-YOY6F0MQ6ZOYORM9Y7G8/Joel+Ronson+by+Cecilia+Collantes_+IMG_8036.JPG?format=1000w" alt="Portrait photography" loading="lazy"></div>
+      <div class="img-wrap reveal" style="transition-delay:0.2s;"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1711240162020-AMJPW1UPJQJZZNN5NWQN/Sofia+Fanego-+Cecilia+Collantes.jpg?format=1000w" alt="Portrait photography" loading="lazy"></div>
+      <div class="img-wrap reveal" style="transition-delay:0.3s;"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1720379587820-MWMFW1ALDRUHN2JI1LNR/_DSC2451_FINAL.jpg?format=1000w" alt="Portrait photography" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Moments -->
+<section id="moments">
+  <div class="section-inner">
+    <h2 class="section-title reveal">MOMENTS</h2>
+    <div class="moments-strip reveal">
+      <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1645693640515-KF9238Y0DSSZL6IC90PS/IMG_7743_1%2Bcopy.jpg?format=1000w" alt="Moments photography" loading="lazy"></div>
+      <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1647017010114-XGQIFH4K6P0CSSLCX4YU/ceciliacollantes-cambodia-travel-travelphotograpgy-asia.jpg?format=1000w" alt="Moments photography" loading="lazy"></div>
+      <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1679061852117-0LVM951DXKXWU5UZB5SH/_DSC9490.JPG?format=1000w" alt="Moments photography" loading="lazy"></div>
+      <div class="img-wrap"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1740372942545-IW4N2XI27H06MS022SHB/_DSC5197.jpg?format=1000w" alt="Moments photography" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Painting -->
+<section id="painting">
+  <div class="section-inner">
+    <h2 class="section-title reveal">PAINTING</h2>
+    <div class="painting-grid">
+      <div class="img-wrap reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1502998220889-3B633BFLSHC6TJW4WSRI/cosmos_red_artworkceciliacollantes.jpg?format=1000w" alt="Painting artwork" loading="lazy"></div>
+      <div class="img-wrap reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1503290276572-6N7MXRYHHAUT5TEKGODM/erosion_grieta_pink_artwork_ceciliacollantes.jpg?format=1000w" alt="Painting artwork" loading="lazy"></div>
+      <div class="img-wrap reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1503377741347-9KQ04KUEQ7TZ8CLRHZVW/cosmos_diamond_artworkceciliacollantes.jpg?format=1000w" alt="Painting artwork" loading="lazy"></div>
+      <div class="img-wrap reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1503291794995-KAECUFFNJA7DMB6RWIBU/erosion_stardust_artwork_ceciliacollantes.jpg?format=1000w" alt="Painting artwork" loading="lazy"></div>
+      <div class="img-wrap reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1502655323091-G3SVMG882WY0NTZ3L554/towers_artworkceciliacollantes.JPG?format=1000w" alt="Painting artwork" loading="lazy"></div>
+      <div class="img-wrap reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1503376678773-06NP0S7NHL8ZOL0Z6DAQ/cosmos_blackpurple_artwork_ceciliacollantes.jpg?format=1000w" alt="Painting artwork" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Murals -->
+<section id="murals" class="murals-section">
+  <div class="section-inner">
+    <h2 class="section-title reveal">MURALS</h2>
+  </div>
+  <div class="murals-images">
+    <div class="reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1623183960500-22T9PTPMYPH0QLXU0N8B/IMG_2829.jpg?format=1500w" alt="Mural artwork" loading="lazy"></div>
+    <div class="reveal"><img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1623184254219-A0LROJ4AL7YAJI7WSCJS/IMG_8701_edit.jpg?format=1500w" alt="Mural artwork" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- Moving Image -->
+<section id="film">
+  <div class="section-inner">
+    <h2 class="section-title reveal">MOVING IMAGE</h2>
+    <div class="video-grid">
+      <a class="video-card reveal" href="https://www.youtube.com/watch?v=325T-wp5YbE" target="_blank" rel="noopener">
+        <div class="thumb-wrap">
+          <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1579021511983-XYJJTLY49R533QS19CWJ/image-asset.jpeg?format=750w" alt="Video thumbnail" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg></div>
+        </div>
+      </a>
+      <a class="video-card reveal" href="https://www.youtube.com/watch?v=4kIPnYuDD8Q" target="_blank" rel="noopener" style="transition-delay:0.1s;">
+        <div class="thumb-wrap">
+          <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1579022138734-HY73UZNNDWS5Z16U5B0L/image-asset.jpeg?format=750w" alt="Video thumbnail" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg></div>
+        </div>
+      </a>
+      <a class="video-card reveal" href="https://www.youtube.com/watch?v=A0v2JmDG6_o" target="_blank" rel="noopener" style="transition-delay:0.2s;">
+        <div class="thumb-wrap">
+          <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1579395397797-YA5OKR1XSX8OTQPS6AXZ/image-asset.jpeg?format=750w" alt="Video thumbnail" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg></div>
+        </div>
+      </a>
+      <a class="video-card reveal" href="https://www.youtube.com/watch?v=IGKSP9eBwK4" target="_blank" rel="noopener">
+        <div class="thumb-wrap">
+          <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1621470888872-LPVTZ0P2VGSSA38W6MZ1/image-asset.jpeg?format=750w" alt="Video thumbnail" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg></div>
+        </div>
+      </a>
+      <a class="video-card reveal" href="https://www.youtube.com/watch?v=oJr4R89W9fQ" target="_blank" rel="noopener" style="transition-delay:0.1s;">
+        <div class="thumb-wrap">
+          <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1655146627847-EKNRHFP7LMVBKRIAUV5K/image-asset.jpeg?format=750w" alt="Video thumbnail" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Bio -->
+<section id="bio" class="bio-section">
+  <div class="section-inner">
+    <h2 class="section-title reveal">ABOUT</h2>
+    <blockquote class="bio-quote reveal">
+      "Folded paper generates reliefs that define textured surfaces where charcoal and iridescent pigments respond to shifts of light and form."
+    </blockquote>
+    <div class="bio-text reveal">
+      <p>CECILIA COLLANTES (Lima, Peru) is an interdisciplinary artist based in Paris, working with painting, photography, and volumetric media. In her recent works, folded paper generates reliefs that define textured surfaces where charcoal and iridescent pigments respond to shifts of light and form. Watercolor and ink extend these surfaces through fluid movement across the folds. Framed in acrylic boxes, the pieces become contained reliquaries that preserve their fragility.</p>
+      <p>Collantes explores connections between nature, the cosmos, and the body through surfaces that suggest erosion, mineral traces, and structures beyond the individual. Her approach draws from pre-Hispanic Peruvian cosmology, where harmony between humans, nature, and the stars defines existence.</p>
+    </div>
+    <div class="bio-lists reveal">
+      <div>
+        <h3>Exhibitions</h3>
+        <ul>
+          <li>Liberty, Femina, Keluarga &mdash; Biasa Art Space, Jakarta</li>
+          <li>New Works &mdash; Chista Studio, New York</li>
+          <li>Foresta &mdash; Undercurrent Projects, New York</li>
+          <li>Apparel &mdash; Cecilia Gonzalez Gallery, Lima</li>
+          <li>Sujeto a Cambios &mdash; La Editorial, Lima (2025)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Residencies</h3>
+        <ul>
+          <li>Eileen Kaminsky Family Foundation Residency, New Jersey (2014&ndash;15)</li>
+          <li>Thaillywood Residency, Thailand (2013)</li>
+          <li>Darmasiswa Grant, Indonesia (2012)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-line reveal"></div>
+    <h2 class="footer-title reveal">Contact</h2>
+    <div class="footer-links reveal">
+      <a href="https://www.instagram.com/ceciliacollantes.photo/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="footer-enquiry reveal">For general enquiries. Please do reach out.</p>
+    <p class="footer-copy">&copy; 2026 Cecilia Collantes. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal with IntersectionObserver
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  reveals.forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // Nav scroll effect
+  var nav = document.getElementById('nav');
+  var lastScroll = 0;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 80) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
