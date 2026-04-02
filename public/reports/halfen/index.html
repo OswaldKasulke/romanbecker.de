@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Analyse für HALFEN — fuerte.digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: #F5F3EF;
+    color: #1A1A1A;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E5E2DC;
+    border-radius: 12px;
+    padding: 48px 44px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+  }
+  .logo span { color: #B8860B; }
+  .subtitle {
+    font-size: 0.78rem;
+    color: #888;
+    letter-spacing: 0.03em;
+    margin-bottom: 36px;
+  }
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .desc {
+    font-size: 0.88rem;
+    color: #666;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .field {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #E5E2DC;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #1A1A1A;
+    background: #FAFAF8;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus { border-color: #B8860B; }
+  input::placeholder { color: #AAA; }
+  button {
+    width: 100%;
+    padding: 14px;
+    background: #1A1A1A;
+    color: #FFF;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  button:hover { background: #333; }
+  .error {
+    color: #C62828;
+    font-size: 0.82rem;
+    margin-top: 12px;
+    display: none;
+  }
+  .error.show { display: block; }
+  .footer {
+    margin-top: 32px;
+    font-size: 0.72rem;
+    color: #AAA;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">fuerte<span>.</span>digital</div>
+  <div class="subtitle">E-Commerce & Digital Strategy</div>
+
+  <h1>Website Analyse für HALFEN</h1>
+  <p class="desc">Dieser Report ist vertraulich und passwortgeschützt. Bitte geben Sie das Passwort ein, das Sie von uns erhalten haben.</p>
+
+  <form id="pw-form">
+    <div class="field">
+      <input type="password" id="pw" placeholder="Passwort eingeben" autocomplete="off" autofocus>
+    </div>
+    <button type="submit">Report öffnen</button>
+    <p class="error" id="err">Falsches Passwort. Bitte versuchen Sie es erneut.</p>
+  </form>
+
+  <div class="footer">Bei Fragen: daniel@fuerte.digital</div>
+</div>
+
+<script>
+document.getElementById('pw-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var pw = document.getElementById('pw').value;
+  // Simple hash check — not cryptographic security, just a gate
+  if (pw === 'büdchen' || pw === 'buedchen') {
+    window.location.href = 'report.html';
+  } else {
+    document.getElementById('err').classList.add('show');
+    document.getElementById('pw').value = '';
+    document.getElementById('pw').focus();
+  }
+});
+</script>
+</body>
+</html>
