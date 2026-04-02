@@ -565,6 +565,42 @@ td:first-child { color: var(--text); font-weight: 500; }
   font-weight: 500;
 }
 
+/* VERIFY BUTTON */
+.verify-btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+.verify-btn:hover {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+/* DATE STAMP */
+.date-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ok);
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-border);
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 768px) {
   .cover { padding: 32px; }
   .scores { grid-template-columns: 1fr 1fr; }
@@ -1051,13 +1087,14 @@ td:first-child { color: var(--text); font-weight: 500; }
   </table>
 
   <h3>Andere Shops ranken besser für Ihre eigenen Produkte</h3>
-  <p class="h3-explain">Wir haben am 02. April 2026 konkrete Suchbegriffe bei Google eingegeben, die Ihre Kunden verwenden. Das Ergebnis: Händler, die Ihre Produkte weiterverkaufen, stehen bei Google vor Ihrem eigenen Store.</p>
+  <div class="date-stamp">Echte Google-Suchergebnisse vom 2. April 2026 — klicken Sie auf „Hier testen" um selbst zu prüfen.</div>
+  <p class="h3-explain">Wir haben konkrete Suchbegriffe bei Google eingegeben, die Ihre Kunden verwenden. Das Ergebnis: Händler, die Ihre Produkte weiterverkaufen, stehen bei Google vor Ihrem eigenen Store.</p>
 
   <div class="warn-grid">
     <div class="warn-card">
       <div class="warn-icon">!</div>
       <div class="warn-body">
-        <div class="warn-title">Suchbegriff: „wollwalk overall baby kaufen"</div>
+        <div class="warn-title">Suchbegriff: „wollwalk overall baby kaufen" <a href="https://www.google.com/search?q=wollwalk+overall+baby+kaufen" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
         <div class="warn-desc">
           <strong>HALFEN taucht auf Seite 1 bei Google nicht auf.</strong> Stattdessen ranken:<br>
           &bull; cocoome.com (Position 1)<br>
@@ -1071,7 +1108,7 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="warn-card warn-high">
       <div class="warn-icon">!</div>
       <div class="warn-body">
-        <div class="warn-title">Suchbegriff: „nachhaltige babykleidung merinowolle"</div>
+        <div class="warn-title">Suchbegriff: „nachhaltige babykleidung merinowolle" <a href="https://www.google.com/search?q=nachhaltige+babykleidung+merinowolle" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
         <div class="warn-desc">
           HALFEN erscheint hier — aber gleich <strong>mit zwei verschiedenen URLs</strong>:<br>
           &bull; Position 2: <code>/collections/baby</code><br>
@@ -1089,7 +1126,7 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="warn-card warn-high">
       <div class="warn-icon">!</div>
       <div class="warn-body">
-        <div class="warn-title">Suchbegriff: „wollwalk pflege tipps"</div>
+        <div class="warn-title">Suchbegriff: „wollwalk pflege tipps" <a href="https://www.google.com/search?q=wollwalk+pflege+tipps" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
         <div class="warn-desc">
           <strong>HALFEN taucht bei Google nicht auf</strong> — obwohl Sie als Hersteller die Experten für dieses Thema sind. Stattdessen ranken:<br>
           &bull; engel-natur.de (Position 1) — ein Wettbewerber<br>
@@ -1113,13 +1150,15 @@ td:first-child { color: var(--text); font-weight: 500; }
   <h2>Fragen, die Ihre Kunden googeln — und die Ihr Store nicht beantwortet</h2>
   <p class="section-intro">Wir haben die häufigsten Fragen recherchiert, die potenzielle Kunden bei Google eingeben, wenn sie sich für Wollwalk, Merinowolle und Babykleidung interessieren. Bei keiner einzigen dieser Fragen erscheint HALFEN auf Seite 1 — obwohl Sie als Hersteller die glaubwürdigste Quelle wären. Stattdessen beantworten Ihre Händler und Wettbewerber diese Fragen und gewinnen die Kunden.</p>
 
+  <div class="date-stamp">Alle Suchergebnisse unten sind echte Google-Suchen vom 2. April 2026 — klicken Sie auf „Hier testen" um das Ergebnis selbst zu prüfen.</div>
+
   <p>Das ist besonders wichtig, weil <strong>Google und KI-Suchmaschinen</strong> (ChatGPT, Perplexity, Google AI Overviews) FAQ-Inhalte bevorzugt als Antwortquelle nutzen. Wer die Fragen beantwortet, wird zitiert — und bekommt den Kunden.</p>
 
   <div class="warn-grid" style="margin-top: 24px;">
     <div class="warn-card">
       <div class="warn-icon">?</div>
       <div class="warn-body">
-        <div class="warn-title">„Was zieht man unter einen Wollwalk Overall an?"</div>
+        <div class="warn-title">„Was zieht man unter einen Wollwalk Overall an?" <a href="https://www.google.com/search?q=was+zieht+man+unter+wollwalk+overall+an" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
         <div class="warn-desc">
           <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
           &bull; nadeloehrle.de (Position 1) — ein Wettbewerber<br>
@@ -1133,7 +1172,7 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="warn-card">
       <div class="warn-icon">?</div>
       <div class="warn-body">
-        <div class="warn-title">„Wollwalk oder Wollfleece — was ist besser für Babys?"</div>
+        <div class="warn-title">„Wollwalk oder Wollfleece — was ist besser für Babys?" <a href="https://www.google.com/search?q=wollwalk+oder+wollfleece+baby+was+ist+besser" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
         <div class="warn-desc">
           <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
           &bull; littlegreenie.de (Position 1) — Ihr eigener Händler<br>
@@ -1147,7 +1186,7 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="warn-card">
       <div class="warn-icon">?</div>
       <div class="warn-body">
-        <div class="warn-title">„Welche Größe beim Wollwalk Overall für mein Baby?"</div>
+        <div class="warn-title">„Welche Größe beim Wollwalk Overall für mein Baby?" <a href="https://www.google.com/search?q=wollwalk+overall+baby+welche+gr%C3%B6%C3%9Fe" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
         <div class="warn-desc">
           <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
           &bull; internaht.de (Position 1) — ein Wettbewerber<br>
@@ -1161,7 +1200,7 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="warn-card">
       <div class="warn-icon">?</div>
       <div class="warn-body">
-        <div class="warn-title">„Ist Merinowolle für Babys mit empfindlicher Haut geeignet? Kratzt das?"</div>
+        <div class="warn-title">„Ist Merinowolle für Babys mit empfindlicher Haut geeignet? Kratzt das?" <a href="https://www.google.com/search?q=merinowolle+baby+allergie+kratzt" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
         <div class="warn-desc">
           <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
           &bull; comazo.de (Position 1)<br>
@@ -1175,7 +1214,7 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="warn-card">
       <div class="warn-icon">?</div>
       <div class="warn-body">
-        <div class="warn-title">„Ist ein Wollwalk Overall wasserdicht? Was bei Regen?"</div>
+        <div class="warn-title">„Ist ein Wollwalk Overall wasserdicht? Was bei Regen?" <a href="https://www.google.com/search?q=wollwalk+overall+wasserdicht+regen" target="_blank" class="verify-btn">Hier testen &rarr;</a></div>
         <div class="warn-desc">
           <strong>HALFEN taucht nicht auf.</strong> Stattdessen ranken:<br>
           &bull; littlegreenie.de (Position 1) — Ihr Händler<br>
