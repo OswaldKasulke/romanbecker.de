@@ -1302,6 +1302,56 @@ td:first-child { color: var(--text); font-weight: 500; }
   <div class="callout-green callout">
     <p><strong>Gute Nachricht: Ihr Store ist für alle KI-Suchmaschinen zugänglich.</strong> Wir haben geprüft, ob Ihre <code>robots.txt</code> KI-Crawler blockiert — das ist bei vielen Shops der Fall und verhindert, dass ChatGPT, Perplexity oder Google AI Overviews Ihre Produkte als Quelle nutzen können. Ergebnis: halfenstore.de erlaubt alle relevanten KI-Bots (Google Gemini, OpenAI/ChatGPT, Anthropic Claude, Perplexity). Die technische Voraussetzung für KI-Sichtbarkeit ist also gegeben — was fehlt, sind die Inhalte (FAQ, Blog, strukturierte Daten), die die KI-Systeme als Antwortquelle nutzen können.</p>
   </div>
+
+  <h3>KI-Kompatibilitätsanalyse: Wie gut versteht KI Ihren Store?</h3>
+  <p class="h3-explain">Wir haben halfenstore.de mit einem spezialisierten KI-Kompatibilitätstest geprüft (ClickRank.ai, 02.04.2026). Das Tool testet, wie gut die sechs führenden KI-Modelle Ihre Inhalte verstehen, einordnen und als Quelle nutzen können.</p>
+
+  <table>
+    <thead><tr><th>KI-Modell</th><th>Score</th><th>Bestanden</th><th>Durchgefallen</th></tr></thead>
+    <tbody>
+      <tr><td>ChatGPT (OpenAI)</td><td><span class="sev sev-ok">80%</span></td><td>3 von 5</td><td>2</td></tr>
+      <tr><td>Gemini (Google)</td><td><span class="sev sev-ok">80%</span></td><td>3 von 5</td><td>2</td></tr>
+      <tr><td>Claude (Anthropic)</td><td><span class="sev sev-ok">80%</span></td><td>4 von 5</td><td>1</td></tr>
+      <tr><td>Mistral</td><td><span class="sev sev-ok">80%</span></td><td>4 von 5</td><td>1</td></tr>
+      <tr><td>Cohere</td><td><span class="sev sev-ok">80%</span></td><td>4 von 5</td><td>1</td></tr>
+      <tr><td>Llama (Meta)</td><td><span class="sev sev-med">40%</span></td><td>2 von 5</td><td>3</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Gesamtscore: 73% (Gut)</strong> — Ihr Store wird von den meisten KI-Modellen korrekt als nachhaltige Familienmode-Marke erkannt. Die Kernbotschaften (Merinowolle, Made in Germany, GOTS) kommen an.</p>
+
+  <h3>Was die KI-Modelle vermissen</h3>
+  <p class="h3-explain">Die durchgefallenen Checks zeigen genau die Lücken, die auch für klassisches SEO relevant sind:</p>
+
+  <table>
+    <thead><tr><th>Fehlender Check</th><th>KI-Modelle betroffen</th><th>Was das bedeutet</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Keine Kundenbewertungen</td>
+        <td>ChatGPT, Gemini</td>
+        <td>KI-Systeme gewichten User-Generated Content stark. Ohne Bewertungen fehlt ein Vertrauenssignal, das KI-Modelle zur Empfehlung nutzen.</td>
+      </tr>
+      <tr>
+        <td>Keine Authority Signals</td>
+        <td>ChatGPT, Gemini</td>
+        <td>Keine Verlinkung zu Presseberichten, Testberichten oder Zertifizierungsstellen. KI-Modelle bevorzugen Quellen mit externen Referenzen.</td>
+      </tr>
+      <tr>
+        <td>Fehlende analytische Tiefe</td>
+        <td>Claude</td>
+        <td>Der Store beschreibt Produkte, erklärt aber nicht (z.B. „Warum Wollwalk?", „Wie pflege ich Merinowolle?"). Genau diese Erklär-Inhalte nutzen KI-Modelle als Antwortquelle.</td>
+      </tr>
+      <tr>
+        <td>Kein Schema Markup auf der Homepage</td>
+        <td>Gemini</td>
+        <td>OG-Tags und Meta-Beschreibungen sind vorhanden, aber echtes JSON-LD Product-Schema fehlt. Das ist das „Futter" für KI-Vergleichsboxen und Rich Results.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>Fazit:</strong> Die technische Basis ist gut (73%), aber die 27% Verbesserungspotenzial decken sich exakt mit unseren Empfehlungen: Bewertungs-App einrichten, FAQ/Blog-Content erstellen, strukturierte Daten erweitern und externe Vertrauenssignale aufbauen. Jeder dieser Punkte verbessert gleichzeitig die Sichtbarkeit bei Google UND bei KI-Suchmaschinen.</p>
+  </div>
 </section>
 
 <!-- 07 UX -->
