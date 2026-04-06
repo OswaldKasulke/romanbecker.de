@@ -716,7 +716,7 @@ td:first-child { color: var(--text); font-weight: 500; }
       <tr>
         <td>7+ externe Apps verlangsamen den Shop</td>
         <td><span class="sev sev-high">Hoch</span></td>
-        <td>Besonders die Übersetzungs-App Weglot bremst jede Seite um 1-3 Sekunden aus.</td>
+        <td>Besonders die Übersetzungs-App Weglot blockiert den Main Thread durch clientseitiges DOM-Rewriting und erhöht die Total Blocking Time spürbar.</td>
       </tr>
       <tr>
         <td>Fehlende Vertrauenselemente</td>
@@ -726,7 +726,7 @@ td:first-child { color: var(--text); font-weight: 500; }
       <tr>
         <td>Doppelte Seiten im Store</td>
         <td><span class="sev sev-med">Mittel</span></td>
-        <td>Es gibt z.B. zwei Impressum-Seiten, zwei Kontaktseiten und drei Versionen Ihrer Philosophie-Seite.</td>
+        <td>Es gibt z.B. zwei Impressum-Seiten, zwei Kontaktseiten und vier Versionen Ihrer Über-uns-/Philosophie-Seite.</td>
       </tr>
     </tbody>
   </table>
@@ -1304,7 +1304,7 @@ td:first-child { color: var(--text); font-weight: 500; }
   </div>
 
   <h3>KI-Kompatibilitätsanalyse: Wie gut versteht KI Ihren Store?</h3>
-  <p class="h3-explain">Wir haben halfenstore.de mit einem spezialisierten KI-Kompatibilitätstest geprüft (ClickRank.ai, 02.04.2026). Das Tool testet, wie gut die sechs führenden KI-Modelle Ihre Inhalte verstehen, einordnen und als Quelle nutzen können.</p>
+  <p class="h3-explain">Wir haben halfenstore.de mit einem spezialisierten KI-Kompatibilitätstest geprüft (ClickRank.ai, 06.04.2026). Das Tool testet, wie gut die sechs führenden KI-Modelle Ihre Inhalte verstehen, einordnen und als Quelle nutzen können.</p>
 
   <table>
     <thead><tr><th>KI-Modell</th><th>Score</th><th>Bestanden</th><th>Durchgefallen</th></tr></thead>
@@ -1475,13 +1475,13 @@ td:first-child { color: var(--text); font-weight: 500; }
       <div class="rm-dot"></div>
       <div class="rm-head">
         <span class="rm-name">Phase 0: Bestandsaufnahme</span>
-        <span class="rm-time">Woche 1 — 8 Stunden</span>
+        <span class="rm-time">Woche 1 — 6 Stunden</span>
       </div>
       <ul class="rm-tasks">
         <li>Alle 419 Produkte per Matrixify/CSV exportieren und Datenlücken dokumentieren <span class="rm-h">1h</span></li>
-        <li>Für jede der 116 Kategorien festhalten: welche Produkte, wie viele, Überschneidungen <span class="rm-h">3h</span></li>
+        <li>Für jede der 116 Kategorien festhalten: welche Produkte, wie viele, Überschneidungen <span class="rm-h">2h</span></li>
         <li>Neue Ziel-Struktur (20-25 Kategorien) mit Ihnen abstimmen <span class="rm-h">2h</span></li>
-        <li>Weiterleitungsplan: wohin sollen gelöschte Kategorien umleiten? <span class="rm-h">2h</span></li>
+        <li>Weiterleitungsplan: wohin sollen gelöschte Kategorien umleiten? <span class="rm-h">1h</span></li>
       </ul>
     </div>
 
@@ -1489,11 +1489,11 @@ td:first-child { color: var(--text); font-weight: 500; }
       <div class="rm-dot"></div>
       <div class="rm-head">
         <span class="rm-name">Phase 1: Produktdaten aufräumen</span>
-        <span class="rm-time">Woche 2-3 — 14 Stunden</span>
+        <span class="rm-time">Woche 2-3 — 12 Stunden</span>
       </div>
       <ul class="rm-tasks">
         <li>Metafeld-Definitionen anlegen (Zielgruppe, Material, Saison, Anlass) mit festen Dropdown-Werten <span class="rm-h">2h</span></li>
-        <li>Alle 419 Produkte per Bulk-Export (Matrixify oder Shopify CSV) mit Produkttyp und Metafeldern befüllen <span class="rm-h">10h</span></li>
+        <li>Alle 419 Produkte per Bulk-Export (Matrixify oder Shopify CSV) mit Produkttyp und Metafeldern befüllen <span class="rm-h">8h</span></li>
         <li>Doppelte Produkte in der Sitemap bereinigen <span class="rm-h">2h</span></li>
       </ul>
     </div>
@@ -1502,11 +1502,11 @@ td:first-child { color: var(--text); font-weight: 500; }
       <div class="rm-dot"></div>
       <div class="rm-head">
         <span class="rm-name">Phase 2: Kategorien bereinigen</span>
-        <span class="rm-time">Woche 3-4 — 18 Stunden</span>
+        <span class="rm-time">Woche 3-4 — 14 Stunden</span>
       </div>
       <ul class="rm-tasks">
-        <li>~90 überflüssige Kategorien löschen (Shopify setzt 301-Redirects automatisch, Ziel-URLs vorab definieren) <span class="rm-h">6h</span></li>
-        <li>Verbleibende ~25 Kategorien mit guten Titeln, Beschreibungen und Bildern versehen <span class="rm-h">6h</span></li>
+        <li>~90 überflüssige Kategorien löschen (Shopify setzt 301-Redirects automatisch, Ziel-URLs vorab definieren) <span class="rm-h">4h</span></li>
+        <li>Verbleibende ~25 Kategorien mit guten Titeln, Beschreibungen und Bildern versehen <span class="rm-h">4h</span></li>
         <li>Shopify Search & Discovery App einrichten: Filter auf Kategorieseiten basierend auf den neuen Metafeldern <span class="rm-h">3h</span></li>
         <li>Navigation/Menü auf die neue Struktur umbauen <span class="rm-h">3h</span></li>
       </ul>
@@ -1516,14 +1516,14 @@ td:first-child { color: var(--text); font-weight: 500; }
       <div class="rm-dot"></div>
       <div class="rm-head">
         <span class="rm-name">Phase 3: Vertrauen & Quick Wins</span>
-        <span class="rm-time">Woche 4-5 — 16 Stunden</span>
+        <span class="rm-time">Woche 4-5 — 12 Stunden</span>
       </div>
       <ul class="rm-tasks">
-        <li>Doppelte Info-Seiten zusammenführen (Impressum, Kontakt, Philosophie) <span class="rm-h">3h</span></li>
+        <li>Doppelte Info-Seiten zusammenführen (Impressum, Kontakt, Philosophie) <span class="rm-h">2h</span></li>
         <li>USP-Leiste einbauen: „Made in Germany", „GOTS-zertifiziert", „Kostenloser Versand ab X€" <span class="rm-h">2h</span></li>
         <li>Trust-Badges (Gütesiegel) auf allen Produktseiten <span class="rm-h">2h</span></li>
-        <li>Größentabelle auf allen Produktseiten <span class="rm-h">3h</span></li>
-        <li>Google-Beschreibungen für die 30 wichtigsten Seiten optimieren <span class="rm-h">6h</span></li>
+        <li>Größentabelle auf allen Produktseiten <span class="rm-h">2h</span></li>
+        <li>Google-Beschreibungen für die 30 wichtigsten Seiten optimieren <span class="rm-h">4h</span></li>
       </ul>
     </div>
 
@@ -1531,13 +1531,13 @@ td:first-child { color: var(--text); font-weight: 500; }
       <div class="rm-dot"></div>
       <div class="rm-head">
         <span class="rm-name">Phase 4: Geschwindigkeit</span>
-        <span class="rm-time">Woche 5-6 — 13 Stunden</span>
+        <span class="rm-time">Woche 5-6 — 8 Stunden</span>
       </div>
       <ul class="rm-tasks">
-        <li>Weglot prüfen: Wird Mehrsprachigkeit genutzt? Ggf. durch Shopify Markets + Translate & Adapt ersetzen <span class="rm-h">6h</span></li>
-        <li>Elfsight-Widgets entfernen oder durch eingebaute Shopify-Funktionen ersetzen <span class="rm-h">3h</span></li>
+        <li>Weglot prüfen: Wird Mehrsprachigkeit genutzt? Ggf. durch Shopify Markets + Translate & Adapt ersetzen <span class="rm-h">4h</span></li>
+        <li>Elfsight-Widgets entfernen oder durch eingebaute Shopify-Funktionen ersetzen <span class="rm-h">1h</span></li>
         <li>Liquid-Templates prüfen: <code>image_url</code>-Filter mit korrekten <code>width</code>- und <code>sizes</code>-Attributen versehen, damit Shopifys CDN optimale Bildgrößen (WebP/AVIF) ausliefert <span class="rm-h">2h</span></li>
-        <li>Schriftarten auf das Nötigste reduzieren <span class="rm-h">2h</span></li>
+        <li>Schriftarten auf das Nötigste reduzieren <span class="rm-h">1h</span></li>
       </ul>
     </div>
 
@@ -1545,12 +1545,12 @@ td:first-child { color: var(--text); font-weight: 500; }
       <div class="rm-dot"></div>
       <div class="rm-head">
         <span class="rm-name">Phase 5: Inhalte & Conversion</span>
-        <span class="rm-time">Woche 6-8 — 24 Stunden</span>
+        <span class="rm-time">Woche 6-8 — 18 Stunden</span>
       </div>
       <ul class="rm-tasks">
-        <li>Produktbeschreibungen überarbeiten: Materialinfos, Pflege, Besonderheiten, Suchbegriffe <span class="rm-h">12h</span></li>
-        <li>Erweiterte Google-Daten einbauen (Bewertungen, FAQ, Breadcrumbs) <span class="rm-h">4h</span></li>
-        <li>Bewertungs-App einrichten (z.B. Judge.me oder Loox) und Kundenbewertungen prominent auf Produktseiten anzeigen <span class="rm-h">4h</span></li>
+        <li>Produktbeschreibungen überarbeiten: Materialinfos, Pflege, Besonderheiten, Suchbegriffe <span class="rm-h">8h</span></li>
+        <li>Erweiterte Google-Daten einbauen (Bewertungen, FAQ, Breadcrumbs) <span class="rm-h">3h</span></li>
+        <li>Bewertungs-App einrichten (z.B. Judge.me oder Loox) und Kundenbewertungen prominent auf Produktseiten anzeigen <span class="rm-h">3h</span></li>
         <li>Blog-Strategie starten: 2 Artikel pro Monat zu Wollwalk, Pflege, Nachhaltigkeit <span class="rm-h">4h</span></li>
       </ul>
     </div>
@@ -1872,7 +1872,7 @@ new Chart(document.getElementById('chartRoadmap'), {
   data: {
     labels: ['Phase 0\nBestandsaufnahme', 'Phase 1\nProduktdaten', 'Phase 2\nKategorien', 'Phase 3\nVertrauen', 'Phase 4\nGeschwindigkeit', 'Phase 5\nInhalte'],
     datasets: [{
-      data: [8, 14, 18, 16, 13, 24],
+      data: [6, 12, 14, 12, 8, 18],
       backgroundColor: ['#B8860B', '#B8860B', '#B8860B', '#B8860B', '#B8860B', '#B8860B'],
       borderRadius: 4,
       barThickness: 36
