@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cecilia Collantes — Photography · Art</title>
+  <meta name="description" content="Cecilia Collantes is an interdisciplinary artist based in Paris, working with painting, photography, and volumetric media.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: #1a1a1a;
+      background: #ffffff;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: 0.6;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      transition: opacity 0.4s ease;
+    }
+
+    nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Sections */
+    .section {
+      padding: 0 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Julius Sans One', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin-bottom: 2.5rem;
+      padding-top: 5rem;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 3rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Julius Sans One', sans-serif;
+      font-size: clamp(1.6rem, 5vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 3.5rem;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    /* Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .grid-videos {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .full-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .grid-item {
+      overflow: hidden;
+    }
+
+    .grid-item img {
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.02);
+    }
+
+    .video-thumb {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .video-thumb::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(4px);
+      transition: opacity 0.3s ease;
+    }
+
+    .video-thumb::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-42%, -50%);
+      z-index: 1;
+      border-left: 12px solid rgba(255, 255, 255, 0.9);
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+    }
+
+    .video-thumb:hover::after {
+      opacity: 0.7;
+    }
+
+    /* Bio */
+    .bio-section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .bio-text {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: #333;
+    }
+
+    .bio-text p + p {
+      margin-top: 1.25rem;
+    }
+
+    .bio-sidebar h3 {
+      font-family: 'Julius Sans One', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .bio-sidebar h3 + h3 {
+      margin-top: 2rem;
+    }
+
+    .bio-sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+
+    .bio-sidebar li {
+      font-size: 0.8rem;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    /* Contact / Footer */
+    .contact {
+      text-align: center;
+      padding: 6rem 1.5rem 3rem;
+      border-top: 1px solid #e8e4df;
+    }
+
+    .contact h2 {
+      font-family: 'Julius Sans One', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .contact .ig-link {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e8e4df;
+      padding-bottom: 2px;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .contact .ig-link:hover {
+      border-color: #1a1a1a;
+      opacity: 1;
+    }
+
+    .contact .enquiry {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: #bbb;
+    }
+
+    /* Fade-in animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Divider */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: #e8e4df;
+      margin: 0 auto;
+    }
+
+    /* Tablet */
+    @media (min-width: 640px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .grid-videos {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .bio-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+
+      .section {
+        padding: 0 3rem;
+      }
+
+      .bio-section {
+        padding: 5rem 3rem;
+      }
+
+      nav {
+        gap: 2.5rem;
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+      .grid-2 {
+        gap: 2rem;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .grid-videos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .section {
+        padding: 0 4rem;
+      }
+
+      .bio-section {
+        padding: 6rem 4rem;
+      }
+
+      .bio-grid {
+        grid-template-columns: 3fr 2fr;
+        gap: 6rem;
+      }
+
+      .section-label {
+        margin-bottom: 3rem;
+        padding-top: 6rem;
+      }
+
+      nav {
+        gap: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#fashion">Fashion</a>
+    <a href="#portrait">Portrait</a>
+    <a href="#moments">Moments</a>
+    <a href="#painting">Painting</a>
+    <a href="#murals">Murals</a>
+    <a href="#moving-image">Film</a>
+    <a href="#bio">Bio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="fade-in">Cecilia Collantes</h1>
+    <p class="subtitle fade-in">Photography &middot; Art</p>
+    <div class="hero-image fade-in">
+      <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1706036679491-V4X54XNE1SIL0DWE01AF/Cecilia+Collantes_Armani-Close-up-.jpeg?format=1500w" alt="Cecilia Collantes — Fashion Photography" loading="eager">
+    </div>
+  </section>
+
+  <!-- Fashion -->
+  <section class="section" id="fashion">
+    <h2 class="section-label fade-in">Fashion</h2>
+    <div class="grid-2">
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1696955616901-XETF18V16A01ZRGW283C/INSTA.jpg?format=1000w" alt="Fashion Photography" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1673309126848-I5YAQI9VQ6RBG3264SFE/Armani-Close-up-.jpg?format=1000w" alt="Armani Close-up" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1669632615115-GBLJY60RQW9P7N91OFUQ/_DSC6093_LR.jpg?format=1000w" alt="Fashion Editorial" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1711470796386-VU3KHGZBP9DX6C5CG5XW/_DSC1947_Sofia-Fanego_Dior_by-Luz-Cecilia-Collantes4.jpg?format=1000w" alt="Sofia Fanego for Dior" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1698534943224-NK1F9S2G228OM20B7KE0/_DSC9338.jpg?format=1000w" alt="Fashion Photography" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1650450200939-2E7RLSKPLMCJKX1B2WV7/_DSC9253.jpg?format=1000w" alt="Fashion Photography" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Portrait -->
+  <section class="section" id="portrait">
+    <h2 class="section-label fade-in">Portrait</h2>
+    <div class="grid-2">
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1710343901267-YEKC8551MINDYT5OESUS/_DSC7598.jpg?format=1000w" alt="Portrait Photography" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1710424200158-YOY6F0MQ6ZOYORM9Y7G8/Joel+Ronson+by+Cecilia+Collantes_+IMG_8036.JPG?format=1000w" alt="Joel Ronson Portrait" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1711240162020-AMJPW1UPJQJZZNN5NWQN/Sofia+Fanego-+Cecilia+Collantes.jpg?format=1000w" alt="Sofia Fanego Portrait" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1720379587820-MWMFW1ALDRUHN2JI1LNR/_DSC2451_FINAL.jpg?format=1000w" alt="Portrait Photography" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Moments -->
+  <section class="section" id="moments">
+    <h2 class="section-label fade-in">Moments</h2>
+    <div class="grid-2">
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1645693640515-KF9238Y0DSSZL6IC90PS/IMG_7743_1%2Bcopy.jpg?format=1000w" alt="Travel Moments" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1647017010114-XGQIFH4K6P0CSSLCX4YU/ceciliacollantes-cambodia-travel-travelphotograpgy-asia.jpg?format=1000w" alt="Cambodia Travel Photography" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1679061852117-0LVM951DXKXWU5UZB5SH/_DSC9490.JPG?format=1000w" alt="Moments Photography" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1740372942545-IW4N2XI27H06MS022SHB/_DSC5197.jpg?format=1000w" alt="Moments Photography" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Painting -->
+  <section class="section" id="painting">
+    <h2 class="section-label fade-in">Painting</h2>
+    <div class="grid-3">
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1502998220889-3B633BFLSHC6TJW4WSRI/cosmos_red_artworkceciliacollantes.jpg?format=1000w" alt="Cosmos Red" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1503290276572-6N7MXRYHHAUT5TEKGODM/erosion_grieta_pink_artwork_ceciliacollantes.jpg?format=1000w" alt="Erosion Grieta Pink" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1503377741347-9KQ04KUEQ7TZ8CLRHZVW/cosmos_diamond_artworkceciliacollantes.jpg?format=1000w" alt="Cosmos Diamond" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1503291794995-KAECUFFNJA7DMB6RWIBU/erosion_stardust_artwork_ceciliacollantes.jpg?format=1000w" alt="Erosion Stardust" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1502655323091-G3SVMG882WY0NTZ3L554/towers_artworkceciliacollantes.JPG?format=1000w" alt="Towers" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1503376678773-06NP0S7NHL8ZOL0Z6DAQ/cosmos_blackpurple_artwork_ceciliacollantes.jpg?format=1000w" alt="Cosmos Black Purple" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Murals -->
+  <section class="section" id="murals">
+    <h2 class="section-label fade-in">Murals</h2>
+    <div class="full-stack">
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1623183960500-22T9PTPMYPH0QLXU0N8B/IMG_2829.jpg?format=1500w" alt="Mural" loading="lazy">
+      </div>
+      <div class="grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1623184254219-A0LROJ4AL7YAJI7WSCJS/IMG_8701_edit.jpg?format=1500w" alt="Mural" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Moving Image -->
+  <section class="section" id="moving-image">
+    <h2 class="section-label fade-in">Moving Image</h2>
+    <div class="grid-videos">
+      <a href="https://www.youtube.com/watch?v=325T-wp5YbE" target="_blank" rel="noopener" class="video-thumb grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1579021511983-XYJJTLY49R533QS19CWJ/image-asset.jpeg?format=750w" alt="Video" loading="lazy">
+      </a>
+      <a href="https://www.youtube.com/watch?v=4kIPnYuDD8Q" target="_blank" rel="noopener" class="video-thumb grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1579022138734-HY73UZNNDWS5Z16U5B0L/image-asset.jpeg?format=750w" alt="Video" loading="lazy">
+      </a>
+      <a href="https://www.youtube.com/watch?v=A0v2JmDG6_o" target="_blank" rel="noopener" class="video-thumb grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1579395397797-YA5OKR1XSX8OTQPS6AXZ/image-asset.jpeg?format=750w" alt="Video" loading="lazy">
+      </a>
+      <a href="https://www.youtube.com/watch?v=IGKSP9eBwK4" target="_blank" rel="noopener" class="video-thumb grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1621470888872-LPVTZ0P2VGSSA38W6MZ1/image-asset.jpeg?format=750w" alt="Video" loading="lazy">
+      </a>
+      <a href="https://www.youtube.com/watch?v=oJr4R89W9fQ" target="_blank" rel="noopener" class="video-thumb grid-item fade-in">
+        <img src="https://images.squarespace-cdn.com/content/v1/598825d3414fb5ac545f845f/1655146627847-EKNRHFP7LMVBKRIAUV5K/image-asset.jpeg?format=750w" alt="Video" loading="lazy">
+      </a>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section class="bio-section" id="bio">
+    <h2 class="section-label fade-in" style="padding-top: 0;">Bio</h2>
+    <div class="bio-grid fade-in">
+      <div class="bio-text">
+        <p>CECILIA COLLANTES (Lima, Peru) is an interdisciplinary artist based in Paris, working with painting, photography, and volumetric media. In her recent works, folded paper generates reliefs that define textured surfaces where charcoal and iridescent pigments respond to shifts of light and form. Watercolor and ink extend these surfaces through fluid movement across the folds. Framed in acrylic boxes, the pieces become contained reliquaries that preserve their fragility.</p>
+        <p>Collantes explores connections between nature, the cosmos, and the body through surfaces that suggest erosion, mineral traces, and structures beyond the individual. Her approach draws from pre-Hispanic Peruvian cosmology, where harmony between humans, nature, and the stars defines existence.</p>
+      </div>
+      <div class="bio-sidebar">
+        <h3>Selected Exhibitions</h3>
+        <ul>
+          <li>Liberty, Femina, Keluarga — Biasa Art Space, Jakarta</li>
+          <li>New Works — Chista Studio, New York</li>
+          <li>Foresta — Undercurrent Projects, New York</li>
+          <li>Apparel — Cecilia Gonzalez Gallery, Lima</li>
+          <li>Sujeto a Cambios — La Editorial, Lima (2025)</li>
+        </ul>
+        <h3>Residencies</h3>
+        <ul>
+          <li>Eileen Kaminsky Family Foundation Residency, New Jersey (2014–15)</li>
+          <li>Thaillywood Residency, Thailand (2013)</li>
+          <li>Darmasiswa Grant, Indonesia (2012)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <h2 class="fade-in">Contact</h2>
+    <div class="fade-in">
+      <a href="https://www.instagram.com/ceciliacollantes.photo/" target="_blank" rel="noopener" class="ig-link">@ceciliacollantes.photo</a>
+      <p class="enquiry">For general enquiries. Please do reach out.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Cecilia Collantes. All Rights Reserved.
+  </footer>
+
+  <!-- Scroll fade-in -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elements = document.querySelectorAll('.fade-in');
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      elements.forEach(function (el) {
+        observer.observe(el);
+      });
+    });
+  </script>
+
+</body>
+</html>
