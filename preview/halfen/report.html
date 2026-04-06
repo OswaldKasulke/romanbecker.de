@@ -640,6 +640,8 @@ td:first-child { color: var(--text); font-weight: 500; }
   .content { padding: 0 20px; }
   .cover-bottom { left: 24px; right: 24px; }
   .chart-row { grid-template-columns: 1fr; }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 20px 0; }
+  .table-scroll table { margin: 0; min-width: 500px; }
 }
 </style>
 </head>
@@ -1714,6 +1716,16 @@ td:first-child { color: var(--text); font-weight: 500; }
 </div>
 
 </div>
+
+<script>
+// Wrap all tables in scroll container for mobile
+document.querySelectorAll('.content table').forEach(function(table) {
+  var wrapper = document.createElement('div');
+  wrapper.className = 'table-scroll';
+  table.parentNode.insertBefore(wrapper, table);
+  wrapper.appendChild(table);
+});
+</script>
 
 <script>
 Chart.defaults.font.family = "'DM Sans', -apple-system, sans-serif";
