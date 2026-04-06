@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Commerce Audit — halfenstore.de | fuerte.digital</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -604,6 +605,32 @@ td:first-child { color: var(--text); font-weight: 500; }
   margin-bottom: 20px;
 }
 
+/* CHARTS */
+.chart-container {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 28px;
+  margin: 28px 0;
+}
+.chart-container canvas { max-height: 320px; }
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 28px 0;
+}
+.chart-row .chart-container { margin: 0; }
+.chart-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .cover { padding: 48px 24px; }
   .scores { grid-template-columns: 1fr 1fr; }
@@ -612,6 +639,7 @@ td:first-child { color: var(--text); font-weight: 500; }
   .kf { grid-template-columns: 1fr; }
   .content { padding: 0 20px; }
   .cover-bottom { left: 24px; right: 24px; }
+  .chart-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -714,6 +742,11 @@ td:first-child { color: var(--text); font-weight: 500; }
   <h2>Vier Bereiche, vier Noten</h2>
   <p class="section-intro">Wir bewerten jeden Bereich auf einer Skala von 0 bis 100 Punkten. Ab 70 Punkten ist ein Bereich gut aufgestellt, unter 40 besteht dringender Handlungsbedarf.</p>
 
+  <div class="chart-container">
+    <div class="chart-title">Gesamtbewertung nach Bereich — Punkteskala 0-100</div>
+    <canvas id="chartScoring"></canvas>
+  </div>
+
   <div class="scores">
     <div class="sc sc-crit">
       <div class="sc-label">Struktur & Kategorien</div>
@@ -762,6 +795,17 @@ td:first-child { color: var(--text); font-weight: 500; }
   <div class="section-num">03 — Kategorien & Struktur</div>
   <h2>116 Kategorien für 419 Produkte — das ist das Kernproblem</h2>
   <p class="section-intro">Stellen Sie sich vor, Sie hätten ein Geschäft mit 419 Artikeln, aber 116 verschiedene Regale und Schilder. Viele Regale zeigen die gleichen Produkte, manche Schilder sind fast identisch. Genau das passiert in Ihrem Online-Store — und es verwirrt sowohl Ihre Kunden als auch Google.</p>
+
+  <div class="chart-row">
+    <div class="chart-container">
+      <div class="chart-title">Kategorien: Ist-Zustand vs. Empfehlung</div>
+      <canvas id="chartKategorien"></canvas>
+    </div>
+    <div class="chart-container">
+      <div class="chart-title">Aufteilung der 116 Kategorien nach Status</div>
+      <canvas id="chartKatStatus"></canvas>
+    </div>
+  </div>
 
   <h3>Beispiel: Der Baby-Bereich hat 10+ Kategorien, die sich überlappen</h3>
   <p class="h3-explain">Wenn eine Kundin nach einem Wollwalk-Overall für ihr Baby sucht, findet sie in Ihrem Store mindestens 5 verschiedene Kategorieseiten, die ähnliche oder identische Produkte zeigen. Statt auf einer klaren Seite zu landen, muss sie raten, welche die richtige ist.</p>
@@ -840,7 +884,7 @@ td:first-child { color: var(--text); font-weight: 500; }
       </tr>
       <tr>
         <td><a href="https://www.halfenstore.de/collections/vendors-q-halfen" target="_blank">vendors-q-halfen</a></td>
-        <td>Technische Systemseite, die nicht sichtbar sein sollte.</td>
+        <td>Automatisch generierte Vendor-Collection (Shopify-Standard). Sollte per <code>robots.txt</code> oder <code>noindex</code> von Google ausgeschlossen sein — prüfen, ob das der Fall ist.</td>
       </tr>
       <tr>
         <td><a href="https://www.halfenstore.de/collections/knete-fuer-kinder-mit-spielzeug" target="_blank">Knete für Kinder mit Spielzeug</a></td>
@@ -917,6 +961,11 @@ td:first-child { color: var(--text); font-weight: 500; }
     </div>
   </div>
 
+  <div class="chart-container">
+    <div class="chart-title">Produktdaten-Vollständigkeit — 419 Produkte analysiert</div>
+    <canvas id="chartProduktdaten"></canvas>
+  </div>
+
   <h3>Konkretes Beispiel aus Ihrem Store</h3>
   <p class="h3-explain">Wir haben die ersten 50 Produkte aus Ihrer Datenbank ausgelesen. Hier sehen Sie das Problem: Manche Produkte haben Typ und Tags — aber die Mehrheit hat gar nichts. Die Daten sind willkürlich gepflegt.</p>
 
@@ -979,24 +1028,30 @@ td:first-child { color: var(--text); font-weight: 500; }
 <section id="technik">
   <div class="section-num">05 — Technik & Ladezeiten</div>
   <h2>Der Store ist zu langsam — besonders auf dem Handy</h2>
-  <p class="section-intro">Google misst, wie schnell eine Website lädt, und vergibt Punkte von 0 bis 100. Unter 50 gilt als schlecht, über 90 als gut. Ihr Store erreicht auf dem Handy aktuell <strong>58 von 100 Punkten</strong> — das ist Mittelmaß und kostet Sie Besucher und Umsatz. Die Ladezeit-Werte (Core Web Vitals) sind zwar knapp bestanden, aber die Gesamtperformance leidet unter zu vielen externen Apps.</p>
+  <p class="section-intro">Google misst, wie schnell eine Website lädt, und vergibt Punkte von 0 bis 100. Unter 50 gilt als schlecht, über 90 als gut. Ihr Store erreicht auf dem Handy aktuell <strong>58 von 100 Punkten</strong> — das ist Mittelmaß und kostet Sie Besucher und Umsatz.</p>
+  <p class="section-intro"><strong>Wichtige Unterscheidung:</strong> Die reinen Ladezeit-Kernwerte (Core Web Vitals) sind tatsächlich solide — LCP 1.1 Sekunden ist gut (Grenze: 2.5s) und CLS 0 ist perfekt. Der schlechte Gesamtscore von 58 kommt vor allem durch lange JavaScript-Blockierzeit (Total Blocking Time) und verzögerte Interaktivität — beides verursacht durch die vielen externen Apps, die nach dem Seitenaufbau im Hintergrund weiterladen.</p>
 
   <div class="screenshot-wrapper">
     <img src="screenshots/pagespeed-mobile.png" alt="Google PageSpeed Insights — halfenstore.de Mobile: 58 Punkte">
     <div class="screenshot-caption">
-      <span class="cap-text">Google PageSpeed Insights vom 02.04.2026: Mobile Score 58/100. Core Web Vitals knapp bestanden (LCP 1.1s, CLS 0). Accessibility 97, SEO 92.</span>
+      <span class="cap-text">Google PageSpeed Insights vom 02.04.2026: Mobile Score 58/100. Core Web Vitals bestanden (LCP 1.1s, CLS 0 — beide gut). Der niedrige Gesamtscore entsteht durch hohe TBT (JavaScript-Blockierzeit).</span>
       <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.halfenstore.de%2F&form_factor=mobile" target="_blank" class="cap-link">Selbst testen &rarr;</a>
     </div>
   </div>
 
+  <div class="chart-container">
+    <div class="chart-title">PageSpeed Metriken — Mobile (02.04.2026) — Grün = gut, Gelb = verbesserungswürdig, Rot = schlecht</div>
+    <canvas id="chartPagespeed"></canvas>
+  </div>
+
   <h3>Diese Apps bremsen Ihren Store</h3>
-  <p class="h3-explain">Shopify-Apps fügen zusätzlichen Code hinzu, der bei jedem Seitenaufruf geladen wird. Je mehr Apps, desto langsamer die Seite. Besonders problematisch: Weglot, die Übersetzungs-App, verändert den gesamten Seiteninhalt nach dem Laden — das kostet 1-3 Sekunden extra.</p>
+  <p class="h3-explain">Shopify-Apps fügen zusätzlichen Code hinzu, der bei jedem Seitenaufruf geladen wird. Je mehr Apps, desto langsamer die Seite. Besonders problematisch: Weglot, die Übersetzungs-App, manipuliert den gesamten DOM (Seiteninhalt) clientseitig nach dem Laden — das blockiert den Main Thread und erhöht die Total Blocking Time, den Haupttreiber des niedrigen Performance Scores.</p>
 
   <table>
     <thead><tr><th>App</th><th>Wofür sie da ist</th><th>Wie sehr sie bremst</th></tr></thead>
     <tbody>
-      <tr><td>Weglot</td><td>Übersetzt den Store in andere Sprachen</td><td><span class="sev sev-crit">Stark</span> — verändert die gesamte Seite nach dem Laden</td></tr>
-      <tr><td>Smile.io</td><td>Treuepunkte-Programm („Halfen Family Club")</td><td><span class="sev sev-high">Mittel</span></td></tr>
+      <tr><td>Weglot</td><td>Übersetzt den Store in andere Sprachen</td><td><span class="sev sev-crit">Stark</span> — manipuliert den DOM clientseitig, blockiert Main Thread</td></tr>
+      <tr><td>Smile.io</td><td>Treuepunkte-Programm („Halfen Family Club")</td><td><span class="sev sev-high">Mittel</span> — lädt eigenes Widget auf jeder Seite</td></tr>
       <tr><td>FastBundle</td><td>Produkt-Sets und Bundles</td><td><span class="sev sev-high">Mittel</span></td></tr>
       <tr><td>Elfsight Widgets</td><td>Zusätzliche Website-Elemente</td><td><span class="sev sev-high">Mittel</span> — lädt von externem Server</td></tr>
       <tr><td>hCaptcha</td><td>Schutz vor Spam-Bots</td><td><span class="sev sev-ok">Gering</span></td></tr>
@@ -1013,7 +1068,7 @@ td:first-child { color: var(--text); font-weight: 500; }
     <p style="margin-top: 8px;">1. <strong>Verkaufen Sie aktiv international?</strong> Wenn ja: In welche Länder und in welchen Sprachen?<br>
     2. <strong>Wie viel Prozent Ihres Umsatzes kommen von nicht-deutschsprachigen Kunden?</strong><br>
     3. <strong>Nutzen Kunden die Sprachumschaltung tatsächlich?</strong> (Messbar in Weglot-Dashboard oder Google Analytics)</p>
-    <p style="margin-top: 12px;">Falls die Antwort „wenig bis gar nicht" ist, empfehlen wir Weglot zu entfernen — das allein würde die Ladezeit spürbar verbessern. Falls Mehrsprachigkeit wichtig ist, gibt es mit <strong>Shopify Markets</strong> eine integrierte Alternative, die deutlich performanter arbeitet, weil sie serverseitig übersetzt statt im Browser.</p>
+    <p style="margin-top: 12px;">Falls die Antwort „wenig bis gar nicht" ist, empfehlen wir Weglot zu entfernen — das allein würde die Ladezeit spürbar verbessern. Falls Mehrsprachigkeit wichtig ist, gibt es mit <strong>Shopify Markets + Translate & Adapt</strong> eine integrierte Alternative. Der Vorteil: Die Übersetzungen werden in Shopifys eigenem System gespeichert und serverseitig in die Liquid-Templates gerendert — im Gegensatz zu Weglots clientseitigem DOM-Rewriting. Der Nachteil: Automatische Übersetzung ist weniger komfortabel als bei Weglot und erfordert teilweise manuelle Nacharbeit.</p>
   </div>
 
   <h3>Mobile Darstellung: Cookie-Banner blockiert den gesamten Inhalt</h3>
@@ -1041,8 +1096,8 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="warn-card">
       <div class="warn-icon">!</div>
       <div class="warn-body">
-        <div class="warn-title">Bilder sind bis zu doppelt so groß wie nötig</div>
-        <div class="warn-desc">Produktfotos werden mit bis zu 3.115 Pixel Breite geladen — ein Handy-Display braucht maximal 1.500 Pixel. Jedes zu große Bild verlangsamt den Seitenaufbau und kostet Ihre Kunden mobiles Datenvolumen.</div>
+        <div class="warn-title">Produktbilder werden in unnötig hoher Auflösung ausgeliefert</div>
+        <div class="warn-desc">Shopify stellt Bilder zwar über ein CDN bereit und unterstützt responsive Formate — aber das Theme muss dafür korrekte <code>srcset</code>- und <code>sizes</code>-Attribute setzen. In Ihrem Store werden Produktfotos mit bis zu 3.115 Pixel Breite angefordert, obwohl das darstellende Element deutlich kleiner ist. Das deutet auf fehlende oder unvollständige responsive Bildkonfiguration im Theme hin.</div>
       </div>
     </div>
     <div class="warn-card warn-high">
@@ -1055,8 +1110,8 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="warn-card warn-med">
       <div class="warn-icon">!</div>
       <div class="warn-body">
-        <div class="warn-title">Aufgeblähter CSS-Code</div>
-        <div class="warn-desc">Im Code Ihres Stores sind 14+ Farbschemata definiert, obwohl nur eines davon tatsächlich genutzt wird. Der Rest wird trotzdem bei jedem Seitenaufruf geladen — unnötiger Ballast.</div>
+        <div class="warn-title">Ungenutzter CSS-Code durch Theme-Konfiguration</div>
+        <div class="warn-desc">Das Hyper Theme definiert 14+ Farbschemata als CSS Custom Properties — das ist bei Shopify OS 2.0 Themes Standardarchitektur. Allerdings wird in Ihrem Store nur ein Schema aktiv genutzt. Die ungenutzten Definitionen vergrößern die CSS-Datei unnötig. In Kombination mit den anderen Faktoren trägt das zur Gesamtladezeit bei — einzeln betrachtet ist der Effekt jedoch gering.</div>
       </div>
     </div>
   </div>
@@ -1292,7 +1347,7 @@ td:first-child { color: var(--text); font-weight: 500; }
       </tr>
       <tr>
         <td>Kundenbewertungen</td>
-        <td><span class="sev sev-high">Kaum sichtbar</span> — Die App Smile.io ist installiert, aber Bewertungen werden nicht prominent angezeigt. 92% der Käufer lesen Bewertungen vor dem Kauf.</td>
+        <td><span class="sev sev-high">Nicht vorhanden</span> — Es ist keine Bewertungs-App (wie Judge.me, Loox oder Yotpo) installiert. Die vorhandene App Smile.io ist ein Treuepunkte-Programm, keine Bewertungslösung. 92% der Online-Käufer lesen Bewertungen vor dem Kauf.</td>
       </tr>
       <tr>
         <td>Gütesiegel / Trust-Badges</td>
@@ -1340,7 +1395,7 @@ td:first-child { color: var(--text); font-weight: 500; }
         <li>Löst das Kategorie-Chaos? <span>Ja — von 116 auf 25 bereinigen</span></li>
         <li>Löst das Daten-Problem? <span>Ja — alle 419 Produkte systematisch pflegen</span></li>
         <li>Löst das App-Problem? <span>Ja — unnötige Apps entfernen/ersetzen</span></li>
-        <li>Zeitaufwand <span>60-100 Stunden</span></li>
+        <li>Zeitaufwand <span>ca. 110 Stunden (siehe Maßnahmenplan)</span></li>
         <li>SEO-Risiko <span>Niedrig — bestehende Adressen bleiben erhalten</span></li>
         <li>Kosten <span>4.000-8.000 EUR</span></li>
       </ul>
@@ -1435,10 +1490,15 @@ td:first-child { color: var(--text); font-weight: 500; }
       <ul class="rm-tasks">
         <li>Produktbeschreibungen überarbeiten: Materialinfos, Pflege, Besonderheiten, Suchbegriffe <span class="rm-h">12h</span></li>
         <li>Erweiterte Google-Daten einbauen (Bewertungen, FAQ, Breadcrumbs) <span class="rm-h">4h</span></li>
-        <li>Kundenbewertungen prominent auf Produktseiten anzeigen <span class="rm-h">4h</span></li>
+        <li>Bewertungs-App einrichten (z.B. Judge.me oder Loox) und Kundenbewertungen prominent auf Produktseiten anzeigen <span class="rm-h">4h</span></li>
         <li>Blog-Strategie starten: 2 Artikel pro Monat zu Wollwalk, Pflege, Nachhaltigkeit <span class="rm-h">4h</span></li>
       </ul>
     </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Stundenverteilung nach Phase — Gesamt ca. 111 Stunden</div>
+    <canvas id="chartRoadmap"></canvas>
   </div>
 
   <div class="callout">
@@ -1463,8 +1523,10 @@ td:first-child { color: var(--text); font-weight: 500; }
     <div class="kpi-r"><div>Google-Geschwindigkeitsnote (Handy)</div><div class="kpi-ist">58</div><div class="kpi-ziel">&gt; 85</div></div>
     <div class="kpi-r"><div>Besucher über Google-Suche</div><div class="kpi-ist">Basis</div><div class="kpi-ziel">+20%</div></div>
     <div class="kpi-r"><div>Kaufquote (Conversion Rate)</div><div class="kpi-ist">Basis</div><div class="kpi-ziel">+15-25%</div></div>
-    <div class="kpi-r"><div>Absprungrate auf dem Handy</div><div class="kpi-ist">&gt; 55%</div><div class="kpi-ziel">&lt; 45%</div></div>
+    <div class="kpi-r"><div>Absprungrate auf dem Handy</div><div class="kpi-ist">Branchenschnitt: ~55%*</div><div class="kpi-ziel">&lt; 45%</div></div>
   </div>
+
+  <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 12px;">* Absprungrate basiert auf dem Branchendurchschnitt für Fashion-E-Commerce (Quelle: Contentsquare Digital Experience Benchmark 2025). Der tatsächliche Wert ist nur über Ihr Google Analytics einsehbar.</p>
 
   <div style="margin-top: 48px; padding-top: 48px; border-top: 2px solid var(--border);">
     <div class="section-num">Fazit & nächste Schritte</div>
@@ -1479,7 +1541,7 @@ td:first-child { color: var(--text); font-weight: 500; }
     <p><strong>Die entscheidende Erkenntnis dieses Audits:</strong> Die Technik ist nicht das Problem. Ihr Shopify-Theme (Hyper v1.3.0) ist modern, leistungsfähig und regelmäßig aktualisiert. Ein teurer Neuaufbau würde keines der identifizierten Probleme lösen — denn die Probleme liegen in den Daten, der Struktur und der Konfiguration, nicht im Theme.</p>
 
     <div class="callout" style="margin: 32px 0; border-left-color: var(--ok); background: var(--ok-bg);">
-      <p style="color: var(--text); font-size: 1rem;"><strong>Was wir Ihnen empfehlen:</strong> Eine strukturierte Sanierung in 6 Phasen über 8 Wochen. Geschätzter Aufwand: 60-100 Stunden. Geschätzte Kosten: 4.000-8.000 EUR. Kein Risiko für Ihre bestehenden Google-Rankings, kein Datenverlust, kein Ausfall des Stores.</p>
+      <p style="color: var(--text); font-size: 1rem;"><strong>Was wir Ihnen empfehlen:</strong> Eine strukturierte Sanierung in 6 Phasen über 8 Wochen. Geschätzter Aufwand: ca. 110 Stunden (detailliert im Maßnahmenplan). Geschätzte Kosten: 4.000-8.000 EUR. Kein Risiko für Ihre bestehenden Google-Rankings, kein Datenverlust, kein Ausfall des Stores.</p>
     </div>
 
     <p style="color: var(--text); font-weight: 600; font-size: 1.05rem; margin-top: 32px;">Die drei Hebel mit dem größten Effekt:</p>
@@ -1530,5 +1592,250 @@ td:first-child { color: var(--text); font-weight: 500; }
 </div>
 
 </div>
+
+<script>
+Chart.defaults.font.family = "'DM Sans', -apple-system, sans-serif";
+Chart.defaults.color = '#555555';
+
+// 1. Scoring Bar Chart
+new Chart(document.getElementById('chartScoring'), {
+  type: 'bar',
+  data: {
+    labels: ['Struktur & Kategorien', 'Ladezeiten', 'Suchmaschinen (SEO)', 'Einkaufserlebnis'],
+    datasets: [{
+      data: [18, 28, 32, 41],
+      backgroundColor: ['#C62828', '#BF360C', '#BF360C', '#8C6D1F'],
+      borderRadius: 4,
+      barThickness: 40
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2.2,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => ctx.raw + ' / 100 Punkte' }
+      }
+    },
+    scales: {
+      x: {
+        min: 0, max: 100,
+        grid: { color: '#EEECE8' },
+        ticks: {
+          callback: v => v + ' Pkt.',
+          font: { family: "'JetBrains Mono', monospace", size: 10 }
+        }
+      },
+      y: {
+        grid: { display: false },
+        ticks: { font: { size: 12, weight: '500' } }
+      }
+    }
+  }
+});
+
+// 2. Kategorien Ist vs. Soll
+new Chart(document.getElementById('chartKategorien'), {
+  type: 'bar',
+  data: {
+    labels: ['Aktuell', 'Empfohlen'],
+    datasets: [{
+      data: [116, 25],
+      backgroundColor: ['#C62828', '#2E7D32'],
+      borderRadius: 4,
+      barThickness: 60
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 1.4,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => ctx.raw + ' Kategorien' }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: { color: '#EEECE8' },
+        ticks: { font: { family: "'JetBrains Mono', monospace", size: 10 } }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// 3. Kategorie-Status Donut
+new Chart(document.getElementById('chartKatStatus'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Behalten (~25)', 'Doppelt/überflüssig (~70)', 'Leer/veraltet (~15)', 'Systemseiten (~6)'],
+    datasets: [{
+      data: [25, 70, 15, 6],
+      backgroundColor: ['#2E7D32', '#C62828', '#E65100', '#F9A825'],
+      borderWidth: 2,
+      borderColor: '#FFFFFF'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 1.4,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// 4. Produktdaten Vollständigkeit
+new Chart(document.getElementById('chartProduktdaten'), {
+  type: 'bar',
+  data: {
+    labels: ['Produkttyp', 'Tags (Schlagwörter)', 'Einheitliches System'],
+    datasets: [
+      {
+        label: 'Vorhanden',
+        data: [40, 30, 0],
+        backgroundColor: '#2E7D32',
+        borderRadius: 4
+      },
+      {
+        label: 'Fehlt',
+        data: [60, 70, 100],
+        backgroundColor: '#C62828',
+        borderRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2.5,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { padding: 16, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
+      },
+      tooltip: {
+        callbacks: { label: ctx => ctx.dataset.label + ': ~' + ctx.raw + '%' }
+      }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false } },
+      y: {
+        stacked: true, max: 100,
+        grid: { color: '#EEECE8' },
+        ticks: {
+          callback: v => v + '%',
+          font: { family: "'JetBrains Mono', monospace", size: 10 }
+        }
+      }
+    }
+  }
+});
+
+// 5. PageSpeed Metriken
+(function() {
+  var metrics = ['FCP', 'LCP', 'TBT', 'CLS', 'SI', 'TTI'];
+  var values = [1.8, 1.1, 780, 0, 3.2, 4.5];
+  var maxVals = [3.0, 2.5, 600, 0.25, 5.0, 7.0];
+  var threshGood = [1.8, 2.5, 200, 0.1, 3.4, 3.8];
+  var threshMed = [3.0, 4.0, 600, 0.25, 5.8, 7.3];
+  var units = ['s', 's', 'ms', '', 's', 's'];
+  var colors = values.map(function(v, i) {
+    if (v <= threshGood[i]) return '#2E7D32';
+    if (v <= threshMed[i]) return '#F9A825';
+    return '#C62828';
+  });
+
+  new Chart(document.getElementById('chartPagespeed'), {
+    type: 'bar',
+    data: {
+      labels: metrics.map(function(m, i) { return m + ' (' + values[i] + units[i] + ')'; }),
+      datasets: [{
+        data: values.map(function(v, i) { return Math.round((v / maxVals[i]) * 100); }),
+        backgroundColor: colors,
+        borderRadius: 4,
+        barThickness: 36
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: 2.5,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              var i = ctx.dataIndex;
+              return values[i] + units[i] + ' (Grenze gut: ' + threshGood[i] + units[i] + ')';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          min: 0, max: 120,
+          grid: { color: '#EEECE8' },
+          ticks: {
+            callback: function(v) { return v + '%'; },
+            font: { family: "'JetBrains Mono', monospace", size: 10 }
+          },
+          title: { display: true, text: '% der Grenze zum Problemwert', font: { size: 10 }, color: '#888' }
+        },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+})();
+
+// 6. Roadmap Stunden
+new Chart(document.getElementById('chartRoadmap'), {
+  type: 'bar',
+  data: {
+    labels: ['Phase 0\nBestandsaufnahme', 'Phase 1\nProduktdaten', 'Phase 2\nKategorien', 'Phase 3\nVertrauen', 'Phase 4\nGeschwindigkeit', 'Phase 5\nInhalte'],
+    datasets: [{
+      data: [12, 20, 22, 16, 17, 24],
+      backgroundColor: ['#B8860B', '#B8860B', '#B8860B', '#B8860B', '#B8860B', '#B8860B'],
+      borderRadius: 4,
+      barThickness: 36
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2.5,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: function(ctx) { return ctx.raw + ' Stunden'; } }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: { color: '#EEECE8' },
+        ticks: {
+          callback: function(v) { return v + 'h'; },
+          font: { family: "'JetBrains Mono', monospace", size: 10 }
+        }
+      },
+      x: {
+        grid: { display: false },
+        ticks: { font: { size: 10 }, maxRotation: 0 }
+      }
+    }
+  }
+});
+</script>
 </body>
 </html>
