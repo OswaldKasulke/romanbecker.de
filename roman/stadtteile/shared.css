@@ -3,21 +3,23 @@
    Shared CSS für alle 86 Stadtteil-Landingpages
    =========================== */
 
-/* CUSTOM PROPERTIES */
+/* CUSTOM PROPERTIES — Palette von romanbecker.de */
 :root {
-  --navy: #0D1B2A;
-  --navy-light: #1B2838;
-  --gold: #C9A84C;
-  --gold-light: #D4BA6A;
+  --navy: #111111;
+  --navy-light: #1a1a1a;
+  --gold: #c2a990;
+  --gold-light: #cfcabe;
+  --accent: #d8613c;
   --white: #ffffff;
-  --off-white: #F8F7F4;
+  --off-white: #f9f9f9;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
-  --gray-400: #9ca3af;
-  --gray-600: #4b5563;
-  --gray-800: #1f2937;
+  --gray-400: #A4A4A4;
+  --gray-600: #636363;
+  --gray-800: #111111;
 
   --font-base: 'Inter', sans-serif;
+  --font-heading: 'Cardo', serif;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -59,9 +61,9 @@ a { color: inherit; }
 .section--navy { background: var(--navy); color: var(--white); }
 
 /* TYPOGRAPHY */
-h1 { font-size: clamp(1.75rem, 5vw, 2.75rem); font-weight: 700; line-height: 1.2; color: var(--navy); }
-h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: var(--space-4); }
-h3 { font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1.3; color: var(--navy); margin-bottom: var(--space-2); }
+h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 5vw, 2.75rem); font-weight: 700; line-height: 1.2; color: var(--navy); }
+h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: var(--space-4); }
+h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1.3; color: var(--navy); margin-bottom: var(--space-2); }
 
 .section-label {
   display: inline-block;
@@ -143,15 +145,18 @@ h3 { font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1
   .site-header__nav { display: none; }
 }
 
-/* BREADCRUMB */
+/* BREADCRUMB — visually hidden, kept for SEO/JSON-LD */
 .breadcrumb {
-  padding: var(--space-4) 0;
-  font-size: 0.8125rem;
-  color: var(--gray-400);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-.breadcrumb a { color: var(--gold); text-decoration: none; }
-.breadcrumb a:hover { text-decoration: underline; }
-.breadcrumb span { margin: 0 var(--space-2); }
 
 /* BUTTONS */
 .btn {
