@@ -14,7 +14,12 @@ const INDEX_PATH = join(__dirname, '..', 'index.html');
 
 const PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
-const IMG_PARAMS = '?w=640&h=400&fit=fill&fm=jpg&q=80';
+const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=90';
+
+// ---------------------------------------------------------------------------
+// Filter: 'active' = nur aktive, 'all' = aktive + verkaufte
+// ---------------------------------------------------------------------------
+const SHOW_MODE = 'all';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -115,9 +120,12 @@ async function parseListing(url) {
     ?? data?.props?.pageProps?.property;
   if (!property) throw new Error('No property data');
 
-  // Filter sold — Evernest uses "salesStatus" field
+  // Status ermitteln
   const status = property.salesStatus ?? property.status;
-  if (status === 'sold') return null;
+  const isSold = status === 'sold';
+
+  // Filter je nach SHOW_MODE
+  if (SHOW_MODE === 'active' && isSold) return null;
 
   const epd = property.exportedPropertyData?.data;
   const title = epd?.headline || property.headline || property.title || 'Immobilie';
@@ -125,27 +133,30 @@ async function parseListing(url) {
   const location = buildLocation(property);
   const imageUrl = property.featuredImage?.url;
 
-  return { title, price, location, imageUrl, url };
+  return { title, price, location, imageUrl, url, sold: isSold };
 }
 
 // ---------------------------------------------------------------------------
 // Step 3 — Build HTML
 // ---------------------------------------------------------------------------
 
-function buildCard({ title, price, location, imageUrl, url }) {
+function buildCard({ title, price, location, imageUrl, url, sold }) {
   const meta = price ? `${location} — ${price}` : location;
   const imgSrc = imageUrl ? `${imageUrl}${IMG_PARAMS}` : '';
   const alt = escapeAlt(title);
+  const badge = sold ? '\n                  <div class="listing-card__badge">Verkauft</div>' : '';
 
-  return `        <div class="listing-card">
-          <a class="listing-card__link" href="${url}" target="_blank" rel="noopener">
-            <img class="listing-card__img" src="${imgSrc}" alt="${alt}" loading="lazy">
-            <div class="listing-card__overlay">
-              <div class="listing-card__meta">${meta}</div>
-              <div class="listing-card__title">${title}</div>
-            </div>
-          </a>
-        </div>`;
+  return `            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="${url}" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="${imgSrc}" alt="${alt}" loading="lazy">${badge}
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">${meta}</div>
+                    <div class="listing-card__title">${title}</div>
+                  </div>
+                </a>
+              </div>
+            </li>`;
 }
 
 function buildSection(listings) {
@@ -169,22 +180,37 @@ function buildSection(listings) {
   <!-- LISTINGS-END -->`;
   }
 
-  const cards = listings.map(buildCard).join('\n');
-  const objektText = n === 1 ? 's Objekt' : ' Objekte';
+  // Aktive zuerst, dann verkaufte
+  const sorted = [...listings].sort((a, b) => (a.sold === b.sold ? 0 : a.sold ? 1 : -1));
+  const cards = sorted.map(buildCard).join('\n');
+  const activeCount = sorted.filter(l => !l.sold).length;
+  const soldCount = sorted.filter(l => l.sold).length;
+
+  let trustText;
+  if (SHOW_MODE === 'all' && soldCount > 0) {
+    trustText = `${activeCount} aktuelle &amp; ${soldCount} erfolgreich vermittelte Objekte in Köln &amp; Umland — von der Erstberatung bis zum Notar.`;
+  } else {
+    const objektText = n === 1 ? 's Objekt' : ' Objekte';
+    trustText = `${n} aktuelle${objektText} in Köln &amp; Umland — von der Erstberatung bis zum Notar.`;
+  }
 
   return `  <!-- LISTINGS-START -->
   <section id="objekte" class="section section--gray">
     <div class="container">
       <span class="section-label">Immobilienangebote</span>
-      <h2 class="section-title">Aktuelle Immobilienangebote</h2>
-      <p class="section-subtitle">Entdecken Sie mein aktuelles Portfolio bei EVERNEST — von der Erstbesichtigung bis zum Notartermin.</p>
+      <h2 class="section-title">Immobilienangebote</h2>
+      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST — von der Erstbesichtigung bis zum Notartermin.</p>
 
-      <div class="grid-3">
+      <div class="listings-carousel splide" aria-label="Immobilienangebote">
+        <div class="splide__track">
+          <ul class="splide__list">
 ${cards}
+          </ul>
+        </div>
       </div>
 
       <div class="objekte__cta">
-        <p class="objekte__trust">${n} aktuelle${objektText} in Köln &amp; Umland — von der Erstberatung bis zum Notar.</p>
+        <p class="objekte__trust">${trustText}</p>
         <div class="objekte__buttons">
           <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener" class="btn btn--outline">Alle Objekte ansehen</a>
           <a href="#kontakt" class="btn btn--primary">Beratungsgespräch vereinbaren</a>

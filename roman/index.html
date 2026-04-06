@@ -864,6 +864,7 @@
       height: 280px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: center 20%;
       border: 4px solid var(--gold);
       box-shadow: 0 8px 32px rgba(201, 168, 76, 0.25);
     }
@@ -939,18 +940,16 @@
     /* ===========================
        IMMOBILIENANGEBOTE
     =========================== */
+    .listings-carousel .splide__track {
+      border-radius: var(--radius-lg);
+    }
+
     .listing-card {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: box-shadow var(--transition), transform var(--transition);
       aspect-ratio: 16 / 10;
-    }
-
-    .listing-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
     }
 
     .listing-card__link {
@@ -978,7 +977,22 @@
       left: 0;
       right: 0;
       padding: var(--space-6);
-      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 50%);
+    }
+
+    .listing-card__badge {
+      position: absolute;
+      top: var(--space-3);
+      left: var(--space-3);
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius);
+      z-index: 1;
     }
 
     .listing-card__meta {
@@ -1010,6 +1024,148 @@
       gap: var(--space-4);
       justify-content: center;
       flex-wrap: wrap;
+    }
+
+    /* Splide custom styling */
+    .listings-carousel .splide__arrow {
+      background: var(--white);
+      box-shadow: var(--shadow);
+      width: 2.5rem;
+      height: 2.5rem;
+      opacity: 0.9;
+    }
+
+    .listings-carousel .splide__arrow:hover {
+      opacity: 1;
+    }
+
+    .listings-carousel .splide__arrow svg {
+      fill: var(--navy);
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .listings-carousel .splide__pagination__page {
+      background: var(--gray-400);
+    }
+
+    .listings-carousel .splide__pagination__page.is-active {
+      background: var(--gold);
+    }
+
+    /* ===========================
+       REFERENZOBJEKTE GALERIE
+    =========================== */
+    .ref-filters {
+      display: flex;
+      gap: var(--space-2);
+      justify-content: center;
+      margin-bottom: var(--space-8);
+      flex-wrap: wrap;
+    }
+
+    .ref-filter-btn {
+      background: transparent;
+      border: 2px solid var(--gray-200);
+      color: var(--gray-600);
+      font-family: var(--font-base);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .ref-filter-btn:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .ref-filter-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 640px) {
+      .ref-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .ref-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .ref-card {
+      display: block;
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      aspect-ratio: 16 / 10;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .ref-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .ref-card[data-hidden="true"] {
+      display: none;
+    }
+
+    .ref-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ref-card__overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-6);
+      background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 50%);
+      color: var(--white);
+    }
+
+    .ref-card__meta {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-bottom: var(--space-1);
+    }
+
+    .ref-card__title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .ref-card__badge {
+      position: absolute;
+      top: var(--space-3);
+      left: var(--space-3);
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius);
     }
 
     /* ===========================
@@ -1508,6 +1664,8 @@
     .mt-8 { margin-top: var(--space-8); }
     .mb-0 { margin-bottom: 0; }
   </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 </head>
 <body>
 
@@ -1568,20 +1726,20 @@
           <div class="trust__label">Makler im Netzwerk</div>
         </div>
         <div class="trust__item">
-          <div class="trust__value">38</div>
+          <div class="trust__value">51</div>
           <div class="trust__label">Standorte deutschlandweit</div>
         </div>
         <div class="trust__item">
           <div class="trust__value">10,95 Mio. €</div>
-          <div class="trust__label">Höchstes vermitteltes Objekt</div>
+          <div class="trust__label">Teuerstes Objekt in der Vermittlung</div>
         </div>
         <div class="trust__item">
           <div class="trust__value">5,0 ★</div>
           <div class="trust__label">Google-Bewertung</div>
         </div>
         <div class="trust__item">
-          <div class="trust__value">[ROMAN: X]</div>
-          <div class="trust__label">Objekte verkauft</div>
+          <div class="trust__value">14</div>
+          <div class="trust__label">Objekte in der Vermarktung</div>
         </div>
       </div>
     </div>
@@ -1597,7 +1755,7 @@
 
         <a href="#prozess" class="card fuer-wen__card" style="text-decoration:none">
           <div class="fuer-wen__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-          <h3>Diskret verkaufen</h3>
+          <h3>Direkt verkaufen</h3>
           <p>Sie möchten Ihre Immobilie verkaufen, ohne dass Nachbarn oder Bekannte es direkt mitbekommen. Mit dem EVERNEST-Käuferpool vermarkten wir Off-Market – ohne öffentliches Inserat.</p>
           <span class="card-link">Zum Prozess &rarr;</span>
         </a>
@@ -1632,21 +1790,21 @@
           <div class="prozess__number">1</div>
           <div class="prozess__text">
             <h3>Erstbewertung &amp; Strategiegespräch</h3>
-            <p>Wir treffen uns vor Ort. Ich analysiere Lage, Zustand, Baujahr, Energieeffizienz und Marktsituation – und gebe Ihnen eine fundierte, realistische Preiseinschätzung ohne versteckte Agenda.</p>
+            <p>Wir treffen uns vor Ort. Ich analysiere Lage, Zustand, Baujahr, Bautenstand, Energieeffizienz und Marktsituation – und gebe Ihnen eine fundierte, realistische Preiseinschätzung ohne versteckte Agenda.</p>
           </div>
         </div>
         <div class="prozess__step">
           <div class="prozess__number">2</div>
           <div class="prozess__text">
             <h3>Individuelle Verkaufsstrategie</h3>
-            <p>Auf Basis der Bewertung entwickle ich eine Strategie: Off-Market über den Käuferpool, gezielte Ansprache ausgewählter Interessenten oder klassische Vermarktung auf den großen Portalen – je nach Ihrer Situation.</p>
+            <p>Auf Basis der Bewertung entwickle ich eine Strategie: Off-Market über den EVERNEST-Käuferpool, gezielte Ansprache ausgewählter Interessenten oder klassische Vermarktung auf den großen Portalen – je nach Ihrer Situation.</p>
           </div>
         </div>
         <div class="prozess__step">
           <div class="prozess__number">3</div>
           <div class="prozess__text">
-            <h3>Professionelle Vermarktung</h3>
-            <p>Professionelle Fotografie, ein hochwertiges Exposé, 3D-Grundrisse und gezielte Ansprache qualifizierter Käufer. Besichtigungen koordiniere ich – Sie müssen nichts selbst organisieren.</p>
+            <h3>Professionelle Vermarktung mit Objektfotografie</h3>
+            <p>Professionelle Fotografie, ein hochwertiges Exposé und gezielte Ansprache qualifizierter Käufer. Besichtigungen koordiniere ich – Sie müssen nichts selbst organisieren.</p>
           </div>
         </div>
         <div class="prozess__step">
@@ -1660,7 +1818,7 @@
           <div class="prozess__number">5</div>
           <div class="prozess__text">
             <h3>Notartermin &amp; Übergabe</h3>
-            <p>Ich begleite Sie bis zur Schlüsselübergabe: Notartermin-Koordination, Kaufvertragsprüfung, Abstimmung mit Steuerberater bei Bedarf. Nach dem Termin sind Sie fertig – ich kümmere mich um den Rest.</p>
+            <p>Ich begleite Sie bis zur Schlüsselübergabe mit Zählerständen: Notartermin-Koordination, Kaufvertragsprüfung, Abstimmung mit Steuerberater bei Bedarf.</p>
           </div>
         </div>
       </div>
@@ -1703,8 +1861,9 @@
             <h4>Qualifikationen &amp; Eigenschaften</h4>
             <ul>
               <li>IHK-zertifizierter Immobilienmakler</li>
-              <li>Spezialisiert auf hochwertige Wohnimmobilien ab 750.000 €</li>
-              <li>Tiefer Marktkenntnis in Sülz, Lindenthal, Marienburg, Rodenkirchen &amp; Umgebung</li>
+              <li>Spezialisiert auf Wohnimmobilien</li>
+              <li>Tiefer Marktkenntnis in Köln und Umgebung</li>
+              <li>Tiefe Kenntnis von sanierungs- und renovierungsbedürftigen Objekten</li>
               <li>Zugang zum EVERNEST-Käuferpool mit vorgemerkten Käufern</li>
               <li>Diskreter Off-Market-Verkauf möglich</li>
               <li>Erfahrung mit Erbschaftsimmobilien &amp; Erbengemeinschaften</li>
@@ -1726,68 +1885,326 @@
   <section id="objekte" class="section section--gray">
     <div class="container">
       <span class="section-label">Immobilienangebote</span>
-      <h2 class="section-title">Aktuelle Immobilienangebote</h2>
-      <p class="section-subtitle">Entdecken Sie mein aktuelles Portfolio bei EVERNEST — von der Erstbesichtigung bis zum Notartermin.</p>
+      <h2 class="section-title">Immobilienangebote</h2>
+      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST — von der Erstbesichtigung bis zum Notartermin.</p>
 
-      <div class="grid-3">
-        <div class="listing-card">
-          <a class="listing-card__link" href="https://www.evernest.com/de/listing/5p8kuzdFbsAwasIbZZwwze/" target="_blank" rel="noopener">
-            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2mg8ji84TwbipiywKIIa5I/bb0083442be94e8443acb85cb9cf7d7b/465424e6-61db-4db2-aefa-f27000211192?w=640&h=400&fit=fill&fm=jpg&q=80" alt="Willkommen im Amselquartier – Ihr neues Zuhause mit Wohlfühlfaktor" loading="lazy">
-            <div class="listing-card__overlay">
-              <div class="listing-card__meta">Pullheim, 50259 — 350.000 €</div>
-              <div class="listing-card__title">Willkommen im Amselquartier – Ihr neues Zuhause mit Wohlfühlfaktor</div>
-            </div>
-          </a>
-        </div>
-        <div class="listing-card">
-          <a class="listing-card__link" href="https://www.evernest.com/de/listing/5c4w50EDG5Npesi0lHo6py/" target="_blank" rel="noopener">
-            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4btTIanVTBHrQseeK7rjAk/04e982b5438c122532371c72db80e847/e6efd0ee-6942-4d9d-91fc-c8e095899fd9?w=640&h=400&fit=fill&fm=jpg&q=80" alt="Seltenes Baugrundstück in zentraler Lage von Pulheim" loading="lazy">
-            <div class="listing-card__overlay">
-              <div class="listing-card__meta">Pulheim, 50259 — 949.000 €</div>
-              <div class="listing-card__title">Seltenes Baugrundstück in zentraler Lage von Pulheim</div>
-            </div>
-          </a>
-        </div>
-        <div class="listing-card">
-          <a class="listing-card__link" href="https://www.evernest.com/de/listing/6DVbuziQbj1Kbxc9HXawKD/" target="_blank" rel="noopener">
-            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2FAbGIdDWTLH3nH89G11PN/a263aaa4c3f756a223fffc92cfee3967/c8a114e1-704c-49d8-9ec6-61a70c37e651?w=640&h=400&fit=fill&fm=jpg&q=80" alt="Eigentum im Wahrzeichen der Stadt - Colonia Haus" loading="lazy">
-            <div class="listing-card__overlay">
-              <div class="listing-card__meta">Köln-Riehl, 50735 — 399.000 €</div>
-              <div class="listing-card__title">Eigentum im Wahrzeichen der Stadt - Colonia Haus</div>
-            </div>
-          </a>
-        </div>
-        <div class="listing-card">
-          <a class="listing-card__link" href="https://www.evernest.com/de/listing/4y7HKS0EHhnIMFe7MvarAi/" target="_blank" rel="noopener">
-            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2N6XrTGtWw5rRdQ1QntAhL/1246f015bcead3759c1656d2da68b5f8/7fcaa965-f06a-4a69-90e1-c69542883f35?w=640&h=400&fit=fill&fm=jpg&q=80" alt="Pulheim City: Konvolut von 9-Neubauwohnungen" loading="lazy">
-            <div class="listing-card__overlay">
-              <div class="listing-card__meta">Pulheim, 50259 — 4.900.000 €</div>
-              <div class="listing-card__title">Pulheim City: Konvolut von 9-Neubauwohnungen</div>
-            </div>
-          </a>
-        </div>
-        <div class="listing-card">
-          <a class="listing-card__link" href="https://www.evernest.com/de/listing/4tHfH79xGbmufV2U0s0uJr/" target="_blank" rel="noopener">
-            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6bg77KW9IEh3wT50Liw2Lw/d014a181f9cd0a7b34b295c625f196e5/12561b22-9dce-4021-8d56-115293774fa8?w=640&h=400&fit=fill&fm=jpg&q=80" alt="Saniertes Mehrfamilienhaus mit 5,93 % Rendite" loading="lazy">
-            <div class="listing-card__overlay">
-              <div class="listing-card__meta">Langenfeld (Rheinland)-Immigrath, 40764 — 3.249.000 €</div>
-              <div class="listing-card__title">Saniertes Mehrfamilienhaus mit 5,93 % Rendite</div>
-            </div>
-          </a>
-        </div>
-        <div class="listing-card">
-          <a class="listing-card__link" href="https://www.evernest.com/de/listing/5ENiQl64Q9aofYcukySXKD/" target="_blank" rel="noopener">
-            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/20ozmquua1prXFEQz7U0mx/d644bd2ed938149a94ccf8a619b83058/03de2f20-59e6-47b8-a82c-43dcbb654d9a?w=640&h=400&fit=fill&fm=jpg&q=80" alt="Exklusives Wohnen mit nachhaltiger Bauweise und durchdachter Architektur" loading="lazy">
-            <div class="listing-card__overlay">
-              <div class="listing-card__meta">Köln-Dellbrück, 51069 — 10.950.000 €</div>
-              <div class="listing-card__title">Exklusives Wohnen mit nachhaltiger Bauweise und durchdachter Architektur</div>
-            </div>
-          </a>
+      <div class="listings-carousel splide" aria-label="Immobilienangebote">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/5p8kuzdFbsAwasIbZZwwze/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2mg8ji84TwbipiywKIIa5I/bb0083442be94e8443acb85cb9cf7d7b/465424e6-61db-4db2-aefa-f27000211192?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Willkommen im Amselquartier – Ihr neues Zuhause mit Wohlfühlfaktor" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Pullheim, 50259 — 350.000 €</div>
+                    <div class="listing-card__title">Willkommen im Amselquartier – Ihr neues Zuhause mit Wohlfühlfaktor</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/5c4w50EDG5Npesi0lHo6py/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4btTIanVTBHrQseeK7rjAk/04e982b5438c122532371c72db80e847/e6efd0ee-6942-4d9d-91fc-c8e095899fd9?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Seltenes Baugrundstück in zentraler Lage von Pulheim" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Pulheim, 50259 — 949.000 €</div>
+                    <div class="listing-card__title">Seltenes Baugrundstück in zentraler Lage von Pulheim</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/6DVbuziQbj1Kbxc9HXawKD/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2FAbGIdDWTLH3nH89G11PN/a263aaa4c3f756a223fffc92cfee3967/c8a114e1-704c-49d8-9ec6-61a70c37e651?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Eigentum im Wahrzeichen der Stadt - Colonia Haus" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Riehl, 50735 — 399.000 €</div>
+                    <div class="listing-card__title">Eigentum im Wahrzeichen der Stadt - Colonia Haus</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4y7HKS0EHhnIMFe7MvarAi/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2N6XrTGtWw5rRdQ1QntAhL/1246f015bcead3759c1656d2da68b5f8/7fcaa965-f06a-4a69-90e1-c69542883f35?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Pulheim City: Konvolut von 9-Neubauwohnungen" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Pulheim, 50259 — 4.900.000 €</div>
+                    <div class="listing-card__title">Pulheim City: Konvolut von 9-Neubauwohnungen</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4tHfH79xGbmufV2U0s0uJr/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6bg77KW9IEh3wT50Liw2Lw/d014a181f9cd0a7b34b295c625f196e5/12561b22-9dce-4021-8d56-115293774fa8?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Saniertes Mehrfamilienhaus mit 5,93 % Rendite" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Langenfeld (Rheinland)-Immigrath, 40764 — 3.249.000 €</div>
+                    <div class="listing-card__title">Saniertes Mehrfamilienhaus mit 5,93 % Rendite</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/5ENiQl64Q9aofYcukySXKD/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/20ozmquua1prXFEQz7U0mx/d644bd2ed938149a94ccf8a619b83058/03de2f20-59e6-47b8-a82c-43dcbb654d9a?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Exklusives Wohnen mit nachhaltiger Bauweise und durchdachter Architektur" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Dellbrück, 51069 — 10.950.000 €</div>
+                    <div class="listing-card__title">Exklusives Wohnen mit nachhaltiger Bauweise und durchdachter Architektur</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4figWPNmyx5q2mp6SRL5hH/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/48abZyNzqrTTyOMkJlFi4o/5f1c866fca0862e1b06166d14488ef1d/c0eb1a93-e327-4bc6-8401-9b3fab474474?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Mehrfamilienhaus mit großem Garten, Garage und Gewerbeeinheit" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Rommerskirchen-Frixheim-Anstel, 41569 — 495.000 €</div>
+                    <div class="listing-card__title">Mehrfamilienhaus mit großem Garten, Garage und Gewerbeeinheit</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/2PQIGwSNgR70KbtyXU94Nu/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1YSEWY8KUNHiEA1dcN7E9x/0d7ef5fbc17d8eceec302decdf6b8345/eae14515-01e6-4739-a217-1f407f625ab7?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Helle 2-Zimmer-Wohnung mit großer Wohnküche und Loggia" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Zollstock, 50969 — 239.000 €</div>
+                    <div class="listing-card__title">Helle 2-Zimmer-Wohnung mit großer Wohnküche und Loggia</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1EwBkGOXB1mcJCsohkMqHm/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4LfSKS7XKUVAG22l6AmpWF/d85ec512bf4ae36bb7139b82ed1a4e1f/6317e785-8ef1-47bb-b296-9f3874c4242f?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Neubau – Moderne 3-Zimmer-Wohnung mit hochwertiger Ausstattung im Amselquartier 
+WE B.05" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Pulheim-Stommeln, 50259 — 595.000 €</div>
+                    <div class="listing-card__title">Neubau – Moderne 3-Zimmer-Wohnung mit hochwertiger Ausstattung im Amselquartier 
+WE B.05</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/5EVc67rDseCO8VnsFZKd4z/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6qUkVjIotGKdM5xUyytwh7/96ff9683d5b66ad32c0b926dc87d95e0/a0M9N000000ZClhUAG?w=960&h=600&fit=fill&fm=jpg&q=90" alt="3-Zimmer-Wohnung mit Garten in familienfreundlicher Lage" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Rodenkirchen, 50999 — 699.000 €</div>
+                    <div class="listing-card__title">3-Zimmer-Wohnung mit Garten in familienfreundlicher Lage</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/6vHh6fVoEd3kYIkOfZzoJR/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7qpfgBvsZIf9hSiuhd2pg8/837b27378c33be83b49c4fc86c6a8cd6/7e47cc96-c167-4beb-869f-cc002942a6d4?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Erbpacht: Charmante Einzimmerwohnung mit kleiner Terrasse in Köln Sürth" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Sürth, 50999 — 105.000 €</div>
+                    <div class="listing-card__title">Erbpacht: Charmante Einzimmerwohnung mit kleiner Terrasse in Köln Sürth</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/5W6MiQJWXqjogLUNPyxP3/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3E4IYUE9TVbT5f2qjqP5jz/d132576883507eb88c25602a46006422/a6e46189-3edf-4028-a06b-d10899f253a7?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Attraktive Kapitalanlage in Köln-Rodenkirchen" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Rodenkirchen, 50996 — 189.000 €</div>
+                    <div class="listing-card__title">Attraktive Kapitalanlage in Köln-Rodenkirchen</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/6j1w6fnn81OisTop7JzHLd/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2C5XRXW8S08eU58qnKaWGG/c7f3ee868fb4d54cdaafa1c01b8b65d1/3c757d3a-0fa8-49c6-a033-9fc186b86079?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Freistehendes Einfamilienhaus in idyllischer Lage mit großzügigem Grundstück" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Leverkusen-Lützenkirchen, 51381 — 589.000 €</div>
+                    <div class="listing-card__title">Freistehendes Einfamilienhaus in idyllischer Lage mit großzügigem Grundstück</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/3oyqs7sIdtb2FR5SFbsRTn/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2jCF3EaH48M07S4QEfzRNW/1e2d19d76af34ff2d75707da26596efa/737c63f7-f667-4446-ad08-6e276d1d6f99?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Attraktive Kapitalanlage: Sanierte 4-Zimmer-Eigentumswohnung in Bergheim Ahe" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Bergheim-Ahe, 50127 — 119.000 €</div>
+                    <div class="listing-card__title">Attraktive Kapitalanlage: Sanierte 4-Zimmer-Eigentumswohnung in Bergheim Ahe</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/7x5ZknJLUeCe0UUDoaM6Fc/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1CRsY32r4vJpGVEAPis20q/38e40dcf103602b348aa32916592bf19/48cf8946-e5cc-435f-acbc-c9d759bd9b00?w=960&h=600&fit=fill&fm=jpg&q=90" alt="4-Zimmer-Eigentumswohnung im Herzen von Lindenthal" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Lindenthal, 50931 — 499.000 €</div>
+                    <div class="listing-card__title">4-Zimmer-Eigentumswohnung im Herzen von Lindenthal</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/5Eyb4bkb9FIuPvmRy2UtnR/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/ka6Fj0XAXubZvkqBXzewf/0b6ab06a4cde9c89d90c8da5258f1dfb/328f27e5-8d87-463d-9d55-ab26768c9377?w=960&h=600&fit=fill&fm=jpg&q=90" alt="1-Zimmer Apartment in der Bestlage von Nippes - WE3" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Nippes, 50733 — 175.900 €</div>
+                    <div class="listing-card__title">1-Zimmer Apartment in der Bestlage von Nippes - WE3</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/3Vsz3WHEu4ymaOiXnje7KX/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/51UE7TzQed1lXHjaOACMjl/3c169f1c158f6451678a2f82d8342f65/a42c9b00-b2b8-45dc-925d-8faf57211905?w=960&h=600&fit=fill&fm=jpg&q=90" alt="1-Zimmer-Apartment in Bestlage von Nippes - WE1" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Nippes, 50733 — 169.400 €</div>
+                    <div class="listing-card__title">1-Zimmer-Apartment in Bestlage von Nippes - WE1</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/0otFllDCspjA7X1Kw8WZq/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4rpy7xh1KodCPVg0jiaYBj/40da34f85c061f742c2ac3320ffc6a3f/541989ff-3fe0-4c4d-acac-7426d353ad74?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Moderne 3-Zimmer-Wohnung im Szeneviertel Nippes" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Nippes, 50733 — 299.000 €</div>
+                    <div class="listing-card__title">Moderne 3-Zimmer-Wohnung im Szeneviertel Nippes</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/ISju4odI9RPwJj1ZXiji6/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2hW5b8XGaMw6eVhWcEjalQ/7ea56c9b6be749bd5b8295af8ae4f830/95f6e098-8428-4af7-a889-e4c596fef2d1?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Aachen Haaren: Familienidyll mit Gestaltungsmöglichkeiten in ruhiger Lage" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Aachen-Haaren, 52080 — 298.500 €</div>
+                    <div class="listing-card__title">Aachen Haaren: Familienidyll mit Gestaltungsmöglichkeiten in ruhiger Lage</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/6tXmPuvQKFKa1Zlxeiah86/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6n2RsjfuZuaWn5avc57DYj/f6e6a745be72600bc978e5223801922c/21c9bd59-7b97-44de-87e7-112bb6975368?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Sanierungsbedürftige 3-Zimmer-Wohnung in Nippes sucht neuen Eigentümer" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Nippes, 50733 — 269.000 €</div>
+                    <div class="listing-card__title">Sanierungsbedürftige 3-Zimmer-Wohnung in Nippes sucht neuen Eigentümer</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/7ieICeWeOpok0IiuEi0Bnr/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3P7Ij8A6YorcREhCUUFRma/4e74e89e2277439828f4184e96ee841b/7c23a974-f9c3-4811-9106-75a5f8ec19d6?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Eigentum im schönen Sülz" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Sülz, 50937 — 449.000 €</div>
+                    <div class="listing-card__title">Eigentum im schönen Sülz</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/2q8opoM9kr6HBDYVWVsxZ2/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/FxlWc3VS9B1mI9BsH3ofW/93cb015899dbe82836fc93e0c6d2e4c2/2150ec90-926c-4bd7-8a5f-6fc059efe1fa?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Renditestarke WG-geeignete Eigentumswohnung in Köln Zollstock" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Zollstock, 50969 — 289.000 €</div>
+                    <div class="listing-card__title">Renditestarke WG-geeignete Eigentumswohnung in Köln Zollstock</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/3JxQkloHDHnoZ5VFhXgTMV/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3EuaKVhxCEnddMSNLMTe8U/3b7618d6be1c9a0734a7d468bf2498e1/7ef44dc9-f41e-495c-875b-47a8817c21e3?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Renditestarke Kapitalanlage in Zollstock" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Zollstock, 50969 — 298.500 €</div>
+                    <div class="listing-card__title">Renditestarke Kapitalanlage in Zollstock</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/5NsuHRrep9x2z8SZJp9ysq/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5YYmLj0c6XFAnzIbU5FsI4/098225c14e9cf1cf61a9e29899e32230/631797b5-613e-4d9b-9017-36824edb2970.jpeg?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Familienidyll in Bilderstöckchen" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Bilderstöckchen, 50739 — 539.000 €</div>
+                    <div class="listing-card__title">Familienidyll in Bilderstöckchen</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1lUPHfp7BnVdZTQvpoAus8/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/uu1R3aVmpBHdJf90bNeJc/972d82fff2cddb71d97e83602670e1fd/41966f9a-fb8e-46c0-8eff-7f33bfed146a?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Logenplatz am Rhein" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Innenstadt, 50678 — 1.399.000 €</div>
+                    <div class="listing-card__title">Logenplatz am Rhein</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/38WbtppgoQTEzqvE0LdKpy/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/62d19t06jyoTRBurRa4k9b/277e3237c9b6bd597f559e8863897450/003-web-1000px.jpg?w=960&h=600&fit=fill&fm=jpg&q=90" alt="Moderne, helle Eigentumswohnung in Neuehrenfeld" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln - Neuehrenfeld, 50823 — 270.000 €</div>
+                    <div class="listing-card__title">Moderne, helle Eigentumswohnung in Neuehrenfeld</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
 
       <div class="objekte__cta">
-        <p class="objekte__trust">6 aktuelle Objekte in Köln &amp; Umland — von der Erstberatung bis zum Notar.</p>
+        <p class="objekte__trust">6 aktuelle &amp; 20 erfolgreich vermittelte Objekte in Köln &amp; Umland — von der Erstberatung bis zum Notar.</p>
         <div class="objekte__buttons">
           <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener" class="btn btn--outline">Alle Objekte ansehen</a>
           <a href="#kontakt" class="btn btn--primary">Beratungsgespräch vereinbaren</a>
@@ -2041,7 +2458,7 @@
           <span class="section-label">Tippgeber-Programm</span>
           <h3>500 € für Ihren Tipp</h3>
           <p>Stellen Sie den Kontakt zu jemandem her, der verkaufen möchte. Kommt es zum erfolgreichen Abschluss, erhalten Sie 500 € Tippgeber-Provision. Kein Aufwand, kein Risiko.</p>
-          <a href="https://wa.me/491775156969?text=Hallo%20Roman%2C%20ich%20kenne%20jemanden%20der%20verkaufen%20m%C3%B6chte%20und%20w%C3%BCrde%20gerne%20den%20Kontakt%20herstellen." target="_blank" rel="noopener" class="btn btn--gold-outline">Tipp geben per WhatsApp</a>
+          <a href="https://tippgeber.koeln/" target="_blank" rel="noopener" class="btn btn--gold-outline">Jetzt Tipp geben</a>
         </div>
       </div>
     </div>
@@ -2255,6 +2672,24 @@
         nav.style.boxShadow = 'none';
       }
     }, { passive: true });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var el = document.querySelector('.listings-carousel');
+      if (el) {
+        new Splide(el, {
+          type: 'loop',
+          perPage: 3,
+          gap: '1.5rem',
+          pagination: true,
+          arrows: true,
+          breakpoints: {
+            1024: { perPage: 2 },
+            640: { perPage: 1 },
+          },
+        }).mount();
+      }
+    });
   </script>
 </body>
 </html>
