@@ -29,6 +29,9 @@ jobs:
             **/docs/**
             **/scripts/**
 
+      - name: Wait for FTP connection cooldown
+        run: sleep 5
+
       - name: Deploy Roman Preview via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
