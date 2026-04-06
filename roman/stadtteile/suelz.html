@@ -125,282 +125,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
-  <style>
-    /* ===========================
-       CUSTOM PROPERTIES
-    =========================== */
-    :root {
-      --navy: #0D1B2A;
-      --navy-light: #1B2838;
-      --gold: #C9A84C;
-      --gold-light: #D4BA6A;
-      --white: #ffffff;
-      --off-white: #F8F7F4;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-400: #9ca3af;
-      --gray-600: #4b5563;
-      --gray-800: #1f2937;
-
-      --font-base: 'Inter', sans-serif;
-
-      --space-1: 0.25rem;
-      --space-2: 0.5rem;
-      --space-3: 0.75rem;
-      --space-4: 1rem;
-      --space-6: 1.5rem;
-      --space-8: 2rem;
-      --space-12: 3rem;
-      --space-16: 4rem;
-      --space-20: 5rem;
-
-      --max-width: 1200px;
-      --radius: 8px;
-      --radius-lg: 16px;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
-      --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
-      --transition: 0.2s ease;
-    }
-
-    /* RESET */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-base);
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--gray-800);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-    }
-    img { max-width: 100%; height: auto; display: block; }
-    a { color: inherit; }
-
-    /* LAYOUT */
-    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
-    .section { padding: var(--space-20) 0; }
-    .section--gray { background: var(--off-white); }
-    .section--navy { background: var(--navy); color: var(--white); }
-
-    /* TYPOGRAPHY */
-    h1 { font-size: clamp(1.75rem, 5vw, 2.75rem); font-weight: 700; line-height: 1.2; color: var(--navy); }
-    h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: var(--space-4); }
-    h3 { font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1.3; color: var(--navy); margin-bottom: var(--space-2); }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: var(--space-3);
-    }
-
-    .section--navy .section-label { color: var(--gold); }
-    .section--navy h2 { color: var(--white); }
-
-    /* BREADCRUMB */
-    .breadcrumb {
-      padding: var(--space-4) 0;
-      font-size: 0.8125rem;
-      color: var(--gray-400);
-    }
-    .breadcrumb a { color: var(--gold); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb span { margin: 0 var(--space-2); }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.875rem 2rem;
-      font-family: var(--font-base);
-      font-size: 0.9375rem;
-      font-weight: 600;
-      border-radius: var(--radius);
-      text-decoration: none;
-      cursor: pointer;
-      transition: all var(--transition);
-      border: 2px solid transparent;
-    }
-    .btn--primary { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-    .btn--primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,168,76,0.4); }
-    .btn--outline { background: transparent; color: var(--navy); border-color: var(--navy); }
-    .btn--outline:hover { background: var(--navy); color: var(--white); transform: translateY(-1px); }
-    .btn--white-outline { background: transparent; color: var(--white); border-color: var(--white); }
-    .btn--white-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
-
-    /* HERO */
-    .hero {
-      background: var(--navy);
-      color: var(--white);
-      padding: var(--space-16) 0 var(--space-20);
-    }
-    .hero h1 { color: var(--white); margin-bottom: var(--space-4); }
-    .hero__subtitle {
-      font-size: 1.125rem;
-      color: rgba(255,255,255,0.8);
-      max-width: 640px;
-      margin-bottom: var(--space-8);
-      line-height: 1.7;
-    }
-    .hero__buttons { display: flex; gap: var(--space-4); flex-wrap: wrap; }
-    .hero__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: var(--space-6);
-    }
-
-    /* GRID */
-    .grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
-    .grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
-    @media (min-width: 640px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
-
-    /* CARDS */
-    .card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: var(--space-8);
-      box-shadow: var(--shadow);
-    }
-    .card__icon {
-      width: 48px;
-      height: 48px;
-      background: var(--off-white);
-      border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-4);
-      color: var(--gold);
-    }
-
-    /* MARKET DATA */
-    .market-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-4);
-    }
-    @media (min-width: 768px) { .market-grid { grid-template-columns: repeat(4, 1fr); } }
-
-    .market-stat {
-      text-align: center;
-      padding: var(--space-6);
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-    }
-    .market-stat__value {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: var(--space-1);
-    }
-    .market-stat__label {
-      font-size: 0.8125rem;
-      color: var(--gray-600);
-      line-height: 1.4;
-    }
-
-    /* MAP */
-    .map-container {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      aspect-ratio: 16 / 9;
-    }
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* INFRA LIST */
-    .infra-list { list-style: none; }
-    .infra-list li {
-      padding: var(--space-3) 0;
-      border-bottom: 1px solid var(--gray-200);
-      font-size: 0.9375rem;
-      display: flex;
-      gap: var(--space-3);
-    }
-    .infra-list li:last-child { border-bottom: none; }
-    .infra-icon { flex-shrink: 0; width: 20px; text-align: center; }
-
-    /* FAQ */
-    .faq-item {
-      border-bottom: 1px solid var(--gray-200);
-      padding: var(--space-6) 0;
-    }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-question {
-      font-size: 1.0625rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: var(--space-3);
-      cursor: pointer;
-    }
-    .faq-answer {
-      font-size: 0.9375rem;
-      color: var(--gray-600);
-      line-height: 1.7;
-    }
-
-    /* CTA SECTION */
-    .cta-box {
-      background: var(--navy);
-      color: var(--white);
-      border-radius: var(--radius-lg);
-      padding: var(--space-12);
-      text-align: center;
-    }
-    .cta-box h2 { color: var(--white); }
-    .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: var(--space-8); font-size: 1.0625rem; }
-    .cta-box .btn { margin: 0 var(--space-2); }
-    .cta-buttons { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
-
-    /* FOOTER */
-    .footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.6);
-      padding: var(--space-12) 0 var(--space-8);
-      font-size: 0.8125rem;
-    }
-    .footer a { color: var(--gold); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
-    .footer__links { display: flex; gap: var(--space-6); flex-wrap: wrap; margin-bottom: var(--space-6); }
-
-    /* REVIEW BADGE */
-    .review-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      background: var(--white);
-      padding: var(--space-3) var(--space-4);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--navy);
-      text-decoration: none;
-      transition: all var(--transition);
-    }
-    .review-badge:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
-    .review-badge__stars { color: #FBBC04; }
-  </style>
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="shared.css">
 </head>
 <body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo">Roman <span>Becker</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Bewertung</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
 
   <main>
 
@@ -441,16 +186,16 @@
   <!-- REFERENZ -->
   <section class="section" style="padding-bottom: 0;">
     <div class="container">
-      <div class="card" style="background: var(--navy); color: var(--white); display: flex; gap: var(--space-8); align-items: center; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 280px;">
+      <div class="card card--navy ref-card">
+        <div class="ref-card__text">
           <span class="section-label">Erfolgreich vermittelt in Sülz</span>
-          <h3 style="color: var(--white); font-size: 1.25rem; margin-bottom: var(--space-2);">Eigentum im schönen Sülz</h3>
-          <p style="color: rgba(255,255,255,0.7); margin-bottom: var(--space-2);">Eigentumswohnung · Köln-Sülz, 50937 · 449.000 €</p>
-          <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem;">Darüber hinaus habe ich weitere Objekte in den angrenzenden Stadtteilen Zollstock, Lindenthal und Klettenberg vermittelt — ich kenne den Immobilienmarkt im Kölner Süden und Westen aus erster Hand.</p>
+          <h3 style="color: var(--white);">Eigentum im schönen Sülz</h3>
+          <p class="ref-card__label mb-2">Eigentumswohnung · Köln-Sülz, 50937 · 449.000 €</p>
+          <p class="ref-card__label text-small">Darüber hinaus habe ich weitere Objekte in den angrenzenden Stadtteilen <a href="zollstock.html" class="link-gold">Zollstock</a>, <a href="lindenthal.html" class="link-gold">Lindenthal</a> und <a href="klettenberg.html" class="link-gold">Klettenberg</a> vermittelt — ich kenne den Immobilienmarkt im Kölner Süden und Westen aus erster Hand.</p>
         </div>
-        <div style="text-align: center; min-width: 200px;">
-          <div style="font-size: 2.5rem; font-weight: 700; color: var(--gold);">20+</div>
-          <div style="font-size: 0.875rem; color: rgba(255,255,255,0.7);">vermittelte Objekte<br>in Köln &amp; Umgebung</div>
+        <div class="ref-card__stat">
+          <div class="ref-card__number">20+</div>
+          <div class="ref-card__label">vermittelte Objekte<br>in Köln &amp; Umgebung</div>
         </div>
       </div>
     </div>
@@ -461,7 +206,7 @@
     <div class="container">
       <span class="section-label">Immobilienmarkt Sülz</span>
       <h2>Immobilie in Köln-Sülz kaufen oder verkaufen – aktuelle Marktdaten</h2>
-      <p style="color: var(--gray-600); margin-bottom: var(--space-8); max-width: 720px;">
+      <p class="text-muted mb-8 max-w-prose">
         Wer in Sülz eine Immobilie verkaufen möchte, profitiert von der anhaltend hohen Nachfrage: Die Kaufpreise sind seit 2020 um rund 30 % gestiegen. Käufer finden hier ein Viertel mit exzellenter Infrastruktur, das seinen Wert langfristig hält. Als Immobilienmakler in Köln-Sülz berate ich Sie zu beiden Seiten — fundiert und marktgerecht.
       </p>
 
@@ -498,13 +243,13 @@
 
       <div class="grid-2" style="margin-bottom: var(--space-12);">
         <div>
-          <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: var(--space-6);">
+          <p class="text-muted leading-relaxed mb-6">
             Sülz ist der viertgrößte Kölner Stadtteil mit rund 36.700 Einwohnern und liegt im Stadtbezirk Lindenthal. Die Mischung macht das Viertel besonders: Studierende der nahen Universität zu Köln, junge Familien und etablierte Berufstätige leben hier Tür an Tür. Mit einer Arbeitslosenquote von nur 3,8 % (Kölner Schnitt: 8,4 %) gehört Sülz zu den wirtschaftlich stärksten Vierteln der Stadt.
           </p>
-          <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: var(--space-6);">
+          <p class="text-muted leading-relaxed mb-6">
             Die Berrenrather Straße ist das Herzstück des Viertels – einer der 14 offiziellen Shopping-Hotspots Kölns mit Einzelhandel, Cafés und Restaurants. Wer es ruhiger mag, findet im Beethovenpark oder am Decksteiner Weiher Erholung: 26,4 % der Stadtteilfläche sind Grün- und Erholungsflächen.
           </p>
-          <p style="color: var(--gray-600); line-height: 1.8;">
+          <p class="text-muted leading-relaxed">
             Sülz gehört neben Nippes zu den kinderreichsten Stadtteilen Deutschlands. Drei Gymnasien, 18 Kitas mit knapp 1.000 Plätzen und die direkte Anbindung an die Uniklinik Köln machen den Stadtteil für Familien besonders attraktiv.
           </p>
         </div>
@@ -551,7 +296,7 @@
     <div class="container">
       <span class="section-label">Infrastruktur</span>
       <h2>Das macht Sülz als Wohnlage attraktiv</h2>
-      <p style="color: var(--gray-600); margin-bottom: var(--space-8); max-width: 640px;">
+      <p class="text-muted mb-8 max-w-prose">
         Gute Infrastruktur steigert den Wert Ihrer Immobilie. Sülz punktet mit kurzen Wegen, exzellenten Schulen und viel Grün.
       </p>
 
@@ -700,16 +445,16 @@
         </div>
         <div>
           <h3>Immobilie in Köln-Sülz kaufen — für wen lohnt es sich?</h3>
-          <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: var(--space-4);">
+          <p class="text-muted leading-relaxed mb-4">
             <strong>Für Familien:</strong> Sülz gehört zu den kinderreichsten Stadtteilen Deutschlands. Drei Gymnasien, 18 Kitas und der Beethovenpark vor der Tür — wer hier eine Wohnung mit Balkon oder ein Reihenhaus findet, bleibt in der Regel langfristig.
           </p>
-          <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: var(--space-4);">
+          <p class="text-muted leading-relaxed mb-4">
             <strong>Für Kapitalanleger:</strong> Die Nähe zur Universität zu Köln sorgt für konstante Mietnachfrage. Mehrfamilienhäuser und Eigentumswohnungen ab 4.500 €/m² bieten solide Renditen bei minimalem Leerstandsrisiko.
           </p>
-          <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: var(--space-4);">
+          <p class="text-muted leading-relaxed mb-4">
             <strong>Für Eigennutzer:</strong> Altbaucharme, kurze Wege und ein Viertel, das sich anfühlt wie ein Dorf in der Großstadt. Die Sülzburgstraße mit ihren Cafés und Läden ist das Wohnzimmer des Viertels.
           </p>
-          <p style="color: var(--gray-600); line-height: 1.8;">
+          <p class="text-muted leading-relaxed">
             Über den EVERNEST-Käuferpool spreche ich vorgemerkte, bonitätsgeprüfte Interessenten direkt an, die gezielt in Sülz suchen. Das verkürzt die Vermarktungsdauer und sichert Ihnen einen marktgerechten Preis.
           </p>
         </div>
@@ -724,36 +469,36 @@
       <h2>Häufige Fragen zum Immobilienmarkt in Köln-Sülz</h2>
 
       <div style="max-width: 800px;">
-        <div class="faq-item">
-          <div class="faq-question">Was kostet eine Eigentumswohnung in Köln-Sülz?</div>
+        <details class="faq-item" open>
+          <summary>Was kostet eine Eigentumswohnung in Köln-Sülz?</summary>
           <div class="faq-answer">
-            Der durchschnittliche Kaufpreis für Eigentumswohnungen in Köln-Sülz liegt bei ca. 6.100 €/m² (Stand Q1/2026). Je nach Lage, Zustand und Ausstattung variieren die Preise zwischen 4.500 und 8.000 €/m². Altbauwohnungen nahe der Berrenrather Straße, am Nikolausplatz oder mit Blick auf den Beethovenpark erzielen häufig Preise am oberen Ende. Zum Vergleich: Im benachbarten <a href="klettenberg.html" style="color: var(--gold);">Klettenberg</a> liegen die Preise ähnlich, in <a href="zollstock.html" style="color: var(--gold);">Zollstock</a> etwas darunter.
+            Der durchschnittliche Kaufpreis für Eigentumswohnungen in Köln-Sülz liegt bei ca. 6.100 €/m² (Stand <time datetime="2026-01">Q1/2026</time>). Je nach Lage, Zustand und Ausstattung variieren die Preise zwischen 4.500 und 8.000 €/m². Altbauwohnungen nahe der Berrenrather Straße, am Nikolausplatz oder mit Blick auf den Beethovenpark erzielen häufig Preise am oberen Ende. Zum Vergleich: Im benachbarten <a href="klettenberg.html" class="link-gold">Klettenberg</a> liegen die Preise ähnlich, in <a href="zollstock.html" class="link-gold">Zollstock</a> etwas darunter.
           </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Wie lange dauert es, eine Immobilie in Sülz zu verkaufen?</div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie lange dauert es, eine Immobilie in Sülz zu verkaufen?</summary>
           <div class="faq-answer">
             Bei einer realistischen Preiseinschätzung liegt die Vermarktungsdauer in Sülz bei 3–5 Monaten bis zum Notartermin. Die hohe Nachfrage — besonders bei Familien und jungen Berufstätigen — beschleunigt den Prozess. Über den EVERNEST-Käuferpool spreche ich vorgemerkte Interessenten direkt an, die gezielt in Sülz suchen. Mein letztes Objekt im Viertel — eine Eigentumswohnung für 449.000 € — konnte ich erfolgreich an einen vorgemerkten Käufer vermitteln.
           </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Lohnt sich eine Immobilie in Köln-Sülz als Kapitalanlage?</div>
+        </details>
+        <details class="faq-item">
+          <summary>Lohnt sich eine Immobilie in Köln-Sülz als Kapitalanlage?</summary>
           <div class="faq-answer">
             Ja — Sülz bietet eine der stabilsten Renditen im Kölner Stadtgebiet. Die Nähe zur Universität zu Köln sorgt für konstante Mietnachfrage, die Leerstandsquote ist minimal. Bei Kaltmieten von 15–19 €/m² und Kaufpreisen ab ca. 4.500 €/m² sind Bruttorenditen von 3,5–4,5 % realistisch. Besonders Mehrfamilienhäuser und kompakte Wohnungen nahe der Uni sind gefragt. Ich berate Sie gerne zur optimalen Objektauswahl und Preisgestaltung.
           </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Warum ist Köln-Sülz bei Käufern so beliebt?</div>
+        </details>
+        <details class="faq-item">
+          <summary>Warum ist Köln-Sülz bei Käufern so beliebt?</summary>
           <div class="faq-answer">
             Sülz vereint urbanes Leben mit viel Grün: Die Uni zu Köln, der Beethovenpark und der Äußere Grüngürtel liegen alle fußläufig. Die Arbeitslosenquote liegt bei nur 3,8 % (Kölner Schnitt: 8,4 %), drei Gymnasien und 18 Kitas sorgen für Familienfreundlichkeit. Die Sülzburgstraße und die Berrenrather Straße bieten alles für den täglichen Bedarf — vom Feinkost-Laden Casaretto bis zum Alnatura. Sülz gehört zu den kinderreichsten Stadtteilen Deutschlands.
           </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Brauche ich einen Makler für den Verkauf in Köln-Sülz?</div>
+        </details>
+        <details class="faq-item">
+          <summary>Brauche ich einen Makler für den Verkauf in Köln-Sülz?</summary>
           <div class="faq-answer">
             Sülz ist ein Stadtteil, in dem Käufer genau wissen, was sie wollen — und was sie bereit sind zu zahlen. Ein erfahrener Immobilienmakler vor Ort kennt die Preisspannen je nach Straßenzug, weiß welche Ausstattungsmerkmale den Preis treiben und hat Zugang zu Käufern, die aktiv in Sülz suchen. Als Ihr Nachbar im Viertel biete ich Ihnen eine kostenlose Bewertung als Gesprächsgrundlage — ohne Verpflichtung.
           </div>
-        </div>
+        </details>
       </div>
     </div>
   </section>
@@ -775,11 +520,11 @@
 
   <!-- NACHBAR-STADTTEILE -->
   <section class="section">
-    <div class="container" style="text-align: center;">
+    <div class="container text-center">
       <span class="section-label">Auch in den Nachbar-Stadtteilen aktiv</span>
       <h2>Immobilienmakler in der Umgebung von Sülz</h2>
-      <p style="color: var(--gray-600); margin-bottom: var(--space-8);">Sie suchen einen Makler in einem angrenzenden Stadtteil? Ich bin auch hier für Sie da:</p>
-      <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center;">
+      <p class="text-muted mb-8">Sie suchen einen Makler in einem angrenzenden Stadtteil? Ich bin auch hier für Sie da:</p>
+      <div class="neighbor-links">
         <a href="lindenthal.html" class="btn btn--outline">Lindenthal</a>
         <a href="klettenberg.html" class="btn btn--outline">Klettenberg</a>
         <a href="zollstock.html" class="btn btn--outline">Zollstock</a>
