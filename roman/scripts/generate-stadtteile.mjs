@@ -68,7 +68,7 @@ function render(d) {
   const fn = 'K\u00f6ln-'+d.n;
   const rc = d.refs ? d.refs.length : 0;
   const rt = rc > 0 ? ' \u2014 '+rc+' vermittelte'+(rc===1?'s Objekt':' Objekte')+' in '+d.n+'.' : '';
-  const md = 'Immobilie in '+fn+' verkaufen oder kaufen? Roman Becker'+rt+' Marktdaten, Stadtteil-Expertise, EVERNEST-Netzwerk.';
+  const md = 'Immobilie in '+fn+' verkaufen oder kaufen? Roman Becker \u2014 Ihr Makler vor Ort.'+rt+' Marktdaten, Stadtteil-Expertise, EVERNEST-Netzwerk. Jetzt beraten lassen.';
   const bbox = (d.lng-0.02).toFixed(3)+'%2C'+(d.lat-0.015).toFixed(3)+'%2C'+(d.lng+0.02).toFixed(3)+'%2C'+(d.lat+0.015).toFixed(3);
   const mapUrl = 'https://www.openstreetmap.org/export/embed.html?bbox='+bbox+'&layer=mapnik&marker='+d.lat+'%2C'+d.lng;
 
@@ -333,12 +333,20 @@ ${nbH}
 // ─── MAIN ────────────────────────────────────────────
 async function main() {
   const { default: DATA } = await import('./stadtteile-data.mjs');
-  // Build name lookup
+  // Build name lookup — include the 6 existing pages too
+  const EXISTING_NAMES = {
+    'suelz':'Sülz','lindenthal':'Lindenthal','nippes':'Nippes',
+    'rodenkirchen':'Rodenkirchen','bilderstoeckchen':'Bilderstöckchen','zollstock':'Zollstock'
+  };
+  Object.assign(NAMES, EXISTING_NAMES);
   for (const d of DATA) NAMES[d.s] = d.n;
   let count = 0;
   for (const d of DATA) {
     const file = join(OUT, d.s+'.html');
-    try { await access(file); console.log('  skip '+d.n); continue; } catch {}
+    // Skip the 6 hand-crafted pages, regenerate everything else
+    if (['bilderstoeckchen','lindenthal','nippes','rodenkirchen','suelz','zollstock'].includes(d.s)) {
+      console.log('  skip '+d.n+' (hand-crafted)'); continue;
+    }
     await writeFile(file, render(d), 'utf-8');
     console.log('  \u2713 '+d.n);
     count++;
