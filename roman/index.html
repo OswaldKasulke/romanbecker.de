@@ -39,6 +39,7 @@
   <meta name="twitter:image" content="roman-portrait.jpg">
 
   <!-- Hero LCP Preload -->
+  <link rel="preload" as="image" href="hero-bg.jpg">
   <link rel="preload" as="image" href="roman-portrait.jpg">
 
 <!-- Google Fonts -->
@@ -662,10 +663,22 @@
       align-items: flex-start;
       padding-top: var(--nav-height);
       background: var(--navy);
+      position: relative;
+      overflow: hidden;
     }
 
     .hero__bg {
-      display: none;
+      position: absolute;
+      inset: 0;
+      display: block;
+    }
+
+    .hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.4;
     }
 
     .hero__content {
@@ -1777,6 +1790,9 @@
 
   <!-- HERO -->
   <section id="hero" class="hero">
+    <div class="hero__bg">
+      <img src="hero-bg.jpg" alt="" role="presentation" width="1920" height="1080">
+    </div>
     <div class="hero__content">
       <div class="hero__text">
         <span class="hero__label">Immobilienmakler Köln &amp; Umgebung</span>
