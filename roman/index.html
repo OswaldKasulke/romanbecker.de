@@ -30,9 +30,9 @@
   <meta name="twitter:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
 
   <!-- Hero LCP Preload -->
-  <link rel="preload" as="image" href="hero-bg-large.jpg">
+  <link rel="preload" as="image" href="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
 
-  <!-- Google Fonts -->
+<!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -617,38 +617,38 @@
     =========================== */
     .hero {
       min-height: 100vh;
-      position: relative;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       padding-top: var(--nav-height);
       background: var(--navy);
     }
 
     .hero__bg {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-
-    .hero__bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .hero__overlay {
       display: none;
     }
 
     .hero__content {
-      position: relative;
-      z-index: 1;
+      width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: var(--space-20) var(--space-6);
+      padding: var(--space-8) var(--space-6);
       color: var(--white);
-      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero__content {
+        grid-template-columns: 1fr 420px;
+        gap: var(--space-16);
+      }
+    }
+
+    .hero__text {
+      display: flex;
+      flex-direction: column;
     }
 
     .hero__label {
@@ -662,7 +662,6 @@
     }
 
     .hero__title {
-      max-width: 800px;
       margin-bottom: var(--space-6);
     }
 
@@ -685,6 +684,36 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-4);
+    }
+
+    .hero__photo-wrap {
+      display: flex;
+      justify-content: center;
+      order: -1;
+    }
+
+    @media (min-width: 768px) {
+      .hero__photo-wrap {
+        order: 1;
+        justify-content: flex-end;
+      }
+    }
+
+    .hero__photo {
+      width: 320px;
+      height: 420px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 4px;
+      border: 3px solid var(--gold);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+
+    @media (min-width: 768px) {
+      .hero__photo {
+        width: 380px;
+        height: 500px;
+      }
     }
 
     /* ===========================
@@ -858,7 +887,7 @@
 
     @media (min-width: 768px) {
       .about__grid {
-        grid-template-columns: 320px 1fr;
+        grid-template-columns: 1fr;
       }
     }
 
@@ -870,19 +899,19 @@
     }
 
     .about__image {
-      width: 280px;
-      height: 280px;
+      width: 336px;
+      height: 336px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: center 20%;
+      object-position: center top;
       border: 4px solid var(--gold);
       box-shadow: 0 8px 32px rgba(201, 168, 76, 0.25);
     }
 
     @media (min-width: 768px) {
       .about__image {
-        width: 320px;
-        height: 320px;
+        width: 384px;
+        height: 384px;
       }
     }
 
@@ -1706,25 +1735,33 @@
   </nav>
 
   <!-- HERO -->
-  <section id="hero" class="hero" aria-label="Sonnenuntergang über Köln-Sülz">
-    <div class="hero__bg">
-      <img src="hero-bg-large.jpg" alt="Sonnenuntergang über Köln-Sülz" width="1920" height="1440">
-    </div>
+  <section id="hero" class="hero">
     <div class="hero__content">
-      <span class="hero__label">Immobilienmakler Köln &amp; Umgebung</span>
-      <h1 class="hero__title">Ihr diskreter Partner für den Verkauf hochwertiger Immobilien in Köln und Umgebung</h1>
-      <p class="hero__subline">
-        IHK-zertifiziert
-        <span class="pipe">|</span>
-        EVERNEST-Netzwerk
-        <span class="pipe">|</span>
-        380+ Makler deutschlandweit
-        <span class="pipe">|</span>
-        5,0 ★ auf Google
-      </p>
-      <div class="hero__ctas">
-        <a href="#kontakt" class="btn btn--primary">Kostenlose Bewertung anfragen</a>
-        <a href="#ueber-roman" class="btn btn--secondary">Über Roman Becker</a>
+      <div class="hero__text">
+        <span class="hero__label">Immobilienmakler Köln &amp; Umgebung</span>
+        <h1 class="hero__title">Ihr diskreter Partner für den Verkauf hochwertiger Immobilien in Köln und Umgebung</h1>
+        <p class="hero__subline">
+          IHK-zertifiziert
+          <span class="pipe">|</span>
+          EVERNEST-Netzwerk
+          <span class="pipe">|</span>
+          380+ Makler deutschlandweit
+          <span class="pipe">|</span>
+          5,0 ★ auf Google
+        </p>
+        <div class="hero__ctas">
+          <a href="#kontakt" class="btn btn--primary">Kostenlose Bewertung anfragen</a>
+          <a href="#ueber-roman" class="btn btn--secondary">Über Roman Becker</a>
+        </div>
+      </div>
+      <div class="hero__photo-wrap">
+        <img
+          src="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg"
+          alt="Roman Becker – Immobilienmakler Köln"
+          class="hero__photo"
+          width="380"
+          height="500"
+        >
       </div>
     </div>
   </section>
@@ -1846,16 +1883,6 @@
   <section id="ueber-roman" class="section">
     <div class="container">
       <div class="about__grid">
-        <div class="about__image-wrap">
-          <img
-            src="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg"
-            alt="Roman Becker, Immobilienmakler in Köln"
-            class="about__image"
-            loading="lazy"
-            width="320"
-            height="320"
-          >
-        </div>
         <div class="about__text">
           <span class="section-label">Über Roman Becker</span>
           <h2>Lokale Expertise. Nationales Netzwerk.</h2>
