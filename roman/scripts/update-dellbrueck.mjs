@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
-const FILE = '/home/user/fuerte-pages/roman/scripts/stadtteile-data.mjs';
+const FILE = '/Users/danielgruederich/Documents/Claude projects/fuerte-pages/roman/scripts/stadtteile-data.mjs';
 let src = readFileSync(FILE, 'utf8');
 
 // This file uses literal \uXXXX escape sequences for non-ASCII chars.

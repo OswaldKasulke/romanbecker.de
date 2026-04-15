@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
-const FILE = '/home/user/fuerte-pages/roman/scripts/stadtteile-data.mjs';
+const FILE = '/Users/danielgruederich/Documents/Claude projects/fuerte-pages/roman/scripts/stadtteile-data.mjs';
 let src = readFileSync(FILE, 'utf8');
 
 const OLD = `{n:'Neuehrenfeld',s:'neuehrenfeld',b:4,bn:'Ehrenfeld',nr:404,p:'50823',lat:50.955,lng:6.925,

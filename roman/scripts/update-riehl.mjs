@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
-const FILE = '/home/user/fuerte-pages/roman/scripts/stadtteile-data.mjs';
+const FILE = '/Users/danielgruederich/Documents/Claude projects/fuerte-pages/roman/scripts/stadtteile-data.mjs';
 let src = readFileSync(FILE, 'utf8');
 
 const OLD = `{n:'Riehl',s:'riehl',b:5,bn:'Nippes',nr:506,p:'50735',lat:50.960,lng:6.965,
