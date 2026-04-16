@@ -78,9 +78,9 @@ function render(d) {
     {q:'Ist '+d.n+' ein guter Standort f\u00fcr Familien?',
      a:d.immo.fa},
     {q:'Wie entwickelt sich der Immobilienmarkt in '+d.n+'?',
-     a:'Die Kaufpreise in '+fn+' zeigen eine Entwicklung von '+d.mk.t+' % im Jahresvergleich. '+d.n+' profitiert von guter Infrastruktur und stabiler Nachfrage. Eine aktuelle Marktanalyse erhalten Sie im pers\u00f6nlichen Gespr\u00e4ch.'},
-    {q:'Was macht '+d.n+' als Wohnlage besonders?',
-     a:d.portrait},
+     a:(()=>{const t=parseFloat(d.mk.t.replace('+','').replace(',','.'));const trend=t>=4?d.n+' geh\u00f6rt aktuell zu den Stadtteilen mit der dynamischsten Preisentwicklung im Bezirk.':t>=3?'Die Nachfrage nach Immobilien in '+d.n+' liegt deutlich \u00fcber dem Bezirksdurchschnitt.':'Die Nachfrage nach Wohnimmobilien in '+d.n+' bleibt konstant stabil.';return 'Die Kaufpreise in '+fn+' zeigen eine Entwicklung von '+d.mk.t+' % im Jahresvergleich. '+trend+' Eine pers\u00f6nliche Markteinsch\u00e4tzung erhalten Sie in einem kostenlosen Erstgespr\u00e4ch.'})()},
+    {q:'F\u00fcr wen eignet sich '+d.n+' besonders?',
+     a:d.immo.ei+(d.immo.ka?' '+d.immo.ka:'')},
     {q:'Warum einen Makler in '+fn+' beauftragen?',
      a:(rc>0?'Mit '+rc+' vermittelten Objekten in '+d.n+' kenne ich den Mikro-Markt im Detail.':'Als EVERNEST-Makler mit Schwerpunkt K\u00f6ln kenne ich auch '+d.n+' genau.')+' \u00dcber den EVERNEST-K\u00e4uferpool erreiche ich bonit\u00e4tsgepr\u00fcfte Interessenten. Eine kostenlose Erstbewertung gibt Ihnen eine fundierte Grundlage.'}
   ];
