@@ -20,8 +20,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./roman/
-          server-dir: /roman/
-          state-name: .ftp-deploy-sync-state-v2.json
+          server-dir: /fuertedigital/roman/
+          state-name: .ftp-deploy-sync-state-v3.json
           exclude: |
             **/.git*
             **/.git*/**
