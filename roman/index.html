@@ -43,14 +43,14 @@
   <meta property="og:description" content="Diskreter Verkauf hochwertiger Immobilien in Köln. IHK-zertifiziert, EVERNEST-Netzwerk.">
   <meta property="og:url" content="https://romanbecker.de">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://preview.fuerte.digital/roman/roman-portrait.jpg">
+  <meta property="og:image" content="https://fuerte.digital/roman/roman-portrait.jpg">
   <meta property="og:locale" content="de_DE">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Immobilienmakler Köln – Roman Becker">
   <meta name="twitter:description" content="Diskreter Verkauf hochwertiger Immobilien in Köln. IHK-zertifiziert, EVERNEST-Netzwerk.">
-  <meta name="twitter:image" content="https://preview.fuerte.digital/roman/roman-portrait.jpg">
+  <meta name="twitter:image" content="https://fuerte.digital/roman/roman-portrait.jpg">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -95,7 +95,7 @@
         "telephone": "+491775156969",
         "email": "roman.becker@evernest.com",
         "url": "https://romanbecker.de",
-        "image": "https://preview.fuerte.digital/roman/roman-portrait.jpg",
+        "image": "https://fuerte.digital/roman/roman-portrait.jpg",
         "sameAs": [
           "https://www.instagram.com/roman_becker_immobilien/",
           "https://www.evernest.com/de/unsere-makler/koeln/roman-becker/"
@@ -104,7 +104,7 @@
       {
         "@type": "RealEstateAgent",
         "name": "Roman Becker – EVERNEST",
-        "image": "https://preview.fuerte.digital/roman/roman-portrait.jpg",
+        "image": "https://fuerte.digital/roman/roman-portrait.jpg",
         "telephone": "+491775156969",
         "email": "roman.becker@evernest.com",
         "url": "https://romanbecker.de",
@@ -146,7 +146,14 @@
           {"@type": "City", "name": "Düsseldorf"},
           {"@type": "AdministrativeArea", "name": "Rhein-Erft-Kreis"}
         ],
-        "priceRange": "€€€€"
+        "priceRange": "€€€€",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "15",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
       },
       {
         "@type": "BreadcrumbList",
@@ -874,7 +881,11 @@
       color: var(--gold);
       line-height: 1;
       margin-bottom: var(--space-1);
-      word-break: break-word;
+      white-space: nowrap;
+    }
+
+    .trust__item--highlight .trust__value {
+      font-size: clamp(1.375rem, 4.5vw, 2.25rem);
     }
 
     .trust__label {
@@ -973,6 +984,19 @@
       padding-bottom: var(--space-8);
     }
 
+    .prozess__timing {
+      display: inline-block;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 2px 10px;
+      margin-bottom: var(--space-2);
+    }
+
     .prozess__text h3 {
       color: var(--navy);
       margin-bottom: var(--space-2);
@@ -981,6 +1005,30 @@
     .prozess__text p {
       color: var(--gray-600);
       font-size: 0.9375rem;
+    }
+
+    .prozess__deliverables {
+      margin-top: var(--space-3);
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .prozess__deliverables li {
+      font-size: 0.8125rem;
+      color: var(--gray-500);
+      padding-left: 1.25em;
+      position: relative;
+    }
+
+    .prozess__deliverables li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.75rem;
     }
 
     .prozess__cta {
@@ -1166,12 +1214,12 @@
       position: absolute;
       top: var(--space-3);
       left: var(--space-3);
-      background: var(--navy);
-      color: var(--white);
-      font-size: 0.6875rem;
-      font-weight: 700;
+      background: rgba(20,20,20,0.6);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.625rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       padding: var(--space-1) var(--space-3);
       border-radius: var(--radius);
       z-index: 1;
@@ -1992,7 +2040,7 @@
           <div class="trust__value">40</div>
           <div class="trust__label">Standorte deutschlandweit</div>
         </div>
-        <div class="trust__item">
+        <div class="trust__item trust__item--highlight">
           <div class="trust__value">10,95 Mio. €</div>
           <div class="trust__label">Teuerstes Objekt in der Vermittlung</div>
         </div>
@@ -2052,36 +2100,66 @@
         <div class="prozess__step">
           <div class="prozess__number">1</div>
           <div class="prozess__text">
+            <span class="prozess__timing">Woche 1</span>
             <h3>Erstbewertung &amp; Strategiegespräch</h3>
             <p>Wir treffen uns vor Ort. Ich analysiere Lage, Zustand, Baujahr, Bautenstand, Energieeffizienz und Marktsituation – und gebe Ihnen eine fundierte, realistische Preiseinschätzung ohne versteckte Agenda.</p>
+            <ul class="prozess__deliverables">
+              <li>Marktpreiseinschätzung auf Basis aktueller Vergleichswerte</li>
+              <li>Klärung steuerlicher Aspekte (Spekulationsfrist, Eigennutzung)</li>
+              <li>Empfehlung: klassisch, diskret oder Off-Market</li>
+            </ul>
           </div>
         </div>
         <div class="prozess__step">
           <div class="prozess__number">2</div>
           <div class="prozess__text">
+            <span class="prozess__timing">Woche 1–2</span>
             <h3>Individuelle Verkaufsstrategie</h3>
             <p>Auf Basis der Bewertung entwickle ich eine Strategie: Off-Market über den EVERNEST-Käuferpool, gezielte Ansprache ausgewählter Interessenten oder klassische Vermarktung auf den großen Portalen – je nach Ihrer Situation.</p>
+            <ul class="prozess__deliverables">
+              <li>Maklervertrag, Provisionsvereinbarung</li>
+              <li>Beschaffung aller Pflichtdokumente (Grundbuch, Energieausweis, Flurkarte)</li>
+              <li>Festlegung des Zeitplans und der Vermarktungskanäle</li>
+            </ul>
           </div>
         </div>
         <div class="prozess__step">
           <div class="prozess__number">3</div>
           <div class="prozess__text">
-            <h3>Professionelle Vermarktung mit Objektfotografie</h3>
+            <span class="prozess__timing">Woche 2–4</span>
+            <h3>Professionelle Vermarktung &amp; Besichtigungen</h3>
             <p>Professionelle Fotografie, ein hochwertiges Exposé und gezielte Ansprache qualifizierter Käufer. Besichtigungen koordiniere ich – Sie müssen nichts selbst organisieren.</p>
+            <ul class="prozess__deliverables">
+              <li>Professionelle Objektfotografie und 360°-Rundgang</li>
+              <li>Exposé-Erstellung und Schaltung auf Immoscout, Immowelt und EVERNEST</li>
+              <li>Koordination und Durchführung aller Besichtigungstermine</li>
+            </ul>
           </div>
         </div>
         <div class="prozess__step">
           <div class="prozess__number">4</div>
           <div class="prozess__text">
-            <h3>Käuferprüfung &amp; Verhandlung</h3>
+            <span class="prozess__timing">Woche 4–10</span>
+            <h3>Käuferprüfung &amp; Kaufpreisverhandlung</h3>
             <p>Ich prüfe Bonität und Finanzierungsnachweis jedes Interessenten bevor Ihre Daten weitergegeben werden. Kaufpreisverhandlungen führe ich in Ihrem Interesse – transparent und ohne unnötigen Zeitdruck.</p>
+            <ul class="prozess__deliverables">
+              <li>Bonitätsprüfung und Finanzierungsnachweis vor Datenweitergabe</li>
+              <li>Kaufpreisverhandlung mit qualifizierten Interessenten</li>
+              <li>Reservierungsvereinbarung mit dem Käufer</li>
+            </ul>
           </div>
         </div>
         <div class="prozess__step">
           <div class="prozess__number">5</div>
           <div class="prozess__text">
-            <h3>Notartermin &amp; Übergabe</h3>
+            <span class="prozess__timing">Ab Woche 8</span>
+            <h3>Notartermin &amp; Schlüsselübergabe</h3>
             <p>Ich begleite Sie bis zur Schlüsselübergabe mit Zählerständen: Notartermin-Koordination, Kaufvertragsprüfung, Abstimmung mit Steuerberater bei Bedarf.</p>
+            <ul class="prozess__deliverables">
+              <li>Notartermin-Koordination und Kaufvertragsprüfung</li>
+              <li>Abstimmung mit Steuerberater (Spekulationssteuer, Wertzuwachs)</li>
+              <li>Übergabeprotokoll mit Zählerständen und Schlüsseln</li>
+            </ul>
           </div>
         </div>
       </div>
