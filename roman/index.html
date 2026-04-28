@@ -1461,12 +1461,21 @@
        FAQ
     =========================== */
     .faq__list {
-      max-width: 800px;
       margin: 0;
+    }
+
+    @media (min-width: 800px) {
+      .faq__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--space-16, 4rem);
+        align-items: start;
+      }
     }
 
     .faq__item {
       border-bottom: 1px solid var(--gray-200);
+      align-self: start;
     }
 
     .faq__question {
