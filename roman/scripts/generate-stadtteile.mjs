@@ -74,15 +74,15 @@ function render(d) {
 
   const faqs = [
     {q:'Was kostet eine Wohnung in '+fn+'?',
-     a:'Der durchschnittliche Kaufpreis f\u00fcr Eigentumswohnungen in '+fn+' liegt bei ca. '+d.mk.e+' \u20ac/m\u00b2 (Stand Q1/2026). Die Preise variieren je nach Lage, Baujahr und Ausstattung.'+(d.mk.h!=='\u2014'?' H\u00e4user werden im Schnitt f\u00fcr ca. '+d.mk.h+' \u20ac/m\u00b2 gehandelt.':'')+' Eine professionelle Bewertung gibt Ihnen eine fundierte Grundlage.'},
+     a:'Der durchschnittliche Kaufpreis f\u00fcr Eigentumswohnungen in '+fn+' liegt bei ca. '+d.mk.e+' \u20ac/m\u00b2 (Stand Q1/2026). Reihenh\u00e4user und Einfamilienh\u00e4user werden im Schnitt f\u00fcr ca. '+d.mk.h+' \u20ac/m\u00b2 gehandelt. Die Kaltmieten bei Neuvermietung liegen bei '+d.mk.m+' \u20ac/m\u00b2. Die Preise variieren je nach Lage, Baujahr, Grundriss und Ausstattung innerhalb des Stadtteils teils erheblich.'},
     {q:'Ist '+d.n+' ein guter Standort f\u00fcr Familien?',
      a:d.immo.fa},
     {q:'Wie entwickelt sich der Immobilienmarkt in '+d.n+'?',
-     a:(()=>{const t=parseFloat(d.mk.t.replace('+','').replace(',','.'));const trend=t>=4?d.n+' geh\u00f6rt aktuell zu den Stadtteilen mit der dynamischsten Preisentwicklung im Bezirk.':t>=3?'Die Nachfrage nach Immobilien in '+d.n+' liegt deutlich \u00fcber dem Bezirksdurchschnitt.':'Die Nachfrage nach Wohnimmobilien in '+d.n+' bleibt konstant stabil.';return 'Die Kaufpreise in '+fn+' zeigen eine Entwicklung von '+d.mk.t+' % im Jahresvergleich. '+trend+' Eine pers\u00f6nliche Markteinsch\u00e4tzung erhalten Sie in einem kostenlosen Erstgespr\u00e4ch.'})()},
+     a:(()=>{const t=parseFloat(d.mk.t.replace('+','').replace(',','.'));const trend=t>=4?'Die Preisdynamik in '+d.n+' liegt damit \u00fcber dem K\u00f6lner Durchschnitt \u2014 die Nachfrage \u00fcbersteigt das Angebot.':t>=3?'Das Preiswachstum in '+d.n+' liegt im soliden Mittelfeld des K\u00f6lner Markts.':t>=1?'Der Markt in '+d.n+' entwickelt sich moderat \u2014 Angebot und Nachfrage halten sich weitgehend die Waage.':'Die Preise in '+d.n+' sind aktuell stabil, mit wenig Bewegung nach oben oder unten.';return 'Die Kaufpreise f\u00fcr Eigentumswohnungen in '+fn+' stiegen im Jahresvergleich um '+d.mk.t+' %. '+trend})()},
     {q:'F\u00fcr wen eignet sich '+d.n+' besonders?',
-     a:d.immo.ei+(d.immo.ka?' '+d.immo.ka:'')},
-    {q:'Warum einen Makler in '+fn+' beauftragen?',
-     a:(rc>0?'Mit '+rc+' vermittelten Objekten in '+d.n+' kenne ich den Mikro-Markt im Detail.':'Als EVERNEST-Makler mit Schwerpunkt K\u00f6ln kenne ich auch '+d.n+' genau.')+' \u00dcber den EVERNEST-K\u00e4uferpool erreiche ich bonit\u00e4tsgepr\u00fcfte Interessenten. Eine kostenlose Erstbewertung gibt Ihnen eine fundierte Grundlage.'}
+     a:d.immo.ei},
+    {q:'Was sollte man beim Immobilienkauf in '+fn+' beachten?',
+     a:d.immo.ka}
   ];
 
   const faqLD = faqs.map(f=>`          {
