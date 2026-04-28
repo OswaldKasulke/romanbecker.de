@@ -19,7 +19,7 @@
     .intro p { margin-bottom: 14px; }
     .intro p:last-child { margin-bottom: 0; }
 
-    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 48px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin-bottom: 48px; }
     .kpi { background: #fff; border-radius: 10px; padding: 24px 20px; text-align: center; }
     .kpi__value { font-size: 36px; font-weight: 800; color: #0d1b2a; }
     .kpi__label { font-size: 13px; color: #64748b; margin-top: 6px; }
@@ -38,11 +38,22 @@
     .info-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 20px 22px; font-size: 14px; color: #0c4a6e; margin-top: 20px; }
     .info-box strong { display: block; margin-bottom: 8px; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
 
+    .success-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 16px 18px; font-size: 14px; color: #14532d; margin-top: 20px; }
+    .success-box strong { display: block; margin-bottom: 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .check-list { list-style: none; padding: 0; margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .check-list li { font-size: 14px; color: #374151; padding-left: 1.5em; position: relative; }
+    .check-list li::before { content: '✓'; position: absolute; left: 0; color: #D4AF37; font-weight: 700; }
+
     .steps { counter-reset: steps; }
     .step { display: flex; gap: 20px; margin-bottom: 20px; align-items: flex-start; }
     .step__num { counter-increment: steps; background: #D4AF37; color: #0d1b2a; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
     .step__body { font-size: 15px; color: #374151; }
     .step__body strong { color: #0d1b2a; display: block; margin-bottom: 4px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 20px 0; }
+    th { text-align: left; padding: 10px 12px; border-bottom: 2px solid #e2e2dc; color: #374151; background: #f8f8f6; }
+    td { padding: 9px 12px; border-bottom: 1px solid #f1f1ee; }
 
     footer { background: #0d1b2a; color: #64748b; text-align: center; padding: 28px; font-size: 13px; }
 
@@ -57,44 +68,62 @@
 <body>
 
 <div class="header">
-  <div class="header__label">Projekt-Report · April 2026</div>
+  <div class="header__label">Executive Summary · April 2026</div>
   <div class="header__title">Roman Becker – Immobilien Website</div>
-  <div class="header__sub">Was wurde gebaut · Was läuft automatisch · Was kommt als nächstes</div>
+  <div class="header__sub">Vollständiger Projektüberblick: Was gebaut wurde, was automatisch läuft, was als nächstes kommt</div>
 </div>
 
 <div class="container">
 
   <div class="intro">
     <p>Hallo Roman,</p>
-    <p>dieser Bericht fasst zusammen, was in den letzten Wochen für deine Website entstanden ist. Das Ziel war eine moderne, schnelle Website, die bei Google <em>und</em> bei KI-Suchmaschinen wie ChatGPT oder Perplexity sichtbar ist — und die Verkäufer und Käufer aus Köln direkt zu dir führt.</p>
-    <p>Die wichtigsten Zahlen: 90 Stadtteil-Seiten sind live, 37 Ratgeber-Artikel sind online, alle 20 Google-Bewertungen sind beantwortet und deine Immobilienangebote aktualisieren sich täglich von selbst. Du musst nichts manuell pflegen.</p>
+    <p>dieser Bericht fasst das gesamte Projekt zusammen — von der leeren Domain bis zur fertig optimierten Makler-Website. Entstanden ist eine moderne, schnelle Website, die bei Google <em>und</em> bei KI-Suchmaschinen wie ChatGPT oder Perplexity sichtbar ist — und Eigentümer aus Köln direkt zu dir führt.</p>
+    <p>90 Stadtteil-Seiten sind live, 38 Ratgeber-Artikel sind online, deine Listings aktualisieren sich täglich automatisch von EVERNEST, und alle kritischen Befunde aus einem unabhängigen Design-Audit wurden behoben. Du musst nichts manuell pflegen.</p>
   </div>
 
   <div class="kpi-grid">
     <div class="kpi"><div class="kpi__value">90</div><div class="kpi__label">Stadtteil-Seiten live</div></div>
-    <div class="kpi"><div class="kpi__value">37</div><div class="kpi__label">Ratgeber-Artikel online</div></div>
-    <div class="kpi"><div class="kpi__value">20</div><div class="kpi__label">Google-Reviews beantwortet</div></div>
-    <div class="kpi"><div class="kpi__value">tägl.</div><div class="kpi__label">Objekte auto-aktualisiert</div></div>
+    <div class="kpi"><div class="kpi__value">38</div><div class="kpi__label">Ratgeber-Artikel</div></div>
+    <div class="kpi"><div class="kpi__value">17</div><div class="kpi__label">FAQ mit strukturierten Daten</div></div>
+    <div class="kpi"><div class="kpi__value">5,0 ★</div><div class="kpi__label">Google-Bewertung</div></div>
+    <div class="kpi"><div class="kpi__value">tägl.</div><div class="kpi__label">Listings auto-sync</div></div>
+    <div class="kpi"><div class="kpi__value">3/3</div><div class="kpi__label">Critical-Befunde behoben</div></div>
   </div>
 
   <!-- Hauptseite -->
   <div class="section">
-    <div class="section__title">Die Hauptseite</div>
+    <div class="section__title">Die Hauptseite — fuerte.digital/roman</div>
     <div class="card">
-      <div class="card__title">Dein digitaler Auftritt als Kölner Makler</div>
-      <p>Die Hauptseite positioniert dich klar als persönlichen Ansprechpartner in Köln — mit deinem Foto, deinem Verkaufsprozess in sieben Schritten und drei echten Kundenstimmen, die direkt eingebettet sind. Besucher sehen sofort, wer du bist, wie du arbeitest und warum sie dich anrufen sollten.</p>
-      <p>Auf dem Handy erscheint unten im Bild ein dauerhaft sichtbarer Anruf-Button, damit jemand der deine Seite auf dem Smartphone liest, mit einem Klick bei dir ist. Das Kontaktformular leitet Anfragen direkt an deine E-Mail-Adresse weiter.</p>
-      <p>Sechs häufig gestellte Fragen — von der Immobilienbewertung bis zum Energieausweis — sind mit strukturierten Daten hinterlegt, sodass Google sie direkt in den Suchergebnissen als Klappbereich anzeigen kann. Das erhöht die Sichtbarkeit, ohne dass jemand erst auf die Seite klicken muss.</p>
+      <div class="card__title">Alles auf einer Seite, klar strukturiert</div>
+      <p>Die Hauptseite positioniert dich als persönlichen Ansprechpartner in Köln. Besucher sehen sofort wer du bist, wie du arbeitest und warum sie dich anrufen sollten. Die Seite ist vollständig responsive — auf dem Handy erscheint ein dauerhaft sichtbarer Anruf-Button.</p>
+
+      <ul class="check-list">
+        <li>Hero mit Portrait, Trust-Leiste (380+ Makler · 40 Standorte · 10,95 Mio. € · 5,0 ★ · aktive Objekte)</li>
+        <li>Für-Verkäufer-Karten mit Verlinkung zu Prozess, FAQ und Kontakt</li>
+        <li>Prozess-Sektion: 5 Schritte mit Wochen-Indikatoren und konkreten Lieferversprechen pro Schritt</li>
+        <li>Über Roman: Biografie, Qualifikationen, EVERNEST-Netzwerk</li>
+        <li>Listings-Karussell: täglich auto-aktualisiert von EVERNEST (aktive Objekte zuerst, dann vermittelte)</li>
+        <li>Google Reviews: 3 verifizierte Bewertungen, Live-API-Anbindung vorbereitet</li>
+        <li>Stadtteil-Expertise-Grid: alle Kölner Bezirke mit Verlinkung</li>
+        <li>FAQ: 17 Fragen in 2-Spalten-Layout, mit SVG-Accordion-Icon und Rotation-Animation</li>
+        <li>Kontaktformular mit DSGVO-Einwilligungs-Checkbox (Pflicht nach deutschem Recht)</li>
+        <li>Floating Call-Button auf Mobile</li>
+        <li>Cookie-Banner (DSGVO-konform)</li>
+      </ul>
     </div>
   </div>
 
-  <!-- Objekte -->
+  <!-- Unterseiten -->
   <div class="section">
-    <div class="section__title">Deine Immobilienangebote</div>
+    <div class="section__title">Unterseiten &amp; rechtliche Seiten</div>
     <div class="card">
-      <div class="card__title">Jeden Morgen automatisch aktuell</div>
-      <p>Jeden Morgen um 6 Uhr holt die Website automatisch deine neuesten Angebote von deinem EVERNEST-Profil und zeigt sie auf der Startseite. Neue Objekte erscheinen sofort. Verkaufte Objekte bleiben mit einem "Verkauft"-Badge sichtbar — das zeigt potenziellen Verkäufern, dass du aktiv vermittelst. Du musst nichts manuell anfassen.</p>
-      <p>Aktive Angebote erscheinen immer zuerst, danach kommen bis zu 50 bereits erfolgreich vermittelte Objekte. Eine Zeile unterhalb des Carousels zeigt automatisch an, wie viele aktive Objekte du gerade hast — dieser Wert aktualisiert sich täglich mit.</p>
+      <div class="card__title">Vollständig ausgebaut</div>
+      <ul class="check-list" style="margin-top:0;">
+        <li><strong>Immobilienbewertung:</strong> Eigene Landing Page für die wichtigste Conversion-Anfrage</li>
+        <li><strong>Impressum:</strong> Vollständig nach deutschem Telemediengesetz</li>
+        <li><strong>Datenschutzerklärung:</strong> DSGVO-konform, inkl. Kontaktformular und Google Maps</li>
+        <li><strong>AGB:</strong> Allgemeine Geschäftsbedingungen als eigenständige Seite</li>
+      </ul>
     </div>
   </div>
 
@@ -103,33 +132,88 @@
     <div class="section__title">90 Stadtteil-Seiten</div>
     <div class="card">
       <div class="card__title">Für jeden Kölner Stadtteil eine eigene Seite</div>
-      <p>Wer bei Google nach "Makler Köln-Sülz" oder "Immobilie in Ehrenfeld verkaufen" sucht, soll auf eine Seite treffen, die genau diesen Stadtteil behandelt — mit echten Preisen, echten Schulnamen, Buslinien und lokalen Besonderheiten. Für jeden der 86 Kölner Stadtteile sowie vier angrenzende Regionen gibt es genau so eine Seite.</p>
-      <p>Bei den 20 beliebtesten Wohnlagen in Köln — darunter Sülz, Nippes, Lindenthal, Ehrenfeld, Marienburg und viele mehr — haben wir bewusst auch die Kehrseiten benannt: Parkplatzmangel, Lärm an bestimmten Straßen, Stadion-Spieltage, hohe Einstiegspreise. Das klingt ungewöhnlich für eine Makler-Website, macht die Texte aber glaubwürdiger — sowohl für Besucher als auch für Google und KI-Suchmaschinen.</p>
-      <p>Jede Seite hat außerdem einen FAQ-Bereich mit den fünf häufigsten Fragen zum jeweiligen Stadtteil. Diese Fragen und Antworten sind so aufgebaut, dass Google sie direkt in den Suchergebnissen anzeigen kann.</p>
+      <p>Wer bei Google nach "Makler Köln-Sülz" oder "Immobilie in Ehrenfeld verkaufen" sucht, trifft auf eine Seite, die genau diesen Stadtteil behandelt — mit echten Preisen, Schulnamen, Buslinien und lokalen Besonderheiten. Für jeden der 86 Kölner Stadtteile sowie vier angrenzende Regionen gibt es eine eigene Seite.</p>
+      <p>Jede Seite hat drei substanzielle Absätze: Charakter und Bebauung, Verkehr und Infrastruktur, Immobilienmarkt mit konkreten Preisen. Hinzu kommt ein FAQ-Block mit fünf Fragen zum jeweiligen Stadtteil — mit strukturierten Daten für Google-Rich-Snippets.</p>
+      <p>Bei den beliebtesten Lagen (Sülz, Nippes, Lindenthal, Marienburg u.v.m.) wurden auch Kehrseiten benannt: Parkplatzmangel, Lärm, hohe Einstiegspreise. Das klingt ungewöhnlich, macht die Texte aber nachweislich glaubwürdiger — sowohl für Besucher als auch für KI-Suchmaschinen.</p>
+
+      <div class="success-box">
+        <strong>10 handgefertigte Premium-Seiten</strong>
+        Nippes, Rondorf, Müngerstorf, Weiden, Raderthal und fünf weitere Lagen mit dem höchsten Suchvolumen wurden vollständig von Hand geschrieben — mit spezifischen Straßennamen, Schulen, Preisgeschichten und GEO-opti­mierten FAQ-Antworten ohne jegliche Eigenwerbung.
+      </div>
     </div>
   </div>
 
   <!-- Ratgeber -->
   <div class="section">
-    <div class="section__title">37 Ratgeber-Artikel</div>
+    <div class="section__title">38 Ratgeber-Artikel</div>
     <div class="card">
-      <div class="card__title">Dein bestehendes Wissen — neu aufgestellt</div>
-      <p>Alle 37 Ratgeber-Artikel, die du auf deiner alten Website hattest, wurden vollständig übernommen und in einem einheitlichen, modernen Design neu aufgebaut. Sie sind in fünf Kategorien gegliedert: Immobilie verkaufen, Immobilie kaufen, Immobilienbewertung, Rechtliches sowie Finanzierung und Förderung.</p>
-      <p>Die Ratgeber-Seiten helfen dabei, bei Informations-Suchen gefunden zu werden — also wenn jemand fragt "Was kostet ein Makler in Köln?" oder "Wie läuft eine Immobilienbewertung ab?". Diese Suchanfragen kommen häufig von Verkäufern, die sich erst informieren, bevor sie einen Makler kontaktieren.</p>
+      <div class="card__title">Informations-Suchen abdecken — bevor jemand den Makler anruft</div>
+      <p>Die 38 Ratgeber-Artikel decken die häufigsten Informationsfragen ab, die Eigentümer stellen, bevor sie einen Makler kontaktieren — von "Was kostet ein Makler in Köln?" über "Wie läuft eine Immobilienbewertung ab?" bis "Was ist die Spekulationssteuer?". In fünf Kategorien gegliedert: Immobilie verkaufen, kaufen, bewerten, Rechtliches, Finanzierung.</p>
+      <p>Diese Seiten sind der langfristige SEO-Hebel: Während Stadtteil-Seiten lokale Suchanfragen abfangen, bedienen die Ratgeber überregionale Informationsfragen, die zu Erstkontakten führen.</p>
     </div>
   </div>
 
-  <!-- GEO -->
+  <!-- Listings -->
   <div class="section">
-    <div class="section__title">SEO und GEO — Google und KI-Suchmaschinen</div>
+    <div class="section__title">EVERNEST Listings — Automatisch täglich aktuell</div>
+    <div class="card">
+      <div class="card__title">Keine manuelle Pflege, keine veralteten Angebote</div>
+      <p>Jeden Morgen holt die Website automatisch deine neuesten Angebote von deinem EVERNEST-Profil und zeigt sie auf der Startseite. Neue Objekte erscheinen sofort. Verkaufte Objekte bleiben mit einem dezenten "Verkauft"-Badge sichtbar — das zeigt potenziellen Verkäufern, dass du aktiv vermittelst.</p>
+      <p>Aktive Objekte erscheinen immer zuerst in der Reihenfolge. Eine Zeile unter dem Karussell zeigt automatisch an, wie viele aktive Objekte du gerade hast — dieser Wert aktualisiert sich täglich.</p>
+    </div>
+  </div>
+
+  <!-- SEO & GEO -->
+  <div class="section">
+    <div class="section__title">SEO &amp; GEO — Google und KI-Suchmaschinen</div>
     <div class="card">
       <div class="card__title">Nicht nur für Google — auch für ChatGPT, Perplexity und Co.</div>
-      <p>Suchverhalten ändert sich gerade grundlegend. Immer mehr Menschen fragen nicht mehr bei Google, sondern stellen ihre Frage direkt einer KI wie ChatGPT, Google Gemini oder Perplexity — und bekommen eine fertige Antwort mit Empfehlungen. Wenn jemand fragt "Welcher Immobilienmakler ist gut in Köln-Sülz?", soll dein Name in dieser Antwort auftauchen.</p>
-      <p>Dafür haben wir die Website gezielt optimiert. KI-Suchmaschinen brauchen klar strukturierte, faktisch korrekte und vertrauenswürdige Inhalte — also genau das Gegenteil von generischen Marketing-Texten. Die konkreten Ortsangaben, echten Schulnamen, Buslinien und Preise auf den Stadtteil-Seiten sind nicht zufällig: das sind die Details, die KI-Modelle auswerten, um eine qualifizierte Empfehlung geben zu können.</p>
-      <p>Zusätzlich haben wir die robots.txt-Datei so eingestellt, dass alle KI-Crawler deine Website lesen und in ihre Datenbanken aufnehmen dürfen. Viele andere Websites sperren diese Crawler aus — deine tut das nicht. Außerdem sind alle Seiten mit strukturierten Daten hinterlegt, die Suchmaschinen und KI-Systemen mitteilen: das ist Roman Becker, er ist Immobilienmakler, er arbeitet in diesen Stadtteilen, das ist seine Telefonnummer.</p>
+      <p>Suchverhalten ändert sich gerade grundlegend. Immer mehr Menschen stellen ihre Frage direkt einer KI — und bekommen eine fertige Antwort mit Empfehlungen. Wenn jemand fragt "Welcher Immobilienmakler ist gut in Köln-Sülz?", soll dein Name in dieser Antwort auftauchen.</p>
+
+      <ul class="check-list">
+        <li><strong>Schema.org – 5 strukturierte Datentypen:</strong> WebSite, Person, RealEstateAgent, BreadcrumbList, FAQPage — plus aggregateRating (5,0 / 15 Bewertungen) für Google Rich Snippets</li>
+        <li><strong>robots.txt:</strong> Alle KI-Crawler (GPTBot, ClaudeBot, PerplexityBot u.a.) haben explizit Lese-Zugriff — die meisten Konkurrenz-Websites sperren sie aus</li>
+        <li><strong>llms.txt:</strong> Spezialdatei für KI-Sprachmodelle — erklärt wer Roman ist, was er macht und wo er tätig ist</li>
+        <li><strong>sitemap.xml:</strong> Vollständige Sitemap aller 130+ Seiten für Google Search Console</li>
+        <li><strong>GEO-optimierte FAQ-Antworten:</strong> Faktisch korrekt, ohne CTAs, zitierbar für KI-Systeme</li>
+        <li><strong>Ladezeit:</strong> Ressourcen-optimiert, Bilder im modernen Format, kritische Assets preloaded</li>
+      </ul>
+
       <div class="info-box">
-        <strong>Was das bedeutet</strong>
-        Wenn jemand in einem Jahr ChatGPT oder Perplexity fragt "Wer ist ein guter Makler für Immobilien in Köln-Sülz?", stehen deine Chancen gut, in der Antwort genannt zu werden — weil deine Website genau die Art von verlässlichem, lokalem Inhalt liefert, den KI-Systeme bevorzugen.
+        <strong>Was das aggregateRating bedeutet</strong>
+        Google kann deine 5,0-Sterne-Bewertung jetzt direkt in den Suchergebnissen neben deinem Eintrag anzeigen — als Rich Snippet. Suchergebnisse mit Sterne-Bewertung erzielen nachweislich deutlich höhere Klickraten als Einträge ohne.
+      </div>
+    </div>
+  </div>
+
+  <!-- GBP -->
+  <div class="section">
+    <div class="section__title">Google Business Profile</div>
+    <div class="card">
+      <div class="card__title">Lokaler Google-Auftritt — Ausgangslage April 2026</div>
+      <p>Das GBP ist vollständig ausgefüllt: Beschreibung, Einzugsgebiet (Köln plus sieben Umlandgemeinden), Serviceoptionen und Öffnungszeiten. Alle Google-Bewertungen haben persönliche Antworten erhalten.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Kennzahl</th>
+            <th style="text-align:center;">Ist-Zustand<br><small style="font-weight:400;">Nov. 2025 – Apr. 2026</small></th>
+            <th style="text-align:center;color:#D4AF37;">Ziel<br><small style="font-weight:400;">Apr. 2027</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Profilaufrufe gesamt</td><td style="text-align:center;">1.970</td><td style="text-align:center;color:#D4AF37;">5.000+</td></tr>
+          <tr><td>Suchanfragen mit Profil-Sichtbarkeit</td><td style="text-align:center;">539</td><td style="text-align:center;color:#D4AF37;">2.000+</td></tr>
+          <tr><td>Anrufe über GBP</td><td style="text-align:center;">2</td><td style="text-align:center;color:#D4AF37;">20+</td></tr>
+          <tr><td>Website-Klicks über GBP</td><td style="text-align:center;">18</td><td style="text-align:center;color:#D4AF37;">150+</td></tr>
+          <tr><td>Bewertungen gesamt</td><td style="text-align:center;">15 · Ø 5,0 ★</td><td style="text-align:center;color:#D4AF37;">30+ · Ø 5,0 ★</td></tr>
+          <tr><td>"Makler Köln" in Top-Suchanfragen</td><td style="text-align:center;">Nein</td><td style="text-align:center;color:#D4AF37;">Ja</td></tr>
+        </tbody>
+      </table>
+
+      <div class="success-box">
+        <strong>Strategischer Vorteil: EVERNEST Markentraffic</strong>
+        Von den 539 Suchanfragen kamen 321 über "evernest" — das zeigt die enorme Markenbekanntheit des Netzwerks. Die Website und das GBP sind so positioniert, dass dieser Traffic auf Roman Beckers Profil landet. Parallel wächst die Sichtbarkeit bei lokalen Kaufabsicht-Suchen ("Makler Köln Sülz"), die noch gar nicht im Profil auftauchen.
       </div>
     </div>
   </div>
@@ -138,77 +222,30 @@
   <div class="section">
     <div class="section__title">Design- &amp; Qualitäts-Audit</div>
     <div class="card">
-      <div class="card__title">Alle kritischen Befunde behoben</div>
-      <p>Ein unabhängiges KI-Review-Tool hat die Website auf 15 Schwachstellen gescannt — von rechtlichen Pflichtangaben über SEO-Fehler bis zu visuellen Inkonsistenzen. Alle als Critical oder Major eingestuften Befunde sind behoben.</p>
+      <div class="card__title">Alle 3 kritischen und 7 weiteren Befunde behoben</div>
+      <p>Ein unabhängiges KI-Review-Tool hat die Website auf 15 Schwachstellen gescannt — von rechtlichen Pflichtangaben über SEO-Fehler bis zu visuellen Inkonsistenzen. Ergebnis: alle als Critical oder Major eingestuften Befunde sind behoben.</p>
 
-      <table style="width:100%;border-collapse:collapse;font-size:14px;margin:20px 0;">
+      <table>
         <thead>
-          <tr style="background:#f8f8f6;">
-            <th style="text-align:left;padding:10px 12px;border-bottom:2px solid #e2e2dc;color:#374151;">Befund</th>
-            <th style="text-align:center;padding:10px 12px;border-bottom:2px solid #e2e2dc;color:#374151;">Prio</th>
-            <th style="text-align:center;padding:10px 12px;border-bottom:2px solid #e2e2dc;color:#D4AF37;">Status</th>
+          <tr>
+            <th>Befund</th>
+            <th style="text-align:center;">Prio</th>
+            <th style="text-align:center;color:#D4AF37;">Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">DSGVO-Einwilligungs-Checkbox im Kontaktformular</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Critical</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#16a34a;">✓ Eingebaut</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Bild-URLs in Schema.org &amp; OpenGraph zeigten auf Preview-Domain</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Critical</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#16a34a;">✓ Korrigiert</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">"Kostenlose Bewertung" → "Werteinschätzung anfordern"</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Critical</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#16a34a;">✓ Umformuliert</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Prozess-Sektion: Wochen-Indikatoren &amp; ✓ Lieferversprechen pro Schritt</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Major</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#16a34a;">✓ Eingebaut</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Typografie: H1/H2/H3 klarer gestuft, Eyebrow-Labels dezenter</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Major</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#16a34a;">✓ Angepasst</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Schema.org: aggregateRating (5,0 / 15 Bewertungen) eingetragen</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Major</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#16a34a;">✓ Eingetragen</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">FAQ: 2-Spalten-Layout auf Desktop, SVG-Icon mit Rotation</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Minor</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#16a34a;">✓ Umgebaut</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Google Reviews: Live-API-Anbindung vorbereitet</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Minor</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#d97706;">⏳ API Key fehlt</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">"Verkauft"-Badges in der Galerie optisch gedämpft</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">Minor</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#16a34a;">✓ Angepasst</td></tr>
-          <tr><td style="padding:9px 12px;">Footer-Disclaimer auf einen Satz gekürzt</td><td style="text-align:center;padding:9px 12px;">Minor</td><td style="text-align:center;padding:9px 12px;color:#16a34a;">✓ Gekürzt</td></tr>
+          <tr><td>DSGVO-Einwilligungs-Checkbox im Kontaktformular</td><td style="text-align:center;">Critical</td><td style="text-align:center;color:#16a34a;">✓ Eingebaut</td></tr>
+          <tr><td>Bild-URLs in Schema.org &amp; OpenGraph auf falsche Domain</td><td style="text-align:center;">Critical</td><td style="text-align:center;color:#16a34a;">✓ Korrigiert</td></tr>
+          <tr><td>"Kostenlose Bewertung" → "Werteinschätzung anfordern"</td><td style="text-align:center;">Critical</td><td style="text-align:center;color:#16a34a;">✓ Umformuliert</td></tr>
+          <tr><td>Prozess: Wochen-Indikatoren &amp; ✓ Lieferversprechen pro Schritt</td><td style="text-align:center;">Major</td><td style="text-align:center;color:#16a34a;">✓ Eingebaut</td></tr>
+          <tr><td>Typografie: H1/H2/H3 klarer gestuft, Eyebrow-Labels dezenter</td><td style="text-align:center;">Major</td><td style="text-align:center;color:#16a34a;">✓ Angepasst</td></tr>
+          <tr><td>Schema.org aggregateRating (5,0 / 15 Bewertungen)</td><td style="text-align:center;">Major</td><td style="text-align:center;color:#16a34a;">✓ Eingetragen</td></tr>
+          <tr><td>FAQ: 2-Spalten-Layout, SVG-Icon mit Rotation-Animation</td><td style="text-align:center;">Minor</td><td style="text-align:center;color:#16a34a;">✓ Umgebaut</td></tr>
+          <tr><td>Google Reviews: Live-API-Anbindung vorbereitet</td><td style="text-align:center;">Minor</td><td style="text-align:center;color:#d97706;">⏳ API Key fehlt</td></tr>
+          <tr><td>"Verkauft"-Badges in der Galerie optisch gedämpft</td><td style="text-align:center;">Minor</td><td style="text-align:center;color:#16a34a;">✓ Angepasst</td></tr>
+          <tr><td>Footer-Disclaimer auf einen Satz gekürzt</td><td style="text-align:center;">Minor</td><td style="text-align:center;color:#16a34a;">✓ Gekürzt</td></tr>
         </tbody>
       </table>
-
-      <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:16px 18px;font-size:14px;color:#14532d;">
-        <strong style="display:block;margin-bottom:6px;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;">Was das Schema.org aggregateRating bedeutet</strong>
-        Google kann die Bewertungssterne (5,0 ★) jetzt direkt in den Suchergebnissen anzeigen — als Rich Snippet neben deinem Eintrag. Das erhöht die Klickrate gegenüber Wettbewerbern ohne Sterne erheblich.
-      </div>
-    </div>
-  </div>
-
-  <!-- Stadtteil-Texte -->
-  <div class="section">
-    <div class="section__title">Premium-Texte für alle 76 automatischen Stadtteil-Seiten</div>
-    <div class="card">
-      <div class="card__title">Jede Seite mit drei substanziellen Informationsabsätzen</div>
-      <p>Die 76 automatisch generierten Stadtteil-Seiten hatten bisher kurze Platzhaltertexte. Jede Seite hat jetzt drei vollständige Absätze: einen über Charakter und Bebauung des Stadtteils, einen über Verkehrsanbindung und Infrastruktur und einen über den Immobilienmarkt mit konkreten Preisangaben und ehrlicher Einschätzung von Vor- und Nachteilen.</p>
-      <p>Die FAQ-Antworten auf allen 10 handgefertigten Seiten (Nippes, Rondorf, Weiden, Müngerstorf, Raderthal und weitere) wurden vollständig auf GEO-Qualität gebracht: keine Eigenwerbung in den Antworten, nur faktenbasierte Informationen, die Google und KI-Suchmaschinen direkt als Quelle nutzen können.</p>
-    </div>
-  </div>
-
-  <!-- GBP -->
-  <div class="section">
-    <div class="section__title">Google Business Profile</div>
-    <div class="card">
-      <div class="card__title">Dein lokaler Google-Auftritt — Ausgangslage April 2026</div>
-      <p>Das GBP ist vollständig ausgefüllt: Beschreibung, Einzugsgebiet (Köln plus sieben Umlandgemeinden), Serviceoptionen und Öffnungszeiten. Alle 20 Bewertungen haben eine persönliche Antwort — vorher waren 14 davon unbeantwortet.</p>
-
-      <table style="width:100%;border-collapse:collapse;font-size:14px;margin:20px 0;">
-        <thead>
-          <tr style="background:#f8f8f6;">
-            <th style="text-align:left;padding:10px 12px;border-bottom:2px solid #e2e2dc;color:#374151;">Kennzahl</th>
-            <th style="text-align:center;padding:10px 12px;border-bottom:2px solid #e2e2dc;color:#374151;">Ist-Zustand<br><small style="font-weight:400;">Nov. 2025 – Apr. 2026</small></th>
-            <th style="text-align:center;padding:10px 12px;border-bottom:2px solid #e2e2dc;color:#D4AF37;">Ziel<br><small style="font-weight:400;">Okt. – Apr. 2027</small></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Profilaufrufe gesamt</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">1.970</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#D4AF37;">5.000+</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Suchanfragen mit Profil-Sichtbarkeit</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">539</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#D4AF37;">2.000+</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Anrufe über GBP</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">2</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#D4AF37;">20+</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Website-Klicks über GBP</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">18</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#D4AF37;">150+</td></tr>
-          <tr><td style="padding:9px 12px;border-bottom:1px solid #f1f1ee;">Bewertungen gesamt</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;">20 · Ø 5,0 ★</td><td style="text-align:center;padding:9px 12px;border-bottom:1px solid #f1f1ee;color:#D4AF37;">30+ · Ø 5,0 ★</td></tr>
-          <tr><td style="padding:9px 12px;">"Makler Köln" in Top-Suchanfragen</td><td style="text-align:center;padding:9px 12px;">Nein</td><td style="text-align:center;padding:9px 12px;color:#D4AF37;">Ja</td></tr>
-        </tbody>
-      </table>
-
-      <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:16px 18px;font-size:14px;color:#14532d;">
-        <strong style="display:block;margin-bottom:6px;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;">Strategischer Vorteil</strong>
-        Von den 539 Suchanfragen kamen 321 über "evernest" und 218 über "evernest immobilien" — das zeigt die enorme Markenbekanntheit von EVERNEST. Dieser Traffic ist ein Vorteil: wer nach EVERNEST sucht, soll auf Roman Beckers Profil landen. Die eigene Website und das GBP-Profil sind so positioniert, dass dieser Markenstrom gezielt auf Roman umgeleitet wird. Parallel dazu wächst die Sichtbarkeit bei lokalen Suchanfragen mit Kaufabsicht ("Makler Köln", "Immobilienmakler Sülz") — die noch gar nicht im Profil auftauchen, aber das eigentliche Ziel für neue Eigentümerkontakte sind.
-      </div>
     </div>
   </div>
 
@@ -217,8 +254,13 @@
     <div class="section__title">Was du erwarten kannst — und wann</div>
     <div class="card">
       <div class="card__title">Realistische Einschätzung</div>
-      <p>Im April 2026 rankte romanbecker.de für die wichtigsten Keywords wie "Makler Köln" oder "Immobilienmakler Köln" noch nicht unter den Top 20. Das war der Ausgangspunkt. Ziel ist eine Position unter den Top 10 für "Makler Köln" und unter den Top 3 für "Immobilienmakler Köln Sülz" — beides ist realistisch, braucht aber Zeit.</p>
-      <p>Google bewertet eine neue Website nicht sofort. Es dauert in der Regel drei bis sechs Monate, bevor sich Änderungen in den Rankings zeigen. Das ist normal und gilt für jede Website — auch für die besten. Die Grundlagen sind jetzt gelegt; messbare Rankings sollten ab Sommer/Herbst 2026 sichtbar werden.</p>
+      <p>Im April 2026 rankte romanbecker.de für die wichtigsten Keywords wie "Makler Köln" noch nicht unter den Top 20. Das war der Ausgangspunkt. Ziel ist eine Position unter den Top 10 für "Makler Köln" und unter den Top 3 für "Immobilienmakler Köln Sülz" — beides ist realistisch, braucht aber Zeit.</p>
+      <p>Google bewertet eine neue Website nicht sofort. Es dauert in der Regel drei bis sechs Monate, bevor sich Änderungen in den Rankings zeigen. Die Grundlagen sind gelegt — messbare Rankings sind ab Sommer/Herbst 2026 zu erwarten.</p>
+
+      <div class="highlight">
+        <strong>Wichtig zu wissen</strong>
+        Rankings entstehen durch Autorität über Zeit. Die 90 Stadtteil-Seiten, 38 Ratgeber-Artikel und die strukturierten Daten sind das Fundament. In 6–12 Monaten, wenn Google die Seiten gecrawlt, indexiert und bewertet hat, zeigt sich der volle Effekt. Wer jetzt kauft, kauft Ergebnisse in 6 Monaten.
+      </div>
     </div>
   </div>
 
@@ -230,19 +272,23 @@
       <div class="steps">
         <div class="step">
           <div class="step__num">1</div>
-          <div class="step__body"><strong>Fotos ins Google-Profil hochladen</strong> Drei bis fünf persönliche Fotos von dir — bei Besichtigungen, im Gespräch mit Kunden, in Köln — machen dein GBP-Profil deutlich ansprechender. Ergänzend zwei bis drei Bilder aus deinen Kern-Stadtteilen.</div>
+          <div class="step__body"><strong>Fotos ins Google-Profil hochladen</strong> Drei bis fünf persönliche Fotos — bei Besichtigungen, im Gespräch mit Kunden, in Köln — machen das GBP-Profil deutlich ansprechender und erhöhen nachweislich die Klickrate im lokalen Suchergebnis.</div>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <div class="step__body"><strong>Google Search Console einrichten</strong> Damit sind konkret die Keywords sichtbar, für die du gefunden wirst, wie viele Klicks die einzelnen Seiten bekommen und wo noch Potenzial liegt. Basis für gezieltes Ranking-Management ab Sommer 2026.</div>
         </div>
         <div class="step">
           <div class="step__num">3</div>
-          <div class="step__body"><strong>Google Search Console einrichten</strong> Damit sehen wir konkret, für welche Suchbegriffe du gefunden wirst, wie viele Klicks die einzelnen Seiten bekommen und wo noch Potenzial liegt. Das ist die Basis, um Rankings gezielt weiterzuentwickeln.</div>
+          <div class="step__body"><strong>Ranking-Monitoring starten</strong> Wöchentliches Tracking der wichtigsten Keywords — "Makler Köln", "Immobilienmakler Köln Sülz" und zehn bis fünfzehn weitere — damit schwarz auf weiß sichtbar ist, wie sich die Positionen entwickeln.</div>
         </div>
         <div class="step">
           <div class="step__num">4</div>
-          <div class="step__body"><strong>Ranking-Monitoring starten</strong> Wöchentliches Tracking der wichtigsten Keywords — "Makler Köln", "Immobilienmakler Köln Sülz" und zehn bis fünfzehn weitere — damit du schwarz auf weiß siehst, wie sich die Positionen entwickeln.</div>
+          <div class="step__body"><strong>Google Maps API Key → Live-Bewertungen aktivieren</strong> Die Website lädt deine Google-Bewertungen dann automatisch live — sobald ein API Key hinterlegt ist. Dazu: <a href="https://console.cloud.google.com" target="_blank" style="color:#D4AF37;">Google Cloud Console</a> → Neues Projekt → Places API aktivieren → API Key erstellen (Domain fuerte.digital/romanbecker.de einschränken) → Key an fuerte.digital schicken. Danach aktualisiert sich der Bewertungsbereich automatisch.</div>
         </div>
         <div class="step">
           <div class="step__num">5</div>
-          <div class="step__body"><strong>Google Maps API Key einrichten → Live-Bewertungen</strong> Die Website ist so vorbereitet, dass sie deine 15 Google-Bewertungen automatisch live lädt und anzeigt — sobald ein API Key hinterlegt ist. Dazu: <a href="https://console.cloud.google.com" target="_blank" style="color:#D4AF37;">Google Cloud Console</a> → Neues Projekt → Places API aktivieren → API Key erstellen → fuerte.digital als erlaubte Domain eintragen → Key an fuerte.digital schicken. Danach aktualisiert sich der Bewertungsbereich automatisch, ohne dass jemand etwas manuell ändern muss.</div>
+          <div class="step__body"><strong>Neue Bewertungen aktiv sammeln</strong> Ziel: 30+ Bewertungen bis April 2027. Jede abgeschlossene Transaktion ist eine Gelegenheit. Der Google Review Link lautet: <a href="https://maps.app.goo.gl/KheaK3QCedQSAzrVA" target="_blank" style="color:#D4AF37;">maps.app.goo.gl/KheaK3QCedQSAzrVA</a></div>
         </div>
       </div>
     </div>
