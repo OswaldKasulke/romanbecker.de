@@ -22,8 +22,8 @@ const PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becke
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
 
-// Max sold listings to show in carousel (keep it manageable)
-const MAX_SOLD = 8;
+// Max sold listings to show in carousel
+const MAX_SOLD = 50;
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -155,9 +155,10 @@ ${cards}
 // Step 3 — Inject into index.html
 // ---------------------------------------------------------------------------
 
-async function injectIntoHtml(sectionHtml) {
-  const html = await readFile(INDEX_PATH, 'utf-8');
+async function injectIntoHtml(sectionHtml, activeCount) {
+  let html = await readFile(INDEX_PATH, 'utf-8');
 
+  // Update listings section
   const START = '<!-- LISTINGS-START -->';
   const END   = '<!-- LISTINGS-END -->';
   const si = html.indexOf(START);
@@ -167,11 +168,17 @@ async function injectIntoHtml(sectionHtml) {
     throw new Error('Markers <!-- LISTINGS-START --> / <!-- LISTINGS-END --> not found in index.html');
   }
 
-  const updated = html.slice(0, html.lastIndexOf('\n', si) + 1)
+  html = html.slice(0, html.lastIndexOf('\n', si) + 1)
     + sectionHtml
     + html.slice(ei + END.length);
 
-  await writeFile(INDEX_PATH, updated, 'utf-8');
+  // Update trust bar active count
+  html = html.replace(
+    /<!-- TRUST-ACTIVE-COUNT -->\d+<!-- \/TRUST-ACTIVE-COUNT -->/,
+    `<!-- TRUST-ACTIVE-COUNT -->${activeCount}<!-- /TRUST-ACTIVE-COUNT -->`
+  );
+
+  await writeFile(INDEX_PATH, html, 'utf-8');
 }
 
 // ---------------------------------------------------------------------------
@@ -187,7 +194,7 @@ async function main() {
   console.log(`Found ${listings.length} listings: ${active} active, ${sold} sold.`);
 
   const sectionHtml = buildSection(listings);
-  await injectIntoHtml(sectionHtml);
+  await injectIntoHtml(sectionHtml, active);
 
   console.log('index.html updated successfully.');
 }
