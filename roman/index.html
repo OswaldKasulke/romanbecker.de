@@ -3116,7 +3116,7 @@ WE B.05</div>
         </div>
       </div>
       <p class="footer__disclaimer">
-        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH tätig. Alle Angaben zu Preisen, Objekten und Statistiken sind unverbindlich und dienen nur zur Orientierung. Irrtümer und Änderungen vorbehalten. Fotos können Symbolcharakter haben. Die Darstellung von Referenzobjekten dient ausschließlich der Veranschaulichung und stellt keine Garantie für vergleichbare Ergebnisse dar.
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten.
       </p>
     </div>
   </footer>
@@ -3130,12 +3130,10 @@ WE B.05</div>
         document.querySelectorAll('.faq__item').forEach(function(el) {
           el.classList.remove('active');
           el.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
-          el.querySelector('.faq__icon').textContent = '+';
         });
         if (!wasActive) {
           item.classList.add('active');
           this.setAttribute('aria-expanded', 'true');
-          this.querySelector('.faq__icon').textContent = '−';
         }
       });
     });
@@ -3191,6 +3189,59 @@ WE B.05</div>
         }).mount();
       }
     });
+  </script>
+
+  <script>
+    // Google Reviews Live Loader
+    // TODO: Roman muss einen Google Maps API Key mit Places API aktivieren:
+    // https://console.cloud.google.com → Neues Projekt → Places API aktivieren → API Key erstellen
+    var GOOGLE_PLACES_API_KEY = ''; // <-- API Key hier eintragen
+    var GOOGLE_PLACE_QUERY  = 'Roman Becker EVERNEST Immobilienmakler Köln';
+
+    function renderLiveReviews(reviews) {
+      var grid = document.querySelector('#bewertungen .grid-3');
+      if (!grid || !reviews || !reviews.length) return;
+      var fiveStars = reviews.filter(function(r) { return r.rating === 5; });
+      var toShow = fiveStars.slice(0, 3);
+      if (toShow.length < 3) return;
+      grid.innerHTML = toShow.map(function(r) {
+        var stars = '★'.repeat(r.rating);
+        var text = r.text.length > 240 ? r.text.slice(0, 240) + '…' : r.text;
+        var relTime = r.relative_time_description || '';
+        return '<div class="review-card">'
+          + '<div class="review-card__stars" style="display:flex;align-items:center;justify-content:space-between;">'
+          + '<span>' + stars + '</span>'
+          + '<span style="font-size:0.75rem;color:#7a7a75;font-weight:400;">' + relTime + '</span></div>'
+          + '<p class="review-card__text">„' + text + '"</p>'
+          + '<div class="review-card__author">' + r.author_name + '</div>'
+          + '</div>';
+      }).join('');
+      var badge = document.querySelector('.reviews__count');
+      if (badge) badge.innerHTML = '15 verifizierte Bewertungen auf Google &nbsp;<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#34a853;vertical-align:middle;"></span> Live';
+    }
+
+    window._initGooglePlaces = function() {
+      var dummy = document.createElement('div');
+      var service = new google.maps.places.PlacesService(dummy);
+      service.textSearch({ query: GOOGLE_PLACE_QUERY }, function(results, status) {
+        if (status !== google.maps.places.PlacesServiceStatus.OK || !results[0]) return;
+        service.getDetails({
+          placeId: results[0].place_id,
+          fields: ['reviews']
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            renderLiveReviews(place.reviews);
+          }
+        });
+      });
+    };
+
+    if (GOOGLE_PLACES_API_KEY) {
+      var s = document.createElement('script');
+      s.src = 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_PLACES_API_KEY + '&libraries=places&callback=_initGooglePlaces';
+      s.async = true;
+      document.head.appendChild(s);
+    }
   </script>
 
   <!-- COOKIE BANNER -->
