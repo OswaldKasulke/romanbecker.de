@@ -344,7 +344,7 @@ async function main() {
   for (const d of DATA) {
     const file = join(OUT, d.s+'.html');
     // Skip the 6 hand-crafted pages, regenerate everything else
-    if (['bilderstoeckchen','lindenthal','nippes','rodenkirchen','suelz','zollstock'].includes(d.s)) {
+    if (['bilderstoeckchen','lindenthal','nippes','rodenkirchen','suelz','zollstock','weiden','raderthal','rondorf','muengersdorf'].includes(d.s)) {
       console.log('  skip '+d.n+' (hand-crafted)'); continue;
     }
     await writeFile(file, render(d), 'utf-8');
