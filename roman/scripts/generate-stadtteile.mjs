@@ -233,7 +233,7 @@ ${refHTML(d)}
       <h2>${fn} \u2013 ${d.h}</h2>
       <div class="grid-2" style="margin-bottom:var(--space-12);">
         <div>
-          <p class="text-muted leading-relaxed mb-6">${d.portrait}</p>
+          ${Array.isArray(d.portrait)?d.portrait.map(p=>`<p class="text-muted leading-relaxed mb-6">${p}</p>`).join('\n          '):`<p class="text-muted leading-relaxed mb-6">${d.portrait}</p>`}
         </div>
         <div>
           <div class="map-container">

@@ -397,14 +397,14 @@
     /* ===========================
        TYPOGRAPHY
     =========================== */
-    h1 { font-size: clamp(1.75rem, 5vw, 3rem); font-weight: 700; line-height: 1.2; }
-    h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.25; }
-    h3 { font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1.3; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); font-weight: 600; line-height: 1.15; }
+    h2 { font-size: clamp(1.625rem, 4vw, 3rem); font-weight: 500; line-height: 1.2; }
+    h3 { font-size: clamp(1.125rem, 2.5vw, 1.625rem); font-weight: 500; line-height: 1.3; }
 
     @media (min-width: 768px) {
-      h1 { font-size: 3rem; }
-      h2 { font-size: 2.25rem; }
-      h3 { font-size: 1.375rem; }
+      h1 { font-size: 4rem; }
+      h2 { font-size: 3rem; }
+      h3 { font-size: 1.625rem; }
     }
 
     /* ===========================
@@ -552,11 +552,11 @@
     =========================== */
     .section-label {
       display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: #7a7a75;
       margin-bottom: var(--space-3);
     }
 
@@ -1444,22 +1444,20 @@
 
     .faq__icon {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--off-white);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      font-weight: 400;
       color: var(--navy);
-      transition: background var(--transition), color var(--transition);
+      transition: background var(--transition), transform 0.3s ease;
     }
 
     .faq__item.active .faq__icon {
       background: var(--gold);
-      color: var(--navy);
+      transform: rotate(45deg);
     }
 
     .faq__answer {
@@ -1966,7 +1964,7 @@
           5,0 ★ auf Google
         </p>
         <div class="hero__ctas">
-          <a href="#kontakt" class="btn btn--primary">Kostenlose Bewertung anfragen</a>
+          <a href="#kontakt" class="btn btn--primary">Werteinschätzung anfordern</a>
           <a href="#ueber-roman" class="btn btn--secondary">Über Roman Becker</a>
         </div>
       </div>
@@ -2528,7 +2526,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Was ist meine Immobilie in Köln aktuell wert?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2541,7 +2539,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Ist jetzt ein guter Zeitpunkt, um in Köln zu verkaufen?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2554,7 +2552,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Muss ich beim Immobilienverkauf Steuern zahlen?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2567,7 +2565,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Brauche ich einen Makler — und was kostet das?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2580,7 +2578,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Welche Unterlagen brauche ich für den Hausverkauf?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2593,7 +2591,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Wie lange dauert es, ein Haus in Köln zu verkaufen?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2606,7 +2604,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Geerbtes Haus verkaufen — was muss ich beachten?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2619,7 +2617,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Gibt es Sanierungspflichten beim Immobilienverkauf?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2632,7 +2630,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Wie erkenne ich einen guten Immobilienmakler?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2645,7 +2643,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Soll ich jetzt meine Immobilie verkaufen oder noch warten?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2658,7 +2656,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Wie hoch ist die Maklerprovision in Köln?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2671,7 +2669,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Welche Fehler sollte ich beim Hausverkauf vermeiden?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2684,7 +2682,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Wie läuft eine kostenlose Immobilienbewertung in Köln ab?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2697,7 +2695,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Welche Kosten entstehen für mich beim Hausverkauf in Köln?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2710,7 +2708,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Kann ich mein Haus in Köln verkaufen und trotzdem darin wohnen bleiben?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2723,7 +2721,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Was kosten Immobilien aktuell in Köln?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2736,7 +2734,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Kann ich meine Eigentumswohnung in Köln gewinnbringend verkaufen?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2749,7 +2747,7 @@ WE B.05</div>
         <div class="faq__item">
           <button class="faq__question" aria-expanded="false">
             Brauche ich einen Energieausweis für den Immobilienverkauf in Köln?
-            <span class="faq__icon">+</span>
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
           <div class="faq__answer">
             <div class="faq__answer-inner">
@@ -2890,7 +2888,7 @@ WE B.05</div>
     <div class="container">
       <div class="kontakt__grid">
         <div class="kontakt__form-wrap">
-          <span class="section-label">Kostenlose Erstberatung</span>
+          <span class="section-label">Vertrauliche Erstberatung</span>
           <h2>Sprechen wir über Ihre Immobilie</h2>
           <p class="section-subtitle">Unverbindlich, diskret und ohne Zeitdruck. Ich melde mich innerhalb von 24 Stunden bei Ihnen.</p>
 
