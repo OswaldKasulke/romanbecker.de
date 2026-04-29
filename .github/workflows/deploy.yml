@@ -75,6 +75,7 @@ jobs:
           local-dir: ./roman/
           server-dir: /romanbecker.de/root/
           state-name: .ftp-deploy-sync-state-roman.json
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.git*/**
