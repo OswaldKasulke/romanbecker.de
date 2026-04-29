@@ -82,4 +82,3 @@ jobs:
             **/README.md
             **/docs/**
             **/scripts/**
-            **/.htaccess
