@@ -1963,6 +1963,57 @@
       .call-float { display: none; }
     }
 
+    /* ===========================
+       EVERNEST ACCORDION
+    =========================== */
+    .evernest-acc__item {
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .evernest-acc__trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: var(--space-5) 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      transition: color var(--transition);
+    }
+    .evernest-acc__trigger:hover {
+      color: var(--gold);
+    }
+    .evernest-acc__plus {
+      flex-shrink: 0;
+      font-size: 1.375rem;
+      font-weight: 300;
+      line-height: 1;
+      width: 22px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .evernest-acc__item.active .evernest-acc__plus {
+      transform: rotate(45deg);
+    }
+    .evernest-acc__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .evernest-acc__item.active .evernest-acc__body {
+      max-height: 400px;
+    }
+    .evernest-acc__text {
+      padding: 0 0 var(--space-5) calc(22px + var(--space-4));
+      color: var(--gray-600);
+      font-size: 0.9375rem;
+      line-height: 1.75;
+    }
+
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
@@ -2229,12 +2280,59 @@
     </div>
   </section>
 
+  <!-- ÜBER EVERNEST -->
+  <section id="ueber-evernest" class="section">
+    <div class="container">
+      <h2>Über Evernest</h2>
+      <p class="section-subtitle" style="margin-top: var(--space-4);">Evernest ist ein junges Immobilienunternehmen, das den traditionellen Prozess von An– und Verkauf von Immobilien digital und neu denkt.</p>
+
+      <div class="evernest-acc" style="margin-top: var(--space-8);">
+        <div class="evernest-acc__item">
+          <button class="evernest-acc__trigger" aria-expanded="false">
+            <span class="evernest-acc__plus" aria-hidden="true">+</span>
+            Was unterscheidet Evernest von anderen Maklerunternehmen?
+          </button>
+          <div class="evernest-acc__body">
+            <p class="evernest-acc__text">Wir bringen lokale Immobilienkenner, Digitalexperten und kreative Köpfe zusammen, um unseren Kunden den bestmöglichen Service zu bieten. Durch die Kombination von langjähriger Immobilienexpertise, einer hochwertigen Brand, modernem Marketing und innovativer Technologie schaffen wir einen einfachen und transparenten Prozess für alle Beteiligten – für Verkäufer, Käufer und Makler. Wir beraten Sie kompetent, betreuen Sie persönlich und finden gemeinsam mit Ihnen den geeigneten Käufer oder das passende neue Zuhause für Sie!</p>
+          </div>
+        </div>
+        <div class="evernest-acc__item">
+          <button class="evernest-acc__trigger" aria-expanded="false">
+            <span class="evernest-acc__plus" aria-hidden="true">+</span>
+            Welche Vorteile bietet ein Makler mit innovativer Technologie?
+          </button>
+          <div class="evernest-acc__body">
+            <p class="evernest-acc__text">Unsere Plattform versorgt unsere Makler mit digitalen Tools und datengestützten Analysen, um sie mit aktuellen Marktinformationen und Preisentwicklungen in den einzelnen Stadtteilen stets auf dem neuesten Stand zu halten. Das ermöglicht unseren Maklern, sich auf das Wesentliche zu konzentrieren: die persönliche Beratung und Begleitung unserer Kunden.</p>
+          </div>
+        </div>
+        <div class="evernest-acc__item">
+          <button class="evernest-acc__trigger" aria-expanded="false">
+            <span class="evernest-acc__plus" aria-hidden="true">+</span>
+            Brauche ich einen Makler, um eine Immobilie zu verkaufen?
+          </button>
+          <div class="evernest-acc__body">
+            <p class="evernest-acc__text">Wir empfehlen, mit einem erfahrenen Makler zusammenzuarbeiten, der zeitintensive Aufgaben übernimmt und Sie kompetent berät. Die kompetente Beratung und die fundierte Marktpreisanalyse sind ausschlaggebend für den erfolgreichen Verkauf – auch in einem veränderten Marktumfeld.</p>
+          </div>
+        </div>
+        <div class="evernest-acc__item">
+          <button class="evernest-acc__trigger" aria-expanded="false">
+            <span class="evernest-acc__plus" aria-hidden="true">+</span>
+            Warum ist eine Bewertung sinnvoll?
+          </button>
+          <div class="evernest-acc__body">
+            <p class="evernest-acc__text">Eine professionelle Bewertung legt den Grundstein für eine erfolgreiche Vermarktung. Der marktgerechte Preis ergibt sich aus verschiedenen Faktoren wie Größe, Baujahr, Zustand, Ausstattung, Lage und der lokalen Nachfrage. Nur mit einer realistischen Preiseinschätzung können wir gemeinsam eine optimale Verkaufsstrategie für Ihre Immobilie entwickeln.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- LISTINGS-START -->
   <section id="objekte" class="section section--gray">
     <div class="container">
       <span class="section-label">Immobilienangebote</span>
       <h2 class="section-title">Immobilienangebote</h2>
-      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST — von der Erstbesichtigung bis zum Notartermin.</p>
+      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST</p>
 
       <div class="listings-carousel splide" aria-label="Immobilienangebote">
         <div class="splide__track">
@@ -3135,6 +3233,22 @@ WE B.05</div>
   </footer>
 
   <script>
+    // Evernest Accordion
+    document.querySelectorAll('.evernest-acc__trigger').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.parentElement;
+        var wasActive = item.classList.contains('active');
+        document.querySelectorAll('.evernest-acc__item').forEach(function(el) {
+          el.classList.remove('active');
+          el.querySelector('.evernest-acc__trigger').setAttribute('aria-expanded', 'false');
+        });
+        if (!wasActive) {
+          item.classList.add('active');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
     // FAQ Accordion
     document.querySelectorAll('.faq__question').forEach(function(btn) {
       btn.addEventListener('click', function() {
