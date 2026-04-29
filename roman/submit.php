@@ -21,7 +21,7 @@ if (empty($name) || empty($telefon)) {
 }
 
 // E-Mail zusammenbauen
-$to = 'roman.becker@evernest.com';
+$to = 'rb@datenschwester.de';
 $subject = 'Neue Kontaktanfrage von ' . $name . ' – romanbecker.de';
 
 $body = "Neue Anfrage über romanbecker.de\n";
