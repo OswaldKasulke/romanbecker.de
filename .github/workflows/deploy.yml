@@ -73,7 +73,7 @@ jobs:
           password: ${{ secrets.ROMAN_FTP_PASSWORD }}
           port: 21
           local-dir: ./roman/
-          server-dir: /romanbecker.de/
+          server-dir: /romanbecker.de/root/
           state-name: .ftp-deploy-sync-state-roman.json
           dangerous-clean-slate: true
           exclude: |
