@@ -1,14 +1,1 @@
-Options -Indexes
-
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-
-  # Ratgeber: WP trailing-slash → .html
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^ratgeber/([^/]+)/?$ /ratgeber/$1.html [R=301,L]
-
-  # Stadtteile: WP trailing-slash → .html
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^stadtteile/([^/]+)/?$ /stadtteile/$1.html [R=301,L]
-</IfModule>
+# placeholder
