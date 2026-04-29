@@ -35,7 +35,7 @@ $body .= "Preisspanne: $preisspanne\n";
 $body .= "Empfohlen von: $empfohlen\n\n";
 $body .= "Nachricht:\n$nachricht\n";
 
-$headers = "From: noreply@romanbecker.de\r\n";
+$headers = "From: noreply@fuerte.digital\r\n";
 if (!empty($email)) {
     $headers .= "Reply-To: $email\r\n";
 }
