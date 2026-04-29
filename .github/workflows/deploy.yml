@@ -61,3 +61,23 @@ jobs:
             **/.git*
             **/.git*/**
             **/.DS_Store
+
+      - name: Wait for FTP connection cooldown
+        run: sleep 5
+
+      - name: Deploy romanbecker.de via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.ROMAN_FTP_SERVER }}
+          username: ${{ secrets.ROMAN_FTP_USERNAME }}
+          password: ${{ secrets.ROMAN_FTP_PASSWORD }}
+          local-dir: ./roman/
+          server-dir: /romanbecker.de/root/
+          state-name: .ftp-deploy-sync-state-roman.json
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/README.md
+            **/docs/**
+            **/scripts/**
