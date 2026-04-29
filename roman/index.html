@@ -1624,31 +1624,85 @@
        MAPS
     =========================== */
     .maps {
-      padding: 0;
+      background: var(--navy);
+      padding: var(--space-16) 0;
     }
 
-    .maps iframe {
+    .maps__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+      align-items: stretch;
+    }
+
+    @media (min-width: 768px) {
+      .maps__grid {
+        grid-template-columns: 1fr 1.6fr;
+        gap: var(--space-12);
+      }
+    }
+
+    .maps__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--white);
+    }
+
+    .maps__label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-4);
+    }
+
+    .maps__title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: var(--space-6);
+      line-height: 1.2;
+    }
+
+    .maps__address {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: var(--space-8);
+    }
+
+    .maps__address strong {
+      color: var(--white);
+      display: block;
+      margin-bottom: var(--space-2);
+    }
+
+    .maps__cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .maps__frame {
+      border-radius: 6px;
+      overflow: hidden;
+      height: 380px;
+      min-height: 280px;
+    }
+
+    @media (min-width: 768px) {
+      .maps__frame {
+        height: 100%;
+        min-height: 360px;
+      }
+    }
+
+    .maps__frame iframe {
       width: 100%;
-      height: 400px;
+      height: 100%;
       border: 0;
       display: block;
-    }
-
-    .maps__link {
-      background: var(--navy);
-      padding: var(--space-4) var(--space-6);
-      text-align: center;
-    }
-
-    .maps__link a {
-      color: var(--gold);
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color var(--transition);
-    }
-
-    .maps__link a:hover {
-      color: var(--gold-light);
     }
 
     /* ===========================
@@ -3286,18 +3340,33 @@ WE B.05</div>
 
   <!-- GOOGLE MAPS -->
   <section id="maps" class="maps">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2513.497530540246!2d6.944748315745!3d50.941671979528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf2561e85e5e3f%3A0x9b8b99cc882c8d41!2sKaiser-Wilhelm-Ring%2017-21%2C%2050672%20K%C3%B6ln!5e0!3m2!1sde!2sde!4v1680000000000!5m2!1sde!2sde"
-      width="100%"
-      height="400"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="EVERNEST Köln – Kaiser-Wilhelm-Ring 17-21, 50672 Köln"
-    ></iframe>
-    <div class="maps__link">
-      <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9437167,6.9408316,17z/data=!3m1!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m15!1m8!3m7!1s0x47bf2508eebcd567:0x8fe798ce8ef70eb6!2sKaiser-Wilhelm-Ring+17-21,+50672+K%C3%B6ln!3b1!8m2!3d50.9437167!4d6.9408316!16s%2Fg%2F11nnkvlvn0!3m5!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!16s%2Fg%2F11w4rp9vvy?hl=de&entry=ttu" target="_blank" rel="noopener noreferrer">Auf Google Maps öffnen →</a>
+    <div class="container">
+      <div class="maps__grid">
+        <div class="maps__info">
+          <span class="maps__label">Mein Büro</span>
+          <h2 class="maps__title">EVERNEST Köln</h2>
+          <div class="maps__address">
+            <strong>Roman Becker – Immobilienmakler</strong>
+            Kaiser-Wilhelm-Ring 17–21<br>
+            50672 Köln<br><br>
+            Mo–Fr 09:00–19:00 Uhr<br>
+            Termine nach Vereinbarung
+          </div>
+          <div class="maps__cta">
+            <a href="tel:+491775156969" class="btn btn--primary">+49 177 515 69 69</a>
+            <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9437167,6.9408316,17z/data=!3m1!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m15!1m8!3m7!1s0x47bf2508eebcd567:0x8fe798ce8ef70eb6!2sKaiser-Wilhelm-Ring+17-21,+50672+K%C3%B6ln!3b1!8m2!3d50.9437167!4d6.9408316!16s%2Fg%2F11nnkvlvn0!3m5!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!16s%2Fg%2F11w4rp9vvy?hl=de&entry=ttu" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">Auf Google Maps öffnen</a>
+          </div>
+        </div>
+        <div class="maps__frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2513.497530540246!2d6.944748315745!3d50.941671979528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf2561e85e5e3f%3A0x9b8b99cc882c8d41!2sKaiser-Wilhelm-Ring%2017-21%2C%2050672%20K%C3%B6ln!5e0!3m2!1sde!2sde!4v1680000000000!5m2!1sde!2sde"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="EVERNEST Köln – Kaiser-Wilhelm-Ring 17-21, 50672 Köln"
+          ></iframe>
+        </div>
+      </div>
     </div>
   </section>
 
