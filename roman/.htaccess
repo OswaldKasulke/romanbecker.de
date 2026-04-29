@@ -1,22 +1,14 @@
+Options -Indexes
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteBase /
 
-  # Ratgeber: Trailing-Slash WP-URLs → .html
+  # Ratgeber: WP trailing-slash → .html
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ratgeber/([^/]+)/?$ /ratgeber/$1.html [R=301,L]
 
-  # Stadtteile: Trailing-Slash WP-URLs → .html
+  # Stadtteile: WP trailing-slash → .html
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^stadtteile/([^/]+)/?$ /stadtteile/$1.html [R=301,L]
-
-  # Immobilienbewertung ohne .html
-  RewriteRule ^immobilienbewertung/?$ /immobilienbewertung.html [R=301,L]
-
-  # WordPress Admin & System-Pfade → 410 Gone
-  RewriteRule ^wp-admin(/.*)?$ - [R=410,L]
-  RewriteRule ^wp-login\.php$ - [R=410,L]
-  RewriteRule ^wp-content(/.*)?$ - [R=410,L]
-  RewriteRule ^xmlrpc\.php$ - [R=410,L]
 </IfModule>
