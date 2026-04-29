@@ -13,6 +13,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install PHPMailer via Composer
+        run: |
+          cd roman
+          composer install --no-dev --optimize-autoloader
+
+      - name: Write SMTP config
+        run: |
+          cat > roman/smtp-config.php << 'EOF'
+          <?php
+          define('SMTP_HOST', 'w019d9c9.kasserver.com');
+          define('SMTP_PORT', 587);
+          define('SMTP_USER', 'webseite@romanbecker.de');
+          define('SMTP_PASS', '${{ secrets.ROMAN_SMTP_PASS }}');
+          EOF
+
       - name: Deploy Roman via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

@@ -3,3 +3,5 @@ dist/
 .astro/
 .DS_Store
 .env
+roman/vendor/
+roman/smtp-config.php
