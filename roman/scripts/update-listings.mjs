@@ -1,12 +1,10 @@
 /**
  * update-listings.mjs
- * Fetches Roman Becker's current listings from EVERNEST.
+ * Fetches listings from two EVERNEST sources:
+ *   1. Roman Becker's profile  → "Meine Immobilien"
+ *   2. EVERNEST Köln team page → "Immobilien meiner Kollegen" (Roman's excluded)
  *
- * Strategy: 1 HTTP request to the broker profile page.
- * All listing data (title, price, image, status) is embedded in __NEXT_DATA__.
- * No individual listing pages fetched — fast, robust, no rate-limit risk.
- *
- * Replaces <!-- LISTINGS-START --> ... <!-- LISTINGS-END --> in index.html.
+ * Both pages embed all data in __NEXT_DATA__ — no individual listing pages needed.
  * Runs daily via .github/workflows/update-listings.yml
  */
 
@@ -18,12 +16,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const INDEX_PATH = join(__dirname, '..', 'index.html');
 
-const PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
+const ROMAN_PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
+const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/unsere-makler/koeln/';
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
 
-// Max sold listings to show in carousel
-const MAX_SOLD = 50;
+const MAX_SOLD = 20;
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -40,28 +38,26 @@ function formatPrice(item) {
   const val = epd.priceFrom ?? epd.price ?? null;
   if (!val) return 'Preis auf Anfrage';
   const fmt = Number(val).toLocaleString('de-DE');
-  return epd.priceFrom ? `Ab\u00a0${fmt}\u00a0€` : `${fmt}\u00a0€`;
+  return epd.priceFrom ? `Ab ${fmt} €` : `${fmt} €`;
 }
 
-// ---------------------------------------------------------------------------
-// Step 1 — Fetch profile page & extract all listings from __NEXT_DATA__
-// ---------------------------------------------------------------------------
-
-async function fetchListings() {
-  const res = await fetch(PROFILE_URL, { headers: { 'User-Agent': UA } });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const html = await res.text();
-
-  const match = html.match(/id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
-  if (!match) throw new Error('__NEXT_DATA__ not found in page');
-
-  const data = JSON.parse(match[1]);
-  const items = data?.props?.pageProps?.data?.propertyCollection?.items;
-  if (!Array.isArray(items) || items.length === 0) {
-    throw new Error('propertyCollection.items not found or empty');
+function extractItems(data) {
+  const pageProps = data?.props?.pageProps;
+  const candidates = [
+    pageProps?.data?.propertyCollection?.items,
+    pageProps?.data?.broker?.propertyCollection?.items,
+    pageProps?.data?.cityBroker?.propertyCollection?.items,
+    pageProps?.data?.city?.propertyCollection?.items,
+    pageProps?.data?.properties,
+  ];
+  for (const c of candidates) {
+    if (Array.isArray(c) && c.length > 0) return c;
   }
+  return null;
+}
 
-  return items.map(item => ({
+function mapListing(item) {
+  return {
     id:       item.sys?.id,
     sold:     item.salesStatus === 'sold',
     title:    item.exportedPropertyData?.data?.headline ?? 'Immobilie',
@@ -69,11 +65,64 @@ async function fetchListings() {
     price:    formatPrice(item),
     imageUrl: item.featuredImage?.url ?? null,
     url:      `https://www.evernest.com/de/listing/${item.sys?.id}/`,
-  }));
+  };
 }
 
 // ---------------------------------------------------------------------------
-// Step 2 — Build HTML
+// Fetch helpers
+// ---------------------------------------------------------------------------
+
+async function fetchPage(url) {
+  const res = await fetch(url, { headers: { 'User-Agent': UA } });
+  if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
+  const html = await res.text();
+  const match = html.match(/id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+  if (!match) throw new Error(`__NEXT_DATA__ not found in ${url}`);
+  return JSON.parse(match[1]);
+}
+
+async function fetchRomanListings() {
+  const data = await fetchPage(ROMAN_PROFILE_URL);
+  const items = extractItems(data);
+  if (!Array.isArray(items) || items.length === 0) {
+    throw new Error('propertyCollection.items not found on Roman profile page');
+  }
+  return items.map(mapListing);
+}
+
+async function fetchKoelnListings(excludeIds) {
+  const data = await fetchPage(KOELN_OFFICE_URL);
+
+  // Köln page embeds listings in slotsCollection as PropertyList slots
+  const slots = data?.props?.pageProps?.data?.page?.slotsCollection?.items ?? [];
+  const propertySlots = slots.filter(s => s?.__typename === 'PropertyList');
+
+  let allItems = [];
+  for (const slot of propertySlots) {
+    const items = slot?.itemsCollection?.items ?? [];
+    allItems = allItems.concat(items);
+  }
+
+  // Deduplicate by id
+  const seen = new Set();
+  allItems = allItems.filter(item => {
+    const id = item?.sys?.id;
+    if (!id || seen.has(id)) return false;
+    seen.add(id);
+    return true;
+  });
+
+  if (allItems.length === 0) {
+    throw new Error('No PropertyList items found on Köln office page');
+  }
+
+  return allItems
+    .filter(item => !excludeIds.has(item?.sys?.id))
+    .map(mapListing);
+}
+
+// ---------------------------------------------------------------------------
+// Card builder
 // ---------------------------------------------------------------------------
 
 function buildCard({ title, address, price, imageUrl, url, sold }) {
@@ -94,8 +143,11 @@ function buildCard({ title, address, price, imageUrl, url, sold }) {
             </li>`;
 }
 
-function buildSection(listings) {
-  // Active first, then max MAX_SOLD sold listings
+// ---------------------------------------------------------------------------
+// Section builders
+// ---------------------------------------------------------------------------
+
+function buildRomanSection(listings) {
   const active = listings.filter(l => !l.sold);
   const sold   = listings.filter(l => l.sold).slice(0, MAX_SOLD);
   const shown  = [...active, ...sold];
@@ -104,8 +156,8 @@ function buildSection(listings) {
     return `  <!-- LISTINGS-START -->
   <section id="objekte" class="section section--gray">
     <div class="container">
-      <span class="section-label">Immobilienangebote</span>
-      <h2 class="section-title">Aktuelle Immobilienangebote</h2>
+      <span class="section-label">Mein Portfolio</span>
+      <h2 class="section-title">Meine Immobilien</h2>
       <p class="section-subtitle">Aktuell keine Objekte verfügbar — kontaktieren Sie mich für Off-Market Angebote.</p>
       <div class="objekte__cta">
         <div class="objekte__buttons">
@@ -127,11 +179,11 @@ function buildSection(listings) {
   return `  <!-- LISTINGS-START -->
   <section id="objekte" class="section section--gray">
     <div class="container">
-      <span class="section-label">Immobilienangebote</span>
-      <h2 class="section-title">Immobilienangebote</h2>
-      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST — von der Erstbesichtigung bis zum Notartermin.</p>
+      <span class="section-label">Mein Portfolio</span>
+      <h2 class="section-title">Meine Immobilien</h2>
+      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST</p>
 
-      <div class="listings-carousel splide" aria-label="Immobilienangebote">
+      <div class="listings-carousel splide" aria-label="Meine Immobilienangebote">
         <div class="splide__track">
           <ul class="splide__list">
 ${cards}
@@ -142,7 +194,7 @@ ${cards}
       <div class="objekte__cta">
         <p class="objekte__trust">${trustText} — von der Erstberatung bis zum Notar.</p>
         <div class="objekte__buttons">
-          <a href="${PROFILE_URL}" target="_blank" rel="noopener" class="btn btn--outline">Alle Objekte bei EVERNEST</a>
+          <a href="${ROMAN_PROFILE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle meine Objekte bei EVERNEST</a>
           <a href="#kontakt" class="btn btn--primary">Beratungsgespräch vereinbaren</a>
         </div>
       </div>
@@ -151,28 +203,83 @@ ${cards}
   <!-- LISTINGS-END -->`;
 }
 
-// ---------------------------------------------------------------------------
-// Step 3 — Inject into index.html
-// ---------------------------------------------------------------------------
+function buildKoelnSection(listings) {
+  const active = listings.filter(l => !l.sold);
+  const sold   = listings.filter(l => l.sold).slice(0, MAX_SOLD);
+  const shown  = [...active, ...sold];
 
-async function injectIntoHtml(sectionHtml, activeCount) {
-  let html = await readFile(INDEX_PATH, 'utf-8');
-
-  // Update listings section
-  const START = '<!-- LISTINGS-START -->';
-  const END   = '<!-- LISTINGS-END -->';
-  const si = html.indexOf(START);
-  const ei = html.indexOf(END);
-
-  if (si === -1 || ei === -1) {
-    throw new Error('Markers <!-- LISTINGS-START --> / <!-- LISTINGS-END --> not found in index.html');
+  if (shown.length === 0) {
+    return `  <!-- KOELN-LISTINGS-START -->
+  <section id="objekte-koeln" class="section">
+    <div class="container">
+      <span class="section-label">EVERNEST Köln</span>
+      <h2 class="section-title">Immobilien meiner Kollegen</h2>
+      <p class="section-subtitle">Das gesamte Portfolio von EVERNEST Köln</p>
+      <div class="objekte__cta">
+        <div class="objekte__buttons">
+          <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle Objekte bei EVERNEST Köln</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- KOELN-LISTINGS-END -->`;
   }
 
-  html = html.slice(0, html.lastIndexOf('\n', si) + 1)
-    + sectionHtml
-    + html.slice(ei + END.length);
+  const cards = shown.map(buildCard).join('\n');
 
-  // Update trust bar active count
+  return `  <!-- KOELN-LISTINGS-START -->
+  <section id="objekte-koeln" class="section">
+    <div class="container">
+      <span class="section-label">EVERNEST Köln</span>
+      <h2 class="section-title">Immobilien meiner Kollegen</h2>
+      <p class="section-subtitle">Das gesamte Portfolio von EVERNEST Köln — ${active.length} aktuelle Objekte</p>
+
+      <div class="listings-carousel splide" aria-label="EVERNEST Köln Portfolio">
+        <div class="splide__track">
+          <ul class="splide__list">
+${cards}
+          </ul>
+        </div>
+      </div>
+
+      <div class="objekte__cta">
+        <div class="objekte__buttons">
+          <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle Objekte bei EVERNEST Köln</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- KOELN-LISTINGS-END -->`;
+}
+
+// ---------------------------------------------------------------------------
+// Inject into HTML
+// ---------------------------------------------------------------------------
+
+async function injectIntoHtml(romanHtml, koelnHtml, activeCount) {
+  let html = await readFile(INDEX_PATH, 'utf-8');
+
+  // Inject Roman's section
+  const S1 = '<!-- LISTINGS-START -->';
+  const E1 = '<!-- LISTINGS-END -->';
+  const si1 = html.indexOf(S1);
+  const ei1 = html.indexOf(E1);
+  if (si1 === -1 || ei1 === -1) throw new Error('LISTINGS markers not found');
+  html = html.slice(0, html.lastIndexOf('\n', si1) + 1)
+    + romanHtml
+    + html.slice(ei1 + E1.length);
+
+  // Inject Köln section
+  const S2 = '<!-- KOELN-LISTINGS-START -->';
+  const E2 = '<!-- KOELN-LISTINGS-END -->';
+  const si2 = html.indexOf(S2);
+  const ei2 = html.indexOf(E2);
+  if (si2 === -1 || ei2 === -1) throw new Error('KOELN-LISTINGS markers not found');
+  html = html.slice(0, html.lastIndexOf('\n', si2) + 1)
+    + koelnHtml
+    + html.slice(ei2 + E2.length);
+
+  // Update trust bar
   html = html.replace(
     /<!-- TRUST-ACTIVE-COUNT -->\d+<!-- \/TRUST-ACTIVE-COUNT -->/,
     `<!-- TRUST-ACTIVE-COUNT -->${activeCount}<!-- /TRUST-ACTIVE-COUNT -->`
@@ -182,20 +289,31 @@ async function injectIntoHtml(sectionHtml, activeCount) {
 }
 
 // ---------------------------------------------------------------------------
-// Main — single HTTP request, no rate-limit risk
+// Main
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log('Fetching EVERNEST profile page…');
+  console.log('Fetching Roman Becker profile…');
+  const romanListings = await fetchRomanListings();
+  const romanIds = new Set(romanListings.map(l => l.id));
+  const romanActive = romanListings.filter(l => !l.sold).length;
+  console.log(`Roman: ${romanListings.length} listings (${romanActive} active)`);
 
-  const listings = await fetchListings();
-  const active = listings.filter(l => !l.sold).length;
-  const sold   = listings.filter(l =>  l.sold).length;
-  console.log(`Found ${listings.length} listings: ${active} active, ${sold} sold.`);
+  console.log('Fetching EVERNEST Köln office page…');
+  let koelnListings = [];
+  try {
+    koelnListings = await fetchKoelnListings(romanIds);
+    const koelnActive = koelnListings.filter(l => !l.sold).length;
+    console.log(`Köln colleagues: ${koelnListings.length} listings (${koelnActive} active)`);
+  } catch (err) {
+    console.warn(`Warning: Could not fetch Köln listings — ${err.message}`);
+    console.warn('Köln section will show empty state.');
+  }
 
-  const sectionHtml = buildSection(listings);
-  await injectIntoHtml(sectionHtml, active);
+  const romanHtml = buildRomanSection(romanListings);
+  const koelnHtml = buildKoelnSection(koelnListings);
 
+  await injectIntoHtml(romanHtml, koelnHtml, romanActive);
   console.log('index.html updated successfully.');
 }
 
