@@ -326,8 +326,8 @@
     :root {
       --navy: #111111;
       --navy-light: #1c1c1c;
-      --gold: #D4AF37;
-      --gold-light: #E4C96A;
+      --gold: #c0c0c0;
+      --gold-light: #d8d8d8;
       --white: #ffffff;
       --off-white: #f5f5f5;
       --gray-100: #f3f3f3;
@@ -432,6 +432,21 @@
       color: var(--white);
     }
 
+    .section--navy .btn--primary,
+    .maps .btn--primary,
+    .hero .btn--primary {
+      background: var(--white);
+      color: var(--navy);
+      border-color: var(--white);
+    }
+
+    .section--navy .btn--primary:hover,
+    .maps .btn--primary:hover,
+    .hero .btn--primary:hover {
+      background: var(--off-white);
+      border-color: var(--off-white);
+    }
+
     .section--gray {
       background: var(--off-white);
     }
@@ -458,16 +473,16 @@
     }
 
     .btn--primary {
-      background: var(--gold);
-      color: var(--navy);
-      border-color: var(--gold);
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
     }
 
     .btn--primary:hover {
-      background: var(--gold-light);
-      border-color: var(--gold-light);
+      background: #333333;
+      border-color: #333333;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(201, 168, 76, 0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .btn--secondary {
@@ -495,13 +510,12 @@
 
     .btn--gold-outline {
       background: transparent;
-      color: var(--gold);
-      border-color: var(--gold);
+      color: var(--white);
+      border-color: var(--white);
     }
 
     .btn--gold-outline:hover {
-      background: var(--gold);
-      color: var(--navy);
+      background: rgba(255,255,255,0.12);
       transform: translateY(-1px);
     }
 
@@ -1075,7 +1089,7 @@
       object-fit: cover;
       object-position: center top;
       border: 4px solid var(--gold);
-      box-shadow: 0 8px 32px rgba(201, 168, 76, 0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     }
 
     @media (min-width: 768px) {
@@ -1513,7 +1527,8 @@
     }
 
     .faq__item.active .faq__icon {
-      background: var(--gold);
+      background: var(--navy);
+      color: var(--white);
       transform: rotate(45deg);
     }
 
@@ -1797,7 +1812,7 @@
 
     .form-success {
       display: none;
-      background: rgba(201, 168, 76, 0.15);
+      background: rgba(0,0,0,0.05);
       border: 1px solid var(--gold);
       border-radius: var(--radius);
       padding: var(--space-8);
