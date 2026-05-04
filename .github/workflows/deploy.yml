@@ -1,4 +1,4 @@
-name: Deploy to Starthost
+name: Deploy Roman (allinkl prod + Starthost preview)
 
 on:
   push:
