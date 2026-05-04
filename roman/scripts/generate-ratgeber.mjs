@@ -1129,6 +1129,13 @@ function buildPage(page) {
     .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
     .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
   </style>
+  <!-- ClickRank.ai SEO verification -->
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
 </head>
 <body>
 
