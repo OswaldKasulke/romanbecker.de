@@ -64,10 +64,48 @@ ${items}
   </section>`;
 }
 
+const CTA_BUTTON_POOL = [
+  s => `Kostenlose Immobilienbewertung in ${s}`,
+  s => `Wertermittlung f\u00fcr ${s}`,
+  s => `Immobilie in ${s} bewerten lassen`,
+  s => `Marktwert Ihrer Immobilie in ${s}`,
+  s => `Hausverkauf in ${s} \u2013 Erstberatung`,
+  s => `Verkaufsberatung f\u00fcr ${s}`,
+  s => `Immobilienbewertung ${s} anfordern`,
+  s => `Kostenfreie Wertanalyse ${s}`,
+];
+const CTA_TITLE_POOL = [
+  s => `Kostenlose Immobilienbewertung in ${s} durch Roman Becker`,
+  s => `Wertermittlung f\u00fcr ${s} \u2013 kostenlos und unverbindlich`,
+  s => `Marktwert-Analyse Ihrer Immobilie in ${s}`,
+  s => `Hausverkauf in ${s} \u2013 pers\u00f6nliche Beratung`,
+];
+const CTA_SUBLINE_POOL = [
+  s => `Kostenlose Bewertung f\u00fcr Ihre Immobilie in ${s}.`,
+  s => `Marktwert Ihrer Immobilie in ${s} \u2013 kostenfrei und diskret.`,
+  s => `Jetzt Ihre Immobilie in ${s} bewerten lassen.`,
+  s => `Wertermittlung f\u00fcr ${s}: kostenfrei, diskret, pers\u00f6nlich.`,
+  s => `Diskrete Bewertung Ihrer Immobilie in ${s} \u2013 ohne Verpflichtung.`,
+  s => `Verkaufsberatung f\u00fcr Eigent\u00fcmer in ${s}.`,
+  s => `Kostenlose Immobilienbewertung in ${s} \u2013 pers\u00f6nlich vor Ort.`,
+  s => `Marktanalyse Ihrer Immobilie in ${s} \u2013 diskret und unverbindlich.`,
+];
+function ctaHash(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) - h) + str.charCodeAt(i) | 0;
+  return Math.abs(h);
+}
+
 function render(d) {
   const fn = 'K\u00f6ln-'+d.n;
   const rc = d.refs ? d.refs.length : 0;
   const rt = rc > 0 ? ' \u2014 '+rc+' vermittelte'+(rc===1?'s Objekt':' Objekte')+' in '+d.n+'.' : '';
+  const _h = ctaHash(d.s);
+  const ctaTopBtn    = CTA_BUTTON_POOL[_h % CTA_BUTTON_POOL.length](fn);
+  const ctaTopTitle  = CTA_TITLE_POOL[(_h+1) % CTA_TITLE_POOL.length](fn);
+  const ctaSubline   = CTA_SUBLINE_POOL[(_h>>3) % CTA_SUBLINE_POOL.length](fn);
+  const ctaBotBtn    = CTA_BUTTON_POOL[(_h+4) % CTA_BUTTON_POOL.length](fn);
+  const ctaBotTitle  = CTA_TITLE_POOL[(_h+1) % CTA_TITLE_POOL.length](fn);
   const md = 'Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung '+fn+'. Immobilie in '+fn+' verkaufen oder kaufen? Roman Becker \u2014 Ihr Makler vor Ort.'+rt+' Marktdaten, Stadtteil-Expertise, EVERNEST-Netzwerk. Jetzt beraten lassen.';
   const bbox = (d.lng-0.02).toFixed(3)+'%2C'+(d.lat-0.015).toFixed(3)+'%2C'+(d.lng+0.02).toFixed(3)+'%2C'+(d.lat+0.015).toFixed(3);
   const mapUrl = 'https://www.openstreetmap.org/export/embed.html?bbox='+bbox+'&layer=mapnik&marker='+d.lat+'%2C'+d.lng;
@@ -201,10 +239,10 @@ ${faqLD}
       <h1>Immobilienmakler in ${fn} \u2013 Roman Becker</h1>
       <p class="hero__subtitle">${d.intro}</p>
       <div class="hero__buttons">
-        <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="Kostenlose Immobilienbewertung in ${fn} durch Roman Becker">Kostenlose Immobilienbewertung</a>
+        <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="${ctaTopTitle}">${ctaTopBtn}</a>
         <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
       </div>
-      <p class="hero__cta-subline" style="margin-top:var(--space-4);font-size:0.9375rem;color:rgba(255,255,255,0.85);">Kostenlose Bewertung für Ihre Immobilie in ${fn}.</p>
+      <p class="hero__cta-subline" style="margin-top:var(--space-4);font-size:0.9375rem;color:rgba(255,255,255,0.85);">${ctaSubline}</p>
       <div style="margin-top:var(--space-6);">
         <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9496197,2.0739353,7.01z/data=!3m1!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m10!1m2!2m1!1sroman+becker!3m6!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!15sCgxyb21hbiBiZWNrZXJaDiIMcm9tYW4gYmVja2VykgEScmVhbF9lc3RhdGVfYWdlbnRzmgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxYWJWVlZSakZQU0ZKbVZHMWtkazR4U1RWTlZrSnRWVWM1VEU5VlJSQULgAQD6AQUIhQIQRQ!16s%2Fg%2F11w4rp9vvy?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="review-badge">
           <span class="review-badge__stars">\u2605\u2605\u2605\u2605\u2605</span>
@@ -297,7 +335,7 @@ ${faqH}
         <h2>Immobilie in ${fn} verkaufen oder kaufen?</h2>
         <p>Ob Verkauf, Kauf oder Kapitalanlage \u2014 ich berate Sie pers\u00f6nlich, unverbindlich und diskret. Als Ihr Makler in K\u00f6ln kenne ich den Markt aus erster Hand.</p>
         <div class="cta-buttons">
-          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="${ctaBotTitle}">${ctaBotBtn}</a>
           <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
         </div>
       </div>
