@@ -68,7 +68,7 @@ function render(d) {
   const fn = 'K\u00f6ln-'+d.n;
   const rc = d.refs ? d.refs.length : 0;
   const rt = rc > 0 ? ' \u2014 '+rc+' vermittelte'+(rc===1?'s Objekt':' Objekte')+' in '+d.n+'.' : '';
-  const md = 'Immobilie in '+fn+' verkaufen oder kaufen? Roman Becker \u2014 Ihr Makler vor Ort.'+rt+' Marktdaten, Stadtteil-Expertise, EVERNEST-Netzwerk. Jetzt beraten lassen.';
+  const md = 'Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung '+fn+'. Immobilie in '+fn+' verkaufen oder kaufen? Roman Becker \u2014 Ihr Makler vor Ort.'+rt+' Marktdaten, Stadtteil-Expertise, EVERNEST-Netzwerk. Jetzt beraten lassen.';
   const bbox = (d.lng-0.02).toFixed(3)+'%2C'+(d.lat-0.015).toFixed(3)+'%2C'+(d.lng+0.02).toFixed(3)+'%2C'+(d.lat+0.015).toFixed(3);
   const mapUrl = 'https://www.openstreetmap.org/export/embed.html?bbox='+bbox+'&layer=mapnik&marker='+d.lat+'%2C'+d.lng;
 
@@ -116,7 +116,7 @@ return `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Immobilienmakler ${fn} \u2013 Roman Becker</title>
+  <title>Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung ${fn}</title>
   <meta name="description" content="${esc(md)}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://romanbecker.de/stadtteile/${d.s}.html">
@@ -124,14 +124,14 @@ return `<!DOCTYPE html>
   <meta name="geo.placename" content="${fn}">
   <meta name="geo.position" content="${d.lat};${d.lng}">
   <meta name="ICBM" content="${d.lat}, ${d.lng}">
-  <meta property="og:title" content="Immobilienmakler ${fn} \u2013 Roman Becker">
+  <meta property="og:title" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung ${fn}">
   <meta property="og:description" content="${esc(md)}">
   <meta property="og:url" content="https://romanbecker.de/stadtteile/${d.s}.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="${IMG}">
   <meta property="og:locale" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Immobilienmakler ${fn} \u2013 Roman Becker">
+  <meta name="twitter:title" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung ${fn}">
   <meta name="twitter:description" content="${esc(md)}">
   <meta name="twitter:image" content="${IMG}">
   <link rel="icon" href="https://romanbecker.de/favicon.ico" type="image/x-icon">
@@ -141,7 +141,7 @@ return `<!DOCTYPE html>
     "@graph": [
       {
         "@type": "RealEstateAgent",
-        "name": "Roman Becker \u2013 Immobilienmakler ${fn}",
+        "name": "Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung ${fn}",
         "url": "https://romanbecker.de/stadtteile/${d.s}.html",
         "telephone": "+491775156969",
         "email": "roman.becker@evernest.com",
@@ -150,7 +150,7 @@ return `<!DOCTYPE html>
         "geo": {"@type":"GeoCoordinates","latitude":${d.lat},"longitude":${d.lng}},
         "areaServed": {"@type":"Place","name":"${fn}"},
         "priceRange": "\u20ac\u20ac\u20ac",
-        "openingHours": "Mo-Fr 09:00-19:00"
+        "openingHours": "Mo-Sa 09:00-20:00"
       },
       {
         "@type": "BreadcrumbList",
@@ -201,9 +201,10 @@ ${faqLD}
       <h1>Immobilienmakler in ${fn} \u2013 Roman Becker</h1>
       <p class="hero__subtitle">${d.intro}</p>
       <div class="hero__buttons">
-        <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+        <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="Kostenlose Immobilienbewertung in ${fn} durch Roman Becker">Kostenlose Immobilienbewertung</a>
         <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
       </div>
+      <p class="hero__cta-subline" style="margin-top:var(--space-4);font-size:0.9375rem;color:rgba(255,255,255,0.85);">Kostenlose Bewertung für Ihre Immobilie in ${fn}.</p>
       <div style="margin-top:var(--space-6);">
         <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9496197,2.0739353,7.01z/data=!3m1!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m10!1m2!2m1!1sroman+becker!3m6!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!15sCgxyb21hbiBiZWNrZXJaDiIMcm9tYW4gYmVja2VykgEScmVhbF9lc3RhdGVfYWdlbnRzmgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxYWJWVlZSakZQU0ZKbVZHMWtkazR4U1RWTlZrSnRWVWM1VEU5VlJSQULgAQD6AQUIhQIQRQ!16s%2Fg%2F11w4rp9vvy?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="review-badge">
           <span class="review-badge__stars">\u2605\u2605\u2605\u2605\u2605</span>

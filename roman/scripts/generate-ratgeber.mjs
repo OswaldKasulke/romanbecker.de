@@ -1073,14 +1073,14 @@ function buildPage(page) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${page.title} – Roman Becker Immobilienmakler K\xf6ln</title>
-  <meta name="description" content="${page.desc}">
+  <title>${page.title} – Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung K\xf6ln</title>
+  <meta name="description" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung K\xf6ln. ${page.desc}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://romanbecker.de/ratgeber/${page.slug}/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="${page.title} – Roman Becker">
-  <meta property="og:description" content="${page.desc}">
+  <meta property="og:title" content="${page.title} – Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung K\xf6ln">
+  <meta property="og:description" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung K\xf6ln. ${page.desc}">
   <meta property="og:url" content="https://romanbecker.de/ratgeber/${page.slug}/">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="de_DE">
