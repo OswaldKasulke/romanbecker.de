@@ -1,25 +1,68 @@
+# robots.txt — romanbecker.de
+# Alle relevanten Crawler explizit erlaubt (inkl. AI-Bots).
+# Format: jeder UA-Block hat sowohl "Allow: /" als auch "Disallow:" (leer)
+# damit auch strenge Parser es eindeutig als "alles erlaubt" lesen.
+
 User-agent: *
 Allow: /
+Disallow:
 
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
+# --- Klassische Suchmaschinen ---
 User-agent: Googlebot
 Allow: /
+Disallow:
+
+User-agent: Googlebot-Image
+Allow: /
+Disallow:
 
 User-agent: Bingbot
 Allow: /
+Disallow:
+
+# --- AI / LLM Crawler ---
+User-agent: GPTBot
+Allow: /
+Disallow:
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow:
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow:
+
+User-agent: ClaudeBot
+Allow: /
+Disallow:
+
+User-agent: anthropic-ai
+Allow: /
+Disallow:
+
+User-agent: Claude-Web
+Allow: /
+Disallow:
+
+User-agent: PerplexityBot
+Allow: /
+Disallow:
+
+User-agent: Google-Extended
+Allow: /
+Disallow:
+
+User-agent: CCBot
+Allow: /
+Disallow:
+
+User-agent: Applebot
+Allow: /
+Disallow:
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow:
 
 Sitemap: https://romanbecker.de/sitemap.xml
