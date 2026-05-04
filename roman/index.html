@@ -55,7 +55,6 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
   <!-- Hero LCP Preload -->
-  <link rel="preload" as="image" href="hero-bg.jpg">
   <link rel="preload" as="image" href="roman-portrait.jpg">
 
 <!-- Google Fonts -->
@@ -343,14 +342,16 @@
       --space-2: 0.5rem;
       --space-3: 0.75rem;
       --space-4: 1rem;
+      --space-5: 1.25rem;
       --space-6: 1.5rem;
+      --space-7: 1.75rem;
       --space-8: 2rem;
       --space-12: 3rem;
       --space-16: 4rem;
       --space-20: 5rem;
       --space-24: 6rem;
 
-      --max-width: 1200px;
+      --max-width: 1280px;
       --nav-height: 72px;
       --radius: 8px;
       --radius-lg: 16px;
@@ -596,7 +597,7 @@
     =========================== */
     .section-label {
       display: inline-block;
-      font-size: 0.6875rem;
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -609,7 +610,7 @@
     }
 
     .section-subtitle {
-      font-size: 1.0625rem;
+      font-size: 1rem;
       color: var(--gray-600);
       max-width: 640px;
       margin-bottom: var(--space-12);
@@ -806,8 +807,8 @@
 
     @media (min-width: 768px) {
       .hero__content {
-        grid-template-columns: 1fr 420px;
-        gap: var(--space-16);
+        grid-template-columns: 1fr 380px;
+        gap: var(--space-12);
       }
     }
 
@@ -827,11 +828,17 @@
     }
 
     .hero__title {
+      font-size: clamp(1.625rem, 3.5vw, 2.75rem);
+      line-height: 1.15;
       margin-bottom: var(--space-6);
     }
 
+    @media (min-width: 768px) {
+      .hero__title { font-size: 2.75rem; }
+    }
+
     .hero__subline {
-      font-size: 1.0625rem;
+      font-size: 1rem;
       color: rgba(255,255,255,0.8);
       margin-bottom: var(--space-8);
       display: flex;
@@ -1023,7 +1030,7 @@
 
     .prozess__timing {
       display: inline-block;
-      font-size: 0.625rem;
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1092,6 +1099,10 @@
       align-items: start;
     }
 
+    .about__text {
+      max-width: 880px;
+    }
+
     @media (min-width: 768px) {
       .about__grid {
         grid-template-columns: 1fr;
@@ -1156,9 +1167,16 @@
     }
 
     .about__qualifications ul {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: var(--space-2);
+    }
+
+    @media (min-width: 640px) {
+      .about__qualifications ul {
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--space-6);
+      }
     }
 
     .about__qualifications li {
@@ -1197,7 +1215,7 @@
     }
 
     .about__evernest-label {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -1244,7 +1262,7 @@
       left: 0;
       right: 0;
       padding: var(--space-6);
-      background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 40%, transparent 85%);
     }
 
     .listing-card__badge {
@@ -1253,7 +1271,7 @@
       left: var(--space-3);
       background: rgba(20,20,20,0.6);
       color: rgba(255,255,255,0.75);
-      font-size: 0.625rem;
+      font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -1265,14 +1283,16 @@
     .listing-card__meta {
       font-size: 0.8125rem;
       font-weight: 500;
-      opacity: 0.85;
+      opacity: 0.95;
       margin-bottom: var(--space-1);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
     .listing-card__title {
-      font-size: 1.0625rem;
+      font-size: 1rem;
       font-weight: 700;
       line-height: 1.35;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
     }
 
     .objekte__cta {
@@ -1281,7 +1301,7 @@
     }
 
     .objekte__trust {
-      font-size: 1.0625rem;
+      font-size: 1rem;
       color: var(--gray-600);
       margin-bottom: var(--space-6);
     }
@@ -1416,7 +1436,7 @@
     }
 
     .ref-card__title {
-      font-size: 1.0625rem;
+      font-size: 1rem;
       font-weight: 700;
       line-height: 1.35;
     }
@@ -1427,7 +1447,7 @@
       left: var(--space-3);
       background: var(--navy);
       color: var(--white);
-      font-size: 0.6875rem;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -2042,7 +2062,7 @@
         color: var(--navy);
         text-decoration: none;
         font-weight: 700;
-        font-size: 0.9rem;
+        font-size: 0.875rem;
         padding: 0.75rem 1.25rem;
         border-radius: 2rem;
         box-shadow: 0 4px 20px rgba(0,0,0,0.3);
@@ -2138,7 +2158,7 @@
       <div class="nav__links">
         <a href="#fuer-wen">Für Verkäufer</a>
         <a href="#prozess">Prozess</a>
-        <a href="#ueber-roman">Über Roman</a>
+        <a href="#ueber-roman">Über Roman Becker</a>
         <a href="#faq">FAQ</a>
         <a href="#kontakt">Kontakt</a>
       </div>
@@ -2150,7 +2170,7 @@
     <div class="nav__mobile" role="navigation" aria-label="Hauptmenü">
       <a href="#fuer-wen" onclick="this.parentElement.classList.remove('active')">Für Verkäufer</a>
       <a href="#prozess" onclick="this.parentElement.classList.remove('active')">Prozess</a>
-      <a href="#ueber-roman" onclick="this.parentElement.classList.remove('active')">Über Roman</a>
+      <a href="#ueber-roman" onclick="this.parentElement.classList.remove('active')">Über Roman Becker</a>
       <a href="#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
       <a href="#kontakt" onclick="this.parentElement.classList.remove('active')">Kontakt</a>
       <a href="tel:+491775156969" class="nav__mobile-phone">+49 177 515 69 69</a>
@@ -2175,7 +2195,7 @@
           5,0 ★ auf Google
         </p>
         <div class="hero__ctas">
-          <a href="immobilienbewertung.html" class="btn btn--primary">Werteinschätzung anfordern</a>
+          <a href="immobilienbewertung.html" class="btn btn--primary">Immobilienbewertung</a>
           <a href="#ueber-roman" class="btn btn--secondary">Über Roman Becker</a>
         </div>
       </div>
@@ -2357,10 +2377,7 @@
             Ich wohne mit meiner Familie in Sülz, unsere Zwillinge gehen in die Kita „ums Eck" und meine Frau arbeitet als Kinderzahnärztin am Heumarkt. Einkaufen, Sport und Abendunterhaltung passiert bei uns alles im Veedel. „Makler aus der Nachbarschaft" ist unser Slogan, dieser wird auch gelebt!
           </p>
           <p class="about__bio">
-            Für Familien mit Pänz bietet Sülz beste Möglichkeiten. Der Spielplatz am De-Noel Platz bietet den meisten Schatten für die heißen Sommertage. In der städtischen Musikschule in der Lotharstraße und im Little Gym können die Pänz unter fachmännischer Anleitung tanzen, singen und turnen.
-          </p>
-          <p class="about__bio">
-            Das kulinarische Sülz: Das Balthasar bietet besten Mittagstisch, abends lädt der Biergarten im Unkelbach zum Kölsch ein. Die Sülzburgstraße hat direkt zwei Metzgereien und im Heilandt gibt es den besten Zitronenkuchen der Stadt. Und Kaffee. Richtig guten Kaffee. Richtig gut ist auch das vermutlich beste Eis der Stadt: Das Keiserlich ist beim sommerlichen Veedel-Bummel der MUST-STOP auf jedem Heimweg. Deli, Chang Thai und viele viele weitere Locations machen das kulinarische Angebot rund. Sollte Ihr favorisiertes Restaurant, Brauhaus oder Bar nicht aufgezählt sein: Schicken Sie mir gerne eine Nachricht!
+            <a href="stadtteile/suelz.html">Mehr zu meinem Veedel Sülz →</a>
           </p>
 
           <div class="about__qualifications">
@@ -2377,12 +2394,8 @@
             </ul>
           </div>
 
-          <div class="about__evernest-logo">
-            <img src="evernest-logo-clean.jpg" alt="EVERNEST" width="44" height="44">
-            <span class="about__evernest-label">Partnernetzwerk</span>
-          </div>
           <p class="about__evernest">
-            EVERNEST ist eines der führenden deutschen Immobilienmaklerunternehmen mit 380+ Maklern, 52 Standorten und einer eigenen Technologieplattform für Bewertung, Vermarktung und Käuferprüfung.
+            Mit dem EVERNEST-Partnernetzwerk habe ich Zugriff auf eines der führenden deutschen Immobilienmaklerunternehmen mit 380+ Maklern, 52 Standorten und einer eigenen Technologieplattform für Bewertung, Vermarktung und Käuferprüfung.
           </p>
 
           <a href="#kontakt" class="btn btn--primary">Erstgespräch vereinbaren</a>
@@ -2772,6 +2785,17 @@ WE B.05</div>
           <ul class="splide__list">
             <li class="splide__slide">
               <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4KCxA97RWuPJjFGMGzH5vo/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4UUUwScLD7fRhMAVxIaSYj/a6b9ba0b9af34c34025d509a88d58b0b/bb16528e-472b-4524-85e7-8708fb883bb9?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Mehrgenerationenhaus mit Herz - Raum für Leben, Arbeiten und Träume!" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Bedburg-Kaster, 50181 — 699.000 €</div>
+                    <div class="listing-card__title">Mehrgenerationenhaus mit Herz - Raum für Leben, Arbeiten und Träume!</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3Bs9Sfefa29TS809QZd8In/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3IYzi9oGvQXrvtR3xTfgiK/6a0b1fe6b40445295de3d3651eb0e450/74f2f9a8-7956-4cec-af05-29c745c39e34?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Geräumige 3-Zimmerwohnung nähe Lanxess Arena" loading="lazy">
                   <div class="listing-card__overlay">
@@ -2827,17 +2851,6 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4KCxA97RWuPJjFGMGzH5vo/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/OFHIzSN2lepLlyMWqWHjE/424ad7befd4ab16a70ac7240b37f1ea3/9e9b950e-0c0d-4f54-b616-2ce8552fd2f2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Mehrgenerationenhaus mit Herz - Raum für Leben, Arbeiten und Träume!" loading="lazy">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Bedburg-Kaster, 50181 — 699.000 €</div>
-                    <div class="listing-card__title">Mehrgenerationenhaus mit Herz - Raum für Leben, Arbeiten und Träume!</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2zc1WGP5JMeZ9bFcEQICMl/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3putd8dgsSEpTfvKJtHbnY/4f1a6a707c94fc7ecbc50594628ef341/938bd9f7-b57f-47d6-9d8f-b01b21bc05b5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Rohdiamant in Bonns begehrter Lage – Raum für Ideen und Selbstverwirklichung" loading="lazy">
                   <div class="listing-card__overlay">
@@ -2876,102 +2889,6 @@ WE B.05</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Neustadt/ Süd, 50678 — 1.498.000 €</div>
                     <div class="listing-card__title">Exklusive Wohnung im denkmalgeschützten „Siebengebirge“</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1gms6r5wHb7YhX0PenWUXv/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/302OuevY5KNm3QM1thukQ/1b408d92529f444639c6a998a05f23db/19511b96-f9d7-4c57-9f45-31579ce5efee?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Nachhaltig wohlfühlen – moderne Doppelhaushälfte im Passivhausstandard für die ganze Familie" loading="lazy">
-                  <div class="listing-card__badge">Verkauft</div>
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Köln-Wahn, 51147 — Verkauft</div>
-                    <div class="listing-card__title">Nachhaltig wohlfühlen – moderne Doppelhaushälfte im Passivhausstandard für die ganze Familie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/7jvdC6JxHn2atjUz3D3IMc/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3XDwfsng4yKctYO1lNCkHo/51ccfeaef4b2b8ce66ebc368babc3ea6/4f60b188-f0fd-4e52-9760-b2b04b86a798?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Sonnige Zwei-Zimmerwohnung mit Garage in Buchheim" loading="lazy">
-                  <div class="listing-card__badge">Verkauft</div>
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Köln-Buchheim, 51067 — Verkauft</div>
-                    <div class="listing-card__title">Sonnige Zwei-Zimmerwohnung mit Garage in Buchheim</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1NHhIZIUXVX0RfYMdkYJov/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1jiDxgpVFBVyxOFTEg418Q/76bb57ca50dff4f6b2076d8ff5337921/4c36655a-76b9-4f17-8d88-7c17aae2759d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Stilvoller Altbau trifft auf Moderne - 5-Zimmer-Wohnung mit Terrasse und Balkon" loading="lazy">
-                  <div class="listing-card__badge">Verkauft</div>
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Köln-Neustadt/ Süd, 50674 — Verkauft</div>
-                    <div class="listing-card__title">Stilvoller Altbau trifft auf Moderne - 5-Zimmer-Wohnung mit Terrasse und Balkon</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/6uqL5zAReinuxRvGaiMlcK/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5R23i5mu2yU5SWFenZYz1p/b95c8ca5ae4a3ff7239bccf558b74661/90f33edd-304c-439a-8e2a-f16727909ff0?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Stilvoll modernisierter Bungalow in Köln Widdersdorf mit Garten und Garage - bezugsfertig!" loading="lazy">
-                  <div class="listing-card__badge">Verkauft</div>
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Köln-Widdersdorf, 50859 — Verkauft</div>
-                    <div class="listing-card__title">Stilvoll modernisierter Bungalow in Köln Widdersdorf mit Garten und Garage - bezugsfertig!</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1TOTZqcJu8mc3LdpbeQyaC/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7sCu8YrxFBVEVPAnNbIhIB/99feedbdabd4b9baba525a4c4cfbe054/eb7b28d0-9726-4f27-82d1-459bb94c668c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Historisches Leben in modernem Gewand in Korschenbroich" loading="lazy">
-                  <div class="listing-card__badge">Verkauft</div>
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Korschenbroich-Glehn, 41352 — Verkauft</div>
-                    <div class="listing-card__title">Historisches Leben in modernem Gewand in Korschenbroich</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1Pio5YkPGWzhtvQH51oBBJ/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7gE0UslWvb9fylKejfMk7B/354acc8e66c0b776b740a6c75ef79976/8833b5d0-726c-40ca-9a48-b24b17506656?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Sanierte 5-Zimmer-Altbauwohnung perfekt für Kapitalanleger oder Selbstnutzer" loading="lazy">
-                  <div class="listing-card__badge">Verkauft</div>
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Köln-Neustadt/ Süd, 50674 — Verkauft</div>
-                    <div class="listing-card__title">Sanierte 5-Zimmer-Altbauwohnung perfekt für Kapitalanleger oder Selbstnutzer</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4aOPYm8de83OYm2tcAC7gI/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4LruqjH9h3alx2OYzmt6xt/78e9e8f8dffb31322c20be46b7626690/f89adc3d-e302-4ec6-a6be-537802402432?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Altbaucharme mit Blick über die Südstadt" loading="lazy">
-                  <div class="listing-card__badge">Verkauft</div>
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Köln-Neustadt/ Süd, 50678 — Verkauft</div>
-                    <div class="listing-card__title">Altbaucharme mit Blick über die Südstadt</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/73VLjTns5n1TPUThzDv7eK/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5gOP3aGkBSgaGAur8n0N9f/323f93750145b3fa8521047c685467b3/6721878e-76a6-4008-adff-98f707d4c57f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Wohntraum in Köln-Lövenich" loading="lazy">
-                  <div class="listing-card__badge">Verkauft</div>
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Köln-Lövenich, 50859 — Verkauft</div>
-                    <div class="listing-card__title">Wohntraum in Köln-Lövenich</div>
                   </div>
                 </a>
               </div>
@@ -3466,7 +3383,7 @@ WE B.05</div>
             </div>
             <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:10px;">
               <input type="checkbox" id="datenschutz" name="datenschutz" required aria-required="true" style="margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--gold);cursor:pointer;">
-              <label for="datenschutz" style="font-size:13px;color:var(--gray-400);cursor:pointer;line-height:1.5;">Ich habe die <a href="datenschutz.html" style="color:var(--gold);text-decoration:underline;" target="_blank">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. *</label>
+              <label for="datenschutz" style="font-size:0.8125rem;color:var(--gray-400);cursor:pointer;line-height:1.5;">Ich habe die <a href="datenschutz.html" style="color:var(--gold);text-decoration:underline;" target="_blank">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. *</label>
             </div>
             <button type="submit" class="btn btn--primary" style="align-self: flex-start;">Anfrage senden</button>
           </form>
@@ -3565,7 +3482,7 @@ WE B.05</div>
         </div>
       </div>
       <p class="footer__disclaimer">
-        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten.
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
       </p>
     </div>
   </footer>

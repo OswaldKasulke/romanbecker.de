@@ -93,27 +93,20 @@ async function fetchRomanListings() {
 async function fetchKoelnListings(excludeIds) {
   const data = await fetchPage(KOELN_OFFICE_URL);
 
-  // Köln page embeds listings in slotsCollection as PropertyList slots
+  // Köln page embeds listings in slotsCollection as PropertyList slots.
+  // Only take the FIRST PropertyList slot — that's the main "Unsere Immobilienangebote" carousel.
+  // Earlier we concatenated all slots, which mixed in old sold listings from secondary slots.
   const slots = data?.props?.pageProps?.data?.page?.slotsCollection?.items ?? [];
-  const propertySlots = slots.filter(s => s?.__typename === 'PropertyList');
+  const firstPropertySlot = slots.find(s => s?.__typename === 'PropertyList');
 
-  let allItems = [];
-  for (const slot of propertySlots) {
-    const items = slot?.itemsCollection?.items ?? [];
-    allItems = allItems.concat(items);
+  if (!firstPropertySlot) {
+    throw new Error('No PropertyList slot found on Köln office page');
   }
 
-  // Deduplicate by id
-  const seen = new Set();
-  allItems = allItems.filter(item => {
-    const id = item?.sys?.id;
-    if (!id || seen.has(id)) return false;
-    seen.add(id);
-    return true;
-  });
+  const allItems = firstPropertySlot?.itemsCollection?.items ?? [];
 
   if (allItems.length === 0) {
-    throw new Error('No PropertyList items found on Köln office page');
+    throw new Error('PropertyList slot is empty on Köln office page');
   }
 
   return allItems
@@ -205,8 +198,7 @@ ${cards}
 
 function buildKoelnSection(listings) {
   const active = listings.filter(l => !l.sold);
-  const sold   = listings.filter(l => l.sold).slice(0, MAX_SOLD);
-  const shown  = [...active, ...sold];
+  const shown  = active;
 
   if (shown.length === 0) {
     return `  <!-- KOELN-LISTINGS-START -->

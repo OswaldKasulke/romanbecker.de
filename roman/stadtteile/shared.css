@@ -290,13 +290,11 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 /* INFRA LIST */
 .infra-list { list-style: none; }
 .infra-list li {
-  padding: var(--space-3) 0;
-  border-bottom: 1px solid var(--gray-200);
+  padding: var(--space-2) 0;
   font-size: 0.9375rem;
   display: flex;
   gap: var(--space-3);
 }
-.infra-list li:last-child { border-bottom: none; }
 .infra-icon { flex-shrink: 0; width: 20px; text-align: center; }
 
 /* FAQ — semantic details/summary */
