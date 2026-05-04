@@ -162,11 +162,6 @@ function buildRomanSection(listings) {
   <!-- LISTINGS-END -->`;
   }
 
-  const totalSold = listings.filter(l => l.sold).length;
-  const trustText = totalSold > 0
-    ? `${active.length} aktuelle &amp; ${totalSold} erfolgreich vermittelte Objekte in Köln &amp; Umland`
-    : `${active.length} aktuelle Objekte in Köln &amp; Umland`;
-
   const cards = shown.map(buildCard).join('\n');
 
   return `  <!-- LISTINGS-START -->
@@ -174,7 +169,7 @@ function buildRomanSection(listings) {
     <div class="container">
       <span class="section-label">Mein Portfolio</span>
       <h2 class="section-title">Meine Immobilien</h2>
-      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST</p>
+      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST (Auswahl)</p>
 
       <div class="listings-carousel splide" aria-label="Meine Immobilienangebote">
         <div class="splide__track">
@@ -185,7 +180,6 @@ ${cards}
       </div>
 
       <div class="objekte__cta">
-        <p class="objekte__trust">${trustText} — von der Erstberatung bis zum Notar.</p>
         <div class="objekte__buttons">
           <a href="${ROMAN_PROFILE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle meine Objekte bei EVERNEST</a>
           <a href="#kontakt" class="btn btn--primary">Beratungsgespräch vereinbaren</a>
@@ -206,7 +200,6 @@ function buildKoelnSection(listings) {
     <div class="container">
       <span class="section-label">EVERNEST Köln</span>
       <h2 class="section-title">Immobilien meiner Kollegen</h2>
-      <p class="section-subtitle">Das gesamte Portfolio von EVERNEST Köln</p>
       <div class="objekte__cta">
         <div class="objekte__buttons">
           <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle Objekte bei EVERNEST Köln</a>
@@ -224,7 +217,6 @@ function buildKoelnSection(listings) {
     <div class="container">
       <span class="section-label">EVERNEST Köln</span>
       <h2 class="section-title">Immobilien meiner Kollegen</h2>
-      <p class="section-subtitle">Das gesamte Portfolio von EVERNEST Köln — ${active.length} aktuelle Objekte</p>
 
       <div class="listings-carousel splide" aria-label="EVERNEST Köln Portfolio">
         <div class="splide__track">

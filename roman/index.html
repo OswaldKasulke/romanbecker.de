@@ -122,9 +122,9 @@
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
             "opens": "09:00",
-            "closes": "19:00"
+            "closes": "20:00"
           }
         ],
         "areaServed": [
@@ -905,13 +905,7 @@
 
     @media (min-width: 768px) {
       .trust__grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .trust__grid {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
     }
 
@@ -1624,14 +1618,16 @@
       background: var(--white);
       border-radius: var(--radius);
       padding: var(--space-6);
-      box-shadow: var(--shadow-sm);
-      border-left: 3px solid transparent;
-      transition: border-color var(--transition), box-shadow var(--transition);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--gray-200);
+      border-left: 3px solid var(--gray-200);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
     }
 
     .stadtteil-card:hover {
       border-left-color: var(--gold);
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 12px 24px rgba(0,0,0,0.10);
+      transform: translateY(-2px);
     }
 
     .stadtteil-card h3 {
@@ -2078,73 +2074,6 @@
       .call-float { display: none; }
     }
 
-    /* ===========================
-       EVERNEST ACCORDION
-    =========================== */
-    .evernest-acc__item {
-      border-bottom: none;
-    }
-    .evernest-acc__trigger {
-      width: 100%;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      padding: var(--space-7) 0;
-      display: flex;
-      align-items: center;
-      gap: var(--space-5);
-      font-size: 1.375rem;
-      font-weight: 600;
-      color: var(--navy);
-      transition: color var(--transition);
-      line-height: 1.4;
-    }
-    .evernest-acc__trigger:hover {
-      color: var(--gold);
-    }
-    .evernest-acc__plus {
-      flex-shrink: 0;
-      font-size: 2rem;
-      font-weight: 300;
-      line-height: 1;
-      width: 32px;
-      transition: transform 0.3s ease;
-      display: inline-block;
-    }
-    .evernest-acc__item.active .evernest-acc__plus {
-      transform: rotate(45deg);
-    }
-    .evernest-acc__body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    .evernest-acc__item.active .evernest-acc__body {
-      max-height: 600px;
-    }
-    .evernest-acc__text {
-      padding: 0 0 var(--space-7) calc(32px + var(--space-5));
-      color: var(--gray-700, #374151);
-      font-size: 1.125rem;
-      line-height: 1.75;
-    }
-    @media (max-width: 768px) {
-      .evernest-acc__trigger {
-        font-size: 1.125rem;
-        padding: var(--space-6) 0;
-        gap: var(--space-4);
-      }
-      .evernest-acc__plus {
-        font-size: 1.625rem;
-        width: 24px;
-      }
-      .evernest-acc__text {
-        padding: 0 0 var(--space-6) calc(24px + var(--space-4));
-        font-size: 1rem;
-      }
-    }
-
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
@@ -2231,7 +2160,7 @@
           <div class="trust__value">5,0 ★</div>
           <div class="trust__label">Google-Bewertung</div>
         </div>
-        <div class="trust__item">
+        <div class="trust__item" hidden>
           <div class="trust__value"><!-- TRUST-ACTIVE-COUNT -->5<!-- /TRUST-ACTIVE-COUNT --></div>
           <div class="trust__label">Objekte in der Vermarktung</div>
         </div>
@@ -2407,44 +2336,52 @@
   <!-- ÜBER EVERNEST -->
   <section id="ueber-evernest" class="section">
     <div class="container">
-      <h2>Über Evernest</h2>
-      <p class="section-subtitle" style="margin-top: var(--space-4);">Evernest ist ein junges Immobilienunternehmen, das den traditionellen Prozess von An– und Verkauf von Immobilien digital und neu denkt.</p>
+      <h2>Über EVERNEST</h2>
+      <p class="section-subtitle" style="margin-top: var(--space-4);">EVERNEST ist ein junges Immobilienunternehmen, das den traditionellen Prozess von An– und Verkauf von Immobilien digital und neu denkt.</p>
 
-      <div class="evernest-acc" style="margin-top: var(--space-8);">
-        <div class="evernest-acc__item">
-          <button class="evernest-acc__trigger" aria-expanded="false">
-            <span class="evernest-acc__plus" aria-hidden="true">+</span>
-            Was unterscheidet Evernest von anderen Maklerunternehmen?
+      <div class="faq__list" style="margin-top: var(--space-8);">
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Was unterscheidet EVERNEST von anderen Maklerunternehmen?
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="evernest-acc__body">
-            <p class="evernest-acc__text">Wir bringen lokale Immobilienkenner, Digitalexperten und kreative Köpfe zusammen, um unseren Kunden den bestmöglichen Service zu bieten. Durch die Kombination von langjähriger Immobilienexpertise, einer hochwertigen Brand, modernem Marketing und innovativer Technologie schaffen wir einen einfachen und transparenten Prozess für alle Beteiligten – für Verkäufer, Käufer und Makler. Wir beraten Sie kompetent, betreuen Sie persönlich und finden gemeinsam mit Ihnen den geeigneten Käufer oder das passende neue Zuhause für Sie!</p>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>Wir bringen lokale Immobilienkenner, Digitalexperten und kreative Köpfe zusammen, um unseren Kunden den bestmöglichen Service zu bieten. Durch die Kombination von langjähriger Immobilienexpertise, einer hochwertigen Brand, modernem Marketing und innovativer Technologie schaffen wir einen einfachen und transparenten Prozess für alle Beteiligten – für Verkäufer, Käufer und Makler. Wir beraten Sie kompetent, betreuen Sie persönlich und finden gemeinsam mit Ihnen den geeigneten Käufer oder das passende neue Zuhause für Sie!</p>
+            </div>
           </div>
         </div>
-        <div class="evernest-acc__item">
-          <button class="evernest-acc__trigger" aria-expanded="false">
-            <span class="evernest-acc__plus" aria-hidden="true">+</span>
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
             Welche Vorteile bietet ein Makler mit innovativer Technologie?
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="evernest-acc__body">
-            <p class="evernest-acc__text">Unsere Plattform versorgt unsere Makler mit digitalen Tools und datengestützten Analysen, um sie mit aktuellen Marktinformationen und Preisentwicklungen in den einzelnen Stadtteilen stets auf dem neuesten Stand zu halten. Das ermöglicht unseren Maklern, sich auf das Wesentliche zu konzentrieren: die persönliche Beratung und Begleitung unserer Kunden.</p>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>Unsere Plattform versorgt unsere Makler mit digitalen Tools und datengestützten Analysen, um sie mit aktuellen Marktinformationen und Preisentwicklungen in den einzelnen Stadtteilen stets auf dem neuesten Stand zu halten. Das ermöglicht unseren Maklern, sich auf das Wesentliche zu konzentrieren: die persönliche Beratung und Begleitung unserer Kunden.</p>
+            </div>
           </div>
         </div>
-        <div class="evernest-acc__item">
-          <button class="evernest-acc__trigger" aria-expanded="false">
-            <span class="evernest-acc__plus" aria-hidden="true">+</span>
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
             Brauche ich einen Makler, um eine Immobilie zu verkaufen?
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="evernest-acc__body">
-            <p class="evernest-acc__text">Wir empfehlen, mit einem erfahrenen Makler zusammenzuarbeiten, der zeitintensive Aufgaben übernimmt und Sie kompetent berät. Die kompetente Beratung und die fundierte Marktpreisanalyse sind ausschlaggebend für den erfolgreichen Verkauf – auch in einem veränderten Marktumfeld.</p>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>Wir empfehlen, mit einem erfahrenen Makler zusammenzuarbeiten, der zeitintensive Aufgaben übernimmt und Sie kompetent berät. Die kompetente Beratung und die fundierte Marktpreisanalyse sind ausschlaggebend für den erfolgreichen Verkauf – auch in einem veränderten Marktumfeld.</p>
+            </div>
           </div>
         </div>
-        <div class="evernest-acc__item">
-          <button class="evernest-acc__trigger" aria-expanded="false">
-            <span class="evernest-acc__plus" aria-hidden="true">+</span>
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
             Warum ist eine Bewertung sinnvoll?
+            <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="evernest-acc__body">
-            <p class="evernest-acc__text">Eine professionelle Bewertung legt den Grundstein für eine erfolgreiche Vermarktung. Der marktgerechte Preis ergibt sich aus verschiedenen Faktoren wie Größe, Baujahr, Zustand, Ausstattung, Lage und der lokalen Nachfrage. Nur mit einer realistischen Preiseinschätzung können wir gemeinsam eine optimale Verkaufsstrategie für Ihre Immobilie entwickeln.</p>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <p>Eine professionelle Bewertung legt den Grundstein für eine erfolgreiche Vermarktung. Der marktgerechte Preis ergibt sich aus verschiedenen Faktoren wie Größe, Baujahr, Zustand, Ausstattung, Lage und der lokalen Nachfrage. Nur mit einer realistischen Preiseinschätzung können wir gemeinsam eine optimale Verkaufsstrategie für Ihre Immobilie entwickeln.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -2456,7 +2393,7 @@
     <div class="container">
       <span class="section-label">Mein Portfolio</span>
       <h2 class="section-title">Meine Immobilien</h2>
-      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST</p>
+      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST (Auswahl)</p>
 
       <div class="listings-carousel splide" aria-label="Meine Immobilienangebote">
         <div class="splide__track">
@@ -2763,7 +2700,6 @@ WE B.05</div>
       </div>
 
       <div class="objekte__cta">
-        <p class="objekte__trust">5 aktuelle &amp; 20 erfolgreich vermittelte Objekte in Köln &amp; Umland — von der Erstberatung bis zum Notar.</p>
         <div class="objekte__buttons">
           <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle meine Objekte bei EVERNEST</a>
           <a href="#kontakt" class="btn btn--primary">Beratungsgespräch vereinbaren</a>
@@ -2778,7 +2714,6 @@ WE B.05</div>
     <div class="container">
       <span class="section-label">EVERNEST Köln</span>
       <h2 class="section-title">Immobilien meiner Kollegen</h2>
-      <p class="section-subtitle">Das gesamte Portfolio von EVERNEST Köln — 10 aktuelle Objekte</p>
 
       <div class="listings-carousel splide" aria-label="EVERNEST Köln Portfolio">
         <div class="splide__track">
@@ -3262,10 +3197,10 @@ WE B.05</div>
   </section>
 
   <!-- EMPFEHLUNG & NETZWERK -->
-  <section id="empfehlung" class="section section--navy">
+  <section id="empfehlung" class="section section--gray">
     <div class="container">
       <span class="section-label">Netzwerk &amp; Empfehlung</span>
-      <h2 class="section-title" style="color:var(--white)">Zusammenarbeiten oder weiterempfehlen</h2>
+      <h2 class="section-title">Zusammenarbeiten oder weiterempfehlen</h2>
 
       <div class="grid-3">
         <div class="empfehlung__card">
@@ -3301,7 +3236,7 @@ WE B.05</div>
             <strong>Roman Becker – Immobilienmakler</strong>
             Kaiser-Wilhelm-Ring 17–21<br>
             50672 Köln<br><br>
-            Mo–Fr 09:00–19:00 Uhr<br>
+            Mo–Sa 09:00–20:00 Uhr<br>
             Termine nach Vereinbarung
           </div>
           <div class="maps__cta">
@@ -3400,8 +3335,7 @@ WE B.05</div>
             <div class="kontakt__info-item">
               <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
               <div>
-                <a href="tel:+491775156969">+49 177 515 69 69</a><br>
-                <span style="font-size:0.8125rem;color:rgba(255,255,255,0.5)">Mo – Fr, 9–19 Uhr</span>
+                <a href="tel:+491775156969">+49 177 515 69 69</a>
               </div>
             </div>
             <div class="kontakt__info-item">
@@ -3427,7 +3361,7 @@ WE B.05</div>
 
           <div class="kontakt__info-box">
             <h4>Direkt erreichbar</h4>
-            <p style="color:rgba(255,255,255,0.85);font-size:0.875rem;margin-bottom:var(--space-4)">Montag – Freitag, 9 bis 19 Uhr. Ich melde mich in der Regel innerhalb von 2 Stunden zurück.</p>
+            <p style="color:rgba(255,255,255,0.85);font-size:0.875rem;margin-bottom:var(--space-4)">Ich melde mich in der Regel innerhalb von 2 Stunden zurück.</p>
             <div style="display:flex;flex-direction:column;gap:var(--space-3);">
               <a href="tel:+491775156969" class="btn btn--primary" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6.06 6.06l.94-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -3445,8 +3379,8 @@ WE B.05</div>
             <div class="kontakt__info-item">
               <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
               <div>
-                Montag – Freitag<br>
-                <strong>9:00 – 19:00 Uhr</strong>
+                Montag – Samstag<br>
+                <strong>9:00 – 20:00 Uhr</strong>
               </div>
             </div>
             <p style="color:rgba(255,255,255,0.5);font-size:0.8125rem;margin-top:var(--space-2)">Besichtigungstermine auch samstags auf Anfrage.</p>
@@ -3488,22 +3422,6 @@ WE B.05</div>
   </footer>
 
   <script>
-    // Evernest Accordion
-    document.querySelectorAll('.evernest-acc__trigger').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var item = this.parentElement;
-        var wasActive = item.classList.contains('active');
-        document.querySelectorAll('.evernest-acc__item').forEach(function(el) {
-          el.classList.remove('active');
-          el.querySelector('.evernest-acc__trigger').setAttribute('aria-expanded', 'false');
-        });
-        if (!wasActive) {
-          item.classList.add('active');
-          this.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-
     // FAQ Accordion
     document.querySelectorAll('.faq__question').forEach(function(btn) {
       btn.addEventListener('click', function() {
