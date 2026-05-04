@@ -203,6 +203,29 @@ return `<!DOCTYPE html>
         "mainEntity": [
 ${faqLD}
         ]
+      },
+      {
+        "@type": "Dataset",
+        "name": "Immobilien-Marktdaten ${fn} Q1/2026",
+        "description": "Aktuelle Marktdaten für ${fn}: Kaufpreise (€/m²) für Eigentumswohnungen und Häuser, Mietpreise und Jahres-Trends. Quartalsweise aktualisiert.",
+        "url": "https://romanbecker.de/stadtteile/${d.s}.html",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": {"@type": "Person", "name": "Roman Becker"},
+        "spatialCoverage": {
+          "@type": "Place",
+          "name": "${fn}",
+          "geo": {"@type": "GeoCoordinates", "latitude": ${d.lat}, "longitude": ${d.lng}}
+        },
+        "temporalCoverage": "2026-01-01/2026-03-31",
+        "datePublished": "2026-05-04",
+        "dateModified": "2026-05-04",
+        "isPartOf": {"@id": "https://romanbecker.de/marktanalyse/koeln-q2-2026.html"},
+        "variableMeasured": [
+          {"@type": "PropertyValue", "name": "Kaufpreis Eigentumswohnung in ${fn}", "value": "${d.mk.e}", "unitText": "EUR/m²", "description": "Durchschnittlicher Kaufpreis pro m² für Eigentumswohnungen in ${fn}, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Kaufpreis Haus in ${fn}", "value": "${d.mk.h}", "unitText": "EUR/m²", "description": "Durchschnittlicher Kaufpreis pro m² für Häuser in ${fn}, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Kaltmiete in ${fn}", "value": "${d.mk.m}", "unitText": "EUR/m²", "description": "Aktuelle Kaltmieten bei Neuvermietung in ${fn}, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Preistrend Jahresvergleich ${fn}", "value": "${String(d.mk.t).replace(/[+%\s]/g, '')}", "unitText": "PERCENT", "description": "Jahresvergleich Preisentwicklung Eigentumswohnungen in ${fn}, Q1/2025 vs Q1/2026"}
+        ]
       }
     ]
   }
