@@ -1,20 +1,35 @@
 #!/usr/bin/env node
 /**
  * generate-marktbericht.mjs
- * Generiert roman/marktanalyse/koeln-q2-2026.html
+ * Generiert roman/marktanalyse/koeln-qN-YYYY.html (aktuelles Quartal automatisch)
+ * Plus roman/marktanalyse/index.html mit chronologischer Liste aller Berichte
+ * Plus Sitemap-Update (fügt neuen Bericht hinzu, falls noch nicht vorhanden)
+ *
  * Datenquellen:
  *   1. stadtteile-data.mjs (80 Stadtteile)
  *   2. Extraktion aus 6 existierenden Stadtteil-HTMLs (Sülz, Lindenthal, Nippes, Rodenkirchen, Bilderstöckchen, Zollstock)
  *
- * Output: HTML-Marktbericht mit Aggregat-Tabelle, Top/Bottom-Listen, Schema.org Article+Dataset
+ * Wird quartalsweise per GitHub Actions Cron ausgeführt (.github/workflows/update-marktbericht.yml)
  */
 
-import {readFileSync, writeFileSync, mkdirSync, existsSync} from 'fs';
+import {readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync} from 'fs';
 import {join, dirname} from 'path';
 import {fileURLToPath} from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
+
+// === Aktuelles Quartal & Datenstand-Quartal automatisch berechnen ===
+const now = new Date();
+const REPORT_Q = Math.ceil((now.getMonth() + 1) / 3);  // 1-4
+const REPORT_Y = now.getFullYear();
+const DATA_Q = REPORT_Q === 1 ? 4 : REPORT_Q - 1;
+const DATA_Y = REPORT_Q === 1 ? REPORT_Y - 1 : REPORT_Y;
+const FILE_SLUG = `koeln-q${REPORT_Q}-${REPORT_Y}`;
+const REPORT_LABEL = `Q${REPORT_Q}/${REPORT_Y}`;
+const DATA_LABEL = `Q${DATA_Q}/${DATA_Y}`;
+const TEMP_COV = `${DATA_Y}-Q${DATA_Q}/${REPORT_Y}-Q${REPORT_Q}`;
+const REPORT_URL = `https://romanbecker.de/marktanalyse/${FILE_SLUG}.html`;
 
 const stadtteile = (await import('./stadtteile-data.mjs')).default;
 
@@ -111,7 +126,7 @@ const datasetItems = all.map(x => ({
   "name": x.n,
   "value": x.e,
   "unitText": "EUR/m²",
-  "description": `Durchschnittlicher Kaufpreis pro m² Eigentumswohnung in Köln-${x.n} (Stand Q1/2026, veröffentlicht Q2/2026)`
+  "description": `Durchschnittlicher Kaufpreis pro m² Eigentumswohnung in Köln-${x.n} (Stand ${DATA_LABEL}, veröffentlicht ${REPORT_LABEL})`
 }));
 
 // HTML-Generator
@@ -148,19 +163,19 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Immobilienmarkt Köln Q2/2026 — Preisanalyse 86 Stadtteile | Roman Becker</title>
-  <meta name="description" content="Roman Becker - EVERNEST | Immobilienmarkt-Analyse Köln Q2/2026: durchschnittliche Kaufpreise (€/m²) für Eigentumswohnungen, Häuser, Mietpreise und Jahres-Trends in 86 Kölner Stadtteilen.">
+  <title>Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile | Roman Becker</title>
+  <meta name="description" content="Roman Becker - EVERNEST | Immobilienmarkt-Analyse Köln ${REPORT_LABEL}: durchschnittliche Kaufpreise (€/m²) für Eigentumswohnungen, Häuser, Mietpreise und Jahres-Trends in 86 Kölner Stadtteilen.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://romanbecker.de/marktanalyse/koeln-q2-2026.html">
+  <link rel="canonical" href="${REPORT_URL}">
 
-  <meta property="og:title" content="Immobilienmarkt Köln Q2/2026 — Preisanalyse 86 Stadtteile">
+  <meta property="og:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile">
   <meta property="og:description" content="Aktuelle Kaufpreise, Mietpreise und Marktrends in allen Kölner Stadtteilen — datierte Analyse von Roman Becker (EVERNEST).">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://romanbecker.de/marktanalyse/koeln-q2-2026.html">
+  <meta property="og:url" content="${REPORT_URL}">
   <meta property="og:locale" content="de_DE">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Immobilienmarkt Köln Q2/2026 — Preisanalyse 86 Stadtteile">
+  <meta name="twitter:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile">
   <meta name="twitter:description" content="Aktuelle Kaufpreise, Mietpreise und Marktrends in allen Kölner Stadtteilen.">
 
   <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
@@ -171,7 +186,7 @@ const html = `<!DOCTYPE html>
     "@graph": [
       {
         "@type": "Article",
-        "headline": "Immobilienmarkt Köln Q2/2026 — Preisanalyse 86 Stadtteile",
+        "headline": "Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile",
         "description": "Quartalsweise aktualisierte Marktanalyse für den Kölner Immobilienmarkt: durchschnittliche Kaufpreise pro m², Mietpreise und Jahres-Trends in allen 86 Stadtteilen Kölns.",
         "datePublished": "${today}",
         "dateModified": "${today}",
@@ -187,8 +202,8 @@ const html = `<!DOCTYPE html>
           "name": "Roman Becker - EVERNEST",
           "url": "https://romanbecker.de"
         },
-        "url": "https://romanbecker.de/marktanalyse/koeln-q2-2026.html",
-        "mainEntityOfPage": "https://romanbecker.de/marktanalyse/koeln-q2-2026.html",
+        "url": "${REPORT_URL}",
+        "mainEntityOfPage": "${REPORT_URL}",
         "about": [
           {"@type": "Thing", "name": "Immobilienmarkt Köln"},
           {"@type": "Place", "name": "Köln", "@id": "https://www.wikidata.org/wiki/Q365"}
@@ -197,9 +212,9 @@ const html = `<!DOCTYPE html>
       },
       {
         "@type": "Dataset",
-        "name": "Immobilien-Marktdaten Köln Q2/2026",
-        "description": "Durchschnittliche Kaufpreise (€/m²) für Eigentumswohnungen in 86 Kölner Stadtteilen, Stand Q1/2026.",
-        "url": "https://romanbecker.de/marktanalyse/koeln-q2-2026.html",
+        "name": "Immobilien-Marktdaten Köln ${REPORT_LABEL}",
+        "description": "Durchschnittliche Kaufpreise (€/m²) für Eigentumswohnungen in 86 Kölner Stadtteilen, Stand ${DATA_LABEL}.",
+        "url": "${REPORT_URL}",
         "license": "https://creativecommons.org/licenses/by/4.0/",
         "creator": {
           "@type": "Person",
@@ -210,7 +225,7 @@ const html = `<!DOCTYPE html>
           "name": "Köln, Nordrhein-Westfalen, Deutschland",
           "@id": "https://www.wikidata.org/wiki/Q365"
         },
-        "temporalCoverage": "2026-Q1/2026-Q2",
+        "temporalCoverage": "${TEMP_COV}",
         "datePublished": "${today}",
         "dateModified": "${today}",
         "keywords": ["Immobilienpreise", "Kölner Stadtteile", "Kaufpreis pro m²", "Marktrend"],
@@ -221,7 +236,7 @@ const html = `<!DOCTYPE html>
         "itemListElement": [
           {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://romanbecker.de/"},
           {"@type": "ListItem", "position": 2, "name": "Marktanalyse", "item": "https://romanbecker.de/marktanalyse/"},
-          {"@type": "ListItem", "position": 3, "name": "Köln Q2/2026", "item": "https://romanbecker.de/marktanalyse/koeln-q2-2026.html"}
+          {"@type": "ListItem", "position": 3, "name": "Köln ${REPORT_LABEL}", "item": "${REPORT_URL}"}
         ]
       }
     ]
@@ -321,15 +336,15 @@ const html = `<!DOCTYPE html>
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="https://romanbecker.de/">Start</a><span>›</span>
         <a href="/marktanalyse/">Marktanalyse</a><span>›</span>
-        Köln Q2/2026
+        Köln ${REPORT_LABEL}
       </nav>
 
-      <h1>Immobilienmarkt Köln Q2/2026 — Preisanalyse 86 Stadtteile</h1>
+      <h1>Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile</h1>
       <p class="lead">Aktuelle Kaufpreise, Mietpreise und Jahres-Trends im Kölner Immobilienmarkt — quartalsweise aktualisiert von Roman Becker (EVERNEST). Datenbasis: ${all.length} Kölner Stadtteile in 9 Bezirken.</p>
 
       <div class="meta">
         <span><strong>Veröffentlicht:</strong> ${today}</span>
-        <span><strong>Datenstand:</strong> Q1/2026</span>
+        <span><strong>Datenstand:</strong> ${DATA_LABEL}</span>
         <span><strong>Stadtteile erfasst:</strong> ${all.length}</span>
         <span><strong>Bezirke:</strong> ${bezirke.length}</span>
         <span><strong>Autor:</strong> Roman Becker (IHK-zertifiziert)</span>
@@ -376,7 +391,7 @@ ${bezirkRows}
       </div>
 
       <h2>Vollständige Stadtteil-Tabelle</h2>
-      <p>Alle erfassten Stadtteile mit aktuellen Marktdaten (Stand Q1/2026). Klick auf den Stadtteilnamen führt zur jeweiligen Detailseite mit Markt- und Lageportrait.</p>
+      <p>Alle erfassten Stadtteile mit aktuellen Marktdaten (Stand ${DATA_LABEL}). Klick auf den Stadtteilnamen führt zur jeweiligen Detailseite mit Markt- und Lageportrait.</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -396,7 +411,7 @@ ${tableRows}
       </div>
 
       <div class="method">
-        <strong>Methodik & Datenquellen:</strong> Die hier ausgewiesenen Werte sind Richtwerte basierend auf Marktbeobachtung, öffentlichen Gutachterausschuss-Daten der Stadt Köln, EVERNEST-internen Verkaufsdaten und Immobilienportal-Auswertungen. Stand der Daten: Q1/2026, veröffentlicht im Q2/2026. Die tatsächlichen Verkaufspreise einzelner Objekte können erheblich abweichen — abhängig von Lage, Baujahr, Zustand, Ausstattung, Energieeffizienz und aktueller Marktsituation. Für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.
+        <strong>Methodik & Datenquellen:</strong> Die hier ausgewiesenen Werte sind Richtwerte basierend auf Marktbeobachtung, öffentlichen Gutachterausschuss-Daten der Stadt Köln, EVERNEST-internen Verkaufsdaten und Immobilienportal-Auswertungen. Stand der Daten: ${DATA_LABEL}, veröffentlicht im ${REPORT_LABEL}. Die tatsächlichen Verkaufspreise einzelner Objekte können erheblich abweichen — abhängig von Lage, Baujahr, Zustand, Ausstattung, Energieeffizienz und aktueller Marktsituation. Für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.
       </div>
 
       <div class="cta-box">
@@ -420,11 +435,131 @@ ${tableRows}
 const outDir = join(ROOT, 'marktanalyse');
 if (!existsSync(outDir)) mkdirSync(outDir, {recursive: true});
 
-const outPath = join(outDir, 'koeln-q2-2026.html');
+const outPath = join(outDir, FILE_SLUG + '.html');
 writeFileSync(outPath, html);
 console.log(`✓ Generated ${outPath}`);
+console.log(`  Quartal: ${REPORT_LABEL} (Datenstand ${DATA_LABEL})`);
 console.log(`  Stadtteile: ${all.length}`);
 console.log(`  Bezirke: ${bezirke.length}`);
 console.log(`  Top teuerster: Köln-${top5Teuer[0].n} (~${top5Teuer[0].e} €/m²)`);
 console.log(`  Top günstigster: Köln-${top5Guenstig[0].n} (~${top5Guenstig[0].e} €/m²)`);
 console.log(`  Top Trend: Köln-${top5Trend[0].n} (${top5Trend[0].t} %)`);
+
+// === Index-Seite mit chronologischer Liste aller Berichte generieren ===
+const reportFiles = readdirSync(outDir)
+  .filter(f => /^koeln-q\d-\d{4}\.html$/.test(f))
+  .map(f => {
+    const m = f.match(/^koeln-q(\d)-(\d{4})\.html$/);
+    return {file: f, q: parseInt(m[1]), y: parseInt(m[2])};
+  })
+  .sort((a, b) => b.y - a.y || b.q - a.q);
+
+const reportListItems = reportFiles.map(r => {
+  const isCurrent = r.file === FILE_SLUG + '.html';
+  return `        <li><a href="${r.file}">Immobilienmarkt Köln Q${r.q}/${r.y}${isCurrent ? ' <strong>(aktuell)</strong>' : ''}</a></li>`;
+}).join('\n');
+
+const indexHtml = `<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marktanalyse Köln — Quartalsweise Immobilien-Marktberichte | Roman Becker</title>
+  <meta name="description" content="Roman Becker - EVERNEST | Quartalsweise aktualisierte Marktberichte über den Kölner Immobilienmarkt — alle Stadtteile, Kaufpreise, Mietpreise und Trends.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/marktanalyse/">
+  <meta property="og:title" content="Marktanalyse Köln — Quartalsweise Immobilien-Marktberichte | Roman Becker">
+  <meta property="og:description" content="Quartalsweise aktualisierte Marktberichte über den Kölner Immobilienmarkt.">
+  <meta property="og:url" content="https://romanbecker.de/marktanalyse/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <!-- ClickRank.ai SEO verification -->
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #fff; line-height: 1.7; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .site-header { background: #111; padding: 1rem 0; }
+    .site-header a { color: #fff; text-decoration: none; }
+    .site-header__inner { display: flex; justify-content: space-between; align-items: center; }
+    .site-header__logo { font-family: 'Cardo', serif; font-size: 1.05rem; font-weight: 700; }
+    .site-header__nav a { font-size: 0.9rem; margin-left: 1.5rem; color: #fff; }
+    main { padding: 3rem 0 4rem; }
+    h1 { font-family: 'Cardo', serif; font-size: 2.4rem; line-height: 1.2; margin-bottom: 1rem; color: #111; }
+    .lead { font-size: 1.125rem; color: #374151; margin-bottom: 2rem; }
+    h2 { font-family: 'Cardo', serif; font-size: 1.5rem; margin: 2.5rem 0 1rem; color: #111; }
+    p { margin-bottom: 1rem; color: #374151; }
+    ul { list-style: none; padding: 0; }
+    ul li { padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb; font-size: 1.05rem; }
+    ul li a { color: #111; text-decoration: none; border-bottom: 1px dotted #e5e7eb; }
+    ul li a:hover { color: #c2a990; border-bottom-color: #c2a990; }
+    footer { padding: 2rem 0; background: #111; color: rgba(255,255,255,0.6); font-size: 0.85rem; text-align: center; }
+    footer a { color: #c2a990; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo">Roman Becker - EVERNEST</a>
+        <nav>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <h1>Marktanalyse Köln — Immobilien-Marktberichte</h1>
+      <p class="lead">Quartalsweise aktualisierte Markt-Übersichten zum Kölner Immobilienmarkt mit Kaufpreisen, Mietpreisen und Trends in allen Stadtteilen. Erstellt von Roman Becker (EVERNEST), IHK-zertifizierter Immobilienmakler in Köln.</p>
+      <h2>Aktuelle und vergangene Berichte</h2>
+      <ul>
+${reportListItems}
+      </ul>
+      <p style="margin-top:2rem;font-size:0.9rem;color:#6b7280;">Die Berichte werden quartalsweise auf Basis öffentlicher Marktdaten, EVERNEST-interner Verkaufsdaten und Stadtteil-Beobachtungen aktualisiert.</p>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>© ${REPORT_Y} Roman Becker - EVERNEST · <a href="https://romanbecker.de/">Startseite</a> · <a href="https://romanbecker.de/impressum.html">Impressum</a></p>
+    </div>
+  </footer>
+</body>
+</html>
+`;
+
+writeFileSync(join(outDir, 'index.html'), indexHtml);
+console.log(`✓ Index page updated (${reportFiles.length} reports listed)`);
+
+// === Sitemap automatisch ergänzen falls neuer Bericht ===
+const sitemapPath = join(ROOT, 'sitemap.xml');
+let sitemap = readFileSync(sitemapPath, 'utf-8');
+const newUrl = `<loc>${REPORT_URL}</loc>`;
+if (!sitemap.includes(newUrl)) {
+  const newEntry = `  <url><loc>${REPORT_URL}</loc><lastmod>${today}</lastmod><changefreq>quarterly</changefreq><priority>0.9</priority></url>\n`;
+  sitemap = sitemap.replace('</urlset>', newEntry + '</urlset>');
+  writeFileSync(sitemapPath, sitemap);
+  console.log(`✓ Sitemap updated with new report URL`);
+} else {
+  console.log(`  (Sitemap already contains ${REPORT_URL})`);
+}
+
+// Index page in Sitemap
+const indexUrl = `<loc>https://romanbecker.de/marktanalyse/</loc>`;
+if (!sitemap.includes(indexUrl)) {
+  sitemap = readFileSync(sitemapPath, 'utf-8');
+  const newEntry = `  <url><loc>https://romanbecker.de/marktanalyse/</loc><lastmod>${today}</lastmod><changefreq>quarterly</changefreq><priority>0.85</priority></url>\n`;
+  sitemap = sitemap.replace('</urlset>', newEntry + '</urlset>');
+  writeFileSync(sitemapPath, sitemap);
+  console.log(`✓ Sitemap updated with marktanalyse index URL`);
+}
