@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arbeitsbericht 05. Mai 2026 — HALFEN — fuerte.digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: #F5F3EF;
+    color: #1A1A1A;
+    line-height: 1.7;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 28px 80px;
+  }
+  header {
+    border-bottom: 1px solid #E5E2DC;
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+  }
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .logo span { color: #B8860B; }
+  .breadcrumb {
+    font-size: 0.78rem;
+    color: #888;
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+  }
+  .breadcrumb a {
+    color: #888;
+    text-decoration: none;
+  }
+  .breadcrumb a:hover { color: #B8860B; }
+  .date-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: #B8860B;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  .lead {
+    font-size: 1.05rem;
+    color: #444;
+    max-width: 620px;
+  }
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 48px 0 16px;
+    letter-spacing: -0.005em;
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 28px 0 8px;
+    color: #1A1A1A;
+  }
+  p { margin-bottom: 14px; color: #2A2A2A; }
+  ul, ol {
+    margin-left: 1.2rem;
+    margin-bottom: 18px;
+  }
+  li { margin-bottom: 8px; color: #2A2A2A; }
+  strong { color: #1A1A1A; font-weight: 600; }
+  .panel {
+    background: #FFFFFF;
+    border: 1px solid #E5E2DC;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 18px 0;
+  }
+  .panel-warning {
+    background: #FFF8E6;
+    border-color: #F0D080;
+  }
+  .panel-warning .panel-label {
+    color: #8B6500;
+  }
+  .panel-success {
+    background: #F0F7EC;
+    border-color: #C5DDB1;
+  }
+  .panel-success .panel-label {
+    color: #4A7034;
+  }
+  .panel-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 20px 0 8px;
+  }
+  .stat {
+    background: #FAFAF8;
+    border: 1px solid #E5E2DC;
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .stat-label {
+    font-size: 0.74rem;
+    color: #888;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1A1A1A;
+  }
+  .footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid #E5E2DC;
+    font-size: 0.82rem;
+    color: #888;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer a { color: #B8860B; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .hours-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #555;
+    background: #FAFAF8;
+    border-left: 3px solid #B8860B;
+    padding: 10px 16px;
+    margin-top: 24px;
+  }
+  @media (max-width: 600px) {
+    .container { padding: 36px 18px 60px; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.15rem; }
+    .panel { padding: 20px 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">fuerte<span>.</span>digital</div>
+    <div class="breadcrumb"><a href="uebersicht.html">← Alle Berichte</a></div>
+    <div class="date-line">DIENSTAG · 05. MAI 2026</div>
+    <h1>Datenanbindung Google Ads &amp; erstes Reporting</h1>
+    <p class="lead">Heute haben wir die letzte fehlende Datenquelle automatisch angebunden — das Google-Ads-Konto. Damit greifen wir jetzt täglich automatisiert auf alle relevanten Daten zu, ohne dass jemand bei HALFEN eingeloggt sein muss.</p>
+  </header>
+
+  <h2>Worum es heute ging</h2>
+
+  <p>Bevor wir mit gezielten Verbesserungen am Shop und in der Werbung anfangen können, brauchen wir <strong>verlässliche Zahlen</strong> — und zwar automatisch, jeden Tag, ohne manuelles Klicken in fünf verschiedenen Tools. Diese Grundlage haben wir in den letzten Tagen aufgebaut. Heute ist das letzte Stück fertig geworden.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">✓ ALLE DATENQUELLEN JETZT 100 % AUTOMATISIERT</div>
+    <p style="margin-bottom: 8px;">Nach mehreren Setup-Tagen sind jetzt fünf separate Schnittstellen sauber angebunden, jede einzeln getestet und produktiv:</p>
+    <ul style="margin-bottom: 0;">
+      <li><strong>Shopify</strong> (Bestellungen, Produkte, Theme-Stand)</li>
+      <li><strong>Google Analytics 4</strong> (Besucherverhalten, Funnel)</li>
+      <li><strong>Google Search Console</strong> (organische Suche, Sichtbarkeit)</li>
+      <li><strong>Meta Ads</strong> (Facebook/Instagram-Werbung)</li>
+      <li><strong>Google Ads</strong> (heute fertig)</li>
+    </ul>
+  </div>
+
+  <p>Der Setup-Prozess war <strong>aufwändiger als erwartet</strong>: Bei Google mussten wir ein eigenes Manager-Konto anlegen, das HALFEN-Konto verknüpfen, einen API-Zugang bei Google offiziell beantragen, eine kleine technische Anwendung in der Google Cloud erstellen und das Ganze mehrfach durchtesten, bis der automatische Login-Vorgang sauber lief. Vergleichbares haben wir bei Meta und Shopify in den Tagen davor gemacht. Der Aufwand zahlt sich aber sofort aus: Was vorher manuelle Klick-Arbeit war, läuft jetzt im Hintergrund.</p>
+
+  <h2>Erstes Reporting: Letzte 30 Tage Google Ads</h2>
+
+  <p>Direkt nach Fertigstellung haben wir den ersten automatisierten Datenabzug gemacht. Hier die Zahlen für die <strong>letzten 30 Tage</strong> aus dem Google-Ads-Konto:</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Anzeigen-Einblendungen</div>
+      <div class="stat-value">19.497</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Klicks</div>
+      <div class="stat-value">1.564</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Werbekosten</div>
+      <div class="stat-value">653 €</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Gemeldeter Umsatz</div>
+      <div class="stat-value">9.326 €</div>
+    </div>
+  </div>
+
+  <p>Aktiv sind aktuell <strong>nur zwei Performance-Max-Kampagnen</strong>:</p>
+  <ul>
+    <li><em>"End of Season Sale" ('26)</em> — der Hauptträger: 1.504 Klicks, 606 € Kosten, 8.475 € Umsatz</li>
+    <li><em>PMAX HALFEN DE 05-2026</em> — sehr klein: 60 Klicks, 47 € Kosten, 851 € Umsatz</li>
+  </ul>
+
+  <p>Alle anderen Kampagnen (Walkoverall-Suche, Brand-Kampagnen, Shopping-Kampagnen, ältere Sales-Performance-Kampagnen) sind <strong>pausiert oder gelöscht</strong>. Die Konto-Struktur ist insgesamt sehr schmal — im Vergleich zu einem aufgeräumten Konto fehlt vor allem eine bewusst gepflegte Brand-Suchkampagne und gezielte Such-Kampagnen für die wichtigsten Produkte.</p>
+
+  <h2>Erste Befunde &amp; Auffälligkeiten</h2>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ KRITISCHER BEFUND — CONVERSION-TRACKING UNZUVERLÄSSIG</div>
+    <p>Eine der beiden aktiven Kampagnen (<em>PMAX HALFEN DE 05-2026</em>) meldet <strong>590 Conversions auf nur 60 Klicks</strong> — das wären knapp <strong>10 Käufe pro Klick</strong>. Das ist physikalisch nicht möglich.</p>
+    <p style="margin-bottom: 0;">Wahrscheinliche Ursache: Mehrere Aktionen werden jeweils als "Hauptconversion" gezählt — also nicht nur der eigentliche Kauf, sondern z. B. auch "Produkt angesehen" oder "in den Warenkorb gelegt". Möglich ist auch, dass mehrere Tracking-Systeme (Shopify-Werbe-App, Simprosys-App, Google-Ads-eigener Tag) <strong>parallel</strong> Daten an Google senden und sich gegenseitig überschneiden.</p>
+  </div>
+
+  <h3>Was das in der Praxis bedeutet</h3>
+  <p>Der von Google angezeigte ROAS (Werbe-Rentabilität) liegt rechnerisch bei <strong>14×</strong> — das ist unrealistisch hoch. Zum Vergleich: Bei Meta Ads liegt der ROAS bei <strong>3,87×</strong>, was zur tatsächlichen Geschäftslage von HALFEN passt. Solange das Google-Tracking falsche Zahlen liefert, treffen wir Entscheidungen auf einer falschen Datenbasis — egal ob es um Budget-Verteilung zwischen Kanälen oder um A/B-Tests im Shop geht.</p>
+
+  <h3>Weitere Auffälligkeit</h3>
+  <p>Am HALFEN-Google-Ads-Konto hängen aktuell <strong>vier verschiedene Verwaltungs-Zugänge parallel</strong> (Mable GmbH, Shopify Google Channel App, Simprosys, jetzt zusätzlich fuerte.digital). Das ist nicht falsch, kann aber gerade beim Conversion-Tracking zu Doppelzählungen führen. Das prüfen wir morgen.</p>
+
+  <h2>Empfehlung</h2>
+
+  <p><strong>Vor jedem A/B-Test oder Budget-Shift muss das Conversion-Tracking auf halfenstore.de bereinigt werden.</strong> Sonst messen wir Phantom-Erfolge und kommen zu Empfehlungen, die nicht der Realität entsprechen. Das ist die wichtigste technische Aufräum-Arbeit, die wir vor allem anderen erledigen sollten.</p>
+
+  <h2>Nächste Schritte (morgen, 06. Mai)</h2>
+  <ol>
+    <li>Conversion-Setup auf halfenstore.de auseinandernehmen — welche Aktionen sind als "Hauptconversion" markiert? Welcher Tag-Anbieter zählt was?</li>
+    <li>Suchanfragen-Bericht aus Google Ads abrufen — welche Suchbegriffe lösen die Klicks aus? Sind das überwiegend Brand-Suchen ("Halfen Wollwalk") oder generische Suchen?</li>
+    <li>Geräte-Aufschlüsselung — wie verhält sich Mobile vs. Desktop bei Klicks und Kosten? Das hilft, mögliche Ineffizienzen schnell zu sehen.</li>
+  </ol>
+
+  <div class="hours-line">⏱ Aufgewendete Zeit heute: <strong>5,0 Stunden</strong></div>
+
+  <div class="footer">
+    <span><a href="uebersicht.html">← Alle Berichte</a></span>
+    <span>fuerte.digital · <a href="mailto:daniel@fuerte.digital">daniel@fuerte.digital</a></span>
+  </div>
+</div>
+
+<script>
+if (sessionStorage.getItem('halfen_auth') !== '1') {
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>
