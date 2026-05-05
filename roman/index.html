@@ -1145,6 +1145,83 @@
         margin-top: var(--space-3) !important;
         font-size: 0.8125rem !important;
       }
+
+      /* Mobile compact — section spacing */
+      .section {
+        padding: var(--space-12) 0;
+      }
+      .section-subtitle {
+        margin-bottom: var(--space-6);
+      }
+
+      /* Mobile compact — Prozess */
+      .prozess__steps {
+        margin: 0 0 var(--space-6);
+      }
+      .prozess__step {
+        gap: var(--space-4);
+      }
+      .prozess__number {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      .prozess__step:not(:last-child)::after {
+        left: 19px;
+        top: 40px;
+      }
+      .prozess__text {
+        padding-bottom: var(--space-4);
+      }
+      .prozess__text h3 {
+        font-size: 1.0625rem;
+        line-height: 1.25;
+      }
+      .prozess__text p {
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+      .prozess__deliverables {
+        margin-top: var(--space-2);
+      }
+      .prozess__deliverables li {
+        font-size: 0.78125rem;
+        line-height: 1.45;
+      }
+      .prozess__cta {
+        padding: var(--space-5);
+      }
+      .prozess__cta p {
+        font-size: 0.9375rem;
+        margin-bottom: var(--space-3);
+      }
+
+      /* Mobile compact — Reviews */
+      .reviews__header {
+        margin-bottom: var(--space-6);
+      }
+      .reviews__stars {
+        font-size: 2rem;
+        margin-bottom: var(--space-2);
+      }
+      .reviews__rating {
+        font-size: 1.0625rem;
+      }
+      .review-card {
+        padding: var(--space-5);
+      }
+      .review-card__text {
+        font-size: 0.875rem;
+        line-height: 1.55;
+        margin-bottom: var(--space-3);
+      }
+      .reviews__cta {
+        margin-top: var(--space-5) !important;
+      }
+      .reviews__cta .btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.8125rem;
+      }
     }
 
     /* ===========================
@@ -1582,6 +1659,12 @@
       fill: var(--navy);
       width: 1rem;
       height: 1rem;
+    }
+
+    .listings-carousel .splide__pagination {
+      position: static;
+      padding: var(--space-4) 0 0;
+      gap: 6px;
     }
 
     .listings-carousel .splide__pagination__page {
