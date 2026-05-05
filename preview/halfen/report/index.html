@@ -152,9 +152,9 @@
   <div class="panel panel-success">
     <div class="panel-label">✓ EXECUTIVE SUMMARY</div>
     <ol style="margin-left: 1.2rem;">
-      <li><strong>Cart → Checkout-Drop ist der größte Hebel:</strong> Aktuell brechen <strong>70 % der Kunden</strong> nach Add-to-Cart vor dem Checkout ab (30,3 % statt branchenüblicher 60-70 %). Halbierung des Drops verdoppelt die Site-CR.</li>
-      <li><strong>Conversion-Tracking ist mehrfach defekt:</strong> Google Ads meldet 590 Conversions auf 60 Klicks (Mehrfach-Tracking). GA4 hatte Q1 2025 ein 3-monatiges Sessions-Undercount (~10× zu niedrig). <strong>Tracking muss vor jedem A/B-Test bereinigt werden.</strong></li>
-      <li><strong>Email-Marketing ungenutzt:</strong> Halfen sendet aktuell nur 2× pro Jahr eine Mail (Brevo). Klaviyo-Migration in 4 Wochen + Abandoned-Cart-Flow allein erzeugt <strong>+105.000-153.000 € Umsatz/Jahr</strong>.</li>
+      <li><strong>Cart-Drawer ist die größte Black-Box:</strong> Halfen nutzt Cart-Drawer (kein /cart-Page-Reload) — der eigentliche Cart-Drop liegt dort und ist mit aktuellem Tracking nicht messbar. Microsoft Clarity / Custom-Events nötig für echte Diagnose. (Meta-Pixel-Funnel zeigt 70 % Drop in der "Add-to-Cart → Initiate-Checkout"-Phase, Shopify-Daten zeigen nur 9,6 % Drop nach Checkout-Page — beide messen verschiedene Schritte.)</li>
+      <li><strong>Conversion-Tracking ist mehrfach defekt:</strong> GA4 verfehlt 44 % der echten Bestellungen (Express-Pay-Tracking-Lücke). Google Ads meldet 590 Conversions auf 60 Klicks (Mehrfach-Tracking). GA4 hatte Q1 2025 ein 3-monatiges Sessions-Undercount. <strong>Echte CR vermutlich ~2,3 % statt der GA4-1,29 %.</strong> Tracking muss vor jedem A/B-Test bereinigt werden.</li>
+      <li><strong>Email-Marketing ungenutzt:</strong> Halfen sendet aktuell nur 2× pro Jahr eine Mail (Brevo). Klaviyo-Migration in 4 Wochen mit 5 Email-Flows realistisch <strong>+40-80k € Zusatzumsatz/Jahr</strong> (saubere Aufschlüsselung in Sektion 14).</li>
       <li><strong>SEO-Hebel "wollwalk":</strong> 47.479 Impressions in 180 Tagen auf Position 9 mit nur 0,6 % CTR. Bei Top-3-Position ein Vielfaches an organischem Traffic möglich.</li>
       <li><strong>Saisonalität bestätigt:</strong> Hauptsaison Okt-Jan, Sommer-Tief Mai-Aug. Bau-Deadline Mitte Juli ist saisonal sauber getimt.</li>
     </ol>
@@ -205,14 +205,25 @@
     <li><strong>Google-Ads-Reporting</strong>: Letzte 30 Tage Kampagnen-Performance via Google Ads API</li>
   </ul>
 
-  <h4>180-Tage-Baseline (Site-Wide)</h4>
+  <h4>180-Tage-Baseline (Site-Wide, aus GA4)</h4>
   <div class="stats">
     <div class="stat"><div class="stat-label">Sessions</div><div class="stat-value">147.147</div></div>
     <div class="stat"><div class="stat-label">Users</div><div class="stat-value">93.723</div></div>
-    <div class="stat"><div class="stat-label">Transactions</div><div class="stat-value">1.891</div></div>
-    <div class="stat"><div class="stat-label">Umsatz</div><div class="stat-value">304.830 €</div></div>
-    <div class="stat"><div class="stat-label">AOV</div><div class="stat-value">161,20 €</div></div>
-    <div class="stat"><div class="stat-label">Conversion Rate</div><div class="stat-value">1,29 %</div></div>
+    <div class="stat"><div class="stat-label">Transactions (GA4)</div><div class="stat-value">1.891</div></div>
+    <div class="stat"><div class="stat-label">Umsatz (GA4)</div><div class="stat-value">304.830 €</div></div>
+    <div class="stat"><div class="stat-label">AOV (GA4)</div><div class="stat-value">161,20 €</div></div>
+    <div class="stat"><div class="stat-label">CR (GA4)</div><div class="stat-value">1,29 %</div></div>
+  </div>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ ACHTUNG ALLE WERTE OBEN AUS GA4 — UND GA4 VERFEHLT 44 %</div>
+    <p>Wir haben am 06.05. festgestellt: GA4 erfasst nur 56 % der echten Bestellungen (siehe Sektion 5.3). Die obenstehenden Werte sind dadurch <strong>strukturell unterschätzt</strong>:</p>
+    <ul>
+      <li>Echte Transactions wahrscheinlich näher an <strong>~3.400</strong> (statt 1.891)</li>
+      <li>Echte Site-CR wahrscheinlich <strong>~2,3 %</strong> (statt 1,29 %)</li>
+      <li>Echter Umsatz wahrscheinlich <strong>~545.000 €</strong> (statt 305k €)</li>
+    </ul>
+    <p style="margin-bottom: 0;">→ <strong>Das CR-Ziel "1 % → 2 %" ist möglicherweise schon erreicht</strong>, nur in GA4 unsichtbar. Vor Strategie-Diskussion muss Tracking-Diskrepanz aufgelöst werden. Die echten Zahlen lassen sich nach Aktivierung Server-Side-Tracking (Stufe 1, siehe Sektion 5) verifizieren.</p>
   </div>
 
   <h4>Meta-Pixel-Funnel (180 Tage)</h4>
@@ -279,13 +290,13 @@
   </div>
 
   <div class="panel panel-warning">
-    <div class="panel-label">⚠ HEBEL-RECHNUNG</div>
-    <p>Wenn Cart→Checkout von 30,3 % auf 60 % verdoppelt wird (Branchenstandard) — bei sonst gleichen Zahlen:</p>
-    <ul style="margin-bottom: 0;">
-      <li>Transactions: 1.891 → ca. <strong>3.780 / 180 Tage</strong></li>
-      <li>Site-CR: 1,29 % → <strong>~2,5 %</strong></li>
-      <li>Umsatz: 305.000 € → <strong>~610.000 € pro Halbjahr</strong> (= +600.000 €/Jahr)</li>
+    <div class="panel-label">⚠ HEBEL-RECHNUNG (theoretisch — siehe Korrektur unten)</div>
+    <p>Wenn der Meta-Pixel-Drop von 70 % halbiert wird (theoretisch):</p>
+    <ul>
+      <li>GA4-Transactions würden von 1.891 auf ~3.780 / 180 Tage steigen</li>
+      <li>GA4-CR würde von 1,29 % auf ~2,5 % steigen</li>
     </ul>
+    <p style="margin-bottom: 0;"><strong>ABER (06.05.-Korrektur):</strong> Wir wissen jetzt, dass Meta-Pixel-Funnel und Shopify-Checkouts verschiedene Schritte messen. Der echte Cart-Drawer-Drop ist nicht direkt quantifizierbar mit aktuellem Tracking. Außerdem ist die GA4-CR-Basis selbst um 44 % zu niedrig erfasst. Dieser Wert ist daher als <strong>Größenordnungs-Hinweis</strong> zu verstehen, nicht als präzise Prognose.</p>
   </div>
 
   <h4>Mögliche Ursachen (Hypothesen, zu verifizieren)</h4>
@@ -527,6 +538,11 @@
 
   <p><strong>Praktische Aussage:</strong> Im Sommer (= unsere Bau-Phase) lassen sich nur grobe Hebel mit MDE ≥ 30 % testen. Feinere A/B-Tests (10-20 % MDE) lohnen sich erst in der Hauptsaison Okt-Feb.</p>
 
+  <div class="panel panel-info">
+    <div class="panel-label">→ HINWEIS GA4-BIAS</div>
+    <p style="margin-bottom: 0;">Diese Power-Tabelle nutzt GA4-CRs (Sommer 1,32 %, Hauptsaison 1,87 %). Da GA4 44 % der echten Conversions verfehlt, ist die echte CR höher → tatsächliche Test-Laufzeiten <strong>kürzer</strong> als hier angegeben (geschätzt um Faktor 0,55-0,7). Endgültige Power-Berechnung nach Tracking-Fix.</p>
+  </div>
+
   <!-- 9. SEO/GEO -->
   <h2 id="seo">9. SEO/GEO-Hebel</h2>
   <p>fuerte hat aus den eigenen Projekten <strong>bonuskarte.digital</strong> und <strong>romanbecker.de</strong> tiefes Know-how in klassischer SEO und GEO (Generative Engine Optimization für ChatGPT, Perplexity, Gemini, Google AI Overviews) aufgebaut. Dieses Know-how lässt sich direkt auf Halfen übertragen.</p>
@@ -728,19 +744,39 @@
       <tr><th>Hebel</th><th class="num">CR-Beitrag</th><th>Quelle</th><th>Status</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>Cart→Checkout-Drop fixen</strong> (30,3 % → 60 %)</td><td class="num"><strong>+1,2 PP</strong></td><td>Meta-Pixel-Funnel 180d</td><td>quantifiziert · <strong>dominant</strong></td></tr>
-      <tr><td><strong>Mobile-CR-Lift</strong> (1,19 % → 1,89 %)</td><td class="num">+0,6 PP</td><td>GA4 letzte 12 Monate</td><td>quantifiziert</td></tr>
-      <tr><td><strong>Klaviyo Abandoned-Cart + Browse-Abandonment-Flow</strong></td><td class="num">+0,1–0,2 PP</td><td>Shopify abandonedCheckouts API (06.05.)</td><td><strong>korrigiert 06.05.</strong> · ~30-58k €/Jahr (vs. ursprünglich +150k)</td></tr>
+      <tr><td><strong>Cart-Drawer-UX-Fixe</strong> (Free-Shipping-Bar + Trust-Badges + Mobile-UX)</td><td class="num">nicht direkt messbar</td><td>Meta-Pixel deutet auf größten Hebel · Quantifizierung erfordert Microsoft Clarity</td><td>Hypothese · vermutlich dominant</td></tr>
+      <tr><td><strong>Mobile-CR-Lift</strong> (Mobile auf Desktop-Niveau)</td><td class="num">~+0,6 PP</td><td>GA4 letzte 12 Monate</td><td>GA4-basiert · echte CR höher (44 %-Lücke)</td></tr>
+      <tr><td><strong>Klaviyo (5 Email-Flows)</strong></td><td class="num">+40-80k €/Jahr</td><td>Shopify abandonedCheckouts + Hochrechnung Welcome/Post-Purchase</td><td>Umsatz-Hebel (nicht reiner CR-Hebel)</td></tr>
       <tr><td>B-Ware-Strategie (Outlet ausgliedern oder ausbauen)</td><td class="num">unbekannt</td><td>Shopify Top-Seller 06.05.</td><td>Hypothese · Tine-Entscheidung</td></tr>
       <tr><td>Cashmere-Frühling/Sommer-Marketing-Fokus</td><td class="num">unbekannt</td><td>Shopify Top-Seller 06.05.</td><td>Marketing-Hebel · kein direkter CR</td></tr>
     </tbody>
   </table>
 
   <div class="panel panel-warning">
-    <div class="panel-label">⚠ KORRIGIERTE MATHEMATIK 06.05. (nach Shopify-Daten)</div>
-    <p>Klaviyo-Hebel war ursprünglich auf Meta-Pixel-Abbrecher (3.209/180d × 161 €) gerechnet — das ergab +150k €/Jahr. Korrigiert auf Shopify-Realdaten (30 abandoned checkouts/30d) ergibt der Klaviyo-Hebel nur ~30-58k €/Jahr. Plus Cart-Drop ist nicht messbar ohne Custom-Events.</p>
-    <p style="margin-bottom: 0;"><strong>Neue Mathematik: Hebel 1 (Cart-Drawer-UX, nicht direkt messbar) + Hebel 2 (Mobile +0,6 PP) + Hebel 3 (Klaviyo +0,1-0,2 PP) = +0,7-0,8 PP gesichert messbar</strong> — das reicht NICHT für 3 %. Cart-Drawer-Optimierungen sind der entscheidende Hebel und müssen via Microsoft Clarity / Custom-Events quantifiziert werden, BEVOR wir 3 % als realistisches Ziel bestätigen können.</p>
+    <div class="panel-label">⚠ EHRLICHE MATHEMATIK STAND 06.05.</div>
+    <p>Wir können das CR-Ziel mathematisch <strong>nicht präzise berechnen</strong>, weil:</p>
+    <ul>
+      <li><strong>Echte Ist-CR ist unbekannt</strong> — GA4 zeigt 1,29 %, real vermutlich ~2,3 % (44 %-Tracking-Lücke)</li>
+      <li><strong>Cart-Drawer-Drop nicht messbar</strong> ohne Custom-Events — der vermutlich größte Hebel ist nicht quantifizierbar</li>
+      <li><strong>Mobile/Desktop-CRs basieren auf GA4</strong> — beide unterschätzt um die gleiche unbekannte Lücke</li>
+    </ul>
+    <p>Klaviyo-Hebel wurde mehrfach revidiert (von ursprünglich +150k → +5-8k → realistisch +40-80k €/Jahr) — siehe ehrliche 5-Flow-Aufschlüsselung in <a href="#weitere-punkte">Sektion 12</a>.</p>
+    <p style="margin-bottom: 0;"><strong>Saubere Aussage:</strong> Vor Diskussion über CR-Ziel-Erreichung muss (a) Tracking-Diskrepanz aufgelöst werden (echte CR feststellen) und (b) Cart-Drawer-Diagnose über Microsoft Clarity oder Custom-Events erfolgen. Das ist Wo-1-Aufgabe vor jeder Hebel-Investition.</p>
   </div>
+
+  <h3>Klaviyo-Hebel — saubere 5-Flow-Aufschlüsselung</h3>
+  <table>
+    <thead><tr><th>Flow</th><th class="num">Min €/Jahr</th><th class="num">Max €/Jahr</th><th>Datenbasis</th></tr></thead>
+    <tbody>
+      <tr><td>Abandoned-Cart-Flow (3-Mail-Sequenz)</td><td class="num">10.500</td><td class="num">20.500</td><td>Shopify abandonedCheckouts: 30/30d, saisonal hochgerechnet ~700-900/Jahr × 152 € × 10-15 % Recovery</td></tr>
+      <tr><td>Browse-Abandonment-Flow</td><td class="num">5.000</td><td class="num">15.000</td><td>~30 % der Cart-Abbrecher mit Email-on-File × 5-10 % Recovery (kannibalisierungs-bereinigt)</td></tr>
+      <tr><td>Welcome-Flow (neue Newsletter-Abonnenten)</td><td class="num">5.000</td><td class="num">10.000</td><td>~5.000 neue Abonnenten/Jahr × 10-20 % × 50 € Erst-Order, kannibalisierungs-bereinigt</td></tr>
+      <tr><td>Back-in-Stock-Notifications</td><td class="num">5.000</td><td class="num">10.000</td><td>Halfen-spezifisch (Wollwalk-Saisonprodukte im Herbst zurück)</td></tr>
+      <tr><td>Post-Purchase Cross-Sell + Reviews</td><td class="num">12.500</td><td class="num">25.000</td><td>~5.000-7.000 Orders/Jahr × 5-10 % Cross-Sell × 50 € Zusatz</td></tr>
+      <tr class="total"><td>TOTAL Klaviyo-Hebel</td><td class="num">+38.000 €</td><td class="num">+80.500 €</td><td>5 Flows kombiniert, kannibalisierungs-bereinigt</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 0.82rem; color: #888;">→ Klaviyo ist primär Umsatz-Hebel (zusätzliche Sessions UND Trans über Email-Klicks), nicht reiner CR-Hebel. PP-Beitrag zur Site-CR ist kein passender KPI für Email-Marketing.</p>
 
   <h3>Was Shopify am Hebel-Bild geändert hat</h3>
   <p>Direkter Vergleich zum gestrigen Stand (vor Shopify-API-Anbindung):</p>
