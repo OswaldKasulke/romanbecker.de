@@ -175,6 +175,7 @@
       <li><a href="#strategie">3-Hebel-Strategie für CR 3 %</a></li>
       <li><a href="#massnahmen">Maßnahmenplan</a></li>
       <li><a href="#weitere-punkte">Weitere Briefing-Punkte (Loyalty, Produkte, Fulfillment, Google Ads)</a></li>
+      <li><a href="#todos">Aktuelle TODOs</a></li>
       <li><a href="#roadmap">Roadmap bis Mitte Juli</a></li>
     </ol>
   </div>
@@ -603,8 +604,62 @@
     </ol>
   </div>
 
-  <!-- 13. Roadmap -->
-  <h2 id="roadmap">13. Roadmap bis Mitte Juli</h2>
+  <!-- 13. Aktuelle TODOs -->
+  <h2 id="todos">13. Aktuelle TODOs (lebendig)</h2>
+  <p>Konkrete nächste Schritte, priorisiert nach Hebel-Wirkung. Wird nach Meeting heute (06.05.) und mit Tine abgestimmten Antworten ergänzt.</p>
+
+  <h3>Stand 06.05.2026</h3>
+  <div class="panel panel-success">
+    <div class="panel-label">✓ HEUTE GEMACHT</div>
+    <ul style="margin-bottom: 0;">
+      <li><strong>Test-Shop (Dev-Theme) aufgesetzt</strong> — eigenes unpublished Theme im Halfen-Shopify, das wir frei verändern können ohne Live anzufassen. Theme-ID 181264122123. <em>Preview-URL liefere ich auf Anfrage</em>.</li>
+      <li><strong>GA4 OAuth-Zugang eingerichtet</strong> — fuerte kann jetzt automatisiert auf alle GA4-Daten zugreifen, ohne Service-Account oder Admin-Rechte (über Daniels persönliches Konto)</li>
+    </ul>
+  </div>
+
+  <h3>TODO morgen (07.05.2026)</h3>
+  <div class="panel panel-warning">
+    <div class="panel-label">⚡ DIREKT-HEBEL CART→CHECKOUT</div>
+    <p style="margin-bottom: 0;"><strong>Free Shipping Goal Bar konfigurieren.</strong> Aktuell ist <code>free_shipping_minimum_amount</code> in den Theme-Settings <strong>leer</strong> — die Versandkosten-Goal-Bar im Cart wird gerendert, zeigt aber kein Ziel an. Vorschlag: 80 € (orientiert an AOV 161 €). Kunde sieht dann z.B. "Noch 22 € bis kostenfreier Versand" → motiviert zum Höher-Cart-Volumen UND signalisiert Versandkosten-Klarheit. Direkter Cart→Checkout-Hebel — keine Theme-Code-Änderung nötig, nur Setting setzen.</p>
+  </div>
+
+  <h3>TODO nach Meeting heute</h3>
+  <ul>
+    <li>Meeting-Protokoll mit Action Items + Owner schreiben</li>
+    <li>Tagesbericht 06.05. mit Meeting-Outcome + Antworten zu allen Briefing-Punkt-Fragen</li>
+    <li>Brevo-Zugang erhalten, Listen-Größe + Custom-Fields exportieren</li>
+    <li>Smile-Mitglieder-Anzahl, Kosten/Monat, Vertragslaufzeit erfragen</li>
+    <li>Q1-2025-Tracking-Bruch-Ursache klären (was wurde Anfang Januar 2025 geändert?)</li>
+    <li>GA4-Admin-Rechte für Daniel bei Halfen organisieren</li>
+    <li>Freelancer-Name + Kontakt + Theme-Workflow festklopfen</li>
+  </ul>
+
+  <h3>TODO Woche 1 (06.-12.05.)</h3>
+  <ul>
+    <li>Microsoft Clarity einrichten (kostenlos, DSGVO-konform) für Cart-Diagnose mit Session-Recordings</li>
+    <li>Tracking-Audit cross-platform: alle Apps/Tags inventarisieren (Google Ads + Meta + GA4)</li>
+    <li>Custom-Metafields <code>foxtheme.code_head</code> + <code>foxtheme.code_body</code> im Shopify Admin auslesen — dort sind die Tracking-Tags</li>
+    <li>GA4-Funnel Cart→Checkout Detail-Analyse (welcher Sub-Schritt ist der Drop?)</li>
+    <li>Klaviyo-Account anlegen, Brevo-Liste exportieren — Migration startet</li>
+  </ul>
+
+  <h3>TODO Theme-Quick-Wins (nach Diagnose)</h3>
+  <table>
+    <thead><tr><th>Quick-Win</th><th>Bezug</th><th>Aufwand</th></tr></thead>
+    <tbody>
+      <tr><td>Free Shipping Goal Bar konfigurieren</td><td>Cart→Checkout-Hebel</td><td>5 min</td></tr>
+      <tr><td><code>pcard_show_quickview_button</code> aktivieren</td><td>Browsing schneller</td><td>5 min</td></tr>
+      <tr><td><code>pcard_show_cart_button</code> aktivieren (für Singletons ohne Variants)</td><td>1-Klick-Add</td><td>5 min</td></tr>
+      <tr><td>Empty-Cart-Message stärker mit Top-Collection-Link</td><td>Cart-Recovery</td><td>10 min</td></tr>
+      <tr><td>USP-Bar oben (Made in Germany / GOTS / Bio-Schurwolle / Versand)</td><td>Trust + Conversion (Audit-Befund)</td><td>2 h</td></tr>
+      <tr><td>Trust-Badges PDP (Trustpilot, Sicherheits-Siegel, Rückgabe-Hinweis)</td><td>Cart→Checkout-Hebel</td><td>2 h</td></tr>
+      <tr><td>Größentabelle PDP (Audit-Befund "fehlt komplett")</td><td>UX bei Mode-Shop kritisch</td><td>3 h</td></tr>
+      <tr><td>Apple Pay / Google Pay Express im Cart aktivieren</td><td>Cart→Checkout-Hebel</td><td>4 h</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 14. Roadmap -->
+  <h2 id="roadmap">14. Roadmap bis Mitte Juli</h2>
   <p>Bau-Deadline: Mitte Juli 2026 — alle Hebel live, bevor Hauptsaison startet. CR-Effekt-Messung ab Q4 belastbar.</p>
 
   <table>
