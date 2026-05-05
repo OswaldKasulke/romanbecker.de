@@ -290,14 +290,26 @@
 
   <h4>Mögliche Ursachen (Hypothesen, zu verifizieren)</h4>
   <ol>
+    <li><strong>Free-Shipping-Goal-Bar leer</strong> — bestätigt durch Code (`free_shipping_minimum_amount` in settings_data.json ist leer). Direkt-Hebel, Quick-Win.</li>
     <li>Versandkosten erst im Checkout sichtbar</li>
     <li>Login-/Registrierungs-Pflicht (Hürde besonders auf Mobile)</li>
-    <li>Wenig Payment-Optionen (kein Apple Pay / Google Pay / PayPal Express)</li>
-    <li>Fehlende Vertrauenssignale im Cart (Trustpilot, Sicherheitssiegel)</li>
-    <li>Mobile-spezifische UX-Probleme (kleine Klickflächen, Layout-Sprünge)</li>
+    <li><s>Wenig Payment-Optionen</s> — <strong>Apple Pay / Google Pay / Shop Pay sind bereits aktiviert</strong> (Live-Cart-HTML bestätigt)</li>
+    <li>Fehlende Vertrauenssignale im Cart-Drawer (Trustpilot, Sicherheitssiegel) — bestätigt im Code</li>
+    <li>Mobile-spezifische UX-Probleme im Cart-Drawer (Slide-Out)</li>
     <li>Lieferzeit/Verfügbarkeit erst spät kommuniziert</li>
-    <li>Cart-Page selbst (fehlende Cross-Sells, unklare Mengen-Eingabe)</li>
   </ol>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ KORREKTUR DER CART-DROP-INTERPRETATION (06.05. morgens)</div>
+    <p>Der oben genannte 30,3 %-Wert kommt aus dem <strong>Meta-Pixel-Funnel</strong> und misst den Schritt <em>"Add-to-Cart-Klick → Initiate-Checkout-Klick im Cart-Drawer"</em>. Shopify-eigene Daten zeigen einen anderen Schritt:</p>
+    <ul>
+      <li><strong>Shopify abandonedCheckouts (30d):</strong> 30 abgebrochene Checkouts, Wert 4.557 €</li>
+      <li>284 erfolgreiche Orders + 30 abgebrochene = 314 gestartete Checkouts</li>
+      <li><strong>Checkout-Page → Purchase Completion: 90,4 %</strong> (Drop nur 9,6 %)</li>
+    </ul>
+    <p style="margin-bottom: 0;">→ <strong>Der echte Cart-Drop liegt im Cart-Drawer-Bereich, NICHT auf der Checkout-Page.</strong> Halfen nutzt Cart-Drawer (Slide-Out), nicht Cart-Page — der Drawer-Open ist nicht trackbar in GA4 ohne Custom-Events. Cart-Diagnose braucht Microsoft Clarity oder Custom-Events.</p>
+  </div>
+
   <p>Konkrete Ursachen werden via <strong>Microsoft Clarity oder Hotjar</strong> in Woche 1 identifiziert (Heatmap + Session-Recordings + Cart-Survey).</p>
 
   <!-- 5. Tracking -->
@@ -343,6 +355,64 @@
   </div>
 
   <p><strong>Konsequenz:</strong> Q1 2025 in allen Analysen ausschließen. Ursache muss bei Halfen geklärt werden — was wurde Anfang Januar 2025 geändert (GTM-Update? Cookie-Banner? Theme-Update? Tag-Migration?).</p>
+
+  <h3>Befund 5.3 — 44 % Order-Tracking-Diskrepanz GA4 vs. Shopify (NEU 06.05.)</h3>
+
+  <table>
+    <thead><tr><th>Quelle</th><th class="num">Orders 30d</th><th class="num">Revenue 30d</th><th class="num">AOV</th></tr></thead>
+    <tbody>
+      <tr><td>Shopify (echte Orders)</td><td class="num">284</td><td class="num">34.032 €</td><td class="num">119,83 €</td></tr>
+      <tr><td>GA4 (Tracked)</td><td class="num">159</td><td class="num">25.649 €</td><td class="num">161,32 €</td></tr>
+      <tr><td><strong>Differenz</strong></td><td class="num"><strong>−125 (−44 %)</strong></td><td class="num"><strong>−8.383 €</strong></td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ KRITISCH</div>
+    <p>44 % der echten Bestellungen werden in GA4 nicht erfasst. Wahrscheinliche Ursachen:</p>
+    <ul>
+      <li><strong>Apple Pay / Google Pay / Shop Pay Express-Checkouts</strong> — werden oft nicht in GA4-Purchase-Events erfasst (häufiges Shopify-GA4-Problem)</li>
+      <li>Cookie-Consent-Bounce (Kunden ohne Tracking-Cookie → kein Purchase-Event)</li>
+      <li>Kein Server-Side-Tracking implementiert</li>
+    </ul>
+    <p style="margin-bottom: 0;">→ ROAS-Berechnungen aus GA4 / Google Ads Smart Bidding sind strukturell um 44 % zu niedrig angesetzt. A/B-Tests, die GA4-Conversions als Erfolgsmetrik nutzen, messen unvollständig.</p>
+  </div>
+
+  <h3>Befund 5.4 — Cart-Drawer-Tracking-Blindstelle</h3>
+  <p>Halfen nutzt <strong>Cart-Drawer (Slide-Out)</strong>, kein <code>/cart</code>-Page-Reload. Bestätigt durch Code: <code>cart_type: drawer</code> in Theme-Settings.</p>
+  <p>Konsequenz im GA4-Funnel (06.04.–06.05.2026):</p>
+  <table>
+    <thead><tr><th>Schritt</th><th class="num">Sessions</th><th class="num">% von Site</th></tr></thead>
+    <tbody>
+      <tr><td>Site-Sessions</td><td class="num">11.047</td><td class="num">100,00 %</td></tr>
+      <tr><td><code>/cart</code> Page-View</td><td class="num">64</td><td class="num">0,58 %</td></tr>
+      <tr><td><code>/checkouts/*</code> Page-View</td><td class="num">296</td><td class="num">2,68 %</td></tr>
+      <tr><td>Transactions (GA4)</td><td class="num">159</td><td class="num">1,44 %</td></tr>
+    </tbody>
+  </table>
+  <p>Die "462 %"-Anomalie zwischen <code>/cart</code> (64) und <code>/checkouts</code> (296) ist physikalisch unmöglich — Beweis dass Cart-Drawer-Open NICHT als Page-View getrackt wird.</p>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ FOLGE</div>
+    <p style="margin-bottom: 0;">Der echte Cart-Drop ist mit aktuellem Tracking <strong>nicht messbar</strong>. Microsoft Clarity / Hotjar / Custom-Events nötig für echte Cart-Diagnose.</p>
+  </div>
+
+  <h3>Server-Side-Tracking-Empfehlung (3 Stufen)</h3>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ STUFE 1 — QUICK-WIN (heute, kostenlos)</div>
+    <p style="margin-bottom: 0;"><strong>Shopify Conversions API für Meta aktivieren.</strong> Toggle in Shopify-Admin → Marketing → Pixel Connection → Conversion API. Adressiert Apple/Google/Shop Pay direkt. Kosten: 0 €. Aufwand: 30-60 Min. Erwarteter Impact: +20-30 % Meta-Conversions.</p>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ STUFE 2 — MITTELFRISTIG (Wo 2-4)</div>
+    <p style="margin-bottom: 0;">GA4 Measurement Protocol via Cloud Function + Shopify Web Pixel API. Eigene Cloud-Function (Free-Tier), die GA4-Events serverseitig sendet. Kosten: ~0 € laufend. Aufwand: 8 h Setup. Impact: +10-20 % GA4-Conversions.</p>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ STUFE 3 — OPTIONAL (Wo 5+)</div>
+    <p style="margin-bottom: 0;">Stape.io oder Server-GTM für volle Kontrolle. Kosten: 50-200 €/Monat. Aufwand: 20+ h. Nur wenn Stufe 1+2 nicht reichen.</p>
+  </div>
 
   <div class="panel panel-success">
     <div class="panel-label">→ LÖSUNG GA4-TRACKING</div>
@@ -660,15 +730,16 @@
     <tbody>
       <tr><td><strong>Cart→Checkout-Drop fixen</strong> (30,3 % → 60 %)</td><td class="num"><strong>+1,2 PP</strong></td><td>Meta-Pixel-Funnel 180d</td><td>quantifiziert · <strong>dominant</strong></td></tr>
       <tr><td><strong>Mobile-CR-Lift</strong> (1,19 % → 1,89 %)</td><td class="num">+0,6 PP</td><td>GA4 letzte 12 Monate</td><td>quantifiziert</td></tr>
-      <tr><td><strong>Klaviyo Abandoned-Cart-Flow</strong> (10–15 % Recovery)</td><td class="num">+0,3–0,5 PP</td><td>Industry-Benchmark + Shopify-Volumen</td><td>quantifiziert</td></tr>
+      <tr><td><strong>Klaviyo Abandoned-Cart + Browse-Abandonment-Flow</strong></td><td class="num">+0,1–0,2 PP</td><td>Shopify abandonedCheckouts API (06.05.)</td><td><strong>korrigiert 06.05.</strong> · ~30-58k €/Jahr (vs. ursprünglich +150k)</td></tr>
       <tr><td>B-Ware-Strategie (Outlet ausgliedern oder ausbauen)</td><td class="num">unbekannt</td><td>Shopify Top-Seller 06.05.</td><td>Hypothese · Tine-Entscheidung</td></tr>
       <tr><td>Cashmere-Frühling/Sommer-Marketing-Fokus</td><td class="num">unbekannt</td><td>Shopify Top-Seller 06.05.</td><td>Marketing-Hebel · kein direkter CR</td></tr>
     </tbody>
   </table>
 
-  <div class="panel panel-success">
-    <div class="panel-label">★ MATHEMATIK FÜR CR-ZIEL 3 %</div>
-    <p style="margin-bottom: 0;"><strong>Hebel 1 + 2 + 3 zusammen: 1,29 % + 2,1 PP ≈ 3,4 % Site-CR.</strong> Damit ist das CR-Ziel mathematisch <strong>überschritten</strong>, sogar mit Sicherheitspuffer. Das ist die saubere faktenbasierte Antwort: Wenn wir den Cart→Checkout-Fix sauber liefern + Klaviyo Abandoned-Cart aktivieren + Mobile-UX verbessern, kommen wir auf 3 %.</p>
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ KORRIGIERTE MATHEMATIK 06.05. (nach Shopify-Daten)</div>
+    <p>Klaviyo-Hebel war ursprünglich auf Meta-Pixel-Abbrecher (3.209/180d × 161 €) gerechnet — das ergab +150k €/Jahr. Korrigiert auf Shopify-Realdaten (30 abandoned checkouts/30d) ergibt der Klaviyo-Hebel nur ~30-58k €/Jahr. Plus Cart-Drop ist nicht messbar ohne Custom-Events.</p>
+    <p style="margin-bottom: 0;"><strong>Neue Mathematik: Hebel 1 (Cart-Drawer-UX, nicht direkt messbar) + Hebel 2 (Mobile +0,6 PP) + Hebel 3 (Klaviyo +0,1-0,2 PP) = +0,7-0,8 PP gesichert messbar</strong> — das reicht NICHT für 3 %. Cart-Drawer-Optimierungen sind der entscheidende Hebel und müssen via Microsoft Clarity / Custom-Events quantifiziert werden, BEVOR wir 3 % als realistisches Ziel bestätigen können.</p>
   </div>
 
   <h3>Was Shopify am Hebel-Bild geändert hat</h3>
@@ -712,10 +783,21 @@
     </ul>
   </div>
 
+  <h3>TODO heute Nachmittag (06.05.2026, nach Meeting)</h3>
+  <div class="panel panel-warning">
+    <div class="panel-label">⚡ TRACKING-DIAGNOSE + SST STUFE 1</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>Custom-Metafields auslesen:</strong> <code>shop.metafields.foxtheme.code_head.value</code> + <code>code_body.value</code> im Shopify-Admin → welche Tracking-Tags sind installiert?</li>
+      <li><strong>Test-Bestellung mit Apple Pay</strong> machen → wird Purchase-Event in GA4 + Meta erfasst?</li>
+      <li><strong>Cookie-Consent-Test:</strong> Shop besuchen, Cookie-Consent ablehnen, Bestellung machen → wird sie getrackt?</li>
+      <li><strong>SST Stufe 1 aktivieren</strong> (falls Tine OK gibt): Shopify Admin → Marketing → Pixel Connection → Conversion API einschalten</li>
+    </ol>
+  </div>
+
   <h3>TODO morgen (07.05.2026)</h3>
   <div class="panel panel-warning">
     <div class="panel-label">⚡ DIREKT-HEBEL CART→CHECKOUT</div>
-    <p style="margin-bottom: 0;"><strong>Free Shipping Goal Bar konfigurieren.</strong> Aktuell ist <code>free_shipping_minimum_amount</code> in den Theme-Settings <strong>leer</strong> — die Versandkosten-Goal-Bar im Cart wird gerendert, zeigt aber kein Ziel an. Vorschlag: 80 € (orientiert an AOV 161 €). Kunde sieht dann z.B. "Noch 22 € bis kostenfreier Versand" → motiviert zum Höher-Cart-Volumen UND signalisiert Versandkosten-Klarheit. Direkter Cart→Checkout-Hebel — keine Theme-Code-Änderung nötig, nur Setting setzen.</p>
+    <p style="margin-bottom: 0;"><strong>Free Shipping Goal Bar konfigurieren.</strong> Aktuell ist <code>free_shipping_minimum_amount</code> in den Theme-Settings <strong>leer</strong> — die Versandkosten-Goal-Bar im Cart-Drawer wird gerendert, zeigt aber kein Ziel an. Vorschlag: 80 € (orientiert an AOV 120 € der letzten 30d). Kunde sieht dann z.B. "Noch 22 € bis kostenfreier Versand" → motiviert zum Höher-Cart-Volumen UND signalisiert Versandkosten-Klarheit. Direkter Cart-Drawer-Hebel.</p>
   </div>
 
   <h3>TODO nach Meeting heute</h3>
