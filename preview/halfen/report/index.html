@@ -176,6 +176,7 @@
       <li><a href="#massnahmen">Maßnahmenplan</a></li>
       <li><a href="#weitere-punkte">Weitere Briefing-Punkte (Loyalty, Produkte, Fulfillment, Google Ads)</a></li>
       <li><a href="#bestseller">Top-10 Bestseller 30d</a></li>
+      <li><a href="#synthese">Hebel-Synthese — alle Daten kombiniert</a></li>
       <li><a href="#todos">Aktuelle TODOs</a></li>
       <li><a href="#roadmap">Roadmap bis Mitte Juli</a></li>
     </ol>
@@ -647,8 +648,59 @@
     <p style="margin-bottom: 0;">Eine Top-10-Zeile hat <code>null</code> als Produkt-Titel — und macht trotzdem 1.673 € Umsatz. Passt zum Audit-Befund "70 % Tags leer / 60 % product_type leer". <strong>Konsequenz:</strong> Audit-Phase 1.1 (419 Produkte mit korrektem product_type + Tags versehen) ist dringender als gedacht — nicht nur SEO-Hebel, sondern auch Reporting-Hebel. Wir können nicht ordentlich auswerten, was wir verkaufen, wenn Produkte ohne Titel/Tags durchrutschen.</p>
   </div>
 
-  <!-- 14. Aktuelle TODOs -->
-  <h2 id="todos">14. Aktuelle TODOs (lebendig)</h2>
+  <!-- 14. Hebel-Synthese -->
+  <h2 id="synthese">14. Hebel-Synthese — alle Daten kombiniert (Stand 06.05.2026)</h2>
+  <p>Nach Anbindung aller Datenquellen (GA4, Meta-Pixel, Google Ads, Shopify ShopifyQL) lässt sich der Hebel für CR <strong>1,29 % → 3 %</strong> faktenbasiert ranken. Klar getrennt: <strong>quantifizierbare Hebel</strong> (mit konkreter PP-Schätzung) vs. <strong>Hypothesen-Hebel</strong> (sind plausibel, brauchen aber A/B-Tests in Hauptsaison zur Verifikation).</p>
+
+  <h3>Hebel-Ranking</h3>
+  <table>
+    <thead>
+      <tr><th>Hebel</th><th class="num">CR-Beitrag</th><th>Quelle</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Cart→Checkout-Drop fixen</strong> (30,3 % → 60 %)</td><td class="num"><strong>+1,2 PP</strong></td><td>Meta-Pixel-Funnel 180d</td><td>quantifiziert · <strong>dominant</strong></td></tr>
+      <tr><td><strong>Mobile-CR-Lift</strong> (1,19 % → 1,89 %)</td><td class="num">+0,6 PP</td><td>GA4 letzte 12 Monate</td><td>quantifiziert</td></tr>
+      <tr><td><strong>Klaviyo Abandoned-Cart-Flow</strong> (10–15 % Recovery)</td><td class="num">+0,3–0,5 PP</td><td>Industry-Benchmark + Shopify-Volumen</td><td>quantifiziert</td></tr>
+      <tr><td>B-Ware-Strategie (Outlet ausgliedern oder ausbauen)</td><td class="num">unbekannt</td><td>Shopify Top-Seller 06.05.</td><td>Hypothese · Tine-Entscheidung</td></tr>
+      <tr><td>Cashmere-Frühling/Sommer-Marketing-Fokus</td><td class="num">unbekannt</td><td>Shopify Top-Seller 06.05.</td><td>Marketing-Hebel · kein direkter CR</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-success">
+    <div class="panel-label">★ MATHEMATIK FÜR CR-ZIEL 3 %</div>
+    <p style="margin-bottom: 0;"><strong>Hebel 1 + 2 + 3 zusammen: 1,29 % + 2,1 PP ≈ 3,4 % Site-CR.</strong> Damit ist das CR-Ziel mathematisch <strong>überschritten</strong>, sogar mit Sicherheitspuffer. Das ist die saubere faktenbasierte Antwort: Wenn wir den Cart→Checkout-Fix sauber liefern + Klaviyo Abandoned-Cart aktivieren + Mobile-UX verbessern, kommen wir auf 3 %.</p>
+  </div>
+
+  <h3>Was Shopify am Hebel-Bild geändert hat</h3>
+  <p>Direkter Vergleich zum gestrigen Stand (vor Shopify-API-Anbindung):</p>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ BESTÄTIGT</div>
+    <ul style="margin-bottom: 0;">
+      <li><strong>Niedriges Volumen im Frühling/Sommer</strong> — 284 Orders / 30 Tage = 9,5 Orders/Tag bestätigt die GA4-Saisonalitäts-Analyse: A/B-Tests mit MDE &lt; 30 % im Sommer nicht praktikabel</li>
+      <li><strong>AOV-Differenz Saison</strong> — 119,83 € (30d) vs. 161 € (180d-Schnitt) → Hauptsaison hat höhere Warenkörbe, was Cart→Checkout-Hebel im Q4 noch wertvoller macht</li>
+    </ul>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-label">★ NEU AUFGEDECKT</div>
+    <ul style="margin-bottom: 0;">
+      <li><strong>Pareto-Effekt:</strong> Top-10-Produkte machen ~12.640 € = <strong>37 % vom 30-Tage-Umsatz</strong>. Optimierungen an Top-PDPs haben überproportional großen Effekt — diese Produkte zuerst aufräumen (Größentabelle, Trust-Badges, USP-Bar) statt alle 419 PDPs gleichmäßig</li>
+      <li><strong>B-Ware = Top 3:</strong> 1.514 € in 30 Tagen aus EINEM B-Ware-Produkt (4,5 % vom 30d-Umsatz). Verdacht: Kannibalisierung der Premium-Käufer. Hypothese, nicht quantifiziert</li>
+      <li><strong>Daten-Hygiene-Problem:</strong> 1 Top-10-Produkt hat <code>null</code> als Titel und macht 1.673 € Umsatz. Vor jedem strukturierten Reporting muss Audit-Phase 1.1 (Produkt-Tags + Titel) erledigt sein</li>
+    </ul>
+  </div>
+
+  <h3>Konkrete Antwort auf "Wo ist der größte Hebel für CR 3 %?"</h3>
+  <div class="panel panel-warning">
+    <div class="panel-label">⚡ ANTWORT</div>
+    <p><strong>Cart→Checkout-Drop von 30,3 % auf 60 % bringen + Klaviyo Abandoned-Cart-Flow aktivieren.</strong></p>
+    <p>Diese Kombination ist mathematisch der dominante Hebel (+1,5 bis +1,7 PP) und faktenbasiert über drei Datenquellen abgesichert (Meta-Pixel, GA4, Shopify-Volumen). Mobile-CR-Lift kommt parallel als dritter Hebel mit zusätzlich +0,6 PP.</p>
+    <p style="margin-bottom: 0;">Die Shopify-Daten haben den Hebel <strong>nicht verändert</strong>, aber bestätigt UND zwei Pflicht-Vorbedingungen sichtbar gemacht: <strong>(1) Daten-Hygiene</strong> (Audit-Phase 1.1 vor strukturiertem Reporting) und <strong>(2) Top-PDP-Fokus</strong> (37 % Umsatz aus 10 Produkten — diese zuerst optimieren).</p>
+  </div>
+
+  <!-- 15. Aktuelle TODOs -->
+  <h2 id="todos">15. Aktuelle TODOs (lebendig)</h2>
   <p>Konkrete nächste Schritte, priorisiert nach Hebel-Wirkung. Wird nach Meeting heute (06.05.) und mit Tine abgestimmten Antworten ergänzt.</p>
 
   <h3>Stand 06.05.2026</h3>
@@ -701,8 +753,8 @@
     </tbody>
   </table>
 
-  <!-- 15. Roadmap -->
-  <h2 id="roadmap">15. Roadmap bis Mitte Juli</h2>
+  <!-- 16. Roadmap -->
+  <h2 id="roadmap">16. Roadmap bis Mitte Juli</h2>
   <p>Bau-Deadline: Mitte Juli 2026 — alle Hebel live, bevor Hauptsaison startet. CR-Effekt-Messung ab Q4 belastbar.</p>
 
   <table>
