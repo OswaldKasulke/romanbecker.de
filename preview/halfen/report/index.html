@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halfen CRO-Report — fuerte.digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: #F5F3EF;
+    color: #1A1A1A;
+    line-height: 1.7;
+  }
+  /* PW Gate */
+  #gate {
+    position: fixed; inset: 0;
+    background: #F5F3EF;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    z-index: 1000;
+  }
+  #gate .card {
+    background: #FFFFFF;
+    border: 1px solid #E5E2DC;
+    border-radius: 12px;
+    padding: 48px 44px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  #gate .logo { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 8px; }
+  #gate .logo span { color: #B8860B; }
+  #gate .subtitle { font-size: 0.78rem; color: #888; letter-spacing: 0.03em; margin-bottom: 36px; }
+  #gate h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
+  #gate .desc { font-size: 0.88rem; color: #666; margin-bottom: 32px; line-height: 1.6; }
+  #gate input { width: 100%; padding: 14px 18px; border: 1px solid #E5E2DC; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; background: #FAFAF8; outline: none; margin-bottom: 16px; }
+  #gate input:focus { border-color: #B8860B; }
+  #gate button { width: 100%; padding: 14px; background: #1A1A1A; color: #FFF; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+  #gate button:hover { background: #333; }
+  #gate .err { color: #C62828; font-size: 0.82rem; margin-top: 12px; display: none; }
+  #gate .err.show { display: block; }
+  #gate .footer { margin-top: 32px; font-size: 0.72rem; color: #AAA; }
+
+  /* Report */
+  .container { max-width: 980px; margin: 0 auto; padding: 56px 28px 80px; }
+  header.top { border-bottom: 1px solid #E5E2DC; padding-bottom: 32px; margin-bottom: 48px; }
+  .logo { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .logo span { color: #B8860B; }
+  .breadcrumb { font-size: 0.78rem; color: #888; letter-spacing: 0.03em; margin-bottom: 24px; }
+  .breadcrumb a { color: #888; text-decoration: none; }
+  .breadcrumb a:hover { color: #B8860B; }
+  .date-line { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #B8860B; letter-spacing: 0.04em; margin-bottom: 8px; }
+  h1 { font-size: 2.4rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .lead { font-size: 1.1rem; color: #444; max-width: 720px; }
+  h2 { font-size: 1.6rem; font-weight: 700; margin: 64px 0 18px; letter-spacing: -0.005em; padding-top: 16px; border-top: 1px solid #E5E2DC; }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  h3 { font-size: 1.15rem; font-weight: 600; margin: 32px 0 10px; color: #1A1A1A; }
+  h4 { font-size: 1rem; font-weight: 600; margin: 22px 0 8px; color: #555; text-transform: uppercase; letter-spacing: 0.04em; }
+  p { margin-bottom: 14px; color: #2A2A2A; }
+  ul, ol { margin-left: 1.4rem; margin-bottom: 18px; }
+  li { margin-bottom: 8px; color: #2A2A2A; }
+  strong { color: #1A1A1A; font-weight: 600; }
+  em { font-style: italic; color: #555; }
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; background: #FFFFFF; border: 1px solid #E5E2DC; border-radius: 10px; overflow: hidden; font-size: 0.92rem; margin: 18px 0; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid #F0EDE7; }
+  th { background: #FAFAF8; font-weight: 600; color: #555; font-size: 0.78rem; letter-spacing: 0.02em; text-transform: uppercase; }
+  td.num, th.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
+  tr:last-child td { border-bottom: none; }
+  tr.total td { background: #FAFAF8; font-weight: 600; }
+  /* Boxes */
+  .panel { background: #FFFFFF; border: 1px solid #E5E2DC; border-radius: 10px; padding: 22px 26px; margin: 18px 0; }
+  .panel-warning { background: #FFF8E6; border-color: #F0D080; }
+  .panel-warning .panel-label { color: #8B6500; }
+  .panel-success { background: #F0F7EC; border-color: #C5DDB1; }
+  .panel-success .panel-label { color: #4A7034; }
+  .panel-info { background: #ECF2F7; border-color: #B5C9DD; }
+  .panel-info .panel-label { color: #34547A; }
+  .panel-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 8px; }
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 20px 0 8px; }
+  .stat { background: #FAFAF8; border: 1px solid #E5E2DC; border-radius: 8px; padding: 14px 16px; }
+  .stat-label { font-size: 0.72rem; color: #888; letter-spacing: 0.03em; text-transform: uppercase; margin-bottom: 4px; }
+  .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: #1A1A1A; }
+  .stat-sub { font-size: 0.72rem; color: #888; }
+  /* Charts */
+  .chart-card { background: #FFFFFF; border: 1px solid #E5E2DC; border-radius: 10px; padding: 22px 26px; margin: 18px 0; }
+  .chart-card h4 { margin-top: 0; }
+  .chart-wrap { position: relative; height: 320px; margin-top: 16px; }
+  .chart-wrap.tall { height: 420px; }
+  /* TOC */
+  .toc { background: #FFFFFF; border: 1px solid #E5E2DC; border-radius: 10px; padding: 20px 26px; margin: 24px 0 40px; }
+  .toc-title { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; color: #B8860B; margin-bottom: 12px; }
+  .toc ol { margin: 0; columns: 2; column-gap: 32px; }
+  .toc li { font-size: 0.92rem; }
+  .toc a { color: #1A1A1A; text-decoration: none; }
+  .toc a:hover { color: #B8860B; }
+  .footer-block { margin-top: 64px; padding-top: 24px; border-top: 1px solid #E5E2DC; font-size: 0.82rem; color: #888; }
+  .footer-block a { color: #B8860B; text-decoration: none; }
+  /* Funnel */
+  .funnel { display: flex; flex-direction: column; gap: 6px; margin: 18px 0; }
+  .funnel-row { display: grid; grid-template-columns: 200px 1fr 110px; gap: 12px; align-items: center; font-size: 0.9rem; }
+  .funnel-bar { height: 36px; background: #B8860B; border-radius: 6px; display: flex; align-items: center; padding: 0 12px; color: #fff; font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+  .funnel-bar.drop { background: #C62828; }
+  .funnel-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #555; }
+  @media (max-width: 720px) {
+    .container { padding: 36px 18px 60px; }
+    h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.25rem; margin: 48px 0 12px; }
+    .toc ol { columns: 1; }
+    .funnel-row { grid-template-columns: 130px 1fr; gap: 8px; }
+    .funnel-meta { grid-column: 1 / -1; }
+    th, td { padding: 10px 12px; font-size: 0.82rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PW Gate -->
+<div id="gate">
+  <div class="card">
+    <div class="logo">fuerte<span>.</span>digital</div>
+    <div class="subtitle">E-Commerce & Digital Strategy</div>
+    <h1>Halfen CRO-Report</h1>
+    <p class="desc">Diese Seite ist vertraulich und passwortgeschützt.</p>
+    <form id="pw-form">
+      <input type="password" id="pw" placeholder="Passwort eingeben" autocomplete="off" autofocus>
+      <button type="submit">Report öffnen</button>
+      <p class="err" id="err">Falsches Passwort.</p>
+    </form>
+    <div class="footer">Bei Fragen: daniel@fuerte.digital</div>
+  </div>
+</div>
+
+<!-- Report -->
+<div class="container">
+  <header class="top">
+    <div class="logo">fuerte<span>.</span>digital</div>
+    <div class="breadcrumb">HALFEN · CRO-Report · Stand 05.05.2026</div>
+    <div class="date-line">CRO-PROJEKT — DATEN-DEEP-DIVE TAG 1</div>
+    <h1>Halfen CRO-Report — Datenbasis & Hebel-Analyse</h1>
+    <p class="lead">An einem Tag haben wir alle relevanten Datenquellen automatisiert angebunden, 36 Monate GA4-Daten ausgewertet und die größten Conversion-Hebel quantifiziert. Dieser Report fasst alle Erkenntnisse von 05.05.2026 zusammen.</p>
+  </header>
+
+  <!-- Executive Summary -->
+  <div class="panel panel-success">
+    <div class="panel-label">✓ EXECUTIVE SUMMARY</div>
+    <ol style="margin-left: 1.2rem;">
+      <li><strong>Cart → Checkout-Drop ist der größte Hebel:</strong> Aktuell brechen <strong>70 % der Kunden</strong> nach Add-to-Cart vor dem Checkout ab (30,3 % statt branchenüblicher 60-70 %). Halbierung des Drops verdoppelt die Site-CR.</li>
+      <li><strong>Conversion-Tracking ist mehrfach defekt:</strong> Google Ads meldet 590 Conversions auf 60 Klicks (Mehrfach-Tracking). GA4 hatte Q1 2025 ein 3-monatiges Sessions-Undercount (~10× zu niedrig). <strong>Tracking muss vor jedem A/B-Test bereinigt werden.</strong></li>
+      <li><strong>Email-Marketing ungenutzt:</strong> Halfen sendet aktuell nur 2× pro Jahr eine Mail (Brevo). Klaviyo-Migration in 4 Wochen + Abandoned-Cart-Flow allein erzeugt <strong>+105.000-153.000 € Umsatz/Jahr</strong>.</li>
+      <li><strong>SEO-Hebel "wollwalk":</strong> 47.479 Impressions in 180 Tagen auf Position 9 mit nur 0,6 % CTR. Bei Top-3-Position ein Vielfaches an organischem Traffic möglich.</li>
+      <li><strong>Saisonalität bestätigt:</strong> Hauptsaison Okt-Jan, Sommer-Tief Mai-Aug. Bau-Deadline Mitte Juli ist saisonal sauber getimt.</li>
+    </ol>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">INHALT</div>
+    <ol>
+      <li><a href="#setup">Datenanbindung & Setup-Story</a></li>
+      <li><a href="#datenbasis">Datengrundlage</a></li>
+      <li><a href="#saison">Saisonalität (36 Monate)</a></li>
+      <li><a href="#cart-checkout">Hauptbefund Cart→Checkout-Drop</a></li>
+      <li><a href="#tracking">Tracking-Probleme</a></li>
+      <li><a href="#channel">Channel-Analyse</a></li>
+      <li><a href="#device">Device-Analyse</a></li>
+      <li><a href="#power">A/B-Test-Power</a></li>
+      <li><a href="#seo">SEO/GEO-Hebel</a></li>
+      <li><a href="#strategie">3-Hebel-Strategie für CR 3 %</a></li>
+      <li><a href="#massnahmen">Maßnahmenplan</a></li>
+      <li><a href="#weitere-punkte">Weitere Briefing-Punkte (Loyalty, Produkte, Fulfillment, Google Ads)</a></li>
+      <li><a href="#roadmap">Roadmap bis Mitte Juli</a></li>
+    </ol>
+  </div>
+
+  <!-- 1. Setup -->
+  <h2 id="setup">1. Datenanbindung & Setup-Story</h2>
+  <p>Vor jeder Optimierung steht die Datenbasis. An einem Tag haben wir <strong>fünf separate Datenquellen automatisiert angebunden</strong>, sodass täglich ohne manuelles Klicken auf alle relevanten Daten zugegriffen werden kann.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Shopify</div><div class="stat-value">CLI ✓</div><div class="stat-sub">Bestellungen, Theme</div></div>
+    <div class="stat"><div class="stat-label">Google Analytics 4</div><div class="stat-value">API ✓</div><div class="stat-sub">36 Monate Daten</div></div>
+    <div class="stat"><div class="stat-label">Search Console</div><div class="stat-value">API ✓</div><div class="stat-sub">SEO-Sichtbarkeit</div></div>
+    <div class="stat"><div class="stat-label">Meta Ads</div><div class="stat-value">API ✓</div><div class="stat-sub">User Token bis 04.07.</div></div>
+    <div class="stat"><div class="stat-label">Google Ads</div><div class="stat-value">API ✓</div><div class="stat-sub">Über fuerte.digital MCC</div></div>
+  </div>
+
+  <p>Der Setup-Prozess war aufwändiger als erwartet — bei Google mussten wir ein eigenes Manager-Konto anlegen, das HALFEN-Konto verknüpfen, einen API-Zugang offiziell beantragen, eine technische Anwendung in der Google Cloud erstellen und das Ganze mehrfach durchtesten. Vergleichbares haben wir bei Meta und Shopify in den Tagen davor gemacht. Der Aufwand zahlt sich aber sofort aus: Was vorher manuelle Klick-Arbeit war, läuft jetzt automatisiert.</p>
+
+  <!-- 2. Datengrundlage -->
+  <h2 id="datenbasis">2. Datengrundlage</h2>
+  <p>Drei Datenquellen liefern die wichtigste Faktenbasis für diesen Report:</p>
+  <ul>
+    <li><strong>180-Tage-Baseline</strong> (06.11.2025 – 05.05.2026): Sessions, Transactions, Funnel-Schritte aus GA4 + Meta-Pixel</li>
+    <li><strong>36-Monate-GA4-Datenbasis</strong> (01.06.2023 – 05.05.2026): Tägliche Sessions, monatliche Channel- und Device-Aufschlüsselung</li>
+    <li><strong>Google-Ads-Reporting</strong>: Letzte 30 Tage Kampagnen-Performance via Google Ads API</li>
+  </ul>
+
+  <h4>180-Tage-Baseline (Site-Wide)</h4>
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Sessions</div><div class="stat-value">147.147</div></div>
+    <div class="stat"><div class="stat-label">Users</div><div class="stat-value">93.723</div></div>
+    <div class="stat"><div class="stat-label">Transactions</div><div class="stat-value">1.891</div></div>
+    <div class="stat"><div class="stat-label">Umsatz</div><div class="stat-value">304.830 €</div></div>
+    <div class="stat"><div class="stat-label">AOV</div><div class="stat-value">161,20 €</div></div>
+    <div class="stat"><div class="stat-label">Conversion Rate</div><div class="stat-value">1,29 %</div></div>
+  </div>
+
+  <h4>Meta-Pixel-Funnel (180 Tage)</h4>
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Spend</div><div class="stat-value">26.453 €</div></div>
+    <div class="stat"><div class="stat-label">Clicks</div><div class="stat-value">31.321</div></div>
+    <div class="stat"><div class="stat-label">Pixel-Purchases</div><div class="stat-value">600</div></div>
+    <div class="stat"><div class="stat-label">ROAS</div><div class="stat-value">3,87×</div></div>
+  </div>
+
+  <!-- 3. Saisonalität -->
+  <h2 id="saison">3. Saisonalität</h2>
+  <p>Halfen ist <strong>absolutes Saisongeschäft</strong>: Hauptsaison Winter (Wollwalk-Mode), Sommer-Tief Mai-August. Die Daten bestätigen das klar.</p>
+
+  <div class="chart-card">
+    <h4>Monatliche Sessions ab Juni 2023</h4>
+    <div class="chart-wrap tall"><canvas id="chartSeason"></canvas></div>
+  </div>
+
+  <h4>Tagesschnitt pro Phase</h4>
+  <table>
+    <thead><tr><th>Phase</th><th class="num">Sessions/Tag</th><th class="num">σ</th><th class="num">Trans/Tag</th><th class="num">Ø CR</th></tr></thead>
+    <tbody>
+      <tr><td>Sommer (Mai-Aug)</td><td class="num">381</td><td class="num">256</td><td class="num">5,2</td><td class="num">1,32 %</td></tr>
+      <tr><td>Übergang (Feb/Mär/Apr/Sep)</td><td class="num">786</td><td class="num">862</td><td class="num">13,5</td><td class="num">3,66 %*</td></tr>
+      <tr><td>Hauptsaison (Okt-Jan)</td><td class="num">1.171</td><td class="num">990</td><td class="num">18,1</td><td class="num">1,87 %</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 0.82rem; color: #888;">* Übergangs-CR durch Q1-2025-Tracking-Bruch verzerrt — saubere Zahl erst nach Ausschluss.</p>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ STRATEGISCHE KONSEQUENZ</div>
+    <p>Bau-Deadline Mitte Juli 2026 ist saisonal optimal: Alles bereit BEVOR Saison startet. Effekt-Messung ab August/September, CR-Verdoppelung wird in der Hauptsaison Q4 belastbar messbar.</p>
+  </div>
+
+  <!-- 4. Cart-Checkout -->
+  <h2 id="cart-checkout">4. Hauptbefund: Cart → Checkout-Drop</h2>
+  <p><strong>Nur 30 % der Kunden, die ein Produkt in den Warenkorb legen, gehen weiter zum Checkout. 70 % brechen genau hier ab.</strong> Branchenstandard im Mode-E-Commerce: 60-70 %. Halfen liegt bei der Hälfte. Der Drop ist nicht "normal" — er ist behebbar.</p>
+
+  <div class="chart-card">
+    <h4>Funnel Meta-Pixel (180 Tage)</h4>
+    <div class="funnel">
+      <div class="funnel-row">
+        <span>Klicks aus Meta</span>
+        <div class="funnel-bar" style="width: 100%;">31.321</div>
+        <span class="funnel-meta">100 %</span>
+      </div>
+      <div class="funnel-row">
+        <span>Add to Cart</span>
+        <div class="funnel-bar" style="width: 14.7%;">4.606</div>
+        <span class="funnel-meta">14,7 % vom Klick</span>
+      </div>
+      <div class="funnel-row">
+        <span>Initiate Checkout</span>
+        <div class="funnel-bar drop" style="width: 4.5%;">1.397</div>
+        <span class="funnel-meta">⚠ 30,3 % vom Cart</span>
+      </div>
+      <div class="funnel-row">
+        <span>Purchase</span>
+        <div class="funnel-bar" style="width: 1.9%;">600</div>
+        <span class="funnel-meta">42,9 % vom Checkout</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ HEBEL-RECHNUNG</div>
+    <p>Wenn Cart→Checkout von 30,3 % auf 60 % verdoppelt wird (Branchenstandard) — bei sonst gleichen Zahlen:</p>
+    <ul style="margin-bottom: 0;">
+      <li>Transactions: 1.891 → ca. <strong>3.780 / 180 Tage</strong></li>
+      <li>Site-CR: 1,29 % → <strong>~2,5 %</strong></li>
+      <li>Umsatz: 305.000 € → <strong>~610.000 € pro Halbjahr</strong> (= +600.000 €/Jahr)</li>
+    </ul>
+  </div>
+
+  <h4>Mögliche Ursachen (Hypothesen, zu verifizieren)</h4>
+  <ol>
+    <li>Versandkosten erst im Checkout sichtbar</li>
+    <li>Login-/Registrierungs-Pflicht (Hürde besonders auf Mobile)</li>
+    <li>Wenig Payment-Optionen (kein Apple Pay / Google Pay / PayPal Express)</li>
+    <li>Fehlende Vertrauenssignale im Cart (Trustpilot, Sicherheitssiegel)</li>
+    <li>Mobile-spezifische UX-Probleme (kleine Klickflächen, Layout-Sprünge)</li>
+    <li>Lieferzeit/Verfügbarkeit erst spät kommuniziert</li>
+    <li>Cart-Page selbst (fehlende Cross-Sells, unklare Mengen-Eingabe)</li>
+  </ol>
+  <p>Konkrete Ursachen werden via <strong>Microsoft Clarity oder Hotjar</strong> in Woche 1 identifiziert (Heatmap + Session-Recordings + Cart-Survey).</p>
+
+  <!-- 5. Tracking -->
+  <h2 id="tracking">5. Tracking-Probleme</h2>
+
+  <h3>Befund 5.1 — Google-Ads-Conversion-Tracking unzuverlässig</h3>
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ KRITISCH</div>
+    <p>Eine PMax-Kampagne (PMAX HALFEN DE 05-2026) meldet <strong>590 Conversions auf nur 60 Klicks</strong> — das wären knapp 10 Käufe pro Klick. Physikalisch unmöglich.</p>
+    <p style="margin-bottom: 0;">Wahrscheinlich Mehrfach-Tracking durch parallele Setups: Shopify Google Channel App + Simprosys + Google-Ads-eigener Tag laufen vermutlich parallel.</p>
+  </div>
+
+  <h4>Letzte 30 Tage Google Ads</h4>
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Impressionen</div><div class="stat-value">19.497</div></div>
+    <div class="stat"><div class="stat-label">Klicks</div><div class="stat-value">1.564</div></div>
+    <div class="stat"><div class="stat-label">Werbekosten</div><div class="stat-value">653 €</div></div>
+    <div class="stat"><div class="stat-label">Gemeldeter Umsatz</div><div class="stat-value">9.326 €</div></div>
+    <div class="stat"><div class="stat-label">"Conversions"</div><div class="stat-value">644 ⚠</div></div>
+    <div class="stat"><div class="stat-label">"ROAS"</div><div class="stat-value">14,3× ⚠</div></div>
+  </div>
+  <p>Der gemeldete ROAS von 14× passt nicht zu Meta-ROAS 3,87× — die echte Werbe-Rentabilität liegt vermutlich näher an Meta. Solange das Google-Tracking falsche Zahlen liefert, sind Budget-Entscheidungen blind.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ LÖSUNG GOOGLE-ADS-TRACKING</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>Tracking-Audit:</strong> Alle aktiven Tags auf halfenstore.de inventarisieren (Shopify Google Channel App, Simprosys, GTM, Direkt-Tags)</li>
+      <li><strong>Conversion-Aktionen in Google Ads aufräumen:</strong> Nur "Purchase" als Hauptconversion, alle Micro-Events (View Item, Add to Cart) als Sekundär markieren</li>
+      <li><strong>Doppel-Tagging stoppen:</strong> Entweder Shopify Google Channel ODER Simprosys ODER manueller Tag — nicht alle drei parallel</li>
+      <li><strong>Verifikation:</strong> 1 Woche Daten vergleichen, danach Conversions plausibel (1 Conv. ≈ 1 Order in Shopify)</li>
+    </ol>
+  </div>
+
+  <h3>Befund 5.2 — GA4-Sessions-Bruch in Q1 2025</h3>
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ TRACKING-AUSFALL 90 TAGE</div>
+    <p>Sessions wurden vom <strong>01.01.2025 bis Ende März 2025</strong> systematisch um Faktor ~10 unterzählt. Transactions liefen weiter normal — daher zeigt GA4 für diesen Zeitraum eine scheinbare CR von 12-14 % (in Wahrheit ist nur der Sessions-Nenner kaputt).</p>
+  </div>
+
+  <div class="chart-card">
+    <h4>Sessions-Bruch sichtbar (Dez 2024 – Apr 2025)</h4>
+    <div class="chart-wrap"><canvas id="chartQ1Bruch"></canvas></div>
+  </div>
+
+  <p><strong>Konsequenz:</strong> Q1 2025 in allen Analysen ausschließen. Ursache muss bei Halfen geklärt werden — was wurde Anfang Januar 2025 geändert (GTM-Update? Cookie-Banner? Theme-Update? Tag-Migration?).</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ LÖSUNG GA4-TRACKING</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>Ursache identifizieren:</strong> Bei Tine erfragen, was Anfang Januar 2025 geändert wurde</li>
+      <li><strong>Q1 2025 markieren:</strong> In allen Reports + Dashboards "Daten Q1 2025 unzuverlässig" als Disclaimer einbauen</li>
+      <li><strong>Re-Tag falls nötig:</strong> Falls Tracking-Tag auf der Site falsch ist, mit Freelancer korrigieren</li>
+      <li><strong>Verifikation:</strong> Echtzeit-Reports in GA4 mit Live-Site-Aktivität abgleichen</li>
+    </ol>
+  </div>
+
+  <!-- 6. Channel -->
+  <h2 id="channel">6. Channel-Analyse</h2>
+  <p>Sessions-Mix und Conversion-Rate pro Channel über 36 Monate (ohne Q1 2025).</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px 0;">
+    <div class="chart-card">
+      <h4>Sessions-Verteilung pro Channel</h4>
+      <div class="chart-wrap"><canvas id="chartChannelPie"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h4>Conversion-Rate pro Channel</h4>
+      <div class="chart-wrap"><canvas id="chartChannelCR"></canvas></div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Channel</th><th class="num">Sessions</th><th class="num">Trans.</th><th class="num">Umsatz €</th><th class="num">CR %</th></tr></thead>
+    <tbody>
+      <tr><td>Paid Social</td><td class="num">192.903</td><td class="num">1.006</td><td class="num">146.714</td><td class="num">0,52 ⚠</td></tr>
+      <tr><td>Organic Search</td><td class="num">192.007</td><td class="num">3.846</td><td class="num">624.354</td><td class="num">2,00</td></tr>
+      <tr><td>Organic Social</td><td class="num">140.229</td><td class="num">941</td><td class="num">151.311</td><td class="num">0,67</td></tr>
+      <tr><td>Direct</td><td class="num">125.148</td><td class="num">2.998</td><td class="num">489.916</td><td class="num">2,40</td></tr>
+      <tr><td>Paid Shopping</td><td class="num">104.752</td><td class="num">1.826</td><td class="num">263.110</td><td class="num">1,74</td></tr>
+      <tr><td>Paid Search</td><td class="num">37.969</td><td class="num">1.049</td><td class="num">149.784</td><td class="num">2,76</td></tr>
+      <tr><td>Email</td><td class="num">3.615</td><td class="num">288</td><td class="num">51.514</td><td class="num">7,97 ★</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ AUFFÄLLIG</div>
+    <ul style="margin-bottom: 0;">
+      <li><strong>Paid Social</strong> = ~25 % aller Sessions, aber CR <strong>0,52 %</strong> — 5× schlechter als Site-Schnitt. Großer ROAS-Hebel: bessere Audience-Targeting auf Käufer, nicht Browser.</li>
+      <li><strong>Email</strong> = <strong>7,97 %</strong> CR (höchste aller Channels), aber Halfen sendet aktuell nur 2× pro Jahr (Brevo). Klaviyo-Migration in 4 Wochen geplant.</li>
+      <li><strong>Direct + Paid Search</strong> = bottom-of-funnel, hoher CR — gute Hebel für Brand-Schutz und Retargeting.</li>
+    </ul>
+  </div>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ LÖSUNG CHANNEL-MIX</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>Paid Social CR-Diagnose:</strong> Welche Audiences sind aktiv? Lookalikes vs. Cold-Audiences? Frequency 4,26 ist hoch (Audience-Müdigkeit) — Creative-Refresh + neue Lookalike-Quellen aus letzten Käufern</li>
+      <li><strong>Paid Search ausbauen:</strong> CR 2,76 % — bisher nur 4,5 % der Sessions. Brand-Schutz-Kampagne + Top-Produkt-Search-Kampagnen aufsetzen</li>
+      <li><strong>Email skalieren:</strong> Klaviyo-Migration nutzen, um 2 Mailings/Jahr → systematische Flows + Newsletter zu machen</li>
+      <li><strong>Direct stärken:</strong> Brand-Awareness via Email/POS-Karten/Print-Material — direkte URL-Eingaben sind die qualitativsten Sessions</li>
+    </ol>
+  </div>
+
+  <!-- 7. Device -->
+  <h2 id="device">7. Device-Analyse</h2>
+  <p>Halfen ist mobile-dominiert. Aber der Trend in 2026 zeigt eine Verschiebung Richtung Desktop.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px 0;">
+    <div class="chart-card">
+      <h4>Sessions pro Device (36 Monate ohne Q1 2025)</h4>
+      <div class="chart-wrap"><canvas id="chartDevicePie"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h4>Mobile-Anteil pro Jahr</h4>
+      <div class="chart-wrap"><canvas id="chartDeviceTrend"></canvas></div>
+    </div>
+  </div>
+
+  <h4>Device-CR (zwei Filter)</h4>
+  <table>
+    <thead><tr><th>Device</th><th class="num">Anteil</th><th class="num">CR (33 Mo. ohne Q1 2025)</th><th class="num">CR (12 Mo. ohne Q1 2025)</th></tr></thead>
+    <tbody>
+      <tr><td>Mobile</td><td class="num">91,8 %</td><td class="num">1,44 %</td><td class="num">1,19 %</td></tr>
+      <tr><td>Desktop</td><td class="num">7,4 %</td><td class="num">2,43 %</td><td class="num">1,89 %</td></tr>
+      <tr><td>Tablet</td><td class="num">0,8 %</td><td class="num">0,98 %</td><td class="num">0,66 %</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Auffällig 2026 YTD:</strong> Mobile-Anteil von 92 % auf 85 % gefallen, Desktop von 7 % auf 14 % gestiegen. Bei Tine erfragen, ob das echter Trend (POS-Hinweise, B2B-Anfragen) oder Tracking-Effekt ist.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ LÖSUNG DEVICE</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>Mobile-First-Optimierung:</strong> 91 % Sessions kommen Mobile — Page-Speed (Lighthouse), Cart-/Checkout-UX, Express-Payment (Apple/Google Pay)</li>
+      <li><strong>2026-Desktop-Anstieg klären:</strong> Bei Tine — POS-Hinweise im Laden, B2B-Anfragen, neue Zielgruppe oder Tracking-Artefakt?</li>
+      <li><strong>Falls echter Trend:</strong> Desktop-spezifische UX-Tests (Layout, Sidebar-Navigation, größere Produktansichten)</li>
+      <li><strong>Tablet ignorieren:</strong> 0,8 % Anteil — kein wirtschaftlicher Hebel</li>
+    </ol>
+  </div>
+
+  <!-- 8. Power -->
+  <h2 id="power">8. A/B-Test-Power</h2>
+  <p>Wie viele Tage muss ein A/B-Test laufen, um statistisch belastbar zu sein? Berechnung mit aktuellen Tageszahlen pro Phase, Power 80 %, α 5 %, two-sided.</p>
+
+  <div class="chart-card">
+    <h4>Test-Laufzeit in Tagen — Sommer vs. Hauptsaison</h4>
+    <div class="chart-wrap"><canvas id="chartPower"></canvas></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Phase</th><th class="num">Sessions/Tag</th><th class="num">MDE 10 %</th><th class="num">MDE 20 %</th><th class="num">MDE 30 %</th><th class="num">MDE 50 %</th></tr></thead>
+    <tbody>
+      <tr><td>Sommer (Mai-Aug)</td><td class="num">381</td><td class="num">628 Tage</td><td class="num">157 Tage</td><td class="num">70 Tage</td><td class="num">25 Tage</td></tr>
+      <tr><td>Hauptsaison (Okt-Jan)</td><td class="num">1.171</td><td class="num">143 Tage</td><td class="num">36 Tage</td><td class="num">16 Tage</td><td class="num">6 Tage</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Praktische Aussage:</strong> Im Sommer (= unsere Bau-Phase) lassen sich nur grobe Hebel mit MDE ≥ 30 % testen. Feinere A/B-Tests (10-20 % MDE) lohnen sich erst in der Hauptsaison Okt-Feb.</p>
+
+  <!-- 9. SEO/GEO -->
+  <h2 id="seo">9. SEO/GEO-Hebel</h2>
+  <p>fuerte hat aus den eigenen Projekten <strong>bonuskarte.digital</strong> und <strong>romanbecker.de</strong> tiefes Know-how in klassischer SEO und GEO (Generative Engine Optimization für ChatGPT, Perplexity, Gemini, Google AI Overviews) aufgebaut. Dieses Know-how lässt sich direkt auf Halfen übertragen.</p>
+
+  <h4>Top-Suchanfragen Search Console (180 Tage)</h4>
+  <table>
+    <thead><tr><th>Suchanfrage</th><th class="num">Klicks</th><th class="num">Impressions</th><th class="num">CTR</th><th class="num">Position</th><th>Hebel</th></tr></thead>
+    <tbody>
+      <tr><td>halfen</td><td class="num">11.303</td><td class="num">~27k</td><td class="num">41,4 %</td><td class="num">3,4</td><td>Brand stark</td></tr>
+      <tr><td>halfen wollwalk</td><td class="num">3.693</td><td class="num">~9k</td><td class="num">40,9 %</td><td class="num">1,4</td><td>Brand top</td></tr>
+      <tr><td><strong>wollwalk</strong></td><td class="num">287</td><td class="num"><strong>47.479</strong></td><td class="num">0,6 %</td><td class="num">9,0</td><td>★ Größtes Hebel-Potenzial</td></tr>
+      <tr><td>walkjacke damen</td><td class="num">493</td><td class="num">~10k</td><td class="num">4,9 %</td><td class="num">2,7</td><td>Title-Optimierung</td></tr>
+      <tr><td>halfenstore</td><td class="num">372</td><td class="num">~530</td><td class="num">70,1 %</td><td class="num">1,3</td><td>Brand-Suche</td></tr>
+      <tr><td>halfen rodenkirchen</td><td class="num">310</td><td class="num">~1k</td><td class="num">~30 %</td><td class="num">~2</td><td>Local SEO</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ SEO-HEBELRECHNUNG "WOLLWALK"</div>
+    <p>Generischer Begriff "wollwalk" hat <strong>47.479 Impressions in 180 Tagen</strong> bei nur 287 Klicks (CTR 0,6 %, Position 9). Bei Verschiebung auf Position 1-3 mit typischer CTR 25-35 % wären das mehrere Tausend zusätzliche organische Sessions pro Monat — bei aktueller Site-CR von 1,29 % entspricht das mehreren Hundert zusätzlichen Trans/Jahr.</p>
+  </div>
+
+  <h4>Konkrete Quick-Wins (Wochen 5-10)</h4>
+  <ul>
+    <li>Title-Tag-Optimierung der Top-20-Pages für höhere CTR</li>
+    <li>Schema-Markup ergänzen (LocalBusiness für Köln-Rodenkirchen + Hungenroth, Product, FAQ)</li>
+    <li>Content-Hub zu "Wollwalk" als Material-Geschichte</li>
+    <li>AI-optimierte Produktbeschreibungen (Frage-Antwort-Struktur, Faktenboxen — gut für ChatGPT/Perplexity/Gemini)</li>
+    <li>Local SEO-Cleanup (Google Business Profile, Apple Maps "Großhandel"-Fehler korrigieren, Trusted Shops beanspruchen)</li>
+  </ul>
+
+  <!-- 10. Strategie -->
+  <h2 id="strategie">10. 3-Hebel-Strategie für CR-Ziel 3 %</h2>
+  <p>Aus den Daten leiten sich drei mathematisch quantifizierbare Hebel ab. Kombination Hebel 1 + 3 erreicht das 3 %-Ziel rechnerisch ohne Hebel 2.</p>
+
+  <div class="chart-card">
+    <h4>Hebel-Beitrag zur Site-CR (Prozentpunkte)</h4>
+    <div class="chart-wrap"><canvas id="chartHebel"></canvas></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Hebel</th><th class="num">Site-CR-Beitrag</th><th>Aufwand</th><th>Zeit bis Effekt</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hebel 1: Cart→Checkout-Drop fixen</strong></td><td class="num">+1,2 PP</td><td>mittel</td><td>8-16 Wochen</td></tr>
+      <tr><td><strong>Hebel 2: Mobile-CR-Lift</strong></td><td class="num">+0,6 PP</td><td>hoch (Site-weite UX)</td><td>12-20 Wochen</td></tr>
+      <tr><td><strong>Hebel 3: Klaviyo (Email + WhatsApp)</strong></td><td class="num">+0,3-0,5 PP</td><td>mittel</td><td>4-8 Wochen</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Hebel 3 im Detail — Klaviyo-Migration</h3>
+  <p>Halfen nutzt aktuell Brevo mit nur 2 Mailings/Jahr. Klaviyo wird in <strong>4 Wochen migriert</strong>, plus zusätzlicher <strong>WhatsApp-Channel</strong> über Klaviyo Marketing-Plan.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">★ KLAVIYO ABANDONED-CART-FLOW = DIREKTER HEBEL ZUM CART-DROP</div>
+    <p>Cart-Abbrecher heute: <strong>3.209 / 180 Tage</strong> (Add-to-Cart 4.606 minus Initiate-Checkout 1.397).</p>
+    <p>Industry-Benchmark: 10-15 % der Cart-Abbrecher per Email (+WhatsApp) zurückholbar.</p>
+    <p style="margin-bottom: 0;"><strong>Effekt: +650-950 Trans/Jahr → +105.000 bis +153.000 € Umsatz/Jahr.</strong></p>
+  </div>
+
+  <!-- 11. Maßnahmen -->
+  <h2 id="massnahmen">11. Maßnahmenplan</h2>
+
+  <h3>A) Drop reduzieren (Theme-UX am Cart)</h3>
+  <table>
+    <thead><tr><th>Maßnahme</th><th class="num">Erwarteter Lift</th><th class="num">Aufwand</th><th>Wer</th></tr></thead>
+    <tbody>
+      <tr><td>Versandkosten + Lieferzeit prominent im Cart anzeigen</td><td class="num">+5–10 PP</td><td class="num">4 h</td><td>Freelancer</td></tr>
+      <tr><td>Apple Pay / Google Pay / PayPal Express im Cart</td><td class="num">+5–15 PP</td><td class="num">8 h</td><td>Freelancer</td></tr>
+      <tr><td>Guest-Checkout deutlich machen</td><td class="num">+3–8 PP</td><td class="num">4 h</td><td>Freelancer</td></tr>
+      <tr><td>Trust-Signale im Cart (Trustpilot, Sicherheit, Rückgabe)</td><td class="num">+2–5 PP</td><td class="num">4 h</td><td>Freelancer</td></tr>
+      <tr><td>Mobile-Cart-UX-Fix (basiert auf Recording-Befunden)</td><td class="num">individuell</td><td class="num">8–16 h</td><td>Freelancer</td></tr>
+    </tbody>
+  </table>
+
+  <h3>B) Drop-Outs zurückholen (Klaviyo)</h3>
+  <table>
+    <thead><tr><th>Klaviyo-Flow</th><th class="num">Effekt</th><th class="num">Aufwand</th><th>Wer</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Abandoned-Cart-Flow (Email + WhatsApp)</strong></td><td class="num">+105k-153k €/Jahr</td><td class="num">6 h</td><td>fuerte</td></tr>
+      <tr><td>Back-in-Stock-Flow</td><td class="num">hoch (Saison-relevant)</td><td class="num">4 h</td><td>fuerte</td></tr>
+      <tr><td>Welcome-Flow</td><td class="num">mittel</td><td class="num">4 h</td><td>fuerte</td></tr>
+      <tr><td>Post-Purchase Cross-Sell + Reviews</td><td class="num">mittel-hoch</td><td class="num">4 h</td><td>fuerte</td></tr>
+      <tr><td>Brevo-Migration (Listen, Custom-Fields, Historie)</td><td class="num">Voraussetzung</td><td class="num">4 h</td><td>fuerte</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 12. Weitere Briefing-Punkte -->
+  <h2 id="weitere-punkte">12. Weitere Briefing-Punkte mit Lösungsvorschlägen</h2>
+  <p>Neben den bereits behandelten Hebeln (Cart→Checkout, Tracking, Klaviyo, SEO/GEO) gibt es vier weitere Punkte aus dem Briefing, die in der Bau-Phase angegangen werden:</p>
+
+  <h3>12.1 — Loyalty: Smile.io → bonuskarte.digital (Punkt 3)</h3>
+  <p><strong>Status:</strong> Smile.io ist Halfen zu teuer, Wechsel beschlossen. bonuskarte.digital ist fuerte's eigenes Whitelabel-Produkt (basiert auf BoomerangMe, Stempelkarten-Modell). Halfen wird erster Echt-Kunde — sehr gute Referenz für die eigene Plattform.</p>
+  <p><strong>Besonderheit:</strong> Halfen nutzt Shopify POS in den physischen Standorten (Köln-Rodenkirchen + Hungenroth). Loyalty muss <strong>omnichannel</strong> funktionieren: Stempel sowohl online als auch offline am POS via Wallet-Pass-Scan.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ LÖSUNG LOYALTY</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>bonuskarte.digital konfigurieren</strong> mit Halfen-Branding (Farben, Logo), Stempel-Logik definieren (z. B. 10 Stempel = 20 € Gutschein)</li>
+      <li><strong>Apple/Google Wallet-Pässe</strong> automatisch generiert (BoomerangMe-Standard)</li>
+      <li><strong>Shopify POS-Integration:</strong> Wallet-Pass-Scan-Workflow am POS — Mitarbeiter scannt Pass, Stempel landet drauf</li>
+      <li><strong>Migration Smile-Mitglieder:</strong> Liste exportieren, Punkte-Salden in Stempel umrechnen, Bonus-Stempel als Wechsel-Geschenk</li>
+      <li><strong>Mitarbeiter-Schulung POS</strong> in beiden Standorten</li>
+    </ol>
+  </div>
+
+  <h3>12.2 — Produkte mit Varianten anlegen (Punkt 5)</h3>
+  <p><strong>Status:</strong> Aktueller Anlage-Prozess unklar (zu klären mit Tine). Wenn manuell pro Produkt × Größe × Farbe geklickt wird, ist das fehleranfällig und zeitintensiv.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ LÖSUNG PRODUKT-ANLAGE</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>Diagnose:</strong> Aktuellen Workflow dokumentieren — wer macht was, wieviele Varianten typisch, Pain Points</li>
+      <li><strong>Entscheidung Variante A oder B</strong> nach Diagnose:
+        <ul>
+          <li><strong>A — Prozess optimieren:</strong> CSV-Vorlage + Bulk-Import via Shopify Admin, klare Bilder-Naming-Convention, Mengen-/Lagerbestand-Workflow</li>
+          <li><strong>B — App bauen:</strong> Eigene Shopify-App, die Produkt-Stammdaten + Bilder + Varianten in einem Schritt anlegt</li>
+        </ul>
+      </li>
+      <li><strong>Aufwand:</strong> Variante A = 8 h, Variante B = 16-30 h</li>
+    </ol>
+  </div>
+
+  <h3>12.3 — Fulfillment-Schnittstelle: Bundle-Return-Policy (Punkt 6)</h3>
+  <p><strong>Status:</strong> Bei Bundles ist die Rückgabe-Policy aktuell nicht korrekt konfiguriert (Briefing-Punkt). Details müssen mit Tine + Fulfillment-Partner geklärt werden.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ LÖSUNG FULFILLMENT</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>Aktuelle Policy auseinandernehmen:</strong> Was steht im Shop, was im Fulfillment-System? Wo ist die Lücke?</li>
+      <li><strong>Welche Bundles existieren</strong> und welche Sonderfälle (Teil-Rückgaben, Rabatt-Verteilung)?</li>
+      <li><strong>API-Anbindung an Fulfillment:</strong> Wenn der Partner eine API hat, automatisierte Bundle-Rückgaben — sonst manuelle Workflow-Doku</li>
+      <li><strong>Shop-Anzeige korrigieren:</strong> Bundle-spezifische Rückgabe-Hinweise auf Produkt-/Cart-/Checkout-Page</li>
+    </ol>
+  </div>
+
+  <h3>12.4 — Google-Ads-Formate testen (Punkt 7)</h3>
+  <p><strong>Status:</strong> Aktuell nur 2 PMax-Kampagnen aktiv. Sehr schmale Account-Struktur, keine Shopping-Kampagnen, keine Brand-Schutz-Kampagne, kein Demand-Gen.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ LÖSUNG GOOGLE-ADS-FORMATE</div>
+    <ol style="margin-bottom: 0;">
+      <li><strong>Voraussetzung:</strong> Google-Ads-Tracking sauber (siehe Sektion 5.1) — sonst werden Format-Tests wertlos</li>
+      <li><strong>Brand-Schutz:</strong> Eigene Search-Kampagne auf "halfen" + "halfenstore" verhindert Konkurrenz-Anzeigen auf Brand-Suchen</li>
+      <li><strong>Shopping-Kampagne:</strong> Merchant-Center-Status prüfen, Feed-Setup, Top-Produkte als Standard-Shopping starten</li>
+      <li><strong>Search-Kampagnen:</strong> Top-Produkt-Suchanfragen aus Search Console (z. B. "wollwalk overall", "walkjacke damen") als Search-Ads</li>
+      <li><strong>Demand Gen + YouTube:</strong> Erst nach erfolgreichem Tracking-Cleanup, sonst Budget-Verbrennung</li>
+    </ol>
+  </div>
+
+  <!-- 13. Roadmap -->
+  <h2 id="roadmap">13. Roadmap bis Mitte Juli</h2>
+  <p>Bau-Deadline: Mitte Juli 2026 — alle Hebel live, bevor Hauptsaison startet. CR-Effekt-Messung ab Q4 belastbar.</p>
+
+  <table>
+    <thead><tr><th>Wochen</th><th>Phase</th><th>Lieferungen</th></tr></thead>
+    <tbody>
+      <tr><td>1-2 (06.05.–20.05.)</td><td>Fundament</td><td>Tracking sauber, Clarity live, Cart-Diagnose, Klaviyo-Audit</td></tr>
+      <tr><td>3-4 (21.05.–03.06.)</td><td>Klaviyo-Sprint</td><td>Brevo-Migration komplett, Abandoned-Cart + Back-in-Stock + WhatsApp live</td></tr>
+      <tr><td>5-6 (04.06.–17.06.)</td><td>Loyalty + Cart-Quick-Wins</td><td>bonuskarte.digital live (online + POS), erste Theme-Fixes Cart</td></tr>
+      <tr><td>7-8 (18.06.–01.07.)</td><td>Produkt-Prozess + Fulfillment</td><td>Variante-Anlage gelöst, Bundle-Returns korrekt, A/B-Tests vorbereitet</td></tr>
+      <tr><td>9-10 (02.07.–15.07.)</td><td>Polish + Übergabe</td><td>Reporting-Dashboards, Doku, SEO-Quick-Wins (Title-Tags, Schema, Local)</td></tr>
+      <tr><td>Ab Okt</td><td>A/B-Test-Phase</td><td>Tests scharf in Hauptsaison, CR-Verlauf zu 3 %</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer-block">
+    <p><strong>Datenquellen:</strong> GA4 Data API (Property 376926789), Meta Marketing API, Google Ads API (über fuerte.digital MCC), Search Console API.</p>
+    <p>fuerte.digital für HALFEN · Bei Fragen: <a href="mailto:daniel@fuerte.digital">daniel@fuerte.digital</a></p>
+    <p style="margin-top: 12px;"><a href="../arbeitsbericht/uebersicht.html">→ Tagesberichte</a></p>
+  </div>
+</div>
+
+<script>
+// PW Gate
+(function() {
+  if (sessionStorage.getItem('halfen_auth') === '1') {
+    document.getElementById('gate').style.display = 'none';
+    return;
+  }
+  document.getElementById('pw-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var pw = document.getElementById('pw').value;
+    if (pw === 'büdchen' || pw === 'buedchen') {
+      sessionStorage.setItem('halfen_auth', '1');
+      document.getElementById('gate').style.display = 'none';
+    } else {
+      document.getElementById('err').classList.add('show');
+      document.getElementById('pw').value = '';
+      document.getElementById('pw').focus();
+    }
+  });
+})();
+
+// Chart.js Setup — Default styling
+Chart.defaults.font.family = "'DM Sans', -apple-system, sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#444';
+
+const COLORS = {
+  primary: '#B8860B',
+  primaryLight: '#D9A933',
+  warn: '#C62828',
+  ok: '#4A7034',
+  info: '#34547A',
+  neutral: '#888',
+  bg: '#FAFAF8',
+};
+
+const PALETTE = ['#B8860B', '#C62828', '#34547A', '#4A7034', '#8B6500', '#A66400', '#5C4A2D', '#D9A933', '#E5BB55', '#7A8B7A'];
+
+// 1. Saisonalität — monthly sessions ab Juni 2023
+new Chart(document.getElementById('chartSeason'), {
+  type: 'bar',
+  data: {
+    labels: ['06/23','07/23','08/23','09/23','10/23','11/23','12/23','01/24','02/24','03/24','04/24','05/24','06/24','07/24','08/24','09/24','10/24','11/24','12/24','01/25','02/25','03/25','04/25','05/25','06/25','07/25','08/25','09/25','10/25','11/25','12/25','01/26','02/26','03/26','04/26'],
+    datasets: [{
+      label: 'Sessions',
+      data: [9735,8621,16672,29590,43023,27467,22044,16161,20269,12247,12229,9696,13429,7652,11528,44731,43720,35584,17623,1631,1902,2118,31772,18932,11044,6623,15875,89569,103624,65379,31893,24120,12844,10711,13527],
+      backgroundColor: function(ctx) {
+        const ym = ctx.chart.data.labels[ctx.dataIndex];
+        if (['01/25','02/25','03/25'].includes(ym)) return COLORS.warn;
+        const month = parseInt(ym.split('/')[0]);
+        if ([10,11,12,1].includes(month)) return COLORS.primary;
+        if ([5,6,7,8].includes(month)) return COLORS.info;
+        return COLORS.neutral;
+      },
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => c.parsed.y.toLocaleString('de-DE') + ' Sessions' } },
+    },
+    scales: {
+      y: { ticks: { callback: v => (v/1000) + 'k' } },
+      x: { ticks: { autoSkip: true, maxRotation: 0 } },
+    }
+  }
+});
+
+// 2. Q1-2025-Anomalie
+new Chart(document.getElementById('chartQ1Bruch'), {
+  type: 'bar',
+  data: {
+    labels: ['10/24','11/24','12/24','01/25','02/25','03/25','04/25','05/25'],
+    datasets: [{
+      label: 'Sessions/Monat',
+      data: [43720, 35584, 17623, 1631, 1902, 2118, 31772, 18932],
+      backgroundColor: ['#888','#888','#888', COLORS.warn, COLORS.warn, COLORS.warn,'#888','#888'],
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => c.parsed.y.toLocaleString('de-DE') } },
+    },
+    scales: { y: { ticks: { callback: v => (v/1000) + 'k' } } }
+  }
+});
+
+// 3. Channel Pie
+new Chart(document.getElementById('chartChannelPie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Paid Social','Organic Search','Organic Social','Direct','Paid Shopping','Paid Search','Andere'],
+    datasets: [{
+      data: [192903, 192007, 140229, 125148, 104752, 37969, 38000],
+      backgroundColor: PALETTE,
+      borderWidth: 2, borderColor: '#fff',
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'right', labels: { font: { size: 11 } } },
+      tooltip: { callbacks: { label: c => c.label + ': ' + c.parsed.toLocaleString('de-DE') + ' (' + (c.parsed/838008*100).toFixed(1) + '%)' } }
+    }
+  }
+});
+
+// 4. Channel CR
+new Chart(document.getElementById('chartChannelCR'), {
+  type: 'bar',
+  data: {
+    labels: ['Paid Social','Organic Social','Paid Shopping','Organic Search','Direct','Paid Search','Email'],
+    datasets: [{
+      label: 'CR %',
+      data: [0.52, 0.67, 1.74, 2.00, 2.40, 2.76, 7.97],
+      backgroundColor: ['#C62828','#C62828', COLORS.neutral, COLORS.primary, COLORS.primary, COLORS.primary, COLORS.ok],
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => c.parsed.x.toFixed(2) + ' %' } }
+    },
+    scales: { x: { ticks: { callback: v => v + '%' } } }
+  }
+});
+
+// 5. Device Pie
+new Chart(document.getElementById('chartDevicePie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Mobile','Desktop','Tablet'],
+    datasets: [{
+      data: [770684, 62424, 6731],
+      backgroundColor: [COLORS.primary, COLORS.info, COLORS.neutral],
+      borderWidth: 2, borderColor: '#fff',
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'right' },
+      tooltip: { callbacks: { label: c => c.label + ': ' + c.parsed.toLocaleString('de-DE') } }
+    }
+  }
+});
+
+// 6. Device Trend (Mobile-Anteil pro Jahr)
+new Chart(document.getElementById('chartDeviceTrend'), {
+  type: 'line',
+  data: {
+    labels: ['2023','2024','2025','2026 YTD'],
+    datasets: [
+      {
+        label: 'Mobile %',
+        data: [92.7, 92.1, 92.1, 85.3],
+        borderColor: COLORS.primary, backgroundColor: 'rgba(184,134,11,0.1)', tension: 0.3, fill: true,
+      },
+      {
+        label: 'Desktop %',
+        data: [6.2, 7.1, 7.2, 14.1],
+        borderColor: COLORS.info, backgroundColor: 'rgba(52,84,122,0.1)', tension: 0.3, fill: true,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: { y: { ticks: { callback: v => v + '%' }, max: 100 } }
+  }
+});
+
+// 7. Power
+new Chart(document.getElementById('chartPower'), {
+  type: 'bar',
+  data: {
+    labels: ['MDE 10%','MDE 20%','MDE 30%','MDE 50%'],
+    datasets: [
+      { label: 'Sommer', data: [628, 157, 70, 25], backgroundColor: COLORS.warn, borderRadius: 4 },
+      { label: 'Hauptsaison', data: [143, 36, 16, 6], backgroundColor: COLORS.ok, borderRadius: 4 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + ' Tage' } }
+    },
+    scales: { y: { ticks: { callback: v => v + 'd' }, type: 'logarithmic' } }
+  }
+});
+
+// 8. Hebel
+new Chart(document.getElementById('chartHebel'), {
+  type: 'bar',
+  data: {
+    labels: ['Cart→Checkout fixen', 'Mobile-CR-Lift', 'Klaviyo Email+WhatsApp'],
+    datasets: [{
+      label: 'Min. CR-Beitrag (PP)',
+      data: [1.2, 0.6, 0.3],
+      backgroundColor: COLORS.primary,
+      borderRadius: 4,
+    },{
+      label: 'Max. CR-Beitrag (PP)',
+      data: [1.2, 0.6, 0.5],
+      backgroundColor: COLORS.primaryLight,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': +' + c.parsed.y + ' PP' } }
+    },
+    scales: { y: { ticks: { callback: v => '+' + v + ' PP' } } }
+  }
+});
+</script>
+</body>
+</html>
