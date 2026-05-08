@@ -1,1 +1,17 @@
-# placeholder
+# Roman Becker — URL-Routing
+# Stand: 2026-05-08
+
+RewriteEngine On
+
+# 1) www. → non-www. (301)
+#    Behebt Authority-Splitting zwischen www. und Root-Domain.
+RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
+RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
+
+# 2) /<slug>/ → /<slug>.html (301)
+#    Trailing-Slash-Variante existiert nicht im Filesystem (kein Ordner).
+#    Wenn aber eine entsprechende .html-Datei existiert → 301 darauf.
+#    Vorhandene Ordner mit index.html (z.B. /marktanalyse/, /stadtteile/, /ratgeber/) bleiben unangetastet.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)/$ /$1.html [R=301,L]

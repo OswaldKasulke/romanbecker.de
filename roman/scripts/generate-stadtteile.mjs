@@ -106,7 +106,7 @@ function render(d) {
   const ctaSubline   = CTA_SUBLINE_POOL[(_h>>3) % CTA_SUBLINE_POOL.length](fn);
   const ctaBotBtn    = CTA_BUTTON_POOL[(_h+4) % CTA_BUTTON_POOL.length](fn);
   const ctaBotTitle  = CTA_TITLE_POOL[(_h+1) % CTA_TITLE_POOL.length](fn);
-  const md = 'Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung '+fn+'. Immobilie in '+fn+' verkaufen oder kaufen? Roman Becker \u2014 Ihr Makler vor Ort.'+rt+' Marktdaten, Stadtteil-Expertise, EVERNEST-Netzwerk. Jetzt beraten lassen.';
+  const md = 'Immobilienbewertung & Hausverkauf in '+fn+' \u2014 Roman Becker (EVERNEST).'+rt+' Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespr\u00e4ch.';
   const bbox = (d.lng-0.02).toFixed(3)+'%2C'+(d.lat-0.015).toFixed(3)+'%2C'+(d.lng+0.02).toFixed(3)+'%2C'+(d.lat+0.015).toFixed(3);
   const mapUrl = 'https://www.openstreetmap.org/export/embed.html?bbox='+bbox+'&layer=mapnik&marker='+d.lat+'%2C'+d.lng;
 
