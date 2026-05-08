@@ -12,6 +12,6 @@ RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 #    Trailing-Slash-Variante existiert nicht im Filesystem (kein Ordner).
 #    Wenn aber eine entsprechende .html-Datei existiert → 301 darauf.
 #    Vorhandene Ordner mit index.html (z.B. /marktanalyse/, /stadtteile/, /ratgeber/) bleiben unangetastet.
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteCond %{REQUEST_URI} ^/(.+)/$
+RewriteCond %{DOCUMENT_ROOT}/%1.html -f
 RewriteRule ^(.+)/$ /$1.html [R=301,L]
