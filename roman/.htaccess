@@ -1,5 +1,9 @@
 # Roman Becker — URL-Routing
-# Stand: 2026-05-08
+# Stand: 2026-05-09
+
+# MultiViews ausschalten — sonst löst Apache "/suelz/" automatisch auf "suelz.html"
+# auf, BEVOR mod_rewrite läuft, was zu .html.html-Doppel-Redirects führt.
+Options -MultiViews
 
 RewriteEngine On
 
@@ -9,7 +13,9 @@ RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
 RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 
 # 2) /<slug>/ → /<slug>.html (301)
-#    Vorhandene Ordner (z.B. /marktanalyse/, /stadtteile/, /ratgeber/) bleiben unangetastet.
-#    Bei allen anderen trailing-slash-URLs: 301 auf .html-Variante (existiert für alle Stadtteile + Ratgeber).
+#    Skip wenn URL bereits auf .html/ endet (Schutz vor Doppel-Redirect).
+#    Skip wenn Request-Filename ein existierendes Directory ist
+#    (z.B. /marktanalyse/, /stadtteile/, /ratgeber/ → Index bleibt erreichbar).
+RewriteCond %{REQUEST_URI} !\.html/?$
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1.html [R=301,L]
