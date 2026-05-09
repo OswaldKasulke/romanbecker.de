@@ -9,9 +9,7 @@ RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
 RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 
 # 2) /<slug>/ → /<slug>.html (301)
-#    Trailing-Slash-Variante existiert nicht im Filesystem (kein Ordner).
-#    Wenn aber eine entsprechende .html-Datei existiert → 301 darauf.
-#    Vorhandene Ordner mit index.html (z.B. /marktanalyse/, /stadtteile/, /ratgeber/) bleiben unangetastet.
-RewriteCond %{REQUEST_URI} ^/(.+)/$
-RewriteCond %{DOCUMENT_ROOT}/%1.html -f
+#    Vorhandene Ordner (z.B. /marktanalyse/, /stadtteile/, /ratgeber/) bleiben unangetastet.
+#    Bei allen anderen trailing-slash-URLs: 301 auf .html-Variante (existiert für alle Stadtteile + Ratgeber).
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1.html [R=301,L]
