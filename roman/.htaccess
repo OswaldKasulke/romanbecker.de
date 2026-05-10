@@ -1,5 +1,5 @@
 # Roman Becker — URL-Routing
-# Stand: 2026-05-09
+# Stand: 2026-05-10
 
 # MultiViews ausschalten — sonst löst Apache "/suelz/" automatisch auf "suelz.html"
 # auf, BEVOR mod_rewrite läuft, was zu .html.html-Doppel-Redirects führt.
@@ -12,10 +12,18 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
 RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 
-# 2) /<slug>/ → /<slug>.html (301)
-#    Skip wenn URL bereits auf .html/ endet (Schutz vor Doppel-Redirect).
-#    Skip wenn Request-Filename ein existierendes Directory ist
-#    (z.B. /marktanalyse/, /stadtteile/, /ratgeber/ → Index bleibt erreichbar).
+# 2) Legacy-URL-Redirects (Google-indexierte URLs die nicht mehr existieren)
+RewriteRule ^evernest/?$ / [R=301,L]
+RewriteRule ^eigenbedarfsklage/?$ /ratgeber/eigenbedarfsklage.html [R=301,L]
+
+# 3) /<slug>/ → /<slug>.html (301)
+#    Bedingungen:
+#    - URL endet nicht bereits auf .html/
+#    - REQUEST_URI matcht /(.+)/$ → %1 = slug ohne führenden Slash und ohne trailing
+#    - Eine Datei %1.html existiert im DOCUMENT_ROOT (verhindert 404-Ketten)
+#    - Request ist kein Directory (z.B. /marktanalyse/, /stadtteile/, /ratgeber/)
 RewriteCond %{REQUEST_URI} !\.html/?$
+RewriteCond %{REQUEST_URI} ^/(.+)/$
+RewriteCond %{DOCUMENT_ROOT}/%1.html -f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1.html [R=301,L]
