@@ -9,21 +9,27 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
 RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 
-# 2) Spezifische Legacy-URLs (Google-indexierte URLs einer alten Site-Struktur)
-RewriteRule ^evernest/?$ / [R=301,L]
-RewriteRule ^eigenbedarfsklage/?$ /ratgeber/eigenbedarfsklage.html [R=301,L]
-RewriteRule ^kontakt/?$ /#kontakt [R=301,L]
-RewriteRule ^impressum/?$ /impressum.html [R=301,L]
-RewriteRule ^linksammlung/?$ / [R=301,L]
+# 2) Legacy-URLs einer alten Site-Struktur (vor /ratgeber/-Prefix-Umstellung)
+#    Ziele thematisch gewählt für vollen Authority-Transfer + UX.
+#    Mapping wird auf Basis Search-Console-Daten gepflegt (gepullt 2026-05-11).
+#    Wenn weitere Legacy-URLs in GSC-Pull auftauchen, hier eintragen.
 
-# 3) Legacy: Top-Level-Slug der eigentlich ein Ratgeber ist → /ratgeber/<slug>.html
-#    Beispiel: /annuitaetendarlehen/ → /ratgeber/annuitaetendarlehen.html
-#    Cond: REQUEST_URI matcht /(.+)/$ UND /ratgeber/<slug>.html existiert
-RewriteCond %{REQUEST_URI} ^/([^/]+)/$
-RewriteCond %{DOCUMENT_ROOT}/ratgeber/%1.html -f
-RewriteRule ^([^/]+)/$ /ratgeber/$1.html [R=301,L]
+# --- Top-Level-Sonderfälle (kein /ratgeber/-Pendant) ---
+RewriteRule ^evernest/?$               /#ueber-evernest                                  [R=301,L]
+RewriteRule ^kontakt/?$                /#kontakt                                         [R=301,L]
+RewriteRule ^impressum/?$              /impressum.html                                   [R=301,L]
+RewriteRule ^linksammlung/?$           /ratgeber/                                        [R=301,L]
 
-# 4) Generisch: /<slug>/ → /<slug>.html (für stadtteile/, ratgeber/ etc.)
+# --- Alte Top-Level-Ratgeber-URLs → neue /ratgeber/-Struktur ---
+RewriteRule ^annuitaetendarlehen/?$    /ratgeber/annuitaetendarlehen.html               [R=301,L]
+RewriteRule ^abschreibung-bei-immobilien/?$ /ratgeber/abschreibung-bei-immobilien.html  [R=301,L]
+RewriteRule ^eigenbedarfsklage/?$      /ratgeber/eigenbedarfsklage.html                 [R=301,L]
+RewriteRule ^flurkarte/?$              /ratgeber/flurkarte.html                         [R=301,L]
+RewriteRule ^notarkosten-beim-immobilienkauf/?$ /ratgeber/notarkosten-beim-immobilienkauf.html [R=301,L]
+RewriteRule ^smart-heizung/?$          /ratgeber/smart-heizung.html                     [R=301,L]
+
+# 3) URL-Hygiene: trailing-slash → .html (Stadtteile + ratgeber/ Sub-Pfade)
+#    Beispiel: /stadtteile/suelz/ → /stadtteile/suelz.html
 #    Cond: .html-Variante im Document Root existiert (verhindert 404-Ketten)
 RewriteCond %{REQUEST_URI} !\.html/?$
 RewriteCond %{REQUEST_URI} ^/(.+)/$
