@@ -1,27 +1,30 @@
 # Roman Becker — URL-Routing
-# Stand: 2026-05-10
+# Stand: 2026-05-11
 
-# MultiViews ausschalten — sonst löst Apache "/suelz/" automatisch auf "suelz.html"
-# auf, BEVOR mod_rewrite läuft, was zu .html.html-Doppel-Redirects führt.
 Options -MultiViews
 
 RewriteEngine On
 
 # 1) www. → non-www. (301)
-#    Behebt Authority-Splitting zwischen www. und Root-Domain.
 RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
 RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 
-# 2) Legacy-URL-Redirects (Google-indexierte URLs die nicht mehr existieren)
+# 2) Spezifische Legacy-URLs (Google-indexierte URLs einer alten Site-Struktur)
 RewriteRule ^evernest/?$ / [R=301,L]
 RewriteRule ^eigenbedarfsklage/?$ /ratgeber/eigenbedarfsklage.html [R=301,L]
+RewriteRule ^kontakt/?$ /#kontakt [R=301,L]
+RewriteRule ^impressum/?$ /impressum.html [R=301,L]
+RewriteRule ^linksammlung/?$ / [R=301,L]
 
-# 3) /<slug>/ → /<slug>.html (301)
-#    Bedingungen:
-#    - URL endet nicht bereits auf .html/
-#    - REQUEST_URI matcht /(.+)/$ → %1 = slug ohne führenden Slash und ohne trailing
-#    - Eine Datei %1.html existiert im DOCUMENT_ROOT (verhindert 404-Ketten)
-#    - Request ist kein Directory (z.B. /marktanalyse/, /stadtteile/, /ratgeber/)
+# 3) Legacy: Top-Level-Slug der eigentlich ein Ratgeber ist → /ratgeber/<slug>.html
+#    Beispiel: /annuitaetendarlehen/ → /ratgeber/annuitaetendarlehen.html
+#    Cond: REQUEST_URI matcht /(.+)/$ UND /ratgeber/<slug>.html existiert
+RewriteCond %{REQUEST_URI} ^/([^/]+)/$
+RewriteCond %{DOCUMENT_ROOT}/ratgeber/%1.html -f
+RewriteRule ^([^/]+)/$ /ratgeber/$1.html [R=301,L]
+
+# 4) Generisch: /<slug>/ → /<slug>.html (für stadtteile/, ratgeber/ etc.)
+#    Cond: .html-Variante im Document Root existiert (verhindert 404-Ketten)
 RewriteCond %{REQUEST_URI} !\.html/?$
 RewriteCond %{REQUEST_URI} ^/(.+)/$
 RewriteCond %{DOCUMENT_ROOT}/%1.html -f
