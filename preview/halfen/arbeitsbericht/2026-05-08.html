@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arbeitsbericht 08. Mai 2026 — HALFEN — fuerte.digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', -apple-system, sans-serif; background: #F5F3EF; color: #1A1A1A; line-height: 1.7; }
+  .container { max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+  header { border-bottom: 1px solid #E5E2DC; padding-bottom: 32px; margin-bottom: 48px; }
+  .logo { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .logo span { color: #B8860B; }
+  .breadcrumb { font-size: 0.78rem; color: #888; letter-spacing: 0.03em; margin-bottom: 24px; }
+  .breadcrumb a { color: #888; text-decoration: none; }
+  .breadcrumb a:hover { color: #B8860B; }
+  .date-line { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #B8860B; letter-spacing: 0.04em; margin-bottom: 8px; }
+  h1 { font-size: 2rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 16px; }
+  .lead { font-size: 1.05rem; color: #444; max-width: 620px; }
+  h2 { font-size: 1.3rem; font-weight: 600; margin: 48px 0 16px; letter-spacing: -0.005em; }
+  h3 { font-size: 1rem; font-weight: 600; margin: 28px 0 8px; color: #1A1A1A; }
+  p { margin-bottom: 14px; color: #2A2A2A; }
+  ul, ol { margin-left: 1.2rem; margin-bottom: 18px; }
+  li { margin-bottom: 8px; color: #2A2A2A; }
+  strong { color: #1A1A1A; font-weight: 600; }
+  .panel { background: #FFFFFF; border: 1px solid #E5E2DC; border-radius: 10px; padding: 24px 28px; margin: 18px 0; }
+  .panel-warning { background: #FFF8E6; border-color: #F0D080; }
+  .panel-warning .panel-label { color: #8B6500; }
+  .panel-success { background: #F0F7EC; border-color: #C5DDB1; }
+  .panel-success .panel-label { color: #4A7034; }
+  .panel-info { background: #ECF2F7; border-color: #B5C9DD; }
+  .panel-info .panel-label { color: #34547A; }
+  .panel-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; background: #FFFFFF; border: 1px solid #E5E2DC; border-radius: 10px; overflow: hidden; font-size: 0.92rem; margin: 18px 0; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid #F0EDE7; }
+  th { background: #FAFAF8; font-weight: 600; color: #555; font-size: 0.78rem; letter-spacing: 0.02em; text-transform: uppercase; }
+  td.num, th.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
+  tr:last-child td { border-bottom: none; }
+  .hours-line { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #555; background: #FAFAF8; border-left: 3px solid #B8860B; padding: 10px 16px; margin-top: 24px; }
+  .footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid #E5E2DC; font-size: 0.82rem; color: #888; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .footer a { color: #B8860B; text-decoration: none; }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } h1 { font-size: 1.5rem; } h2 { font-size: 1.15rem; } .panel { padding: 20px 22px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">fuerte<span>.</span>digital</div>
+    <div class="breadcrumb"><a href="uebersicht.html">← Alle Berichte</a></div>
+    <div class="date-line">FREITAG · 08. MAI 2026</div>
+    <h1>Brevo angebunden, Y/Y-Rätsel gelöst, Wochenplan steht</h1>
+    <p class="lead">Heute war ein sehr produktiver Tag. Wir haben die letzte fehlende Datenquelle (Brevo) automatisiert angebunden und damit zwei wichtige Fragen beantwortet: warum der Frühling 2026 deutlich schwächer war als 2025, und welcher Hebel im Email-Marketing realistisch ist.</p>
+  </header>
+
+  <h2>Worum es heute ging</h2>
+
+  <p>Nach Anbindung von Google Analytics, Google Ads, Meta Ads und Shopify in den letzten Tagen war Brevo (euer Email-Marketing-Tool) die letzte fehlende Quelle. Mit dem Zugang konnten wir endlich zwei Dinge belegen:</p>
+  <ol>
+    <li>Was steckt hinter dem Volumen-Rückgang im Frühling 2026 gegenüber 2025?</li>
+    <li>Welches Potenzial liegt in einer Email-Marketing-Skalierung?</li>
+  </ol>
+
+  <h2>Befund 1: Der Frühling-Rückgang ist kein Site-Problem</h2>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ HAUPTERKENNTNIS</div>
+    <p style="margin-bottom: 0;">Der Shopify-Rückgang im Frühling 2026 gegenüber 2025 (812 → 284 Bestellungen, −65 %) ist <strong>nicht durch Probleme im Shop oder am Tracking</strong> verursacht, sondern primär durch eine starke Reduktion des Meta-Werbebudgets.</p>
+  </div>
+
+  <h3>Die Zahlen</h3>
+  <table>
+    <thead><tr><th>Zeitraum</th><th class="num">Meta-Werbebudget</th><th class="num">Meta-Bestellungen</th><th class="num">Shopify-Bestellungen total</th></tr></thead>
+    <tbody>
+      <tr><td>06.04.–06.05.<strong>2025</strong></td><td class="num">15.865 €</td><td class="num">360</td><td class="num">812</td></tr>
+      <tr><td>06.04.–06.05.<strong>2026</strong></td><td class="num">2.033 €</td><td class="num">69</td><td class="num">284</td></tr>
+      <tr><td><strong>Veränderung</strong></td><td class="num"><strong>−87 %</strong></td><td class="num"><strong>−81 %</strong></td><td class="num"><strong>−65 %</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p>Der Werbebudget-Cut betrug 87 %. Das Volumen aus Meta-Werbung ist im gleichen Maß eingebrochen. Bezogen auf die Gesamt-Bestellungen: 2025 kamen 44 % via Meta-Werbung, 2026 nur noch 24 %.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">✓ POSITIVE NACHRICHT</div>
+    <p style="margin-bottom: 0;"><strong>Eure Werbe-Effizienz ist 2026 sogar besser als 2025</strong> — der ROAS (Return on Ad Spend) liegt aktuell bei 4,07× (April 2026: sogar 5,91×) gegenüber 2,72× in Frühling 2025. Wenn ihr im Q4 2026 wieder ähnlich investiert wie im Q4 2025 (~80.000 € pro Monat Sept/Okt), liegt das Volumen-Potenzial entsprechend hoch.</p>
+  </div>
+
+  <h3>Frage an dich</h3>
+  <ol>
+    <li>Plant Halfen für Q4 2026 wieder ein vergleichbares Werbebudget wie Q4 2025?</li>
+    <li>Was war der Auslöser für den Cut im Februar 2026 (komplette Pause)? Wir möchten besser verstehen, wann wieder hochgefahren wird.</li>
+  </ol>
+
+  <h2>Befund 2: Euer Email-Marketing ist eine massiv unterausgenutzte Goldader</h2>
+
+  <p>Über die Brevo-Schnittstelle haben wir den kompletten Stand der Email-Listen + die Mailing-Performance der letzten Jahre eingesehen:</p>
+
+  <h3>Listen-Inventar (war uns vorher nicht so umfangreich bekannt)</h3>
+  <table>
+    <thead><tr><th>Liste</th><th class="num">Subscriber</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Shopify</strong> (alle Customer-Kontakte automatisch gesynct)</td><td class="num"><strong>21.865</strong></td></tr>
+      <tr><td>Identifizierte Kontakte (Email bekannt, für Browse-Abandonment relevant)</td><td class="num">12.344</td></tr>
+      <tr><td>Newsletter "02.04.26 NL"</td><td class="num">7.164</td></tr>
+      <tr><td>Aktive Email-Abonnenten</td><td class="num">5.817</td></tr>
+      <tr><td>WhatsApp bestätigt (Double-Opt-In)</td><td class="num">2.466</td></tr>
+      <tr><td><strong>Treue Kunden (VIP-Segment)</strong></td><td class="num"><strong>452</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Mailing-Performance</h3>
+  <p>Die Open-Rate eurer Mailings liegt bei <strong>64,9 % im Schnitt</strong> (z.B. Black November 2025: 69,7 %), die Klick-Rate bei <strong>13,1 %</strong>. Branchenstandard in Mode-E-Commerce: 20–30 % Open, 2–5 % Klick. <strong>Eure Liste ist 2–3× engagierter als der Industry-Standard.</strong></p>
+
+  <p>Die Top-Performer aus allen 35 Kampagnen:</p>
+  <ul>
+    <li><strong>"New in" Mailings</strong> (Collection-Drops, z.B. Leinen 2023) — bis zu 85 % Open-Rate</li>
+    <li><strong>Treue-Kunden-Mailings</strong> — 93,7 % Open-Rate</li>
+    <li>Sale-Mailings liegen mit 61–69 % Open-Rate darunter</li>
+  </ul>
+
+  <p>Erkenntnis: Eure Kunden mögen Neuheiten und Kollektions-News mehr als Discount-Trigger. Diese Beobachtung wird in die Klaviyo-Strategie einfließen.</p>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ DAS MOMENTUM WIRD AKTUELL NICHT GENUTZT</div>
+    <p style="margin-bottom: 0;">Bei dieser außergewöhnlich engagierten Liste werden aktuell nur etwa 6 Mailings pro Jahr versendet (Quelle: Brevo-Historie 2025). Selbst eine moderate Steigerung auf 24 Mailings/Jahr (alle 2 Wochen) plus Klaviyo-Standard-Flows (Abandoned-Cart, Welcome, Back-in-Stock, Post-Purchase) hat realistisches Umsatz-Potenzial im mittleren fünfstelligen Bereich pro Jahr — die genaue Zahl klären wir nach 4–8 Wochen Klaviyo-Live-Daten.</p>
+  </div>
+
+  <h2>Was nächste Woche passiert (KW 20)</h2>
+
+  <p>Der Wochenplan steht. Schwerpunkte:</p>
+
+  <ol>
+    <li><strong>Tracking-Fundament</strong> (Mo + Di) — Microsoft Clarity einbauen für Cart-Diagnose, Server-Side-Tracking aktivieren (schließt die 44 %-Tracking-Lücke), Google-Ads-Conversion-Aktionen aufräumen</li>
+    <li><strong>Tine-Update Mittwoch</strong> — alle hier zusammengefassten Befunde besprechen, offene Fragen klären</li>
+    <li><strong>Klaviyo-Migration startet</strong> (Mi + Do) — Account anlegen, Brevo-Daten importieren, Abandoned-Cart- und Welcome-Flow konzipieren</li>
+    <li><strong>Quick-Wins + Reporting</strong> (Fr) — erste Clarity-Recordings sichten, Wochenbericht</li>
+  </ol>
+
+  <h2>Fragen für Mittwoch-Call</h2>
+  <ul>
+    <li>Q4 2026 Werbe-Plan (Spend-Niveau wie Q4 2025?)</li>
+    <li>Warum war Februar 2026 Werbe-Pause?</li>
+    <li>Was wurde Anfang Januar 2025 am Tracking geändert? (90-Tage-Tracking-Bruch)</li>
+    <li>Klaviyo Marketing-Plan-Stufe — Freigabe (für WhatsApp-Channel benötigt)</li>
+    <li>Brevo Kündigungsfrist?</li>
+    <li>Free-Shipping-Schwelle 80 € OK?</li>
+    <li>B-Ware (Top-3-Bestseller!) — bewusste Outlet-Strategie oder ausgliedern aus Hauptnavigation?</li>
+    <li>3 Produkte ohne Bilder (W8S70, K2W70, Magic Sand) — Bilder ergänzen oder als Draft setzen?</li>
+  </ul>
+
+  <div class="hours-line">⏱ Aufgewendete Zeit heute: <strong>4,0 Stunden</strong> · Bisher gesamt: 19,0 Stunden</div>
+
+  <div class="footer">
+    <span><a href="uebersicht.html">← Alle Berichte</a></span>
+    <span>fuerte.digital · <a href="mailto:daniel@fuerte.digital">daniel@fuerte.digital</a></span>
+  </div>
+</div>
+
+<script>
+if (sessionStorage.getItem('halfen_auth') !== '1') {
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>
