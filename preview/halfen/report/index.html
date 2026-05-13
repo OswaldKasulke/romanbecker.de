@@ -152,7 +152,7 @@
   <div class="panel panel-success">
     <div class="panel-label">✓ EXECUTIVE SUMMARY</div>
     <ol style="margin-left: 1.2rem;">
-      <li><strong>Cart-Drawer ist die größte Black-Box:</strong> Halfen nutzt Cart-Drawer (kein /cart-Page-Reload) — der eigentliche Cart-Drop liegt dort und ist mit aktuellem Tracking nicht messbar. Microsoft Clarity / Custom-Events nötig für echte Diagnose. (Meta-Pixel-Funnel zeigt 70 % Drop in der "Add-to-Cart → Initiate-Checkout"-Phase, Shopify-Daten zeigen nur 9,6 % Drop nach Checkout-Page — beide messen verschiedene Schritte.)</li>
+      <li><strong>Cart-Drawer ist Tracking-Lücke:</strong> Halfen nutzt Cart-Drawer (kein /cart-Page-Reload, Code-Beleg <code>cart_type: drawer</code>). Zwischen "Add-to-Cart-Event" und "Checkout-Page-Load" gibt es keinen messbaren Page-View. Was die Datenquellen direkt zeigen: Meta-Pixel zählt 4.606 Add-to-Cart und 1.397 Initiate-Checkout (180d), Shopify zählt 314 gestartete Checkouts (30d) mit nur 9,6 % Abbruch nach Checkout-Page. Die genaue Drop-Höhe in dieser Phase ist aus den vorhandenen Daten nicht direkt ableitbar. Microsoft Clarity / Custom-Events nötig für echte Diagnose.</li>
       <li><strong>Conversion-Tracking ist mehrfach defekt:</strong> GA4 verfehlt 44 % der echten Bestellungen (Express-Pay-Tracking-Lücke). Google Ads meldet 590 Conversions auf 60 Klicks (Mehrfach-Tracking). GA4 hatte Q1 2025 ein 3-monatiges Sessions-Undercount. <strong>Echte CR vermutlich ~2,3 % statt der GA4-1,29 %.</strong> Tracking muss vor jedem A/B-Test bereinigt werden.</li>
       <li><strong>Email-Marketing ungenutzt:</strong> Halfen sendet aktuell nur 2× pro Jahr eine Mail (Brevo). Klaviyo-Migration in 4 Wochen mit 5 Email-Flows realistisch <strong>+40-80k € Zusatzumsatz/Jahr</strong> (saubere Aufschlüsselung in Sektion 14).</li>
       <li><strong>SEO-Hebel "wollwalk":</strong> 47.479 Impressions in 180 Tagen auf Position 9 mit nur 0,6 % CTR. Bei Top-3-Position ein Vielfaches an organischem Traffic möglich.</li>
@@ -175,9 +175,12 @@
       <li><a href="#strategie">3-Hebel-Strategie für CR 3 %</a></li>
       <li><a href="#massnahmen">Maßnahmenplan</a></li>
       <li><a href="#weitere-punkte">Weitere Briefing-Punkte (Loyalty, Produkte, Fulfillment, Google Ads)</a></li>
+      <li><a href="#segments">Customer-Segmente &amp; Demographics <span style="color:#B8860B">★ NEU 13.05.</span></a></li>
+      <li><a href="#meta-yy">Meta-Werbe Y/Y <span style="color:#B8860B">★ NEU 13.05.</span></a></li>
       <li><a href="#bestseller">Top-10 Bestseller 30d</a></li>
-      <li><a href="#synthese">Hebel-Synthese — alle Daten kombiniert</a></li>
+      <li><a href="#synthese">Hebel-Synthese — alle Daten kombiniert <span style="color:#B8860B">★ Update 13.05.</span></a></li>
       <li><a href="#todos">Aktuelle TODOs</a></li>
+      <li><a href="#tine-checklist">Tine-Checkliste (zum Abhaken) <span style="color:#B8860B">★ NEU 13.05.</span></a></li>
       <li><a href="#roadmap">Roadmap bis Mitte Juli</a></li>
     </ol>
   </div>
@@ -260,43 +263,40 @@
   </div>
 
   <!-- 4. Cart-Checkout -->
-  <h2 id="cart-checkout">4. Hauptbefund: Cart → Checkout-Drop</h2>
-  <p><strong>Nur 30 % der Kunden, die ein Produkt in den Warenkorb legen, gehen weiter zum Checkout. 70 % brechen genau hier ab.</strong> Branchenstandard im Mode-E-Commerce: 60-70 %. Halfen liegt bei der Hälfte. Der Drop ist nicht "normal" — er ist behebbar.</p>
+  <h2 id="cart-checkout">4. Cart → Checkout — was die Daten zeigen</h2>
+  <p>Zwischen Add-to-Cart-Event und erfolgreichem Kauf passiert ein deutlicher Verlust an Käufern. Die zwei verfügbaren Datenquellen messen unterschiedliche Schritte und sind nicht vollständig vergleichbar (siehe Korrektur-Box unten).</p>
 
   <div class="chart-card">
-    <h4>Funnel Meta-Pixel (180 Tage)</h4>
+    <h4>Meta-Pixel-Werte (180 Tage)</h4>
+    <p style="font-size: 0.9rem; color: #555;">Achtung: Meta-Pixel-Events sind nicht 1:1 mit unique Sessions. Add-to-Cart kann mehrfach pro Session feuern. Außerdem hat Meta-Pixel ähnliche Tracking-Lücken wie GA4 (Express-Pay, Cookie-Consent — vermutlich, nicht verifiziert).</p>
     <div class="funnel">
       <div class="funnel-row">
         <span>Klicks aus Meta</span>
         <div class="funnel-bar" style="width: 100%;">31.321</div>
-        <span class="funnel-meta">100 %</span>
+        <span class="funnel-meta">Events</span>
       </div>
       <div class="funnel-row">
-        <span>Add to Cart</span>
+        <span>Add to Cart Events</span>
         <div class="funnel-bar" style="width: 14.7%;">4.606</div>
-        <span class="funnel-meta">14,7 % vom Klick</span>
+        <span class="funnel-meta">Events</span>
       </div>
       <div class="funnel-row">
-        <span>Initiate Checkout</span>
-        <div class="funnel-bar drop" style="width: 4.5%;">1.397</div>
-        <span class="funnel-meta">⚠ 30,3 % vom Cart</span>
+        <span>Initiate Checkout Events</span>
+        <div class="funnel-bar" style="width: 4.5%;">1.397</div>
+        <span class="funnel-meta">Events</span>
       </div>
       <div class="funnel-row">
-        <span>Purchase</span>
+        <span>Purchase Events</span>
         <div class="funnel-bar" style="width: 1.9%;">600</div>
-        <span class="funnel-meta">42,9 % vom Checkout</span>
+        <span class="funnel-meta">Events</span>
       </div>
     </div>
   </div>
 
-  <div class="panel panel-warning">
-    <div class="panel-label">⚠ HEBEL-RECHNUNG (theoretisch — siehe Korrektur unten)</div>
-    <p>Wenn der Meta-Pixel-Drop von 70 % halbiert wird (theoretisch):</p>
-    <ul>
-      <li>GA4-Transactions würden von 1.891 auf ~3.780 / 180 Tage steigen</li>
-      <li>GA4-CR würde von 1,29 % auf ~2,5 % steigen</li>
-    </ul>
-    <p style="margin-bottom: 0;"><strong>ABER (06.05.-Korrektur):</strong> Wir wissen jetzt, dass Meta-Pixel-Funnel und Shopify-Checkouts verschiedene Schritte messen. Der echte Cart-Drawer-Drop ist nicht direkt quantifizierbar mit aktuellem Tracking. Außerdem ist die GA4-CR-Basis selbst um 44 % zu niedrig erfasst. Dieser Wert ist daher als <strong>Größenordnungs-Hinweis</strong> zu verstehen, nicht als präzise Prognose.</p>
+  <div class="panel panel-info">
+    <div class="panel-label">→ WAS DIE DATEN HERGEBEN</div>
+    <p>Die Funnel-Bar oben zeigt Meta-Pixel-<em>Events</em>, nicht Sessions. Ohne sauberes Custom-Event-Tracking (Cart-Drawer-Open, Initiate-Checkout-Klick) lässt sich der Drop in der Cart-Drawer-Phase nicht direkt quantifizieren. Eine konkrete CR-Lift-Prognose ("Wenn wir den Drop halbieren, dann CR steigt auf X %") ist mit diesen Daten nicht seriös möglich.</p>
+    <p style="margin-bottom: 0;">→ Diagnose-Schritt: Microsoft Clarity einrichten + Custom-Events am Cart-Drawer (Open / Checkout-Klick). Erst nach Datenerhebung ~2-4 Wochen lassen sich konkrete Hebel-Werte aus Halfen-Daten berechnen.</p>
   </div>
 
   <h4>Mögliche Ursachen (Hypothesen, zu verifizieren)</h4>
@@ -310,15 +310,15 @@
     <li>Lieferzeit/Verfügbarkeit erst spät kommuniziert</li>
   </ol>
 
-  <div class="panel panel-warning">
-    <div class="panel-label">⚠ KORREKTUR DER CART-DROP-INTERPRETATION (06.05. morgens)</div>
-    <p>Der oben genannte 30,3 %-Wert kommt aus dem <strong>Meta-Pixel-Funnel</strong> und misst den Schritt <em>"Add-to-Cart-Klick → Initiate-Checkout-Klick im Cart-Drawer"</em>. Shopify-eigene Daten zeigen einen anderen Schritt:</p>
+  <div class="panel panel-info">
+    <div class="panel-label">→ ZWEITE DATENQUELLE — SHOPIFY ABANDONEDCHECKOUTS</div>
+    <p>Direkt aus Shopify-API (06.05. abgerufen):</p>
     <ul>
-      <li><strong>Shopify abandonedCheckouts (30d):</strong> 30 abgebrochene Checkouts, Wert 4.557 €</li>
+      <li>Shopify abandonedCheckouts 30d: 30 abgebrochene Checkouts, Total-Wert 4.557 €</li>
       <li>284 erfolgreiche Orders + 30 abgebrochene = 314 gestartete Checkouts</li>
-      <li><strong>Checkout-Page → Purchase Completion: 90,4 %</strong> (Drop nur 9,6 %)</li>
+      <li>Checkout-Page → Purchase: 90,4 % schließen ab, 9,6 % brechen ab</li>
     </ul>
-    <p style="margin-bottom: 0;">→ <strong>Der echte Cart-Drop liegt im Cart-Drawer-Bereich, NICHT auf der Checkout-Page.</strong> Halfen nutzt Cart-Drawer (Slide-Out), nicht Cart-Page — der Drawer-Open ist nicht trackbar in GA4 ohne Custom-Events. Cart-Diagnose braucht Microsoft Clarity oder Custom-Events.</p>
+    <p style="margin-bottom: 0;">Aus diesen zwei Datenquellen folgt: Der Drop nach Erreichen der Shopify-Checkout-Page ist klein (9,6 %). Der größere Verlust passiert irgendwo zwischen "Add-to-Cart-Event" und "Checkout-Page-Load" — die genaue Position innerhalb dieser Phase ist mit aktuellem Tracking nicht bestimmbar.</p>
   </div>
 
   <p>Konkrete Ursachen werden via <strong>Microsoft Clarity oder Hotjar</strong> in Woche 1 identifiziert (Heatmap + Session-Recordings + Cart-Survey).</p>
@@ -330,7 +330,7 @@
   <div class="panel panel-warning">
     <div class="panel-label">⚠ KRITISCH</div>
     <p>Eine PMax-Kampagne (PMAX HALFEN DE 05-2026) meldet <strong>590 Conversions auf nur 60 Klicks</strong> — das wären knapp 10 Käufe pro Klick. Physikalisch unmöglich.</p>
-    <p style="margin-bottom: 0;">Wahrscheinlich Mehrfach-Tracking durch parallele Setups: Shopify Google Channel App + Simprosys + Google-Ads-eigener Tag laufen vermutlich parallel.</p>
+    <p style="margin-bottom: 0;">Mögliche Ursache (zu verifizieren): Mehrfach-Tracking durch parallele Setups. Im settings_data.json sind aktiv: Shopify Google Channel App, Simprosys, plus möglicherweise Google-Ads-eigener Tag im Theme. Welche Tags konkret laufen, muss im Shopify Admin (Custom-Metafields foxtheme.code_head/code_body) verifiziert werden.</p>
   </div>
 
   <h4>Letzte 30 Tage Google Ads</h4>
@@ -342,7 +342,7 @@
     <div class="stat"><div class="stat-label">"Conversions"</div><div class="stat-value">644 ⚠</div></div>
     <div class="stat"><div class="stat-label">"ROAS"</div><div class="stat-value">14,3× ⚠</div></div>
   </div>
-  <p>Der gemeldete ROAS von 14× passt nicht zu Meta-ROAS 3,87× — die echte Werbe-Rentabilität liegt vermutlich näher an Meta. Solange das Google-Tracking falsche Zahlen liefert, sind Budget-Entscheidungen blind.</p>
+  <p>Der gemeldete Google-Ads-ROAS 14× und der Meta-Pixel-ROAS 3,87× sind inkonsistent. Welcher näher an der Realität ist, lässt sich aus den vorhandenen Daten nicht entscheiden — beide Datenquellen haben Tracking-Probleme. Solange das Google-Tracking unbereinigte Werte liefert, sind Budget-Entscheidungen auf Basis dieses ROAS nicht belastbar.</p>
 
   <div class="panel panel-success">
     <div class="panel-label">→ LÖSUNG GOOGLE-ADS-TRACKING</div>
@@ -380,13 +380,13 @@
 
   <div class="panel panel-warning">
     <div class="panel-label">⚠ KRITISCH</div>
-    <p>44 % der echten Bestellungen werden in GA4 nicht erfasst. Wahrscheinliche Ursachen:</p>
+    <p>44 % der echten Bestellungen werden in GA4 nicht erfasst (gemessen über 30 Tage 06.04.–06.05.2026). Mögliche Ursachen — alle zu verifizieren über Diagnose-Tests (siehe TODOs):</p>
     <ul>
-      <li><strong>Apple Pay / Google Pay / Shop Pay Express-Checkouts</strong> — werden oft nicht in GA4-Purchase-Events erfasst (häufiges Shopify-GA4-Problem)</li>
-      <li>Cookie-Consent-Bounce (Kunden ohne Tracking-Cookie → kein Purchase-Event)</li>
-      <li>Kein Server-Side-Tracking implementiert</li>
+      <li>Express-Checkouts (Apple Pay / Google Pay / Shop Pay) → Purchase-Event feuert nicht</li>
+      <li>Cookie-Consent-Ablehnung → Tracking blockiert</li>
+      <li>Tracking-Tag-Fehler im Theme</li>
     </ul>
-    <p style="margin-bottom: 0;">→ ROAS-Berechnungen aus GA4 / Google Ads Smart Bidding sind strukturell um 44 % zu niedrig angesetzt. A/B-Tests, die GA4-Conversions als Erfolgsmetrik nutzen, messen unvollständig.</p>
+    <p style="margin-bottom: 0;">→ A/B-Tests, die GA4-Conversions als Erfolgsmetrik nutzen, würden in der Größenordnung dieser Lücke unterzählen. Genaue Auswirkung auf ROAS-Berechnungen hängt von der Verteilung der nicht-getrackten Orders ab und ist ohne weitere Daten nicht präzise berechenbar.</p>
   </div>
 
   <h3>Befund 5.4 — Cart-Drawer-Tracking-Blindstelle</h3>
@@ -405,19 +405,19 @@
 
   <div class="panel panel-warning">
     <div class="panel-label">⚠ FOLGE</div>
-    <p style="margin-bottom: 0;">Der echte Cart-Drop ist mit aktuellem Tracking <strong>nicht messbar</strong>. Microsoft Clarity / Hotjar / Custom-Events nötig für echte Cart-Diagnose.</p>
+    <p style="margin-bottom: 0;">Cart-Drawer-Open ist als Event nicht in GA4-Standard-Page-Views enthalten. Drop-Diagnose in dieser Phase erfordert Microsoft Clarity (Heatmap + Session-Recordings) oder Custom-Events am Cart-Drawer.</p>
   </div>
 
   <h3>Server-Side-Tracking-Empfehlung (3 Stufen)</h3>
 
   <div class="panel panel-success">
     <div class="panel-label">→ STUFE 1 — QUICK-WIN (heute, kostenlos)</div>
-    <p style="margin-bottom: 0;"><strong>Shopify Conversions API für Meta aktivieren.</strong> Toggle in Shopify-Admin → Marketing → Pixel Connection → Conversion API. Adressiert Apple/Google/Shop Pay direkt. Kosten: 0 €. Aufwand: 30-60 Min. Erwarteter Impact: +20-30 % Meta-Conversions.</p>
+    <p style="margin-bottom: 0;"><strong>Shopify Conversions API für Meta aktivieren.</strong> Toggle in Shopify-Admin → Marketing → Pixel Connection → Conversion API. Adressiert Express-Pay-Tracking-Lücke. Kosten: 0 €. Aufwand: 30-60 Min. Konkrete Halfen-Wirkung erst nach Aktivierung messbar (typische Industry-Schätzungen variieren stark, daher hier nicht beziffert).</p>
   </div>
 
   <div class="panel panel-info">
     <div class="panel-label">→ STUFE 2 — MITTELFRISTIG (Wo 2-4)</div>
-    <p style="margin-bottom: 0;">GA4 Measurement Protocol via Cloud Function + Shopify Web Pixel API. Eigene Cloud-Function (Free-Tier), die GA4-Events serverseitig sendet. Kosten: ~0 € laufend. Aufwand: 8 h Setup. Impact: +10-20 % GA4-Conversions.</p>
+    <p style="margin-bottom: 0;">GA4 Measurement Protocol via Cloud Function + Shopify Web Pixel API. Eigene Cloud-Function (Free-Tier), die GA4-Events serverseitig sendet. Kosten: ~0 € laufend. Aufwand: 8 h Setup. Konkrete Halfen-Wirkung erst nach Implementierung messbar.</p>
   </div>
 
   <div class="panel panel-info">
@@ -464,27 +464,27 @@
   </table>
 
   <div class="panel panel-info">
-    <div class="panel-label">→ AUFFÄLLIG</div>
+    <div class="panel-label">→ BEOBACHTUNGEN</div>
     <ul style="margin-bottom: 0;">
-      <li><strong>Paid Social</strong> = ~25 % aller Sessions, aber CR <strong>0,52 %</strong> — 5× schlechter als Site-Schnitt. Großer ROAS-Hebel: bessere Audience-Targeting auf Käufer, nicht Browser.</li>
-      <li><strong>Email</strong> = <strong>7,97 %</strong> CR (höchste aller Channels), aber Halfen sendet aktuell nur 2× pro Jahr (Brevo). Klaviyo-Migration in 4 Wochen geplant.</li>
-      <li><strong>Direct + Paid Search</strong> = bottom-of-funnel, hoher CR — gute Hebel für Brand-Schutz und Retargeting.</li>
+      <li>Paid Social: ~25 % aller Sessions, CR 0,52 % — niedrigste CR im Top-7-Mix</li>
+      <li>Email: 7,97 % CR (höchster Wert), aber kleinstes Volumen (3.615 Sessions in 36 Monaten — laut Tine 2 Mailings/Jahr via Brevo)</li>
+      <li>Direct und Paid Search: vergleichsweise hohe CR (2,40 % / 2,76 %)</li>
     </ul>
   </div>
 
   <div class="panel panel-success">
-    <div class="panel-label">→ LÖSUNG CHANNEL-MIX</div>
+    <div class="panel-label">→ MÖGLICHE ANSATZPUNKTE (zu validieren)</div>
     <ol style="margin-bottom: 0;">
-      <li><strong>Paid Social CR-Diagnose:</strong> Welche Audiences sind aktiv? Lookalikes vs. Cold-Audiences? Frequency 4,26 ist hoch (Audience-Müdigkeit) — Creative-Refresh + neue Lookalike-Quellen aus letzten Käufern</li>
-      <li><strong>Paid Search ausbauen:</strong> CR 2,76 % — bisher nur 4,5 % der Sessions. Brand-Schutz-Kampagne + Top-Produkt-Search-Kampagnen aufsetzen</li>
-      <li><strong>Email skalieren:</strong> Klaviyo-Migration nutzen, um 2 Mailings/Jahr → systematische Flows + Newsletter zu machen</li>
-      <li><strong>Direct stärken:</strong> Brand-Awareness via Email/POS-Karten/Print-Material — direkte URL-Eingaben sind die qualitativsten Sessions</li>
+      <li>Paid Social CR-Diagnose: Welche Audiences sind aktiv? Aus Meta-Pixel-Baseline ist Frequency 4,26 dokumentiert — Marketing-Standard "Frequency &gt;3 = häufige Auslieferung an dieselben Personen". Konkrete Optimierungs-Empfehlung erst nach Audience-Audit.</li>
+      <li>Paid Search-Volumen ist mit 4,5 % der Sessions klein — Ausbau-Möglichkeit, aber konkretes Hebel-Potenzial nur via Search-Console-Daten + Wettbewerbs-Analyse zu beziffern.</li>
+      <li>Email skalieren via Klaviyo-Migration (Brevo → Klaviyo, 4-Wochen-Deadline): siehe ehrliche 5-Flow-Aufschlüsselung in Sektion 14.</li>
+      <li>Direct stärken — keine spezifische Hebel-Quantifizierung möglich.</li>
     </ol>
   </div>
 
   <!-- 7. Device -->
   <h2 id="device">7. Device-Analyse</h2>
-  <p>Halfen ist mobile-dominiert. Aber der Trend in 2026 zeigt eine Verschiebung Richtung Desktop.</p>
+  <p>Halfen ist mobile-dominiert. In den ersten 4 Monaten 2026 (Jan–April) ist der Mobile-Anteil im Vergleich zu den Vorjahren niedriger — ob das ein nachhaltiger Trend ist oder eine kleine Stichprobe vor Hauptsaison-Beginn, lässt sich erst nach Q4-Daten verlässlich sagen.</p>
 
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px 0;">
     <div class="chart-card">
@@ -507,7 +507,7 @@
     </tbody>
   </table>
 
-  <p><strong>Auffällig 2026 YTD:</strong> Mobile-Anteil von 92 % auf 85 % gefallen, Desktop von 7 % auf 14 % gestiegen. Bei Tine erfragen, ob das echter Trend (POS-Hinweise, B2B-Anfragen) oder Tracking-Effekt ist.</p>
+  <p><strong>2026 YTD (4 Monate Jan–April, kleine Stichprobe vor Hauptsaison):</strong> Mobile-Anteil 85,3 %, Desktop 14,1 % — Veränderung gegenüber den Vorjahren. Mögliche Erklärungen (mit Tine zu klären, nicht aus Daten ableitbar): geänderte Zielgruppen-Mix, POS-Hinweise im Laden, B2B-Anfragen, Tracking-Effekt.</p>
 
   <div class="panel panel-success">
     <div class="panel-label">→ LÖSUNG DEVICE</div>
@@ -540,12 +540,12 @@
 
   <div class="panel panel-info">
     <div class="panel-label">→ HINWEIS GA4-BIAS</div>
-    <p style="margin-bottom: 0;">Diese Power-Tabelle nutzt GA4-CRs (Sommer 1,32 %, Hauptsaison 1,87 %). Da GA4 44 % der echten Conversions verfehlt, ist die echte CR höher → tatsächliche Test-Laufzeiten <strong>kürzer</strong> als hier angegeben (geschätzt um Faktor 0,55-0,7). Endgültige Power-Berechnung nach Tracking-Fix.</p>
+    <p style="margin-bottom: 0;">Diese Power-Tabelle nutzt GA4-CRs (Sommer 1,32 %, Hauptsaison 1,87 %). Da GA4 in den 30-Tage-Daten 44 % der Bestellungen verfehlt, sind die echten CRs vermutlich höher — entsprechend wären reale Test-Laufzeiten kürzer. Genaue Werte erst nach Tracking-Fix berechenbar.</p>
   </div>
 
   <!-- 9. SEO/GEO -->
   <h2 id="seo">9. SEO/GEO-Hebel</h2>
-  <p>fuerte hat aus den eigenen Projekten <strong>bonuskarte.digital</strong> und <strong>romanbecker.de</strong> tiefes Know-how in klassischer SEO und GEO (Generative Engine Optimization für ChatGPT, Perplexity, Gemini, Google AI Overviews) aufgebaut. Dieses Know-how lässt sich direkt auf Halfen übertragen.</p>
+  <p>fuerte arbeitet parallel an SEO und GEO (Generative Engine Optimization für ChatGPT, Perplexity, Gemini, Google AI Overviews) für eigene Projekte (bonuskarte.digital, romanbecker.de). Erfahrungen daraus fließen in die Halfen-Empfehlungen ein.</p>
 
   <h4>Top-Suchanfragen Search Console (180 Tage)</h4>
   <table>
@@ -561,8 +561,8 @@
   </table>
 
   <div class="panel panel-info">
-    <div class="panel-label">→ SEO-HEBELRECHNUNG "WOLLWALK"</div>
-    <p>Generischer Begriff "wollwalk" hat <strong>47.479 Impressions in 180 Tagen</strong> bei nur 287 Klicks (CTR 0,6 %, Position 9). Bei Verschiebung auf Position 1-3 mit typischer CTR 25-35 % wären das mehrere Tausend zusätzliche organische Sessions pro Monat — bei aktueller Site-CR von 1,29 % entspricht das mehreren Hundert zusätzlichen Trans/Jahr.</p>
+    <div class="panel-label">→ SEO-POTENZIAL "WOLLWALK"</div>
+    <p>Aus Search-Console-Daten: "wollwalk" hat 47.479 Impressions in 180 Tagen bei nur 287 Klicks (CTR 0,6 %, Position 9). Eine Verbesserung der Position bringt mehr Klicks — die genaue Größenordnung hängt vom tatsächlich erreichten Ranking und der dort vorliegenden CTR ab und lässt sich vorab nicht präzise prognostizieren. Hebel-Quantifizierung erst nach Content-/Technical-SEO-Maßnahmen und Beobachtung der Rank-Entwicklung.</p>
   </div>
 
   <h4>Konkrete Quick-Wins (Wochen 5-10)</h4>
@@ -605,27 +605,30 @@
   <!-- 11. Maßnahmen -->
   <h2 id="massnahmen">11. Maßnahmenplan</h2>
 
-  <h3>A) Drop reduzieren (Theme-UX am Cart)</h3>
+  <h3>A) Drop reduzieren (Theme-UX am Cart-Drawer)</h3>
+  <p style="font-size: 0.88rem; color: #555;">Konkrete Lift-Werte für Halfen können erst nach A/B-Tests in Hauptsaison gemessen werden. Aufwände sind Schätzungen für die Theme-Implementierung.</p>
   <table>
-    <thead><tr><th>Maßnahme</th><th class="num">Erwarteter Lift</th><th class="num">Aufwand</th><th>Wer</th></tr></thead>
+    <thead><tr><th>Maßnahme</th><th class="num">Aufwand</th><th>Wer</th><th>Begründung / Status</th></tr></thead>
     <tbody>
-      <tr><td>Versandkosten + Lieferzeit prominent im Cart anzeigen</td><td class="num">+5–10 PP</td><td class="num">4 h</td><td>Freelancer</td></tr>
-      <tr><td>Apple Pay / Google Pay / PayPal Express im Cart</td><td class="num">+5–15 PP</td><td class="num">8 h</td><td>Freelancer</td></tr>
-      <tr><td>Guest-Checkout deutlich machen</td><td class="num">+3–8 PP</td><td class="num">4 h</td><td>Freelancer</td></tr>
-      <tr><td>Trust-Signale im Cart (Trustpilot, Sicherheit, Rückgabe)</td><td class="num">+2–5 PP</td><td class="num">4 h</td><td>Freelancer</td></tr>
-      <tr><td>Mobile-Cart-UX-Fix (basiert auf Recording-Befunden)</td><td class="num">individuell</td><td class="num">8–16 h</td><td>Freelancer</td></tr>
+      <tr><td>Free-Shipping-Goal-Bar konfigurieren (Setting setzen)</td><td class="num">5 min</td><td>Daniel/Tine</td><td>Bestätigt durch Code: aktuell leer, Bar zeigt nichts</td></tr>
+      <tr><td>Versandkosten/Lieferzeit prominent im Cart-Drawer</td><td class="num">4 h</td><td>Freelancer</td><td>Hypothese (Audit-Befund)</td></tr>
+      <tr><td>Apple/Google/Shop Pay verifizieren</td><td class="num">1 h</td><td>Daniel</td><td>Live-HTML zeigt aktiviert — möglicherweise schon erledigt</td></tr>
+      <tr><td>Guest-Checkout deutlich machen</td><td class="num">4 h</td><td>Freelancer</td><td>Hypothese</td></tr>
+      <tr><td>Trust-Signale im Cart-Drawer</td><td class="num">4 h</td><td>Freelancer</td><td>Bestätigt durch Code: aktuell nicht vorhanden</td></tr>
+      <tr><td>Mobile-Cart-UX-Fix</td><td class="num">8–16 h</td><td>Freelancer</td><td>Konkrete Probleme erst nach Clarity-Diagnose</td></tr>
     </tbody>
   </table>
 
-  <h3>B) Drop-Outs zurückholen (Klaviyo)</h3>
+  <h3>B) Klaviyo Email-Flows (Brevo-Migration in 4 Wochen)</h3>
+  <p style="font-size: 0.88rem; color: #555;">Konkrete Effekt-Schätzung pro Flow siehe ehrliche 5-Flow-Aufschlüsselung in Sektion 14. Total realistisch +40–80k €/Jahr — die genauen Werte sind Industry-Benchmarks × Annahmen, präzise Halfen-Werte erst nach Klaviyo-Setup messbar.</p>
   <table>
-    <thead><tr><th>Klaviyo-Flow</th><th class="num">Effekt</th><th class="num">Aufwand</th><th>Wer</th></tr></thead>
+    <thead><tr><th>Klaviyo-Flow</th><th class="num">Aufwand</th><th>Wer</th></tr></thead>
     <tbody>
-      <tr><td><strong>Abandoned-Cart-Flow (Email + WhatsApp)</strong></td><td class="num">+105k-153k €/Jahr</td><td class="num">6 h</td><td>fuerte</td></tr>
-      <tr><td>Back-in-Stock-Flow</td><td class="num">hoch (Saison-relevant)</td><td class="num">4 h</td><td>fuerte</td></tr>
-      <tr><td>Welcome-Flow</td><td class="num">mittel</td><td class="num">4 h</td><td>fuerte</td></tr>
-      <tr><td>Post-Purchase Cross-Sell + Reviews</td><td class="num">mittel-hoch</td><td class="num">4 h</td><td>fuerte</td></tr>
-      <tr><td>Brevo-Migration (Listen, Custom-Fields, Historie)</td><td class="num">Voraussetzung</td><td class="num">4 h</td><td>fuerte</td></tr>
+      <tr><td>Brevo-Migration (Listen, Custom-Fields, Historie)</td><td class="num">4 h</td><td>fuerte</td></tr>
+      <tr><td>Abandoned-Cart-Flow (Email + WhatsApp)</td><td class="num">6 h</td><td>fuerte</td></tr>
+      <tr><td>Back-in-Stock-Flow</td><td class="num">4 h</td><td>fuerte</td></tr>
+      <tr><td>Welcome-Flow</td><td class="num">4 h</td><td>fuerte</td></tr>
+      <tr><td>Post-Purchase Cross-Sell + Reviews</td><td class="num">4 h</td><td>fuerte</td></tr>
     </tbody>
   </table>
 
@@ -692,8 +695,167 @@
     </ol>
   </div>
 
-  <!-- 13. Top-Bestseller -->
-  <h2 id="bestseller">13. Top-10 Bestseller letzte 30 Tage (Shopify)</h2>
+  <!-- NEU 13.05: Customer-Segmente -->
+  <h2 id="segments">13. Customer-Segmente & Demographics <span style="color:#B8860B; font-family: 'JetBrains Mono', monospace; font-size: 0.8em;">★ Update 13.05.</span></h2>
+  <p>Aus Shopify-Customer-Daten (12.500 Kunden mit ≥1 Order) + Meta-Pixel-Demographics + Shopify-Größen-Analyse.</p>
+
+  <h3>Demographics (Meta-Pixel 180d)</h3>
+  <table>
+    <thead><tr><th>Alter / Geschlecht</th><th class="num">Purchases</th><th class="num">Spend €</th><th class="num">Anteil Purchases</th></tr></thead>
+    <tbody>
+      <tr><td><strong>35-44 weiblich</strong></td><td class="num">218</td><td class="num">8.629</td><td class="num"><strong>49 %</strong></td></tr>
+      <tr><td><strong>25-34 weiblich</strong></td><td class="num">161</td><td class="num">6.903</td><td class="num"><strong>36 %</strong></td></tr>
+      <tr><td>45-54 weiblich</td><td class="num">24</td><td class="num">1.232</td><td class="num">5 %</td></tr>
+      <tr><td>18-24 weiblich</td><td class="num">10</td><td class="num">352</td><td class="num">2 %</td></tr>
+      <tr><td>35-44 männlich</td><td class="num">10</td><td class="num">706</td><td class="num">2 %</td></tr>
+      <tr><td>Andere</td><td class="num">~20</td><td class="num">2.222</td><td class="num">~5 %</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ HAUPTZIELGRUPPE</div>
+    <p style="margin-bottom: 0;"><strong>94 % der Halfen-Käufer sind weiblich, 85 % zwischen 25-44 Jahre alt.</strong> Hauptzielgruppe: <strong>Mütter 25-44 mit Kleinkindern</strong>. Das ist die zentrale Persona für Klaviyo-Content, Meta-Ads-Audiences und Influencer-Wahl.</p>
+  </div>
+
+  <h3>LTV-Verteilung (12.500 Customers mit ≥1 Order)</h3>
+  <table>
+    <thead><tr><th>LTV-Spanne</th><th class="num">Kunden</th><th class="num">Anteil</th></tr></thead>
+    <tbody>
+      <tr><td>0-49 €</td><td class="num">2.485</td><td class="num">19,9 %</td></tr>
+      <tr><td>50-99 €</td><td class="num">3.430</td><td class="num">27,4 %</td></tr>
+      <tr><td>100-199 €</td><td class="num">3.727</td><td class="num">29,8 %</td></tr>
+      <tr><td>200-499 €</td><td class="num">2.272</td><td class="num">18,2 %</td></tr>
+      <tr><td>500-999 €</td><td class="num">459</td><td class="num">3,7 %</td></tr>
+      <tr><td><strong>1000-2999 €</strong></td><td class="num"><strong>123</strong></td><td class="num">1,0 %</td></tr>
+      <tr><td><strong>3000+ €</strong></td><td class="num"><strong>4</strong></td><td class="num">0,03 %</td></tr>
+      <tr class="total"><td>Total</td><td class="num">12.500</td><td class="num">100 %</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead><tr><th>Order-Anzahl</th><th class="num">Kunden</th><th class="num">Anteil</th></tr></thead>
+    <tbody>
+      <tr><td>1 Order (Single-Buyer)</td><td class="num"><strong>8.941</strong></td><td class="num"><strong>71,5 %</strong></td></tr>
+      <tr><td>2-4 Orders</td><td class="num">3.168</td><td class="num">25,3 %</td></tr>
+      <tr><td>5-9 Orders</td><td class="num">343</td><td class="num">2,7 %</td></tr>
+      <tr><td>10-19 Orders</td><td class="num">46</td><td class="num">0,4 %</td></tr>
+      <tr><td>20+ Orders</td><td class="num">2</td><td class="num">0,02 %</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ 71,5 % SINGLE-BUYER — RIESIGER RETENTION-HEBEL</div>
+    <p style="margin-bottom: 0;">Fast drei Viertel aller Halfen-Customers haben nur 1 Order gemacht. Klaviyo Post-Purchase + Welcome-Flow + Größen-Trigger sind der direkteste Hebel um diese Single-Buyer zu Mehrfach-Käufern zu machen. Aktuell vergeudet Halfen die CAC bei diesen 8.941 Kunden, wenn keine Reaktivierung läuft.</p>
+  </div>
+
+  <h3>Produkt-Sortiment (238 Produkte, 14 ohne product_type, 35 ohne Tags)</h3>
+  <table>
+    <thead><tr><th>Kategorie (Tag)</th><th class="num">Produkte</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Kinder</strong></td><td class="num">97 (41 %)</td></tr>
+      <tr><td><strong>Baby</strong></td><td class="num">53 (22 %)</td></tr>
+      <tr><td>Damen</td><td class="num">59 (25 %)</td></tr>
+      <tr><td>Herren</td><td class="num">13 (5 %)</td></tr>
+      <tr><td>Wollwalk</td><td class="num">60</td></tr>
+      <tr><td>Strick</td><td class="num">93</td></tr>
+      <tr><td>Cashmere</td><td class="num">29</td></tr>
+      <tr><td>Merino</td><td class="num">47</td></tr>
+      <tr><td>Geschenk</td><td class="num">44</td></tr>
+      <tr><td>Spielzeug</td><td class="num">28 ⚠ (passt nicht zur Marke)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Größen-Verteilung Kinder/Baby (aus letzten 500 Orders)</h3>
+  <table>
+    <thead><tr><th>Größengruppe</th><th class="num">Line-Items</th><th class="num">Anteil</th><th>Alter (ca.)</th></tr></thead>
+    <tbody>
+      <tr><td>Baby (50-80)</td><td class="num">147</td><td class="num">38 %</td><td>0-1 Jahr</td></tr>
+      <tr><td><strong>Kleinkind (86-116)</strong></td><td class="num"><strong>204</strong></td><td class="num"><strong>53 %</strong></td><td>1-5 Jahre</td></tr>
+      <tr><td>Kind (122-164)</td><td class="num">38</td><td class="num">10 %</td><td>6-14 Jahre</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Top-Größen + Farben:</strong> Marine 110/116, Nuss 50/56, Marine 122/128, Marine 98/104, Nuss 74/80. Top-Farben: <strong>Marine, Nuss, Rauchblau, Natur, Grau</strong>.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">★ KLAVIYO-STRATEGIE "WACHSTUMS-TRIGGER"</div>
+    <p>Aus Shopify-Line-Items lässt sich pro Customer ableiten:</p>
+    <ul>
+      <li>Welche Größe wurde wann gekauft</li>
+      <li>Daraus: Geschätztes Alter des Kindes</li>
+      <li>Trigger: 8-12 Monate nach letzter Bestellung → Email "Dein Kind ist jetzt vermutlich in Größe X — neue Kollektion in passender Größe"</li>
+    </ul>
+    <p style="margin-bottom: 0;">Das ist ein hochspezifischer Klaviyo-Flow, der nur möglich ist weil Halfen Kinder-Mode verkauft und die Größen klare Alters-Indikatoren sind. Bei 53 % Kleinkind-Käufern (1-5 Jahre = 1 Größe pro Jahr) ein riesiges Trigger-Volumen.</p>
+  </div>
+
+  <!-- 14: Meta-Werbe Y/Y -->
+  <h2 id="meta-yy">14. Meta-Werbe Y/Y — die Erklärung für den Frühling-Rückgang <span style="color:#B8860B; font-family: 'JetBrains Mono', monospace; font-size: 0.8em;">★ Update 13.05.</span></h2>
+  <p>Mit Anbindung der Meta-Ads-API konnten wir den Shopify-Y/Y-Rückgang (812 → 284 Orders Frühling 2025 vs. 2026) ursächlich erklären. <strong>Es ist nicht ein Site-Problem, sondern ein Werbebudget-Cut.</strong></p>
+
+  <table>
+    <thead><tr><th>Metrik</th><th class="num">Frühling 2025 (06.04.–06.05.)</th><th class="num">Frühling 2026 (06.04.–06.05.)</th><th class="num">Veränderung</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Spend</strong></td><td class="num">15.865 €</td><td class="num">2.033 €</td><td class="num"><strong>−87 %</strong></td></tr>
+      <tr><td>Impressions</td><td class="num">1.239.299</td><td class="num">137.603</td><td class="num">−89 %</td></tr>
+      <tr><td>Reach</td><td class="num">210.583</td><td class="num">37.072</td><td class="num">−82 %</td></tr>
+      <tr><td>Clicks</td><td class="num">29.594</td><td class="num">3.517</td><td class="num">−88 %</td></tr>
+      <tr><td><strong>Pixel-Purchases</strong></td><td class="num"><strong>360</strong></td><td class="num"><strong>69</strong></td><td class="num"><strong>−81 %</strong></td></tr>
+      <tr><td>Frequency</td><td class="num">5,89</td><td class="num">3,71</td><td class="num">(besser 2026)</td></tr>
+      <tr><td>ROAS</td><td class="num">2,72×</td><td class="num">4,07×</td><td class="num">(besser 2026)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-info">
+    <div class="panel-label">→ KAUSAL-RECHNUNG</div>
+    <p style="margin-bottom: 0;">2025 Frühling: 360 Pixel-Purchases von 812 Shopify-Orders = <strong>44 % via Meta-Werbung</strong>. 2026 Frühling: 69 Pixel-Purchases von 284 Shopify-Orders = <strong>24 % via Meta-Werbung</strong>. Der Werbebudget-Cut korrespondiert direkt mit dem Volumen-Verlust. Der Rest des Y/Y-Rückgangs (~237 Orders) verteilt sich auf andere Channels (Organic, Direct).</p>
+  </div>
+
+  <h3>Spend-Verlauf monatlich (Jan 2025 – April 2026)</h3>
+  <table>
+    <thead><tr><th>Monat</th><th class="num">Spend €</th><th class="num">Purchases</th><th class="num">ROAS</th></tr></thead>
+    <tbody>
+      <tr><td>2025-09 (Saison-Peak)</td><td class="num">37.634</td><td class="num">642</td><td class="num">3,43×</td></tr>
+      <tr><td>2025-10 (Saison-Peak)</td><td class="num">41.499</td><td class="num">869</td><td class="num">3,73×</td></tr>
+      <tr><td>2025-11</td><td class="num">19.950</td><td class="num">512</td><td class="num">4,55×</td></tr>
+      <tr><td>2025-12</td><td class="num">7.736</td><td class="num">131</td><td class="num">2,67×</td></tr>
+      <tr><td>2026-01</td><td class="num">2.307</td><td class="num">11</td><td class="num">0,95×</td></tr>
+      <tr><td><strong>2026-02</strong></td><td class="num"><strong>0</strong></td><td class="num"><strong>0</strong></td><td class="num">—</td></tr>
+      <tr><td>2026-03</td><td class="num">701</td><td class="num">0</td><td class="num">—</td></tr>
+      <tr><td>2026-04</td><td class="num">2.038</td><td class="num">69</td><td class="num"><strong>5,91×</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-warning">
+    <div class="panel-label">⚠ FRAGE AN TINE</div>
+    <ul style="margin-bottom: 0;">
+      <li>Was war Hintergrund für Februar 2026 = 0 € Spend (kompletter Stopp)?</li>
+      <li>Plant Halfen Q4 2026 wieder ähnlich Spend wie Q4 2025 (~80k€/Monat Sept-Okt)?</li>
+      <li>April 2026 ROAS 5,91× zeigt sehr effiziente Auslieferung — kann skaliert werden, wenn Budget verfügbar</li>
+    </ul>
+  </div>
+
+  <h3>Top-Performing Ads (180 Tage)</h3>
+  <table>
+    <thead><tr><th>Ad</th><th>Typ</th><th class="num">Spend €</th><th class="num">Purchases</th><th class="num">ROAS</th></tr></thead>
+    <tbody>
+      <tr><td>Walk Overall "Queen-Anika"</td><td>Video</td><td class="num">1.748</td><td class="num">96</td><td class="num"><strong>9,97×</strong></td></tr>
+      <tr><td>Main Season Image "Wolllie"</td><td>Image</td><td class="num">1.015</td><td class="num">31</td><td class="num">4,84×</td></tr>
+      <tr><td>MOFU RET Catalog Ads</td><td>Retargeting</td><td class="num">2.611</td><td class="num">66</td><td class="num">3,74×</td></tr>
+      <tr><td>X-MAS "Ferdi &amp; Jeff"</td><td>Image</td><td class="num">1.153</td><td class="num">22</td><td class="num">3,19×</td></tr>
+      <tr><td>Main Season Damen Kollektion (Video Backstage)</td><td>Video</td><td class="num">1.198</td><td class="num">0</td><td class="num">0×</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-success">
+    <div class="panel-label">→ INSIGHTS FÜR Q4 2026</div>
+    <ul style="margin-bottom: 0;">
+      <li><strong>Video "Queen-Anika" ROAS 9,97×</strong> — Video-Format ist Halfen-Top-Performer (nicht alle Videos, aber die starken)</li>
+      <li>Sauberes Funnel-Setup 2025 (TOFU/MOFU/Retargeting + EoSS + X-MAS) — für Q4 reaktivieren</li>
+      <li>Frequency-Reduktion von 5,89 auf 3,71 ist gesund — bei Spend-Hochfahrphase darauf achten dass Audiences nicht überstrapaziert werden</li>
+    </ul>
+  </div>
+
+  <!-- 15. Top-Bestseller -->
+  <h2 id="bestseller">15. Top-10 Bestseller letzte 30 Tage (Shopify)</h2>
   <p>Per ShopifyQL gezogen am 06.05.2026 für den Zeitraum 06.04.–06.05.2026. Gesamt: <strong>284 Bestellungen, 34.032 € Umsatz, AOV 119,83 €</strong>.</p>
 
   <table>
@@ -725,8 +887,8 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-label">→ 3. WALK-PRODUKTE = SAISONENDE-AUSVERKAUF</div>
-    <p style="margin-bottom: 0;">Walk-Produkte (Wollwalk) auf Plätzen 8, 9, 10 — typisches Saisonende, Restbestände werden ausverkauft. <strong>Konsequenz:</strong> Im Frühling ist Walk eher Sale-Treiber. Die SEO-Strategie zu "wollwalk" (47k Impressions auf Pos 9) braucht Hauptsaison Q4 für vollen Effekt — Vorbereitung jetzt, Ranking-Push ab August.</p>
+    <div class="panel-label">→ 3. WALK-PRODUKTE PLÄTZE 8–10</div>
+    <p style="margin-bottom: 0;">Walk-Produkte (Wollwalk) liegen im Frühling-Ranking unten in der Top-10. Interpretation als "Saisonende-Ausverkauf" wäre eine Annahme — die tatsächliche Ursache (Saison-Schwäche, Sortiment-Verfügbarkeit, Marketing-Fokus) ist mit Tine zu klären. Was die Daten klar zeigen: Der SEO-Hebel "wollwalk" (47k Impressions auf Pos 9) wird im Frühling 2026 nicht voll ausgeschöpft — Optimierung sinnvoll vor Hauptsaison Q4.</p>
   </div>
 
   <div class="panel panel-warning">
@@ -734,8 +896,8 @@
     <p style="margin-bottom: 0;">Eine Top-10-Zeile hat <code>null</code> als Produkt-Titel — und macht trotzdem 1.673 € Umsatz. Passt zum Audit-Befund "70 % Tags leer / 60 % product_type leer". <strong>Konsequenz:</strong> Audit-Phase 1.1 (419 Produkte mit korrektem product_type + Tags versehen) ist dringender als gedacht — nicht nur SEO-Hebel, sondern auch Reporting-Hebel. Wir können nicht ordentlich auswerten, was wir verkaufen, wenn Produkte ohne Titel/Tags durchrutschen.</p>
   </div>
 
-  <!-- 14. Hebel-Synthese -->
-  <h2 id="synthese">14. Hebel-Synthese — alle Daten kombiniert (Stand 06.05.2026)</h2>
+  <!-- 16. Hebel-Synthese -->
+  <h2 id="synthese">16. Hebel-Synthese — alle Daten kombiniert (Stand 13.05.2026)</h2>
   <p>Nach Anbindung aller Datenquellen (GA4, Meta-Pixel, Google Ads, Shopify ShopifyQL) lässt sich der Hebel für CR <strong>1,29 % → 3 %</strong> faktenbasiert ranken. Klar getrennt: <strong>quantifizierbare Hebel</strong> (mit konkreter PP-Schätzung) vs. <strong>Hypothesen-Hebel</strong> (sind plausibel, brauchen aber A/B-Tests in Hauptsaison zur Verifikation).</p>
 
   <h3>Hebel-Ranking</h3>
@@ -764,19 +926,55 @@
     <p style="margin-bottom: 0;"><strong>Saubere Aussage:</strong> Vor Diskussion über CR-Ziel-Erreichung muss (a) Tracking-Diskrepanz aufgelöst werden (echte CR feststellen) und (b) Cart-Drawer-Diagnose über Microsoft Clarity oder Custom-Events erfolgen. Das ist Wo-1-Aufgabe vor jeder Hebel-Investition.</p>
   </div>
 
-  <h3>Klaviyo-Hebel — saubere 5-Flow-Aufschlüsselung</h3>
+  <h3>Klaviyo-Hebel — auf Basis echter Brevo-Performance-Daten (Update 08.05.)</h3>
+
+  <h4>Brevo-Listen-Inventar (deutlich größer als initial bekannt)</h4>
+  <table>
+    <thead><tr><th>Liste</th><th class="num">Subscribers</th><th>Bedeutung</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Shopify (Customer-Sync)</strong></td><td class="num"><strong>21.865</strong></td><td>Alle Shopify-Bestell-Kunden gesynct</td></tr>
+      <tr><td>identified_contacts</td><td class="num">12.344</td><td>Email identifiziert → Browse-Abandonment-Kandidaten</td></tr>
+      <tr><td>02.04.26 NL (Newsletter)</td><td class="num">7.164</td><td>Haupt-Newsletter-Liste</td></tr>
+      <tr><td>Aktive Email-Abonnenten</td><td class="num">5.817</td><td>Engagierte Subscriber</td></tr>
+      <tr><td>Whatsapp bestätigt (Double-Opt-In)</td><td class="num">2.466</td><td>Ready-to-use WhatsApp-Liste</td></tr>
+      <tr><td><strong>Treue Kunden (VIP-Segment)</strong></td><td class="num"><strong>452</strong></td><td>Höchste LTV — Email-Performance bei diesem Segment 93,7 % Open</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Mailing-Performance (echte Daten aus 35 Kampagnen)</h4>
+  <table>
+    <thead><tr><th>Datum</th><th>Mailing</th><th class="num">Empfänger</th><th class="num">Open %</th><th class="num">CTR %</th></tr></thead>
+    <tbody>
+      <tr><td>2023-08-21</td><td>Whatsapp Anmeldung "Treue Kunden"</td><td class="num">444</td><td class="num"><strong>93,7 %</strong></td><td class="num">14,9 %</td></tr>
+      <tr><td>2023-08-06</td><td>"New in"</td><td class="num">353</td><td class="num">85,3 %</td><td class="num"><strong>30,0 %</strong></td></tr>
+      <tr><td>2023-06-15</td><td>Leinen Collection</td><td class="num">353</td><td class="num">78,2 %</td><td class="num">20,1 %</td></tr>
+      <tr><td>2025-11-20</td><td>Black November</td><td class="num">5.931</td><td class="num">69,7 %</td><td class="num">14,9 %</td></tr>
+      <tr><td>2025-12-02</td><td>Cashback 2025</td><td class="num">5.836</td><td class="num">63,5 %</td><td class="num">4,9 %</td></tr>
+      <tr><td>2026-04-03</td><td>End of Season Sale 2026</td><td class="num">5.619</td><td class="num">61,2 %</td><td class="num">19,8 %</td></tr>
+      <tr class="total"><td colspan="2">Schnitt der großen Mailings (5k+)</td><td class="num">~5.800</td><td class="num"><strong>64,9 %</strong></td><td class="num"><strong>13,1 %</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 0.92rem;"><strong>Industry-Standard Mode 20-30 % Open, 2-5 % CTR.</strong> Halfens Mailings sind 2-3× über dem Standard. Plus: <strong>New-Arrival-Mailings haben höhere Open-Rate als Sale-Mailings</strong> (85 % vs. 61-69 %) — Halfen-Kunden mögen Neuheiten mehr als Discounts. Diese Erkenntnis fließt direkt in die Klaviyo-Content-Strategie.</p>
+
+  <h4>Klaviyo-Hebel — 5 Flows mit aktualisierter Datenbasis</h4>
   <table>
     <thead><tr><th>Flow</th><th class="num">Min €/Jahr</th><th class="num">Max €/Jahr</th><th>Datenbasis</th></tr></thead>
     <tbody>
-      <tr><td>Abandoned-Cart-Flow (3-Mail-Sequenz)</td><td class="num">10.500</td><td class="num">20.500</td><td>Shopify abandonedCheckouts: 30/30d, saisonal hochgerechnet ~700-900/Jahr × 152 € × 10-15 % Recovery</td></tr>
-      <tr><td>Browse-Abandonment-Flow</td><td class="num">5.000</td><td class="num">15.000</td><td>~30 % der Cart-Abbrecher mit Email-on-File × 5-10 % Recovery (kannibalisierungs-bereinigt)</td></tr>
-      <tr><td>Welcome-Flow (neue Newsletter-Abonnenten)</td><td class="num">5.000</td><td class="num">10.000</td><td>~5.000 neue Abonnenten/Jahr × 10-20 % × 50 € Erst-Order, kannibalisierungs-bereinigt</td></tr>
+      <tr><td>Abandoned-Cart-Flow (3-Mail-Sequenz + WhatsApp)</td><td class="num">10.500</td><td class="num">20.500</td><td>Shopify abandonedCheckouts: 30/30d, saisonal hochgerechnet × 152 € × 10-15 % Recovery</td></tr>
+      <tr><td>Browse-Abandonment-Flow</td><td class="num">8.000</td><td class="num">20.000</td><td>12.344 identified_contacts × 5-10 % saisonale Engagement-Rate (Hochrechnung)</td></tr>
+      <tr><td>Welcome-Flow</td><td class="num">8.000</td><td class="num">15.000</td><td>Hochrechnung: 21.865 Shopify-Customers × Reaktivierung; plus neue NL-Anmeldungen × 50 € Erst-Order</td></tr>
       <tr><td>Back-in-Stock-Notifications</td><td class="num">5.000</td><td class="num">10.000</td><td>Halfen-spezifisch (Wollwalk-Saisonprodukte im Herbst zurück)</td></tr>
-      <tr><td>Post-Purchase Cross-Sell + Reviews</td><td class="num">12.500</td><td class="num">25.000</td><td>~5.000-7.000 Orders/Jahr × 5-10 % Cross-Sell × 50 € Zusatz</td></tr>
-      <tr class="total"><td>TOTAL Klaviyo-Hebel</td><td class="num">+38.000 €</td><td class="num">+80.500 €</td><td>5 Flows kombiniert, kannibalisierungs-bereinigt</td></tr>
+      <tr><td>Post-Purchase Cross-Sell + Reviews</td><td class="num">12.500</td><td class="num">25.000</td><td>~3.400 Orders/Jahr (saisonal hochgerechnet 5-7k) × 5-10 % × 50 € Zusatz</td></tr>
+      <tr><td><strong>Newsletter-Frequenz 6/Jahr → 24/Jahr</strong> (Brevo-Daten als Basis)</td><td class="num"><strong>50.000</strong></td><td class="num"><strong>80.000</strong></td><td><strong>Echte Performance: 5.795 Empf. × 13,1 % CTR × ~2,3 % Site-CR × 161 € AOV = 2.800 €/Mailing × 18 zusätzliche/Jahr</strong></td></tr>
+      <tr class="total"><td>TOTAL Klaviyo-Hebel (Newsletter + 5 Flows)</td><td class="num">+94.000 €</td><td class="num">+170.500 €</td><td>Gesamt-Hebel, kannibalisierungs-bereinigt</td></tr>
     </tbody>
   </table>
-  <p style="font-size: 0.82rem; color: #888;">→ Klaviyo ist primär Umsatz-Hebel (zusätzliche Sessions UND Trans über Email-Klicks), nicht reiner CR-Hebel. PP-Beitrag zur Site-CR ist kein passender KPI für Email-Marketing.</p>
+
+  <div class="panel panel-success">
+    <div class="panel-label">★ KLAVIYO IST DER GRÖSSTE QUANTIFIZIERBARE UMSATZ-HEBEL</div>
+    <p style="margin-bottom: 0;">Halfen hat aktuell <strong>22k Shopify-Customer-Kontakte + 7k aktive Newsletter-Subscriber + VIP-Segment</strong> in Brevo. Diese Liste ist mit 64,9 % Open / 13,1 % CTR <strong>außergewöhnlich engagiert</strong>. Aktuell werden nur 6 Mailings/Jahr versendet — das ist eine massiv unterausgeschöpfte Goldader. Die Klaviyo-Migration startet diese Woche.</p>
+  </div>
 
   <h3>Was Shopify am Hebel-Bild geändert hat</h3>
   <p>Direkter Vergleich zum gestrigen Stand (vor Shopify-API-Anbindung):</p>
@@ -807,7 +1005,7 @@
   </div>
 
   <!-- 15. Aktuelle TODOs -->
-  <h2 id="todos">15. Aktuelle TODOs (lebendig)</h2>
+  <h2 id="todos">17. Aktuelle TODOs (lebendig)</h2>
   <p>Konkrete nächste Schritte, priorisiert nach Hebel-Wirkung. Wird nach Meeting heute (06.05.) und mit Tine abgestimmten Antworten ergänzt.</p>
 
   <h3>Stand 06.05.2026</h3>
@@ -872,7 +1070,100 @@
   </table>
 
   <!-- 16. Roadmap -->
-  <h2 id="roadmap">16. Roadmap bis Mitte Juli</h2>
+  <!-- 18. Tine-Checkliste -->
+  <h2 id="tine-checklist">18. Tine-Checkliste — Fragen und Entscheidungen <span style="color:#B8860B; font-family: 'JetBrains Mono', monospace; font-size: 0.8em;">★ NEU 13.05.</span></h2>
+  <p>Druckbare Checkliste zum Abhaken. Punkte sind sortiert nach Dringlichkeit. Antworten bitte mit Tine im Termin durchgehen.</p>
+
+  <style>
+    .checklist { background:#FFFFFF; border:1px solid #E5E2DC; border-radius:10px; padding:24px 28px; margin:18px 0; }
+    .checklist h4 { margin-top: 8px; margin-bottom: 12px; font-size:1rem; color: #1A1A1A; text-transform:uppercase; letter-spacing:.04em;}
+    .checklist ul { list-style:none; margin-left: 0; }
+    .checklist li { padding-left: 32px; position:relative; margin-bottom: 12px; line-height: 1.6; }
+    .checklist li:before { content: "☐"; position: absolute; left: 0; top: 0; font-size: 1.3em; color: #B8860B; }
+    .checklist li strong { color: #1A1A1A; }
+    .checklist .note { font-size:0.85rem; color:#666; display:block; margin-top:2px; padding-left:0; }
+  </style>
+
+  <div class="checklist">
+    <h4>🔴 KRITISCH — sofort entscheiden</h4>
+    <ul>
+      <li><strong>Klaviyo Marketing-Plan freigeben</strong> (ca. 50-150 €/Monat je nach Profil-Anzahl bei 30k Kontakten) — für WhatsApp-Channel benötigt
+        <span class="note">→ ohne Freigabe: kein WhatsApp-Marketing, kein systematischer Email-Flow-Start</span></li>
+      <li><strong>Brevo-Kündigungsfrist + Vertragsende klären</strong>
+        <span class="note">→ damit wir nicht doppelt zahlen während der Migration</span></li>
+      <li><strong>Free-Shipping-Schwelle setzen</strong> — Vorschlag 80 € (orientiert an AOV)
+        <span class="note">→ aktuell leer, Cart-Drawer-Goal-Bar zeigt nichts an</span></li>
+      <li><strong>Microsoft Clarity Installation freigeben</strong> (kostenlos, DSGVO-konform)
+        <span class="note">→ für Cart-Drawer-Diagnose (aktuell nicht messbar)</span></li>
+      <li><strong>Shopify Conversions API für Meta aktivieren</strong> (Toggle, kostenlos)
+        <span class="note">→ schließt 44 % der Tracking-Lücke (Express-Pay-Checkouts)</span></li>
+    </ul>
+
+    <h4>🟡 KONTEXT-FRAGEN für Strategie-Verständnis</h4>
+    <ul>
+      <li><strong>Februar 2026 Werbe-Stopp (0 € Meta-Spend) — was war der Auslöser?</strong>
+        <span class="note">→ damit wir Wiedereinstieg richtig timen</span></li>
+      <li><strong>Q1-2025-Tracking-Bruch — was wurde Anfang Januar 2025 geändert?</strong>
+        <span class="note">→ GTM-Update, Cookie-Banner, Theme-Update, Tag-Migration?</span></li>
+      <li><strong>Q4 2026 Werbe-Plan: wie viel Spend Sept-Nov?</strong>
+        <span class="note">→ 2025 waren das 79k€ in Sep+Okt allein. Wieder ähnlich?</span></li>
+      <li><strong>Wer steuert Meta Ads aktuell (intern oder Agentur)?</strong>
+        <span class="note">→ wegen Audience-Audit + Creative-Refresh</span></li>
+      <li><strong>Demographics-Bestätigung:</strong> 94 % weibliche Käufer 25-44 — passt das zu Tines Bild?
+        <span class="note">→ Bestätigung der Zielgruppen-Persona für Klaviyo + Ads</span></li>
+    </ul>
+
+    <h4>🟢 PRODUKT- + SORTIMENT-ENTSCHEIDUNGEN</h4>
+    <ul>
+      <li><strong>3 Produkte ohne Bilder</strong> — Bilder ergänzen oder als Draft setzen?
+        <span class="note">→ W8S70 große Cashmere Decke, K2W70 Dufflecoat, Magic Sand Spielknete-Set</span></li>
+      <li><strong>B-Ware-Strategie</strong> — bewusst Outlet-Channel ausbauen oder aus Hauptnavigation rausnehmen?
+        <span class="note">→ B-Ware ist Top-3-Bestseller (1.514 € / 30d aus EINEM Produkt) — Premium-Verwässerung?</span></li>
+      <li><strong>28 Spielzeug-Produkte</strong> — passen die zur Marke (Audit-Befund "passt nicht zur Wollwalk-Welt")
+        <span class="note">→ ausgliedern oder bewusst halten?</span></li>
+      <li><strong>Saison-Roadmap: Wann kommt die nächste Kollektion?</strong>
+        <span class="note">→ Plus übliche Sale-Phasen (Black Friday, EoSS, Spring Sale)</span></li>
+      <li><strong>Brand-Tone für Email-Mailings</strong> — wer schreibt, welcher Stil, wie viel kreative Freiheit für fuerte?
+        <span class="note">→ wichtig bevor wir Klaviyo-Templates aufsetzen</span></li>
+    </ul>
+
+    <h4>🟢 LOYALTY (KOMMT ANS PROJEKT-ENDE)</h4>
+    <ul>
+      <li><strong>Smile.io aktuelle Member-Aktivität</strong> — wie viele aktive Member, durchschnittliche Punkte-Saldo?
+        <span class="note">→ für Migrations-Konzept später</span></li>
+      <li><strong>Smile.io Vertragslaufzeit + Kündigungsfrist</strong>
+        <span class="note">→ damit wir Migration-Termin sauber planen</span></li>
+    </ul>
+
+    <h4>🟢 STATIONÄRES GESCHÄFT</h4>
+    <ul>
+      <li><strong>Wie viel Umsatz machen Köln + Hungenroth offline (Shopify POS)?</strong>
+        <span class="note">→ für ganzheitliches Kunden-Bild + Omnichannel-Strategie</span></li>
+      <li><strong>Stamm-Kunden-Anteil offline vs. online?</strong>
+        <span class="note">→ relevant für Loyalty + Klaviyo-Segmentierung</span></li>
+    </ul>
+
+    <h4>🟢 REVIEWS + TRUST</h4>
+    <ul>
+      <li><strong>Trustpilot — habt ihr ein Profil? Aktuelle Reviews-Anzahl + Score?</strong>
+        <span class="note">→ für Trust-Badges im Cart-Drawer</span></li>
+      <li><strong>Google Reviews / Bewertungen — wer pflegt?</strong>
+        <span class="note">→ Audit-Befund: Trusted Shops noch nicht beansprucht</span></li>
+    </ul>
+
+    <h4>📋 FÜR FREELANCER JOHANNES (zu briefen)</h4>
+    <ul>
+      <li><strong>Microsoft Clarity Tag-Snippet ins Theme einbauen</strong> (Daniel liefert nach Tine-Freigabe)</li>
+      <li><strong>GA4 Custom-Events</strong> für Cart-Drawer-Open + Initiate-Checkout-Klick (Daniel liefert Snippet)</li>
+      <li><strong>Apple/Google/Shop Pay Tracking-Verifikation</strong> (zusammen mit Daniel)</li>
+      <li><strong>USP-Bar PDP einbauen</strong> (Made in Germany, GOTS, Bio-Schurwolle, Versand)</li>
+      <li><strong>Trust-Badges im Cart-Drawer</strong> (Trustpilot, Sicherheit, Rückgabe)</li>
+      <li><strong>Größentabelle PDP</strong> (Audit-Befund "fehlt komplett")</li>
+      <li><strong>Audit-Phase 1.1: Top-50 Produkte mit product_type + Tags ergänzen</strong> (14 Produkte ohne product_type, 35 ohne Tags aktuell)</li>
+    </ul>
+  </div>
+
+  <h2 id="roadmap">19. Roadmap bis Mitte Juli</h2>
   <p>Bau-Deadline: Mitte Juli 2026 — alle Hebel live, bevor Hauptsaison startet. CR-Effekt-Messung ab Q4 belastbar.</p>
 
   <table>
