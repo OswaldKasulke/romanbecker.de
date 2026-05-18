@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', { form_id: f.id || 'unknown', form_destination: f.action || '', page_path: location.pathname });
+      }, true);
+    })();
+  </script>
+
+  <title>Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Brühl</title>
+  <meta name="description" content="Immobilienbewertung &amp; Hausverkauf in Brühl — Roman Becker (EVERNEST). Rhein-Erft-Kreis, ~46.000 Einwohner, UNESCO-Welterbe Schloss Augustusburg. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/stadtteile/bruehl.html">
+  <meta name="geo.region" content="DE-NW">
+  <meta name="geo.placename" content="Brühl">
+  <meta name="geo.position" content="50.8280;6.9050">
+  <meta name="ICBM" content="50.8280, 6.9050">
+  <meta property="og:title" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Brühl">
+  <meta property="og:description" content="Immobilienbewertung &amp; Hausverkauf in Brühl — Roman Becker (EVERNEST). Rhein-Erft-Kreis, ~46.000 Einwohner, UNESCO-Welterbe Schloss Augustusburg. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta property="og:url" content="https://romanbecker.de/stadtteile/bruehl.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Brühl">
+  <meta name="twitter:description" content="Immobilienbewertung &amp; Hausverkauf in Brühl — Roman Becker (EVERNEST). Rhein-Erft-Kreis, ~46.000 Einwohner, UNESCO-Welterbe Schloss Augustusburg. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta name="twitter:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "RealEstateAgent",
+        "name": "Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Brühl",
+        "url": "https://romanbecker.de/stadtteile/bruehl.html",
+        "telephone": "+491775156969",
+        "email": "roman.becker@evernest.com",
+        "image": "https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg",
+        "address": {"@type":"PostalAddress","streetAddress":"Kaiser-Wilhelm-Ring 17-21","addressLocality":"Köln","postalCode":"50672","addressRegion":"NW","addressCountry":"DE"},
+        "geo": {"@type":"GeoCoordinates","latitude":50.8280,"longitude":6.9050},
+        "areaServed": {"@type":"Place","name":"Brühl"},
+        "priceRange": "€€€",
+        "openingHours": "Mo-Sa 09:00-20:00"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Start","item":"https://romanbecker.de/"},
+          {"@type":"ListItem","position":2,"name":"Stadtteile","item":"https://romanbecker.de/stadtteile/"},
+          {"@type":"ListItem","position":3,"name":"Brühl","item":"https://romanbecker.de/stadtteile/bruehl.html"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was kostet eine Wohnung in Brühl?",
+            "acceptedAnswer": {"@type":"Answer","text":"Der durchschnittliche Kaufpreis für Eigentumswohnungen in Brühl liegt bei ca. 3.400 €/m² (Stand Q1/2026). Reihenhäuser und Einfamilienhäuser werden im Schnitt für ca. 3.200 €/m² gehandelt. Die Kaltmieten bei Neuvermietung liegen bei 10–13 €/m²."}
+          },
+          {
+            "@type": "Question",
+            "name": "Ist Brühl ein guter Standort für Familien?",
+            "acceptedAnswer": {"@type":"Answer","text":"Brühl bietet Familien das UNESCO-Welterbe Schloss Augustusburg, den Phantasialand-Freizeitpark, gute Schulen und eine der besten S-Bahn-Anbindungen im Kölner Umland. Die Kombination ist einzigartig im Rhein-Erft-Kreis."}
+          },
+          {
+            "@type": "Question",
+            "name": "Wie entwickelt sich der Immobilienmarkt in Brühl?",
+            "acceptedAnswer": {"@type":"Answer","text":"Die Kaufpreise für Eigentumswohnungen in Brühl stiegen im Jahresvergleich um +3,1 %. Das UNESCO-Welterbe, die exzellente Bahnanbindung und die Nähe zu Köln und Bonn stützen die Nachfrage dauerhaft."}
+          },
+          {
+            "@type": "Question",
+            "name": "Für wen eignet sich Brühl besonders?",
+            "acceptedAnswer": {"@type":"Answer","text":"Brühl eignet sich besonders für Familien und Pendler zwischen Köln und Bonn sowie für Käufer, die UNESCO-Flair und gute Anbindung kombinieren möchten. Kapitalanleger profitieren von stabilen Mietrenditen."}
+          },
+          {
+            "@type": "Question",
+            "name": "Was sollte man beim Immobilienkauf in Brühl beachten?",
+            "acceptedAnswer": {"@type":"Answer","text":"Brühl liegt ideal auf der Achse Köln-Bonn — beide Städte sind per Bahn schnell erreichbar. Die Lärmsituation rund um den Phantasialand-Park sollte im Einzelfall geprüft werden. Lagen nahe Schlosspark sind besonders exklusiv."}
+          }
+        ]
+      },
+      {
+        "@type": "Dataset",
+        "name": "Immobilien-Marktdaten Brühl Q1/2026",
+        "url": "https://romanbecker.de/stadtteile/bruehl.html",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": {"@type": "Person", "name": "Roman Becker"},
+        "spatialCoverage": {"@type": "Place", "name": "Brühl", "geo": {"@type": "GeoCoordinates", "latitude": 50.8280, "longitude": 6.9050}},
+        "temporalCoverage": "2026-01-01/2026-03-31",
+        "datePublished": "2026-05-18",
+        "dateModified": "2026-05-18",
+        "variableMeasured": [
+          {"@type": "PropertyValue", "name": "Kaufpreis ETW Brühl", "value": "3.400", "unitText": "EUR/m²"},
+          {"@type": "PropertyValue", "name": "Kaufpreis Haus Brühl", "value": "3.200", "unitText": "EUR/m²"},
+          {"@type": "PropertyValue", "name": "Kaltmiete Brühl", "value": "10–13", "unitText": "EUR/m²"},
+          {"@type": "PropertyValue", "name": "Preistrend Brühl", "value": "3,1", "unitText": "PERCENT"}
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo">Roman <span>Becker</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+  <main>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a><span>›</span><a href="https://romanbecker.de/stadtteile/">Stadtteile</a><span>›</span>Brühl
+    </nav>
+  </div>
+  <section class="hero">
+    <div class="container">
+      <div class="hero__badge">✓ IHK-zertifiziert · EVERNEST-Netzwerk · Brühl</div>
+      <h1>Immobilienmakler in Brühl – Roman Becker</h1>
+      <p class="hero__subtitle">Brühl ist mit rund 46.000 Einwohnern eine der kulturell bedeutendsten Städte im Rhein-Erft-Kreis — und die einzige im Kreis mit gleich zwei UNESCO-Welterbestätten: Schloss Augustusburg und Schloss Falkenlust. Das barocke Ensemble, das als Sommerresidenz der Kölner Kurfürsten errichtet wurde, verleiht Brühl eine einzigartige Aura, die kein anderes Kölner Umlandstädtchen bieten kann. Zudem liegt Brühl ideal auf der Bahnachse Köln-Bonn und ist von beiden Metropolen aus in etwa 20 Minuten erreichbar — ein entscheidender Vorteil für den Immobilienmarkt.</p>
+      <div class="hero__buttons">
+        <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Brühl durch Roman Becker">Kostenfreie Wertanalyse Brühl</a>
+        <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+      </div>
+      <p class="hero__cta-subline" style="margin-top:var(--space-4);font-size:0.9375rem;color:rgba(255,255,255,0.85);">Kostenlose Immobilienbewertung in Brühl – persönlich vor Ort.</p>
+      <div style="margin-top:var(--space-6);">
+        <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9496197,2.0739353,7.01z/data=!3m1!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m10!1m2!2m1!1sroman+becker!3m6!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!15sCgxyb21hbiBiZWNrZXJaDiIMcm9tYW4gYmVja2VykgEScmVhbF9lc3RhdGVfYWdlbnRzmgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxYWJWVlZSakZQU0ZKbVZHMWtkazR4U1RWTlZrSnRWVWM1VEU5VlJSQULgAQD6AQUIhQIQRQ!16s%2Fg%2F11w4rp9vvy?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="review-badge">
+          <span class="review-badge__stars">★★★★★</span>
+          <span>5,0 auf Google · 20+ vermittelte Objekte in Köln</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">
+      <div class="card card--navy ref-card">
+        <div class="ref-card__text">
+          <span class="section-label">Aktiv in Brühl</span>
+          <h3 style="color:var(--white);">UNESCO-Lage &amp; Kölner Süden</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-4);">
+            <li style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.15);"><span class="infra-icon" style="color:var(--gold);">•</span> Villen · Einfamilienhäuser · Eigentumswohnungen nahe Schlosspark</li>
+          </ul>
+        </div>
+        <div class="ref-card__stat">
+          <div class="ref-card__number">UNESCO</div>
+          <div class="ref-card__label">Welterbe<br>Schloss Augustusburg</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Immobilienmarkt Brühl</span>
+      <h2>Immobilie in Brühl kaufen oder verkaufen – aktuelle Marktdaten</h2>
+      <p class="text-muted mb-8 max-w-prose">Als Immobilienmakler in Brühl berate ich Verkäufer und Käufer auf Basis aktueller Vergleichsdaten. Die folgenden Werte geben Ihnen eine erste Orientierung – für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.</p>
+      <div class="market-grid">
+        <div class="market-stat"><div class="market-stat__value">~3.400 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Eigentumswohnung</div></div>
+        <div class="market-stat"><div class="market-stat__value">~3.200 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Haus</div></div>
+        <div class="market-stat"><div class="market-stat__value">10–13 €</div><div class="market-stat__label">Kaltmiete pro m²<br>Neuvermietung</div></div>
+        <div class="market-stat"><div class="market-stat__value">+3,1 %</div><div class="market-stat__label">Preisentwicklung<br>ETW 2025→2026</div></div>
+      </div>
+      <p style="font-size:0.75rem;color:var(--gray-400);margin-top:var(--space-4);text-align:center;">Quellen: Homeday, Engel &amp; Völkers, ImmoScout24 · Stand Q1/2026</p>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <span class="section-label">Stadtprofil</span>
+      <h2>Brühl – UNESCO-Welterbe und starke Bahnlage zwischen Köln und Bonn</h2>
+      <div class="grid-2" style="margin-bottom:var(--space-12);">
+        <div>
+          <p class="text-muted leading-relaxed mb-6">Brühl ist eine der wenigen Städte in Nordrhein-Westfalen, deren kulturelles Erbe UNESCO-Welterbestatus trägt: Schloss Augustusburg mit dem prachtvollen Schlosspark und das benachbarte Jagdschloss Falkenlust wurden 1984 in die Welterbeliste aufgenommen. Die Barockanlage, die von 1725 bis 1768 als Sommerresidenz der Kölner Kurfürsten errichtet wurde, ist nicht nur touristisches Aushängeschild, sondern prägt das gehobene Ambiente der schlossnah gelegenen Wohnlagen unmittelbar. Villen und großzügige Eigenheime rund um den Schlosspark gehören zu den begehrtesten und exklusivsten Immobilien im Rhein-Erft-Kreis.
+
+Die Bahnlage Brühls ist herausragend: Der Bahnhof Brühl liegt an der vielbefahrenen Strecke Köln-Bonn, auf der stündlich mehrere Regional- und S-Bahn-Verbindungen verkehren — Köln Hbf ist in ca. 20, Bonn Hbf in ca. 15 Minuten erreichbar. Damit ist Brühl einer der wenigen Orte im Rheinland, von dem aus beide Großstädte in unter 25 Minuten per Bahn erreichbar sind. Diese Doppel-Pendler-Eignung treibt die Nachfrage und die Preise im Vergleich zu anderen Kreisstädten merklich an.
+
+Neben der historischen Innenstadt und dem Schlosspark bietet Brühl mit dem Phantasialand einen der bedeutendsten Freizeitparks Deutschlands und damit ein touristisches Alleinstellungsmerkmal im Kölner Umland. Was Kaufinteressenten wissen sollten: Brühl ist im Kölner Kreisvergleich relativ teuer — aber die Doppelanbindung an Köln und Bonn und das UNESCO-Welterbe rechtfertigen den Aufpreis. Lagen direkt am Schlosspark sind besonders exklusiv und rar.</p>
+        </div>
+        <div>
+          <div class="map-container">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=6.8600%2C50.8000%2C6.9600%2C50.8700&layer=mapnik&marker=50.8280%2C6.9050" loading="lazy" title="Karte von Brühl" aria-label="OpenStreetMap Karte von Brühl"></iframe>
+          </div>
+          <p style="font-size:0.75rem;color:var(--gray-400);margin-top:var(--space-2);text-align:center;">PLZ: 50321 · Rhein-Erft-Kreis · UNESCO-Welterbe</p>
+        </div>
+      </div>
+      <div class="market-grid">
+        <div class="market-stat"><div class="market-stat__value">~46.000</div><div class="market-stat__label">Einwohner</div></div>
+        <div class="market-stat"><div class="market-stat__value">36 km²</div><div class="market-stat__label">Fläche</div></div>
+        <div class="market-stat"><div class="market-stat__value">18,4 %</div><div class="market-stat__label">Ausländeranteil</div></div>
+        <div class="market-stat"><div class="market-stat__value">41,8 J.</div><div class="market-stat__label">Durchschnittsalter</div></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Infrastruktur</span>
+      <h2>Das macht Brühl als Wohnlage attraktiv</h2>
+      <p class="text-muted mb-8 max-w-prose">Eine starke Infrastruktur ist ein entscheidender Werttreiber für Immobilien. Hier die wichtigsten Einrichtungen in Brühl.</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg></div>
+          <h3>Schulen &amp; Bildung</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Gymnasium am Kranzberg</li>
+            <li><span class="infra-icon">•</span> Realschule Brühl</li>
+            <li><span class="infra-icon">•</span> Gesamtschule Brühl</li>
+            <li><span class="infra-icon">•</span> Mehrere Grundschulen</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/></svg></div>
+          <h3>ÖPNV-Anbindung</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> S-Bahn S12/S19 (Köln Hbf in ~20 Min.)</li>
+            <li><span class="infra-icon">•</span> RE5/RE22 (Bonn in ~15 Min.)</li>
+            <li><span class="infra-icon">•</span> A553 / A61 in der Nähe</li>
+            <li><span class="infra-icon">•</span> Buslinien im Stadtgebiet</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12H2l10-9 10 9h-3"/><path d="M8 15H4l8-7 8 7h-4"/></svg></div>
+          <h3>Parks &amp; Freizeit</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Schlosspark Augustusburg (UNESCO)</span></li>
+            <li><span class="infra-icon">•</span> Phantasialand (Freizeitpark)</li>
+            <li><span class="infra-icon">•</span> Vorgebirgspark</li>
+            <li><span class="infra-icon">•</span> Brühler Stadtpark</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+          <h3>Einkaufen</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Innenstadt Brühl (Fußgängerzone)</li>
+            <li><span class="infra-icon">•</span> REWE, Edeka, Kaufland</li>
+            <li><span class="infra-icon">•</span> Lidl, Aldi, Penny</li>
+            <li><span class="infra-icon">•</span> Wochenmarkt Brühl</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3>Gesundheit</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Facharztpraxen in der Innenstadt</li>
+            <li><span class="infra-icon">•</span> Kliniken in Köln und Bonn erreichbar</li>
+            <li><span class="infra-icon">•</span> Apotheken im Stadtgebiet</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-4h6v4"/><path d="M9 12h.01"/><path d="M15 12h.01"/></svg></div>
+          <h3>Kultur &amp; Sehenswertes</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Schloss Augustusburg (UNESCO-Welterbe)</li>
+            <li><span class="infra-icon">•</span> Schloss Falkenlust (UNESCO-Welterbe)</li>
+            <li><span class="infra-icon">•</span> Phantasialand</li>
+            <li><span class="infra-icon">•</span> Max-Ernst-Museum Brühl</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <span class="section-label">Immobilientypen in Brühl</span>
+      <h2>Immobilie in Brühl verkaufen – was Ihr Objekt besonders macht</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Typische Objekte in der Stadt</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-6);">
+            <li><span class="infra-icon">•</span> Villen und Herrenhäuser nahe Schlosspark</li>
+            <li><span class="infra-icon">•</span> Einfamilienhäuser in ruhigen Wohnlagen</li>
+            <li><span class="infra-icon">•</span> Reihenhäuser und Doppelhaushälften</li>
+            <li><span class="infra-icon">•</span> Eigentumswohnungen nahe Bahnhof</li>
+            <li><span class="infra-icon">•</span> Mehrfamilienhäuser als Kapitalanlage</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Immobilie in Brühl kaufen — für wen lohnt es sich?</h3>
+          <p class="text-muted leading-relaxed mb-4"><strong>Für Familien:</strong> UNESCO-Welterbe, Phantasialand, gute Schulen und eine der besten Bahnanbindungen im Kölner Umland machen Brühl zur attraktiven Familienwahl.</p>
+          <p class="text-muted leading-relaxed mb-4"><strong>Für Kapitalanleger:</strong> Stabile Wertsteigerung dank Doppel-Pendler-Lage (Köln + Bonn), UNESCO-Bonus und begrenztem Angebot an hochwertigen Lagen nahe Schlosspark.</p>
+          <p class="text-muted leading-relaxed"><strong>Für Eigennutzer:</strong> Einzigartiges UNESCO-Ambiente, hervorragende Bahnanbindung und moderate Preise im Vergleich zum Kölner Stadtgebiet — Brühl bietet höchste Wohnqualität.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Häufige Fragen</span>
+      <h2>Häufige Fragen zum Immobilienmarkt in Brühl</h2>
+      <div style="max-width:800px;">
+        <details class="faq-item" open>
+          <summary>Was kostet eine Wohnung in Brühl?</summary>
+          <div class="faq-answer">Der durchschnittliche Kaufpreis für Eigentumswohnungen in Brühl liegt bei ca. 3.400 €/m² (Stand Q1/2026). Reihenhäuser und Einfamilienhäuser werden im Schnitt für ca. 3.200 €/m² gehandelt. Die Kaltmieten bei Neuvermietung liegen bei 10–13 €/m².</div>
+        </details>
+        <details class="faq-item">
+          <summary>Ist Brühl ein guter Standort für Familien?</summary>
+          <div class="faq-answer">Brühl bietet Familien das UNESCO-Welterbe Schloss Augustusburg, den Phantasialand-Freizeitpark, gute Schulen und eine der besten S-Bahn-Anbindungen im Kölner Umland. Die Kombination ist einzigartig im Rhein-Erft-Kreis.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie entwickelt sich der Immobilienmarkt in Brühl?</summary>
+          <div class="faq-answer">Die Kaufpreise für Eigentumswohnungen in Brühl stiegen im Jahresvergleich um +3,1 %. Das UNESCO-Welterbe, die exzellente Bahnanbindung und die Nähe zu Köln und Bonn stützen die Nachfrage dauerhaft.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Für wen eignet sich Brühl besonders?</summary>
+          <div class="faq-answer">Brühl eignet sich besonders für Familien und Pendler zwischen Köln und Bonn sowie für Käufer, die UNESCO-Flair und gute Anbindung kombinieren möchten. Kapitalanleger profitieren von stabilen Mietrenditen.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Was sollte man beim Immobilienkauf in Brühl beachten?</summary>
+          <div class="faq-answer">Brühl liegt ideal auf der Achse Köln-Bonn — beide Städte sind per Bahn schnell erreichbar. Die Lärmsituation rund um den Phantasialand-Park sollte im Einzelfall geprüft werden. Lagen nahe Schlosspark sind besonders exklusiv.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Jetzt beraten lassen</span>
+        <h2>Immobilie in Brühl verkaufen oder kaufen?</h2>
+        <p>Ob Verkauf, Kauf oder Kapitalanlage — ich berate Sie persönlich, unverbindlich und diskret. Als Ihr Makler im Rhein-Erft-Kreis kenne ich den Markt aus erster Hand.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Brühl durch Roman Becker">Marktwert Ihrer Immobilie in Brühl</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container text-center">
+      <span class="section-label">Auch in den Nachbarstädten aktiv</span>
+      <h2>Immobilienmakler in der Umgebung von Brühl</h2>
+      <p class="text-muted mb-8">Sie suchen einen Makler in einer angrenzenden Stadt? Ich bin auch hier für Sie da:</p>
+      <div class="neighbor-links">
+        <a href="erftstadt.html" class="btn btn--outline">Erftstadt</a>
+        <a href="kerpen.html" class="btn btn--outline">Kerpen</a>
+        <a href="bergheim.html" class="btn btn--outline">Bergheim</a>
+        <a href="pulheim.html" class="btn btn--outline">Pulheim</a>
+        <a href="bedburg.html" class="btn btn--outline">Bedburg</a>
+        <a href="rommerskirchen.html" class="btn btn--outline">Rommerskirchen</a>
+      </div>
+    </div>
+  </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="https://romanbecker.de/">Startseite</a>
+        <a href="https://romanbecker.de/stadtteile/">Alle Stadtteile</a>
+        <a href="https://romanbecker.de/immobilienbewertung/">Immobilienbewertung</a>
+        <a href="https://romanbecker.de/impressum/">Impressum</a>
+        <a href="https://romanbecker.de/agb/">AGB &amp; Datenschutz</a>
+      </div>
+      <p>© 2026 Roman Becker · Immobilienmakler Köln · EVERNEST GmbH</p>
+      <p style="margin-top:var(--space-2);">Kaiser-Wilhelm-Ring 17-21, 50672 Köln · <a href="tel:+491775156969">+49 177 515 69 69</a> · <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a> · <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a></p>
+    </div>
+  </footer>
+</body>
+</html>
