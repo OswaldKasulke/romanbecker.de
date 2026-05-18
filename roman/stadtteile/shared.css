@@ -345,6 +345,49 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: var(--space-8); font-size: 1.0625rem; }
 .cta-buttons { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
 
+/* STADTTEIL CARDS – Kölner Umland */
+.stadtteile__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+@media (min-width: 640px) { .stadtteile__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 900px) { .stadtteile__grid { grid-template-columns: repeat(4, 1fr); } }
+
+.stadtteil-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  border: 1px solid var(--gray-200);
+  border-left: 3px solid var(--gray-200);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  display: block;
+}
+.stadtteil-card:hover {
+  border-left-color: var(--gold);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 12px 24px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+.stadtteil-card h3 {
+  font-size: 1rem;
+  margin-bottom: var(--space-1);
+  color: var(--navy);
+}
+.stadtteil-card__price {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  margin-bottom: var(--space-3);
+}
+.stadtteil-card p {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* NACHBAR LINKS */
 .neighbor-links {
   display: flex;
