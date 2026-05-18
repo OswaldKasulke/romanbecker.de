@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Pulheim</title>
+  <meta name="description" content="Immobilienbewertung &amp; Hausverkauf in Pulheim — Roman Becker (EVERNEST). Rhein-Erft-Kreis, direkt an Köln grenzend, ~55.000 Einwohner. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/stadtteile/pulheim.html">
+  <meta name="geo.region" content="DE-NW">
+  <meta name="geo.placename" content="Pulheim">
+  <meta name="geo.position" content="51.0003;6.7960">
+  <meta name="ICBM" content="51.0003, 6.7960">
+  <meta property="og:title" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Pulheim">
+  <meta property="og:description" content="Immobilienbewertung &amp; Hausverkauf in Pulheim — Roman Becker (EVERNEST). Rhein-Erft-Kreis, direkt an Köln grenzend, ~55.000 Einwohner. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta property="og:url" content="https://romanbecker.de/stadtteile/pulheim.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Pulheim">
+  <meta name="twitter:description" content="Immobilienbewertung &amp; Hausverkauf in Pulheim — Roman Becker (EVERNEST). Rhein-Erft-Kreis, direkt an Köln grenzend, ~55.000 Einwohner. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta name="twitter:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "RealEstateAgent",
+        "name": "Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Pulheim",
+        "url": "https://romanbecker.de/stadtteile/pulheim.html",
+        "telephone": "+491775156969",
+        "email": "roman.becker@evernest.com",
+        "image": "https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg",
+        "address": {"@type":"PostalAddress","streetAddress":"Kaiser-Wilhelm-Ring 17-21","addressLocality":"Köln","postalCode":"50672","addressRegion":"NW","addressCountry":"DE"},
+        "geo": {"@type":"GeoCoordinates","latitude":51.0003,"longitude":6.7960},
+        "areaServed": {"@type":"Place","name":"Pulheim"},
+        "priceRange": "€€€",
+        "openingHours": "Mo-Sa 09:00-20:00"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Start","item":"https://romanbecker.de/"},
+          {"@type":"ListItem","position":2,"name":"Stadtteile","item":"https://romanbecker.de/stadtteile/"},
+          {"@type":"ListItem","position":3,"name":"Pulheim","item":"https://romanbecker.de/stadtteile/pulheim.html"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was kostet eine Wohnung in Pulheim?",
+            "acceptedAnswer": {"@type":"Answer","text":"Der durchschnittliche Kaufpreis für Eigentumswohnungen in Pulheim liegt bei ca. 3.600 €/m² (Stand Q1/2026). Reihenhäuser und Einfamilienhäuser werden im Schnitt für ca. 3.400 €/m² gehandelt. Die Kaltmieten bei Neuvermietung liegen bei 11–13 €/m². Die Preise variieren je nach Lage und Nähe zur Stadtgrenze Köln teils erheblich."}
+          },
+          {
+            "@type": "Question",
+            "name": "Ist Pulheim ein guter Standort für Familien?",
+            "acceptedAnswer": {"@type":"Answer","text":"Pulheim bietet Familien eine ideale Kombination: Stadtrandnähe zu Köln, gut ausgebaute Schulen und Kitas, viel Grün durch Äcker und Parks sowie ruhige, familienfreundliche Wohngebiete in Brauweiler, Stommeln und Pulheim-Mitte."}
+          },
+          {
+            "@type": "Question",
+            "name": "Wie entwickelt sich der Immobilienmarkt in Pulheim?",
+            "acceptedAnswer": {"@type":"Answer","text":"Die Kaufpreise für Eigentumswohnungen in Pulheim stiegen im Jahresvergleich um +3,0 %. Die direkte Grenznähe zu Köln und gute ÖPNV-Anbindung sorgen für anhaltend hohe Nachfrage, während das Preisniveau noch moderat unter dem Kölner Niveau liegt."}
+          },
+          {
+            "@type": "Question",
+            "name": "Für wen eignet sich Pulheim besonders?",
+            "acceptedAnswer": {"@type":"Answer","text":"Pulheim eignet sich besonders für Familien, die Kölnnähe mit günstigerem Preisniveau und mehr Platz verbinden wollen. Die kurzen Wege nach Köln-Ehrenfeld und Köln-Niehl machen Pulheim zum idealen Wohnstandort für Kölner Pendler."}
+          },
+          {
+            "@type": "Question",
+            "name": "Was sollte man beim Immobilienkauf in Pulheim beachten?",
+            "acceptedAnswer": {"@type":"Answer","text":"Die besten Lagen in Pulheim grenzen direkt an Köln-Weidenpesch und Köln-Niehl an — hier sind die Preise am höchsten. In Ortsrandlagen wie Stommeln und Geyen ist das Preisniveau günstiger, die Kölnanbindung aber schwächer."}
+          }
+        ]
+      },
+      {
+        "@type": "Dataset",
+        "name": "Immobilien-Marktdaten Pulheim Q1/2026",
+        "description": "Aktuelle Marktdaten für Pulheim: Kaufpreise (€/m²) für Eigentumswohnungen und Häuser, Mietpreise und Jahres-Trends. Quartalsweise aktualisiert.",
+        "url": "https://romanbecker.de/stadtteile/pulheim.html",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": {"@type": "Person", "name": "Roman Becker"},
+        "spatialCoverage": {
+          "@type": "Place",
+          "name": "Pulheim",
+          "geo": {"@type": "GeoCoordinates", "latitude": 51.0003, "longitude": 6.7960}
+        },
+        "temporalCoverage": "2026-01-01/2026-03-31",
+        "datePublished": "2026-05-18",
+        "dateModified": "2026-05-18",
+        "isPartOf": {"@id": "https://romanbecker.de/marktanalyse/koeln-q2-2026.html"},
+        "variableMeasured": [
+          {"@type": "PropertyValue", "name": "Kaufpreis Eigentumswohnung in Pulheim", "value": "3.600", "unitText": "EUR/m²", "description": "Durchschnittlicher Kaufpreis pro m² für Eigentumswohnungen in Pulheim, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Kaufpreis Haus in Pulheim", "value": "3.400", "unitText": "EUR/m²", "description": "Durchschnittlicher Kaufpreis pro m² für Häuser in Pulheim, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Kaltmiete in Pulheim", "value": "11–13", "unitText": "EUR/m²", "description": "Aktuelle Kaltmieten bei Neuvermietung in Pulheim, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Preistrend Jahresvergleich Pulheim", "value": "3,0", "unitText": "PERCENT", "description": "Jahresvergleich Preisentwicklung Eigentumswohnungen in Pulheim, Q1/2025 vs Q1/2026"}
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <!-- ClickRank.ai SEO verification -->
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo">Roman <span>Becker</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+  <main>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a><span>›</span><a href="https://romanbecker.de/stadtteile/">Stadtteile</a><span>›</span>Pulheim
+    </nav>
+  </div>
+  <section class="hero">
+    <div class="container">
+      <div class="hero__badge">✓ IHK-zertifiziert · EVERNEST-Netzwerk · Pulheim</div>
+      <h1>Immobilienmakler in Pulheim – Roman Becker</h1>
+      <p class="hero__subtitle">Pulheim ist mit rund 55.000 Einwohnern eine der attraktivsten Wohnkommunen im Rhein-Erft-Kreis — direkt an der nördlichen Stadtgrenze Kölns gelegen und dennoch deutlich günstiger als das Kölner Stadtgebiet. Die Stadt besteht aus sieben eigenständigen Ortsteilen, von denen Brauweiler mit seinem historischen Kloster und Stommeln mit seiner mittelalterlichen Synagoge besondere kulturelle Akzente setzen. Wer in Pulheim lebt, ist in wenigen Minuten sowohl auf der Autobahn als auch mit dem ÖPNV in Köln.</p>
+      <div class="hero__buttons">
+        <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Pulheim durch Roman Becker">Kostenfreie Wertanalyse Pulheim</a>
+        <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+      </div>
+      <p class="hero__cta-subline" style="margin-top:var(--space-4);font-size:0.9375rem;color:rgba(255,255,255,0.85);">Kostenlose Immobilienbewertung in Pulheim – persönlich vor Ort.</p>
+      <div style="margin-top:var(--space-6);">
+        <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9496197,2.0739353,7.01z/data=!3m1!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m10!1m2!2m1!1sroman+becker!3m6!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!15sCgxyb21hbiBiZWNrZXJaDiIMcm9tYW4gYmVja2VykgEScmVhbF9lc3RhdGVfYWdlbnRzmgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxYWJWVlZSakZQU0ZKbVZHMWtkazR4U1RWTlZrSnRWVWM1VEU5VlJSQULgAQD6AQUIhQIQRQ!16s%2Fg%2F11w4rp9vvy?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="review-badge">
+          <span class="review-badge__stars">★★★★★</span>
+          <span>5,0 auf Google · 20+ vermittelte Objekte in Köln</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">
+      <div class="card card--navy ref-card">
+        <div class="ref-card__text">
+          <span class="section-label">Aktiv in Pulheim</span>
+          <h3 style="color:var(--white);">Familienimmobilien &amp; Pendlerlagen</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-4);">
+            <li style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.15);"><span class="infra-icon" style="color:var(--gold);">•</span> Einfamilienhäuser · Reihenhäuser · Eigentumswohnungen</li>
+          </ul>
+        </div>
+        <div class="ref-card__stat">
+          <div class="ref-card__number">REK</div>
+          <div class="ref-card__label">Rhein-Erft-Kreis<br>Direktanschluss Köln</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Immobilienmarkt Pulheim</span>
+      <h2>Immobilie in Pulheim kaufen oder verkaufen – aktuelle Marktdaten</h2>
+      <p class="text-muted mb-8 max-w-prose">Als Immobilienmakler in Pulheim berate ich Verkäufer und Käufer auf Basis aktueller Vergleichsdaten. Die folgenden Werte geben Ihnen eine erste Orientierung – für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.</p>
+      <div class="market-grid">
+        <div class="market-stat"><div class="market-stat__value">~3.600 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Eigentumswohnung</div></div>
+        <div class="market-stat"><div class="market-stat__value">~3.400 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Haus</div></div>
+        <div class="market-stat"><div class="market-stat__value">11–13 €</div><div class="market-stat__label">Kaltmiete pro m²<br>Neuvermietung</div></div>
+        <div class="market-stat"><div class="market-stat__value">+3,0 %</div><div class="market-stat__label">Preisentwicklung<br>ETW 2025→2026</div></div>
+      </div>
+      <p style="font-size:0.75rem;color:var(--gray-400);margin-top:var(--space-4);text-align:center;">Quellen: Homeday, Engel &amp; Völkers, ImmoScout24 · Stand Q1/2026</p>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <span class="section-label">Stadtprofil</span>
+      <h2>Pulheim – Kölnnähe trifft rheinisches Landleben</h2>
+      <div class="grid-2" style="margin-bottom:var(--space-12);">
+        <div>
+          <p class="text-muted leading-relaxed mb-6">Pulheim liegt im Norden des Rhein-Erft-Kreises, unmittelbar an der Stadtgrenze zu Köln, und verbindet auf einzigartige Weise die Vorzüge des Kölner Umlandes mit der Erreichbarkeit der Metropole. Die sieben Ortsteile — Pulheim-Mitte, Brauweiler, Stommeln, Sinnersdorf, Geyen, Sinthern und Widdersdorf (inzwischen eingemeindet nach Köln) — bieten ein breites Spektrum an Wohnlagen, von der modernen Neubausiedlung bis zum historischen Ortskern mit Fachwerkhäusern.
+
+Besondere kulturhistorische Bedeutung haben das Kloster Brauweiler, ein ehemaliges Benediktinerkloster aus dem 11. Jahrhundert, das heute als Kulturzentrum und Tagungsstätte genutzt wird, sowie die mittelalterliche Synagoge in Stommeln, die zu den besterhaltenen jüdischen Sakralbauten im Rheinland zählt und Besucher aus aller Welt anzieht. Diese kulturellen Ankerpunkte verleihen Pulheim eine Identität, die über das typische Umlandstädtchen hinausgeht.
+
+Der Immobilienmarkt in Pulheim profitiert massiv von der Kölnnähe: In den stadtgrenznahen Lagen wie Pulheim-Mitte und im Bereich der Neubaugebiete an der Venloer Straße sind die Preise in den letzten Jahren kräftig gestiegen. Familien schätzen die vergleichsweise ruhige Wohnlage, die guten Schulen und die schnelle Erreichbarkeit von Köln über die A57 oder mit dem Bus. Was man wissen sollte: Pulheim hat keinen Bahnanschluss — die Busanbindung nach Köln-Ehrenfeld funktioniert gut, aber Bahnpendler müssen auf Köln ausweichen. In den äußeren Ortsteilen Geyen und Sinnersdorf ist die ÖPNV-Anbindung deutlich schwächer.</p>
+        </div>
+        <div>
+          <div class="map-container">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=6.7300%2C50.9600%2C6.8700%2C51.0400&layer=mapnik&marker=51.0003%2C6.7960" loading="lazy" title="Karte von Pulheim" aria-label="OpenStreetMap Karte von Pulheim"></iframe>
+          </div>
+          <p style="font-size:0.75rem;color:var(--gray-400);margin-top:var(--space-2);text-align:center;">PLZ: 50259 · Rhein-Erft-Kreis · Direktanschluss an Köln</p>
+        </div>
+      </div>
+      <div class="market-grid">
+        <div class="market-stat"><div class="market-stat__value">~55.000</div><div class="market-stat__label">Einwohner</div></div>
+        <div class="market-stat"><div class="market-stat__value">71 km²</div><div class="market-stat__label">Fläche</div></div>
+        <div class="market-stat"><div class="market-stat__value">13,5 %</div><div class="market-stat__label">Ausländeranteil</div></div>
+        <div class="market-stat"><div class="market-stat__value">42,0 J.</div><div class="market-stat__label">Durchschnittsalter</div></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Infrastruktur</span>
+      <h2>Das macht Pulheim als Wohnlage attraktiv</h2>
+      <p class="text-muted mb-8 max-w-prose">Eine starke Infrastruktur ist ein entscheidender Werttreiber für Immobilien. Hier die wichtigsten Einrichtungen in Pulheim.</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg></div>
+          <h3>Schulen &amp; Bildung</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Geschwister-Scholl-Gesamtschule Pulheim</li>
+            <li><span class="infra-icon">•</span> Martin-Luther-King-Schule (Gymnasium)</li>
+            <li><span class="infra-icon">•</span> Realschule Pulheim</li>
+            <li><span class="infra-icon">•</span> Mehrere Grundschulen in den Ortsteilen</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M12 6v2"/><path d="M9 14l-3 8"/><path d="M15 14l3 8"/><path d="M7 12a5 5 0 0 1 10 0"/><path d="M12 8v6"/></svg></div>
+          <h3>Kitas &amp; Kinderbetreuung</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Städtische Kitas in allen Ortsteilen</li>
+            <li><span class="infra-icon">•</span> Kath. Kindertagesstätten Brauweiler/Stommeln</li>
+            <li><span class="infra-icon">•</span> AWO-Einrichtungen Pulheim-Mitte</li>
+            <li><span class="infra-icon">•</span> Familienzentren in mehreren Ortsteilen</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/></svg></div>
+          <h3>ÖPNV-Anbindung</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Bus 140 nach Köln-Ehrenfeld (KVB)</li>
+            <li><span class="infra-icon">•</span> Bus 146, 149 (Kreisgebiet)</li>
+            <li><span class="infra-icon">•</span> A57 (Anschluss Pulheim/Stommeln)</li>
+            <li><span class="infra-icon">•</span> A1-Nähe über Köln-Niehl</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+          <h3>Einkaufen</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> REWE und Edeka in Pulheim-Mitte</li>
+            <li><span class="infra-icon">•</span> Lidl, Aldi in mehreren Ortsteilen</li>
+            <li><span class="infra-icon">•</span> Nahversorgungszentrum Pulheim</li>
+            <li><span class="infra-icon">•</span> Wochenmarkt in Brauweiler</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12H2l10-9 10 9h-3"/><path d="M8 15H4l8-7 8 7h-4"/></svg></div>
+          <h3>Parks &amp; Freizeit</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Klostergarten Brauweiler</li>
+            <li><span class="infra-icon">•</span> Freizeitanlage Stommeler Busch</li>
+            <li><span class="infra-icon">•</span> Radwege Richtung Grevenbroich und Köln</li>
+            <li><span class="infra-icon">•</span> Sportparks der Vereinssportanlagen</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3>Gesundheit</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Allgemeinmedizin- und Facharztpraxen</li>
+            <li><span class="infra-icon">•</span> Kliniken in Köln (nahebei erreichbar)</li>
+            <li><span class="infra-icon">•</span> Apotheken in Pulheim-Mitte und Brauweiler</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5L17.5 17.5"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M6 8v8"/><path d="M18 8v8"/><path d="M4 10v4"/><path d="M20 10v4"/></svg></div>
+          <h3>Fitness &amp; Sport</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> FC Pulheim (Fußball)</li>
+            <li><span class="infra-icon">•</span> TSV Stommeln</li>
+            <li><span class="infra-icon">•</span> Fitnessstudios in Pulheim-Mitte</li>
+            <li><span class="infra-icon">•</span> Hallenbad Pulheim</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <h3>Gastronomie</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Restaurants im Klostergasthof Brauweiler</li>
+            <li><span class="infra-icon">•</span> Gaststätten in den Ortszentren</li>
+            <li><span class="infra-icon">•</span> Cafés und Bäckereien</li>
+            <li><span class="infra-icon">•</span> Biergärten im Sommer</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-4h6v4"/><path d="M9 12h.01"/><path d="M15 12h.01"/></svg></div>
+          <h3>Kultur &amp; Sehenswertes</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Kloster Brauweiler (11. Jh., Kulturzentrum)</li>
+            <li><span class="infra-icon">•</span> Synagoge Stommeln (UNESCO-Erbe, mittelalterlich)</li>
+            <li><span class="infra-icon">•</span> Heimatmuseum Pulheim</li>
+            <li><span class="infra-icon">•</span> Historische Ortskerne der Dörfer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <span class="section-label">Immobilientypen in Pulheim</span>
+      <h2>Immobilie in Pulheim verkaufen – was Ihr Objekt besonders macht</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Typische Objekte in der Stadt</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-6);">
+            <li><span class="infra-icon">•</span> Einfamilienhäuser mit Garten</li>
+            <li><span class="infra-icon">•</span> Reihenhäuser in Neubausiedlungen</li>
+            <li><span class="infra-icon">•</span> Doppelhaushälften</li>
+            <li><span class="infra-icon">•</span> Eigentumswohnungen in Pulheim-Mitte</li>
+            <li><span class="infra-icon">•</span> Mehrfamilienhäuser als Kapitalanlage</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Immobilie in Pulheim kaufen — für wen lohnt es sich?</h3>
+          <p class="text-muted leading-relaxed mb-4"><strong>Für Familien:</strong> Pulheim bietet Familien eine ideale Kombination: Stadtrandnähe zu Köln, gut ausgebaute Schulen und Kitas, viel Grün und ruhige, familienfreundliche Wohngebiete.</p>
+          <p class="text-muted leading-relaxed mb-4"><strong>Für Kapitalanleger:</strong> Direkte Grenznähe zu Köln bei noch moderatem Preisniveau — Pulheim bietet solides Renditepotenzial mit stabiler Mieternachfrage von Kölner Pendlern.</p>
+          <p class="text-muted leading-relaxed"><strong>Für Eigennutzer:</strong> Mehr Fläche für weniger Geld, kurze Wege nach Köln und ein entspanntes Wohnmilieu — Pulheim ist die logische erste Station für Kölner, die mehr Platz brauchen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Häufige Fragen</span>
+      <h2>Häufige Fragen zum Immobilienmarkt in Pulheim</h2>
+      <div style="max-width:800px;">
+        <details class="faq-item" open>
+          <summary>Was kostet eine Wohnung in Pulheim?</summary>
+          <div class="faq-answer">Der durchschnittliche Kaufpreis für Eigentumswohnungen in Pulheim liegt bei ca. 3.600 €/m² (Stand Q1/2026). Reihenhäuser und Einfamilienhäuser werden im Schnitt für ca. 3.400 €/m² gehandelt. Die Kaltmieten bei Neuvermietung liegen bei 11–13 €/m². Die Preise variieren je nach Lage und Nähe zur Stadtgrenze Köln teils erheblich.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Ist Pulheim ein guter Standort für Familien?</summary>
+          <div class="faq-answer">Pulheim bietet Familien eine ideale Kombination: Stadtrandnähe zu Köln, gut ausgebaute Schulen und Kitas, viel Grün durch Äcker und Parks sowie ruhige, familienfreundliche Wohngebiete in Brauweiler, Stommeln und Pulheim-Mitte.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Wie entwickelt sich der Immobilienmarkt in Pulheim?</summary>
+          <div class="faq-answer">Die Kaufpreise für Eigentumswohnungen in Pulheim stiegen im Jahresvergleich um +3,0 %. Die direkte Grenznähe zu Köln und gute ÖPNV-Anbindung sorgen für anhaltend hohe Nachfrage, während das Preisniveau noch moderat unter dem Kölner Niveau liegt.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Für wen eignet sich Pulheim besonders?</summary>
+          <div class="faq-answer">Pulheim eignet sich besonders für Familien, die Kölnnähe mit günstigerem Preisniveau und mehr Platz verbinden wollen. Die kurzen Wege nach Köln-Ehrenfeld und Köln-Niehl machen Pulheim zum idealen Wohnstandort für Kölner Pendler.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Was sollte man beim Immobilienkauf in Pulheim beachten?</summary>
+          <div class="faq-answer">Die besten Lagen in Pulheim grenzen direkt an Köln-Weidenpesch und Köln-Niehl an — hier sind die Preise am höchsten. In Ortsrandlagen wie Stommeln und Geyen ist das Preisniveau günstiger, die Kölnanbindung aber schwächer.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Jetzt beraten lassen</span>
+        <h2>Immobilie in Pulheim verkaufen oder kaufen?</h2>
+        <p>Ob Verkauf, Kauf oder Kapitalanlage — ich berate Sie persönlich, unverbindlich und diskret. Als Ihr Makler im Rhein-Erft-Kreis kenne ich den Markt aus erster Hand.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Pulheim durch Roman Becker">Marktwert Ihrer Immobilie in Pulheim</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container text-center">
+      <span class="section-label">Auch in den Nachbarstädten aktiv</span>
+      <h2>Immobilienmakler in der Umgebung von Pulheim</h2>
+      <p class="text-muted mb-8">Sie suchen einen Makler in einer angrenzenden Stadt? Ich bin auch hier für Sie da:</p>
+      <div class="neighbor-links">
+        <a href="bergheim.html" class="btn btn--outline">Bergheim</a>
+        <a href="kerpen.html" class="btn btn--outline">Kerpen</a>
+        <a href="bedburg.html" class="btn btn--outline">Bedburg</a>
+        <a href="rommerskirchen.html" class="btn btn--outline">Rommerskirchen</a>
+        <a href="bruehl.html" class="btn btn--outline">Brühl</a>
+        <a href="erftstadt.html" class="btn btn--outline">Erftstadt</a>
+      </div>
+    </div>
+  </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="https://romanbecker.de/">Startseite</a>
+        <a href="https://romanbecker.de/stadtteile/">Alle Stadtteile</a>
+        <a href="https://romanbecker.de/immobilienbewertung/">Immobilienbewertung</a>
+        <a href="https://romanbecker.de/impressum/">Impressum</a>
+        <a href="https://romanbecker.de/agb/">AGB &amp; Datenschutz</a>
+      </div>
+      <p>© 2026 Roman Becker · Immobilienmakler Köln · EVERNEST GmbH</p>
+      <p style="margin-top:var(--space-2);">Kaiser-Wilhelm-Ring 17-21, 50672 Köln · <a href="tel:+491775156969">+49 177 515 69 69</a> · <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a> · <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a></p>
+    </div>
+  </footer>
+</body>
+</html>
