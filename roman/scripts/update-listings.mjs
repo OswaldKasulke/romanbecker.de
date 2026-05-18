@@ -221,7 +221,7 @@ function buildKoelnSection(listings) {
   <section id="objekte-koeln" class="section">
     <div class="container">
       <span class="section-label">EVERNEST Köln</span>
-      <h2 class="section-title">Immobilien meiner Kollegen</h2>
+      <h2 class="section-title">Unsere Immobilienreferenzen in Köln (Auswahl)</h2>
       <div class="objekte__cta">
         <div class="objekte__buttons">
           <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle Objekte bei EVERNEST Köln</a>
@@ -238,7 +238,7 @@ function buildKoelnSection(listings) {
   <section id="objekte-koeln" class="section">
     <div class="container">
       <span class="section-label">EVERNEST Köln</span>
-      <h2 class="section-title">Immobilien meiner Kollegen</h2>
+      <h2 class="section-title">Unsere Immobilienreferenzen in Köln (Auswahl)</h2>
 
       <div class="listings-carousel splide" aria-label="EVERNEST Köln Portfolio">
         <div class="splide__track">
