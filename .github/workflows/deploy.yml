@@ -1,9 +1,10 @@
-name: Deploy Roman (allinkl prod + Starthost preview)
+name: Deploy Roman
 
 on:
   push:
     branches:
       - main
+      - develop
 
 jobs:
   deploy:
@@ -28,32 +29,15 @@ jobs:
           define('SMTP_PASS', '${{ secrets.ROMAN_SMTP_PASS }}');
           EOF
 
-      - name: Deploy Roman via FTP
+      # ─── PREVIEW (develop branch) ──────────────────────────────────────────
+      - name: Deploy Preview via FTP (develop → preview/roman/)
+        if: github.ref == 'refs/heads/develop'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./roman/
-          server-dir: /fuertedigital/roman/
-          state-name: .ftp-deploy-sync-state-v3.json
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.DS_Store
-            **/README.md
-            **/docs/**
-            **/scripts/**
-
-      - name: Wait for FTP connection cooldown
-        run: sleep 5
-
-      - name: Deploy Roman Preview via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.ROMAN_FTP_SERVER }}
+          username: ${{ secrets.ROMAN_FTP_USERNAME }}
+          password: ${{ secrets.ROMAN_FTP_PASSWORD }}
+          port: 21
           local-dir: ./roman/
           server-dir: /preview/roman/
           exclude: |
@@ -64,23 +48,9 @@ jobs:
             **/docs/**
             **/scripts/**
 
-      - name: Deploy Preview via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./preview/
-          server-dir: /preview/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.DS_Store
-
-      - name: Wait for FTP connection cooldown
-        run: sleep 5
-
-      - name: Deploy romanbecker.de via FTP
+      # ─── PRODUKTION (main branch) ──────────────────────────────────────────
+      - name: Deploy Produktion via FTP (main → romanbecker.de/root/)
+        if: github.ref == 'refs/heads/main'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.ROMAN_FTP_SERVER }}
@@ -90,6 +60,27 @@ jobs:
           local-dir: ./roman/
           server-dir: /romanbecker.de/root/
           state-name: .ftp-deploy-sync-state-roman.json
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/README.md
+            **/docs/**
+            **/scripts/**
+
+      - name: Wait for FTP connection cooldown
+        run: sleep 5
+
+      - name: Deploy fuertedigital via FTP (main → fuertedigital/roman/)
+        if: github.ref == 'refs/heads/main'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./roman/
+          server-dir: /fuertedigital/roman/
+          state-name: .ftp-deploy-sync-state-v3.json
           exclude: |
             **/.git*
             **/.git*/**
