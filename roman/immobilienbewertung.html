@@ -1150,7 +1150,12 @@
               <p class="result__range" id="result-range"></p>
 
               <div class="result__note">
-                <p><strong>Hinweis:</strong> Dies ist eine automatische Ersteinschätzung auf Basis Ihrer Angaben und aktueller Marktdaten für Köln. Für eine belastbare Bewertung, die Mikrolage, Ausstattung und aktuelle Nachfrage berücksichtigt, empfehle ich ein persönliches Gespräch.</p>
+                <p><strong>Wichtiger Hinweis zur individuellen Preisgestaltung</strong></p>
+                <p>Bitte beachten Sie, dass dieser berechnete Wert als fundierte Orientierungshilfe dient. Der tatsächliche Angebotspreis am Markt kann von diesem Wert abweichen, wenn besondere Merkmale vorliegen:</p>
+                <p><strong>Besondere Lage:</strong> Immobilien in Top-Lagen (z.&nbsp;B. Köln-Lindenthal) erzielen oft signifikante Aufschläge.</p>
+                <p><strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.</p>
+                <p><strong>Individuelle Ausstattung:</strong> Exklusive Einbauten oder historische Details werden in der Standardformel nicht vollumfänglich erfasst.</p>
+                <p><strong>Unser Tipp:</strong> Für eine exakte Punktlandung beim Verkaufspreis empfiehlt sich eine persönliche Begehung durch mich.</p>
               </div>
 
               <div class="result__cta">
@@ -1375,68 +1380,25 @@
     function calculateValue() {
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var wohnflaeche = parseFloat(document.getElementById('wohnflaeche').value) || 0;
-      var grundstueck = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
       var zustand = document.querySelector('input[name="zustand"]:checked').value;
-      var baujahr = parseInt(document.getElementById('baujahr').value) || 1980;
       var miete = parseFloat(document.getElementById('miete').value) || 0;
-      var einheiten = parseInt(document.getElementById('einheiten').value) || 1;
 
-      // Base prices per m² for Köln (2026, konservativ)
-      var basePrices = {
-        wohnung: 3200,
-        haus: 3500,
-        mehrfamilienhaus: 2400,
-        grundstueck: 420
-      };
-
-      // Condition multipliers (conservative)
-      var conditionMult = {
-        saniert: 1.10,
-        normal: 0.95,
-        unsaniert: 0.72
-      };
-
-      // Age factor (conservative)
-      var ageFactor = 1.0;
-      if (baujahr >= 2015) ageFactor = 1.08;
-      else if (baujahr >= 2000) ageFactor = 1.0;
-      else if (baujahr >= 1980) ageFactor = 0.93;
-      else if (baujahr >= 1960) ageFactor = 0.85;
-      else if (baujahr >= 1900) ageFactor = 0.78;
-      else ageFactor = 0.72;
+      // Zustandsfaktor
+      var conditionMult = { saniert: 1.1, normal: 1.0, unsaniert: 0.9 };
+      var faktor = conditionMult[zustand] || 1.0;
 
       var value = 0;
 
-      if (art === 'grundstueck') {
-        // Grundstück: price per m² × area
-        var erschliessung = document.getElementById('erschliessung').value;
-        var erschliessungMult = 1.0;
-        if (erschliessung === 'voll') erschliessungMult = 1.0;
-        else if (erschliessung === 'teil') erschliessungMult = 0.75;
-        else if (erschliessung === 'nicht') erschliessungMult = 0.5;
-
-        value = grundstueck * basePrices.grundstueck * erschliessungMult;
-      } else if (art === 'mehrfamilienhaus') {
-        // Mehrfamilienhaus: Ertragswert (rental income × multiplier) or area-based
-        if (miete > 0) {
-          // Ertragswertverfahren: annual rent × multiplier (18-22x)
-          var multiplier = zustand === 'saniert' ? 19 : (zustand === 'normal' ? 17 : 14);
-          value = miete * 12 * multiplier;
-        } else {
-          value = wohnflaeche * basePrices.mehrfamilienhaus * conditionMult[zustand] * ageFactor;
-        }
+      if (miete > 0) {
+        // Mit Kaltmiete: Kaltmiete × 12 × 23 × Zustandsfaktor
+        value = miete * 12 * 23 * faktor;
       } else {
-        // Wohnung / Haus
-        value = wohnflaeche * basePrices[art] * conditionMult[zustand] * ageFactor;
-
-        // Add ground value for houses with plot
-        if (art === 'haus' && grundstueck > 0) {
-          value += grundstueck * 150 * conditionMult[zustand];
-        }
+        // Ohne Kaltmiete: m² × 17 × 23 × 12 × Zustandsfaktor
+        value = wohnflaeche * 17 * 23 * 12 * faktor;
       }
 
-      // Round to nearest 5000
-      value = Math.round(value / 5000) * 5000;
+      // Auf volle 10.000 abrunden (letzte 4 Stellen = 0)
+      value = Math.floor(value / 10000) * 10000;
 
       return value;
     }
