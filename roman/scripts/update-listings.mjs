@@ -172,7 +172,7 @@ function buildRomanSection(listings) {
   <section id="objekte" class="section section--gray">
     <div class="container">
       <span class="section-label">Mein Portfolio</span>
-      <h2 class="section-title">Meine Immobilien</h2>
+      <h2 class="section-title">Meine Immobilien (Auswahl)</h2>
       <p class="section-subtitle">Aktuell keine Objekte verfügbar — kontaktieren Sie mich für Off-Market Angebote.</p>
       <div class="objekte__cta">
         <div class="objekte__buttons">
@@ -190,7 +190,7 @@ function buildRomanSection(listings) {
   <section id="objekte" class="section section--gray">
     <div class="container">
       <span class="section-label">Mein Portfolio</span>
-      <h2 class="section-title">Meine Immobilien</h2>
+      <h2 class="section-title">Meine Immobilien (Auswahl)</h2>
       <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST (Auswahl)</p>
 
       <div class="listings-carousel splide" aria-label="Meine Immobilienangebote">
