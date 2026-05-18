@@ -94,20 +94,33 @@ async function fetchKoelnListings(excludeIds) {
   const data = await fetchPage(KOELN_OFFICE_URL);
 
   // Köln page embeds listings in slotsCollection as PropertyList slots.
-  // Only take the FIRST PropertyList slot — that's the main "Unsere Immobilienangebote" carousel.
-  // Earlier we concatenated all slots, which mixed in old sold listings from secondary slots.
+  // Collect ALL PropertyList slots and merge active listings to show more properties (~55).
   const slots = data?.props?.pageProps?.data?.page?.slotsCollection?.items ?? [];
-  const firstPropertySlot = slots.find(s => s?.__typename === 'PropertyList');
+  const propertySlots = slots.filter(s => s?.__typename === 'PropertyList');
 
-  if (!firstPropertySlot) {
+  if (propertySlots.length === 0) {
     throw new Error('No PropertyList slot found on Köln office page');
   }
 
-  const allItems = firstPropertySlot?.itemsCollection?.items ?? [];
+  // Merge all items from all slots, deduplicate by id, keep only active listings
+  const seenIds = new Set();
+  const allItems = [];
+  for (const slot of propertySlots) {
+    const items = slot?.itemsCollection?.items ?? [];
+    for (const item of items) {
+      const id = item?.sys?.id;
+      if (id && !seenIds.has(id) && item?.salesStatus !== 'sold') {
+        seenIds.add(id);
+        allItems.push(item);
+      }
+    }
+  }
 
   if (allItems.length === 0) {
-    throw new Error('PropertyList slot is empty on Köln office page');
+    throw new Error('No active listings found on Köln office page');
   }
+
+  console.log(`Köln office page: ${allItems.length} active listings from ${propertySlots.length} slots`);
 
   return allItems
     .filter(item => !excludeIds.has(item?.sys?.id))
