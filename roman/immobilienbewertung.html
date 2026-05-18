@@ -1238,14 +1238,25 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function isGrundstueck() {
+      var checked = document.querySelector('input[name="objektart"]:checked');
+      return checked && checked.value === 'grundstueck';
+    }
+
     function nextStep(from) {
       if (!validateStep(from)) return;
       if (from === 2) prepareStep3();
-      showStep(from + 1);
+      // Grundstück: Schritt 5 (Zustand & Baujahr) überspringen
+      var next = from + 1;
+      if (next === 5 && isGrundstueck()) next = 6;
+      showStep(next);
     }
 
     function prevStep(from) {
-      showStep(from - 1);
+      // Grundstück: Schritt 5 beim Zurückgehen überspringen
+      var prev = from - 1;
+      if (prev === 5 && isGrundstueck()) prev = 4;
+      showStep(prev);
     }
 
     // ===========================
@@ -1380,7 +1391,9 @@
     function calculateValue() {
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var wohnflaeche = parseFloat(document.getElementById('wohnflaeche').value) || 0;
-      var zustand = document.querySelector('input[name="zustand"]:checked').value;
+      var zustandEl = document.querySelector('input[name="zustand"]:checked');
+      // Für Grundstücke gibt es keinen Zustand → Faktor 1.0
+      var zustand = zustandEl ? zustandEl.value : 'normal';
       var miete = parseFloat(document.getElementById('miete').value) || 0;
 
       // Zustandsfaktor
