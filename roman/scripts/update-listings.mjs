@@ -18,6 +18,14 @@ const INDEX_PATH = join(__dirname, '..', 'index.html');
 
 const ROMAN_PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
 const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/unsere-makler/koeln/';
+const KOELN_REGION_URLS = [
+  'https://www.evernest.com/de/unsere-makler/koeln/',
+  'https://www.evernest.com/de/unsere-makler/rhein-sieg-kreis/',
+  'https://www.evernest.com/de/unsere-makler/leverkusen/',
+  'https://www.evernest.com/de/unsere-makler/duesseldorf/',
+  'https://www.evernest.com/de/unsere-makler/bergisch-gladbach/',
+  'https://www.evernest.com/de/unsere-makler/aachen/',
+];
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
 
@@ -91,36 +99,37 @@ async function fetchRomanListings() {
 }
 
 async function fetchKoelnListings(excludeIds) {
-  const data = await fetchPage(KOELN_OFFICE_URL);
-
-  // Köln page embeds listings in slotsCollection as PropertyList slots.
-  // Collect ALL PropertyList slots and merge active listings to show more properties (~55).
-  const slots = data?.props?.pageProps?.data?.page?.slotsCollection?.items ?? [];
-  const propertySlots = slots.filter(s => s?.__typename === 'PropertyList');
-
-  if (propertySlots.length === 0) {
-    throw new Error('No PropertyList slot found on Köln office page');
-  }
-
-  // Merge all items from all slots, deduplicate by id, keep only active listings
+  // Fetch from multiple Köln-area regions to get ~50 active listings
   const seenIds = new Set();
   const allItems = [];
-  for (const slot of propertySlots) {
-    const items = slot?.itemsCollection?.items ?? [];
-    for (const item of items) {
-      const id = item?.sys?.id;
-      if (id && !seenIds.has(id) && item?.salesStatus !== 'sold') {
-        seenIds.add(id);
-        allItems.push(item);
+
+  for (const url of KOELN_REGION_URLS) {
+    try {
+      const data = await fetchPage(url);
+      const slots = data?.props?.pageProps?.data?.page?.slotsCollection?.items ?? [];
+      const propertySlots = slots.filter(s => s?.__typename === 'PropertyList');
+
+      for (const slot of propertySlots) {
+        const items = slot?.itemsCollection?.items ?? [];
+        for (const item of items) {
+          const id = item?.sys?.id;
+          if (id && !seenIds.has(id) && item?.salesStatus !== 'sold') {
+            seenIds.add(id);
+            allItems.push(item);
+          }
+        }
       }
+      console.log(`${url.split('/makler/')[1]} → ${allItems.length} unique active listings so far`);
+    } catch (err) {
+      console.warn(`Warning: Could not fetch ${url} — ${err.message}`);
     }
   }
 
   if (allItems.length === 0) {
-    throw new Error('No active listings found on Köln office page');
+    throw new Error('No active listings found across all Köln region pages');
   }
 
-  console.log(`Köln office page: ${allItems.length} active listings from ${propertySlots.length} slots`);
+  console.log(`Total Köln region listings: ${allItems.length}`);
 
   return allItems
     .filter(item => !excludeIds.has(item?.sys?.id))
