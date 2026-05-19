@@ -152,7 +152,7 @@ function buildRomanSection(listings) {
 
   if (shown.length === 0) {
     return `  <!-- LISTINGS-START -->
-  <section id="objekte" class="section section--gray">
+  <section id="objekte" class="section">
     <div class="container">
       <span class="section-label">Mein Portfolio</span>
       <h2 class="section-title">Meine Immobilien (Auswahl)</h2>
@@ -199,7 +199,7 @@ function buildKoelnSection(listings) {
 
   if (shown.length === 0) {
     return `  <!-- KOELN-LISTINGS-START -->
-  <section id="objekte-koeln" class="section">
+  <section id="objekte-koeln" class="section section--gray">
     <div class="container">
       <span class="section-label">EVERNEST Köln</span>
       <h2 class="section-title">Unsere Immobilienreferenzen in Köln und im Umland (Auswahl)</h2>
