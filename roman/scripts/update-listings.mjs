@@ -185,8 +185,7 @@ ${cards}
       </div>
 
       <div class="objekte__cta">
-        <div class="objekte__buttons">
-          <a href="${ROMAN_PROFILE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle meine Objekte bei EVERNEST</a>
+        <div class="objekte__buttons" style="justify-content:center">
           <a href="#kontakt" class="btn btn--primary">Beratungsgespräch vereinbaren</a>
         </div>
       </div>
