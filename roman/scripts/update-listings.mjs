@@ -18,14 +18,15 @@ const INDEX_PATH = join(__dirname, '..', 'index.html');
 
 const ROMAN_PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
 const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/unsere-makler/koeln/';
-const KOELN_REGION_URLS = [
-  'https://www.evernest.com/de/unsere-makler/koeln/',
-  'https://www.evernest.com/de/unsere-makler/rhein-sieg-kreis/',
-  'https://www.evernest.com/de/unsere-makler/leverkusen/',
-  'https://www.evernest.com/de/unsere-makler/duesseldorf/',
-  'https://www.evernest.com/de/unsere-makler/bergisch-gladbach/',
-  'https://www.evernest.com/de/unsere-makler/aachen/',
-];
+const KOELN_SEARCH_URL  = 'https://www.evernest.com/api/properties/';
+// Bounding box for zoom=11 centred on Köln (50.938361, 6.959974)
+const KOELN_BOUNDS = {
+  nw: { lat: 51.20, lng: 6.50 },
+  ne: { lat: 51.20, lng: 7.42 },
+  sw: { lat: 50.68, lng: 6.50 },
+  se: { lat: 50.68, lng: 7.42 },
+};
+const KOELN_MAX_LISTINGS = 55;
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
 
@@ -99,40 +100,22 @@ async function fetchRomanListings() {
 }
 
 async function fetchKoelnListings(excludeIds) {
-  // Fetch from multiple Köln-area regions to get ~50 active listings
-  const seenIds = new Set();
-  const allItems = [];
+  // Fetch via Evernest search API (POST /api/properties/) with Köln bounding box
+  const body = JSON.stringify({ bounds: KOELN_BOUNDS, preview: false });
+  const res = await fetch(KOELN_SEARCH_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'User-Agent': UA },
+    body,
+  });
+  if (!res.ok) throw new Error(`Search API HTTP ${res.status}`);
+  const json = await res.json();
+  const items = json?.searchResults ?? [];
+  if (items.length === 0) throw new Error('No listings returned from search API');
+  console.log(`Search API returned ${items.length} listings`);
 
-  for (const url of KOELN_REGION_URLS) {
-    try {
-      const data = await fetchPage(url);
-      const slots = data?.props?.pageProps?.data?.page?.slotsCollection?.items ?? [];
-      const propertySlots = slots.filter(s => s?.__typename === 'PropertyList');
-
-      for (const slot of propertySlots) {
-        const items = slot?.itemsCollection?.items ?? [];
-        for (const item of items) {
-          const id = item?.sys?.id;
-          if (id && !seenIds.has(id) && item?.salesStatus !== 'sold') {
-            seenIds.add(id);
-            allItems.push(item);
-          }
-        }
-      }
-      console.log(`${url.split('/makler/')[1]} → ${allItems.length} unique active listings so far`);
-    } catch (err) {
-      console.warn(`Warning: Could not fetch ${url} — ${err.message}`);
-    }
-  }
-
-  if (allItems.length === 0) {
-    throw new Error('No active listings found across all Köln region pages');
-  }
-
-  console.log(`Total Köln region listings: ${allItems.length}`);
-
-  return allItems
-    .filter(item => !excludeIds.has(item?.sys?.id))
+  return items
+    .filter(item => item?.salesStatus !== 'sold' && !excludeIds.has(item?.sys?.id))
+    .slice(0, KOELN_MAX_LISTINGS)
     .map(mapListing);
 }
 
@@ -213,8 +196,7 @@ ${cards}
 }
 
 function buildKoelnSection(listings) {
-  const active = listings.filter(l => !l.sold);
-  const shown  = active;
+  const shown = listings; // already filtered & limited to KOELN_MAX_LISTINGS
 
   if (shown.length === 0) {
     return `  <!-- KOELN-LISTINGS-START -->
