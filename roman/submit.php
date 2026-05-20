@@ -12,7 +12,11 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Felder auslesen und säubern
-$name           = htmlspecialchars(strip_tags(trim($_POST['name'] ?? '')));
+// Unterstützt beide Varianten: 'name' (Kontaktformular) und 'vorname'+'nachname' (Bewertungsformular)
+$vorname        = trim($_POST['vorname'] ?? '');
+$nachname       = trim($_POST['nachname'] ?? '');
+$name_raw       = trim($_POST['name'] ?? ($vorname . ($vorname && $nachname ? ' ' : '') . $nachname));
+$name           = htmlspecialchars(strip_tags($name_raw));
 $telefon        = htmlspecialchars(strip_tags(trim($_POST['telefon'] ?? '')));
 $email          = htmlspecialchars(strip_tags(trim($_POST['email'] ?? '')));
 $immobilientyp  = htmlspecialchars(strip_tags(trim($_POST['immobilientyp'] ?? '')));
