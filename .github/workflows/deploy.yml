@@ -30,43 +30,106 @@ jobs:
           EOF
 
       # ─── PREVIEW (develop branch) ──────────────────────────────────────────
-      - name: Deploy Preview via FTP (develop → preview/roman/)
+      - name: Deploy Preview via Python FTP (develop → preview/roman/)
         if: github.ref == 'refs/heads/develop'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.ROMAN_FTP_SERVER }}
-          username: ${{ secrets.ROMAN_FTP_USERNAME }}
-          password: ${{ secrets.ROMAN_FTP_PASSWORD }}
-          port: 21
-          local-dir: ./roman/
-          server-dir: /preview/roman/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.DS_Store
-            **/README.md
-            **/docs/**
-            **/scripts/**
+        env:
+          FTP_HOST: ${{ secrets.ROMAN_FTP_SERVER }}
+          FTP_USER: ${{ secrets.ROMAN_FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.ROMAN_FTP_PASSWORD }}
+        run: |
+          python3 - <<'PYEOF'
+          import ftplib, ssl, os
+
+          host = os.environ["FTP_HOST"]
+          user = os.environ["FTP_USER"]
+          passwd = os.environ["FTP_PASS"]
+          local_dir = "roman"
+          remote_base = "/preview/roman"
+          exclude = {".git", ".DS_Store", "README.md", "docs", "scripts"}
+
+          ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+          ctx.check_hostname = False
+          ctx.verify_mode = ssl.CERT_NONE
+
+          ftp = ftplib.FTP_TLS(context=ctx)
+          ftp.connect(host, 21)
+          ftp.auth()
+          ftp.login(user, passwd)
+          ftp.prot_p()
+
+          def ensure_dir(ftp, path):
+              try:
+                  ftp.mkd(path)
+              except ftplib.error_perm:
+                  pass
+
+          for root, dirs, files in os.walk(local_dir):
+              dirs[:] = [d for d in dirs if d not in exclude]
+              rel = os.path.relpath(root, local_dir)
+              remote_dir = remote_base if rel == "." else f"{remote_base}/{rel}"
+              ensure_dir(ftp, remote_dir)
+              for fname in files:
+                  if any(fname.startswith(e) or fname == e for e in exclude):
+                      continue
+                  local_path = os.path.join(root, fname)
+                  remote_path = f"{remote_dir}/{fname}"
+                  with open(local_path, "rb") as f:
+                      ftp.storbinary(f"STOR {remote_path}", f)
+                  print(f"✅ {remote_path}")
+
+          ftp.quit()
+          PYEOF
 
       # ─── PRODUKTION (main branch) ──────────────────────────────────────────
-      - name: Deploy Produktion via FTP (main → romanbecker.de/root/)
+      - name: Deploy Produktion via Python FTP (main → romanbecker.de/root/)
         if: github.ref == 'refs/heads/main'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.ROMAN_FTP_SERVER }}
-          username: ${{ secrets.ROMAN_FTP_USERNAME }}
-          password: ${{ secrets.ROMAN_FTP_PASSWORD }}
-          port: 21
-          local-dir: ./roman/
-          server-dir: /romanbecker.de/root/
-          state-name: .ftp-deploy-sync-state-roman.json
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.DS_Store
-            **/README.md
-            **/docs/**
-            **/scripts/**
+        env:
+          FTP_HOST: ${{ secrets.ROMAN_FTP_SERVER }}
+          FTP_USER: ${{ secrets.ROMAN_FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.ROMAN_FTP_PASSWORD }}
+        run: |
+          python3 - <<'PYEOF'
+          import ftplib, ssl, os
+
+          host = os.environ["FTP_HOST"]
+          user = os.environ["FTP_USER"]
+          passwd = os.environ["FTP_PASS"]
+          local_dir = "roman"
+          remote_base = "/romanbecker.de/root"
+          exclude = {".git", ".DS_Store", "README.md", "docs", "scripts"}
+
+          ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+          ctx.check_hostname = False
+          ctx.verify_mode = ssl.CERT_NONE
+
+          ftp = ftplib.FTP_TLS(context=ctx)
+          ftp.connect(host, 21)
+          ftp.auth()
+          ftp.login(user, passwd)
+          ftp.prot_p()
+
+          def ensure_dir(ftp, path):
+              try:
+                  ftp.mkd(path)
+              except ftplib.error_perm:
+                  pass
+
+          for root, dirs, files in os.walk(local_dir):
+              dirs[:] = [d for d in dirs if d not in exclude]
+              rel = os.path.relpath(root, local_dir)
+              remote_dir = remote_base if rel == "." else f"{remote_base}/{rel}"
+              ensure_dir(ftp, remote_dir)
+              for fname in files:
+                  if any(fname.startswith(e) or fname == e for e in exclude):
+                      continue
+                  local_path = os.path.join(root, fname)
+                  remote_path = f"{remote_dir}/{fname}"
+                  with open(local_path, "rb") as f:
+                      ftp.storbinary(f"STOR {remote_path}", f)
+                  print(f"✅ {remote_path}")
+
+          ftp.quit()
+          PYEOF
 
       - name: Wait for FTP connection cooldown
         run: sleep 5
