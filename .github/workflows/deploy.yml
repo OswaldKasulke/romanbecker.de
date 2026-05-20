@@ -1,10 +1,7 @@
 name: Deploy Roman
 
 on:
-  push:
-    branches:
-      - main
-      - develop
+  workflow_dispatch:
 
 jobs:
   deploy:
