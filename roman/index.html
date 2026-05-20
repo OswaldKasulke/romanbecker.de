@@ -739,14 +739,14 @@
     }
 
     .btn--outline {
-      background: transparent;
-      color: var(--navy);
-      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--gold);
     }
 
     .btn--outline:hover {
-      background: var(--navy);
-      color: var(--white);
+      background: #333333;
+      border-color: var(--gold);
       transform: translateY(-1px);
     }
 
@@ -764,12 +764,14 @@
     /* Outline-Button auf hellem Hintergrund */
     .section--gray .btn--gold-outline,
     .section:not(.section--navy):not(.section--navy-light) .btn--gold-outline {
-      color: var(--navy);
-      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--gold);
     }
     .section--gray .btn--gold-outline:hover,
     .section:not(.section--navy):not(.section--navy-light) .btn--gold-outline:hover {
-      background: rgba(0,0,0,0.06);
+      background: #333333;
+      border-color: var(--gold);
     }
 
     /* ===========================
