@@ -181,7 +181,11 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .btn--white-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
 .section--navy .btn--outline,
 .hero .btn--outline,
-.cta-box .btn--outline { border-color: var(--white); }
+.hero .btn--white-outline,
+.cta-box .btn--outline,
+.cta-box .btn--white-outline,
+.article-hero .btn--outline,
+.article-hero .btn--white-outline { border-color: var(--white); }
 
 /* HERO */
 .hero {
