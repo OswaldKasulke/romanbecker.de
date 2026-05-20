@@ -761,6 +761,11 @@
       transform: translateY(-1px);
     }
 
+    /* Schwarzer Button auf dunklem Hintergrund → weißer Rahmen */
+    .section--navy .btn--outline,
+    .hero .btn--outline,
+    .section--navy-light .btn--outline { border-color: var(--white); }
+
     /* Outline-Button auf hellem Hintergrund */
     .section--gray .btn--gold-outline,
     .section:not(.section--navy):not(.section--navy-light) .btn--gold-outline {

@@ -179,6 +179,9 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .btn--outline:hover { background: #333333; border-color: var(--gold); transform: translateY(-1px); }
 .btn--white-outline { background: transparent; color: var(--white); border-color: var(--gold); }
 .btn--white-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+.section--navy .btn--outline,
+.hero .btn--outline,
+.cta-box .btn--outline { border-color: var(--white); }
 
 /* HERO */
 .hero {
