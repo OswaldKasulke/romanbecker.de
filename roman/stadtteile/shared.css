@@ -173,7 +173,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   transition: all var(--transition);
   border: 2px solid transparent;
 }
-.btn--primary { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+.btn--primary { background: var(--gold); color: var(--navy); border-color: var(--navy); }
 .btn--primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,168,76,0.4); }
 .btn--outline { background: transparent; color: var(--navy); border-color: var(--navy); }
 .btn--outline:hover { background: var(--navy); color: var(--white); transform: translateY(-1px); }
