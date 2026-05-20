@@ -1393,6 +1393,7 @@
     function calculateValue() {
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var wohnflaeche = parseFloat(document.getElementById('wohnflaeche').value) || 0;
+      var grundstuecksflaeche = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
       // Für Grundstücke gibt es keinen Zustand → Faktor 1.0
       var zustand = zustandEl ? zustandEl.value : 'normal';
@@ -1404,7 +1405,13 @@
 
       var value = 0;
 
-      if (miete > 0) {
+      if (art === 'grundstueck') {
+        // Grundstück: Fläche × durchschnittlicher Bodenrichtwert Köln (~450 €/m²)
+        var erschlFaktor = { voll: 1.0, teil: 0.75, nicht: 0.5 };
+        var erschl = document.getElementById('erschliessung').value;
+        var eFaktor = erschlFaktor[erschl] || 1.0;
+        value = grundstuecksflaeche * 450 * eFaktor;
+      } else if (miete > 0) {
         // Mit Kaltmiete: Kaltmiete × 12 × 23 × Zustandsfaktor
         value = miete * 12 * 23 * faktor;
       } else {
@@ -1412,7 +1419,7 @@
         value = wohnflaeche * 17 * 23 * 12 * faktor;
       }
 
-      // Auf volle 10.000 abrunden (letzte 4 Stellen = 0)
+      // Auf volle 10.000 abrunden
       value = Math.floor(value / 10000) * 10000;
 
       return value;
@@ -1448,7 +1455,8 @@
       formData.append('objektart', document.querySelector('input[name="objektart"]:checked').value);
       formData.append('wohnflaeche', document.getElementById('wohnflaeche').value);
       formData.append('grundstuecksflaeche', document.getElementById('grundstuecksflaeche').value);
-      formData.append('zustand', document.querySelector('input[name="zustand"]:checked').value);
+      var zustandEl = document.querySelector('input[name="zustand"]:checked');
+      formData.append('zustand', zustandEl ? zustandEl.value : 'k.A.');
       formData.append('baujahr', document.getElementById('baujahr').value);
       formData.append('miete', document.getElementById('miete').value);
       formData.append('vorname', document.getElementById('vorname').value);
