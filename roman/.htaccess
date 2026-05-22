@@ -3,6 +3,10 @@
 
 Options -MultiViews
 
+# Zeichensatz UTF-8 im HTTP-Header
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .json .xml .txt
+
 RewriteEngine On
 
 # 1) www. → non-www. (301)
