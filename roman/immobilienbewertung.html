@@ -1481,7 +1481,7 @@
         var erschlFaktor = { voll: 1.0, teil: 0.75, nicht: 0.5 };
         var erschl = document.getElementById('erschliessung').value;
         var eFaktor = erschlFaktor[erschl] || 1.0;
-        value = grundstuecksflaeche * bodenrichtwert * eFaktor;
+        value = grundstuecksflaeche * (bodenrichtwert * 0.7) * eFaktor;
 
       } else if (miete > 0) {
         // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator × Zustand
