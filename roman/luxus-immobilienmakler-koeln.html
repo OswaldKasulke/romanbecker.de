@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (/wa\.me|api\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+    })();
+  </script>
+
+  <title>Luxus Immobilienmakler Köln – Diskreter Verkauf in Toplage | Roman Becker</title>
+  <meta name="description" content="Luxus Immobilienmakler Köln: diskreter Verkauf in Hahnwald, Marienburg, Lindenthal & Rodenkirchen. Off-Market, 5,0★, IHK-zertifiziert. Erstgespräch vereinbaren.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/luxus-immobilienmakler-koeln.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Luxus Immobilienmakler Köln – Diskreter Verkauf in Toplage | Roman Becker">
+  <meta property="og:description" content="Premium Immobilienmakler für Hahnwald, Marienburg, Lindenthal und Rodenkirchen. Off-Market Verkauf, 100.000+ Suchprofile, maximale Diskretion.">
+  <meta property="og:url" content="https://romanbecker.de/luxus-immobilienmakler-koeln.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://romanbecker.de/roman-portrait.jpg">
+  <meta property="og:locale" content="de_DE">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- JSON-LD: RealEstateAgent + Service -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Roman Becker EVERNEST – Luxus Immobilienmakler Köln",
+      "url": "https://romanbecker.de",
+      "telephone": "+491775156969",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kaiser-Wilhelm-Ring 17-21",
+        "addressLocality": "Köln",
+        "postalCode": "50672",
+        "addressCountry": "DE"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "27",
+        "bestRating": "5"
+      },
+      "areaServed": [
+        {"@type": "Place", "name": "Hahnwald, Köln"},
+        {"@type": "Place", "name": "Marienburg, Köln"},
+        {"@type": "Place", "name": "Lindenthal, Köln"},
+        {"@type": "Place", "name": "Rodenkirchen, Köln"},
+        {"@type": "Place", "name": "Junkersdorf, Köln"}
+      ],
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "IHK-Zertifikat Immobilienmakler"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Luxusimmobilien Köln – Off-Market Verkauf",
+      "description": "Diskreter Verkauf von Premiumimmobilien in Kölner Toplagen – Hahnwald, Marienburg, Lindenthal, Rodenkirchen. Off-Market Vermarktung über EVERNEST-Käuferpool mit über 100.000 Suchprofilen.",
+      "serviceType": "Immobilienverkauf Luxussegment",
+      "provider": {
+        "@type": "RealEstateAgent",
+        "name": "Roman Becker EVERNEST",
+        "url": "https://romanbecker.de",
+        "telephone": "+491775156969"
+      },
+      "areaServed": {"@type": "City", "name": "Köln"}
+    }
+  ]
+  </script>
+
+  <style>
+    :root {
+      --navy: #111111;
+      --navy-light: #1c1c1c;
+      --gold: #c2a990;
+      --gold-light: #d4b8a0;
+      --white: #ffffff;
+      --off-white: #f5f5f5;
+      --gray-100: #f3f3f3;
+      --gray-200: #e4e4e4;
+      --gray-400: #9a9a9a;
+      --gray-500: #6b6b6b;
+      --gray-600: #555555;
+      --gray-800: #1a1a1a;
+      --font-base: 'Inter', sans-serif;
+      --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem;
+      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
+      --max-width: 1280px;
+      --nav-height: 72px;
+      --radius: 8px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --transition: 0.2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+    body { font-family: var(--font-base); font-size: 1rem; line-height: 1.6; color: var(--gray-800); background: var(--white); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: var(--space-20) 0; }
+    .section--gray { background: var(--gray-100); }
+    .section--navy { background: var(--navy); color: var(--white); }
+    .section-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: var(--space-4); }
+    .section-title { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: var(--space-4); }
+    .section--navy .section-title { color: var(--white); }
+    .section-sub { font-size: 1.0625rem; color: var(--gray-600); max-width: 680px; margin-bottom: var(--space-12); }
+    .section--navy .section-sub { color: rgba(255,255,255,0.75); }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); height: var(--nav-height); display: flex; align-items: center; }
+    .nav__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; width: 100%; display: flex; align-items: center; gap: 2rem; }
+    .nav__logo { text-decoration: none; display: flex; align-items: baseline; gap: 0.35rem; flex-shrink: 0; }
+    .nav__logo-primary { color: var(--white); font-weight: 700; font-size: 0.9375rem; }
+    .nav__logo-sep { color: var(--gold); font-size: 0.9375rem; }
+    .nav__logo-sub { color: var(--gold); font-size: 0.8125rem; font-weight: 400; }
+    .nav__links { display: flex; gap: 1.5rem; margin-left: auto; }
+    .nav__links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.875rem; transition: color var(--transition); }
+    .nav__links a:hover { color: var(--white); }
+    .nav__phone { color: var(--gold); text-decoration: none; font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
+    @media (max-width: 768px) {
+      .nav__links { display: none; }
+      .nav__logo-sub { display: none; }
+    }
+
+    /* HERO */
+    .hero { background: var(--navy); padding: calc(var(--nav-height) + var(--space-20)) 0 var(--space-20); }
+    .hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 768px) { .hero__inner { grid-template-columns: 1fr; } }
+    .hero__tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: var(--space-4); }
+    .hero__title { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: var(--space-6); }
+    .hero__title em { color: var(--gold); font-style: normal; }
+    .hero__text { color: rgba(255,255,255,0.75); font-size: 1.0625rem; max-width: 520px; margin-bottom: var(--space-8); }
+    .hero__badges { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: var(--space-8); }
+    .hero__badge { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 0.35rem 1rem; font-size: 0.8125rem; color: rgba(255,255,255,0.75); }
+    .hero__badge--gold { background: rgba(194,169,144,0.15); border-color: rgba(194,169,144,0.4); color: var(--gold); font-weight: 600; }
+    .hero__btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: var(--radius); font-weight: 600; font-size: 0.9375rem; text-decoration: none; border: 2px solid transparent; transition: all var(--transition); cursor: pointer; }
+    .btn--primary { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .btn--primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn--outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.3); }
+    .btn--outline:hover { border-color: var(--white); }
+
+    /* HERO VISUAL */
+    .hero__visual { display: flex; flex-direction: column; gap: 1rem; }
+    @media (max-width: 768px) { .hero__visual { display: none; } }
+    .hero-stat-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+    .hero-stat-card__val { font-size: 2rem; font-weight: 700; color: var(--gold); display: block; line-height: 1.1; }
+    .hero-stat-card__key { font-size: 0.8125rem; color: rgba(255,255,255,0.55); margin-top: 0.25rem; }
+    .hero-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* STADTTEILE */
+    .lage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: var(--space-8); }
+    @media (max-width: 900px) { .lage-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .lage-grid { grid-template-columns: 1fr; } }
+    .lage-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+    .lage-card__header { background: var(--navy); padding: 1.25rem 1.5rem; }
+    .lage-card__name { color: var(--white); font-weight: 700; font-size: 1.125rem; margin-bottom: 0.25rem; }
+    .lage-card__plz { color: var(--gold); font-size: 0.8125rem; font-weight: 600; }
+    .lage-card__body { padding: 1.25rem 1.5rem; }
+    .lage-card__price { font-size: 1.375rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+    .lage-card__price span { font-size: 0.8125rem; font-weight: 400; color: var(--gray-500); }
+    .lage-card__desc { color: var(--gray-600); font-size: 0.875rem; line-height: 1.6; }
+    .lage-card__tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.875rem; }
+    .lage-card__tag { background: var(--gray-100); border-radius: 20px; padding: 0.2rem 0.625rem; font-size: 0.75rem; color: var(--gray-600); }
+
+    /* OFF-MARKET */
+    .offmarket-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-top: var(--space-8); }
+    @media (max-width: 768px) { .offmarket-grid { grid-template-columns: 1fr; } }
+    .offmarket-content p { color: rgba(255,255,255,0.75); font-size: 0.9375rem; line-height: 1.7; margin-bottom: 1rem; }
+    .offmarket-content strong { color: var(--gold); }
+    .offmarket-steps { display: flex; flex-direction: column; gap: 0; counter-reset: step; }
+    .offmarket-step { counter-increment: step; display: flex; gap: 1.25rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .offmarket-step:last-child { border-bottom: none; }
+    .offmarket-step__num { width: 32px; height: 32px; border-radius: 50%; background: rgba(194,169,144,0.15); border: 1px solid rgba(194,169,144,0.3); color: var(--gold); font-weight: 700; font-size: 0.875rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .offmarket-step__content { flex: 1; }
+    .offmarket-step__title { color: var(--white); font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+    .offmarket-step__text { color: rgba(255,255,255,0.6); font-size: 0.875rem; }
+
+    /* PREMIUM SERVICE */
+    .premium-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: var(--space-8); }
+    @media (max-width: 600px) { .premium-grid { grid-template-columns: 1fr; } }
+    .premium-card { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-8); }
+    .premium-card__icon { width: 44px; height: 44px; background: var(--navy); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4); }
+    .premium-card__title { font-weight: 700; color: var(--navy); margin-bottom: 0.625rem; font-size: 1rem; }
+    .premium-card__text { color: var(--gray-600); font-size: 0.875rem; line-height: 1.65; }
+
+    /* TRUST SECTION */
+    .trust-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; padding: var(--space-12) 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: var(--space-12); }
+    @media (max-width: 900px) { .trust-bar { grid-template-columns: repeat(2, 1fr); } }
+    .trust-item { text-align: center; }
+    .trust-item__val { font-size: 1.75rem; font-weight: 700; color: var(--navy); display: block; }
+    .trust-item__key { font-size: 0.8125rem; color: var(--gray-500); margin-top: 0.25rem; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 900px) { .testimonial-grid { grid-template-columns: 1fr; } }
+    .testimonial { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-8); }
+    .testimonial__stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
+    .testimonial__text { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+    .testimonial__author { font-weight: 700; color: var(--navy); font-size: 0.875rem; }
+    .testimonial__detail { font-size: 0.8125rem; color: var(--gray-500); }
+
+    /* CTA BOX */
+    .cta-box { background: var(--navy); border-radius: var(--radius); padding: var(--space-16); text-align: center; }
+    .cta-box h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--white); margin-bottom: var(--space-4); }
+    .cta-box p { color: rgba(255,255,255,0.7); font-size: 1.0625rem; max-width: 560px; margin: 0 auto var(--space-8); }
+    .cta-box__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-box__note { color: rgba(255,255,255,0.35); font-size: 0.8125rem; margin-top: 1.25rem; }
+
+    /* FOOTER */
+    .footer { background: var(--navy); padding: var(--space-12) 0; margin-top: auto; }
+    .footer__inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: var(--space-8); }
+    .footer__brand { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer__links { display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
+    .footer__links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; transition: color var(--transition); }
+    .footer__links a:hover { color: var(--gold); }
+    .footer__disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.35); border-top: 1px solid rgba(255,255,255,0.08); padding-top: var(--space-6); }
+  </style>
+</head>
+<body>
+
+  <nav id="nav" class="nav">
+    <div class="nav__inner">
+      <a href="https://romanbecker.de" class="nav__logo">
+        <span class="nav__logo-primary">Roman Becker EVERNEST</span>
+        <span class="nav__logo-sep"> | </span>
+        <span class="nav__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span>
+      </a>
+      <div class="nav__links">
+        <a href="https://romanbecker.de#fuer-wen">Für Verkäufer</a>
+        <a href="/bautraeger.html">Für Bauträger</a>
+        <a href="https://romanbecker.de#ueber-roman">Über Roman Becker</a>
+        <a href="https://romanbecker.de#faq">FAQ</a>
+        <a href="https://romanbecker.de#kontakt">Kontakt</a>
+      </div>
+      <a href="tel:+491775156969" class="nav__phone">+49 177 515 69 69</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero__inner">
+          <div>
+            <p class="hero__tag">Luxusimmobilien Köln · Hahnwald · Marienburg · Lindenthal</p>
+            <h1 class="hero__title">Luxus Immobilienmakler Köln – Ihr <em>diskreter Partner</em> für Premium-Lagen</h1>
+            <p class="hero__text">Premiumimmobilien in Kölns besten Lagen verdienen einen Vertrieb, der auf Stärke beruht: ein exklusiver Käuferpool, maximale Diskretion und Erfahrung mit anspruchsvollen Käufern. Kein Portal-Start ohne Ihren ausdrücklichen Wunsch.</p>
+            <div class="hero__badges">
+              <span class="hero__badge hero__badge--gold">5,0 ★ Google</span>
+              <span class="hero__badge">IHK-zertifiziert</span>
+              <span class="hero__badge">Off-Market möglich</span>
+              <span class="hero__badge">100.000+ Suchprofile</span>
+            </div>
+            <div class="hero__btns">
+              <a href="https://romanbecker.de#kontakt" class="btn btn--primary">Diskretes Erstgespräch vereinbaren</a>
+              <a href="tel:+491775156969" class="btn btn--outline">+49 177 515 69 69</a>
+            </div>
+          </div>
+          <div class="hero__visual">
+            <div class="hero-stat-row">
+              <div class="hero-stat-card">
+                <span class="hero-stat-card__val">5,0 ★</span>
+                <p class="hero-stat-card__key">Google-Bewertung</p>
+              </div>
+              <div class="hero-stat-card">
+                <span class="hero-stat-card__val">100.000+</span>
+                <p class="hero-stat-card__key">Käufer-Suchprofile</p>
+              </div>
+            </div>
+            <div class="hero-stat-card">
+              <span class="hero-stat-card__val">380+ Makler</span>
+              <p class="hero-stat-card__key">EVERNEST-Netzwerk deutschlandweit</p>
+            </div>
+            <div class="hero-stat-card">
+              <span class="hero-stat-card__val">Hahnwald · Marienburg<br>Lindenthal · Rodenkirchen</span>
+              <p class="hero-stat-card__key">Spezialisierte Toplagen-Expertise</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KÖLNER TOPLAGEN -->
+    <section class="section">
+      <div class="container">
+        <span class="section-label">Kölner Toplagen</span>
+        <h2 class="section-title">Die begehrtesten Lagen Kölns</h2>
+        <p class="section-sub">Köln verfügt über einige der wertvollsten Wohnlagen Nordrhein-Westfalens. Jede Lage hat ihre eigene Käuferstruktur, ihr eigenes Preisniveau und ihre eigenen Besonderheiten – die ich aus jahrelanger Erfahrung kenne.</p>
+        <div class="lage-grid">
+          <div class="lage-card">
+            <div class="lage-card__header">
+              <div class="lage-card__name">Hahnwald</div>
+              <div class="lage-card__plz">50999 Köln</div>
+            </div>
+            <div class="lage-card__body">
+              <div class="lage-card__price">ab 2,5 Mio. € <span>für Villen</span></div>
+              <p class="lage-card__desc">Kölns exklusivste Villenlage. Großzügige Grundstücke, abgeschiedene Lage am Kölner Süden, höchste Diskretion. Käufer: Unternehmer, Sportler, internationale Familien. Kein Portal-Start – der Markt funktioniert über Netzwerke.</p>
+              <div class="lage-card__tags">
+                <span class="lage-card__tag">Off-Market</span>
+                <span class="lage-card__tag">Villenviertel</span>
+                <span class="lage-card__tag">Waldnähe</span>
+              </div>
+            </div>
+          </div>
+          <div class="lage-card">
+            <div class="lage-card__header">
+              <div class="lage-card__name">Marienburg</div>
+              <div class="lage-card__plz">50997 Köln</div>
+            </div>
+            <div class="lage-card__body">
+              <div class="lage-card__price">ab 1,5 Mio. € <span>Einfamilienhäuser</span></div>
+              <p class="lage-card__desc">Repräsentatives Rheinufer-Viertel mit Gründerzeit- und Jugendstilvillen. Rheinblick-Lagen erzielen Preisaufschläge von 30–50 %. Gefragt bei Familien aus dem Rheinland, die auf keine der beiden Stadtseiten verzichten wollen.</p>
+              <div class="lage-card__tags">
+                <span class="lage-card__tag">Rheinblick</span>
+                <span class="lage-card__tag">Altbauvillen</span>
+                <span class="lage-card__tag">Toplage</span>
+              </div>
+            </div>
+          </div>
+          <div class="lage-card">
+            <div class="lage-card__header">
+              <div class="lage-card__name">Lindenthal</div>
+              <div class="lage-card__plz">50931 Köln</div>
+            </div>
+            <div class="lage-card__body">
+              <div class="lage-card__price">ab 1,2 Mio. € <span>Einfamilienhäuser</span></div>
+              <p class="lage-card__desc">Universität, Stadtwald und beste Infrastruktur: Lindenthal verbindet akademisches Flair mit urbanem Komfort. Gefragte Wohnlage für Professoren, Ärzte und Freiberufler. Starke Nachfrage auch bei ETW ab 500.000 €.</p>
+              <div class="lage-card__tags">
+                <span class="lage-card__tag">Stadtwald</span>
+                <span class="lage-card__tag">Uni-Nähe</span>
+                <span class="lage-card__tag">Infrastruktur</span>
+              </div>
+            </div>
+          </div>
+          <div class="lage-card">
+            <div class="lage-card__header">
+              <div class="lage-card__name">Rodenkirchen</div>
+              <div class="lage-card__plz">50999 Köln</div>
+            </div>
+            <div class="lage-card__body">
+              <div class="lage-card__price">ab 1,0 Mio. € <span>Einfamilienhäuser</span></div>
+              <p class="lage-card__desc">Rheinufer, Altstadt-Charme und gehobenes Dorffeeling. Rodenkirchen ist das Rückzugsziel für Familien, die Natur und Stadt gleichermaßen schätzen. Hohe Lebensqualität, stabiler Markt, treue Käuferschaft.</p>
+              <div class="lage-card__tags">
+                <span class="lage-card__tag">Rheinufer</span>
+                <span class="lage-card__tag">Familienlagen</span>
+                <span class="lage-card__tag">Dorfcharme</span>
+              </div>
+            </div>
+          </div>
+          <div class="lage-card">
+            <div class="lage-card__header">
+              <div class="lage-card__name">Junkersdorf</div>
+              <div class="lage-card__plz">50859 Köln</div>
+            </div>
+            <div class="lage-card__body">
+              <div class="lage-card__price">ab 900.000 € <span>Einfamilienhäuser</span></div>
+              <p class="lage-card__desc">Junkersdorf gilt als ruhiges Premiumviertel im Kölner Westen mit dem Golfclub als Anker. Große Grundstücke, gediegene Bebauung, starke Käufernachfrage aus dem Rheinland und Düsseldorfer Raum.</p>
+              <div class="lage-card__tags">
+                <span class="lage-card__tag">Golfplatz</span>
+                <span class="lage-card__tag">Große Grundstücke</span>
+                <span class="lage-card__tag">Ruhiglage</span>
+              </div>
+            </div>
+          </div>
+          <div class="lage-card">
+            <div class="lage-card__header">
+              <div class="lage-card__name">Bayenthal &amp; Braunsfeld</div>
+              <div class="lage-card__plz">50678 / 50933 Köln</div>
+            </div>
+            <div class="lage-card__body">
+              <div class="lage-card__price">ab 800.000 € <span>Einfamilienhäuser</span></div>
+              <p class="lage-card__desc">Zwei aufstrebende Premium-Viertel mit urbanem Charakter und gewachsener Nachbarschaft. Bayenthal punktet mit Rheinnähe, Braunsfeld mit Laubenheimer Platz und Westpark. Beide Lagen mit stabiler Wertsteigerung.</p>
+              <div class="lage-card__tags">
+                <span class="lage-card__tag">Urban-Premium</span>
+                <span class="lage-card__tag">Wertstabil</span>
+                <span class="lage-card__tag">Rheinnähe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFF-MARKET VERKAUF -->
+    <section class="section section--navy">
+      <div class="container">
+        <span class="section-label">Off-Market Verkauf</span>
+        <h2 class="section-title">Warum Luxusimmobilien selten im Portal landen</h2>
+        <p class="section-sub">Die besten Immobilien werden nie inseriert. Das ist kein Geheimnis – es ist Strategie. Und sie schützt Ihr Eigentum und Ihre Privatsphäre.</p>
+        <div class="offmarket-grid">
+          <div class="offmarket-content">
+            <p>Ein Portal-Start ist für Premiumimmobilien oft kontraproduktiv: Wochenlange Sichtbarkeit bei unqualifizierten Interessenten signalisiert am Markt Schwäche – und erzeugt Druck, den Preis zu senken.</p>
+            <p>Der EVERNEST-Käuferpool umfasst <strong>über 100.000 aktive Suchprofile</strong> qualifizierter Käufer in ganz Deutschland. Davon suchen mehrere hundert aktiv nach Premiumimmobilien in Kölner Toplagen – mit geprüfter Finanzierungsbestätigung.</p>
+            <p>So funktioniert Off-Market: Ich spreche gezielt die passenden Kandidaten an, prüfe vorab Bonität und Finanzierung, und Sie empfangen nur ernsthafte Interessenten zu persönlichen Besichtigungen.</p>
+            <p>Kein öffentlicher Angebotspreis. Keine Portalbewerbung. Kein Preisverfall durch zu lange Liegedauer. <strong>Volle Kontrolle über den Prozess.</strong></p>
+          </div>
+          <div class="offmarket-steps">
+            <div class="offmarket-step">
+              <div class="offmarket-step__num">1</div>
+              <div class="offmarket-step__content">
+                <div class="offmarket-step__title">Diskrete Marktanalyse</div>
+                <p class="offmarket-step__text">Ich ermittle den realistischen Marktwert und identifiziere geeignete Käuferprofile im EVERNEST-Pool – bevor ein Name öffentlich wird.</p>
+              </div>
+            </div>
+            <div class="offmarket-step">
+              <div class="offmarket-step__num">2</div>
+              <div class="offmarket-step__content">
+                <div class="offmarket-step__title">Exklusives Exposé</div>
+                <p class="offmarket-step__text">Professionelle Fotografie, 360°-Tour und ein hochwertiges Verkaufsmemorandum – erstellt mit Ihrer Freigabe, bevor es einen Interessenten zu sehen bekommt.</p>
+              </div>
+            </div>
+            <div class="offmarket-step">
+              <div class="offmarket-step__num">3</div>
+              <div class="offmarket-step__content">
+                <div class="offmarket-step__title">Bonitätsprüfung vor Termin</div>
+                <p class="offmarket-step__text">Jeder Besichtigungstermin setzt einen vorherigen Finanzierungsnachweis voraus. Kein Besichtigungstourismus, nur ernsthafte Käufer.</p>
+              </div>
+            </div>
+            <div class="offmarket-step">
+              <div class="offmarket-step__num">4</div>
+              <div class="offmarket-step__content">
+                <div class="offmarket-step__title">Verhandlung &amp; Notartermin</div>
+                <p class="offmarket-step__text">Ich begleite die Preisverhandlung und koordiniere alle Beteiligten bis zur notariellen Beurkundung – diskret, professionell, ergebnisorientiert.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREMIUM SERVICE -->
+    <section class="section">
+      <div class="container">
+        <span class="section-label">Premium Service</span>
+        <h2 class="section-title">Was Premium-Käufer erwarten</h2>
+        <p class="section-sub">Käufer von Luxusimmobilien prüfen nicht nur die Immobilie – sie prüfen auch den Makler. Meine Vermarktung erfüllt die Ansprüche dieser Zielgruppe konsequent.</p>
+        <div class="premium-grid">
+          <div class="premium-card">
+            <div class="premium-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <h3 class="premium-card__title">Professionelle Architekturfotografie</h3>
+            <p class="premium-card__text">Jede Immobilie wird von einem spezialisierten Architekturfotografen in Szene gesetzt – kein Smartphone, keine Weitwinkel-Verzerrung. Das Ergebnis überzeugt im Exposé und online.</p>
+          </div>
+          <div class="premium-card">
+            <div class="premium-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 class="premium-card__title">360°-Tour &amp; Videomaterial</h3>
+            <p class="premium-card__text">Vollständige Begehung der Immobilie als interaktive 360°-Tour und als professionelles Videowalkthrough. Qualifizierte Käufer aus anderen Städten können die Immobilie vorab vollständig erleben.</p>
+          </div>
+          <div class="premium-card">
+            <div class="premium-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="premium-card__title">Persönliche Besichtigungsbegleitung</h3>
+            <p class="premium-card__text">Ich begleite jeden Besichtigungstermin persönlich. Kein Schlüsselübergabe an einen Kollegen, kein Gruppenbesichtigung. Der Käufer erlebt die Immobilie im richtigen Kontext – und ich lerne ihn dabei kennen.</p>
+          </div>
+          <div class="premium-card">
+            <div class="premium-card__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="premium-card__title">Bonitätsprüfung vor Termin</h3>
+            <p class="premium-card__text">Kein Besichtigungstermin ohne vorherige Finanzierungsbestätigung. Ich prüfe Anfragen diskret und filtere nicht ernsthafte Interessenten heraus – zum Schutz Ihrer Privatsphäre und Ihrer Zeit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERTRAUENSSIGNALE -->
+    <section class="section section--gray">
+      <div class="container">
+        <span class="section-label">Vertrauenssignale</span>
+        <h2 class="section-title">Warum Eigentümer mir ihr Premium-Objekt anvertrauen</h2>
+        <p class="section-sub">Netzwerk, Erfahrung und nachweisbare Ergebnisse – das sind die drei Säulen meiner Arbeit im Luxussegment.</p>
+
+        <div class="trust-bar">
+          <div class="trust-item">
+            <span class="trust-item__val">5,0 ★</span>
+            <p class="trust-item__key">Google-Bewertung (verifiziert)</p>
+          </div>
+          <div class="trust-item">
+            <span class="trust-item__val">IHK</span>
+            <p class="trust-item__key">Zertifizierter Immobilienmakler</p>
+          </div>
+          <div class="trust-item">
+            <span class="trust-item__val">380+</span>
+            <p class="trust-item__key">Makler im EVERNEST-Netzwerk</p>
+          </div>
+          <div class="trust-item">
+            <span class="trust-item__val">100.000+</span>
+            <p class="trust-item__key">Käufer-Suchprofile im Pool</p>
+          </div>
+        </div>
+
+        <div class="testimonial-grid">
+          <div class="testimonial">
+            <div class="testimonial__stars">★★★★★</div>
+            <p class="testimonial__text">„Roman hat unser Haus in Rodenkirchen diskret und professionell verkauft – ohne Portalstart, ohne öffentliche Preisverhandlung. Der Käufer kam direkt aus seinem Netzwerk."</p>
+            <div class="testimonial__author">Familie H., Rodenkirchen</div>
+            <div class="testimonial__detail">Einfamilienhaus · Verkauf 2024</div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial__stars">★★★★★</div>
+            <p class="testimonial__text">„Wir haben eine Eigentumswohnung in Lindenthal über Roman verkauft. Er hat von Anfang an klar kommuniziert, was realistisch erzielbar ist – und dann genau diesen Preis erreicht."</p>
+            <div class="testimonial__author">Ehepaar K., Lindenthal</div>
+            <div class="testimonial__detail">Eigentumswohnung · Verkauf 2025</div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial__stars">★★★★★</div>
+            <p class="testimonial__text">„Absolute Empfehlung. Roman kennt den Markt in Marienburg sehr genau und hat gezielt die richtigen Käufer angesprochen. Kein Portallisting, volle Diskretion – genau das wollten wir."</p>
+            <div class="testimonial__author">Dr. S., Marienburg</div>
+            <div class="testimonial__detail">Villa · Verkauf 2025</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Luxusimmobilie diskret verkaufen –<br>unverbindliches Erstgespräch</h2>
+          <p>Erzählen Sie mir von Ihrer Immobilie. Ich höre zu, bewerte realistisch und erkläre Ihnen offen, wie ich in Ihrer Lage vorgehen würde. Kein Auftrag, keine Verpflichtung.</p>
+          <div class="cta-box__btns">
+            <a href="https://romanbecker.de#kontakt" class="btn btn--primary">Diskretes Erstgespräch vereinbaren</a>
+            <a href="tel:+491775156969" class="btn btn--outline">+49 177 515 69 69</a>
+          </div>
+          <p class="cta-box__note">Vertraulich · Ohne Auftrag · Ohne Kosten</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de">Startseite</a>
+          <a href="/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="/datenschutz.html">Datenschutz</a>
+          <a href="/impressum.html">Impressum</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Angaben unverbindlich. Irrtümer vorbehalten.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
