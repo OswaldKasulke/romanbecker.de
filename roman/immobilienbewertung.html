@@ -1150,6 +1150,7 @@
               <p class="result__label">Geschätzter Immobilienwert</p>
               <p class="result__value" id="result-value">—</p>
               <p class="result__range" id="result-range"></p>
+              <p id="result-plz" style="font-size:0.8125rem;color:var(--gray-500);margin-top:0.5rem;"></p>
 
               <div class="result__note">
                 <p><strong>Wichtiger Hinweis zur individuellen Preisgestaltung</strong></p>
@@ -1388,6 +1389,72 @@
     });
 
     // ===========================
+    // PLZ-TABELLEN (Köln)
+    // ===========================
+
+    // Kaufpreis €/m² Wohnfläche (Eigentumswohnung als Basis)
+    var plzWohnPreise = {
+      // Innenstadt / Altstadt / Neustadt
+      '50667': 6500, '50668': 6000, '50670': 5800, '50672': 5800, '50673': 5500,
+      '50674': 6000, '50675': 5500, '50676': 5800, '50677': 5000, '50678': 5500,
+      '50679': 4500,
+      // Nippes / Longerich / Ossendorf
+      '50733': 4800, '50735': 4500, '50737': 4000, '50739': 3600,
+      // Chorweiler
+      '50765': 3000, '50767': 3000, '50769': 3200,
+      // Ehrenfeld / Bickendorf / Vogelsang
+      '50823': 4800, '50825': 4800, '50827': 3800, '50829': 3500,
+      // Widdersdorf / Junkersdorf
+      '50858': 4500, '50859': 5000,
+      // Lindenthal / Braunsfeld / Klettenberg / Sülz
+      '50931': 6500, '50933': 5200, '50935': 5000, '50937': 4500, '50939': 5200,
+      // Bayenthal / Marienburg / Rodenkirchen
+      '50676': 5800, '50678': 5500, '50996': 5000, '50997': 5200, '50999': 5500,
+      // Mülheim / Buchheim / Dellbrück / Holweide
+      '51061': 3500, '51063': 3500, '51065': 3500, '51067': 4000, '51069': 4200,
+      // Kalk / Ostheim / Humboldt-Gremberg
+      '51103': 3500, '51105': 3500, '51107': 3800, '51109': 3800,
+      // Porz / Wahn / Urbach
+      '51143': 3200, '51145': 3000, '51147': 3000, '51149': 3000,
+    };
+
+    // Mietmultiplikator für Ertragswertberechnung (Kaltmiete × 12 × x)
+    var plzMultiplikatoren = {
+      '50667': 27, '50668': 26, '50670': 25, '50672': 25, '50673': 24,
+      '50674': 26, '50675': 24, '50676': 25, '50677': 23, '50678': 24,
+      '50679': 22,
+      '50733': 23, '50735': 22, '50737': 21, '50739': 20,
+      '50765': 16, '50767': 16, '50769': 17,
+      '50823': 23, '50825': 23, '50827': 20, '50829': 19,
+      '50858': 22, '50859': 23,
+      '50931': 27, '50933': 24, '50935': 23, '50937': 22, '50939': 24,
+      '50996': 23, '50997': 24, '50999': 25,
+      '51061': 19, '51063': 19, '51065': 19, '51067': 21, '51069': 22,
+      '51103': 19, '51105': 19, '51107': 20, '51109': 20,
+      '51143': 18, '51145': 17, '51147': 17, '51149': 17,
+    };
+
+    // Bodenrichtwert €/m² für Grundstücke
+    var plzBoden = {
+      '50667': 2500, '50668': 2200, '50670': 2000, '50672': 1800, '50673': 1600,
+      '50674': 2200, '50675': 1600, '50676': 2000, '50677': 1500, '50678': 1500,
+      '50679': 1000,
+      '50733': 1200, '50735': 1000, '50737': 800, '50739': 650,
+      '50765': 400, '50767': 400, '50769': 450,
+      '50823': 1200, '50825': 1200, '50827': 700, '50829': 600,
+      '50858': 900, '50859': 1100,
+      '50931': 2000, '50933': 1200, '50935': 1100, '50937': 1000, '50939': 1200,
+      '50996': 1100, '50997': 1200, '50999': 1300,
+      '51061': 600, '51063': 600, '51065': 600, '51067': 750, '51069': 800,
+      '51103': 600, '51105': 600, '51107': 700, '51109': 700,
+      '51143': 500, '51145': 450, '51147': 450, '51149': 450,
+    };
+
+    var defaultWohnPreis    = 4200;  // Fallback: Köln-Durchschnitt
+    var defaultMultiplikator = 20;
+    var defaultBoden        = 700;
+
+    // ===========================
     // CALCULATION
     // ===========================
     function calculateValue() {
@@ -1395,32 +1462,41 @@
       var wohnflaeche = parseFloat(document.getElementById('wohnflaeche').value) || 0;
       var grundstuecksflaeche = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
-      // Für Grundstücke gibt es keinen Zustand → Faktor 1.0
       var zustand = zustandEl ? zustandEl.value : 'normal';
       var miete = parseFloat(document.getElementById('miete').value) || 0;
+      var plz = (document.getElementById('plz').value || '').trim();
 
       // Zustandsfaktor
       var conditionMult = { saniert: 1.1, normal: 1.0, unsaniert: 0.9 };
       var faktor = conditionMult[zustand] || 1.0;
 
+      // PLZ-abhängige Werte (Fallback wenn PLZ unbekannt)
+      var preisProQm   = plzWohnPreise[plz]     || defaultWohnPreis;
+      var multiplikator = plzMultiplikatoren[plz] || defaultMultiplikator;
+      var bodenrichtwert = plzBoden[plz]          || defaultBoden;
+
       var value = 0;
 
       if (art === 'grundstueck') {
-        // Grundstück: Fläche × durchschnittlicher Bodenrichtwert Köln (~450 €/m²)
         var erschlFaktor = { voll: 1.0, teil: 0.75, nicht: 0.5 };
         var erschl = document.getElementById('erschliessung').value;
         var eFaktor = erschlFaktor[erschl] || 1.0;
-        value = grundstuecksflaeche * 450 * eFaktor;
+        value = grundstuecksflaeche * bodenrichtwert * eFaktor;
+
       } else if (miete > 0) {
-        // Mit Kaltmiete: Kaltmiete × 12 × 23 × Zustandsfaktor
-        value = miete * 12 * 23 * faktor;
+        // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator × Zustand
+        value = miete * 12 * multiplikator * faktor;
+
       } else {
-        // Ohne Kaltmiete: m² × 17 × 23 × 12 × Zustandsfaktor
-        value = wohnflaeche * 17 * 23 * 12 * faktor;
+        // Sachwert: m² × PLZ-Preis/m² × Objektart-Faktor × Zustand
+        var artFaktor = art === 'mehrfamilienhaus' ? 0.9
+                      : art === 'haus'             ? 1.05
+                      : 1.0; // wohnung
+        value = wohnflaeche * preisProQm * artFaktor * faktor;
       }
 
-      // Auf volle 10.000 abrunden
-      value = Math.floor(value / 10000) * 10000;
+      // Auf volle 5.000 runden
+      value = Math.round(value / 5000) * 5000;
 
       return value;
     }
@@ -1446,6 +1522,15 @@
 
       document.getElementById('result-value').textContent = formatCurrency(value);
       document.getElementById('result-range').textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
+
+      // PLZ-Hinweis im Ergebnis
+      var plz = (document.getElementById('plz').value || '').trim();
+      var plzHinweis = document.getElementById('result-plz');
+      if (plzHinweis) {
+        plzHinweis.textContent = plz && (plzWohnPreise[plz] || plzBoden[plz])
+          ? 'Lagekorrektur für PLZ ' + plz + ' eingerechnet.'
+          : 'PLZ nicht erkannt – Kölner Durchschnittswert verwendet.';
+      }
 
       showStep(7);
 
