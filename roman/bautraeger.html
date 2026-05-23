@@ -130,6 +130,25 @@
     .role-card__title { font-weight: 700; color: var(--navy); margin-bottom: var(--space-4); font-size: 1.0625rem; }
     .role-card__text { color: var(--gray-600); font-size: 0.9375rem; }
 
+    /* REFERENZPROJEKT */
+    .refprojekt { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 768px) { .refprojekt { grid-template-columns: 1fr; } }
+    .refprojekt__info { padding: var(--space-12); display: flex; flex-direction: column; gap: var(--space-6); }
+    .refprojekt__label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .refprojekt__title { font-size: 1.5rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .refprojekt__desc { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.6; }
+    .refprojekt__facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .refprojekt__fact { background: var(--gray-100); border-radius: 6px; padding: 0.75rem 1rem; }
+    .refprojekt__fact-val { font-size: 1.125rem; font-weight: 700; color: var(--navy); display: block; }
+    .refprojekt__fact-key { font-size: 0.75rem; color: var(--gray-500); }
+    .refprojekt__visual { background: var(--navy); padding: var(--space-12); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-8); }
+    .refprojekt__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .refprojekt__tag { background: rgba(194,169,144,0.15); border: 1px solid rgba(194,169,144,0.3); color: var(--gold); border-radius: 20px; padding: 0.25rem 0.75rem; font-size: 0.8125rem; }
+    .refprojekt__quote { color: rgba(255,255,255,0.7); font-size: 0.9375rem; line-height: 1.6; font-style: italic; border-left: 3px solid var(--gold); padding-left: 1rem; }
+    .refprojekt__link { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .refprojekt__link svg { transition: transform var(--transition); }
+    .refprojekt__link:hover svg { transform: translateX(3px); }
+
     /* TARGET SECTIONS */
     .target-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     @media (max-width: 768px) { .target-grid { grid-template-columns: 1fr; gap: 2rem; } }
@@ -276,6 +295,50 @@
           </div>
           <h3 class="role-card__title">Langfristige Perspektive</h3>
           <p class="role-card__text">Nachhaltige Vermarktung statt kurzfristiger Abverkauf. Wir denken in Projekten, nicht in Einzel-Transaktionen — und sind an Folgeaufträgen interessiert, nicht an schnellen Abschlüssen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENZPROJEKT -->
+  <section class="section section--gray">
+    <div class="container">
+      <span class="section-label">Aktuelles Projekt</span>
+      <h2 class="section-title">Referenzprojekt: Paffrather Straße, Köln-Dellbrück</h2>
+      <p class="section-sub">Ein laufendes Beispiel dafür, wie wir Neubauprojekte positionieren, vermarkten und zum Abschluss bringen.</p>
+      <div class="refprojekt">
+        <div class="refprojekt__info">
+          <p class="refprojekt__label">Neubau · Mehrfamilienhaus · Köln-Dellbrück</p>
+          <h3 class="refprojekt__title">3 Gebäude, 22 Wohneinheiten –<br>Fertigstellung Q3 2026</h3>
+          <p class="refprojekt__desc">KfW-55-Neubau mit Luft-Wasser-Wärmepumpe, Fußbodenheizung, Nobilia-Einbauküchen und barrierefreiem Zugang. Lichtdurchflutete 2–4-Zimmer-Wohnungen (58–120 m²) mit Gartenpavillon, Kinderspielplatz und 22 Tiefgaragen-Stellplätzen.</p>
+          <div class="refprojekt__facts">
+            <div class="refprojekt__fact"><span class="refprojekt__fact-val">22</span><span class="refprojekt__fact-key">Wohneinheiten</span></div>
+            <div class="refprojekt__fact"><span class="refprojekt__fact-val">1.695 m²</span><span class="refprojekt__fact-key">Wohnfläche gesamt</span></div>
+            <div class="refprojekt__fact"><span class="refprojekt__fact-val">10.950.000 €</span><span class="refprojekt__fact-key">Gesamtvolumen</span></div>
+            <div class="refprojekt__fact"><span class="refprojekt__fact-val">2.247 m²</span><span class="refprojekt__fact-key">Grundstücksfläche</span></div>
+          </div>
+          <a href="https://www.evernest.com/de/listing/5ENiQl64Q9aofYcukySXKD/" target="_blank" rel="noopener" class="btn btn--primary refprojekt__link">
+            Zum Exposé auf EVERNEST
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="refprojekt__visual">
+          <div class="refprojekt__tags">
+            <span class="refprojekt__tag">KfW 55</span>
+            <span class="refprojekt__tag">Luft-Wasser-Wärmepumpe</span>
+            <span class="refprojekt__tag">Barrierefrei</span>
+            <span class="refprojekt__tag">Dachbegrünung</span>
+            <span class="refprojekt__tag">9-Personen-Aufzug</span>
+            <span class="refprojekt__tag">Off-Market-Vorabvermarktung</span>
+          </div>
+          <blockquote class="refprojekt__quote">
+            „Zeitgemäßes Design mit hochwertigen Materialien und nachhaltiger Bauweise – vermarktet über den EVERNEST-Käuferpool noch vor Portalstart."
+          </blockquote>
+          <div>
+            <p style="color:rgba(255,255,255,0.45); font-size:0.75rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.08em;">Vermarktung durch</p>
+            <p style="color:var(--white); font-weight:700;">Roman Becker · EVERNEST Köln</p>
+            <p style="color:rgba(255,255,255,0.6); font-size:0.875rem;">51069 Köln-Dellbrück</p>
+          </div>
         </div>
       </div>
     </div>
