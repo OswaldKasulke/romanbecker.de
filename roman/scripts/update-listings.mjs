@@ -99,45 +99,41 @@ async function fetchRomanListings() {
   return items.map(mapListing);
 }
 
-// Recursively find the largest array of items with sys.id in a data structure
-function findListingsArray(obj, depth = 0) {
-  if (depth > 8 || obj === null || typeof obj !== 'object') return null;
-  if (Array.isArray(obj)) {
-    if (obj.length > 0 && obj[0]?.sys?.id) return obj;
-    return null;
+// Returns true if a listing's address is in the Köln/Rheinland area (PLZ 50xxx–53xxx)
+function isKoelnArea(item) {
+  const addr = item.displayAddress ?? '';
+  const plzMatch = addr.match(/\b(\d{5})\b/);
+  if (plzMatch) {
+    const prefix = parseInt(plzMatch[1].slice(0, 2), 10);
+    return prefix >= 50 && prefix <= 53;
   }
-  let best = null;
-  for (const val of Object.values(obj)) {
-    const found = findListingsArray(val, depth + 1);
-    if (found && (!best || found.length > best.length)) best = found;
-  }
-  return best;
+  // Fallback: city name check
+  const cities = ['Köln','Leverkusen','Frechen','Brühl','Pulheim','Kerpen',
+    'Bergheim','Bedburg','Rommerskirchen','Bergisch Gladbach','Troisdorf',
+    'Siegburg','Bonn','Dormagen','Grevenbroich','Erftstadt','Hürth','Wesseling'];
+  return cities.some(c => addr.includes(c));
 }
 
 async function fetchKoelnListings() {
-  // Scrape the actual search page — same approach as Roman's profile page.
-  // __NEXT_DATA__ contains exactly the listings shown on the page (already geo-filtered).
-  console.log(`Fetching Köln search page: ${KOELN_OFFICE_URL}`);
-  const data = await fetchPage(KOELN_OFFICE_URL);
-  const pageProps = data?.props?.pageProps;
+  // Use the search API with the Köln bounding box.
+  // The API ignores the bounds, so we filter client-side by PLZ (50xxx–53xxx).
+  console.log('Fetching EVERNEST listings via API…');
+  const body = JSON.stringify({ bounds: KOELN_BOUNDS, preview: false });
+  const res = await fetch(KOELN_SEARCH_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'User-Agent': UA },
+    body,
+  });
+  if (!res.ok) throw new Error(`Search API HTTP ${res.status}`);
+  const json = await res.json();
+  const all = json?.searchResults ?? [];
+  if (all.length === 0) throw new Error('No listings returned from search API');
+  console.log(`API returned ${all.length} total listings`);
 
-  // Try known paths first, then fall back to deep search
-  const candidates = [
-    pageProps?.searchResults,
-    pageProps?.initialState?.searchResults,
-    pageProps?.data?.searchResults,
-    pageProps?.data?.propertyCollection?.items,
-    pageProps?.data?.properties,
-  ];
-  let items = null;
-  for (const c of candidates) {
-    if (Array.isArray(c) && c.length > 0) { items = c; break; }
-  }
-  if (!items) items = findListingsArray(pageProps);
-  if (!items || items.length === 0) throw new Error('No listings found in search page __NEXT_DATA__');
-  console.log(`Search page returned ${items.length} listings`);
+  const koeln = all.filter(isKoelnArea);
+  console.log(`After Köln/Rheinland filter: ${koeln.length} listings`);
 
-  return items
+  return koeln
     .slice(0, KOELN_MAX_LISTINGS)
     .map(mapListing);
 }
