@@ -99,35 +99,45 @@ async function fetchRomanListings() {
   return items.map(mapListing);
 }
 
-async function fetchKoelnListings(excludeIds) {
-  // Fetch via Evernest search API (POST /api/properties/) with Köln bounding box
-  // sort=recommended mirrors the "Empfohlen" default on the website (Selected first)
-  const body = JSON.stringify({ bounds: KOELN_BOUNDS, preview: false, sort: 'recommended' });
-  const res = await fetch(KOELN_SEARCH_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'User-Agent': UA },
-    body,
-  });
-  if (!res.ok) throw new Error(`Search API HTTP ${res.status}`);
-  const json = await res.json();
-  const items = json?.searchResults ?? [];
-  if (items.length === 0) throw new Error('No listings returned from search API');
-  console.log(`Search API returned ${items.length} listings`);
+// Recursively find the largest array of items with sys.id in a data structure
+function findListingsArray(obj, depth = 0) {
+  if (depth > 8 || obj === null || typeof obj !== 'object') return null;
+  if (Array.isArray(obj)) {
+    if (obj.length > 0 && obj[0]?.sys?.id) return obj;
+    return null;
+  }
+  let best = null;
+  for (const val of Object.values(obj)) {
+    const found = findListingsArray(val, depth + 1);
+    if (found && (!best || found.length > best.length)) best = found;
+  }
+  return best;
+}
 
-  // Sort: Selected/featured listings first, then active, then sold
-  const sorted = [...items].sort((a, b) => {
-    const aSelected = a.isSelected || a.selected || a.featured || false;
-    const bSelected = b.isSelected || b.selected || b.featured || false;
-    const aSold = a.salesStatus === 'sold';
-    const bSold = b.salesStatus === 'sold';
-    if (aSelected && !bSelected) return -1;
-    if (!aSelected && bSelected) return 1;
-    if (!aSold && bSold) return -1;
-    if (aSold && !bSold) return 1;
-    return 0;
-  });
+async function fetchKoelnListings() {
+  // Scrape the actual search page — same approach as Roman's profile page.
+  // __NEXT_DATA__ contains exactly the listings shown on the page (already geo-filtered).
+  console.log(`Fetching Köln search page: ${KOELN_OFFICE_URL}`);
+  const data = await fetchPage(KOELN_OFFICE_URL);
+  const pageProps = data?.props?.pageProps;
 
-  return sorted
+  // Try known paths first, then fall back to deep search
+  const candidates = [
+    pageProps?.searchResults,
+    pageProps?.initialState?.searchResults,
+    pageProps?.data?.searchResults,
+    pageProps?.data?.propertyCollection?.items,
+    pageProps?.data?.properties,
+  ];
+  let items = null;
+  for (const c of candidates) {
+    if (Array.isArray(c) && c.length > 0) { items = c; break; }
+  }
+  if (!items) items = findListingsArray(pageProps);
+  if (!items || items.length === 0) throw new Error('No listings found in search page __NEXT_DATA__');
+  console.log(`Search page returned ${items.length} listings`);
+
+  return items
     .slice(0, KOELN_MAX_LISTINGS)
     .map(mapListing);
 }
@@ -295,16 +305,15 @@ async function injectIntoHtml(romanHtml, koelnHtml, activeCount) {
 async function main() {
   console.log('Fetching Roman Becker profile…');
   const romanListings = await fetchRomanListings();
-  const romanIds = new Set(romanListings.map(l => l.id));
   const romanActive = romanListings.filter(l => !l.sold).length;
   console.log(`Roman: ${romanListings.length} listings (${romanActive} active)`);
 
-  console.log('Fetching EVERNEST Köln office page…');
+  console.log('Fetching EVERNEST Köln search page…');
   let koelnListings = [];
   try {
-    koelnListings = await fetchKoelnListings(romanIds);
+    koelnListings = await fetchKoelnListings();
     const koelnActive = koelnListings.filter(l => !l.sold).length;
-    console.log(`Köln colleagues: ${koelnListings.length} listings (${koelnActive} active)`);
+    console.log(`Köln: ${koelnListings.length} listings (${koelnActive} active)`);
   } catch (err) {
     console.warn(`Warning: Could not fetch Köln listings — ${err.message}`);
     console.warn('Köln section will show empty state.');
