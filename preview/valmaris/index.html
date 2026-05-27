@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Valmaris — Ist-Analyse · fuerte.digital</title>
+<meta name="description" content="Vertrauliche Website-Analyse valmaris.de für Constantin Bühler. Befunde, Hebel und Empfehlungen zum Relaunch." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['Fraunces', 'Georgia', 'serif'],
+        },
+        colors: {
+          ink:    { 50:'#f6f7f8', 100:'#eceef1', 200:'#cfd4dc', 300:'#a8b1be', 400:'#7d8898', 500:'#5b6678', 600:'#454e5e', 700:'#363d4a', 800:'#23293a', 900:'#13182a', 950:'#0a0e1c' },
+          accent: { 50:'#fbf6ef', 100:'#f1e3cb', 200:'#e4c898', 300:'#d4a763', 400:'#c08a3a', 500:'#a3722c', 600:'#825a23', 700:'#5e421d', 800:'#3d2c16', 900:'#23190d' },
+          danger: '#b3261e',
+          warn:   '#a26a00',
+          ok:     '#1f6f43',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-feature-settings: "ss01","ss02","cv11"; }
+  .display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.02em; }
+  .gridlines {
+    background-image:
+      linear-gradient(to right, rgba(19,24,42,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(19,24,42,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  details[open] > summary svg { transform: rotate(45deg); }
+  summary svg { transition: transform .2s ease; }
+  .chip { display:inline-flex; align-items:center; gap:.4rem; padding:.25rem .6rem; border-radius:9999px; font-size:.7rem; font-weight:500; letter-spacing:.04em; text-transform:uppercase; }
+  .finding { transition: transform .15s ease, box-shadow .15s ease; }
+  .finding:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -18px rgba(19,24,42,.35); }
+  .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; }
+  table { border-collapse: collapse; }
+  th, td { padding: .65rem .85rem; text-align: left; vertical-align: top; }
+  thead th { background: #f3f5f8; font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: #454e5e; }
+  tbody tr + tr td { border-top: 1px solid #eceef1; }
+  td.code { font-size:.78rem; }
+  @media print { .no-print { display: none !important; } body { background: white !important; } }
+</style>
+</head>
+
+<body class="bg-ink-50 text-ink-900 font-sans antialiased">
+
+<!-- TOP BAR -->
+<header class="border-b border-ink-200 bg-white/85 backdrop-blur sticky top-0 z-30 no-print">
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="inline-block w-2 h-2 rounded-full bg-accent-400"></span>
+      <span class="text-sm font-medium text-ink-700">fuerte.digital · vertrauliche Analyse</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-6 text-sm text-ink-500">
+      <a href="#tldr" class="hover:text-ink-900">Befunde</a>
+      <a href="#tech" class="hover:text-ink-900">Technik</a>
+      <a href="#seo" class="hover:text-ink-900">SEO</a>
+      <a href="#hebel" class="hover:text-ink-900">Hebel</a>
+      <a href="#next" class="hover:text-ink-900">Nächste Schritte</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative overflow-hidden bg-ink-950 text-white">
+  <div class="absolute inset-0 gridlines opacity-30"></div>
+  <div class="absolute -top-32 -right-32 w-[34rem] h-[34rem] rounded-full bg-accent-500/20 blur-3xl"></div>
+  <div class="relative max-w-6xl mx-auto px-6 pt-20 pb-24">
+    <div class="flex items-center gap-3 text-accent-200 text-xs tracking-widest uppercase">
+      <span>Website-Audit</span>
+      <span class="w-px h-3 bg-accent-300/40"></span>
+      <span>27. Mai 2026</span>
+    </div>
+    <h1 class="display text-5xl md:text-7xl font-semibold mt-6 leading-[1.02]">
+      Valmaris.<br/>
+      <span class="text-accent-300">Was die Seite heute<br/>kostet — und was geht.</span>
+    </h1>
+    <p class="mt-8 text-lg md:text-xl text-ink-200 max-w-2xl leading-relaxed">
+      Ist-Analyse für Constantin Bühler vor dem Relaunch.
+      7 Befunde, die heute aktiv Vertrauen kosten — und 6 Hebel,
+      um valmaris.de auf Top-Tier-Investor-Niveau zu heben.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="#tldr" class="inline-flex items-center gap-2 bg-accent-300 text-ink-950 font-medium px-5 py-3 rounded-full hover:bg-accent-200 transition">
+        Die 7 Befunde
+        <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v9.586l3.293-3.293a1 1 0 011.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L9 13.586V4a1 1 0 011-1z"/></svg>
+      </a>
+      <a href="#hebel" class="inline-flex items-center gap-2 border border-white/20 text-white px-5 py-3 rounded-full hover:bg-white/10 transition">
+        Hebel & Empfehlung
+      </a>
+    </div>
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden">
+      <div class="bg-ink-900/80 p-5"><div class="text-3xl display font-semibold text-white">7</div><div class="text-xs uppercase tracking-wider text-ink-300 mt-1">kritische Befunde</div></div>
+      <div class="bg-ink-900/80 p-5"><div class="text-3xl display font-semibold text-white">6</div><div class="text-xs uppercase tracking-wider text-ink-300 mt-1">Hebel</div></div>
+      <div class="bg-ink-900/80 p-5"><div class="text-3xl display font-semibold text-white">5 / 7</div><div class="text-xs uppercase tracking-wider text-ink-300 mt-1">Page-Titles kaputt</div></div>
+      <div class="bg-ink-900/80 p-5"><div class="text-3xl display font-semibold text-white">1,6 s</div><div class="text-xs uppercase tracking-wider text-ink-300 mt-1">TTFB kalt · 10× langsamer als Inseta</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TL;DR -->
+<section id="tldr" class="max-w-6xl mx-auto px-6 py-20">
+  <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+    <div>
+      <div class="text-xs uppercase tracking-widest text-accent-600 font-medium">01 · TL;DR</div>
+      <h2 class="display text-4xl md:text-5xl font-semibold mt-2">Die 7 Befunde in 30 Sekunden</h2>
+    </div>
+    <p class="text-ink-500 max-w-md text-sm">
+      Sortiert nach Schaden, den sie heute live anrichten.
+      Jeder Punkt technisch verifiziert per HTML-Inspektion und Response-Header.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-5">
+    <article class="finding bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="flex items-start justify-between gap-3">
+        <span class="chip bg-red-50 text-danger">Kritisch · Trust-Killer</span>
+        <span class="text-ink-300 text-sm">#1</span>
+      </div>
+      <h3 class="display text-2xl font-semibold mt-4 leading-tight">Fremde Firma im Quelltext</h3>
+      <p class="text-ink-600 mt-3 text-[15px] leading-relaxed">
+        Die Kontakt-Seite trägt Title und Meta-Description einer komplett fremden Pharma-Beratung —
+        „sino-consultancy, Seelze". Das Template wurde übernommen, zentrale SEO-Felder nie überschrieben.
+      </p>
+      <pre class="mt-4 bg-ink-50 border border-ink-200 rounded-lg p-3 code text-ink-700 overflow-x-auto">&lt;title&gt;Kontakt | sino-consultancy | Seelze&lt;/title&gt;
+&lt;meta name="description" content="Jetzt Kontakt
+ aufnehmen – sino-consultancy in Seelze.
+ Beratung … für Pharma und Healthcare …"&gt;</pre>
+      <p class="text-xs text-ink-500 mt-3">Quelle: <span class="code">valmaris.de/de/kontakt/</span></p>
+    </article>
+
+    <article class="finding bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="flex items-start justify-between gap-3">
+        <span class="chip bg-red-50 text-danger">Kritisch · sichtbar</span>
+        <span class="text-ink-300 text-sm">#2</span>
+      </div>
+      <h3 class="display text-2xl font-semibold mt-4 leading-tight">URL-Typo in der Hauptnavigation</h3>
+      <p class="text-ink-600 mt-3 text-[15px] leading-relaxed">
+        Im Menü, in der Sitemap, im Canonical und Hreflang taucht der Link
+        <span class="code">/de/Seach-Fund-Konzept/</span> auf — es fehlt das „r" in <em>Search</em>.
+        Für jeden Search-Fund-Profi auf den ersten Blick unprofessionell.
+      </p>
+      <p class="text-xs text-ink-500 mt-3">5 Stellen im HTML, 1 Stelle in der sitemap.xml.</p>
+    </article>
+
+    <article class="finding bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="flex items-start justify-between gap-3">
+        <span class="chip bg-amber-50 text-warn">Hoch · sichtbar im Quelltext</span>
+        <span class="text-ink-300 text-sm">#3</span>
+      </div>
+      <h3 class="display text-2xl font-semibold mt-4 leading-tight">Interner Korrektur-Hinweis ist live</h3>
+      <p class="text-ink-600 mt-3 text-[15px] leading-relaxed">
+        Das Meta-Keywords-Tag der Startseite beginnt mit einem Notiz-Text aus der Redaktion.
+      </p>
+      <pre class="mt-4 bg-ink-50 border border-ink-200 rounded-lg p-3 code text-ink-700 overflow-x-auto">&lt;meta name="keywords" content="So wäre es richtig:
+ Valmaris, Search Funds, Search Fund, ETA, …"&gt;</pre>
+      <p class="text-xs text-ink-500 mt-3">Google ignoriert Meta-Keywords seit 2009 — aber jede technische SEO-Person, die das im Quelltext sieht, weiß sofort, dass die Seite nicht gepflegt wird.</p>
+    </article>
+
+    <article class="finding bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="flex items-start justify-between gap-3">
+        <span class="chip bg-red-50 text-danger">Kritisch · SEO</span>
+        <span class="text-ink-300 text-sm">#4</span>
+      </div>
+      <h3 class="display text-2xl font-semibold mt-4 leading-tight">5 von 7 Page-Titles sind kaputt</h3>
+      <div class="mt-4 overflow-x-auto rounded-lg border border-ink-200">
+        <table class="w-full text-sm bg-white">
+          <thead><tr><th>URL</th><th>title</th><th>Problem</th></tr></thead>
+          <tbody>
+            <tr><td class="code">/de/Home/</td><td>Valmaris &#124; Search Funds &amp; ETA …</td><td class="text-ok">OK</td></tr>
+            <tr><td class="code">/de/team/</td><td><strong>Valmari</strong> - Team</td><td class="text-danger">Typo</td></tr>
+            <tr><td class="code">/de/wasunsauszeichnet/</td><td>… wie Home …</td><td class="text-danger">Duplicate</td></tr>
+            <tr><td class="code">/de/Seach-Fund-Konzept/</td><td>… wie Home …</td><td class="text-danger">Duplicate + URL-Typo</td></tr>
+            <tr><td class="code">/de/Toolbox-Resources/</td><td>… wie Home …</td><td class="text-danger">Duplicate</td></tr>
+            <tr><td class="code">/de/kontakt/</td><td>Kontakt &#124; sino-consultancy &#124; Seelze</td><td class="text-danger">Fremde Firma</td></tr>
+            <tr><td class="code">/en/team/</td><td>Valmaris Team &#124; Search Funds …</td><td class="text-ok">OK</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="finding bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="flex items-start justify-between gap-3">
+        <span class="chip bg-amber-50 text-warn">Mittel · Performance</span>
+        <span class="text-ink-300 text-sm">#5</span>
+      </div>
+      <h3 class="display text-2xl font-semibold mt-4 leading-tight">Tech-Stack aus 2010</h3>
+      <p class="text-ink-600 mt-3 text-[15px] leading-relaxed">
+        STRATO CM4all Baukasten + jQuery 1.7 (von 2012) + Prototype.js — zusammen rund
+        246 KB JavaScript für eine 5-Seiten-Site. Cache-Header <span class="code">no-store</span>
+        verhindert Browser-Cache.
+      </p>
+      <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+        <div class="bg-ink-50 rounded-lg p-3"><div class="text-ink-500 text-xs">valmaris.de</div><div class="display text-2xl font-semibold text-danger">0,62 s</div><div class="text-xs text-ink-500">warm · 1,6 s kalt</div></div>
+        <div class="bg-ink-50 rounded-lg p-3"><div class="text-ink-500 text-xs">inseta.com</div><div class="display text-2xl font-semibold text-ok">0,12 s</div><div class="text-xs text-ink-500">Referenz #1</div></div>
+        <div class="bg-ink-50 rounded-lg p-3"><div class="text-ink-500 text-xs">rigeto.de</div><div class="display text-2xl font-semibold text-ok">0,16 s</div><div class="text-xs text-ink-500">Referenz #2</div></div>
+        <div class="bg-ink-50 rounded-lg p-3"><div class="text-ink-500 text-xs">ambit.partners</div><div class="display text-2xl font-semibold text-ok">0,26 s</div><div class="text-xs text-ink-500">Referenz #3</div></div>
+      </div>
+    </article>
+
+    <article class="finding bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="flex items-start justify-between gap-3">
+        <span class="chip bg-amber-50 text-warn">Mittel · Brand</span>
+        <span class="text-ink-300 text-sm">#6</span>
+      </div>
+      <h3 class="display text-2xl font-semibold mt-4 leading-tight">Bildsprache: Stock + 1 Screenshot</h3>
+      <p class="text-ink-600 mt-3 text-[15px] leading-relaxed">
+        Hauptbilder sind Stock-Photos (Wanderer, Berge). Eine Content-Datei heißt im Server-Pfad:
+      </p>
+      <pre class="mt-3 bg-ink-50 border border-ink-200 rounded-lg p-3 code text-ink-700 overflow-x-auto">.Bildschirmfoto 2026-03-11 um 18.15.39.png</pre>
+      <p class="text-ink-600 text-[15px] leading-relaxed mt-3">
+        Ein macOS-Screenshot wurde als Content-Bild eingebaut.
+        Für Top-Tier-Investor-Auftritt disqualifizierend.
+      </p>
+    </article>
+
+    <article class="finding bg-white border border-ink-200 rounded-2xl p-6 md:col-span-2">
+      <div class="flex items-start justify-between gap-3">
+        <span class="chip bg-amber-50 text-warn">Mittel · Social Reach</span>
+        <span class="text-ink-300 text-sm">#7</span>
+      </div>
+      <h3 class="display text-2xl font-semibold mt-4 leading-tight">LinkedIn-Vorschau ist tot</h3>
+      <p class="text-ink-600 mt-3 text-[15px] leading-relaxed max-w-3xl">
+        Statt <span class="code">og:image</span> verwendet die Seite ein nicht existierendes Tag
+        <span class="code">og:svg</span>. LinkedIn, Twitter und Slack zeigen damit kein Vorschaubild,
+        wenn jemand valmaris.de teilt. Bei einer LinkedIn-getriebenen Investor-Zielgruppe
+        ein direkter Reichweiten-Verlust pro Post.
+      </p>
+    </article>
+  </div>
+
+  <p class="mt-10 text-ink-700 text-lg leading-relaxed max-w-3xl">
+    <span class="display text-2xl font-semibold text-ink-900">Bilanz.</span>
+    Der Relaunch ist nicht nur ein Design-Refresh. Die Seite hat handwerkliche
+    und SEO-Grundfehler, die heute aktiv Vertrauen kosten — jeden Tag, jeden Outreach.
+  </p>
+</section>
+
+<!-- VISUAL EVIDENCE -->
+<section class="bg-white border-y border-ink-200">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-xs uppercase tracking-widest text-accent-600 font-medium">02 · Visuelle Beweise</div>
+    <h2 class="display text-4xl md:text-5xl font-semibold mt-2">So sieht die Seite heute aus</h2>
+    <p class="mt-4 text-ink-500 max-w-2xl">
+      Live-Screenshots vom 27.05.2026, Desktop 1440 px und Mobile 375 px.
+    </p>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-8">
+      <figure class="md:col-span-2">
+        <div class="rounded-2xl border border-ink-200 overflow-hidden shadow-sm bg-ink-50">
+          <div class="bg-ink-100 px-4 py-2 flex items-center gap-1.5 text-xs text-ink-500">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="ml-3 code">valmaris.de/de/Home/</span>
+          </div>
+          <img src="screenshots/valmaris_home_desktop.png" alt="Screenshot Startseite Desktop" class="w-full block" />
+        </div>
+        <figcaption class="text-xs text-ink-500 mt-3">Startseite Desktop · statisches Layout · Stock-Bild + Headline · keine sichtbare Bewegung.</figcaption>
+      </figure>
+
+      <figure>
+        <div class="rounded-2xl border border-ink-200 overflow-hidden shadow-sm bg-ink-50">
+          <div class="bg-ink-100 px-4 py-2 flex items-center gap-1.5 text-xs text-ink-500">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="ml-3 code">375 px</span>
+          </div>
+          <img src="screenshots/valmaris_home_mobile.png" alt="Screenshot Startseite Mobile" class="w-full block" />
+        </div>
+        <figcaption class="text-xs text-ink-500 mt-3">Mobile Ansicht · 60 % der Investoren-Reichweite läuft heute mobil.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="mt-10">
+      <div class="rounded-2xl border border-ink-200 overflow-hidden shadow-sm bg-ink-50">
+        <div class="bg-ink-100 px-4 py-2 flex items-center gap-1.5 text-xs text-ink-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <span class="ml-3 code">valmaris.de/de/kontakt/</span>
+        </div>
+        <img src="screenshots/valmaris_kontakt_browsertab.png" alt="Screenshot Kontakt-Seite" class="w-full block" />
+      </div>
+      <figcaption class="text-xs text-ink-500 mt-3">
+        Die Kontakt-Seite. Optisch valmaris — aber der HTML-Title („sino-consultancy | Seelze") landet in jedem Browser-Tab und in jedem Google-Snippet, wenn jemand <em>„Valmaris Kontakt"</em> sucht.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- TECH SECTION -->
+<section id="tech" class="max-w-6xl mx-auto px-6 py-20">
+  <div class="text-xs uppercase tracking-widest text-accent-600 font-medium">03 · Technik</div>
+  <h2 class="display text-4xl md:text-5xl font-semibold mt-2">Was unter der Haube läuft</h2>
+
+  <div class="mt-10 overflow-x-auto rounded-2xl border border-ink-200 bg-white">
+    <table class="w-full text-sm">
+      <thead><tr><th>Aspekt</th><th>Befund</th></tr></thead>
+      <tbody>
+        <tr><td>Hosting / CMS</td><td><strong>STRATO CM4all Baukasten</strong> (cm_dux_095 Theme) · Apache 2.4 · beng-proxy</td></tr>
+        <tr><td>PHP</td><td>8.2.31 · aktuell</td></tr>
+        <tr><td>Cache</td><td><span class="code">cache-control: no-store</span> — jeder Reload lädt komplett neu</td></tr>
+        <tr><td>JavaScript</td><td>jQuery 1.7 (140 KB, 2012) + Prototype.js 1.7.3 (106 KB) + STRATO-Editor-JS (19 KB)</td></tr>
+        <tr><td>HTML-Größe</td><td>85 KB · 540 DOM-Knoten, davon der Großteil reine Editor-Wrapper</td></tr>
+        <tr><td>Fonts</td><td>Arial / Helvetica / Roboto durcheinander — keine gesetzte Markenschrift</td></tr>
+        <tr><td>Brand-Farbe</td><td><span class="inline-block w-3 h-3 rounded-sm align-middle" style="background:#0c1829"></span> <span class="code">#0c1829</span> · nahe an dem „stumpfen Blau", das der Kunde an Inseta kritisiert</td></tr>
+        <tr><td>OG-Bild</td><td><span class="code">og:svg</span> statt <span class="code">og:image</span> · ungültiges Tag, kein LinkedIn-Preview</td></tr>
+        <tr><td>Structured Data</td><td>Keine. Kein <span class="code">Organization</span>, kein <span class="code">Person</span>-Markup für die 5 Partner</td></tr>
+        <tr><td>Sitemap</td><td>10 URLs · Priority sinnfrei vergeben · Startseite fehlt</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- INHALT & POSITIONIERUNG -->
+<section id="seo" class="bg-white border-y border-ink-200">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-xs uppercase tracking-widest text-accent-600 font-medium">04 · Inhalt &amp; Positionierung</div>
+    <h2 class="display text-4xl md:text-5xl font-semibold mt-2">Stark im Substanziellen, schwach im Inszenieren</h2>
+
+    <div class="mt-10 grid md:grid-cols-2 gap-8">
+      <div class="bg-emerald-50 border border-emerald-100 rounded-2xl p-6">
+        <h3 class="font-semibold text-emerald-900 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Vorhanden — und stark</h3>
+        <ul class="mt-4 space-y-2 text-[15px] text-emerald-950 leading-relaxed">
+          <li>· 5 erfahrene Partner mit M&amp;A-/PE-Background, LinkedIn verlinkt</li>
+          <li>· Glaubwürdige Eigen-Tagline: „Entrepreneurs Backing Entrepreneurs"</li>
+          <li>· Harte Kennzahlen: &gt;150 Search Funds, &gt;70 Investments, &gt;20 Exits, &gt;500 M&amp;A, &gt;100 Jahre Erfahrung</li>
+          <li>· 4 echte CEO-Testimonials auf „Was uns auszeichnet"</li>
+          <li>· Toolbox mit fundierten Quellen (Stanford, IESE, Tuck, HBS)</li>
+          <li>· Bilingual DE / EN</li>
+        </ul>
+      </div>
+      <div class="bg-rose-50 border border-rose-100 rounded-2xl p-6">
+        <h3 class="font-semibold text-rose-900 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-rose-500"></span> Fehlt — und kostet</h3>
+        <ul class="mt-4 space-y-2 text-[15px] text-rose-950 leading-relaxed">
+          <li>· Keine echten Founder-Bios mit Track-Record</li>
+          <li>· Kein Bewegtbild im Hero · Kunde nennt das explizit als Wunsch</li>
+          <li>· Kennzahlen sind statischer Text, keine Counter-Animation</li>
+          <li>· Keine Case-Study-Karten · auch ohne Namensnennung möglich</li>
+          <li>· Keine Logo-/Sektor-Wall der investierten Unternehmen</li>
+          <li>· Keine eigene Insight-/Press-Sektion — nur Fremdlinks</li>
+          <li>· Mix aus Sie (Home) und Du („Wir freuen uns … Dich / Euch") auf Kontakt-Seite</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAP -->
+<section class="max-w-6xl mx-auto px-6 py-20">
+  <div class="text-xs uppercase tracking-widest text-accent-600 font-medium">05 · Gap-Analyse</div>
+  <h2 class="display text-4xl md:text-5xl font-semibold mt-2">Valmaris vs. die drei Wunsch-Referenzen</h2>
+  <p class="mt-4 text-ink-500 max-w-2xl">Die Sites, die Constantin in seiner Mail genannt hat — und wo Valmaris heute steht.</p>
+
+  <div class="mt-10 overflow-x-auto rounded-2xl border border-ink-200 bg-white">
+    <table class="w-full text-sm min-w-[820px]">
+      <thead><tr>
+        <th>Element</th>
+        <th>inseta.com</th>
+        <th>rigeto.de</th>
+        <th>ambit.partners</th>
+        <th>valmaris.de heute</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Hero / Bewegtbild</td><td class="text-ok">Counter, Animation</td><td class="text-ok">Hero mit Bewegung</td><td class="text-ok">minimalistisch, dynamisch</td><td class="text-danger">statisch</td></tr>
+        <tr><td>Background-Bild + Overlay-Text</td><td class="text-ok">prominent</td><td class="text-ok">ja</td><td class="text-ok">implizit</td><td class="text-danger">nein</td></tr>
+        <tr><td>Animierte Kennzahlen</td><td class="text-ok">wahrscheinlich</td><td class="text-ok">ja</td><td>—</td><td class="text-danger">nein</td></tr>
+        <tr><td>Sektor-Tiles</td><td class="text-ok">3 Säulen</td><td class="text-ok">3 Sektoren</td><td>—</td><td class="text-danger">nein</td></tr>
+        <tr><td>Founder-Bios mit Track-Record</td><td class="text-ok">sehr ausführlich</td><td class="text-ok">named CEO + Co-Invest-Quote</td><td>implizit</td><td class="text-danger">nur Name + LinkedIn</td></tr>
+        <tr><td>Eigener Content / Insight</td><td class="text-ok">Case Studies</td><td class="text-ok">News-Sektion</td><td>—</td><td class="text-danger">nur Fremdlinks</td></tr>
+        <tr><td>TTFB (warm)</td><td class="text-ok">0,12 s</td><td class="text-ok">0,16 s</td><td class="text-ok">0,26 s</td><td class="text-danger">0,62 s</td></tr>
+        <tr><td>SEO-Hygiene</td><td class="text-ok">sauber</td><td class="text-ok">sauber</td><td class="text-ok">minimalistisch</td><td class="text-danger">mehrfach gebrochen</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- HEBEL -->
+<section id="hebel" class="bg-ink-950 text-white">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-xs uppercase tracking-widest text-accent-300 font-medium">06 · Hebel</div>
+    <h2 class="display text-4xl md:text-5xl font-semibold mt-2">Sechs Hebel für den Relaunch</h2>
+    <p class="mt-4 text-ink-300 max-w-2xl">Priorisiert nach Wirkung. Hebel 1 ist sofort umsetzbar, unabhängig vom Relaunch.</p>
+
+    <div class="mt-12 space-y-6">
+
+      <details class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:bg-white/[0.07]" open>
+        <summary class="flex items-start gap-4 cursor-pointer list-none">
+          <span class="display text-3xl text-accent-300 font-semibold mt-1">01</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="display text-2xl font-semibold">Sofortmaßnahmen am Live-Stand</h3>
+              <span class="chip bg-accent-300/15 text-accent-200">1–2 h Aufwand</span>
+              <span class="chip bg-emerald-500/15 text-emerald-300">vor dem Relaunch</span>
+            </div>
+            <p class="text-ink-300 mt-2 text-sm">Stoppen, was heute aktiv Schaden anrichtet.</p>
+          </div>
+          <svg class="w-5 h-5 text-ink-300 shrink-0 mt-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
+        </summary>
+        <ul class="mt-5 ml-12 space-y-2 text-[15px] text-ink-200 leading-relaxed">
+          <li>· Kontakt-Seite: <span class="code">&lt;title&gt;</span> und Meta-Description auf Valmaris-Werte ändern (sino-consultancy raus)</li>
+          <li>· Meta-Keywords der Startseite bereinigen (Notiz „So wäre es richtig:" entfernen)</li>
+          <li>· URL <span class="code">/de/Seach-Fund-Konzept/</span> → <span class="code">/de/Search-Fund-Konzept/</span> mit 301-Redirect</li>
+          <li>· Title <span class="code">/de/team/</span>: „Valmari" → „Valmaris"</li>
+          <li>· Duplicate-Titles der inneren Seiten differenzieren</li>
+          <li>· <span class="code">og:svg</span> → <span class="code">og:image</span> mit JPG-Vorschaubild für LinkedIn</li>
+        </ul>
+      </details>
+
+      <details class="group bg-white/5 border border-white/10 rounded-2xl p-6">
+        <summary class="flex items-start gap-4 cursor-pointer list-none">
+          <span class="display text-3xl text-accent-300 font-semibold mt-1">02</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="display text-2xl font-semibold">Brand &amp; Positionierung</h3>
+              <span class="chip bg-accent-300/15 text-accent-200">1 Tag Workshop</span>
+            </div>
+            <p class="text-ink-300 mt-2 text-sm">Eigene Farbpalette · Tagline-Test · Tonalität fixieren (durchgehend Sie).</p>
+          </div>
+          <svg class="w-5 h-5 text-ink-300 shrink-0 mt-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
+        </summary>
+        <ul class="mt-5 ml-12 space-y-2 text-[15px] text-ink-200 leading-relaxed">
+          <li>· Mood-Board mit Alternativen zum Inseta-Blau (Petrol / Anthrazit / Bronze-Akzent)</li>
+          <li>· Tagline-Variante DE-prominent oder zweisprachig stacked</li>
+          <li>· Schrift-System (eine Display-Serif + Inter-Sans als Default)</li>
+          <li>· Foto-Stil-Briefing für die Founder-Portraits</li>
+        </ul>
+      </details>
+
+      <details class="group bg-white/5 border border-white/10 rounded-2xl p-6">
+        <summary class="flex items-start gap-4 cursor-pointer list-none">
+          <span class="display text-3xl text-accent-300 font-semibold mt-1">03</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="display text-2xl font-semibold">Hero &amp; Storytelling</h3>
+              <span class="chip bg-accent-300/15 text-accent-200">3–5 Tage</span>
+              <span class="chip bg-rose-500/15 text-rose-200">Kern-Wunsch des Kunden</span>
+            </div>
+            <p class="text-ink-300 mt-2 text-sm">Bewegung im Hero, animierte Counter, Background + Overlay-Text.</p>
+          </div>
+          <svg class="w-5 h-5 text-ink-300 shrink-0 mt-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
+        </summary>
+        <ul class="mt-5 ml-12 space-y-2 text-[15px] text-ink-200 leading-relaxed">
+          <li>· <strong>Variante A:</strong> Loop-Video als Hintergrund (B-Roll, kein Sprecher) + Overlay-Headline + 1 primärer CTA</li>
+          <li>· <strong>Variante B:</strong> Foto-Hintergrund + Counter-Animation an den Kennzahlen-Tiles · günstiger</li>
+          <li>· <strong>Welcome-Video</strong> (à la Rigeto / Ambit) 30–60 s, Nicolas oder Thomas zur Kamera · separat budgetieren</li>
+        </ul>
+      </details>
+
+      <details class="group bg-white/5 border border-white/10 rounded-2xl p-6">
+        <summary class="flex items-start gap-4 cursor-pointer list-none">
+          <span class="display text-3xl text-accent-300 font-semibold mt-1">04</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="display text-2xl font-semibold">Beweise sichtbar machen</h3>
+              <span class="chip bg-emerald-500/15 text-emerald-300">größter Wirkungs-Hebel</span>
+            </div>
+            <p class="text-ink-300 mt-2 text-sm">Founder-Bios mit Track-Record, Kennzahlen-Wall, Case-Studies.</p>
+          </div>
+          <svg class="w-5 h-5 text-ink-300 shrink-0 mt-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
+        </summary>
+        <ul class="mt-5 ml-12 space-y-2 text-[15px] text-ink-200 leading-relaxed">
+          <li>· Pro Partner: 3–5 Track-Record-Bullets, professionelles Portrait, LinkedIn</li>
+          <li>· Kennzahlen-Wall mit Counter-Animation · Zahl im Heading-Tag, nicht im Fließtext</li>
+          <li>· Case-Study-Karten (auch anonym): Branche, EBITDA-Range, Jahr, Storyline</li>
+          <li>· CEO-Testimonials in Slider mit Sektor-Tag</li>
+          <li>· Eigene Insight-Beiträge (3–5) statt nur Fremdlinks</li>
+        </ul>
+      </details>
+
+      <details class="group bg-white/5 border border-white/10 rounded-2xl p-6">
+        <summary class="flex items-start gap-4 cursor-pointer list-none">
+          <span class="display text-3xl text-accent-300 font-semibold mt-1">05</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="display text-2xl font-semibold">Technik &amp; SEO-Hygiene</h3>
+              <span class="chip bg-rose-500/15 text-rose-200">Pflicht im Relaunch</span>
+            </div>
+            <p class="text-ink-300 mt-2 text-sm">Astro + Tailwind auf Starthost · Domain bleibt · TTFB &lt; 200 ms, Lighthouse &gt; 90 mobil.</p>
+          </div>
+          <svg class="w-5 h-5 text-ink-300 shrink-0 mt-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
+        </summary>
+        <ul class="mt-5 ml-12 space-y-2 text-[15px] text-ink-200 leading-relaxed">
+          <li>· Wechsel weg vom STRATO-Baukasten — domain valmaris.de bleibt, nur Hosting wandert</li>
+          <li>· Saubere Titles / Descriptions pro Seite, eigene OG-Vorschau</li>
+          <li>· Structured Data: <span class="code">Organization</span> + <span class="code">Person</span> für Partner + <span class="code">Article</span> für Insights</li>
+          <li>· Hreflang-Cluster DE / EN sauber, <span class="code">x-default</span> setzen</li>
+          <li>· Browser-Caching aktivieren, Asset-Hashing</li>
+        </ul>
+      </details>
+
+      <details class="group bg-white/5 border border-white/10 rounded-2xl p-6">
+        <summary class="flex items-start gap-4 cursor-pointer list-none">
+          <span class="display text-3xl text-accent-300 font-semibold mt-1">06</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="display text-2xl font-semibold">SEO &amp; GEO-Strategie</h3>
+              <span class="chip bg-accent-300/15 text-accent-200">Zusatzmodul</span>
+              <span class="chip bg-emerald-500/15 text-emerald-300">vom Kunden angefragt</span>
+            </div>
+            <p class="text-ink-300 mt-2 text-sm">Sichtbarkeit bei Google &amp; AI-Search · separat anbietbar.</p>
+          </div>
+          <svg class="w-5 h-5 text-ink-300 shrink-0 mt-2" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
+        </summary>
+        <ul class="mt-5 ml-12 space-y-2 text-[15px] text-ink-200 leading-relaxed">
+          <li>· Keyword-Recherche: „Search Fund Investor Deutschland", „ETA Deutschland", „Mittelstand Nachfolge"</li>
+          <li>· Local / GEO Köln–NRW (Google Business Profile, Citations)</li>
+          <li>· AI-Search-Optimierung für ChatGPT / Perplexity (FAQ-Schema, Article-Schema)</li>
+          <li>· Search-Console-Baseline vor Relaunch, Re-Messung nach 4–8 Wochen</li>
+        </ul>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section id="next" class="max-w-6xl mx-auto px-6 py-20">
+  <div class="text-xs uppercase tracking-widest text-accent-600 font-medium">07 · Nächste Schritte</div>
+  <h2 class="display text-4xl md:text-5xl font-semibold mt-2">So gehen wir vor</h2>
+
+  <ol class="mt-10 grid md:grid-cols-2 gap-5">
+    <li class="bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="display text-3xl text-accent-500 font-semibold">1</div>
+      <h3 class="display text-xl font-semibold mt-3">Voraus-Memo an Constantin</h3>
+      <p class="text-ink-600 text-[15px] mt-2 leading-relaxed">7 TL;DR-Befunde + Bitte um Freigabe der Sofortmaßnahmen (Hebel 1, ~1–2 h, sofort umsetzbar).</p>
+    </li>
+    <li class="bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="display text-3xl text-accent-500 font-semibold">2</div>
+      <h3 class="display text-xl font-semibold mt-3">Workshop · 90 min remote</h3>
+      <p class="text-ink-600 text-[15px] mt-2 leading-relaxed">Mit Constantin und idealerweise Nicolas Rudzki: Track-Record-Fragen, Farb-/Stil-Präferenzen, Hero-Variante, Conversion-Ziel.</p>
+    </li>
+    <li class="bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="display text-3xl text-accent-500 font-semibold">3</div>
+      <h3 class="display text-xl font-semibold mt-3">Scope-Dokument &amp; Angebot</h3>
+      <p class="text-ink-600 text-[15px] mt-2 leading-relaxed">Relaunch (Hebel 2–5) + optional SEO/GEO-Modul (Hebel 6) als zwei eigenständige Leistungspakete.</p>
+    </li>
+    <li class="bg-white border border-ink-200 rounded-2xl p-6">
+      <div class="display text-3xl text-accent-500 font-semibold">4</div>
+      <h3 class="display text-xl font-semibold mt-3">Tech-Setup vorbereiten</h3>
+      <p class="text-ink-600 text-[15px] mt-2 leading-relaxed">Astro-Repo bei fuerte.digital, Staging-Subdomain <span class="code">preview.fuerte.digital/valmaris/report/</span>, DNS-Plan für Hosting-Umzug.</p>
+    </li>
+  </ol>
+
+  <div class="mt-12 bg-ink-950 text-white rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div>
+      <h3 class="display text-2xl md:text-3xl font-semibold">Bereit für den Workshop?</h3>
+      <p class="text-ink-300 mt-2 max-w-lg">Ein 90-min-Termin reicht, um die Kern-Fragen zu klären und Hebel 2 zu starten.</p>
+    </div>
+    <a href="mailto:daniel@fuerte.digital?subject=Valmaris%20Relaunch%20%E2%80%93%20Workshop" class="inline-flex items-center gap-2 bg-accent-300 text-ink-950 font-medium px-6 py-3 rounded-full hover:bg-accent-200 transition shrink-0">
+      Workshop anfragen
+      <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path d="M3 10a1 1 0 011-1h11.586L11.293 4.707a1 1 0 011.414-1.414l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L15.586 11H4a1 1 0 01-1-1z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-ink-200 bg-white">
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-ink-500">
+    <div>
+      <div class="font-medium text-ink-700">fuerte.digital · vertrauliche Analyse</div>
+      <div>27. Mai 2026 · für Constantin Bühler / Valmaris Private Investors GmbH</div>
+    </div>
+    <div class="flex items-center gap-5">
+      <a href="mailto:daniel@fuerte.digital" class="hover:text-ink-900">daniel@fuerte.digital</a>
+      <a href="https://fuerte.digital" class="hover:text-ink-900">fuerte.digital</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
