@@ -410,9 +410,13 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   padding: var(--space-12) 0 var(--space-8);
   font-size: 0.8125rem;
 }
-.footer a { color: var(--gold); text-decoration: none; }
-.footer a:hover { text-decoration: underline; }
-.footer__links { display: flex; gap: var(--space-6); flex-wrap: wrap; margin-bottom: var(--space-6); }
+.footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+.footer a:hover { color: var(--white); }
+.footer__inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: var(--space-8); }
+.footer__brand { display: flex; flex-direction: column; gap: 0.5rem; }
+.footer__links { display: flex; gap: 1rem 2rem; flex-wrap: wrap; }
+.footer__links a { font-size: 0.875rem; }
+.footer__disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.4); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-6); margin-top: 0; }
 
 /* REVIEW BADGE */
 .review-badge {
