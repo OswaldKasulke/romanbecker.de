@@ -101,7 +101,8 @@ async function fetchRomanListings() {
 
 async function fetchKoelnListings(excludeIds) {
   // Fetch via Evernest search API (POST /api/properties/) with Köln bounding box
-  const body = JSON.stringify({ bounds: KOELN_BOUNDS, preview: false });
+  // sort=recommended mirrors the "Empfohlen" default on the website (Selected first)
+  const body = JSON.stringify({ bounds: KOELN_BOUNDS, preview: false, sort: 'recommended' });
   const res = await fetch(KOELN_SEARCH_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'User-Agent': UA },
@@ -113,7 +114,20 @@ async function fetchKoelnListings(excludeIds) {
   if (items.length === 0) throw new Error('No listings returned from search API');
   console.log(`Search API returned ${items.length} listings`);
 
-  return items
+  // Sort: Selected/featured listings first, then active, then sold
+  const sorted = [...items].sort((a, b) => {
+    const aSelected = a.isSelected || a.selected || a.featured || false;
+    const bSelected = b.isSelected || b.selected || b.featured || false;
+    const aSold = a.salesStatus === 'sold';
+    const bSold = b.salesStatus === 'sold';
+    if (aSelected && !bSelected) return -1;
+    if (!aSelected && bSelected) return 1;
+    if (!aSold && bSold) return -1;
+    if (aSold && !bSold) return 1;
+    return 0;
+  });
+
+  return sorted
     .slice(0, KOELN_MAX_LISTINGS)
     .map(mapListing);
 }
