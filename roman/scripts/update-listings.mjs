@@ -26,7 +26,7 @@ const KOELN_BOUNDS = {
   sw: { lat: 50.68, lng: 6.50 },
   se: { lat: 50.68, lng: 7.42 },
 };
-const KOELN_MAX_LISTINGS = 55;
+const KOELN_MAX_LISTINGS = 100;
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
 
@@ -114,7 +114,6 @@ async function fetchKoelnListings(excludeIds) {
   console.log(`Search API returned ${items.length} listings`);
 
   return items
-    .filter(item => item?.salesStatus !== 'sold' && !excludeIds.has(item?.sys?.id))
     .slice(0, KOELN_MAX_LISTINGS)
     .map(mapListing);
 }
