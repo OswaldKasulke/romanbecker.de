@@ -346,7 +346,6 @@ ${refHTML(d)}
         <div class="market-stat"><div class="market-stat__value">${d.mk.m} \u20ac</div><div class="market-stat__label">Kaltmiete pro m\u00b2<br>Neuvermietung</div></div>
         <div class="market-stat"><div class="market-stat__value">${d.mk.t} %</div><div class="market-stat__label">Preisentwicklung<br>ETW 2025\u21922026</div></div>
       </div>
-      <p style="font-size:0.75rem;color:var(--gray-400);margin-top:var(--space-4);text-align:center;">Quellen: Homeday, Engel &amp; V\u00f6lkers, ImmoScout24 \u00b7 Stand Q1/2026</p>
     </div>
   </section>
   <section class="section section--gray">
