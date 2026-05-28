@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Spekulationssteuer beim Immobilienverkauf – Roman Becker | Immobilienmakler Köln</title>
+  <meta name="description" content="Spekulationssteuer bei Immobilien: 10-Jahres-Frist, Ausnahmen bei Eigennutzung, Berechnung des Gewinns und Steuersatz. Alles Wichtige von Makler Roman Becker (EVERNEST), Köln.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/spekulationssteuer.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Spekulationssteuer beim Immobilienverkauf – Roman Becker | Immobilienmakler Köln">
+  <meta property="og:description" content="Spekulationssteuer bei Immobilien: 10-Jahres-Frist, Ausnahmen bei Eigennutzung, Berechnung und Steuersatz verständlich erklärt.">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/spekulationssteuer.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Spekulationssteuer beim Immobilienverkauf",
+    "description": "Spekulationssteuer bei Immobilien: 10-Jahres-Frist, Ausnahmen bei Eigennutzung, Berechnung des Gewinns und Steuersatz.",
+    "url": "https://romanbecker.de/ratgeber/spekulationssteuer.html",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    },
+    "dateModified": "2026-05-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .makler-tipp { background: #fdf8ec; border-left: 4px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; padding: var(--space-6); margin: 2rem 0; }
+    .makler-tipp__label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: var(--space-2); }
+    .makler-tipp p { color: var(--gray-600); line-height: 1.75; margin: 0; }
+    .makler-tipp strong { color: var(--navy); }
+    .info-box { background: var(--gray-100); border-radius: var(--radius); padding: var(--space-6); margin: 1.5rem 0; }
+    .info-box h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+    .info-box ul { margin: 0 0 0 1.25rem; }
+  </style>
+  <!-- ClickRank.ai SEO verification -->
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo">Roman <span>Becker</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container" style="padding-top: var(--space-4);">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Spekulationssteuer
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Spekulationssteuer beim Immobilienverkauf</h1>
+      <p>Wann fällt beim Hausverkauf Steuer an? Die 10-Jahres-Frist, Ausnahmen bei Eigennutzung und wie sich der steuerpflichtige Gewinn berechnet.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+        <h2>1. Was ist die Spekulationssteuer?</h2>
+        <p>Den Begriff „Spekulationssteuer" kennt das Steuerrecht offiziell nicht — gemeint ist die <strong>Einkommensteuer auf private Veräußerungsgewinne</strong> gemäß § 23 Einkommensteuergesetz (EStG). Wer eine Immobilie innerhalb der gesetzlichen Haltefrist mit Gewinn verkauft, muss diesen Gewinn als Einkommen versteuern.</p>
+        <p>Der Steuersatz richtet sich nach dem <strong>persönlichen Einkommensteuersatz</strong> des Verkäufers — er liegt je nach Gesamteinkommen zwischen 14 % und 45 %, zuzüglich Solidaritätszuschlag.</p>
+
+        <h2>2. Die 10-Jahres-Frist</h2>
+        <p>Entscheidend ist der Zeitraum zwischen Kauf und Verkauf: Liegen zwischen dem notariellen Kaufvertrag beim Erwerb und dem Kaufvertrag beim Verkauf <strong>mindestens 10 Jahre</strong>, ist der Gewinn steuerfrei — unabhängig von der Höhe.</p>
+        <ul>
+          <li>Maßgeblich ist das Datum der <strong>notariellen Beurkundung</strong>, nicht der Grundbucheintrag oder die Übergabe.</li>
+          <li>Die 10-Jahres-Frist gilt für Grundstücke, Häuser, Eigentumswohnungen und Gewerbeimmobilien gleichermaßen.</li>
+          <li>Bei geerbten Immobilien übernehmen Erben den ursprünglichen Kaufzeitpunkt des Erblassers — die Frist läuft also weiter.</li>
+        </ul>
+
+        <h2>3. Ausnahmen: Eigennutzung schützt vor der Steuer</h2>
+        <p>Wer die Immobilie selbst bewohnt hat, ist auch bei Verkauf innerhalb der 10 Jahre in vielen Fällen steuerfrei. Das Gesetz sieht zwei Varianten vor:</p>
+        <ul>
+          <li><strong>Durchgehende Eigennutzung:</strong> Sie haben die Immobilie vom Kauf bis zum Verkauf ausschließlich selbst bewohnt.</li>
+          <li><strong>Eigennutzung im Verkaufsjahr und den zwei Vorjahren:</strong> Sie müssen die Immobilie im Kalenderjahr des Verkaufs sowie in den beiden vorangehenden Kalenderjahren selbst genutzt haben. Dabei genügen auch kurze Zeiträume innerhalb dieser Kalenderjahre — es kommt nicht auf volle Jahre an.</li>
+        </ul>
+        <p>Wichtig: Schon ein kurzer Zwischenvermietung kann die Steuerfreiheit gefährden, wenn der Zeitraum der Eigennutzung nicht korrekt dokumentiert ist.</p>
+
+        <h2>4. Berechnung des steuerpflichtigen Gewinns</h2>
+        <p>Der steuerpflichtige Veräußerungsgewinn ergibt sich vereinfacht aus:</p>
+        <div class="info-box">
+          <h3>Gewinnberechnung</h3>
+          <ul>
+            <li><strong>Verkaufspreis</strong> (abzüglich Maklerkosten, Notarkosten des Verkaufs)</li>
+            <li>minus <strong>Anschaffungskosten</strong> (Kaufpreis + Kaufnebenkosten beim Erwerb)</li>
+            <li>minus <strong>Werbungskosten</strong> (Renovierungskosten, die den Wert erhöht haben)</li>
+            <li>plus <strong>bereits abgeschriebene AfA</strong> (diese erhöht den Gewinn wieder)</li>
+          </ul>
+        </div>
+        <p>Besonders der letzte Punkt überrascht viele: Wer die Immobilie vermietet und dabei Abschreibungen (AfA) steuerlich geltend gemacht hat, muss diese beim Verkauf als Gewinn anrechnen — selbst wenn das Verkaufsergebnis rechnerisch kein Plus ergibt.</p>
+
+        <h2>5. Freigrenze und Verlustverrechnung</h2>
+        <ul>
+          <li>Es gibt eine <strong>Freigrenze von 600 Euro</strong> pro Jahr. Liegt der gesamte Veräußerungsgewinn aus privaten Veräußerungsgeschäften darunter, bleibt er steuerfrei. Bei Überschreitung ist jedoch der volle Betrag steuerpflichtig.</li>
+          <li>Verluste aus dem Verkauf von Immobilien können nur mit Gewinnen aus anderen privaten Veräußerungsgeschäften (nicht mit anderen Einkunftsarten) verrechnet werden.</li>
+        </ul>
+
+        <div class="makler-tipp">
+          <div class="makler-tipp__label">Empfehlung von mir als Kölner Makler</div>
+          <p>Die Spekulationssteuer ist in der Praxis einer der häufigsten Gründe, warum Eigentümer den Verkaufszeitpunkt bewusst steuern. Ich erlebe regelmäßig Situationen, in denen ein Verkauf um wenige Monate verschoben wird — bis die <strong>10-Jahres-Frist abgelaufen</strong> ist — und damit Steuerzahlungen von 50.000 Euro und mehr vermieden werden. Prüfen Sie daher immer zuerst das Kaufdatum, bevor Sie einen Verkauf konkret angehen. Und: Bei vermieteten Immobilien sollten Sie <strong>unbedingt einen Steuerberater hinzuziehen</strong>, denn die AfA-Rückrechnung und Werbungskostenermittlung sind fehleranfällig. Als Makler begleite ich Sie beim Timing und der Vermarktung — für die steuerliche Berechnung empfehle ich immer einen Fachmann.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Wann ist der richtige Zeitpunkt für Ihren Verkauf?</h2>
+        <p>Ich berate Sie persönlich zum optimalen Verkaufszeitpunkt — auch im Hinblick auf steuerliche Aspekte. Als IHK-zertifizierter Immobilienmakler in Köln kenne ich den Markt und helfe Ihnen, den bestmöglichen Erlös zu erzielen.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/maklerkosten-beim-immobilienkauf.html">Maklerkosten</a>
+          <a href="https://romanbecker.de/ratgeber/notarkosten-beim-immobilienkauf.html">Notarkosten</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/abschreibung-bei-immobilien.html">Abschreibung (AfA)</a>
+          <a href="https://romanbecker.de/ratgeber/denkmal-afa.html">Denkmal-AfA</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/ratgeber/baufinanzierung.html">Baufinanzierung</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/mietspiegel.html">Mietspiegel</a>
+          <a href="https://romanbecker.de/ratgeber/heizungsgesetz.html">Heizungsgesetz</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+</body>
+</html>
