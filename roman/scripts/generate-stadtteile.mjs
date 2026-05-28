@@ -302,6 +302,7 @@ ${faqLD}
         <a href="https://romanbecker.de/" class="site-header__logo">Roman <span>Becker</span></a>
         <nav class="site-header__nav" aria-label="Hauptnavigation">
           <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
           <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
           <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
           <a href="https://romanbecker.de/#kontakt">Kontakt</a>
