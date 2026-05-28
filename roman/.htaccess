@@ -32,6 +32,15 @@ RewriteRule ^flurkarte/?$              /ratgeber/flurkarte.html                 
 RewriteRule ^notarkosten-beim-immobilienkauf/?$ /ratgeber/notarkosten-beim-immobilienkauf.html [R=301,L]
 RewriteRule ^smart-heizung/?$          /ratgeber/smart-heizung.html                     [R=301,L]
 
+# --- Catch-All: jeder Top-Level-Slug → /ratgeber/<slug>.html (wenn Datei existiert) ---
+#     Deckt alle 30+ WP-Ratgeber-Seiten ab, ohne jede einzeln listen zu müssen.
+RewriteCond %{REQUEST_URI} ^/([^/]+)/?$
+RewriteCond %{DOCUMENT_ROOT}/ratgeber/%1.html -f
+RewriteRule ^([^/]+)/?$ /ratgeber/$1.html [R=301,L]
+
+# --- Interne WP-Testseite ---
+RewriteRule ^startseite-alex/?$ / [R=301,L]
+
 # 3) URL-Hygiene: trailing-slash → .html (Stadtteile + ratgeber/ Sub-Pfade)
 #    Beispiel: /stadtteile/suelz/ → /stadtteile/suelz.html
 #    Cond: .html-Variante im Document Root existiert (verhindert 404-Ketten)
