@@ -306,7 +306,7 @@ const html = `<!DOCTYPE html>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -330,15 +330,15 @@ const html = `<!DOCTYPE html>
     .site-header { background: var(--navy); padding: var(--space-4) 0; }
     .site-header a { color: var(--white); text-decoration: none; }
     .site-header__inner { display: flex; justify-content: space-between; align-items: center; }
-    .site-header__logo { font-family: 'Cardo', serif; font-size: 1.05rem; font-weight: 700; }
+    .site-header__logo { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; }
     .site-header__nav { display: flex; gap: var(--space-6); }
     .site-header__nav a { font-size: 0.9rem; }
     .breadcrumb { padding: var(--space-4) 0; font-size: 0.875rem; color: var(--gray-600); }
     .breadcrumb a { color: var(--gray-600); text-decoration: none; }
     .breadcrumb span { margin: 0 var(--space-2); }
     main { padding: var(--space-8) 0 var(--space-12); }
-    h1 { font-family: 'Cardo', serif; font-size: 2.4rem; line-height: 1.2; margin-bottom: var(--space-4); color: var(--navy); }
-    h2 { font-family: 'Cardo', serif; font-size: 1.7rem; margin: var(--space-12) 0 var(--space-4); color: var(--navy); }
+    h1 { font-family: 'Inter', sans-serif; font-size: 2.4rem; line-height: 1.2; margin-bottom: var(--space-4); color: var(--navy); }
+    h2 { font-family: 'Inter', sans-serif; font-size: 1.7rem; margin: var(--space-12) 0 var(--space-4); color: var(--navy); }
     h3 { font-size: 1.15rem; margin-bottom: var(--space-3); color: var(--navy); }
     p { margin-bottom: var(--space-4); color: var(--gray-700); }
     .lead { font-size: 1.125rem; color: var(--gray-700); }
@@ -588,7 +588,7 @@ const indexHtml = `<!DOCTYPE html>
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #fff; line-height: 1.7; }
@@ -596,12 +596,12 @@ const indexHtml = `<!DOCTYPE html>
     .site-header { background: #111; padding: 1rem 0; }
     .site-header a { color: #fff; text-decoration: none; }
     .site-header__inner { display: flex; justify-content: space-between; align-items: center; }
-    .site-header__logo { font-family: 'Cardo', serif; font-size: 1.05rem; font-weight: 700; }
+    .site-header__logo { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; }
     .site-header__nav a { font-size: 0.9rem; margin-left: 1.5rem; color: #fff; }
     main { padding: 3rem 0 4rem; }
-    h1 { font-family: 'Cardo', serif; font-size: 2.4rem; line-height: 1.2; margin-bottom: 1rem; color: #111; }
+    h1 { font-family: 'Inter', sans-serif; font-size: 2.4rem; line-height: 1.2; margin-bottom: 1rem; color: #111; }
     .lead { font-size: 1.125rem; color: #374151; margin-bottom: 2rem; }
-    h2 { font-family: 'Cardo', serif; font-size: 1.5rem; margin: 2.5rem 0 1rem; color: #111; }
+    h2 { font-family: 'Inter', sans-serif; font-size: 1.5rem; margin: 2.5rem 0 1rem; color: #111; }
     p { margin-bottom: 1rem; color: #374151; }
     ul { list-style: none; padding: 0; }
     ul li { padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb; font-size: 1.05rem; }
