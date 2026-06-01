@@ -87,17 +87,17 @@
     /* NAV */
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); height: var(--nav-height); display: flex; align-items: center; }
     .nav__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; width: 100%; display: flex; align-items: center; gap: 2rem; }
-    .nav__logo { text-decoration: none; display: flex; align-items: baseline; gap: 0.35rem; flex-shrink: 0; }
-    .nav__logo-primary { color: var(--white); font-weight: 700; font-size: 0.9375rem; }
-    .nav__logo-sep { color: var(--gold); font-size: 0.9375rem; }
-    .nav__logo-sub { color: var(--gold); font-size: 0.8125rem; font-weight: 400; }
+    .nav__logo { text-decoration: none; display: flex; flex-direction: column; line-height: 1.25; white-space: nowrap; flex-shrink: 0; }
+    .nav__logo-primary { color: var(--white); font-weight: 700; font-size: 1.0625rem; }
+    .nav__logo-sep { display: none; }
+    .nav__logo-sub { font-size: 0.6875rem; font-weight: 400; color: rgba(255,255,255,0.60); letter-spacing: 0.01em; }
     .nav__links { display: flex; gap: 1.5rem; margin-left: auto; }
     .nav__links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.875rem; transition: color var(--transition); }
     .nav__links a:hover { color: var(--white); }
     .nav__phone { color: var(--gold); text-decoration: none; font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
     @media (max-width: 768px) {
       .nav__links { display: none; }
-      .nav__logo-sub { display: none; }
+      .nav__logo-sub { font-size: 0.6875rem; font-weight: 400; color: rgba(255,255,255,0.60); letter-spacing: 0.01em; }
     }
 
     /* HERO */

@@ -179,12 +179,9 @@
       padding: 0 var(--space-6);
     }
 
-    .nav__logo {
-      color: var(--white);
-      font-weight: 700;
-      font-size: 1rem;
-      white-space: nowrap;
-    }
+    .nav__logo { text-decoration: none; display: flex; flex-direction: column; line-height: 1.25; white-space: nowrap; }
+    .nav__logo-primary { color: var(--white); font-weight: 700; font-size: 1.0625rem; }
+    .nav__logo-sub { font-size: 0.6875rem; font-weight: 400; color: rgba(255,255,255,0.60); letter-spacing: 0.01em; }
 
     .nav__links {
       display: none;
@@ -851,7 +848,7 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav__inner">
-      <a href="/" class="nav__logo">Roman Becker – Immobilienmakler Köln</a>
+      <a href="/" class="nav__logo"><span class="nav__logo-primary">Roman Becker EVERNEST</span><span class="nav__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
       <div class="nav__links">
         <a href="/">Startseite</a>
         <a href="/ratgeber/">Ratgeber</a>
