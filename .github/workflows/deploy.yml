@@ -136,6 +136,7 @@ jobs:
 
       - name: Deploy fuertedigital via FTP (main → fuertedigital/roman/)
         if: github.ref == 'refs/heads/main'
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
