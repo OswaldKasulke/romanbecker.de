@@ -908,27 +908,7 @@
   </div>
 </footer>
 
-<script>
-/* ── FAQ Akkordeon ── */
-document.querySelectorAll('.faq-question').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var item = btn.closest('.faq-item');
-    var answer = item.querySelector('.faq-answer');
-    var isOpen = item.classList.contains('open');
-    // alle schließen
-    document.querySelectorAll('.faq-item.open').forEach(function(el) {
-      el.classList.remove('open');
-      el.querySelector('.faq-answer').style.maxHeight = '0';
-      el.querySelector('.faq-question').setAttribute('aria-expanded','false');
-    });
-    if (!isOpen) {
-      item.classList.add('open');
-      answer.style.maxHeight = answer.scrollHeight + 'px';
-      btn.setAttribute('aria-expanded','true');
-    }
-  });
-});
-
+<style>
 /* ── Veedel-Sektion ── */
 .veedel-section {
   background: #0d0d0d;
@@ -986,6 +966,29 @@ document.querySelectorAll('.faq-question').forEach(function(btn) {
   transform: translateY(-1px);
 }
 .veedel-chip.hidden { display: none; }
+</style>
+
+<script>
+/* ── FAQ Akkordeon ── */
+document.querySelectorAll('.faq-question').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = btn.closest('.faq-item');
+    var answer = item.querySelector('.faq-answer');
+    var isOpen = item.classList.contains('open');
+    // alle schließen
+    document.querySelectorAll('.faq-item.open').forEach(function(el) {
+      el.classList.remove('open');
+      el.querySelector('.faq-answer').style.maxHeight = '0';
+      el.querySelector('.faq-question').setAttribute('aria-expanded','false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
 
 /* ── Provisions-Rechner ── */
 function fmtEur(n) {
