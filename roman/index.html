@@ -5233,5 +5233,17 @@ WE B.05</div>
   })();
   </script>
 
+  <script>
+    // Logenplatz am Rhein: Außenbild erzwingen (EVERNEST-Backend nicht änderbar)
+    document.addEventListener('DOMContentLoaded', function() {
+      var links = document.querySelectorAll('a.listing-card__link');
+      links.forEach(function(link) {
+        if (link.href && link.href.indexOf('1lUPHfp7BnVdZTQvpoAus8') !== -1) {
+          var img = link.querySelector('img.listing-card__img');
+          if (img) img.src = 'https://romanbecker.de/img/logenplatz-aussen.webp';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
