@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) track('click_phone', { phone_number: href.replace('tel:', '') });
+        else if (href.indexOf('mailto:') === 0) track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        else if (/wa\.me|api\.whatsapp\.com/.test(href)) track('click_whatsapp');
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', { form_id: f.id || 'unknown', page_path: location.pathname });
+      }, true);
+    })();
+  </script>
+
+  <title>Kaufnebenkosten beim Immobilienkauf in Köln & NRW – Roman Becker EVERNEST</title>
+  <meta name="description" content="Kaufnebenkosten 2025 in Köln & NRW: Grunderwerbsteuer 6,5 %, Notarkosten, Grundbuchkosten, Maklerprovision. Alle Nebenkosten im Überblick – mit Rechenbeispiel.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/kaufnebenkosten.html">
+
+  <meta property="og:title" content="Kaufnebenkosten beim Immobilienkauf in Köln & NRW – Roman Becker EVERNEST">
+  <meta property="og:description" content="Kaufnebenkosten 2025 in Köln & NRW: Grunderwerbsteuer 6,5 %, Notarkosten, Grundbuchkosten, Maklerprovision. Alle Nebenkosten im Überblick.">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/kaufnebenkosten.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Kaufnebenkosten beim Immobilienkauf in Köln & NRW",
+    "description": "Kaufnebenkosten 2025 in Köln & NRW: Grunderwerbsteuer 6,5 %, Notarkosten, Grundbuchkosten, Maklerprovision – mit Rechenbeispiel.",
+    "url": "https://romanbecker.de/ratgeber/kaufnebenkosten.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-06-04"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table tr.total td { font-weight: 700; color: var(--navy); background: #f0f4ff; border-top: 2px solid var(--navy); }
+    .highlight-box { background: #fffbf0; border-left: 4px solid var(--gold); padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 var(--radius) var(--radius) 0; }
+    .highlight-box p { margin: 0; color: var(--navy); }
+  </style>
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST</span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container" style="padding-top: var(--space-4);">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Kaufnebenkosten
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Kaufnebenkosten beim Immobilienkauf</h1>
+      <p>Grunderwerbsteuer, Notar, Grundbuch, Makler: Alle Nebenkosten 2025 für Köln und NRW im Überblick – mit konkretem Rechenbeispiel.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+        <p>Beim Immobilienkauf zahlen Käufer nicht nur den reinen Kaufpreis. Die sogenannten <strong>Kaufnebenkosten</strong> können in Nordrhein-Westfalen und damit auch in Köln insgesamt <strong>12 bis 15 % des Kaufpreises</strong> ausmachen. Wer diese Kosten nicht einplant, erlebt beim Notartermin eine böse Überraschung.</p>
+
+        <div class="highlight-box">
+          <p><strong>Wichtig für Köln & NRW:</strong> Die Grunderwerbsteuer in Nordrhein-Westfalen beträgt <strong>6,5 %</strong> des Kaufpreises – einer der höchsten Sätze in Deutschland. Sie ist seit 2011 unverändert.</p>
+        </div>
+
+        <h2>Die vier Kostenblöcke im Überblick</h2>
+
+        <h3>1. Grunderwerbsteuer – 6,5 % in NRW</h3>
+        <p>Die Grunderwerbsteuer wird vom Finanzamt erhoben und ist innerhalb von vier Wochen nach dem Notartermin fällig. Erst nach Zahlung stellt das Finanzamt die <em>Unbedenklichkeitsbescheinigung</em> aus, die für die Eintragung ins Grundbuch benötigt wird.</p>
+        <ul>
+          <li>NRW-Steuersatz: <strong>6,5 %</strong> (seit 01.10.2011)</li>
+          <li>Bemessungsgrundlage: notariell beurkundeter Kaufpreis</li>
+          <li>Ausnahme: Käufe unter Eheleuten, eingetragenen Lebenspartnern sowie in gerader Linie (Eltern–Kinder) sind steuerbefreit</li>
+          <li>Bewegliches Inventar (Küche, Möbel) kann separat ausgewiesen werden und reduziert die Bemessungsgrundlage</li>
+        </ul>
+
+        <h3>2. Notarkosten – ca. 1,0–1,5 %</h3>
+        <p>Die Notargebühren sind gesetzlich im Gerichts- und Notarkostengesetz (GNotKG) geregelt und richten sich nach dem Kaufpreis. Ein Notar ist beim Immobilienkauf gesetzlich vorgeschrieben.</p>
+        <ul>
+          <li>Beurkundung des Kaufvertrags: ca. 1,0 % des Kaufpreises</li>
+          <li>Auflassungsvormerkung und weitere Amtshandlungen: zusätzlich ca. 0,2–0,3 %</li>
+          <li>Gesamtkosten Notar: typischerweise <strong>1,0–1,5 %</strong></li>
+        </ul>
+
+        <h3>3. Grundbuchkosten – ca. 0,5 %</h3>
+        <p>Das Grundbuchamt (beim Amtsgericht) erhebt eine Gebühr für die Eintragung des neuen Eigentümers sowie für die Eintragung einer etwaigen Grundschuld bei Finanzierung. Auch diese Gebühren sind nach GNotKG gestaffelt.</p>
+        <ul>
+          <li>Eigentumsumschreibung: ca. 0,3–0,5 %</li>
+          <li>Grundschuldeintragung (bei Bankfinanzierung): ca. 0,2 % der Grundschuldsumme</li>
+        </ul>
+
+        <h3>4. Maklerprovision – bis zu 3,57 % (inkl. MwSt.)</h3>
+        <p>Seit der Maklergesetzreform von 2020 gilt bei privaten Wohnimmobilien das <strong>Bestellerprinzip</strong>: Wer den Makler beauftragt, zahlt mindestens die Hälfte. In der Praxis teilen Käufer und Verkäufer die Provision häufig je zur Hälfte.</p>
+        <ul>
+          <li>Übliche Gesamtprovision in Köln: 7,14 % inkl. MwSt.</li>
+          <li>Käuferanteil: max. <strong>3,57 % inkl. MwSt.</strong></li>
+          <li>Bei manchen Objekten trägt der Verkäufer die gesamte Provision (käuferprovisionsfrei)</li>
+        </ul>
+
+        <h2>Rechenbeispiel: Kaufpreis 500.000 € in Köln</h2>
+
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>Kostenposition</th>
+              <th>Satz</th>
+              <th>Betrag</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kaufpreis</td>
+              <td>–</td>
+              <td><strong>500.000 €</strong></td>
+            </tr>
+            <tr>
+              <td>Grunderwerbsteuer (NRW)</td>
+              <td>6,5 %</td>
+              <td>32.500 €</td>
+            </tr>
+            <tr>
+              <td>Notarkosten</td>
+              <td>ca. 1,2 %</td>
+              <td>ca. 6.000 €</td>
+            </tr>
+            <tr>
+              <td>Grundbuchkosten</td>
+              <td>ca. 0,5 %</td>
+              <td>ca. 2.500 €</td>
+            </tr>
+            <tr>
+              <td>Maklerprovision Käufer</td>
+              <td>3,57 %</td>
+              <td>17.850 €</td>
+            </tr>
+            <tr class="total">
+              <td>Gesamte Nebenkosten</td>
+              <td>ca. 11,8 %</td>
+              <td>ca. 58.850 €</td>
+            </tr>
+            <tr class="total">
+              <td>Gesamtaufwand</td>
+              <td>–</td>
+              <td>ca. 558.850 €</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Was Banken bei der Finanzierung beachten</h2>
+        <p>Die meisten Banken finanzieren ausschließlich den Kaufpreis, <strong>nicht die Nebenkosten</strong>. Das bedeutet: Die gesamten Kaufnebenkosten müssen in der Regel aus <strong>Eigenkapital</strong> bezahlt werden. Banken verlangen typischerweise mindestens 20–30 % Eigenkapital inklusive Nebenkosten.</p>
+        <p>Beispiel: Bei 500.000 € Kaufpreis und ca. 58.850 € Nebenkosten benötigen Sie ohne Ausnahme mindestens <strong>rund 59.000–160.000 € Eigenkapital</strong> – je nach Bonität und Kreditinstitut.</p>
+
+        <h2>Tipps zur Kostenreduzierung</h2>
+        <ul>
+          <li><strong>Inventar separat ausweisen:</strong> Küche, Einbauschränke oder Gartengeräte können im Kaufvertrag separat bepreist werden – das reduziert die Grunderwerbsteuerbemessungsgrundlage legal.</li>
+          <li><strong>Käuferprovisionsfrei:</strong> Fragen Sie Ihren Makler, ob der Verkäufer die gesamte Provision übernimmt.</li>
+          <li><strong>KfW-Förderung prüfen:</strong> Bestimmte KfW-Programme reduzieren den Finanzierungsbedarf und damit indirekt die Grundschuldhöhe.</li>
+          <li><strong>Notarwahl:</strong> Die Notargebühren sind gesetzlich festgelegt – hier gibt es keinen Verhandlungsspielraum, aber alle Notare kosten das Gleiche.</li>
+        </ul>
+
+        <h2>Grunderwerbsteuer im Bundesländervergleich (2025)</h2>
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>Bundesland</th>
+              <th>Grunderwerbsteuer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Bayern, Sachsen</td><td>3,5 %</td></tr>
+            <tr><td>Hamburg</td><td>5,5 %</td></tr>
+            <tr><td>Baden-Württemberg, Niedersachsen, Rheinland-Pfalz, Sachsen-Anhalt, Mecklenburg-Vorpommern, Hessen, Bremen, Berlin</td><td>6,0 %</td></tr>
+            <tr><td><strong>Nordrhein-Westfalen (Köln)</strong></td><td><strong>6,5 %</strong></td></tr>
+            <tr><td>Brandenburg, Saarland, Schleswig-Holstein, Thüringen</td><td>6,5 %</td></tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Nebenkosten für Ihre Wunschimmobilie berechnen?</h2>
+        <p>Ich berate Sie persönlich, unverbindlich und diskret – und gebe Ihnen eine transparente Übersicht aller anfallenden Kosten für Ihre konkrete Immobilie in Köln. Als IHK-zertifizierter Makler mit EVERNEST-Netzwerk.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/kfw-foerderung.html">KfW-Förderung</a>
+          <a href="https://romanbecker.de/ratgeber/maklerkosten-beim-immobilienkauf.html">Maklerkosten</a>
+          <a href="https://romanbecker.de/ratgeber/notarkosten-beim-immobilienkauf.html">Notarkosten</a>
+          <a href="https://romanbecker.de/ratgeber/baufinanzierung.html">Baufinanzierung</a>
+          <a href="https://romanbecker.de/ratgeber/annuitaetendarlehen.html">Annuitätendarlehen</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/ratgeber/hypothek.html">Hypothek</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
+    </div>
+  </footer>
+
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+</body>
+</html>
