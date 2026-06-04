@@ -155,4 +155,14 @@
   <url><loc>https://romanbecker.de/stadtteile/rheinauhafen.html</loc><lastmod>2026-05-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://romanbecker.de/marktanalyse/koeln-q2-2026.html</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://romanbecker.de/marktanalyse/</loc><lastmod>2026-05-04</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url>
+    <loc>https://romanbecker.de/ratgeber/kfw-foerderung.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://romanbecker.de/ratgeber/kaufnebenkosten.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
