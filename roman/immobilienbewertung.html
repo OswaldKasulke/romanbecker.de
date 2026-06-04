@@ -1246,8 +1246,30 @@
       return checked && checked.value === 'grundstueck';
     }
 
+    function prepareStep2() {
+      var art = document.querySelector('input[name="objektart"]:checked');
+      if (!art) return;
+      var isGrund = art.value === 'grundstueck';
+      var fieldWf = document.getElementById('field-wohnflaeche');
+      var fieldGf = document.getElementById('field-grundstueck');
+      var wfInput = document.getElementById('wohnflaeche');
+      // Wohnfläche nur bei Wohnung/Haus/MFH
+      fieldWf.style.display = isGrund ? 'none' : 'block';
+      wfInput.required = !isGrund;
+      // Grundstücksfläche immer sichtbar, aber Pflichtfeld nur bei Grundstück
+      fieldGf.style.display = 'block';
+      // Überschrift anpassen
+      var stepTitle = document.querySelector('.step[data-step="2"] .step__title');
+      if (isGrund) {
+        stepTitle.textContent = 'Wie groß ist das Grundstück?';
+      } else {
+        stepTitle.textContent = 'Wie groß ist die Immobilie?';
+      }
+    }
+
     function nextStep(from) {
       if (!validateStep(from)) return;
+      if (from === 1) prepareStep2();
       if (from === 2) prepareStep3();
       // Grundstück: Schritt 5 (Zustand & Baujahr) überspringen
       var next = from + 1;
