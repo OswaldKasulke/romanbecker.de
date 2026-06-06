@@ -4101,10 +4101,7 @@ WE B.05</div>
         })
         .then(function(response) {
           if (response.ok) {
-            form.style.display = 'none';
-            var success = document.getElementById('formSuccess');
-            success.style.display = 'block';
-            success.focus();
+            window.location.href = '/danke.html';
           }
         })
         .catch(function() {

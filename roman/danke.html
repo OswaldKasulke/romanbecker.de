@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (Conversion-Tracking) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', wait_for_update: 500 });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+      // Google Ads Conversion Event
+      gtag('event', 'conversion', { 'send_to': 'G-HQXZQF4ZBN' });
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') { loadAnalytics(); }
+  </script>
+
+  <title>Vielen Dank – Roman Becker EVERNEST | Immobilienmakler Köln</title>
+  <meta name="description" content="Ihre Anfrage wurde erfolgreich übermittelt. Roman Becker meldet sich schnellstmöglich bei Ihnen.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://romanbecker.de/danke.html">
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0d1b2a;
+      --gold: #c9a96e;
+      --white: #ffffff;
+      --gray-100: #f5f5f5;
+      --gray-600: #555;
+      --font: 'Inter', sans-serif;
+    }
+    body { font-family: var(--font); background: var(--gray-100); color: var(--navy); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* HEADER */
+    .nav { background: var(--navy); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav__logo { color: var(--white); text-decoration: none; }
+    .nav__logo-primary { display: block; font-weight: 700; font-size: 1rem; }
+    .nav__logo-sub { display: block; font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+    .nav__phone { color: var(--gold); font-weight: 700; text-decoration: none; font-size: 0.9rem; }
+
+    /* MAIN */
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; }
+    .card { background: var(--white); border-radius: 12px; padding: 3rem 2.5rem; max-width: 560px; width: 100%; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+    .icon { width: 72px; height: 72px; background: #e8f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+    .icon svg { color: #2e7d32; }
+    h1 { font-size: 1.75rem; margin-bottom: 1rem; color: var(--navy); }
+    p { color: var(--gray-600); line-height: 1.7; margin-bottom: 1rem; }
+    .highlight { color: var(--gold); font-weight: 700; }
+    .divider { border: none; border-top: 1px solid #eee; margin: 1.5rem 0; }
+    .actions { display: flex; flex-direction: column; gap: 0.75rem; }
+    .btn { display: inline-block; padding: 0.85rem 1.5rem; border-radius: 6px; font-weight: 700; text-decoration: none; font-size: 0.95rem; text-align: center; }
+    .btn--primary { background: var(--navy); color: var(--white); }
+    .btn--outline { border: 2px solid var(--navy); color: var(--navy); }
+    .btn:hover { opacity: 0.88; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 1.25rem; font-size: 0.8rem; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 0.5rem; }
+    footer a:hover { color: var(--gold); }
+
+    @media (min-width: 480px) {
+      .actions { flex-direction: row; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="https://romanbecker.de/" class="nav__logo">
+      <span class="nav__logo-primary">Roman Becker EVERNEST</span>
+      <span class="nav__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span>
+    </a>
+    <a href="tel:+491775156969" class="nav__phone">+49 177 515 69 69</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <div class="icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h1>Vielen Dank für Ihre Anfrage!</h1>
+      <p>Ihre Nachricht wurde erfolgreich übermittelt. Ich melde mich <span class="highlight">innerhalb von 24 Stunden</span> persönlich bei Ihnen.</p>
+      <p>Bei dringenden Fragen erreichen Sie mich direkt unter <span class="highlight">+49 177 515 69 69</span>.</p>
+
+      <hr class="divider">
+
+      <div class="actions">
+        <a href="https://romanbecker.de/" class="btn btn--primary">Zurück zur Startseite</a>
+        <a href="tel:+491775156969" class="btn btn--outline">Jetzt anrufen</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Roman Becker EVERNEST — Kaiser-Wilhelm-Ring 17-21, 50672 Köln</p>
+    <p style="margin-top:0.4rem;">
+      <a href="https://romanbecker.de/impressum.html">Impressum</a>
+      <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+    </p>
+  </footer>
+
+</body>
+</html>
