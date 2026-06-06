@@ -1162,7 +1162,7 @@
 
               <div class="result__cta">
                 <a href="tel:+491775156969" class="btn btn--primary btn--large">Jetzt anrufen: +49 177 515 69 69</a>
-                <a href="/#kontakt" class="btn btn--secondary btn--large">Kontaktformular</a>
+                <a href="/danke.html" class="btn btn--secondary btn--large" onclick="if(typeof gtag==='function'){gtag('event','conversion',{event_category:'Immobilienbewertung',event_label:'CTA geklickt'})}">Beratungsgespräch vereinbaren</a>
               </div>
             </div>
           </div>
@@ -1555,6 +1555,11 @@
       }
 
       showStep(7);
+      // Google Ads Conversion Event
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { event_category: 'Immobilienbewertung', event_label: 'Ergebnis angezeigt' });
+        gtag('event', 'generate_lead', { event_category: 'Immobilienbewertung' });
+      }
 
       // Send data via email (submit.php)
       var formData = new FormData();
