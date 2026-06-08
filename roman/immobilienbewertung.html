@@ -893,6 +893,8 @@
           <div class="progress__step" data-step="5">5</div>
           <div class="progress__line" data-line="5"></div>
           <div class="progress__step" data-step="6">6</div>
+          <div class="progress__line" data-line="6"></div>
+          <div class="progress__step" data-step="7">7</div>
         </div>
 
         <form id="bewertung" novalidate>
@@ -947,8 +949,37 @@
             </div>
           </div>
 
-          <!-- STEP 2: Flächen -->
+          <!-- STEP 2: Adresse der Immobilie -->
           <div class="step" data-step="2">
+            <h2 class="step__title">Adresse der Immobilie</h2>
+            <p class="step__subtitle">Wo befindet sich die Immobilie? (Nicht Ihre Wohnadresse.)</p>
+
+            <div class="field" id="field-immo-strasse">
+              <label for="immo_strasse">Straße + Hausnr.</label>
+              <input type="text" id="immo_strasse" name="immo_strasse" placeholder="Musterstraße 12">
+              <p class="field__hint">Optional – hilft bei der genauen Lagebewertung.</p>
+            </div>
+
+            <div class="field-row">
+              <div class="field" id="field-immo-plz">
+                <label for="immo_plz">PLZ *</label>
+                <input type="text" id="immo_plz" name="immo_plz" placeholder="50939" maxlength="5" required>
+                <p class="field__error">Bitte PLZ eingeben.</p>
+              </div>
+              <div class="field">
+                <label for="immo_ort">Ort</label>
+                <input type="text" id="immo_ort" name="immo_ort" placeholder="Köln" value="Köln">
+              </div>
+            </div>
+
+            <div class="step__buttons">
+              <button type="button" class="btn btn--secondary" onclick="prevStep(2)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(2)">Weiter</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Flächen -->
+          <div class="step" data-step="3">
             <h2 class="step__title">Wie groß ist die Immobilie?</h2>
             <p class="step__subtitle">Geben Sie die Fläche(n) an.</p>
 
@@ -969,13 +1000,13 @@
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(2)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(2)">Weiter</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
             </div>
           </div>
 
-          <!-- STEP 3: Zusatzinfos -->
-          <div class="step" data-step="3">
+          <!-- STEP 4: Zusatzinfos -->
+          <div class="step" data-step="4">
             <h2 class="step__title">Weitere Angaben</h2>
             <p class="step__subtitle" id="step3-subtitle">Helfen Sie uns, den Wert genauer einzuschätzen.</p>
 
@@ -1003,14 +1034,13 @@
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
             </div>
           </div>
 
-
           <!-- STEP 5: Zustand + Baujahr -->
-          <div class="step" data-step="4">
+          <div class="step" data-step="5">
             <h2 class="step__title">Zustand & Baujahr</h2>
             <p class="step__subtitle">In welchem Zustand befindet sich die Immobilie?</p>
 
@@ -1050,13 +1080,13 @@
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(5)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(5)">Weiter</button>
             </div>
           </div>
 
-          <!-- STEP 5: Kontaktdaten -->
-          <div class="step" data-step="5">
+          <!-- STEP 6: Kontaktdaten -->
+          <div class="step" data-step="6">
             <h2 class="step__title">Ihre Kontaktdaten</h2>
             <p class="step__subtitle">Für den Versand Ihrer persönlichen Bewertung.</p>
 
@@ -1084,36 +1114,19 @@
               <input type="tel" id="telefon" name="telefon" placeholder="+49 ...">
             </div>
 
-            <div class="field-row">
-              <div class="field">
-                <label for="strasse">Straße + Hausnr.</label>
-                <input type="text" id="strasse" name="strasse" placeholder="Musterstraße 12">
-              </div>
-              <div class="field-row" style="grid-template-columns: 100px 1fr">
-                <div class="field">
-                  <label for="plz">PLZ</label>
-                  <input type="text" id="plz" name="plz" placeholder="50939" maxlength="5">
-                </div>
-                <div class="field">
-                  <label for="stadt">Stadt</label>
-                  <input type="text" id="stadt" name="stadt" placeholder="Köln" value="Köln">
-                </div>
-              </div>
-            </div>
-
             <div class="gdpr">
               <input type="checkbox" id="gdpr" name="gdpr" required>
               <label for="gdpr">Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden. <a href="/datenschutz.html">Datenschutzerklärung</a></label>
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(5)">Zurück</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(6)">Zurück</button>
               <button type="button" class="btn btn--primary btn--large" onclick="submitForm()">Bewertung anfordern</button>
             </div>
           </div>
 
           <!-- STEP 7: Ergebnis -->
-          <div class="step" data-step="6">
+          <div class="step" data-step="7">
             <div class="result">
               <div class="result__icon">
                 <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -1179,7 +1192,7 @@
     // STATE
     // ===========================
     var currentStep = 1;
-    var totalSteps = 6;
+    var totalSteps = 7;
 
     // ===========================
     // STEP NAVIGATION
@@ -1218,20 +1231,17 @@
       return checked && checked.value === 'grundstueck';
     }
 
-    function prepareStep2() {
+    function prepareStep3() {
       var art = document.querySelector('input[name="objektart"]:checked');
       if (!art) return;
       var isGrund = art.value === 'grundstueck';
       var fieldWf = document.getElementById('field-wohnflaeche');
       var fieldGf = document.getElementById('field-grundstueck');
       var wfInput = document.getElementById('wohnflaeche');
-      // Wohnfläche nur bei Wohnung/Haus/MFH
       fieldWf.style.display = isGrund ? 'none' : 'block';
       wfInput.required = !isGrund;
-      // Grundstücksfläche immer sichtbar, aber Pflichtfeld nur bei Grundstück
       fieldGf.style.display = 'block';
-      // Überschrift anpassen
-      var stepTitle = document.querySelector('.step[data-step="2"] .step__title');
+      var stepTitle = document.querySelector('.step[data-step="3"] .step__title');
       if (isGrund) {
         stepTitle.textContent = 'Wie groß ist das Grundstück?';
       } else {
@@ -1241,25 +1251,26 @@
 
     function nextStep(from) {
       if (!validateStep(from)) return;
-      if (from === 1) prepareStep2();
+      if (from === 1) {}
       if (from === 2) prepareStep3();
+      if (from === 3) prepareStep4();
       var next = from + 1;
-      // Grundstück: Schritt 4 (Zustand & Baujahr) überspringen
-      if (next === 4 && isGrundstueck()) next = 5;
+      // Grundstück: Schritt 5 (Zustand & Baujahr) überspringen
+      if (next === 5 && isGrundstueck()) next = 6;
       showStep(next);
     }
 
     function prevStep(from) {
       var prev = from - 1;
-      // Grundstück: Schritt 4 beim Zurückgehen überspringen
-      if (prev === 4 && isGrundstueck()) prev = 3;
+      // Grundstück: Schritt 5 beim Zurückgehen überspringen
+      if (prev === 5 && isGrundstueck()) prev = 4;
       showStep(prev);
     }
 
     // ===========================
     // CONDITIONAL FIELDS
     // ===========================
-    function prepareStep3() {
+    function prepareStep4() {
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var fieldZimmer = document.getElementById('field-zimmer');
       var fieldEinheiten = document.getElementById('field-einheiten');
@@ -1277,11 +1288,6 @@
         fieldErschliessung.style.display = 'block';
       }
     }
-
-    // Show/hide miete field
-    document.getElementById('mietart').addEventListener('change', function() {
-      document.getElementById('field-miete').style.display = this.value ? 'block' : 'none';
-    });
 
     // ===========================
     // VALIDATION
@@ -1302,6 +1308,17 @@
       }
 
       if (step === 2) {
+        var immoPlz = document.getElementById('immo_plz');
+        var fieldImmoPlz = document.getElementById('field-immo-plz');
+        if (!immoPlz.value || immoPlz.value.length < 5) {
+          fieldImmoPlz.classList.add('field--error');
+          valid = false;
+        } else {
+          fieldImmoPlz.classList.remove('field--error');
+        }
+      }
+
+      if (step === 3) {
         var wf = document.getElementById('wohnflaeche');
         var fieldWf = document.getElementById('field-wohnflaeche');
         var art = document.querySelector('input[name="objektart"]:checked').value;
@@ -1313,7 +1330,6 @@
           fieldWf.classList.remove('field--error');
         }
 
-        // Grundstück needs Grundstücksfläche
         if (art === 'grundstueck') {
           var gf = document.getElementById('grundstuecksflaeche');
           var fieldGf = document.getElementById('field-grundstueck');
@@ -1326,7 +1342,7 @@
         }
       }
 
-      if (step === 4) {
+      if (step === 5) {
         var zustand = document.querySelector('input[name="zustand"]:checked');
         if (!zustand) {
           valid = false;
@@ -1337,7 +1353,7 @@
         }
       }
 
-      if (step === 5) {
+      if (step === 6) {
         // Validate required contact fields
         var fields = [
           { id: 'vorname', fieldId: 'field-vorname' },
@@ -1474,8 +1490,7 @@
       var grundstuecksflaeche = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
       var zustand = zustandEl ? zustandEl.value : 'normal';
-      var miete = parseFloat(document.getElementById('miete').value) || 0;
-      var plz = (document.getElementById('plz').value || '').trim();
+      var plz = (document.getElementById('immo_plz').value || '').trim();
 
       // Zustandsfaktor
       var conditionMult = { saniert: 1.1, normal: 1.0, unsaniert: 0.9 };
@@ -1493,10 +1508,6 @@
         var erschl = document.getElementById('erschliessung').value;
         var eFaktor = erschlFaktor[erschl] || 1.0;
         value = grundstuecksflaeche * (bodenrichtwert * 0.7) * eFaktor;
-
-      } else if (miete > 0) {
-        // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator × Zustand
-        value = miete * 12 * multiplikator * faktor;
 
       } else {
         // Sachwert: m² × PLZ-Preis/m² × Objektart-Faktor × Zustand
@@ -1527,6 +1538,7 @@
     function submitForm() {
       if (!validateStep(6)) return;
 
+
       var value = calculateValue();
       var low = Math.round(value * 0.9 / 5000) * 5000;
       var high = Math.round(value * 1.1 / 5000) * 5000;
@@ -1535,7 +1547,7 @@
       document.getElementById('result-range').textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
 
       // PLZ-Hinweis im Ergebnis
-      var plz = (document.getElementById('plz').value || '').trim();
+      var plz = (document.getElementById('immo_plz').value || '').trim();
       var plzHinweis = document.getElementById('result-plz');
       if (plzHinweis) {
         plzHinweis.textContent = plz && (plzWohnPreise[plz] || plzBoden[plz])
@@ -1543,7 +1555,7 @@
           : 'PLZ nicht erkannt – Kölner Durchschnittswert verwendet.';
       }
 
-      showStep(6);
+      showStep(7);
       // Google Ads Conversion Event
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', { event_category: 'Immobilienbewertung', event_label: 'Ergebnis angezeigt' });
@@ -1559,14 +1571,13 @@
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
       formData.append('zustand', zustandEl ? zustandEl.value : 'k.A.');
       formData.append('baujahr', document.getElementById('baujahr').value);
-      formData.append('miete', document.getElementById('miete').value);
+      formData.append('immo_strasse', document.getElementById('immo_strasse').value);
+      formData.append('immo_plz', document.getElementById('immo_plz').value);
+      formData.append('immo_ort', document.getElementById('immo_ort').value);
       formData.append('vorname', document.getElementById('vorname').value);
       formData.append('nachname', document.getElementById('nachname').value);
       formData.append('email', document.getElementById('email').value);
       formData.append('telefon', document.getElementById('telefon').value);
-      formData.append('strasse', document.getElementById('strasse').value);
-      formData.append('plz', document.getElementById('plz').value);
-      formData.append('stadt', document.getElementById('stadt').value);
       formData.append('ergebnis', formatCurrency(value));
 
       fetch('submit.php', {
