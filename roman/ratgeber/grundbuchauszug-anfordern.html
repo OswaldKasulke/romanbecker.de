@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+    })();
+  </script>
+
+  <title>Grundbuchauszug anfordern – So geht's | Roman Becker EVERNEST Köln</title>
+  <meta name="description" content="Grundbuchauszug anfordern: Wer darf ihn beantragen, wo, wie viel kostet er und was steht drin? Schritt-für-Schritt erklärt von Immobilienmakler Roman Becker, Köln.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">
+
+  <meta property="og:title" content="Grundbuchauszug anfordern – So geht's | Roman Becker EVERNEST Köln">
+  <meta property="og:description" content="Grundbuchauszug anfordern: Wer darf ihn beantragen, wo, wie viel kostet er und was steht drin? Schritt-für-Schritt erklärt.">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Grundbuchauszug anfordern",
+    "description": "Wer darf einen Grundbuchauszug beantragen, wo und wie – Schritt-für-Schritt erklärt.",
+    "url": "https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-06-09"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .info-box { background: var(--gray-100); border-left: 4px solid var(--gold); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.5rem 0; }
+    .info-box p { margin: 0; }
+    .steps { counter-reset: step; list-style: none; margin-left: 0; padding: 0; }
+    .steps li { counter-increment: step; display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+    .steps li::before { content: counter(step); min-width: 2rem; height: 2rem; background: var(--navy); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; flex-shrink: 0; margin-top: 0.1rem; }
+  </style>
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST</span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <div class="container" style="padding-top: var(--space-4);">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Grundbuchauszug anfordern
+    </nav>
+  </div>
+
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Grundbuchauszug anfordern</h1>
+      <p>Wer darf ihn beantragen, wo, wie viel kostet er – und was steht eigentlich drin?</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+        <h2>Was ist ein Grundbuchauszug?</h2>
+        <p>Der Grundbuchauszug ist eine beglaubigte oder unbeglaubigte Abschrift des Grundbuchs für eine bestimmte Immobilie. Er zeigt, wer Eigentümer ist, welche Lasten und Beschränkungen auf dem Grundstück liegen (z. B. Wegerechte, Nießbrauch) und welche Grundpfandrechte eingetragen sind – also Hypotheken oder Grundschulden.</p>
+        <p>Beim Immobilienkauf ist der Grundbuchauszug Pflichtlektüre: Nur wer das Grundbuch kennt, kauft ohne böse Überraschungen.</p>
+
+        <h2>Wer darf einen Grundbuchauszug anfordern?</h2>
+        <p>Das Grundbuch ist nicht öffentlich – Einsicht hat nur, wer ein <strong>berechtigtes Interesse</strong> nachweisen kann:</p>
+        <ul>
+          <li><strong>Eigentümer</strong> der Immobilie (jederzeit)</li>
+          <li><strong>Käufer</strong> mit notariellem Kaufvertrag oder nachgewiesenem ernsthaftem Kaufinteresse</li>
+          <li><strong>Banken und Kreditinstitute</strong> bei Finanzierungsanfragen</li>
+          <li><strong>Notare und Rechtsanwälte</strong> im Rahmen ihrer Tätigkeit</li>
+          <li><strong>Immobilienmakler</strong> mit Vollmacht des Eigentümers</li>
+          <li><strong>Erben</strong> mit Erbschein oder Erbvertrag</li>
+          <li><strong>Behörden</strong> im Rahmen amtlicher Verfahren</li>
+        </ul>
+        <p>Privatpersonen ohne Eigentumsnachweis oder klares Kaufinteresse erhalten in der Regel keine Einsicht.</p>
+
+        <h2>Wo wird der Grundbuchauszug beantragt?</h2>
+        <p>Zuständig ist das <strong>Grundbuchamt</strong> beim Amtsgericht, in dessen Bezirk die Immobilie liegt. In Köln ist das das Amtsgericht Köln. Für Immobilien im Umland (z. B. Pulheim, Bergheim, Leverkusen) gelten die jeweiligen Amtsgerichte vor Ort.</p>
+
+        <h3>Möglichkeiten der Antragstellung</h3>
+        <ol class="steps">
+          <li><strong>Persönlich beim Grundbuchamt:</strong> Antrag stellen, Personalausweis und Nachweis des berechtigten Interesses vorlegen. Auszug wird meist sofort oder innerhalb weniger Tage ausgehändigt.</li>
+          <li><strong>Schriftlich per Post:</strong> Formloser Antrag mit Kopie des Personalausweises und Begründung des Interesses an das zuständige Grundbuchamt senden.</li>
+          <li><strong>Online über das elektronische Grundbuch (EGB):</strong> In NRW können registrierte Nutzer (Notare, Banken, Makler) Grundbuchauszüge über das elektronische Grundbuchportal abrufen. Als Privatperson ist der Online-Zugang eingeschränkt.</li>
+          <li><strong>Über einen Notar:</strong> Der Notar kann im Rahmen einer Kaufvorbereitung den Auszug direkt anfordern – schnell und rechtssicher.</li>
+        </ol>
+
+        <h2>Kosten eines Grundbuchauszugs</h2>
+        <p>Die Gebühren richten sich nach dem Gerichts- und Notarkostengesetz (GNotKG):</p>
+        <ul>
+          <li><strong>Unbeglaubigter Auszug:</strong> ca. 10 € pro Grundbuchblatt</li>
+          <li><strong>Beglaubigter Auszug:</strong> ca. 20 € pro Grundbuchblatt</li>
+          <li><strong>Elektronischer Abruf:</strong> ca. 8–10 € (je nach Anbieter)</li>
+        </ul>
+        <p>Für eine Immobilie mit einem Grundbuchblatt sind das überschaubare Kosten. Bei mehreren Flurstücken auf verschiedenen Blättern summiert sich der Betrag entsprechend.</p>
+
+        <h2>Beglaubigter vs. unbeglaubigter Auszug – was brauche ich?</h2>
+        <p>Für die eigene Information reicht ein <strong>unbeglaubigter Auszug</strong>. Für amtliche Zwecke – z. B. bei Behörden, Banken oder vor Gericht – ist ein <strong>beglaubigter Auszug</strong> erforderlich. Notare verlangen beim Kaufvertrag stets den beglaubigten Auszug.</p>
+
+        <div class="info-box">
+          <p><strong>Praxistipp von Roman Becker:</strong> Als Käufer sollten Sie vor Vertragsunterzeichnung immer einen aktuellen (nicht älter als 3 Monate) beglaubigten Grundbuchauszug einsehen. Ich fordere diesen für meine Kunden routinemäßig an – sprechen Sie mich an.</p>
+        </div>
+
+        <h2>Was steht im Grundbuchauszug?</h2>
+        <ul>
+          <li><strong>Bestandsverzeichnis:</strong> Lage, Größe und Art des Grundstücks (Flurstücknummer, Gemarkung)</li>
+          <li><strong>Abteilung I:</strong> Eigentümer und Erwerbsgrund (z. B. Kauf, Erbschaft)</li>
+          <li><strong>Abteilung II:</strong> Lasten und Beschränkungen (Wegerechte, Nießbrauch, Vorkaufsrechte, Sanierungsvermerke)</li>
+          <li><strong>Abteilung III:</strong> Grundpfandrechte (Hypotheken, Grundschulden, Rentenschulden) mit Gläubiger und Betrag</li>
+        </ul>
+
+        <h2>Häufige Fehler beim Grundbuchauszug</h2>
+        <ul>
+          <li>Veralteten Auszug verwenden – immer den aktuellen Stand prüfen</li>
+          <li>Abteilung II nicht genau lesen – dort verstecken sich oft Wegerechte oder Nießbrauchrechte, die den Wert erheblich beeinflussen</li>
+          <li>Eintragungen in Abteilung III nicht klären – ob eine Grundschuld beim Verkauf gelöscht wird, muss vertraglich geregelt sein</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Fragen rund um Grundbuch und Immobilienverkauf?</h2>
+        <p>Ich begleite Sie von der ersten Grundbuchprüfung bis zum Notartermin – diskret, professionell und mit lokalem Marktwissen im Großraum Köln.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld-loeschen.html">Grundschuld löschen</a>
+          <a href="https://romanbecker.de/ratgeber/hypothek.html">Hypothek</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/notarkosten-beim-immobilienkauf.html">Notarkosten</a>
+          <a href="https://romanbecker.de/ratgeber/maklerkosten-beim-immobilienkauf.html">Maklerkosten</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+          <a href="https://romanbecker.de/ratgeber/baufinanzierung.html">Baufinanzierung</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/erbpacht.html">Erbpacht</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+</body>
+</html>

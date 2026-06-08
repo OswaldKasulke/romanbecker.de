@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+    })();
+  </script>
+
+  <title>Grundschuld löschen – Kosten, Ablauf & Tipps | Roman Becker EVERNEST Köln</title>
+  <meta name="description" content="Grundschuld löschen: Wann ist es sinnvoll, wie läuft es ab, was kostet es? Alles zum Löschungsablauf beim Immobilienverkauf – erklärt von Makler Roman Becker, Köln.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/grundschuld-loeschen.html">
+
+  <meta property="og:title" content="Grundschuld löschen – Kosten, Ablauf & Tipps | Roman Becker EVERNEST Köln">
+  <meta property="og:description" content="Grundschuld löschen: Wann ist es sinnvoll, wie läuft es ab, was kostet es? Alles zum Löschungsablauf beim Immobilienverkauf erklärt.">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/grundschuld-loeschen.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Grundschuld löschen",
+    "description": "Wann ist das Löschen einer Grundschuld sinnvoll, wie läuft es ab und was kostet es?",
+    "url": "https://romanbecker.de/ratgeber/grundschuld-loeschen.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-06-09"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .info-box { background: var(--gray-100); border-left: 4px solid var(--gold); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.5rem 0; }
+    .info-box p { margin: 0; }
+    .steps { counter-reset: step; list-style: none; margin-left: 0; padding: 0; }
+    .steps li { counter-increment: step; display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+    .steps li::before { content: counter(step); min-width: 2rem; height: 2rem; background: var(--navy); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.9375rem; }
+    .cost-table th { background: var(--navy); color: #fff; padding: 0.6rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:last-child td { border-bottom: none; }
+  </style>
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST</span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <div class="container" style="padding-top: var(--space-4);">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Grundschuld löschen
+    </nav>
+  </div>
+
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Grundschuld löschen</h1>
+      <p>Wann ist es sinnvoll, wie läuft es ab – und was kostet das Löschen einer Grundschuld?</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+        <h2>Was ist eine Grundschuld?</h2>
+        <p>Eine Grundschuld ist ein Grundpfandrecht, das Banken als Sicherheit für ein Immobiliendarlehen ins Grundbuch eintragen lassen. Sie steht in <strong>Abteilung III</strong> des Grundbuchs und bleibt dort auch nach vollständiger Rückzahlung des Darlehens bestehen – bis sie aktiv gelöscht wird.</p>
+        <p>Im Gegensatz zur Hypothek erlischt die Grundschuld nicht automatisch mit der Schuldrückzahlung. Sie bleibt als „stille" Belastung im Grundbuch eingetragen, bis der Eigentümer die Löschung veranlasst.</p>
+
+        <h2>Löschen oder stehen lassen?</h2>
+        <p>Viele Eigentümer lassen die abbezahlte Grundschuld zunächst stehen – das ist rechtlich zulässig und in manchen Fällen sogar sinnvoll:</p>
+        <ul>
+          <li><strong>Stehen lassen:</strong> Sinnvoll, wenn eine erneute Finanzierung (z. B. Modernisierung) geplant ist. Die bestehende Grundschuld kann dann als Sicherheit wiederverwendet werden – das spart Notarkosten.</li>
+          <li><strong>Löschen:</strong> Unbedingt nötig beim <strong>Immobilienverkauf</strong>, da Käufer eine lastenfreie Immobilie erwarten. Auch bei einer Schenkung oder Erbschaft ist die Löschung häufig erforderlich.</li>
+        </ul>
+
+        <div class="info-box">
+          <p><strong>Wichtig beim Verkauf:</strong> Beim Immobilienverkauf regelt der Notar die Ablösung und Löschung der Grundschuld im Rahmen des Kaufvertrags. Der Kaufpreis wird zunächst zur Ablösung des Restdarlehens verwendet, danach wird die Löschungsbewilligung eingeholt.</p>
+        </div>
+
+        <h2>Ablauf: So wird eine Grundschuld gelöscht</h2>
+        <ol class="steps">
+          <li><strong>Darlehen vollständig zurückzahlen:</strong> Erst nach vollständiger Tilgung stellt die Bank eine Löschungsbewilligung aus.</li>
+          <li><strong>Löschungsbewilligung von der Bank anfordern:</strong> Nach Rückzahlung haben Sie Anspruch auf die Löschungsbewilligung. Die Bank ist verpflichtet, diese auszustellen – in der Praxis dauert es einige Wochen.</li>
+          <li><strong>Notar beauftragen:</strong> Die Löschungsbewilligung muss notariell beglaubigt sein, um beim Grundbuchamt eingereicht werden zu können. Der Notar prüft die Unterlagen und leitet alles weiter.</li>
+          <li><strong>Antrag beim Grundbuchamt:</strong> Der Notar stellt den Löschungsantrag beim zuständigen Grundbuchamt. Nach Bearbeitung wird die Grundschuld aus Abteilung III gestrichen.</li>
+          <li><strong>Bestätigung erhalten:</strong> Das Grundbuchamt sendet eine Bestätigung der Löschung. Fordern Sie einen aktuellen Grundbuchauszug an, um die Löschung zu verifizieren.</li>
+        </ol>
+
+        <h2>Kosten der Grundschuldlöschung</h2>
+        <p>Die Kosten richten sich nach dem Grundschuldbetrag und werden nach dem GNotKG berechnet:</p>
+        <table class="cost-table">
+          <thead>
+            <tr><th>Grundschuldbetrag</th><th>Notarkosten (ca.)</th><th>Grundbuchamtsgebühr (ca.)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>100.000 €</td><td>ca. 100–150 €</td><td>ca. 100 €</td></tr>
+            <tr><td>200.000 €</td><td>ca. 150–200 €</td><td>ca. 150 €</td></tr>
+            <tr><td>300.000 €</td><td>ca. 200–250 €</td><td>ca. 200 €</td></tr>
+            <tr><td>500.000 €</td><td>ca. 270–350 €</td><td>ca. 270 €</td></tr>
+          </tbody>
+        </table>
+        <p>Insgesamt sind bei einer typischen Kölner Immobilie mit einer Grundschuld von 300.000–400.000 € Gesamtkosten von <strong>400–600 €</strong> zu erwarten.</p>
+
+        <h2>Wie lange dauert die Löschung?</h2>
+        <ul>
+          <li><strong>Löschungsbewilligung von der Bank:</strong> 2–6 Wochen nach vollständiger Tilgung</li>
+          <li><strong>Notarielle Beglaubigung:</strong> 1–2 Wochen</li>
+          <li><strong>Bearbeitung beim Grundbuchamt:</strong> 4–12 Wochen (je nach Auslastung)</li>
+        </ul>
+        <p>Insgesamt sollten Sie mit <strong>2–4 Monaten</strong> vom Tilgungsabschluss bis zur vollständigen Löschung rechnen. Beim Immobilienverkauf koordiniert der beurkundende Notar diesen Prozess parallel zur Kaufabwicklung.</p>
+
+        <h2>Grundschuld löschen beim Immobilienverkauf</h2>
+        <p>Beim Verkauf einer noch belasteten Immobilie läuft die Löschung über ein Notaranderkonto ab:</p>
+        <ol>
+          <li>Der Käufer zahlt den Kaufpreis auf das Notaranderkonto.</li>
+          <li>Der Notar löst das Restdarlehen mit dem Kaufpreis ab.</li>
+          <li>Die Bank stellt die Löschungsbewilligung aus.</li>
+          <li>Der Notar veranlasst die Grundschuldlöschung und die Eigentumsumschreibung.</li>
+          <li>Der verbleibende Kaufpreisrest wird an den Verkäufer ausgezahlt.</li>
+        </ol>
+        <p>Dieser Ablauf ist Standardpraxis beim Immobilienkauf in Deutschland und für beide Seiten rechtssicher.</p>
+
+        <div class="info-box">
+          <p><strong>Praxistipp von Roman Becker:</strong> Klären Sie vor dem Verkauf frühzeitig die Restschuld bei Ihrer Bank und holen Sie eine Vorfälligkeitsentschädigungsberechnung ein. Ich helfe meinen Kunden dabei, den Verkaufsprozess so zu strukturieren, dass keine unnötigen Kosten entstehen.</p>
+        </div>
+
+        <h2>Häufige Fragen</h2>
+
+        <h3>Muss ich die Grundschuld nach Abzahlung sofort löschen?</h3>
+        <p>Nein. Es besteht keine gesetzliche Pflicht zur sofortigen Löschung. Die Grundschuld kann stehen bleiben, bis sie benötigt wird – z. B. für eine neue Finanzierung oder bis zum Verkauf.</p>
+
+        <h3>Kann ich die Grundschuld selbst löschen, ohne Notar?</h3>
+        <p>Nein. Die Löschungsbewilligung muss notariell beglaubigt sein. Ohne Notar ist die Einreichung beim Grundbuchamt nicht möglich.</p>
+
+        <h3>Was ist der Unterschied zwischen Löschungsbewilligung und Löschung?</h3>
+        <p>Die Löschungsbewilligung ist das Dokument der Bank, mit dem sie der Löschung zustimmt. Die eigentliche Löschung erfolgt erst, wenn das Grundbuchamt den Antrag bearbeitet und die Eintragung gestrichen hat.</p>
+
+        <h3>Was passiert, wenn die Grundschuld nicht gelöscht wird?</h3>
+        <p>Eine nicht gelöschte Grundschuld hat zunächst keine praktischen Konsequenzen – die Bank kann keine Ansprüche mehr geltend machen, wenn das Darlehen abbezahlt ist. Problematisch wird es erst beim Verkauf: Käufer und deren Banken bestehen in der Regel auf einem lastenfreien Grundbuch.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Immobilie verkaufen – wir klären alles Bürokratische für Sie</h2>
+        <p>Von der Grundschuldlöschung bis zum Notartermin begleite ich Sie durch den gesamten Verkaufsprozess. Diskret, professionell und mit lokalem Marktwissen im Großraum Köln.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">Grundbuchauszug anfordern</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/ratgeber/hypothek.html">Hypothek</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/notarkosten-beim-immobilienkauf.html">Notarkosten</a>
+          <a href="https://romanbecker.de/ratgeber/maklerkosten-beim-immobilienkauf.html">Maklerkosten</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+          <a href="https://romanbecker.de/ratgeber/baufinanzierung.html">Baufinanzierung</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/erbpacht.html">Erbpacht</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+</body>
+</html>
