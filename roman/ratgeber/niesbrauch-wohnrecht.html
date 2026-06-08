@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', wait_for_update: 500 });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') { loadAnalytics(); }
+  </script>
+  <script>
+    (function() {
+      function track(name, params) { if (typeof gtag === 'function') gtag('event', name, params || {}); }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) track('click_phone', { phone_number: href.replace('tel:', '') });
+        else if (href.indexOf('mailto:') === 0) track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        else if (/wa\.me|api\.whatsapp\.com/.test(href)) track('click_whatsapp');
+      }, true);
+    })();
+  </script>
+
+  <title>Nießbrauch & Wohnrecht auf Lebenszeit – Auswirkungen beim Immobilienverkauf | Roman Becker Köln</title>
+  <meta name="description" content="Nießbrauch und Wohnrecht auf Lebenszeit erklärt: Was bedeuten sie für den Immobilienwert, den Verkauf und die Erbschaft? Alles Wichtige für Eigentümer in Köln.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/niesbrauch-wohnrecht.html">
+
+  <meta property="og:title" content="Nießbrauch & Wohnrecht auf Lebenszeit – Auswirkungen beim Immobilienverkauf">
+  <meta property="og:description" content="Nießbrauch und Wohnrecht auf Lebenszeit: Was bedeuten sie für Wert, Verkauf und Erbschaft? Erklärt von Makler Roman Becker, Köln.">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/niesbrauch-wohnrecht.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Nießbrauch und Wohnrecht auf Lebenszeit",
+    "description": "Was bedeuten Nießbrauch und Wohnrecht auf Lebenszeit für Immobilienwert, Verkauf und Erbschaft?",
+    "url": "https://romanbecker.de/ratgeber/niesbrauch-wohnrecht.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-06-09"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .info-box { background: var(--gray-100); border-left: 4px solid var(--gold); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.5rem 0; }
+    .info-box p { margin: 0; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1.25rem; }
+    .compare-card h3 { color: var(--navy); margin: 0 0 0.75rem; font-size: 1rem; }
+    .compare-card ul { margin: 0; padding-left: 1.25rem; color: var(--gray-600); font-size: 0.9375rem; }
+    .compare-card li { margin-bottom: 0.4rem; }
+  </style>
+  <script>
+    var clickRankAi = document.createElement("script");
+    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
+    clickRankAi.async = true;
+    document.head.appendChild(clickRankAi);
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST</span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <div class="container" style="padding-top: var(--space-4);">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Nießbrauch &amp; Wohnrecht
+    </nav>
+  </div>
+
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Nießbrauch &amp; Wohnrecht auf Lebenszeit</h1>
+      <p>Was bedeuten diese Rechte für Immobilienwert, Verkauf und Erbschaft – und wie unterscheiden sie sich?</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+        <h2>Was ist Nießbrauch?</h2>
+        <p>Der Nießbrauch (§ 1030 BGB) ist das Recht, eine Immobilie vollumfänglich zu nutzen und alle Erträge daraus zu ziehen – also auch zu vermieten und die Mieteinnahmen zu behalten. Er wird ins Grundbuch eingetragen (Abteilung II) und ist damit dinglich gesichert: Er gilt gegenüber jedem Eigentümer, auch nach einem Verkauf.</p>
+        <p>Typisches Beispiel: Eltern übertragen ihre Immobilie auf die Kinder, behalten aber den Nießbrauch auf Lebenszeit. Sie wohnen weiterhin darin oder vermieten sie – das Eigentumsrecht liegt bei den Kindern, die Nutzung bei den Eltern.</p>
+
+        <h2>Was ist das Wohnrecht auf Lebenszeit?</h2>
+        <p>Das Wohnrecht (§ 1093 BGB) ist enger gefasst als der Nießbrauch: Es berechtigt die berechtigte Person, die Immobilie selbst zu bewohnen – aber nicht zu vermieten oder anderweitig wirtschaftlich zu nutzen. Auch das Wohnrecht wird im Grundbuch eingetragen und bleibt bei einem Verkauf bestehen.</p>
+
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h3>Nießbrauch</h3>
+            <ul>
+              <li>Selbst bewohnen ✓</li>
+              <li>Vermieten &amp; Mieteinnahmen behalten ✓</li>
+              <li>Wirtschaftliche Nutzung aller Art ✓</li>
+              <li>Instandhaltungspflicht beim Nießbraucher</li>
+              <li>Steuerlich: Mieteinnahmen steuerpflichtig</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <h3>Wohnrecht</h3>
+            <ul>
+              <li>Selbst bewohnen ✓</li>
+              <li>Vermieten ✗</li>
+              <li>Wirtschaftliche Nutzung ✗</li>
+              <li>Instandhaltungspflicht je nach Vertrag</li>
+              <li>Steuerlich: kein Mietwert zu versteuern</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Auswirkungen auf den Immobilienwert</h2>
+        <p>Sowohl Nießbrauch als auch Wohnrecht auf Lebenszeit reduzieren den Verkehrswert einer Immobilie erheblich – denn ein Käufer erwirbt zwar das Eigentum, kann die Immobilie aber weder selbst nutzen noch vermieten, solange der Berechtigte lebt.</p>
+        <p>Der Wertabschlag wird anhand des sogenannten <strong>Kapitalwerts des Rechts</strong> berechnet:</p>
+        <ul>
+          <li><strong>Jahreswert</strong> (ortsübliche Jahreskaltmiete oder Mietwert)</li>
+          <li>multipliziert mit dem <strong>statistischen Vervielfältiger</strong> (abhängig vom Alter und Geschlecht der berechtigten Person – aus den Sterbetafeln des Bundesfinanzministeriums)</li>
+        </ul>
+        <p>Je jünger die berechtigte Person, desto höher der Wertabschlag – weil das Recht statistisch länger andauert.</p>
+
+        <h3>Beispiel: Wohnrecht einer 70-jährigen Person</h3>
+        <p>Immobilienwert ohne Belastung: 600.000 €. Ortsübliche Jahreskaltmiete: 18.000 €. Vervielfältiger für eine 70-jährige Frau (ca.): 10,0. Kapitalwert des Wohnrechts: 18.000 € × 10 = <strong>180.000 €</strong>. Verkehrswert mit Wohnrecht: ca. <strong>420.000 €</strong>.</p>
+
+        <div class="info-box">
+          <p><strong>Praxistipp von Roman Becker:</strong> In der Praxis ist der erzielbare Kaufpreis oft noch deutlich niedriger als der rechnerische Verkehrswert – denn viele Käufer scheuen die Unsicherheit und Wartezeit. Immobilien mit Nießbrauch oder Wohnrecht sind ein Spezialmarkt, den ich gut kenne.</p>
+        </div>
+
+        <h2>Kann man eine Immobilie mit Nießbrauch oder Wohnrecht verkaufen?</h2>
+        <p>Ja – der Eigentümer kann die Immobilie trotz eingetragenem Nießbrauch oder Wohnrecht verkaufen. Das Recht bleibt jedoch bestehen und geht auf den Käufer über. Der neue Eigentümer muss es respektieren – er kann also nicht einziehen oder vermieten.</p>
+        <p>Das schränkt den Käuferkreis stark ein: In Frage kommen vor allem Kapitalanleger, die auf den Todesfall des Berechtigten spekulieren, oder Familienangehörige. Die Finanzierung ist für Käufer schwierig, da Banken solche Objekte zurückhaltend beleihen.</p>
+
+        <h2>Aufhebung des Nießbrauchs oder Wohnrechts</h2>
+        <p>Das Recht erlischt automatisch mit dem Tod der berechtigten Person. Es kann aber auch vorher aufgehoben werden – wenn der Berechtigte freiwillig darauf verzichtet. Dafür ist eine notarielle Erklärung und die Löschung im Grundbuch erforderlich. Manchmal wird eine Ablöse vereinbart: Der Eigentümer zahlt dem Berechtigten eine Einmalzahlung, im Gegenzug gibt dieser das Recht auf.</p>
+
+        <h2>Nießbrauch bei Schenkung und Erbschaft</h2>
+        <p>Nießbrauch und Wohnrecht werden häufig im Rahmen vorweggenommener Erbfolge eingesetzt: Die Eltern übertragen die Immobilie auf die Kinder, um Erbschaftsteuer zu sparen – behalten aber das Nießbrauchrecht, um weiterhin darin zu wohnen oder Miete zu kassieren.</p>
+        <p>Steuerlich ist das attraktiv: Der Schenkungswert der Immobilie wird um den Kapitalwert des Nießbrauchs gemindert, was die Schenkungsteuer senkt. Wichtig: Das Modell sollte immer mit einem Steuerberater und Notar abgestimmt werden.</p>
+
+        <h2>Unterschied: Nießbrauch vs. Wohnrecht vs. Erbpacht</h2>
+        <ul>
+          <li><strong>Nießbrauch:</strong> Volles Nutzungsrecht inkl. Vermietung – gilt lebenslang oder zeitlich befristet</li>
+          <li><strong>Wohnrecht:</strong> Nur Eigennutzung – gilt lebenslang oder zeitlich befristet</li>
+          <li><strong>Erbpacht (Erbbaurecht):</strong> Recht, ein Gebäude auf fremdem Boden zu errichten und zu nutzen – zeitlich befristet (50–99 Jahre), gegen Zahlung des Erbbauzinses</li>
+        </ul>
+
+        <h2>Was Käufer beachten sollten</h2>
+        <ul>
+          <li>Grundbuchauszug prüfen: Ist ein Nießbrauch oder Wohnrecht eingetragen?</li>
+          <li>Alter und Gesundheitszustand der berechtigten Person einschätzen (statistisch, nicht spekulativ)</li>
+          <li>Kaufpreis gegen den rechnerischen Verkehrswert minus Kapitalwert des Rechts abgleichen</li>
+          <li>Finanzierbarkeit vorab mit der Bank klären – viele Banken lehnen ab</li>
+          <li>Vertragliche Regelungen zur Instandhaltung genau lesen</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Immobilie mit Nießbrauch oder Wohnrecht verkaufen?</h2>
+        <p>Diese Objekte erfordern Fingerspitzengefühl und den richtigen Käufer. Ich kenne den Markt und begleite Sie diskret durch den gesamten Prozess – von der Bewertung bis zum Notartermin.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/erbpacht.html">Erbpacht</a>
+          <a href="https://romanbecker.de/ratgeber/erbbauzins.html">Erbbauzins</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">Grundbuchauszug anfordern</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld-loeschen.html">Grundschuld löschen</a>
+          <a href="https://romanbecker.de/ratgeber/hypothek.html">Hypothek</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/notarkosten-beim-immobilienkauf.html">Notarkosten</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten.</p>
+    </div>
+  </footer>
+
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+</body>
+</html>
