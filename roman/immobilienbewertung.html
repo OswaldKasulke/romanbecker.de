@@ -893,8 +893,6 @@
           <div class="progress__step" data-step="5">5</div>
           <div class="progress__line" data-line="5"></div>
           <div class="progress__step" data-step="6">6</div>
-          <div class="progress__line" data-line="6"></div>
-          <div class="progress__step" data-step="7">7</div>
         </div>
 
         <form id="bewertung" novalidate>
@@ -1010,35 +1008,9 @@
             </div>
           </div>
 
-          <!-- STEP 4: Kaltmiete -->
-          <div class="step" data-step="4">
-            <h2 class="step__title">Monatliche Kaltmiete</h2>
-            <p class="step__subtitle">Falls die Immobilie vermietet ist oder vermietet werden soll.</p>
-
-            <div class="field">
-              <label for="mietart">Art der Miete</label>
-              <select id="mietart" name="mietart">
-                <option value="">Nicht vermietet / keine Angabe</option>
-                <option value="ist">Ist-Miete (aktuelle Miete)</option>
-                <option value="soll">Soll-Miete (Marktmiete)</option>
-              </select>
-            </div>
-
-            <div class="field" id="field-miete" style="display:none">
-              <label for="miete">Kaltmiete pro Monat</label>
-              <div class="field__unit" data-unit="€">
-                <input type="number" id="miete" name="miete" placeholder="z.B. 1200" min="0" max="100000">
-              </div>
-            </div>
-
-            <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
-            </div>
-          </div>
 
           <!-- STEP 5: Zustand + Baujahr -->
-          <div class="step" data-step="5">
+          <div class="step" data-step="4">
             <h2 class="step__title">Zustand & Baujahr</h2>
             <p class="step__subtitle">In welchem Zustand befindet sich die Immobilie?</p>
 
@@ -1078,13 +1050,13 @@
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(5)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(5)">Weiter</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
             </div>
           </div>
 
-          <!-- STEP 6: Kontaktdaten -->
-          <div class="step" data-step="6">
+          <!-- STEP 5: Kontaktdaten -->
+          <div class="step" data-step="5">
             <h2 class="step__title">Ihre Kontaktdaten</h2>
             <p class="step__subtitle">Für den Versand Ihrer persönlichen Bewertung.</p>
 
@@ -1135,13 +1107,13 @@
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(6)">Zurück</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(5)">Zurück</button>
               <button type="button" class="btn btn--primary btn--large" onclick="submitForm()">Bewertung anfordern</button>
             </div>
           </div>
 
           <!-- STEP 7: Ergebnis -->
-          <div class="step" data-step="7">
+          <div class="step" data-step="6">
             <div class="result">
               <div class="result__icon">
                 <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -1207,7 +1179,7 @@
     // STATE
     // ===========================
     var currentStep = 1;
-    var totalSteps = 7;
+    var totalSteps = 6;
 
     // ===========================
     // STEP NAVIGATION
@@ -1271,16 +1243,16 @@
       if (!validateStep(from)) return;
       if (from === 1) prepareStep2();
       if (from === 2) prepareStep3();
-      // Grundstück: Schritt 5 (Zustand & Baujahr) überspringen
       var next = from + 1;
-      if (next === 5 && isGrundstueck()) next = 6;
+      // Grundstück: Schritt 4 (Zustand & Baujahr) überspringen
+      if (next === 4 && isGrundstueck()) next = 5;
       showStep(next);
     }
 
     function prevStep(from) {
-      // Grundstück: Schritt 5 beim Zurückgehen überspringen
       var prev = from - 1;
-      if (prev === 5 && isGrundstueck()) prev = 4;
+      // Grundstück: Schritt 4 beim Zurückgehen überspringen
+      if (prev === 4 && isGrundstueck()) prev = 3;
       showStep(prev);
     }
 
@@ -1354,7 +1326,7 @@
         }
       }
 
-      if (step === 5) {
+      if (step === 4) {
         var zustand = document.querySelector('input[name="zustand"]:checked');
         if (!zustand) {
           valid = false;
@@ -1365,7 +1337,7 @@
         }
       }
 
-      if (step === 6) {
+      if (step === 5) {
         // Validate required contact fields
         var fields = [
           { id: 'vorname', fieldId: 'field-vorname' },
@@ -1554,7 +1526,7 @@
           : 'PLZ nicht erkannt – Kölner Durchschnittswert verwendet.';
       }
 
-      showStep(7);
+      showStep(6);
       // Google Ads Conversion Event
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', { event_category: 'Immobilienbewertung', event_label: 'Ergebnis angezeigt' });
