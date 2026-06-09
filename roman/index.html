@@ -1011,16 +1011,13 @@ color: var(--navy);
 margin-bottom: var(--space-5);
 }
 .about__qualifications ul {
-display: grid;
-grid-template-columns: 1fr;
-gap: var(--space-3);
+columns: 1;
+gap: 0;
 }
 @media (min-width: 640px) {
 .about__qualifications ul {
-grid-template-columns: 1fr 1fr;
+columns: 2;
 column-gap: var(--space-8);
-row-gap: var(--space-3);
-align-items: start;
 }
 }
 .about__qualifications li {
@@ -1030,6 +1027,8 @@ gap: var(--space-3);
 font-size: 0.9375rem;
 line-height: 1.5;
 color: var(--gray-700, #374151);
+margin-bottom: var(--space-3);
+break-inside: avoid;
 }
 .about__qualifications li::before {
 content: '✓';
