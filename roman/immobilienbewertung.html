@@ -1557,11 +1557,20 @@
         value = grundstuecksflaeche * (bodenrichtwert * 0.7) * eFaktor;
 
       } else {
-        // Sachwert: m² × PLZ-Preis/m² × Objektart-Faktor × Zustand
-        var artFaktor = art === 'mehrfamilienhaus' ? 0.9
-                      : art === 'haus'             ? 1.05
-                      : 1.0; // wohnung
-        value = wohnflaeche * preisProQm * artFaktor * faktor;
+        var mieteIst  = parseFloat((document.getElementById('miete_ist').value  || '').replace(',','.')) || 0;
+        var mieteSoll = parseFloat((document.getElementById('miete_soll').value || '').replace(',','.')) || 0;
+        var kaltmiete = mieteIst || mieteSoll; // IST bevorzugt, sonst SOLL
+
+        if (kaltmiete > 0) {
+          // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator × Zustandsfaktor
+          value = kaltmiete * 12 * multiplikator * faktor;
+        } else {
+          // Sachwert-Fallback: m² × PLZ-Preis/m² × Objektart-Faktor × Zustand
+          var artFaktor = art === 'mehrfamilienhaus' ? 0.9
+                        : art === 'haus'             ? 1.05
+                        : 1.0;
+          value = wohnflaeche * preisProQm * artFaktor * faktor;
+        }
       }
 
       // Auf volle 5.000 runden
