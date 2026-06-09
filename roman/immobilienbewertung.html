@@ -1156,6 +1156,11 @@
               <p class="result__range" id="result-range"></p>
               <p id="result-plz" style="font-size:0.8125rem;color:var(--gray-500);margin-top:0.5rem;"></p>
 
+              <div id="result-grundstueck-hinweis" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
+                <p style="margin:0 0 0.4rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Hinweis zur Grundstücksbewertung</p>
+                <p style="margin:0;font-size:0.9rem;line-height:1.5;">Der angezeigte Wert basiert auf der Nutzung als <strong>Einfamilienhaus-Grundstück</strong>. Sollte auf dem Grundstück ein <strong>Mehrfamilienhaus</strong> realisierbar sein (z.&nbsp;B. durch entsprechende Ausweisung im Bebauungsplan), kann der tatsächliche Marktwert um ein <strong>Vielfaches höher</strong> liegen. Eine genaue Einschätzung erfordert die Prüfung des Bebauungsplans und eine persönliche Besichtigung.</p>
+              </div>
+
               <div class="result__note">
                 <p><strong>Wichtiger Hinweis zur individuellen Preisgestaltung</strong></p>
                 <p>Bitte beachten Sie, dass dieser berechnete Wert als fundierte Orientierungshilfe dient. Der tatsächliche Angebotspreis am Markt kann von diesem Wert abweichen, wenn besondere Merkmale vorliegen:</p>
@@ -1569,6 +1574,10 @@
 
       document.getElementById('result-value').textContent = formatCurrency(value);
       document.getElementById('result-range').textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
+
+      // Grundstück-Hinweis ein-/ausblenden
+      var art = document.querySelector('input[name="objektart"]:checked').value;
+      document.getElementById('result-grundstueck-hinweis').style.display = art === 'grundstueck' ? 'block' : 'none';
 
       // PLZ-Hinweis im Ergebnis
       var plz = (document.getElementById('immo_plz').value || '').trim();
