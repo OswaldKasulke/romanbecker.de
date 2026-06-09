@@ -11,25 +11,45 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// Felder auslesen und säubern
-// Unterstützt beide Varianten: 'name' (Kontaktformular) und 'vorname'+'nachname' (Bewertungsformular)
-$vorname        = trim($_POST['vorname'] ?? '');
-$nachname       = trim($_POST['nachname'] ?? '');
-$name_raw       = trim($_POST['name'] ?? ($vorname . ($vorname && $nachname ? ' ' : '') . $nachname));
-$name           = htmlspecialchars(strip_tags($name_raw));
-$telefon        = htmlspecialchars(strip_tags(trim($_POST['telefon'] ?? '')));
-$email          = htmlspecialchars(strip_tags(trim($_POST['email'] ?? '')));
-$immobilientyp  = htmlspecialchars(strip_tags(trim($_POST['immobilientyp'] ?? '')));
-$plz            = htmlspecialchars(strip_tags(trim($_POST['plz'] ?? '')));
-$preisspanne    = htmlspecialchars(strip_tags(trim($_POST['preisspanne'] ?? '')));
-$nachricht      = htmlspecialchars(strip_tags(trim($_POST['nachricht'] ?? '')));
-$empfohlen      = htmlspecialchars(strip_tags(trim($_POST['empfohlen'] ?? '')));
+// Hilfsfunktion
+function clean($val) {
+    return htmlspecialchars(strip_tags(trim($val ?? '')));
+}
 
-// Zusatzfelder Immobilienbewertung
-$objektart      = htmlspecialchars(strip_tags(trim($_POST['objektart'] ?? '')));
-$wohnflaeche    = htmlspecialchars(strip_tags(trim($_POST['wohnflaeche'] ?? '')));
-$baujahr        = htmlspecialchars(strip_tags(trim($_POST['baujahr'] ?? '')));
-$ergebnis       = htmlspecialchars(strip_tags(trim($_POST['ergebnis'] ?? '')));
+// Kontaktfelder
+$vorname        = clean($_POST['vorname'] ?? '');
+$nachname       = clean($_POST['nachname'] ?? '');
+$name_raw       = trim($_POST['name'] ?? ($vorname . ($vorname && $nachname ? ' ' : '') . $nachname));
+$name           = clean($name_raw);
+$telefon        = clean($_POST['telefon'] ?? '');
+$email          = clean($_POST['email'] ?? '');
+$immobilientyp  = clean($_POST['immobilientyp'] ?? '');
+$preisspanne    = clean($_POST['preisspanne'] ?? '');
+$nachricht      = clean($_POST['nachricht'] ?? '');
+$empfohlen      = clean($_POST['empfohlen'] ?? '');
+
+// Kontakt-Adresse des Interessenten
+$kontakt_strasse = clean($_POST['kontakt_strasse'] ?? '');
+$kontakt_plz     = clean($_POST['kontakt_plz']     ?? '');
+$kontakt_ort     = clean($_POST['kontakt_ort']     ?? '');
+
+// Immobilien-Adresse (neue Felder aus Step 2)
+$immo_strasse   = clean($_POST['immo_strasse'] ?? '');
+$immo_plz       = clean($_POST['immo_plz'] ?? $_POST['plz'] ?? '');
+$immo_ort       = clean($_POST['immo_ort'] ?? $_POST['stadt'] ?? '');
+
+// Immobilienbewertung – Objektdaten
+$objektart          = clean($_POST['objektart'] ?? '');
+$wohnflaeche        = clean($_POST['wohnflaeche'] ?? '');
+$grundstuecksflaeche = clean($_POST['grundstuecksflaeche'] ?? '');
+$zimmer             = clean($_POST['zimmer'] ?? '');
+$einheiten          = clean($_POST['einheiten'] ?? '');
+$erschliessung      = clean($_POST['erschliessung'] ?? '');
+$zustand            = clean($_POST['zustand'] ?? '');
+$baujahr            = clean($_POST['baujahr'] ?? '');
+$miete_ist          = clean($_POST['miete_ist'] ?? '');
+$miete_soll         = clean($_POST['miete_soll'] ?? '');
+$ergebnis           = clean($_POST['ergebnis'] ?? '');
 
 // Pflichtfelder prüfen
 if (empty($name) || empty($telefon)) {
@@ -46,18 +66,49 @@ $subject = $type === 'immobilienbewertung'
 // E-Mail-Body
 $body = "Neue Anfrage über romanbecker.de\n";
 $body .= "================================\n\n";
-$body .= "Name: $name\n";
-$body .= "Telefon: $telefon\n";
-if ($email)        $body .= "E-Mail: $email\n";
-if ($immobilientyp) $body .= "Immobilientyp: $immobilientyp\n";
-if ($objektart)    $body .= "Objektart: $objektart\n";
-if ($wohnflaeche)  $body .= "Wohnfläche: $wohnflaeche m²\n";
-if ($baujahr)      $body .= "Baujahr: $baujahr\n";
-if ($plz)          $body .= "PLZ: $plz\n";
-if ($preisspanne)  $body .= "Preisspanne: $preisspanne\n";
-if ($ergebnis)     $body .= "Geschätzter Wert: $ergebnis\n";
-if ($empfohlen)    $body .= "Empfohlen von: $empfohlen\n";
-if ($nachricht)    $body .= "\nNachricht:\n$nachricht\n";
+
+// Kontaktdaten
+$body .= "── KONTAKT ──────────────────────\n";
+$body .= "Name:     $name\n";
+$body .= "Telefon:  $telefon\n";
+if ($email)           $body .= "E-Mail:   $email\n";
+if ($kontakt_strasse) $body .= "Straße:   $kontakt_strasse\n";
+if ($kontakt_plz || $kontakt_ort) $body .= "Ort:      $kontakt_plz $kontakt_ort\n";
+
+// Immobilien-Adresse
+if ($immo_strasse || $immo_plz || $immo_ort) {
+    $body .= "\n── ADRESSE DER IMMOBILIE ────────\n";
+    if ($immo_strasse) $body .= "Straße:   $immo_strasse\n";
+    if ($immo_plz)     $body .= "PLZ:      $immo_plz\n";
+    if ($immo_ort)     $body .= "Ort:      $immo_ort\n";
+}
+
+// Objektdaten
+if ($objektart || $wohnflaeche || $grundstuecksflaeche || $zustand || $baujahr || $immobilientyp) {
+    $body .= "\n── OBJEKT ───────────────────────\n";
+    if ($immobilientyp)       $body .= "Typ:               $immobilientyp\n";
+    if ($objektart)           $body .= "Objektart:         $objektart\n";
+    if ($wohnflaeche)         $body .= "Wohnfläche:        $wohnflaeche m²\n";
+    if ($grundstuecksflaeche) $body .= "Grundstücksfläche: $grundstuecksflaeche m²\n";
+    if ($zimmer)              $body .= "Zimmer:            $zimmer\n";
+    if ($einheiten)           $body .= "Wohneinheiten:     $einheiten\n";
+    if ($erschliessung)       $body .= "Erschließung:      $erschliessung\n";
+    if ($zustand)             $body .= "Zustand:           $zustand\n";
+    if ($baujahr)             $body .= "Baujahr:           $baujahr\n";
+    if ($miete_ist)           $body .= "Kaltmiete IST:     $miete_ist €/Monat\n";
+    if ($miete_soll)          $body .= "Kaltmiete SOLL:    $miete_soll €/Monat\n";
+}
+
+// Ergebnis
+if ($ergebnis) {
+    $body .= "\n── BEWERTUNGSERGEBNIS ───────────\n";
+    $body .= "Geschätzter Wert:  $ergebnis\n";
+}
+
+// Sonstiges
+if ($preisspanne) $body .= "\nPreisspanne: $preisspanne\n";
+if ($empfohlen)   $body .= "Empfohlen von: $empfohlen\n";
+if ($nachricht)   $body .= "\nNachricht:\n$nachricht\n";
 
 $mail = new PHPMailer(true);
 

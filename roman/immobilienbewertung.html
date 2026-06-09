@@ -1129,9 +1129,26 @@
               <p class="field__error">Bitte gültige E-Mail eingeben.</p>
             </div>
 
+            <div class="field" id="field-telefon">
+              <label for="telefon">Telefon *</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="+49 ..." required>
+              <p class="field__error">Bitte Telefonnummer eingeben.</p>
+            </div>
+
             <div class="field">
-              <label for="telefon">Telefon (optional)</label>
-              <input type="tel" id="telefon" name="telefon" placeholder="+49 ...">
+              <label for="kontakt_strasse">Ihre Adresse (Straße &amp; Hausnummer)</label>
+              <input type="text" id="kontakt_strasse" name="kontakt_strasse" placeholder="Musterstraße 12">
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="kontakt_plz">PLZ</label>
+                <input type="text" id="kontakt_plz" name="kontakt_plz" placeholder="50939" maxlength="5">
+              </div>
+              <div class="field">
+                <label for="kontakt_ort">Ort</label>
+                <input type="text" id="kontakt_ort" name="kontakt_ort" placeholder="Köln">
+              </div>
             </div>
 
             <div class="gdpr">
@@ -1387,7 +1404,8 @@
         var fields = [
           { id: 'vorname', fieldId: 'field-vorname' },
           { id: 'nachname', fieldId: 'field-nachname' },
-          { id: 'email', fieldId: 'field-email' }
+          { id: 'email', fieldId: 'field-email' },
+          { id: 'telefon', fieldId: 'field-telefon' }
         ];
 
         fields.forEach(function(f) {
@@ -1616,6 +1634,9 @@
       formData.append('nachname', document.getElementById('nachname').value);
       formData.append('email', document.getElementById('email').value);
       formData.append('telefon', document.getElementById('telefon').value);
+      formData.append('kontakt_strasse', document.getElementById('kontakt_strasse').value);
+      formData.append('kontakt_plz', document.getElementById('kontakt_plz').value);
+      formData.append('kontakt_ort', document.getElementById('kontakt_ort').value);
       formData.append('ergebnis', formatCurrency(value));
 
       fetch('submit.php', {
