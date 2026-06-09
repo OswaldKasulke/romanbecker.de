@@ -1569,8 +1569,11 @@
       formData.append('wohnflaeche', document.getElementById('wohnflaeche').value);
       formData.append('grundstuecksflaeche', document.getElementById('grundstuecksflaeche').value);
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
-      formData.append('zustand', zustandEl ? zustandEl.value : 'k.A.');
+      formData.append('zustand', zustandEl ? zustandEl.value : '');
       formData.append('baujahr', document.getElementById('baujahr').value);
+      formData.append('zimmer', document.getElementById('zimmer').value);
+      formData.append('einheiten', document.getElementById('einheiten').value);
+      formData.append('erschliessung', document.getElementById('erschliessung').value);
       formData.append('immo_strasse', document.getElementById('immo_strasse').value);
       formData.append('immo_plz', document.getElementById('immo_plz').value);
       formData.append('immo_ort', document.getElementById('immo_ort').value);
