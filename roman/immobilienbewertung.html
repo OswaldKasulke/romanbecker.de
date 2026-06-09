@@ -1033,6 +1033,26 @@
               </select>
             </div>
 
+            <!-- Miete IST / SOLL (Wohnung / Haus / MFH) -->
+            <div id="field-miete-group" style="display:none">
+              <div class="field-row">
+                <div class="field">
+                  <label for="miete_ist">Kaltmiete IST (monatlich)</label>
+                  <div class="field__unit" data-unit="€">
+                    <input type="number" id="miete_ist" name="miete_ist" placeholder="z.B. 1.200" min="0">
+                  </div>
+                  <p class="field__hint">Aktuelle Kaltmiete – 0 bei Eigennutzung</p>
+                </div>
+                <div class="field">
+                  <label for="miete_soll">Kaltmiete SOLL (monatlich)</label>
+                  <div class="field__unit" data-unit="€">
+                    <input type="number" id="miete_soll" name="miete_soll" placeholder="z.B. 1.400" min="0">
+                  </div>
+                  <p class="field__hint">Erzielbare Marktmiete</p>
+                </div>
+              </div>
+            </div>
+
             <div class="step__buttons">
               <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
               <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
@@ -1275,15 +1295,19 @@
       var fieldZimmer = document.getElementById('field-zimmer');
       var fieldEinheiten = document.getElementById('field-einheiten');
       var fieldErschliessung = document.getElementById('field-erschliessung');
+      var fieldMiete = document.getElementById('field-miete-group');
 
       fieldZimmer.style.display = 'none';
       fieldEinheiten.style.display = 'none';
       fieldErschliessung.style.display = 'none';
+      fieldMiete.style.display = 'none';
 
       if (art === 'wohnung' || art === 'haus') {
         fieldZimmer.style.display = 'block';
+        fieldMiete.style.display = 'block';
       } else if (art === 'mehrfamilienhaus') {
         fieldEinheiten.style.display = 'block';
+        fieldMiete.style.display = 'block';
       } else if (art === 'grundstueck') {
         fieldErschliessung.style.display = 'block';
       }
@@ -1574,6 +1598,8 @@
       formData.append('zimmer', document.getElementById('zimmer').value);
       formData.append('einheiten', document.getElementById('einheiten').value);
       formData.append('erschliessung', document.getElementById('erschliessung').value);
+      formData.append('miete_ist', document.getElementById('miete_ist').value);
+      formData.append('miete_soll', document.getElementById('miete_soll').value);
       formData.append('immo_strasse', document.getElementById('immo_strasse').value);
       formData.append('immo_plz', document.getElementById('immo_plz').value);
       formData.append('immo_ort', document.getElementById('immo_ort').value);
