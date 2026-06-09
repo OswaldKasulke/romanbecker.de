@@ -1182,7 +1182,7 @@
                 <p><strong>Wichtiger Hinweis zur individuellen Preisgestaltung</strong></p>
                 <p>Bitte beachten Sie, dass dieser berechnete Wert als fundierte Orientierungshilfe dient. Der tatsächliche Angebotspreis am Markt kann von diesem Wert abweichen, wenn besondere Merkmale vorliegen:</p>
                 <p><strong>Besondere Lage:</strong> Immobilien in Top-Lagen (z.&nbsp;B. Köln-Lindenthal) erzielen oft signifikante Aufschläge.</p>
-                <p><strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.</p>
+                <p id="result-note-objekttyp"><strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.</p>
                 <p><strong>Individuelle Ausstattung:</strong> Exklusive Einbauten oder historische Details werden in der Standardformel nicht vollumfänglich erfasst.</p>
                 <p><strong>Unser Tipp:</strong> Für eine exakte Punktlandung beim Verkaufspreis empfiehlt sich eine persönliche Begehung durch mich.</p>
               </div>
@@ -1596,6 +1596,14 @@
       // Grundstück-Hinweis ein-/ausblenden
       var art = document.querySelector('input[name="objektart"]:checked').value;
       document.getElementById('result-grundstueck-hinweis').style.display = art === 'grundstueck' ? 'block' : 'none';
+
+      // Objekt-Typ-Hinweis je nach Objektart anpassen
+      var objekttypHinweis = document.getElementById('result-note-objekttyp');
+      if (art === 'grundstueck') {
+        objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Lässt der Bebauungsplan den Bau eines <strong>Mehrfamilienhauses</strong> zu, weichen die erzielbaren Preise <strong>signifikant</strong> vom angezeigten Wert ab — ein MFH-Grundstück ist deutlich mehr wert als ein reines EFH-Grundstück. Die Bebauungsrichtlinien sollten vor dem Verkauf geprüft werden.';
+      } else {
+        objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.';
+      }
 
       // PLZ-Hinweis im Ergebnis
       var plz = (document.getElementById('immo_plz').value || '').trim();
