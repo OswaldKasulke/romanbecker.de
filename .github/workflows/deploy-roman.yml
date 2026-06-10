@@ -1,0 +1,26 @@
+name: Deploy romanbecker.de via FTP
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'roman/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: w019d9c9.kasserver.com
+          username: w019d9c9
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: roman/
+          server-dir: /romanbecker.de/root/
+          protocol: ftp
+          port: 21
