@@ -834,13 +834,6 @@
       }
     }
   </style>
-  <!-- ClickRank.ai SEO verification -->
-  <script>
-    var clickRankAi = document.createElement("script");
-    clickRankAi.src = "https://js.clickrank.ai/seo/4c44e18d-84e4-4e10-9bf0-bec62a93d56f/script?" + new Date().getTime();
-    clickRankAi.async = true;
-    document.head.appendChild(clickRankAi);
-  </script>
 
 </head>
 <body>
@@ -949,37 +942,8 @@
             </div>
           </div>
 
-          <!-- STEP 2: Adresse der Immobilie -->
+          <!-- STEP 2: Flächen -->
           <div class="step" data-step="2">
-            <h2 class="step__title">Adresse der Immobilie</h2>
-            <p class="step__subtitle">Wo befindet sich die Immobilie? (Nicht Ihre Wohnadresse.)</p>
-
-            <div class="field" id="field-immo-strasse">
-              <label for="immo_strasse">Straße + Hausnr.</label>
-              <input type="text" id="immo_strasse" name="immo_strasse" placeholder="Musterstraße 12">
-              <p class="field__hint">Optional – hilft bei der genauen Lagebewertung.</p>
-            </div>
-
-            <div class="field-row">
-              <div class="field" id="field-immo-plz">
-                <label for="immo_plz">PLZ *</label>
-                <input type="text" id="immo_plz" name="immo_plz" placeholder="50939" maxlength="5" required>
-                <p class="field__error">Bitte PLZ eingeben.</p>
-              </div>
-              <div class="field">
-                <label for="immo_ort">Ort</label>
-                <input type="text" id="immo_ort" name="immo_ort" placeholder="Köln" value="Köln">
-              </div>
-            </div>
-
-            <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(2)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(2)">Weiter</button>
-            </div>
-          </div>
-
-          <!-- STEP 3: Flächen -->
-          <div class="step" data-step="3">
             <h2 class="step__title">Wie groß ist die Immobilie?</h2>
             <p class="step__subtitle">Geben Sie die Fläche(n) an.</p>
 
@@ -1000,13 +964,13 @@
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(2)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(2)">Weiter</button>
             </div>
           </div>
 
-          <!-- STEP 4: Zusatzinfos -->
-          <div class="step" data-step="4">
+          <!-- STEP 3: Zusatzinfos -->
+          <div class="step" data-step="3">
             <h2 class="step__title">Weitere Angaben</h2>
             <p class="step__subtitle" id="step3-subtitle">Helfen Sie uns, den Wert genauer einzuschätzen.</p>
 
@@ -1033,23 +997,30 @@
               </select>
             </div>
 
-            <!-- Miete IST / SOLL (Wohnung / Haus / MFH) -->
-            <div id="field-miete-group" style="display:none">
-              <div class="field-row">
-                <div class="field">
-                  <label for="miete_ist">Kaltmiete IST (monatlich)</label>
-                  <div class="field__unit" data-unit="€">
-                    <input type="number" id="miete_ist" name="miete_ist" placeholder="z.B. 1.200" min="0">
-                  </div>
-                  <p class="field__hint">Aktuelle Kaltmiete – 0 bei Eigennutzung</p>
-                </div>
-                <div class="field">
-                  <label for="miete_soll">Kaltmiete SOLL (monatlich)</label>
-                  <div class="field__unit" data-unit="€">
-                    <input type="number" id="miete_soll" name="miete_soll" placeholder="z.B. 1.400" min="0">
-                  </div>
-                  <p class="field__hint">Erzielbare Marktmiete</p>
-                </div>
+            <div class="step__buttons">
+              <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Kaltmiete -->
+          <div class="step" data-step="4">
+            <h2 class="step__title">Monatliche Kaltmiete</h2>
+            <p class="step__subtitle">Falls die Immobilie vermietet ist oder vermietet werden soll.</p>
+
+            <div class="field">
+              <label for="mietart">Art der Miete</label>
+              <select id="mietart" name="mietart">
+                <option value="">Nicht vermietet / keine Angabe</option>
+                <option value="ist">Ist-Miete (aktuelle Miete)</option>
+                <option value="soll">Soll-Miete (Marktmiete)</option>
+              </select>
+            </div>
+
+            <div class="field" id="field-miete" style="display:none">
+              <label for="miete">Kaltmiete pro Monat</label>
+              <div class="field__unit" data-unit="€">
+                <input type="number" id="miete" name="miete" placeholder="z.B. 1200" min="0" max="100000">
               </div>
             </div>
 
@@ -1129,25 +1100,25 @@
               <p class="field__error">Bitte gültige E-Mail eingeben.</p>
             </div>
 
-            <div class="field" id="field-telefon">
-              <label for="telefon">Telefon *</label>
-              <input type="tel" id="telefon" name="telefon" placeholder="+49 ..." required>
-              <p class="field__error">Bitte Telefonnummer eingeben.</p>
-            </div>
-
             <div class="field">
-              <label for="kontakt_strasse">Ihre Adresse (Straße &amp; Hausnummer)</label>
-              <input type="text" id="kontakt_strasse" name="kontakt_strasse" placeholder="Musterstraße 12">
+              <label for="telefon">Telefon (optional)</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="+49 ...">
             </div>
 
             <div class="field-row">
               <div class="field">
-                <label for="kontakt_plz">PLZ</label>
-                <input type="text" id="kontakt_plz" name="kontakt_plz" placeholder="50939" maxlength="5">
+                <label for="strasse">Straße + Hausnr.</label>
+                <input type="text" id="strasse" name="strasse" placeholder="Musterstraße 12">
               </div>
-              <div class="field">
-                <label for="kontakt_ort">Ort</label>
-                <input type="text" id="kontakt_ort" name="kontakt_ort" placeholder="Köln">
+              <div class="field-row" style="grid-template-columns: 100px 1fr">
+                <div class="field">
+                  <label for="plz">PLZ</label>
+                  <input type="text" id="plz" name="plz" placeholder="50939" maxlength="5">
+                </div>
+                <div class="field">
+                  <label for="stadt">Stadt</label>
+                  <input type="text" id="stadt" name="stadt" placeholder="Köln" value="Köln">
+                </div>
               </div>
             </div>
 
@@ -1173,16 +1144,11 @@
               <p class="result__range" id="result-range"></p>
               <p id="result-plz" style="font-size:0.8125rem;color:var(--gray-500);margin-top:0.5rem;"></p>
 
-              <div id="result-grundstueck-hinweis" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
-                <p style="margin:0 0 0.4rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Hinweis zur Grundstücksbewertung</p>
-                <p style="margin:0;font-size:0.9rem;line-height:1.5;">Der angezeigte Wert basiert auf der Nutzung als <strong>Einfamilienhaus-Grundstück</strong>. Sollte auf dem Grundstück ein <strong>Mehrfamilienhaus</strong> realisierbar sein (z.&nbsp;B. durch entsprechende Ausweisung im Bebauungsplan), kann der tatsächliche Marktwert um ein <strong>Vielfaches höher</strong> liegen. Eine genaue Einschätzung erfordert die Prüfung des Bebauungsplans und eine persönliche Besichtigung.</p>
-              </div>
-
               <div class="result__note">
                 <p><strong>Wichtiger Hinweis zur individuellen Preisgestaltung</strong></p>
                 <p>Bitte beachten Sie, dass dieser berechnete Wert als fundierte Orientierungshilfe dient. Der tatsächliche Angebotspreis am Markt kann von diesem Wert abweichen, wenn besondere Merkmale vorliegen:</p>
-                <p><strong>Besondere Lage:</strong> Immobilien in Top-Lagen (z.&nbsp;B. Köln-Lindenthal am Rautenstrauchkanal) erzielen signifikante Preisaufschläge.</p>
-                <p id="result-note-objekttyp"><strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.</p>
+                <p><strong>Besondere Lage:</strong> Immobilien in Top-Lagen (z.&nbsp;B. Köln-Lindenthal) erzielen oft signifikante Aufschläge.</p>
+                <p><strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.</p>
                 <p><strong>Individuelle Ausstattung:</strong> Exklusive Einbauten oder historische Details werden in der Standardformel nicht vollumfänglich erfasst.</p>
                 <p><strong>Unser Tipp:</strong> Für eine exakte Punktlandung beim Verkaufspreis empfiehlt sich eine persönliche Begehung durch mich.</p>
               </div>
@@ -1273,17 +1239,20 @@
       return checked && checked.value === 'grundstueck';
     }
 
-    function prepareStep3() {
+    function prepareStep2() {
       var art = document.querySelector('input[name="objektart"]:checked');
       if (!art) return;
       var isGrund = art.value === 'grundstueck';
       var fieldWf = document.getElementById('field-wohnflaeche');
       var fieldGf = document.getElementById('field-grundstueck');
       var wfInput = document.getElementById('wohnflaeche');
+      // Wohnfläche nur bei Wohnung/Haus/MFH
       fieldWf.style.display = isGrund ? 'none' : 'block';
       wfInput.required = !isGrund;
+      // Grundstücksfläche immer sichtbar, aber Pflichtfeld nur bei Grundstück
       fieldGf.style.display = 'block';
-      var stepTitle = document.querySelector('.step[data-step="3"] .step__title');
+      // Überschrift anpassen
+      var stepTitle = document.querySelector('.step[data-step="2"] .step__title');
       if (isGrund) {
         stepTitle.textContent = 'Wie groß ist das Grundstück?';
       } else {
@@ -1293,47 +1262,49 @@
 
     function nextStep(from) {
       if (!validateStep(from)) return;
-      if (from === 1) {}
+      if (from === 1) prepareStep2();
       if (from === 2) prepareStep3();
-      if (from === 3) prepareStep4();
+      // Grundstück: Schritt 4 (Kaltmiete) und Schritt 5 (Zustand & Baujahr) überspringen
       var next = from + 1;
-      // Grundstück: Schritt 5 (Zustand & Baujahr) überspringen
+      if (next === 4 && isGrundstueck()) next = 5;
       if (next === 5 && isGrundstueck()) next = 6;
       showStep(next);
     }
 
     function prevStep(from) {
+      // Grundstück: Schritt 5 und Schritt 4 beim Zurückgehen überspringen
       var prev = from - 1;
-      // Grundstück: Schritt 5 beim Zurückgehen überspringen
       if (prev === 5 && isGrundstueck()) prev = 4;
+      if (prev === 4 && isGrundstueck()) prev = 3;
       showStep(prev);
     }
 
     // ===========================
     // CONDITIONAL FIELDS
     // ===========================
-    function prepareStep4() {
+    function prepareStep3() {
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var fieldZimmer = document.getElementById('field-zimmer');
       var fieldEinheiten = document.getElementById('field-einheiten');
       var fieldErschliessung = document.getElementById('field-erschliessung');
-      var fieldMiete = document.getElementById('field-miete-group');
 
       fieldZimmer.style.display = 'none';
       fieldEinheiten.style.display = 'none';
       fieldErschliessung.style.display = 'none';
-      fieldMiete.style.display = 'none';
 
       if (art === 'wohnung' || art === 'haus') {
         fieldZimmer.style.display = 'block';
-        fieldMiete.style.display = 'block';
       } else if (art === 'mehrfamilienhaus') {
         fieldEinheiten.style.display = 'block';
-        fieldMiete.style.display = 'block';
       } else if (art === 'grundstueck') {
         fieldErschliessung.style.display = 'block';
       }
     }
+
+    // Show/hide miete field
+    document.getElementById('mietart').addEventListener('change', function() {
+      document.getElementById('field-miete').style.display = this.value ? 'block' : 'none';
+    });
 
     // ===========================
     // VALIDATION
@@ -1354,17 +1325,6 @@
       }
 
       if (step === 2) {
-        var immoPlz = document.getElementById('immo_plz');
-        var fieldImmoPlz = document.getElementById('field-immo-plz');
-        if (!immoPlz.value || immoPlz.value.length < 5) {
-          fieldImmoPlz.classList.add('field--error');
-          valid = false;
-        } else {
-          fieldImmoPlz.classList.remove('field--error');
-        }
-      }
-
-      if (step === 3) {
         var wf = document.getElementById('wohnflaeche');
         var fieldWf = document.getElementById('field-wohnflaeche');
         var art = document.querySelector('input[name="objektart"]:checked').value;
@@ -1376,6 +1336,7 @@
           fieldWf.classList.remove('field--error');
         }
 
+        // Grundstück needs Grundstücksfläche
         if (art === 'grundstueck') {
           var gf = document.getElementById('grundstuecksflaeche');
           var fieldGf = document.getElementById('field-grundstueck');
@@ -1404,8 +1365,7 @@
         var fields = [
           { id: 'vorname', fieldId: 'field-vorname' },
           { id: 'nachname', fieldId: 'field-nachname' },
-          { id: 'email', fieldId: 'field-email' },
-          { id: 'telefon', fieldId: 'field-telefon' }
+          { id: 'email', fieldId: 'field-email' }
         ];
 
         fields.forEach(function(f) {
@@ -1493,35 +1453,18 @@
 
     // Bodenrichtwert €/m² für Grundstücke
     var plzBoden = {
-      // Köln-Innenstadt (amtlich 2026)
-      '50667': 5556, '50668': 2297, '50670': 2313, '50672': 2533,
-      '50674': 1954, '50676': 2144, '50677': 1802, '50678': 2571, '50679': 1716,
-      // Köln-Lindenthal (amtlich 2026)
-      '50931': 2074, '50933': 1520, '50935': 1782, '50937': 1959, '50939': 1620,
-      '50858': 1437, '50859': 1067,
-      // Köln-Rodenkirchen (amtlich 2026)
-      '50968': 1816, '50969': 1057, '50996': 1409, '50997': 679, '50999': 1349,
-      // Köln-Ehrenfeld (amtlich 2026)
-      '50823': 1190, '50825': 1056, '50827': 1033, '50829': 859,
-      // Köln-Nippes (amtlich 2026)
-      '50733': 1127, '50735': 1307, '50737': 1043, '50739': 1031,
-      // Köln-Chorweiler (amtlich 2026)
-      '50765': 820, '50767': 753, '50769': 699,
-      // Köln-Mülheim (amtlich 2026)
-      '51061': 711, '51063': 773, '51065': 892, '51067': 831, '51069': 798,
-      // Köln-Kalk (amtlich 2026)
-      '51103': 796, '51105': 792, '51107': 764, '51109': 829,
-      // Köln-Porz (amtlich 2026)
-      '51143': 759, '51145': 739, '51147': 571, '51149': 759,
-      // Umland
-      '50259': 620,  // Pulheim (Zentrumsnah ~670, Durchschnitt ~620)
-      '50126': 172, '50127': 172, '50129': 167,  // Bergheim
-      '50169': 187, '50170': 151, '50171': 161,  // Kerpen
-      '50226': 266,  // Frechen
-      '50321': 309,  // Brühl
-      '50374': 165,  // Erftstadt
-      '51375': 450, '51377': 450, '51379': 450, '51381': 450,  // Leverkusen
-      '51427': 847, '51429': 847, '51465': 411, '51467': 411,  // Bergisch Gladbach
+      '50667': 2500, '50668': 2200, '50670': 2000, '50672': 1800, '50673': 1600,
+      '50674': 2200, '50675': 1600, '50676': 2000, '50677': 1500, '50678': 1500,
+      '50679': 1000,
+      '50733': 1200, '50735': 1000, '50737': 800, '50739': 650,
+      '50765': 400, '50767': 400, '50769': 450,
+      '50823': 1200, '50825': 1200, '50827': 700, '50829': 600,
+      '50858': 900, '50859': 1100,
+      '50931': 2000, '50933': 1200, '50935': 1100, '50937': 1000, '50939': 1200,
+      '50996': 1100, '50997': 1200, '50999': 1300,
+      '51061': 600, '51063': 600, '51065': 600, '51067': 750, '51069': 800,
+      '51103': 600, '51105': 600, '51107': 700, '51109': 700,
+      '51143': 500, '51145': 450, '51147': 450, '51149': 450,
     };
 
     var defaultWohnPreis    = 4200;  // Fallback: Köln-Durchschnitt
@@ -1537,7 +1480,8 @@
       var grundstuecksflaeche = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
       var zustand = zustandEl ? zustandEl.value : 'normal';
-      var plz = (document.getElementById('immo_plz').value || '').trim();
+      var miete = parseFloat(document.getElementById('miete').value) || 0;
+      var plz = (document.getElementById('plz').value || '').trim();
 
       // Zustandsfaktor
       var conditionMult = { saniert: 1.1, normal: 1.0, unsaniert: 0.9 };
@@ -1556,21 +1500,16 @@
         var eFaktor = erschlFaktor[erschl] || 1.0;
         value = grundstuecksflaeche * (bodenrichtwert * 0.7) * eFaktor;
 
-      } else {
-        var mieteIst  = parseFloat((document.getElementById('miete_ist').value  || '').replace(',','.')) || 0;
-        var mieteSoll = parseFloat((document.getElementById('miete_soll').value || '').replace(',','.')) || 0;
-        var kaltmiete = mieteIst || mieteSoll; // IST bevorzugt, sonst SOLL
+      } else if (miete > 0) {
+        // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator × Zustand
+        value = miete * 12 * multiplikator * faktor;
 
-        if (kaltmiete > 0) {
-          // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator × Zustandsfaktor
-          value = kaltmiete * 12 * multiplikator * faktor;
-        } else {
-          // Sachwert-Fallback: m² × PLZ-Preis/m² × Objektart-Faktor × Zustand
-          var artFaktor = art === 'mehrfamilienhaus' ? 0.9
-                        : art === 'haus'             ? 1.05
-                        : 1.0;
-          value = wohnflaeche * preisProQm * artFaktor * faktor;
-        }
+      } else {
+        // Sachwert: m² × PLZ-Preis/m² × Objektart-Faktor × Zustand
+        var artFaktor = art === 'mehrfamilienhaus' ? 0.9
+                      : art === 'haus'             ? 1.05
+                      : 1.0; // wohnung
+        value = wohnflaeche * preisProQm * artFaktor * faktor;
       }
 
       // Auf volle 5.000 runden
@@ -1594,7 +1533,6 @@
     function submitForm() {
       if (!validateStep(6)) return;
 
-
       var value = calculateValue();
       var low = Math.round(value * 0.9 / 5000) * 5000;
       var high = Math.round(value * 1.1 / 5000) * 5000;
@@ -1602,20 +1540,8 @@
       document.getElementById('result-value').textContent = formatCurrency(value);
       document.getElementById('result-range').textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
 
-      // Grundstück-Hinweis ein-/ausblenden
-      var art = document.querySelector('input[name="objektart"]:checked').value;
-      document.getElementById('result-grundstueck-hinweis').style.display = art === 'grundstueck' ? 'block' : 'none';
-
-      // Objekt-Typ-Hinweis je nach Objektart anpassen
-      var objekttypHinweis = document.getElementById('result-note-objekttyp');
-      if (art === 'grundstueck') {
-        objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Lässt der Bebauungsplan den Bau eines <strong>Mehrfamilienhauses</strong> zu, weichen die erzielbaren Preise <strong>signifikant</strong> vom angezeigten Wert ab — ein MFH-Grundstück ist deutlich mehr wert als ein reines EFH-Grundstück. Die Bebauungsrichtlinien sollten vor dem Verkauf geprüft werden.';
-      } else {
-        objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.';
-      }
-
       // PLZ-Hinweis im Ergebnis
-      var plz = (document.getElementById('immo_plz').value || '').trim();
+      var plz = (document.getElementById('plz').value || '').trim();
       var plzHinweis = document.getElementById('result-plz');
       if (plzHinweis) {
         plzHinweis.textContent = plz && (plzWohnPreise[plz] || plzBoden[plz])
@@ -1637,23 +1563,16 @@
       formData.append('wohnflaeche', document.getElementById('wohnflaeche').value);
       formData.append('grundstuecksflaeche', document.getElementById('grundstuecksflaeche').value);
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
-      formData.append('zustand', zustandEl ? zustandEl.value : '');
+      formData.append('zustand', zustandEl ? zustandEl.value : 'k.A.');
       formData.append('baujahr', document.getElementById('baujahr').value);
-      formData.append('zimmer', document.getElementById('zimmer').value);
-      formData.append('einheiten', document.getElementById('einheiten').value);
-      formData.append('erschliessung', document.getElementById('erschliessung').value);
-      formData.append('miete_ist', document.getElementById('miete_ist').value);
-      formData.append('miete_soll', document.getElementById('miete_soll').value);
-      formData.append('immo_strasse', document.getElementById('immo_strasse').value);
-      formData.append('immo_plz', document.getElementById('immo_plz').value);
-      formData.append('immo_ort', document.getElementById('immo_ort').value);
+      formData.append('miete', document.getElementById('miete').value);
       formData.append('vorname', document.getElementById('vorname').value);
       formData.append('nachname', document.getElementById('nachname').value);
       formData.append('email', document.getElementById('email').value);
       formData.append('telefon', document.getElementById('telefon').value);
-      formData.append('kontakt_strasse', document.getElementById('kontakt_strasse').value);
-      formData.append('kontakt_plz', document.getElementById('kontakt_plz').value);
-      formData.append('kontakt_ort', document.getElementById('kontakt_ort').value);
+      formData.append('strasse', document.getElementById('strasse').value);
+      formData.append('plz', document.getElementById('plz').value);
+      formData.append('stadt', document.getElementById('stadt').value);
       formData.append('ergebnis', formatCurrency(value));
 
       fetch('submit.php', {
