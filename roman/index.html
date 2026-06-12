@@ -1427,23 +1427,29 @@ color: var(--gray-600);
 line-height: 1.6;
 }
 .empfehlung__card {
-background: #d0d0d0;
+background: var(--white);
 border-radius: var(--radius-lg);
-padding: var(--space-10, 2.5rem);
+padding: var(--space-8);
+box-shadow: var(--shadow);
 display: flex;
 flex-direction: column;
+border-top: 3px solid var(--gold);
+transition: box-shadow var(--transition), transform var(--transition);
+}
+.empfehlung__card:hover {
+box-shadow: var(--shadow-lg);
+transform: translateY(-2px);
 }
 .empfehlung__card .section-label {
 display: block;
 margin-bottom: var(--space-2);
-color: #2a2a2a;
 }
 .empfehlung__card h3, .empfehlung__card .card-h {
-color: var(--white);
+color: var(--navy);
 margin-bottom: var(--space-4);
 }
 .empfehlung__card p {
-color: rgba(255,255,255,0.85);
+color: var(--gray-600);
 font-size: 0.9375rem;
 margin-bottom: var(--space-6);
 flex: 1;
@@ -1459,14 +1465,7 @@ border-color: var(--gold-light);
 transform: translateY(-1px);
 }
 .empfehlung__card .btn {
-background: var(--gold);
-color: var(--navy);
-border-color: var(--white);
-}
-.empfehlung__card .btn:hover {
-background: var(--gold-light);
-border-color: var(--gold-light);
-transform: translateY(-1px);
+align-self: flex-start;
 }
 .maps {
 background: var(--gray-100);
@@ -3863,7 +3862,7 @@ WE B.05</div>
   </section>
 
   <!-- EMPFEHLUNG & NETZWERK -->
-  <section id="empfehlung" class="section">
+  <section id="empfehlung" class="section section--gray">
     <div class="container">
       <span class="section-label">Netzwerk &amp; Empfehlung</span>
       <h2 class="section-title">Zusammenarbeiten oder weiterempfehlen</h2>
@@ -3873,19 +3872,19 @@ WE B.05</div>
           <span class="section-label">Für Netzwerkpartner</span>
           <h3>Notare, Steuerberater &amp; Rechtsanwälte</h3>
           <p>Sie betreuen Mandanten, die eine Immobilie verkaufen möchten oder müssen? Ich freue mich über Ihre Empfehlung und garantiere eine diskrete, professionelle Betreuung Ihrer Klienten.</p>
-          <a href="#kontakt" class="btn">Kontakt aufnehmen</a>
+          <a href="#kontakt" class="btn btn--primary">Kontakt aufnehmen</a>
         </div>
         <div class="empfehlung__card">
           <span class="section-label">Für Weiterempfehlungen</span>
           <h3>Jemanden kennen, der verkaufen möchte?</h3>
           <p>Wenn Sie jemanden kennen, der eine Immobilie in Köln oder Umgebung verkaufen möchte – schreiben Sie mir einfach eine kurze WhatsApp-Nachricht.</p>
-          <a href="https://wa.me/491775156969?text=Hallo%20Roman%2C%20ich%20wurde%20empfohlen%20und%20m%C3%B6chte%20mich%20zum%20Thema%20Immobilienverkauf%20beraten%20lassen." target="_blank" rel="noopener" class="btn">Per WhatsApp empfehlen</a>
+          <a href="https://wa.me/491775156969?text=Hallo%20Roman%2C%20ich%20wurde%20empfohlen%20und%20m%C3%B6chte%20mich%20zum%20Thema%20Immobilienverkauf%20beraten%20lassen." target="_blank" rel="noopener" class="btn btn--primary">Per WhatsApp empfehlen</a>
         </div>
         <div class="empfehlung__card">
           <span class="section-label">Tippgeber-Programm</span>
-          <h3>1500 € für Ihren Tipp. Mindestens</h3>
-          <p>Stellen Sie den Kontakt zu jemandem her, der verkaufen möchte. Kommt es zum erfolgreichen Abschluss, erhalten Sie 1500 € Tippgeber-Provision. Mindestens. Kein Aufwand, kein Risiko.</p>
-          <a href="https://tippgeber.koeln/" target="_blank" rel="noopener" class="btn">Jetzt Tipp geben</a>
+          <h3>1.500 € für Ihren Tipp. Mindestens.</h3>
+          <p>Stellen Sie den Kontakt zu jemandem her, der verkaufen möchte. Kommt es zum erfolgreichen Abschluss, erhalten Sie 1.500 € Tippgeber-Provision. Mindestens. Kein Aufwand, kein Risiko.</p>
+          <a href="https://tippgeber.koeln/" target="_blank" rel="noopener" class="btn btn--gold-outline">Jetzt Tipp geben</a>
         </div>
       </div>
     </div>
