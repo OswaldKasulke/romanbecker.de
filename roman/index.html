@@ -723,7 +723,7 @@ top: 40px;
 .prozess__text {
 padding-bottom: var(--space-4);
 }
-.prozess__text h3 {
+.prozess__text h3, .prozess__text .card-h {
 font-size: 1.0625rem;
 line-height: 1.25;
 }
@@ -827,7 +827,7 @@ transform: translateY(-2px);
 font-size: 2rem;
 margin-bottom: var(--space-4);
 }
-.fuer-wen__card h3 {
+.fuer-wen__card h3, .fuer-wen__card .card-h {
 color: var(--navy);
 margin-bottom: var(--space-3);
 }
@@ -897,7 +897,7 @@ border-radius: 20px;
 padding: 2px 10px;
 margin-bottom: var(--space-2);
 }
-.prozess__text h3 {
+.prozess__text h3, .prozess__text .card-h {
 color: var(--navy);
 margin-bottom: var(--space-2);
 }
@@ -996,24 +996,21 @@ margin-bottom: var(--space-4);
 .about__qualifications h3 {
 margin-bottom: var(--space-6);
 }
+.about__qualifications h3,
 .about__qualifications h4 {
-font-size: 0.875rem;
+font-size: 1.125rem;
 font-weight: 700;
-text-transform: uppercase;
-letter-spacing: 0.08em;
-color: var(--gray-600);
-margin-bottom: var(--space-4);
+color: var(--navy);
+margin-bottom: var(--space-5);
 }
 .about__qualifications ul {
-display: grid;
-grid-template-columns: 1fr;
-gap: var(--space-2);
+columns: 1;
+gap: 0;
 }
 @media (min-width: 640px) {
 .about__qualifications ul {
-grid-template-columns: 1fr 1fr;
-column-gap: var(--space-6);
-align-items: start;
+columns: 2;
+column-gap: var(--space-8);
 }
 }
 .about__qualifications li {
@@ -1021,7 +1018,10 @@ display: flex;
 align-items: flex-start;
 gap: var(--space-3);
 font-size: 0.9375rem;
+line-height: 1.5;
 color: var(--gray-700, #374151);
+margin-bottom: var(--space-3);
+break-inside: avoid;
 }
 .about__qualifications li::before {
 content: '✓';
@@ -1410,7 +1410,7 @@ border-left-color: var(--gold);
 box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 12px 24px rgba(0,0,0,0.10);
 transform: translateY(-2px);
 }
-.stadtteil-card h3 {
+.stadtteil-card h3, .stadtteil-card .card-h {
 color: var(--navy);
 font-size: 1rem;
 margin-bottom: var(--space-1);
@@ -1438,7 +1438,7 @@ display: block;
 margin-bottom: var(--space-2);
 color: #2a2a2a;
 }
-.empfehlung__card h3 {
+.empfehlung__card h3, .empfehlung__card .card-h {
 color: var(--white);
 margin-bottom: var(--space-4);
 }
@@ -1858,9 +1858,9 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
           <span class="pipe">|</span>
           EVERNEST-Netzwerk
           <span class="pipe">|</span>
-          380+ Makler deutschlandweit
+          400+ Makler &amp; Partner deutschlandweit
           <span class="pipe">|</span>
-          5,0 ★ auf Google
+          <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln/@50.9436867,6.9395297,255m/data=!3m2!1e3!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m16!1m9!3m8!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!2sRoman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln!8m2!3d50.9436867!4d6.9406741!9m1!1b1!16s%2Fg%2F11w4rp9vvy!3m5!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!16s%2Fg%2F11w4rp9vvy?entry=ttu&amp;g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">5,0 ★ auf Google</a>
         </p>
         <div class="hero__ctas">
           <a href="immobilienbewertung.html" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Köln durch Roman Becker">Immobilienbewertung</a>
@@ -1881,34 +1881,6 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     </div>
   </section>
 
-  <!-- TRUST-LEISTE -->
-  <section id="trust" class="trust">
-    <div class="container">
-      <div class="trust__grid">
-        <div class="trust__item">
-          <div class="trust__value">380+</div>
-          <div class="trust__label">Makler im Netzwerk</div>
-        </div>
-        <div class="trust__item">
-          <div class="trust__value">52</div>
-          <div class="trust__label">Standorte deutschlandweit</div>
-        </div>
-        <a class="trust__item trust__item--highlight" href="https://www.evernest.com/de/listing/5ENiQl64Q9aofYcukySXKD/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;display:block;cursor:pointer;">
-          <div class="trust__value">10,95 Mio. €</div>
-          <div class="trust__label">Teuerstes Objekt in der Vermittlung</div>
-        </a>
-        <a class="trust__item" href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9496197,2.0739353,7.01z/data=!3m1!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m10!1m2!2m1!1sroman+becker!3m6!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!15sCgxyb21hbiBiZWNrZXJaDiIMcm9tYW4gYmVja2VykgEScmVhbF9lc3RhdGVfYWdlbnRzmgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxYWJWVlZSakZQU0ZKbVZHMWtkazR4U1RWTlZrSnRWVWM1VEU5VlJSQULgAQD6AQUIhQIQRQ!16s%2Fg%2F11w4rp9vvy?entry=ttu&amp;g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" aria-label="Google-Bewertungen von Roman Becker ansehen" style="color:inherit;text-decoration:none;display:block;cursor:pointer;">
-          <div class="trust__value">5,0 ★</div>
-          <div class="trust__label">Google-Bewertung</div>
-        </a>
-        <div class="trust__item" hidden>
-          <div class="trust__value"><!-- TRUST-ACTIVE-COUNT -->5<!-- /TRUST-ACTIVE-COUNT --></div>
-          <div class="trust__label">Objekte in der Vermarktung</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FÜR WEN -->
   <section id="fuer-wen" class="section">
     <div class="container">
@@ -1919,21 +1891,21 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
 
         <a href="#prozess" class="card fuer-wen__card" style="text-decoration:none">
           <div class="fuer-wen__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-          <h3>Direkt verkaufen</h3>
+          <p class="card-h">Direkt verkaufen</p>
           <p>Sie möchten Ihre Immobilie verkaufen, ohne dass Nachbarn oder Bekannte es direkt mitbekommen. Mit dem EVERNEST-Käuferpool vermarkten wir Off-Market – ohne öffentliches Inserat.</p>
           <span class="card-link">Zum Prozess &rarr;</span>
         </a>
 
         <a href="#faq" class="card fuer-wen__card" style="text-decoration:none">
           <div class="fuer-wen__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
-          <h3>Erbschaft &amp; Erbengemeinschaft</h3>
+          <p class="card-h">Erbschaft &amp; Erbengemeinschaft</p>
           <p>Sie haben eine Immobilie geerbt und wissen nicht, wie es weitergeht. Ich kläre Erbschein, Grundbuchauszug und Erbengemeinschaft und begleite Sie diskret bis zum Abschluss.</p>
           <span class="card-link">Häufige Fragen &rarr;</span>
         </a>
 
         <a href="#kontakt" class="card fuer-wen__card" style="text-decoration:none">
           <div class="fuer-wen__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <h3>Kapitalanlage &amp; Portfolio</h3>
+          <p class="card-h">Kapitalanlage &amp; Portfolio</p>
           <p>Sie möchten eine Kapitalanlageimmobilie oder ein Portfolio verkaufen. Über das EVERNEST-Netzwerk erreiche ich qualifizierte Investoren bundesweit – schnell und diskret.</p>
           <span class="card-link">Kontakt aufnehmen &rarr;</span>
         </a>
@@ -1946,15 +1918,15 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   <section id="prozess" class="section section--gray">
     <div class="container">
       <span class="section-label">Mein Vorgehen</span>
-      <h2 class="section-title">Ihr Weg zum erfolgreichen Verkauf</h2>
-      <p class="section-subtitle">Sechs klare Schritte – transparent, diskret und auf Ihren Zeitplan abgestimmt.</p>
+      <h2 class="section-title">Warum erzielen wir regelmäßig Höchstpreise?</h2>
+      <p class="section-subtitle" style="max-width:100%;"><strong>Drei Worte: Reichweite, Reichweite, Reichweite.</strong><br>Wir erreichen Käufer auf <strong>allen</strong> großen Immobilienportalen, auf Social Media und über unseren Käufer-Newsletter — mit professionellen Exposés, hochwertigen Fotos, überzeugendem Video-Content und speziell für Ihre Immobilie produziertem Social-Media-Content, der Interessenten zu Käufern macht.</p>
 
       <div class="prozess__steps">
         <div class="prozess__step">
           <div class="prozess__number">1</div>
           <div class="prozess__text">
             <span class="prozess__timing">Woche 1</span>
-            <h3>Erstbewertung &amp; Strategiegespräch</h3>
+            <p class="card-h">Erstbewertung &amp; Strategiegespräch</p>
             <p>Wir treffen uns zur Einwertung der Immobilie vor Ort. Ich analysiere Lage, Zustand, Baujahr, Bautenstand, Energieeffizienz und Marktsituation – und gebe Ihnen eine fundierte, realistische Preiseinschätzung ohne versteckte Agenda.</p>
             <ul class="prozess__deliverables">
               <li>Marktpreiseinschätzung aufgrund aktueller Vergleichswerte, Gutachterzahlen, Ertragswertverfahren &amp; Bankenbewertung</li>
@@ -1966,8 +1938,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
         <div class="prozess__step">
           <div class="prozess__number">2</div>
           <div class="prozess__text">
-            <span class="prozess__timing">Woche 1–2</span>
-            <h3>Individuelle Verkaufsstrategie</h3>
+            <span class="prozess__timing">Woche 2</span>
+            <p class="card-h">Individuelle Verkaufsstrategie</p>
             <p>Auf Basis der Bewertung entwickle ich eine Strategie: Off-Market über den EVERNEST-Käuferpool, gezielte Ansprache ausgewählter Interessenten oder klassische Vermarktung auf den großen Portalen – je nach Ihrer Situation.</p>
             <ul class="prozess__deliverables">
               <li>Maklervertrag, Provisionsvereinbarung</li>
@@ -1979,12 +1951,12 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
         <div class="prozess__step">
           <div class="prozess__number">3</div>
           <div class="prozess__text">
-            <span class="prozess__timing">Woche 2–4</span>
-            <h3>Vermarktung &amp; Besichtigungen</h3>
-            <p>Professionelle Objektfotografie mit Bildnachbearbeitung, bei exklusiven Immobilien Drohnenaufnahmen und Objektvideo. Ein hochwertiges Exposé und gezielte Ansprache qualifizierter Käufer. Besichtigungen koordiniere ich – Sie müssen nichts selbst organisieren.</p>
+            <span class="prozess__timing">Woche 3–8</span>
+            <p class="card-h">Vermarktung &amp; Besichtigungen</p>
+            <p>Professionelle Objektfotografie mit Bildnachbearbeitung, bei exklusiven Immobilien Drohnenaufnahmen und Objektvideos. Ein hochwertiges Exposé und gezielte Ansprache qualifizierter Käufer. Besichtigungen koordiniere ich – Sie müssen nichts selbst organisieren.</p>
             <p style="margin-top:0.5rem"><a href="https://www.evernest.com/de/web-expose/view/?listingId=05663838-6f04-42e3-8b22-3d6f3267c944&amp;firstName=&amp;lastName=liebe%2Fr%20Interessent%2Fin&amp;agentId=57cf26ad-5862-4418-a036-9cad8a363d45" target="_blank" rel="noopener" style="color:var(--gold);font-size:0.875rem;font-weight:600;text-decoration:none;">→ Beispiel-Exposé ansehen</a></p>
             <ul class="prozess__deliverables">
-              <li>Professionelle Objektfotografie und 360°-Rundgang</li>
+              <li>Professionelle Objektfotografie, Drohnenaufnahmen und Videos</li>
               <li>Exposé-Erstellung und Schaltung auf allen großen Portalen; bestes Ranking als ImmoScout24 Gold Partner</li>
               <li>Koordination und Durchführung aller Besichtigungstermine</li>
             </ul>
@@ -1993,11 +1965,11 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
         <div class="prozess__step">
           <div class="prozess__number">4</div>
           <div class="prozess__text">
-            <span class="prozess__timing">Woche 4–10</span>
-            <h3>Käuferprüfung &amp; Kaufpreisverhandlung</h3>
+            <span class="prozess__timing">Woche 8–10</span>
+            <p class="card-h">Käuferprüfung &amp; Kaufpreisverhandlung</p>
             <p>Ich prüfe Bonität und Finanzierungsnachweis jedes Interessenten bevor Ihre Daten weitergegeben werden. Kaufpreisverhandlungen führe ich in Ihrem Interesse – transparent und ohne unnötigen Zeitdruck.</p>
             <ul class="prozess__deliverables">
-              <li>Bonitätsprüfung und Finanzierungsnachweis vor Datenweitergabe</li>
+              <li>Bonitätsprüfung und Finanzierungsnachweis</li>
               <li>Kaufpreisverhandlung mit qualifizierten Interessenten</li>
               <li>Reservierungsvereinbarung mit dem Käufer</li>
             </ul>
@@ -2006,8 +1978,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
         <div class="prozess__step">
           <div class="prozess__number">5</div>
           <div class="prozess__text">
-            <span class="prozess__timing">Ab Woche 10</span>
-            <h3>Notartermin</h3>
+            <span class="prozess__timing">Woche 10</span>
+            <p class="card-h">Notartermin</p>
             <p>Ich koordiniere den Notartermin inkl. Kaufvertragsprüfung, ggf. Abstimmung mit Steuerberater bei Bedarf.</p>
             <ul class="prozess__deliverables">
               <li>Notartermin-Koordination auch mit Dolmetscher</li>
@@ -2019,8 +1991,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
         <div class="prozess__step">
           <div class="prozess__number">6</div>
           <div class="prozess__text">
-            <span class="prozess__timing">Ab Woche 12</span>
-            <h3>Kaufpreiszahlung &amp; Schlüsselübergabe</h3>
+            <span class="prozess__timing">Woche 14</span>
+            <p class="card-h">Kaufpreiszahlung &amp; Schlüsselübergabe</p>
             <p>Wir übergeben gemeinsam die Immobilie an den Käufer.</p>
             <ul class="prozess__deliverables">
               <li>Zählerstände protokollieren</li>
@@ -2050,25 +2022,27 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
             Und was meine handwerklichen Fähigkeiten angeht: Leider habe ich keinen handwerklichen Beruf gelernt. In meinen eigenen Immobilien war mein Beitrag daher eher auf die groben Aufgaben spezialisiert – entkernen, Schutt schleppen und Baumaterial in höhere Stockwerke tragen. Mein handwerkliches Geschick hat sich durch das Schleppen allerdings erstaunlicherweise nicht verbessert. Das intensive Löchern der Handwerker mit Fragen hat mir dafür im Laufe der Zeit jedoch einiges an Wissen vermittelt. 😄
           </p>
           <p class="about__bio">
-            <a href="stadtteile/suelz.html">Mehr zu meinem Veedel Sülz →</a>
+            <a href="stadtteile/suelz.html" style="display:inline-block;background:#c2a990;color:#fff;font-weight:700;padding:0.35em 0.9em;border-radius:4px;text-decoration:none;letter-spacing:0.01em;">Mehr zu meinem Veedel Sülz →</a>
           </p>
 
           <div class="about__qualifications">
-            <h3>Qualifikationen &amp; Eigenschaften</h3>
+            <p class="card-h">Qualifikationen &amp; Eigenschaften</p>
             <ul>
               <li>IHK-zertifizierter Immobilienmakler</li>
               <li>Spezialisiert auf Wohnimmobilien</li>
-              <li>Tiefer Marktkenntnis im Großraum Köln &amp; Rheinland</li>
-              <li>Diskreter Off-Market-Verkauf möglich</li>
-              <li>Zugang zum EVERNEST-Käuferpool mit vorgemerkten Käufern</li>
+              <li>Tiefe Marktkenntnis im Großraum Köln &amp; Rheinland</li>
               <li>Tiefe Kenntnis von sanierungs- und renovierungsbedürftigen Objekten</li>
+              <li>Selbst aktiver Kapitalanleger &amp; Vermieter — ich kenne die Investorenperspektive aus eigener Erfahrung</li>
+              <li>Umfangreiches Handwerkernetzwerk für Renovierung &amp; Aufwertung</li>
+              <li>Zugang zum EVERNEST-Käuferpool mit vorgemerkten Käufern</li>
+              <li>Diskreter Off-Market-Verkauf möglich</li>
               <li>Erfahrung mit Erbschaftsimmobilien &amp; Erbengemeinschaften</li>
               <li>Vollständige Begleitung: von der Bewertung bis zur Schlüsselübergabe</li>
             </ul>
           </div>
 
           <p class="about__evernest">
-            Mit dem EVERNEST-Partnernetzwerk habe ich Zugriff auf eines der führenden deutschen Immobilienmaklerunternehmen mit 380+ Maklern, 52 Standorten und einer eigenen Technologieplattform für Bewertung, Vermarktung und Käuferprüfung.
+            Mit dem EVERNEST-Partnernetzwerk habe ich Zugriff auf eines der führenden deutschen Immobilienmaklerunternehmen mit 400+ Maklern und Partnern, 52 Standorten und einer eigenen Technologieplattform für Bewertung, Vermarktung und Käuferprüfung.
           </p>
 
           <a href="#kontakt" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Köln durch Roman Becker">Erstgespräch vereinbaren</a>
@@ -2152,7 +2126,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
           height="764"
           loading="lazy"
           decoding="async">
-        <figcaption>Aktuelle Standorte des EVERNEST-Immobilienmakler-Netzwerks in Deutschland — Roman Becker betreut den Standort Köln.</figcaption>
+        <figcaption>Aktuelle Standorte des EVERNEST-Immobilienmakler-Netzwerks in Deutschland</figcaption>
       </figure>
     </div>
   </section>
@@ -2169,8 +2143,19 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
           <ul class="splide__list">
             <li class="splide__slide">
               <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4tHfH79xGbmufV2U0s0uJr/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/12b0Es4i9l7tVeAanjoVAw/5b76080ccd0cf6aa8c17892ec3a1fa4e/12561b22-9dce-4021-8d56-115293774fa8?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Saniertes Mehrfamilienhaus - 5,93 % IST-Bruttorendite" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Langenfeld (Rheinland)-Immigrath, 40764 — 3.249.000 €</div>
+                    <div class="listing-card__title">Saniertes Mehrfamilienhaus - 5,93 % IST-Bruttorendite</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5c4w50EDG5Npesi0lHo6py/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/xhUfi19uHF8QuFCtTRPqj/5839ad8394c5a642a746cad63bc80174/bb94bd5e-0692-4c29-a86a-d77352413e55?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Seltenes Baugrundstück in zentraler Lage von Pulheim" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/xhUfi19uHF8QuFCtTRPqj/5839ad8394c5a642a746cad63bc80174/bb94bd5e-0692-4c29-a86a-d77352413e55?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Seltenes Baugrundstück in zentraler Lage von Pulheim" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Pulheim, 50259 — 949.000 €</div>
                     <div class="listing-card__title">Seltenes Baugrundstück in zentraler Lage von Pulheim</div>
@@ -2181,7 +2166,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6DVbuziQbj1Kbxc9HXawKD/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4poWbL6YyM0ACGgzsn7Tgy/41d804dd34d70399c521c07fc7ead7bc/c8a114e1-704c-49d8-9ec6-61a70c37e651?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Colonia Haus: Ihr Zuhause mit Hotel-Komfort" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4poWbL6YyM0ACGgzsn7Tgy/41d804dd34d70399c521c07fc7ead7bc/c8a114e1-704c-49d8-9ec6-61a70c37e651?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Colonia Haus: Ihr Zuhause mit Hotel-Komfort" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Riehl, 50735 — 399.000 €</div>
                     <div class="listing-card__title">Colonia Haus: Ihr Zuhause mit Hotel-Komfort</div>
@@ -2192,7 +2177,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1oWyzsso3VcG3xbZBodxAD/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5DiLJzBZ6YH6xEQjeMw3wz/7bbee9c85b75fdd1edec8e6ad60410b6/cecb8c74-c4d0-4dc7-9634-dda67c63e59b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Gepflegter Bungalow mit Garten in Köln-Pesch" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5DiLJzBZ6YH6xEQjeMw3wz/7bbee9c85b75fdd1edec8e6ad60410b6/cecb8c74-c4d0-4dc7-9634-dda67c63e59b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Gepflegter Bungalow mit Garten in Köln-Pesch" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Pesch, 50767 — 799.000 €</div>
                     <div class="listing-card__title">Gepflegter Bungalow mit Garten in Köln-Pesch</div>
@@ -2202,19 +2187,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4tHfH79xGbmufV2U0s0uJr/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6bg77KW9IEh3wT50Liw2Lw/d014a181f9cd0a7b34b295c625f196e5/12561b22-9dce-4021-8d56-115293774fa8?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Saniertes Mehrfamilienhaus mit 5,93 % Rendite" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Langenfeld (Rheinland)-Immigrath, 40764 — 3.249.000 €</div>
-                    <div class="listing-card__title">Saniertes Mehrfamilienhaus mit 5,93 % Rendite</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5ENiQl64Q9aofYcukySXKD/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/20ozmquua1prXFEQz7U0mx/d644bd2ed938149a94ccf8a619b83058/03de2f20-59e6-47b8-a82c-43dcbb654d9a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Exklusives Wohnen mit nachhaltiger Bauweise und durchdachter Architektur" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/20ozmquua1prXFEQz7U0mx/d644bd2ed938149a94ccf8a619b83058/03de2f20-59e6-47b8-a82c-43dcbb654d9a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Exklusives Wohnen mit nachhaltiger Bauweise und durchdachter Architektur" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Dellbrück, 51069 — 10.950.000 €</div>
                     <div class="listing-card__title">Exklusives Wohnen mit nachhaltiger Bauweise und durchdachter Architektur</div>
@@ -2225,7 +2199,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4figWPNmyx5q2mp6SRL5hH/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/48abZyNzqrTTyOMkJlFi4o/5f1c866fca0862e1b06166d14488ef1d/c0eb1a93-e327-4bc6-8401-9b3fab474474?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Mehrfamilienhaus mit großem Garten, Garage und Gewerbeeinheit" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/48abZyNzqrTTyOMkJlFi4o/5f1c866fca0862e1b06166d14488ef1d/c0eb1a93-e327-4bc6-8401-9b3fab474474?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Mehrfamilienhaus mit großem Garten, Garage und Gewerbeeinheit" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Rommerskirchen-Frixheim-Anstel, 41569 — Verkauft</div>
@@ -2237,7 +2211,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2PQIGwSNgR70KbtyXU94Nu/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1YSEWY8KUNHiEA1dcN7E9x/0d7ef5fbc17d8eceec302decdf6b8345/eae14515-01e6-4739-a217-1f407f625ab7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Helle 2-Zimmer-Wohnung mit großer Wohnküche und Loggia" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1YSEWY8KUNHiEA1dcN7E9x/0d7ef5fbc17d8eceec302decdf6b8345/eae14515-01e6-4739-a217-1f407f625ab7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Helle 2-Zimmer-Wohnung mit großer Wohnküche und Loggia" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Zollstock, 50969 — Verkauft</div>
@@ -2250,7 +2224,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1EwBkGOXB1mcJCsohkMqHm/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4LfSKS7XKUVAG22l6AmpWF/d85ec512bf4ae36bb7139b82ed1a4e1f/6317e785-8ef1-47bb-b296-9f3874c4242f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Neubau – Moderne 3-Zimmer-Wohnung mit hochwertiger Ausstattung im Amselquartier 
-WE B.05" loading="lazy" width="960" height="600">
+WE B.05" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Pulheim-Stommeln, 50259 — Verkauft</div>
@@ -2263,7 +2237,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5EVc67rDseCO8VnsFZKd4z/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6qUkVjIotGKdM5xUyytwh7/96ff9683d5b66ad32c0b926dc87d95e0/a0M9N000000ZClhUAG?w=960&h=600&fit=fill&fm=jpg&q=85" alt="3-Zimmer-Wohnung mit Garten in familienfreundlicher Lage" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6qUkVjIotGKdM5xUyytwh7/96ff9683d5b66ad32c0b926dc87d95e0/a0M9N000000ZClhUAG?w=960&h=600&fit=fill&fm=jpg&q=85" alt="3-Zimmer-Wohnung mit Garten in familienfreundlicher Lage" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Rodenkirchen, 50999 — Verkauft</div>
@@ -2275,7 +2249,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6vHh6fVoEd3kYIkOfZzoJR/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7qpfgBvsZIf9hSiuhd2pg8/837b27378c33be83b49c4fc86c6a8cd6/7e47cc96-c167-4beb-869f-cc002942a6d4?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Erbpacht: Charmante Einzimmerwohnung mit kleiner Terrasse in Köln Sürth" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7qpfgBvsZIf9hSiuhd2pg8/837b27378c33be83b49c4fc86c6a8cd6/7e47cc96-c167-4beb-869f-cc002942a6d4?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Erbpacht: Charmante Einzimmerwohnung mit kleiner Terrasse in Köln Sürth" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Sürth, 50999 — Verkauft</div>
@@ -2287,7 +2261,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5W6MiQJWXqjogLUNPyxP3/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3E4IYUE9TVbT5f2qjqP5jz/d132576883507eb88c25602a46006422/a6e46189-3edf-4028-a06b-d10899f253a7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Attraktive Kapitalanlage in Köln-Rodenkirchen" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3E4IYUE9TVbT5f2qjqP5jz/d132576883507eb88c25602a46006422/a6e46189-3edf-4028-a06b-d10899f253a7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Attraktive Kapitalanlage in Köln-Rodenkirchen" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Rodenkirchen, 50996 — Verkauft</div>
@@ -2299,7 +2273,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6j1w6fnn81OisTop7JzHLd/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2C5XRXW8S08eU58qnKaWGG/c7f3ee868fb4d54cdaafa1c01b8b65d1/3c757d3a-0fa8-49c6-a033-9fc186b86079?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Freistehendes Einfamilienhaus in idyllischer Lage mit großzügigem Grundstück" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2C5XRXW8S08eU58qnKaWGG/c7f3ee868fb4d54cdaafa1c01b8b65d1/3c757d3a-0fa8-49c6-a033-9fc186b86079?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Freistehendes Einfamilienhaus in idyllischer Lage mit großzügigem Grundstück" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Lützenkirchen, 51381 — Verkauft</div>
@@ -2311,7 +2285,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3oyqs7sIdtb2FR5SFbsRTn/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2jCF3EaH48M07S4QEfzRNW/1e2d19d76af34ff2d75707da26596efa/737c63f7-f667-4446-ad08-6e276d1d6f99?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Attraktive Kapitalanlage: Sanierte 4-Zimmer-Eigentumswohnung in Bergheim Ahe" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2jCF3EaH48M07S4QEfzRNW/1e2d19d76af34ff2d75707da26596efa/737c63f7-f667-4446-ad08-6e276d1d6f99?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Attraktive Kapitalanlage: Sanierte 4-Zimmer-Eigentumswohnung in Bergheim Ahe" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergheim-Ahe, 50127 — Verkauft</div>
@@ -2323,7 +2297,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7x5ZknJLUeCe0UUDoaM6Fc/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1CRsY32r4vJpGVEAPis20q/38e40dcf103602b348aa32916592bf19/48cf8946-e5cc-435f-acbc-c9d759bd9b00?w=960&h=600&fit=fill&fm=jpg&q=85" alt="4-Zimmer-Eigentumswohnung im Herzen von Lindenthal" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1CRsY32r4vJpGVEAPis20q/38e40dcf103602b348aa32916592bf19/48cf8946-e5cc-435f-acbc-c9d759bd9b00?w=960&h=600&fit=fill&fm=jpg&q=85" alt="4-Zimmer-Eigentumswohnung im Herzen von Lindenthal" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Lindenthal, 50931 — Verkauft</div>
@@ -2335,7 +2309,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5Eyb4bkb9FIuPvmRy2UtnR/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/ka6Fj0XAXubZvkqBXzewf/0b6ab06a4cde9c89d90c8da5258f1dfb/328f27e5-8d87-463d-9d55-ab26768c9377?w=960&h=600&fit=fill&fm=jpg&q=85" alt="1-Zimmer Apartment in der Bestlage von Nippes - WE3" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/ka6Fj0XAXubZvkqBXzewf/0b6ab06a4cde9c89d90c8da5258f1dfb/328f27e5-8d87-463d-9d55-ab26768c9377?w=960&h=600&fit=fill&fm=jpg&q=85" alt="1-Zimmer Apartment in der Bestlage von Nippes - WE3" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Nippes, 50733 — Verkauft</div>
@@ -2347,7 +2321,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3Vsz3WHEu4ymaOiXnje7KX/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/51UE7TzQed1lXHjaOACMjl/3c169f1c158f6451678a2f82d8342f65/a42c9b00-b2b8-45dc-925d-8faf57211905?w=960&h=600&fit=fill&fm=jpg&q=85" alt="1-Zimmer-Apartment in Bestlage von Nippes - WE1" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/51UE7TzQed1lXHjaOACMjl/3c169f1c158f6451678a2f82d8342f65/a42c9b00-b2b8-45dc-925d-8faf57211905?w=960&h=600&fit=fill&fm=jpg&q=85" alt="1-Zimmer-Apartment in Bestlage von Nippes - WE1" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Nippes, 50733 — Verkauft</div>
@@ -2359,7 +2333,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/0otFllDCspjA7X1Kw8WZq/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4rpy7xh1KodCPVg0jiaYBj/40da34f85c061f742c2ac3320ffc6a3f/541989ff-3fe0-4c4d-acac-7426d353ad74?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Moderne 3-Zimmer-Wohnung im Szeneviertel Nippes" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4rpy7xh1KodCPVg0jiaYBj/40da34f85c061f742c2ac3320ffc6a3f/541989ff-3fe0-4c4d-acac-7426d353ad74?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Moderne 3-Zimmer-Wohnung im Szeneviertel Nippes" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Nippes, 50733 — Verkauft</div>
@@ -2371,7 +2345,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/ISju4odI9RPwJj1ZXiji6/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2hW5b8XGaMw6eVhWcEjalQ/7ea56c9b6be749bd5b8295af8ae4f830/95f6e098-8428-4af7-a889-e4c596fef2d1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Aachen Haaren: Familienidyll mit Gestaltungsmöglichkeiten in ruhiger Lage" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2hW5b8XGaMw6eVhWcEjalQ/7ea56c9b6be749bd5b8295af8ae4f830/95f6e098-8428-4af7-a889-e4c596fef2d1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Aachen Haaren: Familienidyll mit Gestaltungsmöglichkeiten in ruhiger Lage" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Aachen-Haaren, 52080 — Verkauft</div>
@@ -2383,7 +2357,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6tXmPuvQKFKa1Zlxeiah86/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6n2RsjfuZuaWn5avc57DYj/f6e6a745be72600bc978e5223801922c/21c9bd59-7b97-44de-87e7-112bb6975368?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Sanierungsbedürftige 3-Zimmer-Wohnung in Nippes sucht neuen Eigentümer" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6n2RsjfuZuaWn5avc57DYj/f6e6a745be72600bc978e5223801922c/21c9bd59-7b97-44de-87e7-112bb6975368?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Sanierungsbedürftige 3-Zimmer-Wohnung in Nippes sucht neuen Eigentümer" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Nippes, 50733 — Verkauft</div>
@@ -2395,7 +2369,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7ieICeWeOpok0IiuEi0Bnr/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3P7Ij8A6YorcREhCUUFRma/4e74e89e2277439828f4184e96ee841b/7c23a974-f9c3-4811-9106-75a5f8ec19d6?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Eigentum im schönen Sülz" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3P7Ij8A6YorcREhCUUFRma/4e74e89e2277439828f4184e96ee841b/7c23a974-f9c3-4811-9106-75a5f8ec19d6?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Eigentum im schönen Sülz" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Sülz, 50937 — Verkauft</div>
@@ -2407,7 +2381,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2q8opoM9kr6HBDYVWVsxZ2/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/FxlWc3VS9B1mI9BsH3ofW/93cb015899dbe82836fc93e0c6d2e4c2/2150ec90-926c-4bd7-8a5f-6fc059efe1fa?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Renditestarke WG-geeignete Eigentumswohnung in Köln Zollstock" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/FxlWc3VS9B1mI9BsH3ofW/93cb015899dbe82836fc93e0c6d2e4c2/2150ec90-926c-4bd7-8a5f-6fc059efe1fa?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Renditestarke WG-geeignete Eigentumswohnung in Köln Zollstock" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Zollstock, 50969 — Verkauft</div>
@@ -2419,7 +2393,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3JxQkloHDHnoZ5VFhXgTMV/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3EuaKVhxCEnddMSNLMTe8U/3b7618d6be1c9a0734a7d468bf2498e1/7ef44dc9-f41e-495c-875b-47a8817c21e3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Renditestarke Kapitalanlage in Zollstock" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3EuaKVhxCEnddMSNLMTe8U/3b7618d6be1c9a0734a7d468bf2498e1/7ef44dc9-f41e-495c-875b-47a8817c21e3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Renditestarke Kapitalanlage in Zollstock" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Zollstock, 50969 — Verkauft</div>
@@ -2431,7 +2405,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5NsuHRrep9x2z8SZJp9ysq/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5YYmLj0c6XFAnzIbU5FsI4/098225c14e9cf1cf61a9e29899e32230/631797b5-613e-4d9b-9017-36824edb2970.jpeg?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Familienidyll in Bilderstöckchen" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5YYmLj0c6XFAnzIbU5FsI4/098225c14e9cf1cf61a9e29899e32230/631797b5-613e-4d9b-9017-36824edb2970.jpeg?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Familienidyll in Bilderstöckchen" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Bilderstöckchen, 50739 — Verkauft</div>
@@ -2443,7 +2417,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1lUPHfp7BnVdZTQvpoAus8/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/uu1R3aVmpBHdJf90bNeJc/972d82fff2cddb71d97e83602670e1fd/41966f9a-fb8e-46c0-8eff-7f33bfed146a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Logenplatz am Rhein" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/uu1R3aVmpBHdJf90bNeJc/972d82fff2cddb71d97e83602670e1fd/41966f9a-fb8e-46c0-8eff-7f33bfed146a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Logenplatz am Rhein" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Innenstadt, 50678 — Verkauft</div>
@@ -2455,7 +2429,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/38WbtppgoQTEzqvE0LdKpy/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/62d19t06jyoTRBurRa4k9b/277e3237c9b6bd597f559e8863897450/003-web-1000px.jpg?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Moderne, helle Eigentumswohnung in Neuehrenfeld" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/62d19t06jyoTRBurRa4k9b/277e3237c9b6bd597f559e8863897450/003-web-1000px.jpg?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Moderne, helle Eigentumswohnung in Neuehrenfeld" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln - Neuehrenfeld, 50823 — Verkauft</div>
@@ -2488,8 +2462,30 @@ WE B.05</div>
           <ul class="splide__list">
             <li class="splide__slide">
               <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/6CslPfj3of7drL0OYqGJo3/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4ThMjoHknSc3XHrvqi9gZu/5b61f90db3f08e6142574c8049f01b26/a58b11d1-79c1-4717-8032-d6562b16f99f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Bergheim-Ahe, 50127 — 105.000 €</div>
+                    <div class="listing-card__title">Immobilie</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4ViySYJ4zTnWCWwVXSAWgc/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/NLH2yOKyGxCMfsFdjiXX5/179a7c040b8d2820e4d488da88e96b88/f14e3c36-4588-48e5-aa51-3336ed000420?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Bergisch Gladbach-Stadtmitte, 51465 — 945.000 €</div>
+                    <div class="listing-card__title">Immobilie</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/34ePphqFxoGpCtAlwAZFUR/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3ZiZegldX5IqU9VhOf3LqP/10ea5c3c4e3f0172e8b93283b29f9366/4e578a32-83ae-48a1-af71-99a3522c3e3e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3ZiZegldX5IqU9VhOf3LqP/10ea5c3c4e3f0172e8b93283b29f9366/4e578a32-83ae-48a1-af71-99a3522c3e3e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Niehl, 50735 — 200.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2499,8 +2495,52 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/ZUXtatV9l9NnxJLqKo0DZ/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6uqgLmsgvbYGhUGBKSLeho/9f5fed06631d98c05c0838f2904415d0/64e66707-0915-41a1-9810-f6ceba72cefa?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Odenthal-Glöbusch, 51519 — 875.000 €</div>
+                    <div class="listing-card__title">Immobilie</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/amo50uqjZX4eyOaiyMA2F/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/13GJJ0REJXFhuibK8Z8XTl/45f13b56df641f1aee266b3502ad0dbb/00eec84c-4c07-4e73-aebd-9532cd126685?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Niederkassel-Mondorf, 53859 — 349.000 €</div>
+                    <div class="listing-card__title">Immobilie</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/3bqaRhj0sK7F6p4J9RGFnO/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/57Hc4tFBNCkjDPtS5tZZ8h/f7f65d487f39dbea0d78d6cea364948e/bb1ae64e-8e06-4f4a-898d-37fd01f7c2a0?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Erftstadt-Liblar, 50374 — 239.900 €</div>
+                    <div class="listing-card__title">Immobilie</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4G6ifI4v5oK6OPT3Ria7Uj/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2HZYOEI98WvN2K93h1xqzw/01517cb16a4603b9cc30cde98aead655/f3adef27-4ef5-4427-9072-c236891940a1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Köln-Mülheim, 51063 — 790.000 €</div>
+                    <div class="listing-card__title">Immobilie</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/zdXKftDmNdVHyrW7rR7IW/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4eG3hZxllv93iziVl8eRFy/240cd9eb415a646516258f7f049f62a8/f683e182-744c-40cd-b8ad-573353ea60ea?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4eG3hZxllv93iziVl8eRFy/240cd9eb415a646516258f7f049f62a8/f683e182-744c-40cd-b8ad-573353ea60ea?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Lindenthal, 50935 — 2.150.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2511,7 +2551,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3oEfaEUpcuNzb5c68O6nbB/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6yZURGb056qlIzm532AHl7/3175c4f8434409d9945c790d9d63aec0/d47ae89d-de18-433d-9adf-1c4071f46efd?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6yZURGb056qlIzm532AHl7/3175c4f8434409d9945c790d9d63aec0/d47ae89d-de18-433d-9adf-1c4071f46efd?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Junkersdorf, 50858 — 949.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2522,7 +2562,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1Hlr3aD0KLEaDIAEJnR6mE/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4vRnxYa7JW9QQIYTkvdfTm/425843d8a94931e8281ca98fe0580966/843e7a11-6dd0-4c8b-9c83-56738855febb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4vRnxYa7JW9QQIYTkvdfTm/425843d8a94931e8281ca98fe0580966/843e7a11-6dd0-4c8b-9c83-56738855febb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Höhenberg, 51103 — 299.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2532,19 +2572,8 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/amo50uqjZX4eyOaiyMA2F/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/57o2bly0YkcUBySzKhNLr6/b8b0f7b5b7e7223b60945df494b98163/00eec84c-4c07-4e73-aebd-9532cd126685?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Niederkassel, 53859 — 349.000 €</div>
-                    <div class="listing-card__title">Immobilie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5pfTvUmkoE6Se7ctEQJHyF/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/tfcmxpFKGvdVMMhBYQGRz/2c0b565cdea7ed6c0eb8b8bd1103b635/ad700a9d-1018-4114-9822-e543a95b73e5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/tfcmxpFKGvdVMMhBYQGRz/2c0b565cdea7ed6c0eb8b8bd1103b635/ad700a9d-1018-4114-9822-e543a95b73e5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Nippes, 50733 — 219.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2555,7 +2584,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1Xy53sxr0Zl6KFzx4YqzVu/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7IEdb8w3Hp0A6asf51rY4b/ea92de48d8edb43445a1f59f3e4e809e/e31395a7-6947-417c-91d3-ae96758a8b0d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7IEdb8w3Hp0A6asf51rY4b/ea92de48d8edb43445a1f59f3e4e809e/e31395a7-6947-417c-91d3-ae96758a8b0d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Neustadt/ Süd, 50678 — 1.395.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2566,7 +2595,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1xLZBRM04LFoLkIITW4KSo/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1igv3IEMSVnQIfcEBX5Bzm/ada50046956f0fb093d1a5cb40a8efb5/2ca9e1a2-d897-423c-acae-8c6977c8e963?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1igv3IEMSVnQIfcEBX5Bzm/ada50046956f0fb093d1a5cb40a8efb5/2ca9e1a2-d897-423c-acae-8c6977c8e963?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Sankt Augustin-Siegburg-Mülldorf, 53757 — 545.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2577,7 +2606,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/ghbF3nkiG6nlynuePaHSS/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3Lw7iZso7XnXqpfHI9QPho/b1b7771898f1de5aa3e735d3567bc52a/0e764272-e629-470e-b625-04d3e84d7913?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3Lw7iZso7XnXqpfHI9QPho/b1b7771898f1de5aa3e735d3567bc52a/0e764272-e629-470e-b625-04d3e84d7913?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Sülz, 50937 — 320.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2588,7 +2617,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6wQ4n6PHLCt02wWM7IstpI/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4AK3sDturWowe6CU8M6ajz/2ba58cd63af609b8684d068547dd2e3b/ee890e2b-c5d9-47be-a3a0-55a0223775f2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4AK3sDturWowe6CU8M6ajz/2ba58cd63af609b8684d068547dd2e3b/ee890e2b-c5d9-47be-a3a0-55a0223775f2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Deutz, 50679 — 339.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2598,19 +2627,8 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4G6ifI4v5oK6OPT3Ria7Uj/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1AzYQ2laMYVNdCyHLLKyAd/c2133b6ffefa0fd0b37047f165ff9985/f3adef27-4ef5-4427-9072-c236891940a1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Köln-Mülheim, 51063 — 790.000 €</div>
-                    <div class="listing-card__title">Immobilie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2NNPJbuLROzll7AC592uV0/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1mawVAVXSSeAK9TEw2O1vC/b624ee7629505504d5031d7add802549/f4820ab6-c86d-4742-a55c-e908c06fd217?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1mawVAVXSSeAK9TEw2O1vC/b624ee7629505504d5031d7add802549/f4820ab6-c86d-4742-a55c-e908c06fd217?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Junkersdorf, 50858 — 315.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2621,7 +2639,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/kGmaKIw6dP7eSC13ZXtd6/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1frSbiwqaoWy39qPMq2XKE/f6ab13b5fb1da6150332b468c0f7e43d/7a3df398-2521-4c4f-9bd1-c367e05f5a96?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1frSbiwqaoWy39qPMq2XKE/f6ab13b5fb1da6150332b468c0f7e43d/7a3df398-2521-4c4f-9bd1-c367e05f5a96?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Refrath, 51427 — 640.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2632,7 +2650,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6Z7zXP636pyMpcqvah3tRt/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/37xnRVaMuCZlW6ywn7M6Sh/634463b917a70593783fef9947a220f2/55c92077-7269-4260-9131-0df1eb6cb647?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/37xnRVaMuCZlW6ywn7M6Sh/634463b917a70593783fef9947a220f2/55c92077-7269-4260-9131-0df1eb6cb647?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Nußbaum, 51467 — 1.440.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2643,7 +2661,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7M0GZZAlWjYZCSlbHjRnol/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/BXyiC8YSiqPotaE9zynfQ/bccb0940b12755bbe4233b15192cf7f9/522a6b50-03ff-4cfe-a563-67ce1bfab2fb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/BXyiC8YSiqPotaE9zynfQ/bccb0940b12755bbe4233b15192cf7f9/522a6b50-03ff-4cfe-a563-67ce1bfab2fb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Lützenkirchen, 51381 — 130.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2654,7 +2672,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6MuxJiV4Pqt1sguKjRsWFX/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5lzy4wdnyjGhmCC3jXD9oM/a9196fccb937504deeabd75f6d2b326b/e2d40f62-1ddb-46e1-aa1f-6d60019b0925?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5lzy4wdnyjGhmCC3jXD9oM/a9196fccb937504deeabd75f6d2b326b/e2d40f62-1ddb-46e1-aa1f-6d60019b0925?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Lohmar-Algert, 53797 — 798.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2665,7 +2683,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/8DnRtrltJqwy0BMa9wG9V/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5GSLP7AuPJaf9E3gOIo9CE/fff3249a4c7fd0bb6fac123b303bb3bf/04fdff22-45c7-4003-96d5-31087d013ae4?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5GSLP7AuPJaf9E3gOIo9CE/fff3249a4c7fd0bb6fac123b303bb3bf/04fdff22-45c7-4003-96d5-31087d013ae4?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Quettingen, 51381 — 185.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2676,7 +2694,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2DQ2xJDoANUQ0pYut8vt40/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6NT2jVQX1EGnOsw1mEwVxd/b8f953561bd91b9cb49390220b6046ed/a57e7f5e-11f9-45d4-ac59-b9c9af59aa4b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6NT2jVQX1EGnOsw1mEwVxd/b8f953561bd91b9cb49390220b6046ed/a57e7f5e-11f9-45d4-ac59-b9c9af59aa4b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Bockenberg, 51429 — 185.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2687,7 +2705,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/15OcXDJG8SO3K9lcLBlHD3/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1TqmDlGafZIfOqlssMCkhU/60aef889a965f715dc78f29f638e518c/c33ad73c-ec57-42e0-847c-00d889d14868?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1TqmDlGafZIfOqlssMCkhU/60aef889a965f715dc78f29f638e518c/c33ad73c-ec57-42e0-847c-00d889d14868?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Kürten-Weiden, 51515 — 259.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2698,7 +2716,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/62Py2QbZt9RsPi8twJDNL6/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6C8UIFMdGL4PhawuC8gryy/556106fc228bfe6315bd04aa2abe7be1/e3816f2d-f234-4a04-8de7-9cff698de304?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6C8UIFMdGL4PhawuC8gryy/556106fc228bfe6315bd04aa2abe7be1/e3816f2d-f234-4a04-8de7-9cff698de304?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Bergisch-Neukirchen, 51381 — 799.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2709,7 +2727,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/50Y2X2AkAIBBuzIAfPo813/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7KV8gJSsYWrRSgwahlVV4a/ad2bdcea04a1ea45ae7fa81d5961df9b/7d28f572-3648-46a7-9356-aa60e7d8afcd?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7KV8gJSsYWrRSgwahlVV4a/ad2bdcea04a1ea45ae7fa81d5961df9b/7d28f572-3648-46a7-9356-aa60e7d8afcd?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Neustadt/ Nord, 50670 — 489.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2720,7 +2738,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4aRLJSLgnZ9xkaK8sOtqay/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7IzpYnoXYPJ80gomnQ5uEx/f5cfab9e9eb8993cda33bf61d062c668/2a727237-476f-410e-9a5f-63ecc560a069?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7IzpYnoXYPJ80gomnQ5uEx/f5cfab9e9eb8993cda33bf61d062c668/2a727237-476f-410e-9a5f-63ecc560a069?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Refrath, 51427 — 285.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2731,7 +2749,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6HXNVcFppHvf2i66VJXA5r/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1ftENF3qWWGiT7DG7QRZXe/4571a9620bb5a7bca397c46bf8ec2b73/761632f3-c948-44a1-a8f6-7a728613e6c5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1ftENF3qWWGiT7DG7QRZXe/4571a9620bb5a7bca397c46bf8ec2b73/761632f3-c948-44a1-a8f6-7a728613e6c5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Moitzfeld, 51429 — 329.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2742,7 +2760,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6dfBgQE4AleYMtMGn0YqO7/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6hW2H7eNkOcbBAbeDmV9rk/23751bdd63c019e8eba09a09521c831e/823a31bf-9a0b-4895-9ccc-86ed22308a6a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6hW2H7eNkOcbBAbeDmV9rk/23751bdd63c019e8eba09a09521c831e/823a31bf-9a0b-4895-9ccc-86ed22308a6a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Niehl, 50735 — 325.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2753,7 +2771,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5h5ROLxkUKvoYxLbc3brj8/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/12HUCToDPAFBBxLcSO00aZ/02b71a671a5326e70edcf0deb85ee279/3a07ff20-2afa-4d36-8aa4-aa645d1dadc2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/12HUCToDPAFBBxLcSO00aZ/02b71a671a5326e70edcf0deb85ee279/3a07ff20-2afa-4d36-8aa4-aa645d1dadc2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Moitzfeld, 51429 — 180.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2764,7 +2782,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/bCtugyEg897JGoJKKf1Fj/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/GBgbnJa3eOUDaEua3qDGc/5e081c25352597be46967c134957f94b/401d16a0-55e2-4eca-b19d-a74abc725151?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/GBgbnJa3eOUDaEua3qDGc/5e081c25352597be46967c134957f94b/401d16a0-55e2-4eca-b19d-a74abc725151?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Bensberg, 51429 — 998.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2775,7 +2793,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4KCxA97RWuPJjFGMGzH5vo/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4UUUwScLD7fRhMAVxIaSYj/a6b9ba0b9af34c34025d509a88d58b0b/bb16528e-472b-4524-85e7-8708fb883bb9?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4UUUwScLD7fRhMAVxIaSYj/a6b9ba0b9af34c34025d509a88d58b0b/bb16528e-472b-4524-85e7-8708fb883bb9?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bedburg-Kaster, 50181 — 699.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2786,7 +2804,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3Bs9Sfefa29TS809QZd8In/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3IYzi9oGvQXrvtR3xTfgiK/6a0b1fe6b40445295de3d3651eb0e450/74f2f9a8-7956-4cec-af05-29c745c39e34?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3IYzi9oGvQXrvtR3xTfgiK/6a0b1fe6b40445295de3d3651eb0e450/74f2f9a8-7956-4cec-af05-29c745c39e34?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Deutz, 50679 — 365.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2797,7 +2815,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/zSsSn6UbJDA8YI5QU02rq/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3w399rL6jV2Dt4nRaxGphw/25a0048c09c2a0e35749047918a3586a/32222f1f-5a8c-437b-8749-d240bc992140?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3w399rL6jV2Dt4nRaxGphw/25a0048c09c2a0e35749047918a3586a/32222f1f-5a8c-437b-8749-d240bc992140?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Opladen, 51379 — 649.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2808,7 +2826,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3f1HVimaknXg3xPYp1TBMF/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6ZRj0GW6kgfGv7rgqy6yQC/bda51bb16497f53c02d794440f6314c7/88f2645c-caa7-4ba0-931c-9ece23c53a11?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6ZRj0GW6kgfGv7rgqy6yQC/bda51bb16497f53c02d794440f6314c7/88f2645c-caa7-4ba0-931c-9ece23c53a11?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Holweide, 51067 — 365.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2819,7 +2837,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1hDSmiyYrkhVYxC6UilIe9/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6dOBhPkFaXNqiid3F9b0qc/107591ae19435cad2f704cfa99150c00/a4a0350d-e0fb-43cf-ad14-b8d677b2406c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6dOBhPkFaXNqiid3F9b0qc/107591ae19435cad2f704cfa99150c00/a4a0350d-e0fb-43cf-ad14-b8d677b2406c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Dellbrück, 51069 — 255.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2830,7 +2848,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3Y8vgINztNOH8YPul7WLDg/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/xIrq3Sa1VZS6QhkaH20h5/3402bbcfa9ac1ee34dd7db443346bc4b/64fa25c0-c333-49d0-b88c-3bfe8c1be0d9?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/xIrq3Sa1VZS6QhkaH20h5/3402bbcfa9ac1ee34dd7db443346bc4b/64fa25c0-c333-49d0-b88c-3bfe8c1be0d9?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Siegburg, 53721 — 592.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2841,7 +2859,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3IGfNHXqMkbOjmNngwZpRY/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3UCQsck4bHWAXdsNkpKrjF/84bc3795221c3916f923f7c576c8e18c/d60fda1b-9969-4dd6-9693-56d02abbb2fb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3UCQsck4bHWAXdsNkpKrjF/84bc3795221c3916f923f7c576c8e18c/d60fda1b-9969-4dd6-9693-56d02abbb2fb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Quettingen, 51381 — 900.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2852,7 +2870,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5c4w50EDG5Npesi0lHo6py/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/xhUfi19uHF8QuFCtTRPqj/5839ad8394c5a642a746cad63bc80174/bb94bd5e-0692-4c29-a86a-d77352413e55?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/xhUfi19uHF8QuFCtTRPqj/5839ad8394c5a642a746cad63bc80174/bb94bd5e-0692-4c29-a86a-d77352413e55?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Pulheim, 50259 — 949.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2863,7 +2881,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1SaB4oQyKDWROzJSvwpbLv/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1A0OnyBgW6w0C1bGue4PtV/76b4d7e50dfc75ecabd13a95f3bbaca0/1a489af9-3c85-47d6-8ed7-319e45d18d8c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1A0OnyBgW6w0C1bGue4PtV/76b4d7e50dfc75ecabd13a95f3bbaca0/1a489af9-3c85-47d6-8ed7-319e45d18d8c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Herrenstrunden, 51465 — 599.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2874,7 +2892,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5J1Mqkhm69XiVZgLpQiG0J/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5THN7sfPkNeAehIt6VuQWl/65afa59ea0c649f4910f2da26c3589ff/ac912353-a779-4691-95fb-5538032e2e5d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5THN7sfPkNeAehIt6VuQWl/65afa59ea0c649f4910f2da26c3589ff/ac912353-a779-4691-95fb-5538032e2e5d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Refrath, 51427 — 595.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2885,7 +2903,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3KCi3v5FcFGRZIppDPwuuQ/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6DQ9JiJ08KcBhMvU7b7okW/3763a76f11c4a09dc2566027402ddd9f/02be3a19-5caf-4b45-a48d-e99c533eba28?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6DQ9JiJ08KcBhMvU7b7okW/3763a76f11c4a09dc2566027402ddd9f/02be3a19-5caf-4b45-a48d-e99c533eba28?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Bockenberg, 51429 — 175.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2896,7 +2914,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2zc1WGP5JMeZ9bFcEQICMl/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3putd8dgsSEpTfvKJtHbnY/4f1a6a707c94fc7ecbc50594628ef341/938bd9f7-b57f-47d6-9d8f-b01b21bc05b5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3putd8dgsSEpTfvKJtHbnY/4f1a6a707c94fc7ecbc50594628ef341/938bd9f7-b57f-47d6-9d8f-b01b21bc05b5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bonn-Dottendorf, 53129 — 298.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2907,7 +2925,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4cIYSxT2lbC7LghNQTMn33/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2z1HecxtODYNB9szMblBhQ/737e01343db33fb1274f988c34eb610d/e617d2ce-f7ea-4279-bf3e-f1f3c9541ad2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2z1HecxtODYNB9szMblBhQ/737e01343db33fb1274f988c34eb610d/e617d2ce-f7ea-4279-bf3e-f1f3c9541ad2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Schlebusch, 51375 — 220.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2918,7 +2936,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/49onmenXN9iMpvIeb5mXxO/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2QBNMU3I0dOOboM8pf1WXq/b1fabc145bbf2432b27ebdb5120a8ab3/bee1c1e8-c320-4672-9590-a43e234021bd?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2QBNMU3I0dOOboM8pf1WXq/b1fabc145bbf2432b27ebdb5120a8ab3/bee1c1e8-c320-4672-9590-a43e234021bd?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Stadtmitte, 51465 — 486.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2929,7 +2947,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6iv0dVOZ5Gh5OjcpzGhbIF/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3sSJkMGzJ7oGxMmtkEyir/fdbfb10b35bca831ba9b8c22015c4fa4/88e5d66f-954f-4dfb-baa2-5136ad32f096?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3sSJkMGzJ7oGxMmtkEyir/fdbfb10b35bca831ba9b8c22015c4fa4/88e5d66f-954f-4dfb-baa2-5136ad32f096?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Stadtmitte, 51465 — 390.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2940,7 +2958,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6DVbuziQbj1Kbxc9HXawKD/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4poWbL6YyM0ACGgzsn7Tgy/41d804dd34d70399c521c07fc7ead7bc/c8a114e1-704c-49d8-9ec6-61a70c37e651?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4poWbL6YyM0ACGgzsn7Tgy/41d804dd34d70399c521c07fc7ead7bc/c8a114e1-704c-49d8-9ec6-61a70c37e651?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Riehl, 50735 — 399.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2951,7 +2969,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1oWyzsso3VcG3xbZBodxAD/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5DiLJzBZ6YH6xEQjeMw3wz/7bbee9c85b75fdd1edec8e6ad60410b6/cecb8c74-c4d0-4dc7-9634-dda67c63e59b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5DiLJzBZ6YH6xEQjeMw3wz/7bbee9c85b75fdd1edec8e6ad60410b6/cecb8c74-c4d0-4dc7-9634-dda67c63e59b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Pesch, 50767 — 799.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2962,7 +2980,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/Nz76sUFQqFTrvUMYslGMr/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3XO5qhgr41YlJUw1Gs5u3l/59fb6b6c9e0f5c6783558b2189e84820/6d40e37b-ed38-406b-afbf-1ee996d8f4d4?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3XO5qhgr41YlJUw1Gs5u3l/59fb6b6c9e0f5c6783558b2189e84820/6d40e37b-ed38-406b-afbf-1ee996d8f4d4?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Neuehrenfeld, 50823 — 110.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2972,19 +2990,8 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/6CslPfj3of7drL0OYqGJo3/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6XwEqH7xdereXii34Grktx/85dcc4a7dfffb74c608d4a858ddfc9da/a58b11d1-79c1-4717-8032-d6562b16f99f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Bergheim-Ahe, 50127 — 120.000 €</div>
-                    <div class="listing-card__title">Immobilie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2xTP7fOu3avF27PR8p7Xu7/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1sRLMM1q1BMbplyIjE7NP9/95db81ac7a3d227e4a54c175dde60bc4/52f5b64c-ce1b-421b-8d2d-7f797e1a9500?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1sRLMM1q1BMbplyIjE7NP9/95db81ac7a3d227e4a54c175dde60bc4/52f5b64c-ce1b-421b-8d2d-7f797e1a9500?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Odenthal-Klasmühle, 51519 — 649.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -2995,7 +3002,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/UX932RJrfkfI0QXmyIMvf/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2L944LljBoLtOxgRPj0yxz/c6870d3a751d4e04aeb06e30aaac8229/9099cd28-363a-456b-b57b-6ea8d05d8bf7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2L944LljBoLtOxgRPj0yxz/c6870d3a751d4e04aeb06e30aaac8229/9099cd28-363a-456b-b57b-6ea8d05d8bf7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Quettingen, 51381 — 529.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3005,19 +3012,8 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4D6VMXdUNA7KunL0YJGOvc/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5OJfRfuri7Zkt0hGKFiaPi/3bb5b3869cdbe4895cd3cd8e44c60865/ea890d2d-f1dd-4791-8aff-83a8309f4ceb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Bergisch Gladbach-Refrath, 51427 — 1.265.000 €</div>
-                    <div class="listing-card__title">Immobilie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1007Z6hrpTQM73XvDZS71n/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/51OKJg6BEZ1iLdPE6rfNRy/aea1ae45ee2845daa07345f6e7db541d/94277ddf-4974-4f62-ac10-5ec3971bd81e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/51OKJg6BEZ1iLdPE6rfNRy/aea1ae45ee2845daa07345f6e7db541d/94277ddf-4974-4f62-ac10-5ec3971bd81e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Wiesdorf, 51373 — 1.495.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3028,7 +3024,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1RBRf6EAXF2dHyYwZcSMqf/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4lguyTGqjARHVC1bA3JWam/961c0c37f81b223db49b26c352f0e376/21c32bdc-4245-4c3d-a2f9-92357035c5d3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4lguyTGqjARHVC1bA3JWam/961c0c37f81b223db49b26c352f0e376/21c32bdc-4245-4c3d-a2f9-92357035c5d3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Odenthal-Klasmühle, 51519 — 99.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3039,7 +3035,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6E6yD0bkWxRpHpfEEyvdWo/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3XUKc45xddENAgazeuSoeJ/127d4e173f70419f2dfd38f9b1598d3a/eedb875e-e5bc-4158-bce0-330439a64761?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3XUKc45xddENAgazeuSoeJ/127d4e173f70419f2dfd38f9b1598d3a/eedb875e-e5bc-4158-bce0-330439a64761?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Schildgen, 51467 — 549.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3050,7 +3046,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5XG0rDEqpeSQC66EVwFT6t/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6ZCyTEezasj47J1wRVjTTm/9b8dcef30949908888132ba73b3944f5/dabf701a-5aec-4d16-b2d3-ebe4a43bcf7f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6ZCyTEezasj47J1wRVjTTm/9b8dcef30949908888132ba73b3944f5/dabf701a-5aec-4d16-b2d3-ebe4a43bcf7f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Frechen-Königsdorf, 50226 — 460.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3060,30 +3056,8 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1l4qOPITwtxDUvVo2TngnR/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/nbjT1yrswv3KTMUFqXIKU/314a06d5c00ff48cfe5027be871e5d58/8635494c-77d2-49ca-a7cd-6ed08732dc25?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Leverkusen-Opladen, 51379 — 1.340.000 €</div>
-                    <div class="listing-card__title">Immobilie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1Wm2J34fdLjNATcFesEfNs/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/f8BpvByxopMDASUwd0nvb/7f90deeb03a835ec842c8e26dea5d92c/b9fb4222-d6a3-42c6-87bc-8e518a5eb1fc?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Bergheim-Ahe, 50127 — 110.000 €</div>
-                    <div class="listing-card__title">Immobilie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7Cd5UTuZt3VtVbzkTLJri2/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/YDT1qJiOiVplcq1bSpZJU/de00c1d96720eecb055abe69ee1f80eb/c3f7deb0-c7f3-4aac-8ad1-f0cd7df7184b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/YDT1qJiOiVplcq1bSpZJU/de00c1d96720eecb055abe69ee1f80eb/c3f7deb0-c7f3-4aac-8ad1-f0cd7df7184b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Lövenich, 50859 — 620.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3094,7 +3068,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6J9NwE5IVYBi2pGjUGDUEx/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6a5FUCB1s8r4bH1cqNCaXy/43c1a10d34d550697538ea5d2ad580b1/3be0723c-809c-4f06-80c9-eff4c7335cb6?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6a5FUCB1s8r4bH1cqNCaXy/43c1a10d34d550697538ea5d2ad580b1/3be0723c-809c-4f06-80c9-eff4c7335cb6?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Stadtmitte, 51465 — 549.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3105,7 +3079,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4SxD1i9QbIPTOgNgHOH9Rq/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7CDveJUxUWTCvcZiULnmYh/27db8d6bd5d1779d8c78389047cac2d1/16afc187-df18-45e8-a971-71452857f895?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7CDveJUxUWTCvcZiULnmYh/27db8d6bd5d1779d8c78389047cac2d1/16afc187-df18-45e8-a971-71452857f895?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Mülheim, 51063 — 250.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3116,7 +3090,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3LaNUwDsriCHVdljeHp2Q3/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7gumDTvZcHVn1K1xW4n85E/8d9afea1cdc1d9c92394177d8eab6c2f/ef0280e1-ea8b-40af-bb65-277fac5290f9?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7gumDTvZcHVn1K1xW4n85E/8d9afea1cdc1d9c92394177d8eab6c2f/ef0280e1-ea8b-40af-bb65-277fac5290f9?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Neustadt/ Süd, 50674 — 699.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3127,7 +3101,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1oU2aBuesXGEaESz13WKfU/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/68Dzklf5DAAvZ1qc34zHwW/9d93c77a856bd234a44f9d0c3d85aaa9/0f1c4bd7-f759-4e15-9484-5b1d0b61711a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/68Dzklf5DAAvZ1qc34zHwW/9d93c77a856bd234a44f9d0c3d85aaa9/0f1c4bd7-f759-4e15-9484-5b1d0b61711a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Humboldt/ Gremberg, 51105 — 259.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3137,19 +3111,8 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/2asSSYZeb3yGW2bTtzG3pJ/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/MTBSz8Z7bFma0Eh2Oh4k4/22a6b2aae5db9740b18938b072e2423c/540113b4-dcac-4574-8ef5-3233f23e2f43?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Bergheim-Ahe, 50127 — 119.000 €</div>
-                    <div class="listing-card__title">Immobilie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6egH4BBzSszgnbF2qYTB1x/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/75dfOGadiF7tQNBSgeE8uL/59816ed18cd8a4f42b87762b98bbd676/ca48e9da-48cc-4d4c-b54b-c63e0bc3fb85?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/75dfOGadiF7tQNBSgeE8uL/59816ed18cd8a4f42b87762b98bbd676/ca48e9da-48cc-4d4c-b54b-c63e0bc3fb85?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Moitzfeld, 51429 — 185.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3160,7 +3123,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5ZmxUCrrNhAYRY7tHXEnTE/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/28onQJwok0nsUxMHu4tpcF/17e0b3a515abd36ad62a58961ad03551/40a6fc68-386e-42b7-b294-daa19571bf0c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/28onQJwok0nsUxMHu4tpcF/17e0b3a515abd36ad62a58961ad03551/40a6fc68-386e-42b7-b294-daa19571bf0c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Manfort, 51377 — 169.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3171,7 +3134,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/kru2fwTAMi5YaCMBgyDq0/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5vrLCMGh9yz91JEQm3lTVn/fead51b7997073a7b84a6bc065f70508/667abce7-68de-4e82-b4e1-ac48ad59f150?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5vrLCMGh9yz91JEQm3lTVn/fead51b7997073a7b84a6bc065f70508/667abce7-68de-4e82-b4e1-ac48ad59f150?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Overath-Untergründemich, 51491 — 820.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3181,19 +3144,8 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="https://www.evernest.com/de/listing/4QkJceuNhZnDcrDUTfgDCy/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6Vp0rJTcZPWinQlKayQMJT/b2072572f84e008f86e7afc10296db3d/fc76de1a-9a5c-4aa3-b9b7-060264957430?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
-                  <div class="listing-card__overlay">
-                    <div class="listing-card__meta">Bergisch Gladbach-Schildgen, 51467 — 945.000 €</div>
-                    <div class="listing-card__title">Immobilie</div>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="splide__slide">
-              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/31nNgM6RGekuaURamIaJKY/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/39jgYHWZzKKLi8UjTvLXeT/7c7d7b2f2d7b0abd15a716cf82437d1c/f41b789c-e1eb-4c0c-ac89-759ac939a3f3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/39jgYHWZzKKLi8UjTvLXeT/7c7d7b2f2d7b0abd15a716cf82437d1c/f41b789c-e1eb-4c0c-ac89-759ac939a3f3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Humboldt/ Gremberg, 51105 — 232.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3204,7 +3156,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5ENiQl64Q9aofYcukySXKD/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/20ozmquua1prXFEQz7U0mx/d644bd2ed938149a94ccf8a619b83058/03de2f20-59e6-47b8-a82c-43dcbb654d9a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/20ozmquua1prXFEQz7U0mx/d644bd2ed938149a94ccf8a619b83058/03de2f20-59e6-47b8-a82c-43dcbb654d9a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Dellbrück, 51069 — 10.950.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3215,7 +3167,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4jaRhPx3kzC7VNyVpC4gHh/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5rhybvvj7xuN3bYjOtg7uy/485db2ac4fcfb96c3f0c25c50da89a3d/ecccd8a9-7e67-41a2-a232-15b94320d0d1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5rhybvvj7xuN3bYjOtg7uy/485db2ac4fcfb96c3f0c25c50da89a3d/ecccd8a9-7e67-41a2-a232-15b94320d0d1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Merheim, 51109 — 498.000 €</div>
                     <div class="listing-card__title">Immobilie</div>
@@ -3225,8 +3177,20 @@ WE B.05</div>
             </li>
             <li class="splide__slide">
               <div class="listing-card">
+                <a class="listing-card__link" href="https://www.evernest.com/de/listing/1l4qOPITwtxDUvVo2TngnR/" target="_blank" rel="noopener">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/nbjT1yrswv3KTMUFqXIKU/314a06d5c00ff48cfe5027be871e5d58/8635494c-77d2-49ca-a7cd-6ed08732dc25?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
+                  <div class="listing-card__badge">Verkauft</div>
+                  <div class="listing-card__overlay">
+                    <div class="listing-card__meta">Leverkusen-Opladen, 51379 — Verkauft</div>
+                    <div class="listing-card__title">Immobilie</div>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/52oENkRBN9VAn4WOsUKyhm/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5Z8nLC1VwyRwVhIdxk9rWC/a14989cc1afbab6d56095e2c8e9342e2/0d68bcfe-a680-4dd6-8d71-27020d7fb165?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5Z8nLC1VwyRwVhIdxk9rWC/a14989cc1afbab6d56095e2c8e9342e2/0d68bcfe-a680-4dd6-8d71-27020d7fb165?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Dellbrück, 51069 — Verkauft</div>
@@ -3238,7 +3202,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4iL542YgEf6cRqqF7OX334/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6zNeGmwHJhGEBPa1wmc8WU/9e66d983026701462bd2d6181cc47648/f5671618-b56a-4b41-94f0-4107298e0fc5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6zNeGmwHJhGEBPa1wmc8WU/9e66d983026701462bd2d6181cc47648/f5671618-b56a-4b41-94f0-4107298e0fc5?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Erftstadt-Liblar, 50374 — Verkauft</div>
@@ -3250,7 +3214,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5BzIvgn0DQHKyD4yxtQl1U/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4dSlOOIEa5IwerHUBGXG6M/98de22caa6ea118ffedfdf0c290742f1/925b9a72-3455-43b5-a27a-44f52fd8cb6d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4dSlOOIEa5IwerHUBGXG6M/98de22caa6ea118ffedfdf0c290742f1/925b9a72-3455-43b5-a27a-44f52fd8cb6d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Merheim, 51109 — Verkauft</div>
@@ -3262,7 +3226,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/41Xul5Gad5PMjQiw1mey4C/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6FeDnRTFJK3a3RbBSmjgQ3/c13c2d11b58a41c55b667bd6e9479931/b3bf0752-8418-412c-80e2-c6cccb685126?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6FeDnRTFJK3a3RbBSmjgQ3/c13c2d11b58a41c55b667bd6e9479931/b3bf0752-8418-412c-80e2-c6cccb685126?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Pulheim, 50259 — Verkauft</div>
@@ -3274,7 +3238,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1AHPYoh2csxtV4uS8as99f/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2bQWP4lahv7bskQoSQh0HE/9516d7c6a6837c4c5bde78ff76730f45/fb41e32e-0f4c-492e-840a-688cf929291f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2bQWP4lahv7bskQoSQh0HE/9516d7c6a6837c4c5bde78ff76730f45/fb41e32e-0f4c-492e-840a-688cf929291f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Lückerath, 51429 — Verkauft</div>
@@ -3286,7 +3250,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1oScstDm8cT86rVr6mINm1/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/FXzZ3dMxzjiFOTQaTsqf0/5b87e577927e2a99da9331d10ed89ef8/38f8e3d9-961e-4783-b75a-50e1ed73aa8f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/FXzZ3dMxzjiFOTQaTsqf0/5b87e577927e2a99da9331d10ed89ef8/38f8e3d9-961e-4783-b75a-50e1ed73aa8f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Schildgen, 51467 — Verkauft</div>
@@ -3298,7 +3262,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6dAkoOJ9wu0OYbNB922ph2/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/189dupQNBTAOZoanVUD8A0/00ce4b85fc10edd82297d8623fd00e41/101667c6-4479-4859-8728-715d950f1b5c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/189dupQNBTAOZoanVUD8A0/00ce4b85fc10edd82297d8623fd00e41/101667c6-4479-4859-8728-715d950f1b5c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Erftstadt-Lechenich, 50374 — Verkauft</div>
@@ -3310,7 +3274,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/71SA9MOTNZVvWpytXCexHt/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/67b3fhxU6aOR1I7bn1PEM5/55a6cd85a5a1beb83b67aade703d2403/05c95d2b-2871-40c7-ae6c-53a8052f6794?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/67b3fhxU6aOR1I7bn1PEM5/55a6cd85a5a1beb83b67aade703d2403/05c95d2b-2871-40c7-ae6c-53a8052f6794?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Kürten-Bechen, 51515 — Verkauft</div>
@@ -3322,7 +3286,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1gms6r5wHb7YhX0PenWUXv/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/302OuevY5KNm3QM1thukQ/1b408d92529f444639c6a998a05f23db/19511b96-f9d7-4c57-9f45-31579ce5efee?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/302OuevY5KNm3QM1thukQ/1b408d92529f444639c6a998a05f23db/19511b96-f9d7-4c57-9f45-31579ce5efee?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Wahn, 51147 — Verkauft</div>
@@ -3334,7 +3298,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5whHAg7n9rDaYbsNPJWn69/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2kCJoDajwprziD6U1pOpYZ/b9af73af025cbc7e10e175a58e0b1001/e96df47b-6f9f-4e04-9795-15d7121bd14f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2kCJoDajwprziD6U1pOpYZ/b9af73af025cbc7e10e175a58e0b1001/e96df47b-6f9f-4e04-9795-15d7121bd14f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Bockenberg, 51429 — Verkauft</div>
@@ -3346,7 +3310,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6mPxKRQ9TCKYgQapSJztzx/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/439BIJfNuVXV2YX2LHe1ew/1ef5f846c3acd20bbbc2bd022ab6c3ee/f391f9e4-33a9-40e2-abcb-42d28cf4416a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/439BIJfNuVXV2YX2LHe1ew/1ef5f846c3acd20bbbc2bd022ab6c3ee/f391f9e4-33a9-40e2-abcb-42d28cf4416a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Leverkusen-Quettingen, 51381 — Verkauft</div>
@@ -3358,7 +3322,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5mjcqHTFVA5gKzosNMFCRU/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2FMRXJL51IjyUvbhocLBXx/30ed7e5ed806fe8720d6c556111d47d8/7e93ac5b-335c-43d8-9d4e-8f90598db51e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2FMRXJL51IjyUvbhocLBXx/30ed7e5ed806fe8720d6c556111d47d8/7e93ac5b-335c-43d8-9d4e-8f90598db51e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Bergisch Gladbach-Moitzfeld, 51429 — Verkauft</div>
@@ -3370,7 +3334,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7jvdC6JxHn2atjUz3D3IMc/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3XDwfsng4yKctYO1lNCkHo/51ccfeaef4b2b8ce66ebc368babc3ea6/4f60b188-f0fd-4e52-9760-b2b04b86a798?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3XDwfsng4yKctYO1lNCkHo/51ccfeaef4b2b8ce66ebc368babc3ea6/4f60b188-f0fd-4e52-9760-b2b04b86a798?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Köln-Buchheim, 51067 — Verkauft</div>
@@ -3382,7 +3346,7 @@ WE B.05</div>
             <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7lzYvNgRvbCW1bEsjo3cMv/" target="_blank" rel="noopener">
-                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6Ba1xKeS9UgmspvClAbn07/642029eec833da0f5b452229b318fc51/df24deec-59ec-4602-8d14-f6085056d6a7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy" width="960" height="600">
+                  <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6Ba1xKeS9UgmspvClAbn07/642029eec833da0f5b452229b318fc51/df24deec-59ec-4602-8d14-f6085056d6a7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
                   <div class="listing-card__badge">Verkauft</div>
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">Kürten, 51515 — Verkauft</div>
@@ -3408,7 +3372,7 @@ WE B.05</div>
   <section id="bewertungen" class="section">
     <div class="container">
       <div class="reviews__header">
-        <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9496197,2.0739353,7.01z/data=!3m1!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m10!1m2!2m1!1sroman+becker!3m6!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!15sCgxyb21hbiBiZWNrZXJaDiIMcm9tYW4gYmVja2VykgEScmVhbF9lc3RhdGVfYWdlbnRzmgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxYWJWVlZSakZQU0ZKbVZHMWtkazR4U1RWTlZrSnRWVWM1VEU5VlJSQULgAQD6AQUIhQIQRQ!16s%2Fg%2F11w4rp9vvy?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;" aria-label="Verifizierte Kundenstimmen auf Google ansehen">
+        <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln/@50.9436867,6.9395297,255m/data=!3m2!1e3!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m16!1m9!3m8!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!2sRoman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln!8m2!3d50.9436867!4d6.9406741!9m1!1b1!16s%2Fg%2F11w4rp9vvy!3m5!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!16s%2Fg%2F11w4rp9vvy?entry=ttu&amp;g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;" aria-label="Verifizierte Kundenstimmen auf Google ansehen">
           <div class="reviews__stars">★★★★★</div>
           <div class="reviews__rating">5,0 von 5,0 auf Google</div>
         </a>
@@ -3477,6 +3441,7 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Wer seine Immobilie innerhalb von 10 Jahren nach dem Kauf mit Gewinn verkauft und sie nicht selbst bewohnt hat, zahlt Spekulationssteuer</strong> — zum persönlichen Einkommensteuersatz. Bei einem Gewinn von 350.000 € können das über 130.000 € Steuer sein.</p>
               <p>Ausnahmen: Eigennutzung im Verkaufsjahr und den zwei Vorjahren, oder wenn die 10-Jahres-Frist abgelaufen ist. Bei geerbten Immobilien läuft die Frist ab dem Kaufdatum des Erblassers — nicht ab dem Erbfall. Ich empfehle, vor dem Verkauf mit Ihrem Steuerberater zu sprechen.</p>
+              <p><a href="ratgeber/spekulationssteuer.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Spekulationssteuer beim Immobilienverkauf</a></p>
             </div>
           </div>
         </div>
@@ -3490,6 +3455,7 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Die Maklerprovision in Köln beträgt marktüblich 3,57 % für den Verkäufer</strong> (seit 2020 gesetzlich hälftig geteilt). Bei 750.000 € sind das ca. 26.800 €. Ohne Makler sparen Sie diese Summe, tragen aber selbst Vermarktungsrisiko, Preisverhandlung und Rechtssicherheit.</p>
               <p>Bei Objekten über 750.000 € macht ein Makler mit Luxussegment-Netzwerk den Unterschied: Der Zugang zu vorqualifizierten Käufern — die nicht auf ImmoScout suchen — entscheidet über Preis und Diskretion. Über EVERNEST erreiche ich genau diese Käufer.</p>
+              <p><a href="ratgeber/leistungen-makler.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Was ein Makler wirklich leistet</a></p>
             </div>
           </div>
         </div>
@@ -3503,6 +3469,13 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Pflicht sind: Grundbuchauszug, Energieausweis, Wohnflächenberechnung, Flurkarte und Baugenehmigung.</strong> Ohne Energieausweis in der Anzeige droht ein Bußgeld bis 15.000 €. Bei vermieteten Objekten kommen Mietverträge, Nebenkostenabrechnungen und WEG-Beschlüsse hinzu.</p>
               <p>Bei hochpreisigen Objekten prüfen Käufer und deren Banken besonders gründlich — fehlende oder veraltete Unterlagen (z. B. eine alte Wohnflächenberechnung) können die Finanzierungszusage blockieren oder den Kaufpreis drücken. Ich helfe Ihnen, alle Dokumente rechtzeitig zusammenzustellen.</p>
+              <p>
+                <a href="ratgeber/energieausweis.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Energieausweis</a>
+                &ensp;·&ensp;
+                <a href="ratgeber/grundbuchauszug-anfordern.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Grundbuchauszug anfordern</a>
+                &ensp;·&ensp;
+                <a href="ratgeber/flurkarte.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Flurkarte</a>
+              </p>
             </div>
           </div>
         </div>
@@ -3529,6 +3502,7 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Die Spekulationsfrist beginnt nicht neu — sie läuft ab dem Kaufdatum des Erblassers.</strong> Wer ein Haus erbt, das 2019 gekauft wurde, muss bis 2029 warten oder Spekulationssteuer auf den Gewinn zahlen. Kinder können bis zu 400.000 € steuerfrei erben (pro Elternteil), das Familienheim bleibt komplett steuerfrei bei Selbstnutzung über 10 Jahre (bis 200 m²).</p>
               <p>Bei Erbengemeinschaften brauchen Sie einen gemeinsamen Beschluss über den Verkauf — hier lohnt sich frühe Rechtsberatung. Ich begleite Sie von der ersten Bewertung über die Abstimmung mit Notar und Steuerberater bis zum Abschluss — diskret und ohne Zeitdruck.</p>
+              <p><a href="ratgeber/spekulationssteuer.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Spekulationssteuer bei geerbten Immobilien</a></p>
             </div>
           </div>
         </div>
@@ -3542,6 +3516,11 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Seit dem BGH-Urteil (März 2025) liegt die Sanierungspflicht beim Eigentümerwechsel beim Käufer, nicht beim Verkäufer.</strong> Der neue Eigentümer muss GEG-Anforderungen (Heizung, Gebäudehülle) innerhalb von 2 Jahren nach Erwerb erfüllen, wenn das Haus vor dem 1. Februar 2002 gebaut wurde.</p>
               <p>Energieausweise müssen seit 2014 bereits in Immobilienanzeigen angegeben werden — fehlt er, drohen bis zu 15.000 € Bußgeld. Kölner Käufer fragen in Besichtigungen gezielt nach Energieeffizienzklasse, Heizungsalter und Denkmalschutzauflagen — als Verkäufer sollten Sie darauf vorbereitet sein.</p>
+              <p>
+                <a href="ratgeber/gebaeudeenergiegesetz.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Gebäudeenergiegesetz (GEG)</a>
+                &ensp;·&ensp;
+                <a href="ratgeber/energieausweis.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Energieausweis</a>
+              </p>
             </div>
           </div>
         </div>
@@ -3581,6 +3560,7 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Bei Wohnimmobilien beträgt die Courtage in der Regel 3,57 % für Käufer und Verkäufer jeweils</strong> — seit 2020 ist die hälftige Teilung gesetzlich vorgeschrieben. Bei einem Verkaufspreis von 800.000 € sind das ca. 28.560 € pro Seite.</p>
               <p>Bei Mehrfamilienhäusern und Grundstücken zahlt in der Regel der Käufer die volle Courtage in Höhe von 5,95 %. Als EVERNEST-Makler arbeite ich ausschließlich auf Erfolgsbasis — Sie zahlen erst bei erfolgreichem Abschluss.</p>
+              <p><a href="ratgeber/maklerkosten-beim-immobilienkauf.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Maklerkosten im Detail</a></p>
             </div>
           </div>
         </div>
@@ -3620,6 +3600,7 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Als Verkäufer in Köln tragen Sie typischerweise: den Energieausweis (ca. 80–300 €) und eventuelle Kosten für kleinere Aufwertungen vor dem Verkauf.</strong> Die Maklerprovision wird in NRW üblicherweise geteilt: Käufer und Verkäufer zahlen je 3,57 % (inkl. MwSt.) – nur im Erfolgsfall.</p>
               <p>Notarkosten trägt der Käufer. Grunderwerbsteuer fällt für Sie als Verkäufer nicht an. Relevant sein kann außerdem die Spekulationssteuer, falls Sie die Immobilie weniger als 10 Jahre besitzen und sie nicht selbst bewohnt haben. Ich kläre das im Erstgespräch mit Ihnen.</p>
+              <p><a href="ratgeber/spekulationssteuer.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Spekulationssteuer beim Immobilienverkauf</a></p>
             </div>
           </div>
         </div>
@@ -3633,6 +3614,7 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Ja – das ist möglich über ein Wohnrecht oder Nießbrauchrecht, das beim Verkauf notariell im Grundbuch eingetragen wird.</strong> Es reduziert zwar den erzielbaren Kaufpreis, bietet aber maximale Absicherung: Sie bleiben in Ihrer Immobilie wohnen, egal wer Eigentümer ist.</p>
               <p>Diese Konstruktion ist besonders für ältere Eigentümer interessant, die Kapital freisetzen möchten ohne umzuziehen. Ich berate Sie zu den Möglichkeiten und dem realistisch erzielbaren Preis in Ihrer konkreten Situation in Köln.</p>
+              <p><a href="ratgeber/niesbrauch-wohnrecht.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Nießbrauch &amp; Wohnrecht erklärt</a></p>
             </div>
           </div>
         </div>
@@ -3672,6 +3654,7 @@ WE B.05</div>
             <div class="faq__answer-inner">
               <p><strong>Ja – der Energieausweis ist gesetzlich vorgeschrieben und muss spätestens bei der Besichtigung vorliegen.</strong> Fehlt er in der Anzeige oder beim Termin, droht ein Bußgeld von bis zu 15.000 €. Es gibt zwei Varianten: den Bedarfsausweis (aufwendiger, auf Basis technischer Gebäudedaten) und den Verbrauchsausweis (einfacher, basiert auf Heizkostenabrechnungen).</p>
               <p>Ich helfe Ihnen bei der Beschaffung des passenden Energieausweises und stelle sicher, dass alle Pflichtangaben in der Vermarktung korrekt ausgewiesen sind.</p>
+              <p><a href="ratgeber/energieausweis.html" style="font-size:0.875rem;color:#111;font-weight:700;text-decoration:none;">→ Ratgeber: Energieausweis – alles Wichtige für Verkäufer</a></p>
             </div>
           </div>
         </div>
@@ -3729,63 +3712,63 @@ WE B.05</div>
       <div class="stadtteile__grid">
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/suelz.html" class="stadtteil-card__link">Köln-Sülz</a></h3>
+          <p class="card-h"><a href="stadtteile/suelz.html" class="stadtteil-card__link">Köln-Sülz</a></p>
           <div class="stadtteil-card__price">Altbau · EFH · Familienlage</div>
           <p>Mein Heimatveedel. Gefragte Wohnlage nahe Uni und Stadtwald. Hohe Eigentumsquote, kurze Vermarktungszeiten — ich kenne hier jede Straße.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/lindenthal.html" class="stadtteil-card__link">Köln-Lindenthal</a></h3>
+          <p class="card-h"><a href="stadtteile/lindenthal.html" class="stadtteil-card__link">Köln-Lindenthal</a></p>
           <div class="stadtteil-card__price">Villen · ETW · Premium</div>
           <p>Kölns beliebteste gehobene Wohnlage. Großbürgerliche Villen, ruhige Wohnstraßen, Uni-Nähe. Stabile Nachfrage auch in schwierigen Marktphasen.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/rodenkirchen.html" class="stadtteil-card__link">Köln-Rodenkirchen</a></h3>
+          <p class="card-h"><a href="stadtteile/rodenkirchen.html" class="stadtteil-card__link">Köln-Rodenkirchen</a></p>
           <div class="stadtteil-card__price">EFH · Rheinlage · Familien</div>
           <p>Rheinlage mit Dorfflair und hoher Lebensqualität. Starke Nachfrage von Familien mit gehobenen Ansprüchen — diskreter Markt.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/marienburg.html" class="stadtteil-card__link">Köln-Marienburg</a></h3>
+          <p class="card-h"><a href="stadtteile/marienburg.html" class="stadtteil-card__link">Köln-Marienburg</a></p>
           <div class="stadtteil-card__price">Villen · Repräsentanz · Top-Segment</div>
           <p>Kölns exklusivste Adresse. Parkähnliche Grundstücke, prominente Nachbarschaft. Diskretion zählt hier mehr als Reichweite.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/hahnwald.html" class="stadtteil-card__link">Köln-Hahnwald</a></h3>
+          <p class="card-h"><a href="stadtteile/hahnwald.html" class="stadtteil-card__link">Köln-Hahnwald</a></p>
           <div class="stadtteil-card__price">Villen · Privatsphäre · Exklusiv</div>
           <p>Exklusive Wohnlage im Kölner Süden. Großzügige Grundstücke, hohe Privatsphäre. Käufer kommen selten über Portale — Netzwerk entscheidet.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/junkersdorf.html" class="stadtteil-card__link">Köln-Junkersdorf</a></h3>
+          <p class="card-h"><a href="stadtteile/junkersdorf.html" class="stadtteil-card__link">Köln-Junkersdorf</a></p>
           <div class="stadtteil-card__price">EFH · Neubau · Familien</div>
           <p>Familienfreundlich, gute Anbindung, steigende Nachfrage. Beliebte Alternative zu Lindenthal mit mehr Grundstücksfläche.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/klettenberg.html" class="stadtteil-card__link">Köln-Klettenberg</a></h3>
+          <p class="card-h"><a href="stadtteile/klettenberg.html" class="stadtteil-card__link">Köln-Klettenberg</a></p>
           <div class="stadtteil-card__price">Altbau · Gründerzeit · Bürgerpark</div>
           <p>Charmanter Stadtteil mit Gründerzeitvillen und Bürgerpark-Nähe. Hohe Nachfrage bei jungen Familien — stabile Wertentwicklung.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/bayenthal.html" class="stadtteil-card__link">Köln-Bayenthal</a></h3>
+          <p class="card-h"><a href="stadtteile/bayenthal.html" class="stadtteil-card__link">Köln-Bayenthal</a></p>
           <div class="stadtteil-card__price">Neubau · Rhein-Nähe · Kapitalanlage</div>
           <p>Aufstrebendes Quartier direkt am Rhein. Neubauprojekte und Bestandsobjekte — attraktiv für Kapitalanleger und Selbstnutzer.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/dellbrueck.html" class="stadtteil-card__link">Köln-Dellbrück</a></h3>
+          <p class="card-h"><a href="stadtteile/dellbrueck.html" class="stadtteil-card__link">Köln-Dellbrück</a></p>
           <div class="stadtteil-card__price">Villen · MFH · Wohnanlagen</div>
           <p>Rechtsrheinisch, aufstrebende Lage. Villencharakter, ruhige Wohnstraßen — hier wurde das teuerste Objekt im Portfolio vermittelt.</p>
         
@@ -3807,63 +3790,63 @@ WE B.05</div>
       <div class="stadtteile__grid">
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/bergheim.html" class="stadtteil-card__link">Bergheim</a></h3>
+          <p class="card-h"><a href="stadtteile/bergheim.html" class="stadtteil-card__link">Bergheim</a></p>
           <div class="stadtteil-card__price">Rhein-Erft-Kreis · Mittelzentrum</div>
           <p>Mittelzentrum mit moderaten Preisen und guter Anbindung an Köln über die A61/A4.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/bergisch-gladbach.html" class="stadtteil-card__link">Bergisch Gladbach</a></h3>
+          <p class="card-h"><a href="stadtteile/bergisch-gladbach.html" class="stadtteil-card__link">Bergisch Gladbach</a></p>
           <div class="stadtteil-card__price">Rheinisch-Bergischer Kreis · Kreisstadt</div>
           <p>Kreisstadt im Bergischen Land mit gehobenen Wohnlagen und kurzer Distanz nach Köln.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/pulheim.html" class="stadtteil-card__link">Pulheim</a></h3>
+          <p class="card-h"><a href="stadtteile/pulheim.html" class="stadtteil-card__link">Pulheim</a></p>
           <div class="stadtteil-card__price">Neubau · Grundstücke · Konvolute</div>
           <p>Neubau-Hotspot direkt vor den Toren Kölns. Starke Investoren-Nachfrage, direkte S-Bahn-Anbindung.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/kerpen.html" class="stadtteil-card__link">Kerpen</a></h3>
+          <p class="card-h"><a href="stadtteile/kerpen.html" class="stadtteil-card__link">Kerpen</a></p>
           <div class="stadtteil-card__price">Rhein-Erft-Kreis · Strukturwandel</div>
           <p>Strukturwandel und Wachstum – attraktiver Standort mit noch moderaten Immobilienpreisen.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/erftstadt.html" class="stadtteil-card__link">Erftstadt</a></h3>
+          <p class="card-h"><a href="stadtteile/erftstadt.html" class="stadtteil-card__link">Erftstadt</a></p>
           <div class="stadtteil-card__price">EFH · Grünlage · Südlich Köln</div>
           <p>Grüne Wohnlage südlich von Köln mit historischem Stadtkern und guter Verkehrsanbindung.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/bruehl.html" class="stadtteil-card__link">Brühl</a></h3>
+          <p class="card-h"><a href="stadtteile/bruehl.html" class="stadtteil-card__link">Brühl</a></p>
           <div class="stadtteil-card__price">UNESCO-Welterbe · EFH · Familien</div>
           <p>Schloss Augustusburg direkt vor der Tür – hohe Lebensqualität und nachgefragte Eigenheimlagen.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/bedburg.html" class="stadtteil-card__link">Bedburg</a></h3>
+          <p class="card-h"><a href="stadtteile/bedburg.html" class="stadtteil-card__link">Bedburg</a></p>
           <div class="stadtteil-card__price">Rhein-Erft-Kreis · Einstiegspreise</div>
           <p>Wachsende Kleinstadt mit günstigen Einstiegspreisen und guter Bahnanbindung nach Köln.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/rommerskirchen.html" class="stadtteil-card__link">Rommerskirchen</a></h3>
+          <p class="card-h"><a href="stadtteile/rommerskirchen.html" class="stadtteil-card__link">Rommerskirchen</a></p>
           <div class="stadtteil-card__price">Rhein-Kreis Neuss · Familienlage</div>
           <p>Ländliches Wohnen mit direktem S-Bahn-Anschluss nach Köln – ideal für Familien.</p>
         
         </div>
         <div class="stadtteil-card">
 
-          <h3><a href="stadtteile/leverkusen.html" class="stadtteil-card__link">Leverkusen</a></h3>
+          <p class="card-h"><a href="stadtteile/leverkusen.html" class="stadtteil-card__link">Leverkusen</a></p>
           <div class="stadtteil-card__price">MFH · Kapitalanlage · Rendite</div>
           <p>Eigenständige Stadt nördlich von Köln. Solide Renditen bei MFH, viele Einfamilienhausgebiete mit Rheinanbindung.</p>
         
@@ -4025,7 +4008,7 @@ WE B.05</div>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                 Termin per WhatsApp
               </a>
-              <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST/@50.9437167,6.9408316,17z" target="_blank" rel="noopener noreferrer" class="btn" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.75);">
+              <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln/@50.9436867,6.9395297,255m/data=!3m2!1e3!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m16!1m9!3m8!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!2sRoman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln!8m2!3d50.9436867!4d6.9406741!9m1!1b1!16s%2Fg%2F11w4rp9vvy!3m5!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!16s%2Fg%2F11w4rp9vvy?entry=ttu&amp;g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn" style="text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.75);">
                 Auf Google Maps öffnen
               </a>
             </div>
@@ -4244,113 +4227,129 @@ WE B.05</div>
       {t:'Luxus Immobilienmakler Köln', u:'/luxus-immobilienmakler-koeln.html', c:'Seite', k:'luxus premium villa penthouse exklusiv hochwertig luxusimmobilie drohnenaufnahmen immobilienfotos virtuelle besichtigung 360 grad rundgang grundriss erstellen homestaging professionelle fotos immobilienmarketing'},
       {t:'Immobiliengutachter Köln', u:'/immobiliengutachter-koeln.html', c:'Seite', k:'gutachter gutachten wertermittlung sachverständiger verkehrswert schätzung immobiliengutachten verkehrswertgutachten'},
       {t:'Marktanalyse Köln', u:'/marktanalyse/', c:'Seite', k:'markt preise analyse trend immobilienmarkt preisspiegel bericht immobilienpreise nrw lagebewertung mikrolage makrolage infrastruktur umgebung schulen öpnv anbindung einkauf einkaufsmöglichkeiten'},
-      {t:'Köln-Agnesviertel', u:'/stadtteile/agnesviertel.html', c:'Stadtteil Köln', k:'agnesviertel makler immobilien haus wohnung'},
-      {t:'Köln-Altstadt-Nord', u:'/stadtteile/altstadt-nord.html', c:'Stadtteil Köln', k:'altstadt-nord innenstadt 50667 makler immobilien'},
-      {t:'Köln-Altstadt-Süd', u:'/stadtteile/altstadt-sued.html', c:'Stadtteil Köln', k:'altstadt-sued innenstadt 50676 makler immobilien'},
-      {t:'Köln-Bayenthal', u:'/stadtteile/bayenthal.html', c:'Stadtteil Köln', k:'bayenthal 50678 makler immobilien haus wohnung'},
-      {t:'Köln-Belgisches Viertel', u:'/stadtteile/belgisches-viertel.html', c:'Stadtteil Köln', k:'belgisch belgisches belgischen viertel makler immobilien haus wohnung'},
-      {t:'Köln-Bezirk Chorweiler', u:'/stadtteile/bezirk-chorweiler.html', c:'Stadtteil Köln', k:'bezirk chorweiler makler immobilien'},
-      {t:'Köln-Bezirk Porz', u:'/stadtteile/bezirk-porz.html', c:'Stadtteil Köln', k:'bezirk porz makler immobilien'},
-      {t:'Köln-Bickendorf', u:'/stadtteile/bickendorf.html', c:'Stadtteil Köln', k:'bickendorf makler immobilien haus wohnung'},
-      {t:'Köln-Bilderstöckchen', u:'/stadtteile/bilderstoeckchen.html', c:'Stadtteil Köln', k:'bilderstoeckchen makler immobilien haus wohnung'},
-      {t:'Köln-Blumenberg', u:'/stadtteile/blumenberg.html', c:'Stadtteil Köln', k:'blumenberg makler immobilien haus wohnung'},
-      {t:'Köln-Bocklemünd/Mengenich', u:'/stadtteile/bocklemuend-mengenich.html', c:'Stadtteil Köln', k:'bocklemünd mengenich makler immobilien haus wohnung'},
-      {t:'Köln-Braunsfeld', u:'/stadtteile/braunsfeld.html', c:'Stadtteil Köln', k:'braunsfeld 50933 makler immobilien haus wohnung'},
-      {t:'Köln-Brück', u:'/stadtteile/brueck.html', c:'Stadtteil Köln', k:'brueck brück makler immobilien haus wohnung'},
-      {t:'Köln-Buchforst', u:'/stadtteile/buchforst.html', c:'Stadtteil Köln', k:'buchforst makler immobilien haus wohnung'},
-      {t:'Köln-Buchheim', u:'/stadtteile/buchheim.html', c:'Stadtteil Köln', k:'buchheim makler immobilien haus wohnung'},
-      {t:'Köln-Chorweiler', u:'/stadtteile/chorweiler.html', c:'Stadtteil Köln', k:'chorweiler 50765 makler immobilien haus wohnung'},
-      {t:'Köln-Dellbrück', u:'/stadtteile/dellbrueck.html', c:'Stadtteil Köln', k:'dellbrück dellbrueck 51069 makler immobilien haus wohnung'},
-      {t:'Köln-Deutz', u:'/stadtteile/deutz.html', c:'Stadtteil Köln', k:'deutz 50679 makler immobilien haus wohnung'},
-      {t:'Köln-Dünnwald', u:'/stadtteile/duennwald.html', c:'Stadtteil Köln', k:'duennwald dünnwald makler immobilien haus wohnung'},
-      {t:'Köln-Ehrenfeld', u:'/stadtteile/ehrenfeld.html', c:'Stadtteil Köln', k:'ehrenfeld 50823 makler immobilien haus wohnung'},
-      {t:'Köln-Eil', u:'/stadtteile/eil.html', c:'Stadtteil Köln', k:'eil makler immobilien haus wohnung'},
-      {t:'Köln-Ensen', u:'/stadtteile/ensen.html', c:'Stadtteil Köln', k:'ensen makler immobilien haus wohnung'},
-      {t:'Köln-Esch/Auweiler', u:'/stadtteile/esch-auweiler.html', c:'Stadtteil Köln', k:'esch auweiler makler immobilien haus wohnung'},
-      {t:'Köln-Finkenberg', u:'/stadtteile/finkenberg.html', c:'Stadtteil Köln', k:'finkenberg makler immobilien haus wohnung'},
-      {t:'Köln-Flittard', u:'/stadtteile/flittard.html', c:'Stadtteil Köln', k:'flittard makler immobilien haus wohnung'},
-      {t:'Köln-Fühlingen', u:'/stadtteile/fuehlingen.html', c:'Stadtteil Köln', k:'fuehlingen fühlingen makler immobilien haus wohnung'},
-      {t:'Köln-Godorf', u:'/stadtteile/godorf.html', c:'Stadtteil Köln', k:'godorf makler immobilien haus wohnung'},
-      {t:'Köln-Gremberghoven', u:'/stadtteile/gremberghoven.html', c:'Stadtteil Köln', k:'gremberghoven makler immobilien haus wohnung'},
-      {t:'Köln-Grengel', u:'/stadtteile/grengel.html', c:'Stadtteil Köln', k:'grengel makler immobilien haus wohnung'},
-      {t:'Köln-Hahnwald', u:'/stadtteile/hahnwald.html', c:'Stadtteil Köln', k:'hahnwald 50999 makler immobilien haus villa luxus'},
-      {t:'Köln-Heimersdorf', u:'/stadtteile/heimersdorf.html', c:'Stadtteil Köln', k:'heimersdorf makler immobilien haus wohnung'},
-      {t:'Köln-Höhenberg', u:'/stadtteile/hoehenberg.html', c:'Stadtteil Köln', k:'hoehenberg höhenberg makler immobilien haus wohnung'},
-      {t:'Köln-Höhenhaus', u:'/stadtteile/hoehenhaus.html', c:'Stadtteil Köln', k:'hoehenhaus höhenhaus makler immobilien haus wohnung'},
-      {t:'Köln-Holweide', u:'/stadtteile/holweide.html', c:'Stadtteil Köln', k:'holweide makler immobilien haus wohnung'},
-      {t:'Köln-Humboldt/Gremberg', u:'/stadtteile/humboldt-gremberg.html', c:'Stadtteil Köln', k:'humboldt gremberg makler immobilien haus wohnung'},
-      {t:'Köln-Immendorf', u:'/stadtteile/immendorf.html', c:'Stadtteil Köln', k:'immendorf makler immobilien haus wohnung'},
-      {t:'Köln-Junkersdorf', u:'/stadtteile/junkersdorf.html', c:'Stadtteil Köln', k:'junkersdorf 50859 makler immobilien haus wohnung'},
-      {t:'Köln-Kalk', u:'/stadtteile/kalk.html', c:'Stadtteil Köln', k:'kalk 51103 makler immobilien haus wohnung'},
-      {t:'Köln-Klettenberg', u:'/stadtteile/klettenberg.html', c:'Stadtteil Köln', k:'klettenberg 50935 makler immobilien haus wohnung'},
-      {t:'Köln-Komponistenviertel', u:'/stadtteile/komponistenviertel.html', c:'Stadtteil Köln', k:'komponistenviertel makler immobilien haus wohnung'},
-      {t:'Köln-Langel', u:'/stadtteile/langel.html', c:'Stadtteil Köln', k:'langel makler immobilien haus wohnung'},
-      {t:'Köln-Libur', u:'/stadtteile/libur.html', c:'Stadtteil Köln', k:'libur makler immobilien haus wohnung'},
-      {t:'Köln-Lind', u:'/stadtteile/lind.html', c:'Stadtteil Köln', k:'lind makler immobilien haus wohnung'},
-      {t:'Köln-Lindenthal', u:'/stadtteile/lindenthal.html', c:'Stadtteil Köln', k:'lindenthal 50931 makler immobilien haus wohnung'},
-      {t:'Köln-Lindweiler', u:'/stadtteile/lindweiler.html', c:'Stadtteil Köln', k:'lindweiler makler immobilien haus wohnung'},
-      {t:'Köln-Lövenich', u:'/stadtteile/loevenich.html', c:'Stadtteil Köln', k:'loevenich lövenich makler immobilien haus wohnung'},
-      {t:'Köln-Longerich', u:'/stadtteile/longerich.html', c:'Stadtteil Köln', k:'longerich 50737 makler immobilien haus wohnung'},
-      {t:'Köln-Marienburg', u:'/stadtteile/marienburg.html', c:'Stadtteil Köln', k:'marienburg 50997 makler immobilien haus villa luxus'},
-      {t:'Köln-Mauenheim', u:'/stadtteile/mauenheim.html', c:'Stadtteil Köln', k:'mauenheim makler immobilien haus wohnung'},
-      {t:'Köln-Merheim', u:'/stadtteile/merheim.html', c:'Stadtteil Köln', k:'merheim makler immobilien haus wohnung'},
-      {t:'Köln-Merkenich', u:'/stadtteile/merkenich.html', c:'Stadtteil Köln', k:'merkenich makler immobilien haus wohnung'},
-      {t:'Köln-Meschenich', u:'/stadtteile/meschenich.html', c:'Stadtteil Köln', k:'meschenich makler immobilien haus wohnung'},
-      {t:'Köln-Mülheim', u:'/stadtteile/muelheim.html', c:'Stadtteil Köln', k:'muelheim mülheim 51061 makler immobilien haus wohnung'},
-      {t:'Köln-Müngersdorf', u:'/stadtteile/muengersdorf.html', c:'Stadtteil Köln', k:'muengersdorf müngersdorf makler immobilien haus wohnung'},
-      {t:'Köln-Neubrück', u:'/stadtteile/neubrueck.html', c:'Stadtteil Köln', k:'neubrueck neubrück makler immobilien haus wohnung'},
-      {t:'Köln-Neuehrenfeld', u:'/stadtteile/neuehrenfeld.html', c:'Stadtteil Köln', k:'neuehrenfeld makler immobilien haus wohnung'},
-      {t:'Köln-Neustadt-Nord', u:'/stadtteile/neustadt-nord.html', c:'Stadtteil Köln', k:'neustadt-nord 50668 makler immobilien haus wohnung'},
-      {t:'Köln-Neustadt-Süd', u:'/stadtteile/neustadt-sued.html', c:'Stadtteil Köln', k:'neustadt-sued neustadt-süd 50674 makler immobilien haus wohnung'},
-      {t:'Köln-Niehl', u:'/stadtteile/niehl.html', c:'Stadtteil Köln', k:'niehl makler immobilien haus wohnung'},
-      {t:'Köln-Nippes', u:'/stadtteile/nippes.html', c:'Stadtteil Köln', k:'nippes 50733 makler immobilien haus wohnung'},
-      {t:'Köln-Ossendorf', u:'/stadtteile/ossendorf.html', c:'Stadtteil Köln', k:'ossendorf 50739 makler immobilien haus wohnung'},
-      {t:'Köln-Ostheim', u:'/stadtteile/ostheim.html', c:'Stadtteil Köln', k:'ostheim makler immobilien haus wohnung'},
-      {t:'Köln-Pesch', u:'/stadtteile/pesch.html', c:'Stadtteil Köln', k:'pesch makler immobilien haus wohnung'},
-      {t:'Köln-Poll', u:'/stadtteile/poll.html', c:'Stadtteil Köln', k:'poll makler immobilien haus wohnung'},
-      {t:'Köln-Porz', u:'/stadtteile/porz.html', c:'Stadtteil Köln', k:'porz 51143 makler immobilien haus wohnung'},
-      {t:'Köln-Raderberg', u:'/stadtteile/raderberg.html', c:'Stadtteil Köln', k:'raderberg makler immobilien haus wohnung'},
-      {t:'Köln-Raderthal', u:'/stadtteile/raderthal.html', c:'Stadtteil Köln', k:'raderthal makler immobilien haus wohnung'},
-      {t:'Köln-Rath/Heumar', u:'/stadtteile/rath-heumar.html', c:'Stadtteil Köln', k:'rath heumar makler immobilien haus wohnung'},
-      {t:'Köln-Rheinauhafen', u:'/stadtteile/rheinauhafen.html', c:'Stadtteil Köln', k:'rheinauhafen makler immobilien loft wohnung'},
-      {t:'Köln-Riehl', u:'/stadtteile/riehl.html', c:'Stadtteil Köln', k:'riehl makler immobilien haus wohnung'},
-      {t:'Köln-Rodenkirchen', u:'/stadtteile/rodenkirchen.html', c:'Stadtteil Köln', k:'rodenkirchen 50999 makler immobilien haus wohnung'},
-      {t:'Köln-Roggendorf/Thenhoven', u:'/stadtteile/roggendorf-thenhoven.html', c:'Stadtteil Köln', k:'roggendorf thenhoven makler immobilien haus wohnung'},
-      {t:'Köln-Rondorf', u:'/stadtteile/rondorf.html', c:'Stadtteil Köln', k:'rondorf makler immobilien haus wohnung'},
-      {t:'Köln-Seeberg', u:'/stadtteile/seeberg.html', c:'Stadtteil Köln', k:'seeberg makler immobilien haus wohnung'},
-      {t:'Köln-Stammheim', u:'/stadtteile/stammheim.html', c:'Stadtteil Köln', k:'stammheim makler immobilien haus wohnung'},
-      {t:'Köln-Sülz', u:'/stadtteile/suelz.html', c:'Stadtteil Köln', k:'suelz sülz 50939 makler immobilien haus wohnung'},
-      {t:'Köln-Sürth', u:'/stadtteile/suerth.html', c:'Stadtteil Köln', k:'suerth sürth makler immobilien haus wohnung'},
-      {t:'Köln-Urbach', u:'/stadtteile/urbach.html', c:'Stadtteil Köln', k:'urbach makler immobilien haus wohnung'},
-      {t:'Köln-Vingst', u:'/stadtteile/vingst.html', c:'Stadtteil Köln', k:'vingst makler immobilien haus wohnung'},
-      {t:'Köln-Vogelsang', u:'/stadtteile/vogelsang.html', c:'Stadtteil Köln', k:'vogelsang makler immobilien haus wohnung'},
-      {t:'Köln-Volkhoven/Weiler', u:'/stadtteile/volkhoven-weiler.html', c:'Stadtteil Köln', k:'volkhoven weiler makler immobilien haus wohnung'},
-      {t:'Köln-Wahn', u:'/stadtteile/wahn.html', c:'Stadtteil Köln', k:'wahn makler immobilien haus wohnung'},
-      {t:'Köln-Wahnheide', u:'/stadtteile/wahnheide.html', c:'Stadtteil Köln', k:'wahnheide makler immobilien haus wohnung'},
-      {t:'Köln-Weiden', u:'/stadtteile/weiden.html', c:'Stadtteil Köln', k:'weiden makler immobilien haus wohnung'},
-      {t:'Köln-Weidenpesch', u:'/stadtteile/weidenpesch.html', c:'Stadtteil Köln', k:'weidenpesch makler immobilien haus wohnung'},
-      {t:'Köln-Weiß', u:'/stadtteile/weiss.html', c:'Stadtteil Köln', k:'weiss weiß makler immobilien haus wohnung'},
-      {t:'Köln-Westhoven', u:'/stadtteile/westhoven.html', c:'Stadtteil Köln', k:'westhoven makler immobilien haus wohnung'},
-      {t:'Köln-Widdersdorf', u:'/stadtteile/widdersdorf.html', c:'Stadtteil Köln', k:'widdersdorf 50858 makler immobilien haus wohnung'},
-      {t:'Köln-Worringen', u:'/stadtteile/worringen.html', c:'Stadtteil Köln', k:'worringen makler immobilien haus wohnung'},
-      {t:'Köln-Zollstock', u:'/stadtteile/zollstock.html', c:'Stadtteil Köln', k:'zollstock 50937 makler immobilien haus wohnung'},
-      {t:'Köln-Zündorf', u:'/stadtteile/zuendorf.html', c:'Stadtteil Köln', k:'zuendorf zündorf makler immobilien haus wohnung'},
-      {t:'Bedburg', u:'/stadtteile/bedburg.html', c:'Umland', k:'bedburg makler immobilien haus wohnung'},
-      {t:'Bergheim', u:'/stadtteile/bergheim.html', c:'Umland', k:'bergheim makler immobilien haus wohnung'},
-      {t:'Bergisch Gladbach', u:'/stadtteile/bergisch-gladbach.html', c:'Umland', k:'bergisch gladbach makler immobilien haus wohnung'},
-      {t:'Brühl', u:'/stadtteile/bruehl.html', c:'Umland', k:'bruehl brühl makler immobilien haus wohnung'},
-      {t:'Elsdorf', u:'/stadtteile/elsdorf.html', c:'Umland', k:'elsdorf makler immobilien haus wohnung'},
-      {t:'Erftstadt', u:'/stadtteile/erftstadt.html', c:'Umland', k:'erftstadt makler immobilien haus wohnung'},
-      {t:'Frechen', u:'/stadtteile/frechen.html', c:'Umland', k:'frechen makler immobilien haus wohnung'},
-      {t:'Kerpen', u:'/stadtteile/kerpen.html', c:'Umland', k:'kerpen makler immobilien haus wohnung'},
-      {t:'Leverkusen', u:'/stadtteile/leverkusen.html', c:'Umland', k:'leverkusen makler immobilien haus wohnung'},
-      {t:'Pulheim', u:'/stadtteile/pulheim.html', c:'Umland', k:'pulheim 50259 makler immobilien haus wohnung'},
-      {t:'Rommerskirchen', u:'/stadtteile/rommerskirchen.html', c:'Umland', k:'rommerskirchen makler immobilien haus wohnung'},
-      {t:'Bonn', u:'/bodenrichtwert-koeln.html', c:'Umland', k:'bonn'},
-      {t:'Siegburg', u:'/bodenrichtwert-koeln.html', c:'Umland', k:'siegburg'},
-      {t:'Troisdorf', u:'/bodenrichtwert-koeln.html', c:'Umland', k:'troisdorf'},
-      {t:'Wesseling', u:'/bodenrichtwert-koeln.html', c:'Umland', k:'wesseling'},
-      {t:'Dormagen', u:'/bodenrichtwert-koeln.html', c:'Umland', k:'dormagen'},
+      {t:'Köln-Agnesviertel', u:'/stadtteile/agnesviertel.html', c:'Stadtteil Köln', k:'agnesviertel 50670 50672 neustadt-nord makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Altstadt-Nord', u:'/stadtteile/altstadt-nord.html', c:'Stadtteil Köln', k:'altstadt-nord altstadt nord 50667 innenstadt makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Altstadt-Süd', u:'/stadtteile/altstadt-sued.html', c:'Stadtteil Köln', k:'altstadt-sued altstadt-süd altstadt süd 50676 innenstadt makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Bayenthal', u:'/stadtteile/bayenthal.html', c:'Stadtteil Köln', k:'bayenthal 50678 rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Belgisches Viertel', u:'/stadtteile/belgisches-viertel.html', c:'Stadtteil Köln', k:'belgisches viertel belgisch belgischen 50672 50674 innenstadt makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Bezirk Chorweiler', u:'/stadtteile/bezirk-chorweiler.html', c:'Stadtteil Köln', k:'bezirk chorweiler 50765 50769 makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Bezirk Porz', u:'/stadtteile/bezirk-porz.html', c:'Stadtteil Köln', k:'bezirk porz 51143 51147 makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Bickendorf', u:'/stadtteile/bickendorf.html', c:'Stadtteil Köln', k:'bickendorf 50827 ehrenfeld makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Bilderstöckchen', u:'/stadtteile/bilderstoeckchen.html', c:'Stadtteil Köln', k:'bilderstoeckchen bilderstöckchen 50739 ossendorf makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Blumenberg', u:'/stadtteile/blumenberg.html', c:'Stadtteil Köln', k:'blumenberg 50769 chorweiler makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Bocklemünd/Mengenich', u:'/stadtteile/bocklemuend-mengenich.html', c:'Stadtteil Köln', k:'bocklemuend bocklemünd mengenich 50829 ehrenfeld makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Braunsfeld', u:'/stadtteile/braunsfeld.html', c:'Stadtteil Köln', k:'braunsfeld 50933 lindenthal makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Brück', u:'/stadtteile/brueck.html', c:'Stadtteil Köln', k:'brueck brück 51065 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Buchforst', u:'/stadtteile/buchforst.html', c:'Stadtteil Köln', k:'buchforst 51065 51067 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Buchheim', u:'/stadtteile/buchheim.html', c:'Stadtteil Köln', k:'buchheim 51063 51065 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Chorweiler', u:'/stadtteile/chorweiler.html', c:'Stadtteil Köln', k:'chorweiler 50765 bezirk chorweiler makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Dellbrück', u:'/stadtteile/dellbrueck.html', c:'Stadtteil Köln', k:'dellbrueck dellbrück 51069 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Deutz', u:'/stadtteile/deutz.html', c:'Stadtteil Köln', k:'deutz 50679 rechtsrheinisch messe makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Dünnwald', u:'/stadtteile/duennwald.html', c:'Stadtteil Köln', k:'duennwald dünnwald 51069 51063 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Ehrenfeld', u:'/stadtteile/ehrenfeld.html', c:'Stadtteil Köln', k:'ehrenfeld 50823 kreativviertel szeneviertel makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Eil', u:'/stadtteile/eil.html', c:'Stadtteil Köln', k:'eil 51147 bezirk porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Ensen', u:'/stadtteile/ensen.html', c:'Stadtteil Köln', k:'ensen 51107 porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Esch/Auweiler', u:'/stadtteile/esch-auweiler.html', c:'Stadtteil Köln', k:'esch auweiler 50769 chorweiler makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Finkenberg', u:'/stadtteile/finkenberg.html', c:'Stadtteil Köln', k:'finkenberg 51107 porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Flittard', u:'/stadtteile/flittard.html', c:'Stadtteil Köln', k:'flittard 51061 mülheim rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Fühlingen', u:'/stadtteile/fuehlingen.html', c:'Stadtteil Köln', k:'fuehlingen fühlingen 50769 chorweiler makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Godorf', u:'/stadtteile/godorf.html', c:'Stadtteil Köln', k:'godorf 50997 rodenkirchen rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Gremberghoven', u:'/stadtteile/gremberghoven.html', c:'Stadtteil Köln', k:'gremberghoven 51109 kalk makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Grengel', u:'/stadtteile/grengel.html', c:'Stadtteil Köln', k:'grengel 51107 porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Hahnwald', u:'/stadtteile/hahnwald.html', c:'Stadtteil Köln', k:'hahnwald 50999 rodenkirchen villa luxus exklusiv makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Heimersdorf', u:'/stadtteile/heimersdorf.html', c:'Stadtteil Köln', k:'heimersdorf 50769 chorweiler makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Höhenberg', u:'/stadtteile/hoehenberg.html', c:'Stadtteil Köln', k:'hoehenberg höhenberg 51065 kalk makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Höhenhaus', u:'/stadtteile/hoehenhaus.html', c:'Stadtteil Köln', k:'hoehenhaus höhenhaus 51069 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Holweide', u:'/stadtteile/holweide.html', c:'Stadtteil Köln', k:'holweide 51065 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Humboldt/Gremberg', u:'/stadtteile/humboldt-gremberg.html', c:'Stadtteil Köln', k:'humboldt gremberg 51103 51109 kalk makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Immendorf', u:'/stadtteile/immendorf.html', c:'Stadtteil Köln', k:'immendorf 50997 rodenkirchen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Junkersdorf', u:'/stadtteile/junkersdorf.html', c:'Stadtteil Köln', k:'junkersdorf 50859 lindenthal makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Kalk', u:'/stadtteile/kalk.html', c:'Stadtteil Köln', k:'kalk 51103 rechtsrheinisch makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Klettenberg', u:'/stadtteile/klettenberg.html', c:'Stadtteil Köln', k:'klettenberg 50935 lindenthal makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Komponistenviertel', u:'/stadtteile/komponistenviertel.html', c:'Stadtteil Köln', k:'komponistenviertel 50931 lindenthal makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Langel', u:'/stadtteile/langel.html', c:'Stadtteil Köln', k:'langel 51143 porz rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Libur', u:'/stadtteile/libur.html', c:'Stadtteil Köln', k:'libur 51107 porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Lind', u:'/stadtteile/lind.html', c:'Stadtteil Köln', k:'lind 51107 porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Lindenthal', u:'/stadtteile/lindenthal.html', c:'Stadtteil Köln', k:'lindenthal 50931 universitätsviertel makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Lindweiler', u:'/stadtteile/lindweiler.html', c:'Stadtteil Köln', k:'lindweiler 50769 chorweiler makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Lövenich', u:'/stadtteile/loevenich.html', c:'Stadtteil Köln', k:'loevenich lövenich 50858 ehrenfeld makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Longerich', u:'/stadtteile/longerich.html', c:'Stadtteil Köln', k:'longerich 50737 nippes makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Marienburg', u:'/stadtteile/marienburg.html', c:'Stadtteil Köln', k:'marienburg 50997 rodenkirchen villa luxus exklusiv rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Mauenheim', u:'/stadtteile/mauenheim.html', c:'Stadtteil Köln', k:'mauenheim 50739 nippes makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Merheim', u:'/stadtteile/merheim.html', c:'Stadtteil Köln', k:'merheim 51063 51067 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Merkenich', u:'/stadtteile/merkenich.html', c:'Stadtteil Köln', k:'merkenich 50769 chorweiler rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Meschenich', u:'/stadtteile/meschenich.html', c:'Stadtteil Köln', k:'meschenich 50997 rodenkirchen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Mülheim', u:'/stadtteile/muelheim.html', c:'Stadtteil Köln', k:'muelheim mülheim 51061 rechtsrheinisch makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Müngersdorf', u:'/stadtteile/muengersdorf.html', c:'Stadtteil Köln', k:'muengersdorf müngersdorf 50933 lindenthal makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Neubrück', u:'/stadtteile/neubrueck.html', c:'Stadtteil Köln', k:'neubrueck neubrück 51065 mülheim makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Neuehrenfeld', u:'/stadtteile/neuehrenfeld.html', c:'Stadtteil Köln', k:'neuehrenfeld 50733 nippes ehrenfeld makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Neustadt-Nord', u:'/stadtteile/neustadt-nord.html', c:'Stadtteil Köln', k:'neustadt-nord neustadt nord 50668 innenstadt makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Neustadt-Süd', u:'/stadtteile/neustadt-sued.html', c:'Stadtteil Köln', k:'neustadt-sued neustadt-süd neustadt süd 50674 innenstadt makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Niehl', u:'/stadtteile/niehl.html', c:'Stadtteil Köln', k:'niehl 50735 50737 nippes rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Nippes', u:'/stadtteile/nippes.html', c:'Stadtteil Köln', k:'nippes 50733 schanzenviertel makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Ossendorf', u:'/stadtteile/ossendorf.html', c:'Stadtteil Köln', k:'ossendorf 50739 ehrenfeld makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Ostheim', u:'/stadtteile/ostheim.html', c:'Stadtteil Köln', k:'ostheim 51109 kalk makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Pesch', u:'/stadtteile/pesch.html', c:'Stadtteil Köln', k:'pesch 50737 nippes makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Poll', u:'/stadtteile/poll.html', c:'Stadtteil Köln', k:'poll 50679 deutz rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Porz', u:'/stadtteile/porz.html', c:'Stadtteil Köln', k:'porz 51143 bezirk porz flughafen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Raderberg', u:'/stadtteile/raderberg.html', c:'Stadtteil Köln', k:'raderberg 50968 rodenkirchen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Raderthal', u:'/stadtteile/raderthal.html', c:'Stadtteil Köln', k:'raderthal 50997 rodenkirchen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Rath/Heumar', u:'/stadtteile/rath-heumar.html', c:'Stadtteil Köln', k:'rath heumar 51107 porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Rheinauhafen', u:'/stadtteile/rheinauhafen.html', c:'Stadtteil Köln', k:'rheinauhafen 50678 50679 loft hafen innenstadt makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Riehl', u:'/stadtteile/riehl.html', c:'Stadtteil Köln', k:'riehl 50735 nippes zoo makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Rodenkirchen', u:'/stadtteile/rodenkirchen.html', c:'Stadtteil Köln', k:'rodenkirchen 50999 rhein villen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Roggendorf/Thenhoven', u:'/stadtteile/roggendorf-thenhoven.html', c:'Stadtteil Köln', k:'roggendorf thenhoven 50769 chorweiler makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Rondorf', u:'/stadtteile/rondorf.html', c:'Stadtteil Köln', k:'rondorf 50997 rodenkirchen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Seeberg', u:'/stadtteile/seeberg.html', c:'Stadtteil Köln', k:'seeberg 51065 kalk makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Stammheim', u:'/stadtteile/stammheim.html', c:'Stadtteil Köln', k:'stammheim 51061 mülheim rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Sülz', u:'/stadtteile/suelz.html', c:'Stadtteil Köln', k:'suelz sülz 50939 lindenthal uni makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Sürth', u:'/stadtteile/suerth.html', c:'Stadtteil Köln', k:'suerth sürth 50999 rodenkirchen rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Urbach', u:'/stadtteile/urbach.html', c:'Stadtteil Köln', k:'urbach 51109 kalk makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Vingst', u:'/stadtteile/vingst.html', c:'Stadtteil Köln', k:'vingst 51103 kalk makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Vogelsang', u:'/stadtteile/vogelsang.html', c:'Stadtteil Köln', k:'vogelsang 50829 ehrenfeld makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Volkhoven/Weiler', u:'/stadtteile/volkhoven-weiler.html', c:'Stadtteil Köln', k:'volkhoven weiler 50765 chorweiler makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Wahn', u:'/stadtteile/wahn.html', c:'Stadtteil Köln', k:'wahn 51147 porz flughafen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Wahnheide', u:'/stadtteile/wahnheide.html', c:'Stadtteil Köln', k:'wahnheide 51147 porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Weiden', u:'/stadtteile/weiden.html', c:'Stadtteil Köln', k:'weiden 50858 ehrenfeld makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Weidenpesch', u:'/stadtteile/weidenpesch.html', c:'Stadtteil Köln', k:'weidenpesch 50737 nippes makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Weiß', u:'/stadtteile/weiss.html', c:'Stadtteil Köln', k:'weiss weiß 50999 rodenkirchen rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Westhoven', u:'/stadtteile/westhoven.html', c:'Stadtteil Köln', k:'westhoven 51107 porz makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Widdersdorf', u:'/stadtteile/widdersdorf.html', c:'Stadtteil Köln', k:'widdersdorf 50858 ehrenfeld makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Worringen', u:'/stadtteile/worringen.html', c:'Stadtteil Köln', k:'worringen 50769 chorweiler rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Zollstock', u:'/stadtteile/zollstock.html', c:'Stadtteil Köln', k:'zollstock 50937 rodenkirchen makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Köln-Zündorf', u:'/stadtteile/zuendorf.html', c:'Stadtteil Köln', k:'zuendorf zündorf 51143 porz rhein makler immobilien haus wohnung verkaufen grundstück köln'},
+      {t:'Bedburg', u:'/stadtteile/bedburg.html', c:'Umland', k:'bedburg 50181 rhein-erft-kreis makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Bergheim', u:'/stadtteile/bergheim.html', c:'Umland', k:'bergheim 50126 rhein-erft-kreis erft makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Bergisch Gladbach', u:'/stadtteile/bergisch-gladbach.html', c:'Umland', k:'bergisch gladbach 51429 51465 rheinisch-bergischer kreis makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Brühl', u:'/stadtteile/bruehl.html', c:'Umland', k:'bruehl brühl 50321 rhein-erft-kreis phantasialand makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Elsdorf', u:'/stadtteile/elsdorf.html', c:'Umland', k:'elsdorf 50189 rhein-erft-kreis makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Erftstadt', u:'/stadtteile/erftstadt.html', c:'Umland', k:'erftstadt 50374 rhein-erft-kreis erft lechenich liblar makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Frechen', u:'/stadtteile/frechen.html', c:'Umland', k:'frechen 50226 rhein-erft-kreis makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Kerpen', u:'/stadtteile/kerpen.html', c:'Umland', k:'kerpen 50169 rhein-erft-kreis horrem sindorf makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Leverkusen', u:'/stadtteile/leverkusen.html', c:'Umland', k:'leverkusen 51373 51375 51377 bergisch bayer makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Pulheim', u:'/stadtteile/pulheim.html', c:'Umland', k:'pulheim 50259 rhein-erft-kreis makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Rommerskirchen', u:'/stadtteile/rommerskirchen.html', c:'Umland', k:'rommerskirchen 41569 rhein-kreis neuss makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Bonn', u:'/bodenrichtwert-koeln.html', c:'Umland', k:'bonn 53111 53115 53119 53121 bundesstadt rhein makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Alfter', u:'/stadtteile/alfter.html', c:'Umland', k:'alfter 53347 rhein-sieg-kreis bonn makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Bornheim', u:'/stadtteile/bornheim.html', c:'Umland', k:'bornheim 53332 rhein-sieg-kreis vorgebirge makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Dormagen', u:'/stadtteile/dormagen.html', c:'Umland', k:'dormagen 41539 rhein-kreis neuss zons rhein makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Düren', u:'/stadtteile/duerren.html', c:'Umland', k:'düren duerren 52349 kreis düren rur makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Eschweiler', u:'/stadtteile/eschweiler.html', c:'Umland', k:'eschweiler 52249 städteregion aachen makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Hürth', u:'/stadtteile/huerth.html', c:'Umland', k:'hürth huerth 50354 rhein-erft-kreis köln makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Jüchen', u:'/stadtteile/juechen.html', c:'Umland', k:'jüchen juechen 41363 rhein-kreis neuss makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Jülich', u:'/stadtteile/juelich.html', c:'Umland', k:'jülich juelich 52428 kreis düren rur forschungszentrum makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Leichlingen', u:'/stadtteile/leichlingen.html', c:'Umland', k:'leichlingen 42799 rheinisch-bergischer kreis wupper blütenstadt makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Lohmar', u:'/stadtteile/lohmar.html', c:'Umland', k:'lohmar 53797 rhein-sieg-kreis bergisches land makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Much', u:'/stadtteile/much.html', c:'Umland', k:'much 53804 rhein-sieg-kreis bergisches land makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Neunkirchen-Seelscheid', u:'/stadtteile/neunkirchen-seelscheid.html', c:'Umland', k:'neunkirchen seelscheid 53819 rhein-sieg-kreis bergisches land makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Niederkassel', u:'/stadtteile/niederkassel.html', c:'Umland', k:'niederkassel 53859 rhein-sieg-kreis rhein makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Odenthal', u:'/stadtteile/odenthal.html', c:'Umland', k:'odenthal 51519 rheinisch-bergischer kreis altenberger dom bergisches land makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Overath', u:'/stadtteile/overath.html', c:'Umland', k:'overath 51491 rheinisch-bergischer kreis bergisches land s-bahn makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Rösrath', u:'/stadtteile/roesrath.html', c:'Umland', k:'rösrath roesrath 51503 rheinisch-bergischer kreis königsforst makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Sankt Augustin', u:'/stadtteile/sankt-augustin.html', c:'Umland', k:'sankt augustin 53757 rhein-sieg-kreis hochschule makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Swisttal', u:'/stadtteile/swisttal.html', c:'Umland', k:'swisttal 53913 rhein-sieg-kreis vorgebirge makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Troisdorf', u:'/stadtteile/troisdorf.html', c:'Umland', k:'troisdorf 53840 rhein-sieg-kreis flughafen köln bonn s-bahn makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Wesseling', u:'/stadtteile/wesseling.html', c:'Umland', k:'wesseling 50389 rhein-erft-kreis rhein makler immobilien haus wohnung verkaufen grundstück'},
       {t:'Ratgeber: Zwangsversteigerung', u:'/ratgeber/zwangsversteigerung.html', c:'Ratgeber', k:'zwangsversteigerung auktion bieter gebot gericht insolvenz schulden vermeiden'},
       {t:'Ratgeber: Grundbuch', u:'/ratgeber/grundbuch.html', c:'Ratgeber', k:'grundbuch grundbuchauszug notar eintrag hypothek grundschuld eigentümer flurstück abteilung auflassungsvormerkung teilungserklärung immobilienrecht'},
       {t:'Ratgeber: Hypothek', u:'/ratgeber/hypothek.html', c:'Ratgeber', k:'hypothek kredit darlehen bank zinsen schulden sicherheit pfandrecht löschungsbewilligung restschuld vorfälligkeitsentschädigung'},
