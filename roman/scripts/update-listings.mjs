@@ -14,7 +14,8 @@ import { dirname, join } from 'node:path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const INDEX_PATH = join(__dirname, '..', 'index.html');
+const INDEX_PATH      = join(__dirname, '..', 'index.html');
+const BAUTRAEGER_PATH = join(__dirname, '..', 'bautraeger.html');
 
 const ROMAN_PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
 const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.938361&lng=6.959974&zoom=11';
@@ -295,6 +296,45 @@ async function injectIntoHtml(romanHtml, koelnHtml, activeCount) {
 }
 
 // ---------------------------------------------------------------------------
+// Fetch Evernest Standorte count
+// ---------------------------------------------------------------------------
+
+async function fetchStandorteCount() {
+  const res = await fetch('https://www.evernest.com/de/ueber-uns/', {
+    headers: { 'User-Agent': UA },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const html = await res.text();
+  const m = html.match(/(\d+)\s*\+?\s*Standort/i);
+  if (!m) throw new Error('Standorte count not found on Evernest Über-uns page');
+  return parseInt(m[1], 10);
+}
+
+async function injectStandorte(standorte) {
+  const pattern = /<!-- STANDORTE-COUNT -->(\d+)<!-- \/STANDORTE-COUNT -->/g;
+  const replacement = `<!-- STANDORTE-COUNT -->${standorte}<!-- /STANDORTE-COUNT -->`;
+
+  // Update bautraeger.html
+  let bt = await readFile(BAUTRAEGER_PATH, 'utf-8');
+  if (!pattern.test(bt)) {
+    console.warn('Warning: STANDORTE-COUNT marker not found in bautraeger.html — skipping.');
+  } else {
+    bt = bt.replace(pattern, replacement);
+    await writeFile(BAUTRAEGER_PATH, bt, 'utf-8');
+    console.log(`bautraeger.html: Standorte → ${standorte}`);
+  }
+
+  // Also update index.html if marker exists there
+  let ix = await readFile(INDEX_PATH, 'utf-8');
+  pattern.lastIndex = 0;
+  if (pattern.test(ix)) {
+    ix = ix.replace(pattern, replacement);
+    await writeFile(INDEX_PATH, ix, 'utf-8');
+    console.log(`index.html: Standorte → ${standorte}`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -320,6 +360,16 @@ async function main() {
 
   await injectIntoHtml(romanHtml, koelnHtml, romanActive);
   console.log('index.html updated successfully.');
+
+  // Update Standorte count
+  console.log('Fetching EVERNEST Standorte count…');
+  try {
+    const standorte = await fetchStandorteCount();
+    console.log(`Standorte: ${standorte}`);
+    await injectStandorte(standorte);
+  } catch (err) {
+    console.warn(`Warning: Could not fetch Standorte count — ${err.message}`);
+  }
 }
 
 main().catch(err => {
