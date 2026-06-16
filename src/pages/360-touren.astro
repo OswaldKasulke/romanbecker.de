@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const features = [
+  {
+    title: 'Google Street View',
+    text: 'Deine Tour erscheint direkt in der Google-Suche und auf Google Maps — dort, wo deine Gäste suchen.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg>`,
+  },
+  {
+    title: 'Kein App-Download',
+    text: 'Besucher erleben die Tour direkt im Browser — auf Handy, Tablet oder Desktop.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>`,
+  },
+  {
+    title: 'Professionelle Aufnahme',
+    text: 'Wir kommen zu dir — mit 360°-Kamera und Stativ. Vorbereitung 0, Aufwand für dich: minimal.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
+  },
+  {
+    title: 'In 5 Tagen live',
+    text: 'Aufnahme, Bearbeitung, Veröffentlichung auf Google — alles aus einer Hand, in einer Woche.',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  },
+];
+---
+
+<Layout
+  title="360° Virtuelle Touren für Restaurants — fuerte.digital"
+  description="Professionelle 360°-Touren für Kölner Restaurants. Direkt in Google Maps und Street View — Gäste erleben dein Lokal, bevor sie reservieren."
+>
+  <Header isSubpage />
+
+  <main>
+
+    <!-- HERO -->
+    <section class="relative min-h-screen flex flex-col justify-center overflow-hidden px-6 md:px-10 pt-32 pb-20">
+
+      <!-- Glow -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div
+          class="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-teal/10 rounded-full blur-[120px] animate-glow-pulse"
+          data-parallax="0.2"
+        ></div>
+        <div
+          class="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] bg-orange/15 rounded-full blur-[100px] animate-glow-pulse"
+          style="animation-delay: -3s;"
+          data-parallax="0.35"
+        ></div>
+      </div>
+
+      <div class="relative z-10 max-w-[1400px] mx-auto w-full">
+
+        <!-- Tag Pill -->
+        <div class="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-sand/30 border border-white/[0.06] px-4 py-2 rounded-full mb-10" data-reveal>
+          <span class="w-1.5 h-1.5 rounded-full bg-teal inline-block"></span>
+          360° Virtuelle Touren
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-serif text-heading text-sand mb-8 max-w-[720px]" data-reveal>
+          Dein Restaurant —<br />
+          <em class="text-sand/50">schon vor der Reservierung erlebt.</em>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-base md:text-lg text-sand/40 leading-relaxed max-w-[440px] mb-12" data-reveal>
+          Eine professionelle 360°-Tour in Google Maps erhöht das Vertrauen neuer Gäste. Sie sehen dein Ambiente, bevor sie den Tisch buchen.
+        </p>
+
+        <!-- CTA -->
+        <a
+          href="/#kontakt"
+          class="inline-flex items-center gap-3 bg-orange text-white text-sm font-semibold px-7 py-4 rounded-lg hover:opacity-90 transition-opacity duration-300"
+          data-reveal
+        >
+          Jetzt anfragen
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="py-24 md:py-32 px-6 md:px-10 border-t border-white/[0.06]">
+      <div class="max-w-[1400px] mx-auto">
+
+        <p class="text-[11px] uppercase tracking-[0.25em] text-sand/25 mb-14" data-reveal>
+          Was du bekommst
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.05] rounded-2xl overflow-hidden" data-reveal-group>
+          {features.map((f) => (
+            <div class="bg-night p-8 md:p-10">
+              <div class="w-10 h-10 rounded-xl bg-teal/10 flex items-center justify-center text-teal mb-6">
+                <Fragment set:html={f.icon} />
+              </div>
+              <h3 class="text-base font-semibold text-sand mb-2">{f.title}</h3>
+              <p class="text-sm text-sand/35 leading-relaxed">{f.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="py-24 md:py-32 px-6 md:px-10 border-t border-white/[0.06]">
+      <div class="max-w-[1400px] mx-auto">
+
+        <p class="text-[11px] uppercase tracking-[0.25em] text-sand/25 mb-14" data-reveal>
+          So läuft es ab
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.05] rounded-2xl overflow-hidden" data-reveal-group>
+          {[
+            { step: '01', title: 'Termin buchen', text: 'Wir vereinbaren einen Termin in deinem Restaurant — außerhalb der Stoßzeiten.' },
+            { step: '02', title: 'Aufnahme vor Ort', text: 'Unser Team kommt mit 360°-Kamera, richtet alles ein und fotografiert alle Räume.' },
+            { step: '03', title: 'Live auf Google', text: 'Nach Bearbeitung und Upload erscheint deine Tour in Google Maps und Street View.' },
+          ].map((s) => (
+            <div class="bg-night p-8 md:p-12">
+              <span class="text-[10px] uppercase tracking-[0.25em] text-sand/20 mb-6 block">{s.step}</span>
+              <h3 class="text-lg font-semibold text-sand mb-3">{s.title}</h3>
+              <p class="text-sm text-sand/35 leading-relaxed">{s.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 md:py-32 px-6 md:px-10 border-t border-white/[0.06] text-center">
+      <div class="max-w-[1400px] mx-auto" data-reveal>
+        <p class="font-serif text-heading text-sand/50 italic mb-12">
+          Bereit für deine Tour?
+        </p>
+        <a
+          href="/#kontakt"
+          class="inline-flex items-center gap-3 bg-orange text-white text-sm font-semibold px-8 py-4 rounded-lg hover:opacity-90 transition-opacity duration-300"
+        >
+          Jetzt anfragen
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
