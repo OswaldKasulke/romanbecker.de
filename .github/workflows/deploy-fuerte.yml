@@ -32,7 +32,7 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      - name: Deploy via SFTP → /fuertedigital/
+      - name: Deploy via SFTP → fuertedigital/
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
@@ -42,8 +42,9 @@ jobs:
 
           lftp -c "
             set sftp:connect-program 'ssh -i $HOME/.ssh/deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null';
-            open sftp://fuerte.digital@ssh.gb.stackcp.com;
-            mirror -R --verbose --parallel=4 dist/ /fuertedigital/;
+            set net:timeout 30;
+            open -u fuerte.digital, sftp://ssh.gb.stackcp.com;
+            mirror -R --verbose --parallel=4 --exclude-glob .DS_Store dist/ fuertedigital/;
           "
 
           rm ~/.ssh/deploy_key
