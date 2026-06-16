@@ -123,10 +123,19 @@
     errorEl?.classList.add('hidden');
 
     try {
-      const response = await fetch('https://formspree.io/f/DEINE_FORM_ID', { // TODO: replace DEINE_FORM_ID with your Formspree form ID
+      const data = {
+        name: form.querySelector('[name="name"]').value,
+        restaurant: form.querySelector('[name="restaurant"]').value,
+        email: form.querySelector('[name="email"]').value,
+        message: form.querySelector('[name="message"]').value,
+      };
+      const response = await fetch('https://tyksuwbvalzaxyubszka.supabase.co/functions/v1/contact', {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5a3N1d2J2YWx6YXh5dWJzemthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2MDgxOTYsImV4cCI6MjA5NzE4NDE5Nn0.dDDjTgfo8DeqNL4vXDyJwpr88MlWczFxU2lE0qZXWPw',
+        },
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
