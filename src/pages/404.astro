@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<Layout
+  title="Seite nicht gefunden — fuerte.digital"
+  description="Diese Seite existiert nicht."
+>
+  <Header isSubpage />
+
+  <main class="min-h-screen flex flex-col items-center justify-center px-6 md:px-10 text-center relative overflow-hidden">
+
+    <!-- Glow -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange/5 rounded-full blur-[140px]"></div>
+    </div>
+
+    <!-- Giant 404 -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+      <span class="text-[30vw] font-black text-white/[0.025] leading-none">404</span>
+    </div>
+
+    <div class="relative z-10 max-w-[480px]">
+      <p class="text-[11px] uppercase tracking-[0.25em] text-sand/25 mb-6">Fehler 404</p>
+      <h1 class="font-serif text-4xl md:text-5xl text-sand mb-6">
+        Diese Seite<br />
+        <em class="text-sand/40">gibt es nicht.</em>
+      </h1>
+      <p class="text-sm text-sand/35 leading-relaxed mb-12">
+        Die gesuchte Seite wurde nicht gefunden oder ist umgezogen.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-3 bg-orange text-white text-sm font-semibold px-7 py-4 rounded-lg hover:opacity-90 transition-opacity duration-300"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Zurück zur Startseite
+      </a>
+    </div>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
