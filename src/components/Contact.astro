@@ -69,13 +69,13 @@
     </form>
 
     <!-- Success State (initially hidden) -->
-    <div id="form-success" class="hidden py-10 text-center" data-reveal>
+    <div id="form-success" class="hidden py-10 text-center" role="alert" aria-live="polite">
       <div class="w-12 h-px bg-orange mx-auto mb-6"></div>
       <p class="text-sand/80 text-base font-light">Danke! Wir melden uns innerhalb von 24 Stunden.</p>
     </div>
 
     <!-- Error State (initially hidden) -->
-    <div id="form-error" class="hidden mt-4">
+    <div id="form-error" class="hidden mt-4" role="alert" aria-live="polite">
       <p class="text-orange/80 text-sm">
         Etwas ist schiefgelaufen.
         <a href="https://wa.me/4901705594140" target="_blank" rel="noopener noreferrer" class="underline hover:text-orange transition-colors">Schreib uns direkt auf WhatsApp.</a>
@@ -123,7 +123,7 @@
     errorEl?.classList.add('hidden');
 
     try {
-      const response = await fetch('https://formspree.io/f/DEINE_FORM_ID', {
+      const response = await fetch('https://formspree.io/f/DEINE_FORM_ID', { // TODO: replace DEINE_FORM_ID with your Formspree form ID
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: new FormData(form),
@@ -132,6 +132,7 @@
       if (response.ok) {
         form.classList.add('hidden');
         successEl?.classList.remove('hidden');
+        successEl?.focus();
       } else {
         errorEl?.classList.remove('hidden');
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Nachricht senden'; }
