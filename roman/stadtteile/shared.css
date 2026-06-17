@@ -61,7 +61,7 @@ a { color: inherit; }
 .section--navy { background: var(--navy); color: var(--white); }
 
 /* TYPOGRAPHY */
-h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 5vw, 2.75rem); font-weight: 700; line-height: 1.2; color: var(--navy); }
+h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--navy); }
 h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: var(--space-4); }
 h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1.3; color: var(--navy); margin-bottom: var(--space-2); }
 
