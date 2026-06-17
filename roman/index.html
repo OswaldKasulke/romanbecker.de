@@ -4023,6 +4023,22 @@ WE B.05</div>
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.listings-carousel').forEach(function(carousel) {
+        var list = carousel.querySelector('.splide__list');
+        if (list) {
+          var slides = Array.from(list.querySelectorAll('.splide__slide'));
+          slides.sort(function(a, b) {
+            function price(slide) {
+              var meta = slide.querySelector('.listing-card__meta');
+              if (!meta) return -1;
+              var m = meta.textContent.match(/—\s*([\d.]+)\s*€/);
+              return m ? parseInt(m[1].replace(/\./g, ''), 10) : -1;
+            }
+            return price(b) - price(a);
+          });
+          slides.forEach(function(s) { list.appendChild(s); });
+        }
+      });
       document.querySelectorAll('.listings-carousel').forEach(function(el) {
         new Splide(el, {
           type: 'loop',
