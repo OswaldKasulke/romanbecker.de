@@ -47,6 +47,10 @@
 - [Heizungsgesetz 2024](https://romanbecker.de/ratgeber/heizungsgesetz.html)
 - [Denkmal-AfA](https://romanbecker.de/ratgeber/denkmal-afa.html)
 
+## Vollständige Inhalte
+
+- [llms-full.txt](https://romanbecker.de/llms-full.txt) — Alle Seiteninhalte für KI-Agenten
+
 ## Kontakt
 
 - Telefon: +49 177 515 69 69
