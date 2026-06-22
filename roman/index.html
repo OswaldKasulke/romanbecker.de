@@ -4006,6 +4006,8 @@ WE B.05</div>
         .then(function(response) {
           if (response.ok) {
             window.location.href = '/danke.html';
+          } else {
+            alert('Es gab ein Problem beim Senden. Bitte rufen Sie direkt an: +49 177 515 69 69');
           }
         })
         .catch(function() {
