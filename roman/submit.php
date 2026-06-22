@@ -136,5 +136,5 @@ try {
     echo 'OK';
 } catch (Exception $e) {
     http_response_code(500);
-    echo 'Fehler beim Senden.';
+    echo 'Fehler beim Senden: ' . $mail->ErrorInfo;
 }
