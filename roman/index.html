@@ -4052,7 +4052,9 @@ WE B.05</div>
             }
             return price(b) - price(a);
           });
-          slides.forEach(function(s) { list.appendChild(s); });
+          var fragment = document.createDocumentFragment();
+          slides.forEach(function(s) { fragment.appendChild(s); });
+          list.appendChild(fragment);
         }
       });
       document.querySelectorAll('.listings-carousel').forEach(function(el) {
