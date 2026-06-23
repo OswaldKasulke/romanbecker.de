@@ -58,7 +58,7 @@ a { color: inherit; }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
 .section { padding: var(--space-20) 0; }
 .section--gray { background: var(--off-white); }
-.section--navy { background: var(--navy); color: var(--white); }
+.section--navy { background: #000000; color: var(--white); }
 
 /* TYPOGRAPHY */
 h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--navy); }
@@ -92,7 +92,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 
 /* SITE HEADER */
 .site-header {
-  background: var(--navy);
+  background: #000000;
   padding: var(--space-4) 0;
   position: sticky;
   top: 0;
@@ -200,7 +200,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 
 /* HERO */
 .hero {
-  background: var(--navy);
+  background: #000000;
   color: var(--white);
   padding: var(--space-16) 0 var(--space-20);
 }
@@ -238,7 +238,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   box-shadow: var(--shadow);
 }
 .card--navy {
-  background: var(--navy);
+  background: #000000;
   color: var(--white);
 }
 .card__icon {
@@ -353,7 +353,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 
 /* CTA BOX */
 .cta-box {
-  background: var(--navy);
+  background: #000000;
   color: var(--white);
   border-radius: var(--radius-lg);
   padding: var(--space-12);
@@ -416,7 +416,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 
 /* FOOTER */
 .footer {
-  background: var(--navy);
+  background: #000000;
   color: rgba(255,255,255,0.6);
   padding: var(--space-12) 0 var(--space-8);
   font-size: 0.8125rem;
