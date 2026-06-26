@@ -1388,6 +1388,12 @@ grid-template-columns: repeat(2, 1fr);
 grid-template-columns: repeat(3, 1fr);
 }
 }
+@media (min-width: 1280px) {
+.stadtteile__grid {
+grid-template-columns: repeat(6, 1fr);
+gap: var(--space-3);
+}
+}
 .stadtteil-card {
 background: var(--white);
 border-radius: var(--radius);
@@ -1398,6 +1404,21 @@ border-left: 3px solid var(--gray-200);
 transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 position: relative;
 cursor: pointer;
+}
+@media (min-width: 1280px) {
+.stadtteile__grid .stadtteil-card {
+padding: var(--space-4);
+}
+.stadtteile__grid .stadtteil-card .card-h {
+font-size: 0.95rem;
+}
+.stadtteile__grid .stadtteil-card__price {
+font-size: 0.75rem;
+}
+.stadtteile__grid .stadtteil-card p:not(.card-h) {
+font-size: 0.8rem;
+line-height: 1.4;
+}
 }
 .stadtteil-card__link {
 text-decoration: none;
@@ -3704,66 +3725,66 @@ WE B.05</div>
       <div class="stadtteile__grid">
         <div class="stadtteil-card">
 
-          <p class="card-h"><a href="stadtteile/suelz.html" class="stadtteil-card__link">Köln-Sülz</a></p>
-          <div class="stadtteil-card__price">Altbau · EFH · Familienlage</div>
-          <p>Mein Heimatveedel. Gefragte Wohnlage nahe Uni und Stadtwald. Hohe Eigentumsquote, kurze Vermarktungszeiten — ich kenne hier jede Straße.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/lindenthal.html" class="stadtteil-card__link">Köln-Lindenthal</a></p>
-          <div class="stadtteil-card__price">Villen · ETW · Premium</div>
-          <p>Kölns beliebteste gehobene Wohnlage. Großbürgerliche Villen, ruhige Wohnstraßen, Uni-Nähe. Stabile Nachfrage auch in schwierigen Marktphasen.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/rodenkirchen.html" class="stadtteil-card__link">Köln-Rodenkirchen</a></p>
-          <div class="stadtteil-card__price">EFH · Rheinlage · Familien</div>
-          <p>Rheinlage mit Dorfflair und hoher Lebensqualität. Starke Nachfrage von Familien mit gehobenen Ansprüchen — diskreter Markt.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/marienburg.html" class="stadtteil-card__link">Köln-Marienburg</a></p>
-          <div class="stadtteil-card__price">Villen · Repräsentanz · Top-Segment</div>
-          <p>Kölns exklusivste Adresse. Parkähnliche Grundstücke, prominente Nachbarschaft. Diskretion zählt hier mehr als Reichweite.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/hahnwald.html" class="stadtteil-card__link">Köln-Hahnwald</a></p>
-          <div class="stadtteil-card__price">Villen · Privatsphäre · Exklusiv</div>
-          <p>Exklusive Wohnlage im Kölner Süden. Großzügige Grundstücke, hohe Privatsphäre. Käufer kommen selten über Portale — Netzwerk entscheidet.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/junkersdorf.html" class="stadtteil-card__link">Köln-Junkersdorf</a></p>
-          <div class="stadtteil-card__price">EFH · Neubau · Familien</div>
-          <p>Familienfreundlich, gute Anbindung, steigende Nachfrage. Beliebte Alternative zu Lindenthal mit mehr Grundstücksfläche.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/klettenberg.html" class="stadtteil-card__link">Köln-Klettenberg</a></p>
-          <div class="stadtteil-card__price">Altbau · Gründerzeit · Bürgerpark</div>
-          <p>Charmanter Stadtteil mit Gründerzeitvillen und Bürgerpark-Nähe. Hohe Nachfrage bei jungen Familien — stabile Wertentwicklung.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
           <p class="card-h"><a href="stadtteile/bayenthal.html" class="stadtteil-card__link">Köln-Bayenthal</a></p>
           <div class="stadtteil-card__price">Neubau · Rhein-Nähe · Kapitalanlage</div>
           <p>Aufstrebendes Quartier direkt am Rhein. Neubauprojekte und Bestandsobjekte — attraktiv für Kapitalanleger und Selbstnutzer.</p>
-        
+
         </div>
         <div class="stadtteil-card">
 
           <p class="card-h"><a href="stadtteile/dellbrueck.html" class="stadtteil-card__link">Köln-Dellbrück</a></p>
           <div class="stadtteil-card__price">Villen · MFH · Wohnanlagen</div>
           <p>Rechtsrheinisch, aufstrebende Lage. Villencharakter, ruhige Wohnstraßen — hier wurde das teuerste Objekt im Portfolio vermittelt.</p>
-        
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/hahnwald.html" class="stadtteil-card__link">Köln-Hahnwald</a></p>
+          <div class="stadtteil-card__price">Villen · Privatsphäre · Exklusiv</div>
+          <p>Exklusive Wohnlage im Kölner Süden. Großzügige Grundstücke, hohe Privatsphäre. Käufer kommen selten über Portale — Netzwerk entscheidet.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/junkersdorf.html" class="stadtteil-card__link">Köln-Junkersdorf</a></p>
+          <div class="stadtteil-card__price">EFH · Neubau · Familien</div>
+          <p>Familienfreundlich, gute Anbindung, steigende Nachfrage. Beliebte Alternative zu Lindenthal mit mehr Grundstücksfläche.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/klettenberg.html" class="stadtteil-card__link">Köln-Klettenberg</a></p>
+          <div class="stadtteil-card__price">Altbau · Gründerzeit · Bürgerpark</div>
+          <p>Charmanter Stadtteil mit Gründerzeitvillen und Bürgerpark-Nähe. Hohe Nachfrage bei jungen Familien — stabile Wertentwicklung.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/lindenthal.html" class="stadtteil-card__link">Köln-Lindenthal</a></p>
+          <div class="stadtteil-card__price">Villen · ETW · Premium</div>
+          <p>Kölns beliebteste gehobene Wohnlage. Großbürgerliche Villen, ruhige Wohnstraßen, Uni-Nähe. Stabile Nachfrage auch in schwierigen Marktphasen.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/marienburg.html" class="stadtteil-card__link">Köln-Marienburg</a></p>
+          <div class="stadtteil-card__price">Villen · Repräsentanz · Top-Segment</div>
+          <p>Kölns exklusivste Adresse. Parkähnliche Grundstücke, prominente Nachbarschaft. Diskretion zählt hier mehr als Reichweite.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/rodenkirchen.html" class="stadtteil-card__link">Köln-Rodenkirchen</a></p>
+          <div class="stadtteil-card__price">EFH · Rheinlage · Familien</div>
+          <p>Rheinlage mit Dorfflair und hoher Lebensqualität. Starke Nachfrage von Familien mit gehobenen Ansprüchen — diskreter Markt.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/suelz.html" class="stadtteil-card__link">Köln-Sülz</a></p>
+          <div class="stadtteil-card__price">Altbau · EFH · Familienlage</div>
+          <p>Mein Heimatveedel. Gefragte Wohnlage nahe Uni und Stadtwald. Hohe Eigentumsquote, kurze Vermarktungszeiten — ich kenne hier jede Straße.</p>
+
         </div>
 
       </div>
@@ -3782,66 +3803,66 @@ WE B.05</div>
       <div class="stadtteile__grid">
         <div class="stadtteil-card">
 
+          <p class="card-h"><a href="stadtteile/bedburg.html" class="stadtteil-card__link">Bedburg</a></p>
+          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Einstiegspreise</div>
+          <p>Wachsende Kleinstadt mit günstigen Einstiegspreisen und guter Bahnanbindung nach Köln.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
           <p class="card-h"><a href="stadtteile/bergheim.html" class="stadtteil-card__link">Bergheim</a></p>
           <div class="stadtteil-card__price">Rhein-Erft-Kreis · Mittelzentrum</div>
           <p>Mittelzentrum mit moderaten Preisen und guter Anbindung an Köln über die A61/A4.</p>
-        
-        </div>
-        <div class="stadtteil-card">
 
-          <p class="card-h"><a href="stadtteile/wesseling.html" class="stadtteil-card__link">Wesseling</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Südlich Köln</div>
-          <p>Wachsende Stadt direkt südlich von Köln mit guter Rheinlage, solider Infrastruktur und noch moderaten Preisen.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/pulheim.html" class="stadtteil-card__link">Pulheim</a></p>
-          <div class="stadtteil-card__price">Neubau · Grundstücke · Konvolute</div>
-          <p>Neubau-Hotspot direkt vor den Toren Kölns. Starke Investoren-Nachfrage, direkte S-Bahn-Anbindung.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/kerpen.html" class="stadtteil-card__link">Kerpen</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Strukturwandel</div>
-          <p>Strukturwandel und Wachstum – attraktiver Standort mit noch moderaten Immobilienpreisen.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/erftstadt.html" class="stadtteil-card__link">Erftstadt</a></p>
-          <div class="stadtteil-card__price">EFH · Grünlage · Südlich Köln</div>
-          <p>Grüne Wohnlage südlich von Köln mit historischem Stadtkern und guter Verkehrsanbindung.</p>
-        
         </div>
         <div class="stadtteil-card">
 
           <p class="card-h"><a href="stadtteile/bruehl.html" class="stadtteil-card__link">Brühl</a></p>
           <div class="stadtteil-card__price">UNESCO-Welterbe · EFH · Familien</div>
           <p>Schloss Augustusburg direkt vor der Tür – hohe Lebensqualität und nachgefragte Eigenheimlagen.</p>
-        
+
         </div>
         <div class="stadtteil-card">
 
-          <p class="card-h"><a href="stadtteile/bedburg.html" class="stadtteil-card__link">Bedburg</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Einstiegspreise</div>
-          <p>Wachsende Kleinstadt mit günstigen Einstiegspreisen und guter Bahnanbindung nach Köln.</p>
-        
-        </div>
-        <div class="stadtteil-card">
+          <p class="card-h"><a href="stadtteile/erftstadt.html" class="stadtteil-card__link">Erftstadt</a></p>
+          <div class="stadtteil-card__price">EFH · Grünlage · Südlich Köln</div>
+          <p>Grüne Wohnlage südlich von Köln mit historischem Stadtkern und guter Verkehrsanbindung.</p>
 
-          <p class="card-h"><a href="stadtteile/rommerskirchen.html" class="stadtteil-card__link">Rommerskirchen</a></p>
-          <div class="stadtteil-card__price">Rhein-Kreis Neuss · Familienlage</div>
-          <p>Ländliches Wohnen mit direktem S-Bahn-Anschluss nach Köln – ideal für Familien.</p>
-        
         </div>
         <div class="stadtteil-card">
 
           <p class="card-h"><a href="stadtteile/huerth.html" class="stadtteil-card__link">Hürth</a></p>
           <div class="stadtteil-card__price">EFH · Familien · Südwest-Köln</div>
           <p>Beliebte Wohnlage direkt an Köln mit guter S-Bahn-Anbindung, vielen Eigenheimgebieten und familienfreundlicher Infrastruktur.</p>
-        
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/kerpen.html" class="stadtteil-card__link">Kerpen</a></p>
+          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Strukturwandel</div>
+          <p>Strukturwandel und Wachstum – attraktiver Standort mit noch moderaten Immobilienpreisen.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/pulheim.html" class="stadtteil-card__link">Pulheim</a></p>
+          <div class="stadtteil-card__price">Neubau · Grundstücke · Konvolute</div>
+          <p>Neubau-Hotspot direkt vor den Toren Kölns. Starke Investoren-Nachfrage, direkte S-Bahn-Anbindung.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/rommerskirchen.html" class="stadtteil-card__link">Rommerskirchen</a></p>
+          <div class="stadtteil-card__price">Rhein-Kreis Neuss · Familienlage</div>
+          <p>Ländliches Wohnen mit direktem S-Bahn-Anschluss nach Köln – ideal für Familien.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="stadtteile/wesseling.html" class="stadtteil-card__link">Wesseling</a></p>
+          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Südlich Köln</div>
+          <p>Wachsende Stadt direkt südlich von Köln mit guter Rheinlage, solider Infrastruktur und noch moderaten Preisen.</p>
+
         </div>
       </div>
     </div>
