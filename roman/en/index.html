@@ -1388,6 +1388,12 @@ grid-template-columns: repeat(2, 1fr);
 grid-template-columns: repeat(3, 1fr);
 }
 }
+@media (min-width: 1280px) {
+.stadtteile__grid {
+grid-template-columns: repeat(5, 1fr);
+gap: var(--space-3);
+}
+}
 .stadtteil-card {
 background: var(--white);
 border-radius: var(--radius);
@@ -1398,6 +1404,21 @@ border-left: 3px solid var(--gray-200);
 transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 position: relative;
 cursor: pointer;
+}
+@media (min-width: 1280px) {
+.stadtteile__grid .stadtteil-card {
+padding: var(--space-4);
+}
+.stadtteile__grid .stadtteil-card .card-h {
+font-size: 0.95rem;
+}
+.stadtteile__grid .stadtteil-card__price {
+font-size: 0.75rem;
+}
+.stadtteile__grid .stadtteil-card p:not(.card-h) {
+font-size: 0.8rem;
+line-height: 1.4;
+}
 }
 .stadtteil-card__link {
 text-decoration: none;
@@ -3665,78 +3686,190 @@ Unit B.05</div>
   <section id="stadtteile" class="section" style="padding-bottom:var(--space-4)">
     <div class="container">
       <span class="section-label">Local Expertise</span>
-      <h2 class="section-title">My Market Area</h2>
+      <h2 class="section-title">Cologne Districts</h2>
       <p class="section-subtitle">I know the price differences between individual streets – not just between districts.</p>
 
       <div class="stadtteile__grid">
         <div class="stadtteil-card">
 
-          <p class="card-h"><a href="/stadtteile/suelz.html" class="stadtteil-card__link">Cologne-Sülz</a></p>
-          <div class="stadtteil-card__price">Period buildings · Single-family homes · Family location</div>
-          <p>My home neighborhood. A sought-after residential area near the university and the Stadtwald forest. High rate of owner-occupation, short marketing times — I know every street here.</p>
-        
+          <p class="card-h"><a href="/stadtteile/altstadt-nord.html" class="stadtteil-card__link">Cologne-Altstadt-Nord</a></p>
+          <div class="stadtteil-card__price">Close to the cathedral · Lofts · City living</div>
+          <p>Right on the Rhine and close to the cathedral — lofts, period buildings and the highest location quality in the historic center.</p>
+
         </div>
         <div class="stadtteil-card">
 
-          <p class="card-h"><a href="/stadtteile/lindenthal.html" class="stadtteil-card__link">Cologne-Lindenthal</a></p>
-          <div class="stadtteil-card__price">Villas · Condominiums · Premium</div>
-          <p>Cologne's most popular upscale residential area. Grand villas, quiet residential streets, close to the university. Stable demand even in difficult market phases.</p>
-        
-        </div>
-        <div class="stadtteil-card">
+          <p class="card-h"><a href="/stadtteile/altstadt-sued.html" class="stadtteil-card__link">Cologne-Altstadt-Süd</a></p>
+          <div class="stadtteil-card__price">Rheinauhafen · Severinsviertel · Trendy area</div>
+          <p>From the Rheinauhafen harbor to the Severinsviertel — one of Cologne's liveliest and most sought-after locations.</p>
 
-          <p class="card-h"><a href="/stadtteile/rodenkirchen.html" class="stadtteil-card__link">Cologne-Rodenkirchen</a></p>
-          <div class="stadtteil-card__price">Single-family homes · On the Rhine · Families</div>
-          <p>A Rhine-side location with village charm and a high quality of life. Strong demand from upscale families — a discreet market.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/marienburg.html" class="stadtteil-card__link">Cologne-Marienburg</a></p>
-          <div class="stadtteil-card__price">Villas · Prestige · Top segment</div>
-          <p>Cologne's most exclusive address. Park-like grounds, prominent neighbors. Here, discretion counts more than reach.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/hahnwald.html" class="stadtteil-card__link">Cologne-Hahnwald</a></p>
-          <div class="stadtteil-card__price">Villas · Privacy · Exclusive</div>
-          <p>An exclusive residential area in southern Cologne. Generous plots, high levels of privacy. Buyers rarely come via portals — network connections decide.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/junkersdorf.html" class="stadtteil-card__link">Cologne-Junkersdorf</a></p>
-          <div class="stadtteil-card__price">Single-family homes · New builds · Families</div>
-          <p>Family-friendly, good transport links, rising demand. A popular alternative to Lindenthal with more land area.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/klettenberg.html" class="stadtteil-card__link">Cologne-Klettenberg</a></p>
-          <div class="stadtteil-card__price">Period buildings · Belle Époque · Bürgerpark</div>
-          <p>A charming district with Belle Époque villas near the Bürgerpark. High demand among young families — stable value development.</p>
-        
         </div>
         <div class="stadtteil-card">
 
           <p class="card-h"><a href="/stadtteile/bayenthal.html" class="stadtteil-card__link">Cologne-Bayenthal</a></p>
           <div class="stadtteil-card__price">New builds · Close to the Rhine · Investment property</div>
           <p>An up-and-coming quarter right on the Rhine. New developments and existing properties — attractive for investors and owner-occupiers alike.</p>
-        
+
         </div>
         <div class="stadtteil-card">
 
-          <p class="card-h"><a href="/stadtteile/dellbrueck.html" class="stadtteil-card__link">Cologne-Dellbrück</a></p>
-          <div class="stadtteil-card__price">Villas · Multi-family buildings · Residential complexes</div>
-          <p>On the right bank of the Rhine, an up-and-coming location. Villa character, quiet residential streets — this is where the most expensive property in the portfolio was sold.</p>
-        
+          <p class="card-h"><a href="/stadtteile/braunsfeld.html" class="stadtteil-card__link">Cologne-Braunsfeld</a></p>
+          <div class="stadtteil-card__price">Stadtwald forest · Office towers · Residential</div>
+          <p>A green residential area by the Stadtwald forest with a good mix of office locations and sought-after residential streets.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/deutz.html" class="stadtteil-card__link">Cologne-Deutz</a></p>
+          <div class="stadtteil-card__price">Rhine views · Trade fair · Skyline</div>
+          <p>On the right bank of the Rhine with skyline views of the old town — trade fair grounds, LANXESS arena and a strong upward trend.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/ehrenfeld.html" class="stadtteil-card__link">Cologne-Ehrenfeld</a></p>
+          <div class="stadtteil-card__price">Trendy district · Lofts · Start-ups</div>
+          <p>A trendy district with lofts, a start-up scene and rising demand among young buyers.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/hahnwald.html" class="stadtteil-card__link">Cologne-Hahnwald</a></p>
+          <div class="stadtteil-card__price">Villas · Privacy · Exclusive</div>
+          <p>An exclusive residential area in southern Cologne. Generous plots, high levels of privacy. Buyers rarely come via portals — network connections decide.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/junkersdorf.html" class="stadtteil-card__link">Cologne-Junkersdorf</a></p>
+          <div class="stadtteil-card__price">Single-family homes · New builds · Families</div>
+          <p>Family-friendly, good transport links, rising demand. A popular alternative to Lindenthal with more land area.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/klettenberg.html" class="stadtteil-card__link">Cologne-Klettenberg</a></p>
+          <div class="stadtteil-card__price">Period buildings · Belle Époque · Bürgerpark</div>
+          <p>A charming district with Belle Époque villas near the Bürgerpark. High demand among young families — stable value development.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/lindenthal.html" class="stadtteil-card__link">Cologne-Lindenthal</a></p>
+          <div class="stadtteil-card__price">Villas · Condominiums · Premium</div>
+          <p>Cologne's most popular upscale residential area. Grand villas, quiet residential streets, close to the university. Stable demand even in difficult market phases.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/marienburg.html" class="stadtteil-card__link">Cologne-Marienburg</a></p>
+          <div class="stadtteil-card__price">Villas · Prestige · Top segment</div>
+          <p>Cologne's most exclusive address. Park-like grounds, prominent neighbors. Here, discretion counts more than reach.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/muelheim.html" class="stadtteil-card__link">Cologne-Mülheim</a></p>
+          <div class="stadtteil-card__price">Right bank of the Rhine · Upturn · New builds</div>
+          <p>A right-bank center in transition, with new developments and rising demand.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/muengersdorf.html" class="stadtteil-card__link">Cologne-Müngersdorf</a></p>
+          <div class="stadtteil-card__price">Stadium · Stadtwald forest · Villas</div>
+          <p>A green location around the RheinEnergieSTADION stadium and the Stadtwald forest — an upscale residential area with good infrastructure.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/neuehrenfeld.html" class="stadtteil-card__link">Cologne-Neuehrenfeld</a></p>
+          <div class="stadtteil-card__price">Period buildings · Families · Up-and-coming</div>
+          <p>An up-and-coming neighborhood right next to Ehrenfeld with sought-after period-building apartments.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/neustadt-nord.html" class="stadtteil-card__link">Cologne-Neustadt-Nord</a></p>
+          <div class="stadtteil-card__price">Belgian Quarter · Eigelstein · Trendy area</div>
+          <p>The Belgian Quarter and Eigelstein — trendy period-building neighborhoods with high demand among young buyers.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/neustadt-sued.html" class="stadtteil-card__link">Cologne-Neustadt-Süd</a></p>
+          <div class="stadtteil-card__price">Barbarossaplatz · South station · Period buildings</div>
+          <p>A central location around Barbarossaplatz and Chlodwigplatz — sought-after period buildings with good infrastructure.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/niehl.html" class="stadtteil-card__link">Cologne-Niehl</a></p>
+          <div class="stadtteil-card__price">On the Rhine · Industry · Harbor</div>
+          <p>A right-bank district with a harbor area and Rhine-side location, currently in transition.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/nippes.html" class="stadtteil-card__link">Cologne-Nippes</a></p>
+          <div class="stadtteil-card__price">Period buildings · Families · Popular</div>
+          <p>A popular neighborhood with Belle Époque buildings, good leisure offerings and stable demand.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/riehl.html" class="stadtteil-card__link">Cologne-Riehl</a></p>
+          <div class="stadtteil-card__price">Near the zoo · Rheinpark · Villas</div>
+          <p>A green location by the Rheinpark and zoo, an upscale residential area with good demand.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/rodenkirchen.html" class="stadtteil-card__link">Cologne-Rodenkirchen</a></p>
+          <div class="stadtteil-card__price">Single-family homes · On the Rhine · Families</div>
+          <p>A Rhine-side location with village charm and a high quality of life. Strong demand from upscale families — a discreet market.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/suelz.html" class="stadtteil-card__link">Cologne-Sülz</a></p>
+          <div class="stadtteil-card__price">Period buildings · Single-family homes · Family location</div>
+          <p>My home neighborhood. A sought-after residential area near the university and the Stadtwald forest. High rate of owner-occupation, short marketing times — I know every street here.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/suerth.html" class="stadtteil-card__link">Cologne-Sürth</a></p>
+          <div class="stadtteil-card__price">On the Rhine · Single-family homes · Quiet</div>
+          <p>A popular Rhine-side location in southern Cologne with a village character and good links to the city center.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/weiss.html" class="stadtteil-card__link">Cologne-Weiß</a></p>
+          <div class="stadtteil-card__price">Single-family homes · Close to the Rhine · Quiet</div>
+          <p>A small, quiet district close to the Rhine at the southernmost tip of Cologne.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/widdersdorf.html" class="stadtteil-card__link">Cologne-Widdersdorf</a></p>
+          <div class="stadtteil-card__price">New builds · Edge of town · Families</div>
+          <p>A growing district on the western edge of town with new development areas and rising demand among young families.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/zollstock.html" class="stadtteil-card__link">Cologne-Zollstock</a></p>
+          <div class="stadtteil-card__price">Period buildings · Single-family homes · Family location</div>
+          <p>A popular neighborhood with a good mix of period and new buildings, popular among young families.</p>
+
         </div>
 
       </div>
 
       <div style="text-align:center;margin-top:var(--space-8);">
-        <a href="/stadtteile/" class="btn btn--gold-outline">View all 86 Cologne districts</a>
+        <a href="/stadtteile/" class="btn btn--gold-outline">Your neighborhood isn't listed? View all 86 districts</a>
       </div>
     </div>
   </section>
@@ -3808,8 +3941,54 @@ Unit B.05</div>
           <p class="card-h"><a href="/stadtteile/huerth.html" class="stadtteil-card__link">Hürth</a></p>
           <div class="stadtteil-card__price">Single-family homes · Families · Southwest Cologne</div>
           <p>A popular residential area right next to Cologne with good commuter rail links, many residential areas and family-friendly infrastructure.</p>
-        
+
         </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/frechen.html" class="stadtteil-card__link">Frechen</a></p>
+          <div class="stadtteil-card__price">Mid-sized town · approx. 53,000 residents</div>
+          <p>A mid-sized town directly west of Cologne with good transport links and solid infrastructure.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/dormagen.html" class="stadtteil-card__link">Dormagen</a></p>
+          <div class="stadtteil-card__price">Mid-sized town · approx. 63,000 residents</div>
+          <p>A mid-sized town on the Rhine between Cologne and Düsseldorf with good transport links.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/eschweiler.html" class="stadtteil-card__link">Eschweiler</a></p>
+          <div class="stadtteil-card__price">Mid-sized town · approx. 56,000 residents</div>
+          <p>A mid-sized town in the Aachen district with moderate prices and solid infrastructure.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/bornheim.html" class="stadtteil-card__link">Bornheim</a></p>
+          <div class="stadtteil-card__price">Mid-sized town · approx. 50,000 residents</div>
+          <p>A mid-sized town southwest of Bonn with a rural character and good transport links.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/niederkassel.html" class="stadtteil-card__link">Niederkassel</a></p>
+          <div class="stadtteil-card__price">Mid-sized town · approx. 40,000 residents</div>
+          <p>A mid-sized town in the Rhein-Sieg district between Cologne and Bonn with a good Rhine-side location.</p>
+
+        </div>
+        <div class="stadtteil-card">
+
+          <p class="card-h"><a href="/stadtteile/juelich.html" class="stadtteil-card__link">Jülich</a></p>
+          <div class="stadtteil-card__price">Small town · approx. 33,000 residents</div>
+          <p>A historic small town in the Düren district with moderate prices and solid infrastructure.</p>
+
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:var(--space-8);">
+        <a href="/stadtteile/#umland" class="btn btn--gold-outline">Your town isn't listed? Find more towns in the area here</a>
       </div>
     </div>
   </section>
