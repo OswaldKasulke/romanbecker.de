@@ -130,25 +130,3 @@ jobs:
 
           ftp.quit()
           PYEOF
-
-      - name: Wait for FTP connection cooldown
-        run: sleep 5
-
-      - name: Deploy fuertedigital via FTP (main → fuertedigital/roman/)
-        if: github.ref == 'refs/heads/main'
-        continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./roman/
-          server-dir: /fuertedigital/roman/
-          state-name: .ftp-deploy-sync-state-v3.json
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.DS_Store
-            **/README.md
-            **/docs/**
-            **/scripts/**
