@@ -737,7 +737,11 @@
     inp.addEventListener('input', function() {
       var q = norm(this.value.trim());
       if (q.length < 2) { drop.classList.remove('visible'); drop.innerHTML = ''; return; }
-      var res = IDX.filter(function(r) { return norm(r.t + ' ' + (r.k||'')).includes(q); }).slice(0, 7);
+      var res = IDX.filter(function(r) { return norm(r.t + ' ' + (r.k||'')).includes(q); }).sort(function(a, b) {
+      var aTitle = norm(a.t).includes(q) ? 0 : 1;
+      var bTitle = norm(b.t).includes(q) ? 0 : 1;
+      return aTitle - bTitle;
+    }).slice(0, 7);
       if (!res.length) {
         drop.innerHTML = '<p class="search-no-results">Keine Ergebnisse für „' + this.value + '"</p>';
       } else {
