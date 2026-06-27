@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - develop
     paths:
       - 'roman/**'
 
@@ -14,7 +15,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: FTP Deploy
+      - name: Install PHPMailer via Composer
+        run: |
+          cd roman
+          composer install --no-dev --optimize-autoloader
+
+      - name: Write SMTP config
+        run: |
+          cat > roman/smtp-config.php << 'EOF'
+          <?php
+          define('SMTP_HOST', 'w019d9c9.kasserver.com');
+          define('SMTP_PORT', 587);
+          define('SMTP_USER', 'webseite@romanbecker.de');
+          define('SMTP_PASS', '${{ secrets.ROMAN_SMTP_PASS }}');
+          EOF
+
+      - name: FTP Deploy (Produktion)
+        if: github.ref == 'refs/heads/main'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: w019d9c9.kasserver.com
@@ -22,5 +39,17 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: roman/
           server-dir: /romanbecker.de/root/
+          protocol: ftp
+          port: 21
+
+      - name: FTP Deploy (Preview)
+        if: github.ref == 'refs/heads/develop'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: w019d9c9.kasserver.com
+          username: w019d9c9
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: roman/
+          server-dir: /preview/roman/
           protocol: ftp
           port: 21
