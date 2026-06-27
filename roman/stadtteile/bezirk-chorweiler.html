@@ -304,6 +304,13 @@
         <a href="index.html">Alle Stadtteile</a>
         <a href="../index.html#bewertung">Immobilienbewertung</a>
         <a href="../index.html#kontakt">Kontakt</a>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="Stadtteil oder Stichwort …" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
         <a href="tel:+491775156969" class="nav-tel">+49 177 515 69 69</a>
       </nav>
     </div>
@@ -473,5 +480,6 @@
     </div>
   </footer>
 
+  <script src="search.js" defer></script>
 </body>
 </html>
