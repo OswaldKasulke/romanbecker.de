@@ -29,8 +29,14 @@ jobs:
           define('SMTP_PASS', '${{ secrets.ROMAN_SMTP_PASS }}');
           EOF
 
+      # Nur die nicht-versionierten PHP-Backend-Artefakte hochladen
+      # (vendor/ + smtp-config.php). Die restlichen Dateien (HTML/CSS/JS)
+      # übernimmt deploy-roman.yml via FTP-Deploy-Action — doppelter
+      # Upload des gesamten roman/-Ordners hier entfernt, um Konflikte
+      # zwischen den beiden Pipelines zu vermeiden.
+
       # ─── PREVIEW (develop branch) ──────────────────────────────────────────
-      - name: Deploy Preview via Python FTP (develop → preview/roman/)
+      - name: Deploy PHP-Backend-Artefakte Preview (develop → preview/roman/)
         if: github.ref == 'refs/heads/develop'
         env:
           FTP_HOST: ${{ secrets.ROMAN_FTP_SERVER }}
@@ -43,9 +49,7 @@ jobs:
           host = os.environ["FTP_HOST"]
           user = os.environ["FTP_USER"]
           passwd = os.environ["FTP_PASS"]
-          local_dir = "roman"
           remote_base = "/preview/roman"
-          exclude = {".git", ".DS_Store", "README.md", "docs", "scripts"}
 
           ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
           ctx.check_hostname = False
@@ -63,25 +67,27 @@ jobs:
               except ftplib.error_perm:
                   pass
 
-          for root, dirs, files in os.walk(local_dir):
-              dirs[:] = [d for d in dirs if d not in exclude]
-              rel = os.path.relpath(root, local_dir)
-              remote_dir = remote_base if rel == "." else f"{remote_base}/{rel}"
+          def upload_file(local_path, remote_path):
+              with open(local_path, "rb") as f:
+                  ftp.storbinary(f"STOR {remote_path}", f)
+              print(f"✅ {remote_path}")
+
+          # smtp-config.php
+          upload_file("roman/smtp-config.php", f"{remote_base}/smtp-config.php")
+
+          # vendor/ (komplette Composer-Abhängigkeiten)
+          for root, dirs, files in os.walk("roman/vendor"):
+              rel = os.path.relpath(root, "roman")
+              remote_dir = f"{remote_base}/{rel}"
               ensure_dir(ftp, remote_dir)
               for fname in files:
-                  if any(fname.startswith(e) or fname == e for e in exclude):
-                      continue
-                  local_path = os.path.join(root, fname)
-                  remote_path = f"{remote_dir}/{fname}"
-                  with open(local_path, "rb") as f:
-                      ftp.storbinary(f"STOR {remote_path}", f)
-                  print(f"✅ {remote_path}")
+                  upload_file(os.path.join(root, fname), f"{remote_dir}/{fname}")
 
           ftp.quit()
           PYEOF
 
       # ─── PRODUKTION (main branch) ──────────────────────────────────────────
-      - name: Deploy Produktion via Python FTP (main → romanbecker.de/root/)
+      - name: Deploy PHP-Backend-Artefakte Produktion (main → romanbecker.de/root/)
         if: github.ref == 'refs/heads/main'
         env:
           FTP_HOST: ${{ secrets.ROMAN_FTP_SERVER }}
@@ -94,9 +100,7 @@ jobs:
           host = os.environ["FTP_HOST"]
           user = os.environ["FTP_USER"]
           passwd = os.environ["FTP_PASS"]
-          local_dir = "roman"
           remote_base = "/romanbecker.de/root"
-          exclude = {".git", ".DS_Store", "README.md", "docs", "scripts"}
 
           ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
           ctx.check_hostname = False
@@ -114,19 +118,21 @@ jobs:
               except ftplib.error_perm:
                   pass
 
-          for root, dirs, files in os.walk(local_dir):
-              dirs[:] = [d for d in dirs if d not in exclude]
-              rel = os.path.relpath(root, local_dir)
-              remote_dir = remote_base if rel == "." else f"{remote_base}/{rel}"
+          def upload_file(local_path, remote_path):
+              with open(local_path, "rb") as f:
+                  ftp.storbinary(f"STOR {remote_path}", f)
+              print(f"✅ {remote_path}")
+
+          # smtp-config.php
+          upload_file("roman/smtp-config.php", f"{remote_base}/smtp-config.php")
+
+          # vendor/ (komplette Composer-Abhängigkeiten)
+          for root, dirs, files in os.walk("roman/vendor"):
+              rel = os.path.relpath(root, "roman")
+              remote_dir = f"{remote_base}/{rel}"
               ensure_dir(ftp, remote_dir)
               for fname in files:
-                  if any(fname.startswith(e) or fname == e for e in exclude):
-                      continue
-                  local_path = os.path.join(root, fname)
-                  remote_path = f"{remote_dir}/{fname}"
-                  with open(local_path, "rb") as f:
-                      ftp.storbinary(f"STOR {remote_path}", f)
-                  print(f"✅ {remote_path}")
+                  upload_file(os.path.join(root, fname), f"{remote_dir}/{fname}")
 
           ftp.quit()
           PYEOF
