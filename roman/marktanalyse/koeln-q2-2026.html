@@ -303,8 +303,27 @@
     .site-header a { color: var(--white); text-decoration: none; }
     .site-header__inner { display: flex; justify-content: space-between; align-items: center; }
     .site-header__logo { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; }
-    .site-header__nav { display: flex; gap: var(--space-6); }
+    .site-header__nav { display: flex; align-items: center; gap: var(--space-6); }
     .site-header__nav a { font-size: 0.9rem; }
+    .site-header__inner { gap: var(--space-4); }
+    .site-header__logo-primary { font-weight: 700; font-size: 1.0625rem; color: var(--white); }
+    .site-header__logo-sub { display: block; font-size: 0.6875rem; font-weight: 400; color: rgba(255,255,255,0.60); }
+    .site-header__cta { background: var(--gold); color: var(--navy); padding: var(--space-2) var(--space-4); border-radius: 6px; font-weight: 600; font-size: 0.8125rem; text-decoration: none; white-space: nowrap; }
+    .nav__search { position: relative; display: flex; align-items: center; }
+    .nav__search-btn { background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer; padding: 0.375rem; display: flex; align-items: center; justify-content: center; border-radius: 4px; min-width: 36px; min-height: 36px; }
+    .nav__search-btn:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+    .nav__search-input { max-width: 0; opacity: 0; border: none; background: none; color: var(--white); font-family: 'Inter', sans-serif; font-size: 0.875rem; transition: max-width 0.3s ease, opacity 0.2s ease, padding 0.3s ease; outline: none; padding: 0; }
+    .nav__search-input::placeholder { color: rgba(255,255,255,0.4); }
+    .nav__search.open .nav__search-input { max-width: min(200px, 38vw); opacity: 1; padding: 0.25rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.3); }
+    .nav__search-dropdown { position: absolute; top: calc(100% + 14px); right: 0; width: 300px; background: var(--white); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); overflow: hidden; z-index: 500; display: none; }
+    .nav__search-dropdown.visible { display: block; }
+    .search-result { display: block; padding: 0.7rem 1rem; color: var(--navy); font-size: 0.875rem; border-bottom: 1px solid var(--gray-200); text-decoration: none; }
+    .search-result:last-child { border-bottom: none; }
+    .search-result:hover { background: var(--gray-100); }
+    .search-result__title { font-weight: 600; }
+    .search-result__type { font-size: 0.725rem; color: #A4A4A4; margin-top: 1px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .search-no-results { padding: 1rem; color: #A4A4A4; font-size: 0.875rem; text-align: center; }
+    @media (max-width: 768px) { .site-header__nav { display: none; } }
     .breadcrumb { padding: var(--space-4) 0; font-size: 0.875rem; color: var(--gray-600); }
     .breadcrumb a { color: var(--gray-600); text-decoration: none; }
     .breadcrumb span { margin: 0 var(--space-2); }
@@ -380,12 +399,22 @@
   <header class="site-header">
     <div class="container">
       <div class="site-header__inner">
-        <a href="https://romanbecker.de/" class="site-header__logo">Roman Becker - EVERNEST</a>
-        <nav class="site-header__nav">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
           <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
-          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
           <a href="https://romanbecker.de/#kontakt">Kontakt</a>
         </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
       </div>
     </div>
   </header>
@@ -1256,5 +1285,6 @@
       </p>
     </div>
   </footer>
+  <script src="../stadtteile/search.js" defer></script>
 </body>
 </html>
