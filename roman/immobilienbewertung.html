@@ -1687,6 +1687,10 @@
 
       // PLZ-abhängige Werte (Fallback wenn PLZ unbekannt)
       var multiplikator = plzMultiplikatoren[plz] || defaultMultiplikator;
+      // Bruttorendite (= 1 / Multiplikator) darf nie über 4,5% liegen
+      // -> Multiplikator nie unter 1/0,045 ≈ 22,22 fallen lassen
+      var minMultiplikator = 1 / 0.045;
+      multiplikator = Math.max(multiplikator, minMultiplikator);
       // MFH: Kaufpreis/m² aus Mietmultiplikator ableiten. Wohnung/Haus: feste Tabelle.
       var preisProQm = art === 'mehrfamilienhaus'
         ? qmPreisAusMultiplikator(multiplikator)
