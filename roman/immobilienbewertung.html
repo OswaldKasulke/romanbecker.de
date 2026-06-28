@@ -1575,10 +1575,36 @@
     // PLZ-TABELLEN (Köln)
     // ===========================
 
-    // Kaufpreis €/m² Wohnfläche wird NICHT mehr separat gepflegt, sondern aus dem
-    // PLZ-Mietmultiplikator abgeleitet (siehe qmPreisAusMultiplikator unten):
-    // Multiplikator 23 → Kaltmiete 22 €/m², Multiplikator 15 → Kaltmiete 13 €/m²,
-    // linear interpoliert; daraus Kaufpreis/m² = Kaltmiete/m² × 12 × Multiplikator.
+    // Kaufpreis €/m² Wohnfläche (Eigentumswohnung/Haus als Basis)
+    var plzWohnPreise = {
+      // Innenstadt / Altstadt / Neustadt
+      '50667': 6500, '50668': 6000, '50670': 5800, '50672': 5800, '50673': 5500,
+      '50674': 6000, '50675': 5500, '50676': 5800, '50677': 5000, '50678': 5500,
+      '50679': 4500,
+      // Nippes / Longerich / Ossendorf
+      '50733': 4800, '50735': 4500, '50737': 4000, '50739': 3600,
+      // Chorweiler
+      '50765': 3000, '50767': 3000, '50769': 3200,
+      // Ehrenfeld / Bickendorf / Vogelsang
+      '50823': 4800, '50825': 4800, '50827': 3800, '50829': 3500,
+      // Widdersdorf / Junkersdorf
+      '50858': 4500, '50859': 5000,
+      // Lindenthal / Braunsfeld / Klettenberg / Sülz
+      '50931': 6500, '50933': 5200, '50935': 5000, '50937': 4500, '50939': 5200,
+      // Bayenthal / Marienburg / Rodenkirchen
+      '50996': 5000, '50997': 5200, '50999': 5500,
+      // Mülheim / Buchheim / Dellbrück / Holweide
+      '51061': 3500, '51063': 3500, '51065': 3500, '51067': 4000, '51069': 4200,
+      // Kalk / Ostheim / Humboldt-Gremberg
+      '51103': 3500, '51105': 3500, '51107': 3800, '51109': 3800,
+      // Porz / Wahn / Urbach
+      '51143': 3200, '51145': 3000, '51147': 3000, '51149': 3000,
+    };
+
+    // Kaufpreis/m² für Mehrfamilienhäuser wird stattdessen aus dem PLZ-Mietmultiplikator
+    // abgeleitet (siehe qmPreisAusMultiplikator unten): Multiplikator 23 → Kaltmiete
+    // 22 €/m², Multiplikator 15 → Kaltmiete 13 €/m², linear interpoliert; daraus
+    // Kaufpreis/m² = Kaltmiete/m² × 12 × Multiplikator.
 
     // Mietmultiplikator für Ertragswertberechnung (Kaltmiete × 12 × x)
     // Skaliert auf Spanne 15 (niedrigster) – 23 (höchster), siehe data/plz-multiplikatoren.json
@@ -1630,6 +1656,7 @@
       '51427': 847, '51429': 847, '51465': 411, '51467': 411,  // Bergisch Gladbach
     };
 
+    var defaultWohnPreis    = 4200;  // Fallback: Köln-Durchschnitt
     var defaultMultiplikator = 16.67; // Kölner Umland: Jahreskaltmiete = 6% des Verkaufspreises (1 / 0,06)
     var defaultBoden        = 700;
 
@@ -1659,7 +1686,10 @@
 
       // PLZ-abhängige Werte (Fallback wenn PLZ unbekannt)
       var multiplikator = plzMultiplikatoren[plz] || defaultMultiplikator;
-      var preisProQm    = qmPreisAusMultiplikator(multiplikator);
+      // MFH: Kaufpreis/m² aus Mietmultiplikator ableiten. Wohnung/Haus: feste Tabelle.
+      var preisProQm = art === 'mehrfamilienhaus'
+        ? qmPreisAusMultiplikator(multiplikator)
+        : (plzWohnPreise[plz] || defaultWohnPreis);
       var bodenrichtwert = plzBoden[plz]          || defaultBoden;
 
       var value = 0;
@@ -1733,7 +1763,7 @@
       var plz = (document.getElementById('immo_plz').value || '').trim();
       var plzHinweis = document.getElementById('result-plz');
       if (plzHinweis) {
-        plzHinweis.textContent = plz && (plzMultiplikatoren[plz] || plzBoden[plz])
+        plzHinweis.textContent = plz && (plzWohnPreise[plz] || plzMultiplikatoren[plz] || plzBoden[plz])
           ? 'Lagekorrektur für PLZ ' + plz + ' eingerechnet.'
           : 'PLZ nicht erkannt – Kölner Durchschnittswert verwendet.';
       }
