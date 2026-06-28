@@ -1689,8 +1689,9 @@
         var kaltmiete = mieteIst || mieteSoll; // IST bevorzugt, sonst SOLL
 
         if (kaltmiete > 0) {
-          // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator × Zustandsfaktor
-          value = kaltmiete * 12 * multiplikator * faktor;
+          // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator
+          // (kein Zustandsfaktor — die Miete spiegelt den Zustand bereits wider)
+          value = kaltmiete * 12 * multiplikator;
         } else {
           // Sachwert-Fallback: m² × PLZ-Preis/m² × Objektart-Faktor × Zustand
           var artFaktor = art === 'mehrfamilienhaus' ? 0.9
