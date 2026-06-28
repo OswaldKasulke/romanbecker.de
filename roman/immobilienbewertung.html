@@ -1304,6 +1304,11 @@
                 <p style="margin:0;font-size:0.9rem;line-height:1.5;">Der angezeigte Wert basiert auf der Nutzung als <strong>Einfamilienhaus-Grundstück</strong>. Sollte auf dem Grundstück ein <strong>Mehrfamilienhaus</strong> realisierbar sein (z.&nbsp;B. durch entsprechende Ausweisung im Bebauungsplan), kann der tatsächliche Marktwert um ein <strong>Vielfaches höher</strong> liegen. Eine genaue Einschätzung erfordert die Prüfung des Bebauungsplans und eine persönliche Besichtigung.</p>
               </div>
 
+              <div id="result-keine-miete-hinweis" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
+                <p style="margin:0 0 0.4rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Hinweis zur Mietannahme</p>
+                <p style="margin:0;font-size:0.9rem;line-height:1.5;">Da keine Nettokaltmiete angegeben wurde, gehen wir von einer Vermietung zu den <strong>bestmöglich erzielbaren Marktmieten</strong> für die jeweilige Lage aus. Liegt die tatsächliche Miete darunter, kann der reale Marktwert entsprechend niedriger liegen.</p>
+              </div>
+
               <div class="result__note">
                 <p><strong>Wichtiger Hinweis zur individuellen Preisgestaltung</strong></p>
                 <p>Bitte beachten Sie, dass dieser berechnete Wert als fundierte Orientierungshilfe dient. Der tatsächliche Angebotspreis am Markt kann von diesem Wert abweichen, wenn besondere Merkmale vorliegen:</p>
@@ -1755,6 +1760,12 @@
       // Grundstück-Hinweis ein-/ausblenden
       var art = document.querySelector('input[name="objektart"]:checked').value;
       document.getElementById('result-grundstueck-hinweis').style.display = art === 'grundstueck' ? 'block' : 'none';
+
+      // Hinweis "keine Mietangabe -> beste Marktmiete unterstellt" ein-/ausblenden
+      var mieteIstCheck  = parseFloat((document.getElementById('miete_ist').value  || '').replace(',','.')) || 0;
+      var mieteSollCheck = parseFloat((document.getElementById('miete_soll').value || '').replace(',','.')) || 0;
+      var keineMiete = art !== 'grundstueck' && !(mieteIstCheck || mieteSollCheck);
+      document.getElementById('result-keine-miete-hinweis').style.display = keineMiete ? 'block' : 'none';
 
       // Objekt-Typ-Hinweis je nach Objektart anpassen
       var objekttypHinweis = document.getElementById('result-note-objekttyp');
