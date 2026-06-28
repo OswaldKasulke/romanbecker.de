@@ -4,6 +4,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit('Method Not Allowed');
 }
 
+// Honeypot: für Menschen unsichtbares Feld. Wenn befüllt, ist es ein Bot —
+// stillschweigend mit Erfolg antworten, ohne Mail zu versenden.
+if (!empty($_POST['website'] ?? '')) {
+    http_response_code(200);
+    exit('OK');
+}
+
 require_once __DIR__ . '/smtp-config.php';
 require_once __DIR__ . '/vendor/autoload.php';
 

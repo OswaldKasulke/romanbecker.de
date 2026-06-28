@@ -989,6 +989,11 @@
 
         <form id="bewertung" novalidate>
 
+          <div style="position:absolute;left:-9999px;" aria-hidden="true">
+            <label for="bw-website">Website</label>
+            <input type="text" id="bw-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
           <!-- STEP 1: Objektart -->
           <div class="step active" data-step="1">
             <h2 class="step__title">Was möchten Sie bewerten?</h2>
@@ -1262,6 +1267,10 @@
               <p class="result__value" id="result-value">—</p>
               <p class="result__range" id="result-range"></p>
               <p id="result-plz" style="font-size:0.8125rem;color:var(--gray-500);margin-top:0.5rem;"></p>
+
+              <div id="result-send-error" style="display:none;background:#fdecea;border-left:3px solid #d32f2f;padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
+                <p style="margin:0;font-size:0.9rem;line-height:1.5;color:#b71c1c;"><strong>Ihre Anfrage konnte nicht automatisch übermittelt werden.</strong> Bitte rufen Sie mich direkt an oder schreiben Sie mir per WhatsApp, damit ich Ihre Bewertung persönlich erhalte: <a href="tel:+491775156969" style="color:#b71c1c;text-decoration:underline;">+49 177 515 69 69</a></p>
+              </div>
 
               <div id="result-grundstueck-hinweis" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
                 <p style="margin:0 0 0.4rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Hinweis zur Grundstücksbewertung</p>
@@ -1737,6 +1746,7 @@
       formData.append('immo_strasse', document.getElementById('immo_strasse').value);
       formData.append('immo_plz', document.getElementById('immo_plz').value);
       formData.append('immo_ort', document.getElementById('immo_ort').value);
+      formData.append('website', document.getElementById('bw-website').value);
       formData.append('vorname', document.getElementById('vorname').value);
       formData.append('nachname', document.getElementById('nachname').value);
       formData.append('email', document.getElementById('email').value);
@@ -1749,8 +1759,12 @@
       fetch('submit.php', {
         method: 'POST',
         body: formData
+      }).then(function(response) {
+        if (!response.ok) {
+          document.getElementById('result-send-error').style.display = 'block';
+        }
       }).catch(function() {
-        // Silent fail — result already shown
+        document.getElementById('result-send-error').style.display = 'block';
       });
     }
   </script>
