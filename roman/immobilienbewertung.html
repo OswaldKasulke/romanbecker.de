@@ -1157,33 +1157,60 @@
           <!-- STEP 5: Zustand + Baujahr -->
           <div class="step" data-step="5">
             <h2 class="step__title">Zustand & Baujahr</h2>
-            <p class="step__subtitle">In welchem Zustand befindet sich die Immobilie?</p>
+            <p class="step__subtitle">In welchem Zustand ist Ihre Immobilie in Schulnoten?</p>
 
             <div class="condition-options">
               <label class="condition-option">
-                <input type="radio" name="zustand" value="saniert" required>
+                <input type="radio" name="zustand" value="1" required>
                 <div class="condition-option__label">
                   <div>
-                    <div class="condition-option__title">Saniert / Modernisiert</div>
-                    <div class="condition-option__desc">Kürzlich renoviert, moderne Ausstattung, guter Energiestandard</div>
+                    <div class="condition-option__title">Note 1 – Sehr gut</div>
+                    <div class="condition-option__desc">Neuwertig, kürzlich umfassend saniert, höchster Standard</div>
                   </div>
                 </div>
               </label>
               <label class="condition-option">
-                <input type="radio" name="zustand" value="normal">
+                <input type="radio" name="zustand" value="2">
                 <div class="condition-option__label">
                   <div>
-                    <div class="condition-option__title">Normaler Zustand</div>
+                    <div class="condition-option__title">Note 2 – Gut</div>
+                    <div class="condition-option__desc">Modernisiert, moderne Ausstattung, guter Energiestandard</div>
+                  </div>
+                </div>
+              </label>
+              <label class="condition-option">
+                <input type="radio" name="zustand" value="3">
+                <div class="condition-option__label">
+                  <div>
+                    <div class="condition-option__title">Note 3 – Befriedigend</div>
                     <div class="condition-option__desc">Gepflegt, keine größeren Mängel, altersgemäßer Zustand</div>
                   </div>
                 </div>
               </label>
               <label class="condition-option">
-                <input type="radio" name="zustand" value="unsaniert">
+                <input type="radio" name="zustand" value="4">
                 <div class="condition-option__label">
                   <div>
-                    <div class="condition-option__title">Unsaniert / Renovierungsbedarf</div>
-                    <div class="condition-option__desc">Sanierungsstau, veraltete Haustechnik, energetisch nicht auf Stand</div>
+                    <div class="condition-option__title">Note 4 – Ausreichend</div>
+                    <div class="condition-option__desc">Leichter Renovierungsbedarf, in die Jahre gekommen</div>
+                  </div>
+                </div>
+              </label>
+              <label class="condition-option">
+                <input type="radio" name="zustand" value="5">
+                <div class="condition-option__label">
+                  <div>
+                    <div class="condition-option__title">Note 5 – Mangelhaft</div>
+                    <div class="condition-option__desc">Deutlicher Renovierungsbedarf, veraltete Haustechnik</div>
+                  </div>
+                </div>
+              </label>
+              <label class="condition-option">
+                <input type="radio" name="zustand" value="6">
+                <div class="condition-option__label">
+                  <div>
+                    <div class="condition-option__title">Note 6 – Ungenügend</div>
+                    <div class="condition-option__desc">Sanierungsstau, energetisch nicht auf Stand, hoher Investitionsbedarf</div>
                   </div>
                 </div>
               </label>
@@ -1635,11 +1662,11 @@
       var wohnflaeche = parseFloat(document.getElementById('wohnflaeche').value) || 0;
       var grundstuecksflaeche = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
-      var zustand = zustandEl ? zustandEl.value : 'normal';
+      var zustand = zustandEl ? zustandEl.value : '3';
       var plz = (document.getElementById('immo_plz').value || '').trim();
 
-      // Zustandsfaktor
-      var conditionMult = { saniert: 1.1, normal: 1.0, unsaniert: 0.9 };
+      // Zustandsfaktor (Schulnoten 1–6)
+      var conditionMult = { '1': 1.2, '2': 1.1, '3': 1.0, '4': 0.9, '5': 0.8, '6': 0.7 };
       var faktor = conditionMult[zustand] || 1.0;
 
       // PLZ-abhängige Werte (Fallback wenn PLZ unbekannt)
