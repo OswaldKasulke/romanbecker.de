@@ -3,6 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VYN9W28VBM';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-VYN9W28VBM');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+
   <title>Tippgeber Köln – 1.500 € Prämie für Ihren Immobilientipp</title>
   <meta name="description" content="Kennen Sie jemanden, der eine Immobilie in Köln verkaufen möchte? Wir zahlen mindestens 1.500 Euro für erfolgreiche Immobilientipps. Jetzt Tipp einreichen.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -513,6 +537,25 @@
     }
     footer a { color: var(--cyan); text-decoration: underline; }
     footer a:hover { opacity: 0.8; }
+
+    #cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #111111; color: #fff; padding: 1rem 1.5rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 1rem; z-index: 9999; border-top: 2px solid var(--cyan, #c2a990);
+      font-size: 0.875rem;
+    }
+    #cookie-banner p { margin: 0; flex: 1 1 300px; color: rgba(255,255,255,0.85); }
+    #cookie-banner a { color: var(--cyan, #c2a990); }
+    .cookie-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .cookie-btn {
+      padding: 0.5rem 1.25rem; border-radius: 4px; border: none;
+      cursor: pointer; font-size: 0.875rem; font-weight: 600;
+    }
+    .cookie-btn--accept { background: var(--cyan, #c2a990); color: #111111; }
+    .cookie-btn--decline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+    .cookie-btn--accept:hover { opacity: 0.85; }
+    .cookie-btn--decline:hover { border-color: #fff; }
   </style>
 </head>
 <body>
@@ -1062,6 +1105,38 @@ function submitTipp(e) {
     });
   });
 })();
+</script>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;">
+  <p>
+    Diese Website verwendet Cookies für Analyse-Zwecke (Google Analytics).
+    Weitere Informationen finden Sie in unserer <a href="/agb.html">Datenschutzerklärung</a>.
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-btn cookie-btn--decline" onclick="cookieDecline()">Ablehnen</button>
+    <button class="cookie-btn cookie-btn--accept" onclick="cookieAccept()">Akzeptieren</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var consent = localStorage.getItem('cookie_consent');
+    if (!consent) {
+      document.getElementById('cookie-banner').style.display = 'flex';
+    }
+  })();
+
+  function cookieAccept() {
+    localStorage.setItem('cookie_consent', 'granted');
+    document.getElementById('cookie-banner').style.display = 'none';
+    loadAnalytics();
+  }
+
+  function cookieDecline() {
+    localStorage.setItem('cookie_consent', 'denied');
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
 </script>
 
 </body>
