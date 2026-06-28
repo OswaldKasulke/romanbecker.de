@@ -1662,7 +1662,8 @@
 
     // Kaltmiete €/m² aus dem Mietmultiplikator ableiten (linear: 15 → 13 €/m², 23 → 22 €/m²)
     function mietProQmAusMultiplikator(m) {
-      return 13 + (m - 15) * (22 - 13) / (23 - 15);
+      var basis = 13 + (m - 15) * (22 - 13) / (23 - 15);
+      return basis * 0.85; // -15%
     }
     // Kaufpreis €/m² = abgeleitete Kaltmiete/m² × 12 Monate × Mietmultiplikator
     function qmPreisAusMultiplikator(m) {
