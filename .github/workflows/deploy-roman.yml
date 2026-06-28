@@ -28,6 +28,7 @@ jobs:
           define('SMTP_PORT', 587);
           define('SMTP_USER', 'webseite@romanbecker.de');
           define('SMTP_PASS', '${{ secrets.ROMAN_SMTP_PASS }}');
+          define('REPORT_SECRET', '${{ secrets.ROMAN_REPORT_SECRET }}');
           EOF
 
       - name: FTP Deploy (Produktion)
@@ -38,6 +39,8 @@ jobs:
           username: w019d9c9
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: roman/
+          exclude: |
+            **/leads.log
           server-dir: /romanbecker.de/root/
           protocol: ftp
           port: 21
@@ -50,6 +53,8 @@ jobs:
           username: w019d9c9
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: roman/
+          exclude: |
+            **/leads.log
           server-dir: /preview/roman/
           protocol: ftp
           port: 21

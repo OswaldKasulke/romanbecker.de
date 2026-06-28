@@ -3,6 +3,11 @@
 
 Options -MultiViews
 
+# Lead-Backup-Log enthält personenbezogene Daten — nie öffentlich zugänglich machen
+<Files "leads.log">
+  Require all denied
+</Files>
+
 # Zeichensatz UTF-8 im HTTP-Header
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .css .js .json .xml .txt

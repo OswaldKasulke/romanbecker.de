@@ -117,7 +117,23 @@ if ($preisspanne) $body .= "\nPreisspanne: $preisspanne\n";
 if ($empfohlen)   $body .= "Empfohlen von: $empfohlen\n";
 if ($nachricht)   $body .= "\nNachricht:\n$nachricht\n";
 
+// Lead zuerst dauerhaft sichern, BEVOR der Mailversand versucht wird.
+// So geht die Anfrage nicht verloren, selbst wenn SMTP komplett ausfällt.
+$leadRecord = [
+    'zeit'     => date('c'),
+    'type'     => $type,
+    'name'     => $name,
+    'telefon'  => $telefon,
+    'email'    => $email,
+    'immo_ort' => $immo_ort,
+    'ergebnis' => $ergebnis,
+    'mail_sent' => null, // wird unten gesetzt
+];
+$leadLogPath = __DIR__ . '/leads.log';
+
 $mail = new PHPMailer(true);
+$mailSent = false;
+$mailError = '';
 
 try {
     $mail->isSMTP();
@@ -139,9 +155,22 @@ try {
     $mail->Body    = $body;
 
     $mail->send();
+    $mailSent = true;
+} catch (Exception $e) {
+    $mailSent = false;
+    $mailError = $e->getMessage();
+}
+
+$leadRecord['mail_sent'] = $mailSent;
+if (!$mailSent) {
+    $leadRecord['mail_error'] = $mailError;
+}
+@file_put_contents($leadLogPath, json_encode($leadRecord, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX);
+
+if ($mailSent) {
     http_response_code(200);
     echo 'OK';
-} catch (Exception $e) {
+} else {
     http_response_code(500);
     echo 'Fehler beim Senden.';
 }

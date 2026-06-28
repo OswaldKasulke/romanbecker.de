@@ -1,0 +1,14 @@
+name: Tägliche Lead-Kontrolle romanbecker.de
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # täglich 06:00 UTC (08:00 MESZ / 07:00 MEZ)
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Daily-Report-Endpoint aufrufen
+        run: |
+          curl -sf "https://romanbecker.de/daily-report.php?secret=${{ secrets.ROMAN_REPORT_SECRET }}"

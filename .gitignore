@@ -5,3 +5,4 @@ dist/
 .env
 roman/vendor/
 roman/smtp-config.php
+roman/leads.log
