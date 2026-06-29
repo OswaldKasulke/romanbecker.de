@@ -1084,6 +1084,7 @@
                 <input type="number" id="wohnflaeche" name="wohnflaeche" placeholder="z.B. 120" min="10" max="10000" required>
               </div>
               <p class="field__error">Bitte geben Sie die Wohnfläche ein.</p>
+              <p class="field__hint" id="wohnflaeche-hint" style="display:none;">Optional bei Mehrfamilienhäusern.</p>
             </div>
 
             <div class="field" id="field-grundstueck">
@@ -1139,13 +1140,30 @@
                   <p class="field__hint">Aktuelle Kaltmiete – 0 bei Eigennutzung</p>
                 </div>
                 <div class="field">
+                  <label for="miete_ist_jahr">Kaltmiete IST (jährlich)</label>
+                  <div class="field__unit" data-unit="€">
+                    <input type="number" id="miete_ist_jahr" name="miete_ist_jahr" placeholder="z.B. 14.400" min="0">
+                  </div>
+                  <p class="field__hint">Alternativ zur monatlichen Angabe</p>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
                   <label for="miete_soll">Kaltmiete SOLL (monatlich)</label>
                   <div class="field__unit" data-unit="€">
                     <input type="number" id="miete_soll" name="miete_soll" placeholder="z.B. 1.400" min="0">
                   </div>
                   <p class="field__hint">Erzielbare Marktmiete</p>
                 </div>
+                <div class="field">
+                  <label for="miete_soll_jahr">Kaltmiete SOLL (jährlich)</label>
+                  <div class="field__unit" data-unit="€">
+                    <input type="number" id="miete_soll_jahr" name="miete_soll_jahr" placeholder="z.B. 16.800" min="0">
+                  </div>
+                  <p class="field__hint">Alternativ zur monatlichen Angabe</p>
+                </div>
               </div>
+              <p class="field__error" id="miete-group-error" style="display:none;">Bei Mehrfamilienhäusern ist mindestens eine Mietangabe (IST oder SOLL, monatlich oder jährlich) erforderlich.</p>
             </div>
 
             <div class="step__buttons">
@@ -1408,11 +1426,14 @@
       var art = document.querySelector('input[name="objektart"]:checked');
       if (!art) return;
       var isGrund = art.value === 'grundstueck';
+      var isMfh = art.value === 'mehrfamilienhaus';
       var fieldWf = document.getElementById('field-wohnflaeche');
       var fieldGf = document.getElementById('field-grundstueck');
       var wfInput = document.getElementById('wohnflaeche');
+      var wfHint = document.getElementById('wohnflaeche-hint');
       fieldWf.style.display = isGrund ? 'none' : 'block';
-      wfInput.required = !isGrund;
+      wfInput.required = !isGrund && !isMfh;
+      wfHint.style.display = isMfh ? 'block' : 'none';
       fieldGf.style.display = 'block';
       var stepTitle = document.querySelector('.step[data-step="3"] .step__title');
       if (isGrund) {
@@ -1500,7 +1521,7 @@
         var fieldWf = document.getElementById('field-wohnflaeche');
         var art = document.querySelector('input[name="objektart"]:checked').value;
 
-        if (art !== 'grundstueck' && (!wf.value || parseFloat(wf.value) < 10)) {
+        if (art !== 'grundstueck' && art !== 'mehrfamilienhaus' && (!wf.value || parseFloat(wf.value) < 10)) {
           fieldWf.classList.add('field--error');
           valid = false;
         } else {
@@ -1516,6 +1537,25 @@
           } else {
             fieldGf.classList.remove('field--error');
           }
+        }
+      }
+
+      if (step === 4) {
+        var artStep4 = document.querySelector('input[name="objektart"]:checked').value;
+        var mieteErrorEl = document.getElementById('miete-group-error');
+        if (artStep4 === 'mehrfamilienhaus') {
+          var mIstM = parseFloat((document.getElementById('miete_ist').value || '').replace(',', '.')) || 0;
+          var mIstJ = parseFloat((document.getElementById('miete_ist_jahr').value || '').replace(',', '.')) || 0;
+          var mSollM = parseFloat((document.getElementById('miete_soll').value || '').replace(',', '.')) || 0;
+          var mSollJ = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',', '.')) || 0;
+          if (!(mIstM || mIstJ || mSollM || mSollJ)) {
+            mieteErrorEl.style.display = 'block';
+            valid = false;
+          } else {
+            mieteErrorEl.style.display = 'none';
+          }
+        } else if (mieteErrorEl) {
+          mieteErrorEl.style.display = 'none';
         }
       }
 
@@ -1711,9 +1751,18 @@
         value = grundstuecksflaeche * (bodenrichtwert * 0.7) * eFaktor;
 
       } else {
-        var mieteIst  = parseFloat((document.getElementById('miete_ist').value  || '').replace(',','.')) || 0;
-        var mieteSoll = parseFloat((document.getElementById('miete_soll').value || '').replace(',','.')) || 0;
-        var kaltmiete = mieteIst || mieteSoll; // IST bevorzugt, sonst SOLL
+        var mieteIst     = parseFloat((document.getElementById('miete_ist').value      || '').replace(',','.')) || 0;
+        var mieteIstJahr = parseFloat((document.getElementById('miete_ist_jahr').value  || '').replace(',','.')) || 0;
+        var mieteSoll     = parseFloat((document.getElementById('miete_soll').value     || '').replace(',','.')) || 0;
+        var mieteSollJahr = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',','.')) || 0;
+        // Monatlich bevorzugt, sonst Jahr/12; IST bevorzugt, sonst SOLL
+        var kaltmiete = mieteIst || (mieteIstJahr / 12) || mieteSoll || (mieteSollJahr / 12);
+
+        if (art === 'mehrfamilienhaus' && !(kaltmiete > 0)) {
+          // Sollte durch validateStep(4) bereits verhindert sein — MFH-Wert muss
+          // zwingend durch Mieteinnahmen belegt werden, kein Sachwert-Fallback.
+          return null;
+        }
 
         if (kaltmiete > 0) {
           // Ertragswert: Kaltmiete × 12 × PLZ-Multiplikator
@@ -1751,6 +1800,7 @@
 
 
       var value = calculateValue();
+      if (value === null) { showStep(4); return; }
       var low = Math.round(value * 0.9 / 5000) * 5000;
       var high = Math.round(value * 1.1 / 5000) * 5000;
 
@@ -1762,9 +1812,11 @@
       document.getElementById('result-grundstueck-hinweis').style.display = art === 'grundstueck' ? 'block' : 'none';
 
       // Hinweis "keine Mietangabe -> beste Marktmiete unterstellt" ein-/ausblenden
-      var mieteIstCheck  = parseFloat((document.getElementById('miete_ist').value  || '').replace(',','.')) || 0;
-      var mieteSollCheck = parseFloat((document.getElementById('miete_soll').value || '').replace(',','.')) || 0;
-      var keineMiete = art !== 'grundstueck' && !(mieteIstCheck || mieteSollCheck);
+      var mieteIstCheck      = parseFloat((document.getElementById('miete_ist').value      || '').replace(',','.')) || 0;
+      var mieteIstJahrCheck  = parseFloat((document.getElementById('miete_ist_jahr').value  || '').replace(',','.')) || 0;
+      var mieteSollCheck     = parseFloat((document.getElementById('miete_soll').value     || '').replace(',','.')) || 0;
+      var mieteSollJahrCheck = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',','.')) || 0;
+      var keineMiete = art !== 'grundstueck' && !(mieteIstCheck || mieteIstJahrCheck || mieteSollCheck || mieteSollJahrCheck);
       document.getElementById('result-keine-miete-hinweis').style.display = keineMiete ? 'block' : 'none';
 
       // Objekt-Typ-Hinweis je nach Objektart anpassen
@@ -1804,7 +1856,9 @@
       formData.append('einheiten', document.getElementById('einheiten').value);
       formData.append('erschliessung', document.getElementById('erschliessung').value);
       formData.append('miete_ist', document.getElementById('miete_ist').value);
+      formData.append('miete_ist_jahr', document.getElementById('miete_ist_jahr').value);
       formData.append('miete_soll', document.getElementById('miete_soll').value);
+      formData.append('miete_soll_jahr', document.getElementById('miete_soll_jahr').value);
       formData.append('immo_strasse', document.getElementById('immo_strasse').value);
       formData.append('immo_plz', document.getElementById('immo_plz').value);
       formData.append('immo_ort', document.getElementById('immo_ort').value);

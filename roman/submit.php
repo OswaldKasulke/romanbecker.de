@@ -55,7 +55,9 @@ $erschliessung      = clean($_POST['erschliessung'] ?? '');
 $zustand            = clean($_POST['zustand'] ?? '');
 $baujahr            = clean($_POST['baujahr'] ?? '');
 $miete_ist          = clean($_POST['miete_ist'] ?? '');
+$miete_ist_jahr     = clean($_POST['miete_ist_jahr'] ?? '');
 $miete_soll         = clean($_POST['miete_soll'] ?? '');
+$miete_soll_jahr    = clean($_POST['miete_soll_jahr'] ?? '');
 $ergebnis           = clean($_POST['ergebnis'] ?? '');
 
 // Pflichtfelder prüfen
@@ -103,7 +105,9 @@ if ($objektart || $wohnflaeche || $grundstuecksflaeche || $zustand || $baujahr |
     if ($zustand)             $body .= "Zustand:           $zustand\n";
     if ($baujahr)             $body .= "Baujahr:           $baujahr\n";
     if ($miete_ist)           $body .= "Kaltmiete IST:     $miete_ist €/Monat\n";
+    if ($miete_ist_jahr)      $body .= "Kaltmiete IST:     $miete_ist_jahr €/Jahr\n";
     if ($miete_soll)          $body .= "Kaltmiete SOLL:    $miete_soll €/Monat\n";
+    if ($miete_soll_jahr)     $body .= "Kaltmiete SOLL:    $miete_soll_jahr €/Jahr\n";
 }
 
 // Ergebnis
