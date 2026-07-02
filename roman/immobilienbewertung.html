@@ -1733,7 +1733,11 @@
       // PLZ-abhängige Werte (Fallback wenn PLZ unbekannt)
       var istKoelnPlz = Object.prototype.hasOwnProperty.call(plzMultiplikatoren, plz);
       var multiplikator = istKoelnPlz ? plzMultiplikatoren[plz] : defaultMultiplikator;
-      if (art === 'mehrfamilienhaus' && !istKoelnPlz) {
+      if (art === 'mehrfamilienhaus' && istKoelnPlz) {
+        // Köln: Tabellenwerte (Spanne 15–23) linear auf die MFH-Spanne
+        // 17 (schlechteste Lage) – 22 (beste Lage) skalieren
+        multiplikator = 17 + (multiplikator - 15) * (22 - 17) / (23 - 15);
+      } else if (art === 'mehrfamilienhaus') {
         // Umland: MFH maximal Faktor 16,5 (Bruttorendite mind. ~6,1%)
         multiplikator = Math.min(multiplikator, 16.5);
       } else {
