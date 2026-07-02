@@ -637,7 +637,7 @@ const sitemapPath = join(ROOT, 'sitemap.xml');
 let sitemap = readFileSync(sitemapPath, 'utf-8');
 const newUrl = `<loc>${REPORT_URL}</loc>`;
 if (!sitemap.includes(newUrl)) {
-  const newEntry = `  <url><loc>${REPORT_URL}</loc><lastmod>${today}</lastmod><changefreq>quarterly</changefreq><priority>0.9</priority></url>\n`;
+  const newEntry = `  <url><loc>${REPORT_URL}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
   sitemap = sitemap.replace('</urlset>', newEntry + '</urlset>');
   writeFileSync(sitemapPath, sitemap);
   console.log(`✓ Sitemap updated with new report URL`);
@@ -649,7 +649,7 @@ if (!sitemap.includes(newUrl)) {
 const indexUrl = `<loc>https://romanbecker.de/marktanalyse/</loc>`;
 if (!sitemap.includes(indexUrl)) {
   sitemap = readFileSync(sitemapPath, 'utf-8');
-  const newEntry = `  <url><loc>https://romanbecker.de/marktanalyse/</loc><lastmod>${today}</lastmod><changefreq>quarterly</changefreq><priority>0.85</priority></url>\n`;
+  const newEntry = `  <url><loc>https://romanbecker.de/marktanalyse/</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>\n`;
   sitemap = sitemap.replace('</urlset>', newEntry + '</urlset>');
   writeFileSync(sitemapPath, sitemap);
   console.log(`✓ Sitemap updated with marktanalyse index URL`);
