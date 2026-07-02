@@ -1731,11 +1731,17 @@
       var faktor = conditionMult[zustand] || 1.0;
 
       // PLZ-abhängige Werte (Fallback wenn PLZ unbekannt)
-      var multiplikator = plzMultiplikatoren[plz] || defaultMultiplikator;
-      // Bruttorendite (= 1 / Multiplikator) darf nie über 4,5% liegen
-      // -> Multiplikator nie unter 1/0,045 ≈ 22,22 fallen lassen
-      var minMultiplikator = 1 / 0.045;
-      multiplikator = Math.max(multiplikator, minMultiplikator);
+      var istKoelnPlz = Object.prototype.hasOwnProperty.call(plzMultiplikatoren, plz);
+      var multiplikator = istKoelnPlz ? plzMultiplikatoren[plz] : defaultMultiplikator;
+      if (art === 'mehrfamilienhaus' && !istKoelnPlz) {
+        // Umland: MFH maximal Faktor 16,5 (Bruttorendite mind. ~6,1%)
+        multiplikator = Math.min(multiplikator, 16.5);
+      } else {
+        // Bruttorendite (= 1 / Multiplikator) darf nie über 4,5% liegen
+        // -> Multiplikator nie unter 1/0,045 ≈ 22,22 fallen lassen
+        var minMultiplikator = 1 / 0.045;
+        multiplikator = Math.max(multiplikator, minMultiplikator);
+      }
       // MFH: Kaufpreis/m² aus Mietmultiplikator ableiten. Wohnung/Haus: feste Tabelle.
       var preisProQm = art === 'mehrfamilienhaus'
         ? qmPreisAusMultiplikator(multiplikator)
