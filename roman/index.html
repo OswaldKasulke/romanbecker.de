@@ -773,7 +773,7 @@ padding: 0.65rem 1rem;
 font-size: 0.8125rem;
 }
 .card { padding: var(--space-5); }
-.stadtteil-card { padding: var(--space-4); }
+.stadtteil-card { padding: 0.6rem 0.8rem; }
 .trust { padding: var(--space-8) 0; }
 .trust__grid { gap: var(--space-4) var(--space-5); }
 .section { padding: var(--space-8) 0; }
@@ -1395,60 +1395,25 @@ gap: var(--space-3);
 }
 }
 .stadtteil-card {
+display: block;
 background: var(--white);
 border-radius: var(--radius);
-padding: var(--space-6);
-box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+padding: 0.7rem 0.85rem;
+box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 border: 1px solid var(--gray-200);
 border-left: 3px solid var(--gray-200);
 transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
-position: relative;
-cursor: pointer;
-}
-@media (min-width: 1280px) {
-.stadtteile__grid .stadtteil-card {
-padding: var(--space-4);
-}
-.stadtteile__grid .stadtteil-card .card-h {
-font-size: 0.95rem;
-}
-.stadtteile__grid .stadtteil-card__price {
-font-size: 0.75rem;
-}
-.stadtteile__grid .stadtteil-card p:not(.card-h) {
-font-size: 0.8rem;
-line-height: 1.4;
-}
-}
-.stadtteil-card__link {
+color: var(--navy);
+font-size: 0.875rem;
+font-weight: 500;
+line-height: 1.3;
 text-decoration: none;
-color: inherit;
-}
-.stadtteil-card__link::after {
-content: '';
-position: absolute;
-inset: 0;
 }
 .stadtteil-card:hover {
 border-left-color: var(--gold);
-box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 12px 24px rgba(0,0,0,0.10);
-transform: translateY(-2px);
-}
-.stadtteil-card h3, .stadtteil-card .card-h {
+box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 10px 20px rgba(0,0,0,0.09);
+transform: translateY(-1px);
 color: var(--navy);
-font-size: 1rem;
-margin-bottom: var(--space-1);
-}
-.stadtteil-card__price {
-font-size: 0.8125rem;
-font-weight: 700;
-color: var(--gray-600);
-margin-bottom: var(--space-3);
-}
-.stadtteil-card p {
-font-size: 0.875rem;
-color: var(--gray-600);
-line-height: 1.6;
 }
 .empfehlung__card {
 background: var(--white);
@@ -3723,186 +3688,100 @@ WE B.05</div>
       <p class="section-subtitle">Ich kenne die Preisunterschiede zwischen Straßenzügen – nicht nur zwischen Stadtteilen.</p>
 
       <div class="stadtteile__grid">
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/altstadt-nord.html" class="stadtteil-card__link">Köln-Altstadt-Nord</a></p>
-          <div class="stadtteil-card__price">Domnähe · Loft · Stadtleben</div>
-          <p>Direkt am Rhein und nahe am Dom — Lofts, Altbauten und höchste Lagequalität im historischen Zentrum.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/altstadt-sued.html" class="stadtteil-card__link">Köln-Altstadt-Süd</a></p>
-          <div class="stadtteil-card__price">Rheinauhafen · Severinsviertel · Szeneviertel</div>
-          <p>Vom Rheinauhafen bis zum Severinsviertel — eine der lebendigsten und gefragtesten Lagen Kölns.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/bayenthal.html" class="stadtteil-card__link">Köln-Bayenthal</a></p>
-          <div class="stadtteil-card__price">Neubau · Rhein-Nähe · Kapitalanlage</div>
-          <p>Aufstrebendes Quartier direkt am Rhein. Neubauprojekte und Bestandsobjekte — attraktiv für Kapitalanleger und Selbstnutzer.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/braunsfeld.html" class="stadtteil-card__link">Köln-Braunsfeld</a></p>
-          <div class="stadtteil-card__price">Stadtwald · Bürohochhäuser · Wohnlage</div>
-          <p>Grüne Wohnlage am Stadtwald mit guter Mischung aus Bürostandorten und gefragten Wohnstraßen.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/deutz.html" class="stadtteil-card__link">Köln-Deutz</a></p>
-          <div class="stadtteil-card__price">Rheinblick · Messe · Skyline</div>
-          <p>Rechtsrheinisch mit Skyline-Blick auf die Altstadt — Messe, LANXESS arena und starker Aufwertungstrend.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/ehrenfeld.html" class="stadtteil-card__link">Köln-Ehrenfeld</a></p>
-          <div class="stadtteil-card__price">Szeneviertel · Loft · Start-ups</div>
-          <p>Angesagtes Szeneviertel mit Lofts, Start-up-Szene und steigender Nachfrage bei jungen Käufern.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/hahnwald.html" class="stadtteil-card__link">Köln-Hahnwald</a></p>
-          <div class="stadtteil-card__price">Villen · Privatsphäre · Exklusiv</div>
-          <p>Exklusive Wohnlage im Kölner Süden. Großzügige Grundstücke, hohe Privatsphäre. Käufer kommen selten über Portale — Netzwerk entscheidet.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/junkersdorf.html" class="stadtteil-card__link">Köln-Junkersdorf</a></p>
-          <div class="stadtteil-card__price">EFH · Neubau · Familien</div>
-          <p>Familienfreundlich, gute Anbindung, steigende Nachfrage. Beliebte Alternative zu Lindenthal mit mehr Grundstücksfläche.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/klettenberg.html" class="stadtteil-card__link">Köln-Klettenberg</a></p>
-          <div class="stadtteil-card__price">Altbau · Gründerzeit · Bürgerpark</div>
-          <p>Charmanter Stadtteil mit Gründerzeitvillen und Bürgerpark-Nähe. Hohe Nachfrage bei jungen Familien — stabile Wertentwicklung.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/lindenthal.html" class="stadtteil-card__link">Köln-Lindenthal</a></p>
-          <div class="stadtteil-card__price">Villen · ETW · Premium</div>
-          <p>Kölns beliebteste gehobene Wohnlage. Großbürgerliche Villen, ruhige Wohnstraßen, Uni-Nähe. Stabile Nachfrage auch in schwierigen Marktphasen.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/marienburg.html" class="stadtteil-card__link">Köln-Marienburg</a></p>
-          <div class="stadtteil-card__price">Villen · Repräsentanz · Top-Segment</div>
-          <p>Kölns exklusivste Adresse. Parkähnliche Grundstücke, prominente Nachbarschaft. Diskretion zählt hier mehr als Reichweite.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/muelheim.html" class="stadtteil-card__link">Köln-Mülheim</a></p>
-          <div class="stadtteil-card__price">Rechtsrheinisch · Aufwertung · Neubau</div>
-          <p>Rechtsrheinisches Zentrum im Wandel mit Neubauprojekten und steigender Nachfrage.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/muengersdorf.html" class="stadtteil-card__link">Köln-Müngersdorf</a></p>
-          <div class="stadtteil-card__price">Stadion · Stadtwald · Villen</div>
-          <p>Grüne Lage rund um RheinEnergieSTADION und Stadtwald — gehobene Wohnlage mit guter Infrastruktur.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/neuehrenfeld.html" class="stadtteil-card__link">Köln-Neuehrenfeld</a></p>
-          <div class="stadtteil-card__price">Altbau · Familien · Aufstrebend</div>
-          <p>Aufstrebendes Veedel direkt neben Ehrenfeld mit gefragten Altbauwohnungen.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/neustadt-nord.html" class="stadtteil-card__link">Köln-Neustadt-Nord</a></p>
-          <div class="stadtteil-card__price">Belgisches Viertel · Eigelstein · Szenelage</div>
-          <p>Belgisches Viertel und Eigelstein — angesagte Gründerzeitviertel mit hoher Nachfrage bei jungen Käufern.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/neustadt-sued.html" class="stadtteil-card__link">Köln-Neustadt-Süd</a></p>
-          <div class="stadtteil-card__price">Barbarossaplatz · Bahnhof Süd · Gründerzeit</div>
-          <p>Zentrale Lage rund um Barbarossaplatz und Chlodwigplatz — gefragte Altbauten mit guter Infrastruktur.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/niehl.html" class="stadtteil-card__link">Köln-Niehl</a></p>
-          <div class="stadtteil-card__price">Rheinlage · Industrie · Hafen</div>
-          <p>Rechtsrheinischer Stadtteil mit Hafengebiet und Rheinlage, im Wandel begriffen.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/nippes.html" class="stadtteil-card__link">Köln-Nippes</a></p>
-          <div class="stadtteil-card__price">Altbau · Familien · Beliebt</div>
-          <p>Beliebtes Veedel mit Gründerzeitbauten, gutem Freizeitangebot und stabiler Nachfrage.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/riehl.html" class="stadtteil-card__link">Köln-Riehl</a></p>
-          <div class="stadtteil-card__price">Zoo-Nähe · Rheinpark · Villen</div>
-          <p>Grüne Lage am Rheinpark und Zoo, gehobene Wohnlage mit guter Nachfrage.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/rodenkirchen.html" class="stadtteil-card__link">Köln-Rodenkirchen</a></p>
-          <div class="stadtteil-card__price">EFH · Rheinlage · Familien</div>
-          <p>Rheinlage mit Dorfflair und hoher Lebensqualität. Starke Nachfrage von Familien mit gehobenen Ansprüchen — diskreter Markt.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/suelz.html" class="stadtteil-card__link">Köln-Sülz</a></p>
-          <div class="stadtteil-card__price">Altbau · EFH · Familienlage</div>
-          <p>Mein Heimatveedel. Gefragte Wohnlage nahe Uni und Stadtwald. Hohe Eigentumsquote, kurze Vermarktungszeiten — ich kenne hier jede Straße.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/suerth.html" class="stadtteil-card__link">Köln-Sürth</a></p>
-          <div class="stadtteil-card__price">Rheinlage · EFH · Ruhig</div>
-          <p>Beliebte Rheinlage im Kölner Süden mit dörflichem Charakter und guter Anbindung an die Innenstadt.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/weiss.html" class="stadtteil-card__link">Köln-Weiß</a></p>
-          <div class="stadtteil-card__price">EFH · Rheinnähe · Ruhig</div>
-          <p>Kleiner, ruhiger Stadtteil mit Rheinnähe im äußersten Kölner Süden.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/widdersdorf.html" class="stadtteil-card__link">Köln-Widdersdorf</a></p>
-          <div class="stadtteil-card__price">Neubau · Stadtrand · Familien</div>
-          <p>Wachsender Stadtteil am westlichen Stadtrand mit Neubaugebieten und steigender Nachfrage bei jungen Familien.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/zollstock.html" class="stadtteil-card__link">Köln-Zollstock</a></p>
-          <div class="stadtteil-card__price">Altbau · EFH · Familienlage</div>
-          <p>Gefragtes Veedel mit guter Mischung aus Altbau und Neubau, beliebt bei jungen Familien.</p>
-
-        </div>
-
+        <a class="stadtteil-card" href="stadtteile/agnesviertel.html">Agnesviertel</a>
+        <a class="stadtteil-card" href="stadtteile/altstadt-nord.html">Köln-Altstadt-Nord</a>
+        <a class="stadtteil-card" href="stadtteile/altstadt-sued.html">Köln-Altstadt-Süd</a>
+        <a class="stadtteil-card" href="stadtteile/bayenthal.html">Köln-Bayenthal</a>
+        <a class="stadtteil-card" href="stadtteile/belgisches-viertel.html">Belgisches Viertel</a>
+        <a class="stadtteil-card" href="stadtteile/bickendorf.html">Köln-Bickendorf</a>
+        <a class="stadtteil-card" href="stadtteile/bilderstoeckchen.html">Köln-Bilderstöckchen</a>
+        <a class="stadtteil-card" href="stadtteile/blumenberg.html">Köln-Blumenberg</a>
+        <a class="stadtteil-card" href="stadtteile/bocklemuend-mengenich.html">Köln-Bocklemünd/Mengenich</a>
+        <a class="stadtteil-card" href="stadtteile/braunsfeld.html">Köln-Braunsfeld</a>
+        <a class="stadtteil-card" href="stadtteile/brueck.html">Köln-Brück</a>
+        <a class="stadtteil-card" href="stadtteile/buchforst.html">Köln-Buchforst</a>
+        <a class="stadtteil-card" href="stadtteile/buchheim.html">Köln-Buchheim</a>
+        <a class="stadtteil-card" href="stadtteile/chorweiler.html">Köln-Chorweiler</a>
+        <a class="stadtteil-card" href="stadtteile/dellbrueck.html">Köln-Dellbrück</a>
+        <a class="stadtteil-card" href="stadtteile/deutz.html">Köln-Deutz</a>
+        <a class="stadtteil-card" href="stadtteile/duennwald.html">Köln-Dünnwald</a>
+        <a class="stadtteil-card" href="stadtteile/ehrenfeld.html">Köln-Ehrenfeld</a>
+        <a class="stadtteil-card" href="stadtteile/eil.html">Köln-Eil</a>
+        <a class="stadtteil-card" href="stadtteile/elsdorf.html">Köln-Elsdorf</a>
+        <a class="stadtteil-card" href="stadtteile/ensen.html">Köln-Ensen</a>
+        <a class="stadtteil-card" href="stadtteile/esch-auweiler.html">Köln-Esch/Auweiler</a>
+        <a class="stadtteil-card" href="stadtteile/finkenberg.html">Köln-Finkenberg</a>
+        <a class="stadtteil-card" href="stadtteile/flittard.html">Köln-Flittard</a>
+        <a class="stadtteil-card" href="stadtteile/fuehlingen.html">Köln-Fühlingen</a>
+        <a class="stadtteil-card" href="stadtteile/godorf.html">Köln-Godorf</a>
+        <a class="stadtteil-card" href="stadtteile/gremberghoven.html">Köln-Gremberghoven</a>
+        <a class="stadtteil-card" href="stadtteile/grengel.html">Köln-Grengel</a>
+        <a class="stadtteil-card" href="stadtteile/hahnwald.html">Köln-Hahnwald</a>
+        <a class="stadtteil-card" href="stadtteile/heimersdorf.html">Köln-Heimersdorf</a>
+        <a class="stadtteil-card" href="stadtteile/hoehenberg.html">Köln-Höhenberg</a>
+        <a class="stadtteil-card" href="stadtteile/hoehenhaus.html">Köln-Höhenhaus</a>
+        <a class="stadtteil-card" href="stadtteile/holweide.html">Köln-Holweide</a>
+        <a class="stadtteil-card" href="stadtteile/humboldt-gremberg.html">Köln-Humboldt/Gremberg</a>
+        <a class="stadtteil-card" href="stadtteile/immendorf.html">Köln-Immendorf</a>
+        <a class="stadtteil-card" href="stadtteile/junkersdorf.html">Köln-Junkersdorf</a>
+        <a class="stadtteil-card" href="stadtteile/kalk.html">Köln-Kalk</a>
+        <a class="stadtteil-card" href="stadtteile/klettenberg.html">Köln-Klettenberg</a>
+        <a class="stadtteil-card" href="stadtteile/komponistenviertel.html">Komponistenviertel</a>
+        <a class="stadtteil-card" href="stadtteile/langel.html">Köln-Langel</a>
+        <a class="stadtteil-card" href="stadtteile/libur.html">Köln-Libur</a>
+        <a class="stadtteil-card" href="stadtteile/lind.html">Köln-Lind</a>
+        <a class="stadtteil-card" href="stadtteile/lindenthal.html">Köln-Lindenthal</a>
+        <a class="stadtteil-card" href="stadtteile/lindweiler.html">Köln-Lindweiler</a>
+        <a class="stadtteil-card" href="stadtteile/longerich.html">Köln-Longerich</a>
+        <a class="stadtteil-card" href="stadtteile/loevenich.html">Köln-Lövenich</a>
+        <a class="stadtteil-card" href="stadtteile/marienburg.html">Köln-Marienburg</a>
+        <a class="stadtteil-card" href="stadtteile/mauenheim.html">Köln-Mauenheim</a>
+        <a class="stadtteil-card" href="stadtteile/merheim.html">Köln-Merheim</a>
+        <a class="stadtteil-card" href="stadtteile/merkenich.html">Köln-Merkenich</a>
+        <a class="stadtteil-card" href="stadtteile/meschenich.html">Köln-Meschenich</a>
+        <a class="stadtteil-card" href="stadtteile/muelheim.html">Köln-Mülheim</a>
+        <a class="stadtteil-card" href="stadtteile/muengersdorf.html">Köln-Müngersdorf</a>
+        <a class="stadtteil-card" href="stadtteile/neubrueck.html">Köln-Neubrück</a>
+        <a class="stadtteil-card" href="stadtteile/neuehrenfeld.html">Köln-Neuehrenfeld</a>
+        <a class="stadtteil-card" href="stadtteile/neustadt-nord.html">Köln-Neustadt-Nord</a>
+        <a class="stadtteil-card" href="stadtteile/neustadt-sued.html">Köln-Neustadt-Süd</a>
+        <a class="stadtteil-card" href="stadtteile/niehl.html">Köln-Niehl</a>
+        <a class="stadtteil-card" href="stadtteile/nippes.html">Köln-Nippes</a>
+        <a class="stadtteil-card" href="stadtteile/ossendorf.html">Köln-Ossendorf</a>
+        <a class="stadtteil-card" href="stadtteile/ostheim.html">Köln-Ostheim</a>
+        <a class="stadtteil-card" href="stadtteile/pesch.html">Köln-Pesch</a>
+        <a class="stadtteil-card" href="stadtteile/poll.html">Köln-Poll</a>
+        <a class="stadtteil-card" href="stadtteile/porz.html">Köln-Porz</a>
+        <a class="stadtteil-card" href="stadtteile/raderberg.html">Köln-Raderberg</a>
+        <a class="stadtteil-card" href="stadtteile/raderthal.html">Köln-Raderthal</a>
+        <a class="stadtteil-card" href="stadtteile/rath-heumar.html">Köln-Rath/Heumar</a>
+        <a class="stadtteil-card" href="stadtteile/rheinauhafen.html">Rheinauhafen</a>
+        <a class="stadtteil-card" href="stadtteile/riehl.html">Köln-Riehl</a>
+        <a class="stadtteil-card" href="stadtteile/rodenkirchen.html">Köln-Rodenkirchen</a>
+        <a class="stadtteil-card" href="stadtteile/roggendorf-thenhoven.html">Köln-Roggendorf/Thenhoven</a>
+        <a class="stadtteil-card" href="stadtteile/rondorf.html">Köln-Rondorf</a>
+        <a class="stadtteil-card" href="stadtteile/seeberg.html">Köln-Seeberg</a>
+        <a class="stadtteil-card" href="stadtteile/stammheim.html">Köln-Stammheim</a>
+        <a class="stadtteil-card" href="stadtteile/suelz.html">Köln-Sülz</a>
+        <a class="stadtteil-card" href="stadtteile/suerth.html">Köln-Sürth</a>
+        <a class="stadtteil-card" href="stadtteile/urbach.html">Köln-Urbach</a>
+        <a class="stadtteil-card" href="stadtteile/vingst.html">Köln-Vingst</a>
+        <a class="stadtteil-card" href="stadtteile/vogelsang.html">Köln-Vogelsang</a>
+        <a class="stadtteil-card" href="stadtteile/volkhoven-weiler.html">Köln-Volkhoven/Weiler</a>
+        <a class="stadtteil-card" href="stadtteile/wahn.html">Köln-Wahn</a>
+        <a class="stadtteil-card" href="stadtteile/wahnheide.html">Köln-Wahnheide</a>
+        <a class="stadtteil-card" href="stadtteile/weiden.html">Köln-Weiden</a>
+        <a class="stadtteil-card" href="stadtteile/weidenpesch.html">Köln-Weidenpesch</a>
+        <a class="stadtteil-card" href="stadtteile/weiss.html">Köln-Weiß</a>
+        <a class="stadtteil-card" href="stadtteile/westhoven.html">Köln-Westhoven</a>
+        <a class="stadtteil-card" href="stadtteile/widdersdorf.html">Köln-Widdersdorf</a>
+        <a class="stadtteil-card" href="stadtteile/worringen.html">Köln-Worringen</a>
+        <a class="stadtteil-card" href="stadtteile/zollstock.html">Köln-Zollstock</a>
+        <a class="stadtteil-card" href="stadtteile/zuendorf.html">Köln-Zündorf</a>
       </div></div>
 
       <div style="text-align:center;margin-top:var(--space-8);">
-        <a href="stadtteile/" class="btn btn--gold-outline">Ihr Veedel ist nicht dabei? Alle 86 Stadtteile ansehen</a>
+        <a href="stadtteile/" class="btn btn--gold-outline">Alle Stadtteile mit aktuellen Preisen im Überblick</a>
       </div>
     </div>
   </section>
@@ -3913,111 +3792,36 @@ WE B.05</div>
       <h2 class="section-title">Kölner Umland</h2>
 
       <div class="stadtteile__grid">
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/bedburg.html" class="stadtteil-card__link">Bedburg</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Einstiegspreise</div>
-          <p>Wachsende Kleinstadt mit günstigen Einstiegspreisen und guter Bahnanbindung nach Köln.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/bergheim.html" class="stadtteil-card__link">Bergheim</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Mittelzentrum</div>
-          <p>Mittelzentrum mit moderaten Preisen und guter Anbindung an Köln über die A61/A4.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/bruehl.html" class="stadtteil-card__link">Brühl</a></p>
-          <div class="stadtteil-card__price">UNESCO-Welterbe · EFH · Familien</div>
-          <p>Schloss Augustusburg direkt vor der Tür – hohe Lebensqualität und nachgefragte Eigenheimlagen.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/erftstadt.html" class="stadtteil-card__link">Erftstadt</a></p>
-          <div class="stadtteil-card__price">EFH · Grünlage · Südlich Köln</div>
-          <p>Grüne Wohnlage südlich von Köln mit historischem Stadtkern und guter Verkehrsanbindung.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/huerth.html" class="stadtteil-card__link">Hürth</a></p>
-          <div class="stadtteil-card__price">EFH · Familien · Südwest-Köln</div>
-          <p>Beliebte Wohnlage direkt an Köln mit guter S-Bahn-Anbindung, vielen Eigenheimgebieten und familienfreundlicher Infrastruktur.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/kerpen.html" class="stadtteil-card__link">Kerpen</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Strukturwandel</div>
-          <p>Strukturwandel und Wachstum – attraktiver Standort mit noch moderaten Immobilienpreisen.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/pulheim.html" class="stadtteil-card__link">Pulheim</a></p>
-          <div class="stadtteil-card__price">Neubau · Grundstücke · Konvolute</div>
-          <p>Neubau-Hotspot direkt vor den Toren Kölns. Starke Investoren-Nachfrage, direkte S-Bahn-Anbindung.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/rommerskirchen.html" class="stadtteil-card__link">Rommerskirchen</a></p>
-          <div class="stadtteil-card__price">Rhein-Kreis Neuss · Familienlage</div>
-          <p>Ländliches Wohnen mit direktem S-Bahn-Anschluss nach Köln – ideal für Familien.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/wesseling.html" class="stadtteil-card__link">Wesseling</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft-Kreis · Südlich Köln</div>
-          <p>Wachsende Stadt direkt südlich von Köln mit guter Rheinlage, solider Infrastruktur und noch moderaten Preisen.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/frechen.html" class="stadtteil-card__link">Frechen</a></p>
-          <div class="stadtteil-card__price">Mittelstadt · ca. 53.000 Einwohner</div>
-          <p>Mittelstadt direkt westlich von Köln mit guter Anbindung und solider Infrastruktur.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/bornheim.html" class="stadtteil-card__link">Bornheim</a></p>
-          <div class="stadtteil-card__price">Mittelstadt · ca. 50.000 Einwohner</div>
-          <p>Mittelstadt südwestlich von Bonn mit ländlichem Charakter und guter Anbindung.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/niederkassel.html" class="stadtteil-card__link">Niederkassel</a></p>
-          <div class="stadtteil-card__price">Mittelstadt · ca. 40.000 Einwohner</div>
-          <p>Mittelstadt im Rhein-Sieg-Kreis zwischen Köln und Bonn mit guter Rheinlage.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/dormagen.html" class="stadtteil-card__link">Dormagen</a></p>
-          <div class="stadtteil-card__price">Mittelstadt · ca. 63.000 Einwohner</div>
-          <p>Mittelstadt am Rhein zwischen Köln und Düsseldorf mit guter Verkehrsanbindung.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/eschweiler.html" class="stadtteil-card__link">Eschweiler</a></p>
-          <div class="stadtteil-card__price">Mittelstadt · ca. 56.000 Einwohner</div>
-          <p>Mittelstadt im Kreis Aachen mit moderaten Preisen und solider Infrastruktur.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="stadtteile/juelich.html" class="stadtteil-card__link">Jülich</a></p>
-          <div class="stadtteil-card__price">Kleinstadt · ca. 33.000 Einwohner</div>
-          <p>Historische Kleinstadt im Kreis Düren mit moderaten Preisen und solider Infrastruktur.</p>
-
-        </div>
+        <a class="stadtteil-card" href="stadtteile/alfter.html">Alfter</a>
+        <a class="stadtteil-card" href="stadtteile/bedburg.html">Bedburg</a>
+        <a class="stadtteil-card" href="stadtteile/bergheim.html">Bergheim</a>
+        <a class="stadtteil-card" href="stadtteile/bergisch-gladbach.html">Bergisch Gladbach</a>
+        <a class="stadtteil-card" href="stadtteile/bornheim.html">Bornheim</a>
+        <a class="stadtteil-card" href="stadtteile/bruehl.html">Brühl</a>
+        <a class="stadtteil-card" href="stadtteile/dormagen.html">Dormagen</a>
+        <a class="stadtteil-card" href="stadtteile/duerren.html">Düren</a>
+        <a class="stadtteil-card" href="stadtteile/erftstadt.html">Erftstadt</a>
+        <a class="stadtteil-card" href="stadtteile/eschweiler.html">Eschweiler</a>
+        <a class="stadtteil-card" href="stadtteile/frechen.html">Frechen</a>
+        <a class="stadtteil-card" href="stadtteile/huerth.html">Hürth</a>
+        <a class="stadtteil-card" href="stadtteile/juechen.html">Jüchen</a>
+        <a class="stadtteil-card" href="stadtteile/juelich.html">Jülich</a>
+        <a class="stadtteil-card" href="stadtteile/kerpen.html">Kerpen</a>
+        <a class="stadtteil-card" href="stadtteile/leichlingen.html">Leichlingen</a>
+        <a class="stadtteil-card" href="stadtteile/leverkusen.html">Leverkusen</a>
+        <a class="stadtteil-card" href="stadtteile/lohmar.html">Lohmar</a>
+        <a class="stadtteil-card" href="stadtteile/much.html">Much</a>
+        <a class="stadtteil-card" href="stadtteile/neunkirchen-seelscheid.html">Neunkirchen-Seelscheid</a>
+        <a class="stadtteil-card" href="stadtteile/niederkassel.html">Niederkassel</a>
+        <a class="stadtteil-card" href="stadtteile/odenthal.html">Odenthal</a>
+        <a class="stadtteil-card" href="stadtteile/overath.html">Overath</a>
+        <a class="stadtteil-card" href="stadtteile/pulheim.html">Pulheim</a>
+        <a class="stadtteil-card" href="stadtteile/rommerskirchen.html">Rommerskirchen</a>
+        <a class="stadtteil-card" href="stadtteile/roesrath.html">Rösrath</a>
+        <a class="stadtteil-card" href="stadtteile/sankt-augustin.html">Sankt Augustin</a>
+        <a class="stadtteil-card" href="stadtteile/swisttal.html">Swisttal</a>
+        <a class="stadtteil-card" href="stadtteile/troisdorf.html">Troisdorf</a>
+        <a class="stadtteil-card" href="stadtteile/wesseling.html">Wesseling</a>
       </div>
 
       <div style="text-align:center;margin-top:var(--space-8);">
