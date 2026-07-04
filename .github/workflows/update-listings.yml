@@ -26,7 +26,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet roman/index.html roman/bautraeger.html; then
+          if git diff --quiet roman/index.html roman/en/index.html roman/bautraeger.html; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changes detected."
           else
@@ -39,6 +39,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add roman/index.html roman/bautraeger.html
+          git add roman/index.html roman/en/index.html roman/bautraeger.html
           git commit -m "chore(roman): update Evernest listings + Standorte [automated]"
           git push

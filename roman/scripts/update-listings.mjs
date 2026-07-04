@@ -5,6 +5,8 @@
  *   2. EVERNEST Köln team page → "Immobilien meiner Kollegen" (Roman's excluded)
  *
  * Both pages embed all data in __NEXT_DATA__ — no individual listing pages needed.
+ * Writes the same listings into the German index.html AND the English en/index.html
+ * (English page uses translated labels — see LANGS below).
  * Runs daily via .github/workflows/update-listings.yml
  */
 
@@ -15,6 +17,7 @@ import { dirname, join } from 'node:path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const INDEX_PATH      = join(__dirname, '..', 'index.html');
+const EN_INDEX_PATH   = join(__dirname, '..', 'en', 'index.html');
 const BAUTRAEGER_PATH = join(__dirname, '..', 'bautraeger.html');
 
 const ROMAN_PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
@@ -34,6 +37,56 @@ const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
 const MAX_SOLD = 20;
 
 // ---------------------------------------------------------------------------
+// Language configs — one entry per output file.
+// `useHeadline`: German page shows the (German) listing headline as the card
+// title; the English page uses a generic English label instead of leaking
+// German marketing copy. All other strings mirror the hand-written en/ page.
+// ---------------------------------------------------------------------------
+
+const LANGS = [
+  {
+    code: 'de',
+    path: INDEX_PATH,
+    fatal: true,
+    useHeadline: true,
+    titleFallback: 'Immobilie',
+    sold: 'Verkauft',
+    priceOnRequest: 'Preis auf Anfrage',
+    from: 'Ab',
+    romanLabel: 'Mein Portfolio',
+    romanTitle: 'Meine Immobilien (Auswahl)',
+    romanSubtitle: 'Entdecken Sie mein Portfolio bei EVERNEST (Auswahl)',
+    romanEmpty: 'Aktuell keine Objekte verfügbar — kontaktieren Sie mich für Off-Market Angebote.',
+    romanAria: 'Meine Immobilienangebote',
+    consultCta: 'Beratungsgespräch vereinbaren',
+    koelnLabel: 'EVERNEST Köln',
+    koelnTitle: 'Unsere Immobilienreferenzen in Köln und im Umland (Auswahl)',
+    koelnAria: 'EVERNEST Köln Portfolio',
+    koelnAll: 'Alle Objekte bei EVERNEST Köln',
+  },
+  {
+    code: 'en',
+    path: EN_INDEX_PATH,
+    fatal: false,
+    useHeadline: false,
+    titleFallback: 'Property',
+    sold: 'Sold',
+    priceOnRequest: 'Price on request',
+    from: 'From',
+    romanLabel: 'My Portfolio',
+    romanTitle: 'My Properties (Selection)',
+    romanSubtitle: 'Discover a selection of my portfolio at EVERNEST',
+    romanEmpty: 'No properties available right now — contact me for off-market opportunities.',
+    romanAria: 'My property listings',
+    consultCta: 'Schedule a Consultation',
+    koelnLabel: 'EVERNEST Cologne',
+    koelnTitle: 'A selection of our property references in Cologne and the surrounding area',
+    koelnAria: 'EVERNEST Cologne Portfolio',
+    koelnAll: 'All listings at EVERNEST Cologne',
+  },
+];
+
+// ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
@@ -41,14 +94,12 @@ function escapeAttr(str) {
   return String(str).replace(/"/g, '&quot;').replace(/&/g, '&amp;');
 }
 
-function formatPrice(item) {
-  if (item.salesStatus === 'sold') return 'Verkauft';
-  if (item.hidePrice) return 'Preis auf Anfrage';
-  const epd = item.exportedPropertyData?.data ?? {};
-  const val = epd.priceFrom ?? epd.price ?? null;
-  if (!val) return 'Preis auf Anfrage';
-  const fmt = Number(val).toLocaleString('de-DE');
-  return epd.priceFrom ? `Ab ${fmt} €` : `${fmt} €`;
+function priceString(l, L) {
+  if (l.sold) return L.sold;
+  if (l.hidePrice) return L.priceOnRequest;
+  if (l.priceRaw == null) return L.priceOnRequest;
+  const fmt = Number(l.priceRaw).toLocaleString('de-DE');
+  return l.priceFrom ? `${L.from} ${fmt} €` : `${fmt} €`;
 }
 
 function extractItems(data) {
@@ -67,14 +118,17 @@ function extractItems(data) {
 }
 
 function mapListing(item) {
+  const epd = item.exportedPropertyData?.data ?? {};
   return {
-    id:       item.sys?.id,
-    sold:     item.salesStatus === 'sold',
-    title:    item.exportedPropertyData?.data?.headline ?? 'Immobilie',
-    address:  item.displayAddress ?? '',
-    price:    formatPrice(item),
-    imageUrl: item.featuredImage?.url ?? null,
-    url:      `https://www.evernest.com/de/listing/${item.sys?.id}/`,
+    id:        item.sys?.id,
+    sold:      item.salesStatus === 'sold',
+    hidePrice: !!item.hidePrice,
+    priceRaw:  epd.priceFrom ?? epd.price ?? null,
+    priceFrom: epd.priceFrom != null,
+    headline:  epd.headline ?? null,
+    address:   item.displayAddress ?? '',
+    imageUrl:  item.featuredImage?.url ?? null,
+    url:       `https://www.evernest.com/de/listing/${item.sys?.id}/`,
   };
 }
 
@@ -143,18 +197,20 @@ async function fetchKoelnListings() {
 // Card builder
 // ---------------------------------------------------------------------------
 
-function buildCard({ title, address, price, imageUrl, url, sold }) {
-  const meta   = address ? `${address} — ${price}` : price;
-  const imgSrc = imageUrl ? `${imageUrl}${IMG_PARAMS}` : '';
-  const badge  = sold ? '\n                  <div class="listing-card__badge">Verkauft</div>' : '';
+function buildCard(l, L) {
+  const title  = L.useHeadline ? (l.headline || L.titleFallback) : L.titleFallback;
+  const price  = priceString(l, L);
+  const meta   = l.address ? `${l.address} — ${price}` : price;
+  const imgSrc = l.imageUrl ? `${l.imageUrl}${IMG_PARAMS}` : '';
+  const badge  = l.sold ? `\n                  <div class="listing-card__badge">${L.sold}</div>` : '';
 
   return `            <li class="splide__slide">
               <div class="listing-card">
-                <a class="listing-card__link" href="${url}" target="_blank" rel="noopener">
+                <a class="listing-card__link" href="${l.url}" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="${imgSrc}" alt="${escapeAttr(title)}" loading="lazy">${badge}
                   <div class="listing-card__overlay">
                     <div class="listing-card__meta">${meta}</div>
-                    <div class="listing-card__title">${title}</div>
+                    <div class="listing-card__title">${escapeAttr(title)}</div>
                   </div>
                 </a>
               </div>
@@ -165,7 +221,7 @@ function buildCard({ title, address, price, imageUrl, url, sold }) {
 // Section builders
 // ---------------------------------------------------------------------------
 
-function buildRomanSection(listings) {
+function buildRomanSection(listings, L) {
   const active = listings.filter(l => !l.sold);
   const sold   = listings.filter(l => l.sold).slice(0, MAX_SOLD);
   const shown  = [...active, ...sold];
@@ -174,12 +230,12 @@ function buildRomanSection(listings) {
     return `  <!-- LISTINGS-START -->
   <section id="objekte" class="section">
     <div class="container">
-      <span class="section-label">Mein Portfolio</span>
-      <h2 class="section-title">Meine Immobilien (Auswahl)</h2>
-      <p class="section-subtitle">Aktuell keine Objekte verfügbar — kontaktieren Sie mich für Off-Market Angebote.</p>
+      <span class="section-label">${L.romanLabel}</span>
+      <h2 class="section-title">${L.romanTitle}</h2>
+      <p class="section-subtitle">${L.romanEmpty}</p>
       <div class="objekte__cta">
         <div class="objekte__buttons">
-          <a href="#kontakt" class="btn btn--primary">Beratungsgespräch vereinbaren</a>
+          <a href="#kontakt" class="btn btn--primary">${L.consultCta}</a>
         </div>
       </div>
     </div>
@@ -187,16 +243,16 @@ function buildRomanSection(listings) {
   <!-- LISTINGS-END -->`;
   }
 
-  const cards = shown.map(buildCard).join('\n');
+  const cards = shown.map(l => buildCard(l, L)).join('\n');
 
   return `  <!-- LISTINGS-START -->
   <section id="objekte" class="section section--gray">
     <div class="container">
-      <span class="section-label">Mein Portfolio</span>
-      <h2 class="section-title">Meine Immobilien (Auswahl)</h2>
-      <p class="section-subtitle">Entdecken Sie mein Portfolio bei EVERNEST (Auswahl)</p>
+      <span class="section-label">${L.romanLabel}</span>
+      <h2 class="section-title">${L.romanTitle}</h2>
+      <p class="section-subtitle">${L.romanSubtitle}</p>
 
-      <div class="listings-carousel splide" aria-label="Meine Immobilienangebote">
+      <div class="listings-carousel splide" aria-label="${L.romanAria}">
         <div class="splide__track">
           <ul class="splide__list">
 ${cards}
@@ -206,7 +262,7 @@ ${cards}
 
       <div class="objekte__cta">
         <div class="objekte__buttons" style="justify-content:center">
-          <a href="#kontakt" class="btn btn--primary">Beratungsgespräch vereinbaren</a>
+          <a href="#kontakt" class="btn btn--primary">${L.consultCta}</a>
         </div>
       </div>
     </div>
@@ -214,18 +270,18 @@ ${cards}
   <!-- LISTINGS-END -->`;
 }
 
-function buildKoelnSection(listings) {
+function buildKoelnSection(listings, L) {
   const shown = listings; // already filtered & limited to KOELN_MAX_LISTINGS
 
   if (shown.length === 0) {
     return `  <!-- KOELN-LISTINGS-START -->
   <section id="objekte-koeln" class="section section--gray">
     <div class="container">
-      <span class="section-label">EVERNEST Köln</span>
-      <h2 class="section-title">Unsere Immobilienreferenzen in Köln und im Umland (Auswahl)</h2>
+      <span class="section-label">${L.koelnLabel}</span>
+      <h2 class="section-title">${L.koelnTitle}</h2>
       <div class="objekte__cta">
         <div class="objekte__buttons">
-          <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle Objekte bei EVERNEST Köln</a>
+          <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">${L.koelnAll}</a>
         </div>
       </div>
     </div>
@@ -233,15 +289,15 @@ function buildKoelnSection(listings) {
   <!-- KOELN-LISTINGS-END -->`;
   }
 
-  const cards = shown.map(buildCard).join('\n');
+  const cards = shown.map(l => buildCard(l, L)).join('\n');
 
   return `  <!-- KOELN-LISTINGS-START -->
   <section id="objekte-koeln" class="section">
     <div class="container">
-      <span class="section-label">EVERNEST Köln</span>
-      <h2 class="section-title">Unsere Immobilienreferenzen in Köln und im Umland (Auswahl)</h2>
+      <span class="section-label">${L.koelnLabel}</span>
+      <h2 class="section-title">${L.koelnTitle}</h2>
 
-      <div class="listings-carousel splide" aria-label="EVERNEST Köln Portfolio">
+      <div class="listings-carousel splide" aria-label="${L.koelnAria}">
         <div class="splide__track">
           <ul class="splide__list">
 ${cards}
@@ -251,7 +307,7 @@ ${cards}
 
       <div class="objekte__cta">
         <div class="objekte__buttons">
-          <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">Alle Objekte bei EVERNEST Köln</a>
+          <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">${L.koelnAll}</a>
         </div>
       </div>
     </div>
@@ -263,36 +319,27 @@ ${cards}
 // Inject into HTML
 // ---------------------------------------------------------------------------
 
-async function injectIntoHtml(romanHtml, koelnHtml, activeCount) {
-  let html = await readFile(INDEX_PATH, 'utf-8');
+function replaceBlock(html, startMarker, endMarker, replacement) {
+  const si = html.indexOf(startMarker);
+  const ei = html.indexOf(endMarker);
+  if (si === -1 || ei === -1) throw new Error(`markers ${startMarker} not found`);
+  return html.slice(0, html.lastIndexOf('\n', si) + 1)
+    + replacement
+    + html.slice(ei + endMarker.length);
+}
 
-  // Inject Roman's section
-  const S1 = '<!-- LISTINGS-START -->';
-  const E1 = '<!-- LISTINGS-END -->';
-  const si1 = html.indexOf(S1);
-  const ei1 = html.indexOf(E1);
-  if (si1 === -1 || ei1 === -1) throw new Error('LISTINGS markers not found');
-  html = html.slice(0, html.lastIndexOf('\n', si1) + 1)
-    + romanHtml
-    + html.slice(ei1 + E1.length);
+async function injectIntoHtml(path, romanHtml, koelnHtml, activeCount) {
+  let html = await readFile(path, 'utf-8');
+  html = replaceBlock(html, '<!-- LISTINGS-START -->', '<!-- LISTINGS-END -->', romanHtml);
+  html = replaceBlock(html, '<!-- KOELN-LISTINGS-START -->', '<!-- KOELN-LISTINGS-END -->', koelnHtml);
 
-  // Inject Köln section
-  const S2 = '<!-- KOELN-LISTINGS-START -->';
-  const E2 = '<!-- KOELN-LISTINGS-END -->';
-  const si2 = html.indexOf(S2);
-  const ei2 = html.indexOf(E2);
-  if (si2 === -1 || ei2 === -1) throw new Error('KOELN-LISTINGS markers not found');
-  html = html.slice(0, html.lastIndexOf('\n', si2) + 1)
-    + koelnHtml
-    + html.slice(ei2 + E2.length);
-
-  // Update trust bar
+  // Update trust bar (no-op if the marker isn't present in this file)
   html = html.replace(
     /<!-- TRUST-ACTIVE-COUNT -->\d+<!-- \/TRUST-ACTIVE-COUNT -->/,
     `<!-- TRUST-ACTIVE-COUNT -->${activeCount}<!-- /TRUST-ACTIVE-COUNT -->`
   );
 
-  await writeFile(INDEX_PATH, html, 'utf-8');
+  await writeFile(path, html, 'utf-8');
 }
 
 // ---------------------------------------------------------------------------
@@ -324,13 +371,15 @@ async function injectStandorte(standorte) {
     console.log(`bautraeger.html: Standorte → ${standorte}`);
   }
 
-  // Also update index.html if marker exists there
-  let ix = await readFile(INDEX_PATH, 'utf-8');
-  pattern.lastIndex = 0;
-  if (pattern.test(ix)) {
-    ix = ix.replace(pattern, replacement);
-    await writeFile(INDEX_PATH, ix, 'utf-8');
-    console.log(`index.html: Standorte → ${standorte}`);
+  // Also update index.html + en/index.html if marker exists there
+  for (const path of [INDEX_PATH, EN_INDEX_PATH]) {
+    let ix = await readFile(path, 'utf-8');
+    pattern.lastIndex = 0;
+    if (pattern.test(ix)) {
+      ix = ix.replace(pattern, replacement);
+      await writeFile(path, ix, 'utf-8');
+      console.log(`${path}: Standorte → ${standorte}`);
+    }
   }
 }
 
@@ -355,11 +404,18 @@ async function main() {
     console.warn('Köln section will show empty state.');
   }
 
-  const romanHtml = buildRomanSection(romanListings);
-  const koelnHtml = buildKoelnSection(koelnListings);
-
-  await injectIntoHtml(romanHtml, koelnHtml, romanActive);
-  console.log('index.html updated successfully.');
+  // Inject into every language target (German = fatal, English = best-effort).
+  for (const L of LANGS) {
+    const romanHtml = buildRomanSection(romanListings, L);
+    const koelnHtml = buildKoelnSection(koelnListings, L);
+    try {
+      await injectIntoHtml(L.path, romanHtml, koelnHtml, romanActive);
+      console.log(`${L.path} updated successfully.`);
+    } catch (err) {
+      if (L.fatal) throw err;
+      console.warn(`Warning: Could not update ${L.code} page (${L.path}) — ${err.message}`);
+    }
+  }
 
   // Update Standorte count
   console.log('Fetching EVERNEST Standorte count…');
