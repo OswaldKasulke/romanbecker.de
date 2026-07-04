@@ -773,7 +773,7 @@ padding: 0.65rem 1rem;
 font-size: 0.8125rem;
 }
 .card { padding: var(--space-5); }
-.stadtteil-card { padding: var(--space-4); }
+.stadtteil-card { padding: 0.6rem 0.8rem; }
 .trust { padding: var(--space-8) 0; }
 .trust__grid { gap: var(--space-4) var(--space-5); }
 .section { padding: var(--space-8) 0; }
@@ -1395,60 +1395,25 @@ gap: var(--space-3);
 }
 }
 .stadtteil-card {
+display: block;
 background: var(--white);
 border-radius: var(--radius);
-padding: var(--space-6);
-box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+padding: 0.7rem 0.85rem;
+box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 border: 1px solid var(--gray-200);
 border-left: 3px solid var(--gray-200);
 transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
-position: relative;
-cursor: pointer;
-}
-@media (min-width: 1280px) {
-.stadtteile__grid .stadtteil-card {
-padding: var(--space-4);
-}
-.stadtteile__grid .stadtteil-card .card-h {
-font-size: 0.95rem;
-}
-.stadtteile__grid .stadtteil-card__price {
-font-size: 0.75rem;
-}
-.stadtteile__grid .stadtteil-card p:not(.card-h) {
-font-size: 0.8rem;
-line-height: 1.4;
-}
-}
-.stadtteil-card__link {
+color: var(--navy);
+font-size: 0.875rem;
+font-weight: 500;
+line-height: 1.3;
 text-decoration: none;
-color: inherit;
-}
-.stadtteil-card__link::after {
-content: '';
-position: absolute;
-inset: 0;
 }
 .stadtteil-card:hover {
 border-left-color: var(--gold);
-box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 12px 24px rgba(0,0,0,0.10);
-transform: translateY(-2px);
-}
-.stadtteil-card h3, .stadtteil-card .card-h {
+box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 10px 20px rgba(0,0,0,0.09);
+transform: translateY(-1px);
 color: var(--navy);
-font-size: 1rem;
-margin-bottom: var(--space-1);
-}
-.stadtteil-card__price {
-font-size: 0.8125rem;
-font-weight: 700;
-color: var(--gray-600);
-margin-bottom: var(--space-3);
-}
-.stadtteil-card p {
-font-size: 0.875rem;
-color: var(--gray-600);
-line-height: 1.6;
 }
 .empfehlung__card {
 background: var(--white);
@@ -3743,186 +3708,96 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
       <p class="section-subtitle">I know the price differences between individual streets – not just between districts.</p>
 
       <div class="stadtteile__grid">
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/altstadt-nord.html" class="stadtteil-card__link">Cologne-Altstadt-Nord</a></p>
-          <div class="stadtteil-card__price">Close to the cathedral · Lofts · City living</div>
-          <p>Right on the Rhine and close to the cathedral — lofts, period buildings and the highest location quality in the historic center.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/altstadt-sued.html" class="stadtteil-card__link">Cologne-Altstadt-Süd</a></p>
-          <div class="stadtteil-card__price">Rheinauhafen · Severinsviertel · Trendy area</div>
-          <p>From the Rheinauhafen harbor to the Severinsviertel — one of Cologne's liveliest and most sought-after locations.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/bayenthal.html" class="stadtteil-card__link">Cologne-Bayenthal</a></p>
-          <div class="stadtteil-card__price">New builds · Close to the Rhine · Investment property</div>
-          <p>An up-and-coming quarter right on the Rhine. New developments and existing properties — attractive for investors and owner-occupiers alike.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/braunsfeld.html" class="stadtteil-card__link">Cologne-Braunsfeld</a></p>
-          <div class="stadtteil-card__price">Stadtwald forest · Office towers · Residential</div>
-          <p>A green residential area by the Stadtwald forest with a good mix of office locations and sought-after residential streets.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/deutz.html" class="stadtteil-card__link">Cologne-Deutz</a></p>
-          <div class="stadtteil-card__price">Rhine views · Trade fair · Skyline</div>
-          <p>On the right bank of the Rhine with skyline views of the old town — trade fair grounds, LANXESS arena and a strong upward trend.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/ehrenfeld.html" class="stadtteil-card__link">Cologne-Ehrenfeld</a></p>
-          <div class="stadtteil-card__price">Trendy district · Lofts · Start-ups</div>
-          <p>A trendy district with lofts, a start-up scene and rising demand among young buyers.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/hahnwald.html" class="stadtteil-card__link">Cologne-Hahnwald</a></p>
-          <div class="stadtteil-card__price">Villas · Privacy · Exclusive</div>
-          <p>An exclusive residential area in southern Cologne. Generous plots, high levels of privacy. Buyers rarely come via portals — network connections decide.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/junkersdorf.html" class="stadtteil-card__link">Cologne-Junkersdorf</a></p>
-          <div class="stadtteil-card__price">Single-family homes · New builds · Families</div>
-          <p>Family-friendly, good transport links, rising demand. A popular alternative to Lindenthal with more land area.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/klettenberg.html" class="stadtteil-card__link">Cologne-Klettenberg</a></p>
-          <div class="stadtteil-card__price">Period buildings · Belle Époque · Bürgerpark</div>
-          <p>A charming district with Belle Époque villas near the Bürgerpark. High demand among young families — stable value development.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/lindenthal.html" class="stadtteil-card__link">Cologne-Lindenthal</a></p>
-          <div class="stadtteil-card__price">Villas · Condominiums · Premium</div>
-          <p>Cologne's most popular upscale residential area. Grand villas, quiet residential streets, close to the university. Stable demand even in difficult market phases.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/marienburg.html" class="stadtteil-card__link">Cologne-Marienburg</a></p>
-          <div class="stadtteil-card__price">Villas · Prestige · Top segment</div>
-          <p>Cologne's most exclusive address. Park-like grounds, prominent neighbors. Here, discretion counts more than reach.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/muelheim.html" class="stadtteil-card__link">Cologne-Mülheim</a></p>
-          <div class="stadtteil-card__price">Right bank of the Rhine · Upturn · New builds</div>
-          <p>A right-bank center in transition, with new developments and rising demand.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/muengersdorf.html" class="stadtteil-card__link">Cologne-Müngersdorf</a></p>
-          <div class="stadtteil-card__price">Stadium · Stadtwald forest · Villas</div>
-          <p>A green location around the RheinEnergieSTADION stadium and the Stadtwald forest — an upscale residential area with good infrastructure.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/neuehrenfeld.html" class="stadtteil-card__link">Cologne-Neuehrenfeld</a></p>
-          <div class="stadtteil-card__price">Period buildings · Families · Up-and-coming</div>
-          <p>An up-and-coming neighborhood right next to Ehrenfeld with sought-after period-building apartments.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/neustadt-nord.html" class="stadtteil-card__link">Cologne-Neustadt-Nord</a></p>
-          <div class="stadtteil-card__price">Belgian Quarter · Eigelstein · Trendy area</div>
-          <p>The Belgian Quarter and Eigelstein — trendy period-building neighborhoods with high demand among young buyers.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/neustadt-sued.html" class="stadtteil-card__link">Cologne-Neustadt-Süd</a></p>
-          <div class="stadtteil-card__price">Barbarossaplatz · South station · Period buildings</div>
-          <p>A central location around Barbarossaplatz and Chlodwigplatz — sought-after period buildings with good infrastructure.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/niehl.html" class="stadtteil-card__link">Cologne-Niehl</a></p>
-          <div class="stadtteil-card__price">On the Rhine · Industry · Harbor</div>
-          <p>A right-bank district with a harbor area and Rhine-side location, currently in transition.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/nippes.html" class="stadtteil-card__link">Cologne-Nippes</a></p>
-          <div class="stadtteil-card__price">Period buildings · Families · Popular</div>
-          <p>A popular neighborhood with Belle Époque buildings, good leisure offerings and stable demand.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/riehl.html" class="stadtteil-card__link">Cologne-Riehl</a></p>
-          <div class="stadtteil-card__price">Near the zoo · Rheinpark · Villas</div>
-          <p>A green location by the Rheinpark and zoo, an upscale residential area with good demand.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/rodenkirchen.html" class="stadtteil-card__link">Cologne-Rodenkirchen</a></p>
-          <div class="stadtteil-card__price">Single-family homes · On the Rhine · Families</div>
-          <p>A Rhine-side location with village charm and a high quality of life. Strong demand from upscale families — a discreet market.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/suelz.html" class="stadtteil-card__link">Cologne-Sülz</a></p>
-          <div class="stadtteil-card__price">Period buildings · Single-family homes · Family location</div>
-          <p>My home neighborhood. A sought-after residential area near the university and the Stadtwald forest. High rate of owner-occupation, short marketing times — I know every street here.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/suerth.html" class="stadtteil-card__link">Cologne-Sürth</a></p>
-          <div class="stadtteil-card__price">On the Rhine · Single-family homes · Quiet</div>
-          <p>A popular Rhine-side location in southern Cologne with a village character and good links to the city center.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/weiss.html" class="stadtteil-card__link">Cologne-Weiß</a></p>
-          <div class="stadtteil-card__price">Single-family homes · Close to the Rhine · Quiet</div>
-          <p>A small, quiet district close to the Rhine at the southernmost tip of Cologne.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/widdersdorf.html" class="stadtteil-card__link">Cologne-Widdersdorf</a></p>
-          <div class="stadtteil-card__price">New builds · Edge of town · Families</div>
-          <p>A growing district on the western edge of town with new development areas and rising demand among young families.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/zollstock.html" class="stadtteil-card__link">Cologne-Zollstock</a></p>
-          <div class="stadtteil-card__price">Period buildings · Single-family homes · Family location</div>
-          <p>A popular neighborhood with a good mix of period and new buildings, popular among young families.</p>
-
-        </div>
-
-      </div>
-
-      <div style="text-align:center;margin-top:var(--space-8);">
-        <a href="/stadtteile/" class="btn btn--gold-outline">Your neighborhood isn't listed? View all 86 districts</a>
+        <a class="stadtteil-card" href="/stadtteile/agnesviertel.html">Agnesviertel</a>
+        <a class="stadtteil-card" href="/stadtteile/altstadt-nord.html">Altstadt-Nord</a>
+        <a class="stadtteil-card" href="/stadtteile/altstadt-sued.html">Altstadt-Süd</a>
+        <a class="stadtteil-card" href="/stadtteile/bayenthal.html">Bayenthal</a>
+        <a class="stadtteil-card" href="/stadtteile/belgisches-viertel.html">Belgisches Viertel</a>
+        <a class="stadtteil-card" href="/stadtteile/bickendorf.html">Bickendorf</a>
+        <a class="stadtteil-card" href="/stadtteile/bilderstoeckchen.html">Bilderstöckchen</a>
+        <a class="stadtteil-card" href="/stadtteile/blumenberg.html">Blumenberg</a>
+        <a class="stadtteil-card" href="/stadtteile/bocklemuend-mengenich.html">Bocklemünd/Mengenich</a>
+        <a class="stadtteil-card" href="/stadtteile/braunsfeld.html">Braunsfeld</a>
+        <a class="stadtteil-card" href="/stadtteile/brueck.html">Brück</a>
+        <a class="stadtteil-card" href="/stadtteile/buchforst.html">Buchforst</a>
+        <a class="stadtteil-card" href="/stadtteile/buchheim.html">Buchheim</a>
+        <a class="stadtteil-card" href="/stadtteile/chorweiler.html">Chorweiler</a>
+        <a class="stadtteil-card" href="/stadtteile/dellbrueck.html">Dellbrück</a>
+        <a class="stadtteil-card" href="/stadtteile/deutz.html">Deutz</a>
+        <a class="stadtteil-card" href="/stadtteile/duennwald.html">Dünnwald</a>
+        <a class="stadtteil-card" href="/stadtteile/ehrenfeld.html">Ehrenfeld</a>
+        <a class="stadtteil-card" href="/stadtteile/eil.html">Eil</a>
+        <a class="stadtteil-card" href="/stadtteile/elsdorf.html">Elsdorf</a>
+        <a class="stadtteil-card" href="/stadtteile/ensen.html">Ensen</a>
+        <a class="stadtteil-card" href="/stadtteile/esch-auweiler.html">Esch/Auweiler</a>
+        <a class="stadtteil-card" href="/stadtteile/finkenberg.html">Finkenberg</a>
+        <a class="stadtteil-card" href="/stadtteile/flittard.html">Flittard</a>
+        <a class="stadtteil-card" href="/stadtteile/fuehlingen.html">Fühlingen</a>
+        <a class="stadtteil-card" href="/stadtteile/godorf.html">Godorf</a>
+        <a class="stadtteil-card" href="/stadtteile/gremberghoven.html">Gremberghoven</a>
+        <a class="stadtteil-card" href="/stadtteile/grengel.html">Grengel</a>
+        <a class="stadtteil-card" href="/stadtteile/hahnwald.html">Hahnwald</a>
+        <a class="stadtteil-card" href="/stadtteile/heimersdorf.html">Heimersdorf</a>
+        <a class="stadtteil-card" href="/stadtteile/hoehenberg.html">Höhenberg</a>
+        <a class="stadtteil-card" href="/stadtteile/hoehenhaus.html">Höhenhaus</a>
+        <a class="stadtteil-card" href="/stadtteile/holweide.html">Holweide</a>
+        <a class="stadtteil-card" href="/stadtteile/humboldt-gremberg.html">Humboldt/Gremberg</a>
+        <a class="stadtteil-card" href="/stadtteile/immendorf.html">Immendorf</a>
+        <a class="stadtteil-card" href="/stadtteile/junkersdorf.html">Junkersdorf</a>
+        <a class="stadtteil-card" href="/stadtteile/kalk.html">Kalk</a>
+        <a class="stadtteil-card" href="/stadtteile/klettenberg.html">Klettenberg</a>
+        <a class="stadtteil-card" href="/stadtteile/komponistenviertel.html">Komponistenviertel</a>
+        <a class="stadtteil-card" href="/stadtteile/langel.html">Langel</a>
+        <a class="stadtteil-card" href="/stadtteile/libur.html">Libur</a>
+        <a class="stadtteil-card" href="/stadtteile/lind.html">Lind</a>
+        <a class="stadtteil-card" href="/stadtteile/lindenthal.html">Lindenthal</a>
+        <a class="stadtteil-card" href="/stadtteile/lindweiler.html">Lindweiler</a>
+        <a class="stadtteil-card" href="/stadtteile/longerich.html">Longerich</a>
+        <a class="stadtteil-card" href="/stadtteile/loevenich.html">Lövenich</a>
+        <a class="stadtteil-card" href="/stadtteile/marienburg.html">Marienburg</a>
+        <a class="stadtteil-card" href="/stadtteile/mauenheim.html">Mauenheim</a>
+        <a class="stadtteil-card" href="/stadtteile/merheim.html">Merheim</a>
+        <a class="stadtteil-card" href="/stadtteile/merkenich.html">Merkenich</a>
+        <a class="stadtteil-card" href="/stadtteile/meschenich.html">Meschenich</a>
+        <a class="stadtteil-card" href="/stadtteile/muelheim.html">Mülheim</a>
+        <a class="stadtteil-card" href="/stadtteile/muengersdorf.html">Müngersdorf</a>
+        <a class="stadtteil-card" href="/stadtteile/neubrueck.html">Neubrück</a>
+        <a class="stadtteil-card" href="/stadtteile/neuehrenfeld.html">Neuehrenfeld</a>
+        <a class="stadtteil-card" href="/stadtteile/neustadt-nord.html">Neustadt-Nord</a>
+        <a class="stadtteil-card" href="/stadtteile/neustadt-sued.html">Neustadt-Süd</a>
+        <a class="stadtteil-card" href="/stadtteile/niehl.html">Niehl</a>
+        <a class="stadtteil-card" href="/stadtteile/nippes.html">Nippes</a>
+        <a class="stadtteil-card" href="/stadtteile/ossendorf.html">Ossendorf</a>
+        <a class="stadtteil-card" href="/stadtteile/ostheim.html">Ostheim</a>
+        <a class="stadtteil-card" href="/stadtteile/pesch.html">Pesch</a>
+        <a class="stadtteil-card" href="/stadtteile/poll.html">Poll</a>
+        <a class="stadtteil-card" href="/stadtteile/porz.html">Porz</a>
+        <a class="stadtteil-card" href="/stadtteile/raderberg.html">Raderberg</a>
+        <a class="stadtteil-card" href="/stadtteile/raderthal.html">Raderthal</a>
+        <a class="stadtteil-card" href="/stadtteile/rath-heumar.html">Rath/Heumar</a>
+        <a class="stadtteil-card" href="/stadtteile/rheinauhafen.html">Rheinauhafen</a>
+        <a class="stadtteil-card" href="/stadtteile/riehl.html">Riehl</a>
+        <a class="stadtteil-card" href="/stadtteile/rodenkirchen.html">Rodenkirchen</a>
+        <a class="stadtteil-card" href="/stadtteile/roggendorf-thenhoven.html">Roggendorf/Thenhoven</a>
+        <a class="stadtteil-card" href="/stadtteile/rondorf.html">Rondorf</a>
+        <a class="stadtteil-card" href="/stadtteile/seeberg.html">Seeberg</a>
+        <a class="stadtteil-card" href="/stadtteile/stammheim.html">Stammheim</a>
+        <a class="stadtteil-card" href="/stadtteile/suelz.html">Sülz</a>
+        <a class="stadtteil-card" href="/stadtteile/suerth.html">Sürth</a>
+        <a class="stadtteil-card" href="/stadtteile/urbach.html">Urbach</a>
+        <a class="stadtteil-card" href="/stadtteile/vingst.html">Vingst</a>
+        <a class="stadtteil-card" href="/stadtteile/vogelsang.html">Vogelsang</a>
+        <a class="stadtteil-card" href="/stadtteile/volkhoven-weiler.html">Volkhoven/Weiler</a>
+        <a class="stadtteil-card" href="/stadtteile/wahn.html">Wahn</a>
+        <a class="stadtteil-card" href="/stadtteile/wahnheide.html">Wahnheide</a>
+        <a class="stadtteil-card" href="/stadtteile/weiden.html">Weiden</a>
+        <a class="stadtteil-card" href="/stadtteile/weidenpesch.html">Weidenpesch</a>
+        <a class="stadtteil-card" href="/stadtteile/weiss.html">Weiß</a>
+        <a class="stadtteil-card" href="/stadtteile/westhoven.html">Westhoven</a>
+        <a class="stadtteil-card" href="/stadtteile/widdersdorf.html">Widdersdorf</a>
+        <a class="stadtteil-card" href="/stadtteile/worringen.html">Worringen</a>
+        <a class="stadtteil-card" href="/stadtteile/zollstock.html">Zollstock</a>
+        <a class="stadtteil-card" href="/stadtteile/zuendorf.html">Zündorf</a>
       </div>
     </div>
   </section>
@@ -3933,115 +3808,36 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
       <h2 class="section-title">Greater Cologne Area</h2>
 
       <div class="stadtteile__grid">
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/bergheim.html" class="stadtteil-card__link">Bergheim</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft district · Mid-sized town</div>
-          <p>A mid-sized town with moderate prices and good transport links to Cologne via the A61/A4.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/wesseling.html" class="stadtteil-card__link">Wesseling</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft district · South of Cologne</div>
-          <p>A growing town directly south of Cologne with a good Rhine-side location, solid infrastructure and still-moderate prices.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/pulheim.html" class="stadtteil-card__link">Pulheim</a></p>
-          <div class="stadtteil-card__price">New builds · Land · Portfolios</div>
-          <p>A new-build hotspot right on Cologne's doorstep. Strong investor demand, direct commuter rail connection.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/kerpen.html" class="stadtteil-card__link">Kerpen</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft district · Structural transformation</div>
-          <p>Structural transformation and growth – an attractive location with still-moderate property prices.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/erftstadt.html" class="stadtteil-card__link">Erftstadt</a></p>
-          <div class="stadtteil-card__price">Single-family homes · Green setting · South of Cologne</div>
-          <p>A green residential area south of Cologne with a historic town center and good transport links.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/bruehl.html" class="stadtteil-card__link">Brühl</a></p>
-          <div class="stadtteil-card__price">UNESCO World Heritage Site · Single-family homes · Families</div>
-          <p>Augustusburg Palace right on your doorstep – a high quality of life and sought-after residential areas.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/bedburg.html" class="stadtteil-card__link">Bedburg</a></p>
-          <div class="stadtteil-card__price">Rhein-Erft district · Entry-level prices</div>
-          <p>A growing small town with affordable entry-level prices and good rail links to Cologne.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/rommerskirchen.html" class="stadtteil-card__link">Rommerskirchen</a></p>
-          <div class="stadtteil-card__price">Rhein-Kreis Neuss · Family location</div>
-          <p>Rural living with a direct commuter rail connection to Cologne – ideal for families.</p>
-        
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/huerth.html" class="stadtteil-card__link">Hürth</a></p>
-          <div class="stadtteil-card__price">Single-family homes · Families · Southwest Cologne</div>
-          <p>A popular residential area right next to Cologne with good commuter rail links, many residential areas and family-friendly infrastructure.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/frechen.html" class="stadtteil-card__link">Frechen</a></p>
-          <div class="stadtteil-card__price">Mid-sized town · approx. 53,000 residents</div>
-          <p>A mid-sized town directly west of Cologne with good transport links and solid infrastructure.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/dormagen.html" class="stadtteil-card__link">Dormagen</a></p>
-          <div class="stadtteil-card__price">Mid-sized town · approx. 63,000 residents</div>
-          <p>A mid-sized town on the Rhine between Cologne and Düsseldorf with good transport links.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/eschweiler.html" class="stadtteil-card__link">Eschweiler</a></p>
-          <div class="stadtteil-card__price">Mid-sized town · approx. 56,000 residents</div>
-          <p>A mid-sized town in the Aachen district with moderate prices and solid infrastructure.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/bornheim.html" class="stadtteil-card__link">Bornheim</a></p>
-          <div class="stadtteil-card__price">Mid-sized town · approx. 50,000 residents</div>
-          <p>A mid-sized town southwest of Bonn with a rural character and good transport links.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/niederkassel.html" class="stadtteil-card__link">Niederkassel</a></p>
-          <div class="stadtteil-card__price">Mid-sized town · approx. 40,000 residents</div>
-          <p>A mid-sized town in the Rhein-Sieg district between Cologne and Bonn with a good Rhine-side location.</p>
-
-        </div>
-        <div class="stadtteil-card">
-
-          <p class="card-h"><a href="/stadtteile/juelich.html" class="stadtteil-card__link">Jülich</a></p>
-          <div class="stadtteil-card__price">Small town · approx. 33,000 residents</div>
-          <p>A historic small town in the Düren district with moderate prices and solid infrastructure.</p>
-
-        </div>
-      </div>
-
-      <div style="text-align:center;margin-top:var(--space-8);">
-        <a href="/stadtteile/#umland" class="btn btn--gold-outline">Your town isn't listed? Find more towns in the area here</a>
+        <a class="stadtteil-card" href="/stadtteile/alfter.html">Alfter</a>
+        <a class="stadtteil-card" href="/stadtteile/bedburg.html">Bedburg</a>
+        <a class="stadtteil-card" href="/stadtteile/bergheim.html">Bergheim</a>
+        <a class="stadtteil-card" href="/stadtteile/bergisch-gladbach.html">Bergisch Gladbach</a>
+        <a class="stadtteil-card" href="/stadtteile/bornheim.html">Bornheim</a>
+        <a class="stadtteil-card" href="/stadtteile/bruehl.html">Brühl</a>
+        <a class="stadtteil-card" href="/stadtteile/dormagen.html">Dormagen</a>
+        <a class="stadtteil-card" href="/stadtteile/duerren.html">Düren</a>
+        <a class="stadtteil-card" href="/stadtteile/erftstadt.html">Erftstadt</a>
+        <a class="stadtteil-card" href="/stadtteile/eschweiler.html">Eschweiler</a>
+        <a class="stadtteil-card" href="/stadtteile/frechen.html">Frechen</a>
+        <a class="stadtteil-card" href="/stadtteile/huerth.html">Hürth</a>
+        <a class="stadtteil-card" href="/stadtteile/juechen.html">Jüchen</a>
+        <a class="stadtteil-card" href="/stadtteile/juelich.html">Jülich</a>
+        <a class="stadtteil-card" href="/stadtteile/kerpen.html">Kerpen</a>
+        <a class="stadtteil-card" href="/stadtteile/leichlingen.html">Leichlingen</a>
+        <a class="stadtteil-card" href="/stadtteile/leverkusen.html">Leverkusen</a>
+        <a class="stadtteil-card" href="/stadtteile/lohmar.html">Lohmar</a>
+        <a class="stadtteil-card" href="/stadtteile/much.html">Much</a>
+        <a class="stadtteil-card" href="/stadtteile/neunkirchen-seelscheid.html">Neunkirchen-Seelscheid</a>
+        <a class="stadtteil-card" href="/stadtteile/niederkassel.html">Niederkassel</a>
+        <a class="stadtteil-card" href="/stadtteile/odenthal.html">Odenthal</a>
+        <a class="stadtteil-card" href="/stadtteile/overath.html">Overath</a>
+        <a class="stadtteil-card" href="/stadtteile/pulheim.html">Pulheim</a>
+        <a class="stadtteil-card" href="/stadtteile/rommerskirchen.html">Rommerskirchen</a>
+        <a class="stadtteil-card" href="/stadtteile/roesrath.html">Rösrath</a>
+        <a class="stadtteil-card" href="/stadtteile/sankt-augustin.html">Sankt Augustin</a>
+        <a class="stadtteil-card" href="/stadtteile/swisttal.html">Swisttal</a>
+        <a class="stadtteil-card" href="/stadtteile/troisdorf.html">Troisdorf</a>
+        <a class="stadtteil-card" href="/stadtteile/wesseling.html">Wesseling</a>
       </div>
     </div>
   </section>
