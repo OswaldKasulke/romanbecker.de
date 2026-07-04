@@ -7,6 +7,7 @@ on:
       - develop
     paths:
       - 'roman/**'
+  workflow_dispatch:  # Manuell auslösbar (z. B. nach automatisiertem Listings-Commit)
 
 jobs:
   deploy:
