@@ -33,6 +33,9 @@ RewriteRule ^linksammlung/?$           /ratgeber/                               
 RewriteRule ^annuitaetendarlehen/?$    /ratgeber/annuitaetendarlehen.html               [R=301,L]
 RewriteRule ^abschreibung-bei-immobilien/?$ /ratgeber/abschreibung-bei-immobilien.html  [R=301,L]
 RewriteRule ^eigenbedarfsklage/?$      /ratgeber/eigenbedarfsklage.html                 [R=301,L]
+
+# --- eigenbedarfsklage-2 wurde in eigenbedarfsklage.html zusammengeführt (2026-07-05) ---
+RewriteRule ^ratgeber/eigenbedarfsklage-2\.html$ /ratgeber/eigenbedarfsklage.html       [R=301,L]
 RewriteRule ^flurkarte/?$              /ratgeber/flurkarte.html                         [R=301,L]
 RewriteRule ^notarkosten-beim-immobilienkauf/?$ /ratgeber/notarkosten-beim-immobilienkauf.html [R=301,L]
 RewriteRule ^smart-heizung/?$          /ratgeber/smart-heizung.html                     [R=301,L]
