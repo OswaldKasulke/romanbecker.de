@@ -1375,14 +1375,15 @@ line-height: 1.75;
 margin-top: var(--space-3);
 }
 .stadtteile__grid {
-display: flex;
-flex-wrap: wrap;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
 gap: var(--space-2);
 }
+@media (min-width: 640px) { .stadtteile__grid { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 1024px) { .stadtteile__grid { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 1280px) { .stadtteile__grid { grid-template-columns: repeat(10, 1fr); } }
 .stadtteil-card {
-display: inline-flex;
-align-items: center;
-white-space: nowrap;
+display: block;
 background: var(--white);
 border-radius: var(--radius);
 padding: 0.7rem 0.85rem;
