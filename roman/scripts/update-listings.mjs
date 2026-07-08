@@ -36,6 +36,13 @@ const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
 
 const MAX_SOLD = 20;
 
+// Listings pinned to the front of "Meine Immobilien" (in this order).
+// If Roman's Evernest profile doesn't include one, it is pulled from the
+// Köln search results instead.
+const PINNED_ROMAN_IDS = [
+  '5sbhUeXVmLizAAbmOfaZv8', // Apotheke Köln-Marienburg (Gewerbeeinheit, 986.500 €)
+];
+
 // ---------------------------------------------------------------------------
 // Language configs — one entry per output file.
 // `useHeadline`: German page shows the (German) listing headline as the card
@@ -389,9 +396,7 @@ async function injectStandorte(standorte) {
 
 async function main() {
   console.log('Fetching Roman Becker profile…');
-  const romanListings = await fetchRomanListings();
-  const romanActive = romanListings.filter(l => !l.sold).length;
-  console.log(`Roman: ${romanListings.length} listings (${romanActive} active)`);
+  let romanListings = await fetchRomanListings();
 
   console.log('Fetching EVERNEST Köln search page…');
   let koelnListings = [];
@@ -403,6 +408,28 @@ async function main() {
     console.warn(`Warning: Could not fetch Köln listings — ${err.message}`);
     console.warn('Köln section will show empty state.');
   }
+
+  // Roman section order: pinned listings first (added from the Köln results
+  // if his profile lacks them), then active by price descending, then sold
+  // in source order (buildRomanSection slices the first MAX_SOLD of those).
+  for (const id of PINNED_ROMAN_IDS) {
+    if (!romanListings.some(l => l.id === id)) {
+      const extra = koelnListings.find(l => l.id === id);
+      if (extra) romanListings.push(extra);
+      else console.warn(`Warning: pinned listing ${id} not found in profile or Köln results`);
+    }
+  }
+  const pinned = PINNED_ROMAN_IDS
+    .map(id => romanListings.find(l => l.id === id && !l.sold))
+    .filter(Boolean);
+  const activeRest = romanListings
+    .filter(l => !l.sold && !pinned.includes(l))
+    .sort((a, b) => (b.priceRaw ?? 0) - (a.priceRaw ?? 0));
+  const soldListings = romanListings.filter(l => l.sold);
+  romanListings = [...pinned, ...activeRest, ...soldListings];
+
+  const romanActive = pinned.length + activeRest.length;
+  console.log(`Roman: ${romanListings.length} listings (${romanActive} active, ${pinned.length} pinned)`);
 
   // Inject into every language target (German = fatal, English = best-effort).
   for (const L of LANGS) {
