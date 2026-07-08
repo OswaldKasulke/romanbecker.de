@@ -210,8 +210,9 @@ function buildCard(l, L) {
   const meta   = l.address ? `${l.address} — ${price}` : price;
   const imgSrc = l.imageUrl ? `${l.imageUrl}${IMG_PARAMS}` : '';
   const badge  = l.sold ? `\n                  <div class="listing-card__badge">${L.sold}</div>` : '';
+  const pinnedAttr = PINNED_ROMAN_IDS.includes(l.id) ? ' data-pinned="1"' : '';
 
-  return `            <li class="splide__slide">
+  return `            <li class="splide__slide"${pinnedAttr}>
               <div class="listing-card">
                 <a class="listing-card__link" href="${l.url}" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="${imgSrc}" alt="${escapeAttr(title)}" loading="lazy">${badge}

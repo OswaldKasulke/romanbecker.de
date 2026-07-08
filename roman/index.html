@@ -4056,6 +4056,9 @@ WE B.05</div>
         if (list) {
           var slides = Array.from(list.querySelectorAll('.splide__slide'));
           slides.sort(function(a, b) {
+            var aPinned = a.hasAttribute('data-pinned');
+            var bPinned = b.hasAttribute('data-pinned');
+            if (aPinned !== bPinned) return aPinned ? -1 : 1;
             function price(slide) {
               var meta = slide.querySelector('.listing-card__meta');
               if (!meta) return -1;
