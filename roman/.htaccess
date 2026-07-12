@@ -46,6 +46,14 @@ RewriteCond %{REQUEST_URI} ^/([^/]+)/?$
 RewriteCond %{DOCUMENT_ROOT}/ratgeber/%1.html -f
 RewriteRule ^([^/]+)/?$ /ratgeber/$1.html [R=301,L]
 
+# --- Catch-All: Top-Level-Slug → /<slug>.html im Root (wenn Datei existiert) ---
+#     Fängt extensionslose Root-Seiten ab, z. B. /immobilienbewertung → /immobilienbewertung.html
+#     -f-Check verhindert Loops und Fehl-Redirects; läuft nach dem /ratgeber/-Catch-All,
+#     damit Ratgeber-Slugs weiterhin Vorrang haben.
+RewriteCond %{REQUEST_URI} ^/([^/]+)/?$
+RewriteCond %{DOCUMENT_ROOT}/%1.html -f
+RewriteRule ^([^/]+)/?$ /$1.html [R=301,L]
+
 # --- Interne WP-Testseite ---
 RewriteRule ^startseite-alex/?$ / [R=301,L]
 
