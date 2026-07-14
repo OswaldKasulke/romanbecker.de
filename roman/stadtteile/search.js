@@ -137,6 +137,7 @@
       {t:'Ratgeber: Eigenbedarfskündigung', u:'/ratgeber/eigenbedarfsklage.html', c:'Ratgeber', k:'eigenbedarf kündigung mieter vermieter wohnrecht räumung mietvertrag eigenbedarfskündigung eigenbedarfsklage widerspruch'},
       {t:'Ratgeber: Baufinanzierung', u:'/ratgeber/baufinanzierung.html', c:'Ratgeber', k:'baufinanzierung kredit bank zinsen darlehen finanzierung eigenkapital nebenkosten notar immobilienfinanzierung finanzierungsbestätigung bonitätsprüfung'},
       {t:'Ratgeber: Heizungsgesetz', u:'/ratgeber/heizungsgesetz.html', c:'Ratgeber', k:'heizung geg gebäudeenergiegesetz wärmepumpe sanierung energieausweis klimaschutz solaranlage hauswert'},
+      {t:'Ratgeber: Änderung vom Heizungsgesetz 2026', u:'/ratgeber/heizungsgesetz-aenderung.html', c:'Ratgeber', k:'heizungsgesetz änderung reform 2026 gmodg gebäudemodernisierungsgesetz geg abschaffung 65 prozent regel bio-treppe beimischpflicht gasheizung ölheizung wärmepumpe fossile heizung gegenüberstellung neu alt förderung'},
       {t:'Ratgeber: Baulastenverzeichnis', u:'/ratgeber/baulastenverzeichnis.html', c:'Ratgeber', k:'baulast baulastenverzeichnis bebauung einschränkung baurecht grundstück altlastenauskunft bauakte'},
       {t:'Ratgeber: Annuitätendarlehen', u:'/ratgeber/annuitaetendarlehen.html', c:'Ratgeber', k:'annuität darlehen kredit tilgung zinsen rate bank rückzahlung finanzierung'},
       {t:'Ratgeber: Wirtschaftsplan', u:'/ratgeber/wirtschaftsplan.html', c:'Ratgeber', k:'wirtschaftsplan wohneigentümer eigentümergemeinschaft weg hausgeld rücklage verwalter'},
