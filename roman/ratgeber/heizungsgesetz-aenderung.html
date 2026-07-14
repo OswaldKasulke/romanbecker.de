@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Änderung vom Heizungsgesetz 2026: GEG wird zum GModG | Immobilienmakler Köln</title>
+  <meta name="description" content="Die Änderung vom Heizungsgesetz 2026: Das GEG wird durch das Gebäudemodernisierungsgesetz (GModG) abgelöst. Gegenüberstellung alt/neu, Bio-Treppe, was für Eigentümer gilt. Immobilienmakler Köln.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/heizungsgesetz-aenderung.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Änderung vom Heizungsgesetz 2026: GEG wird zum GModG | Immobilienmakler Köln – Roman Becker">
+  <meta property="og:description" content="Das Heizungsgesetz (GEG) wird 2026 durch das Gebäudemodernisierungsgesetz (GModG) abgelöst. Gegenüberstellung alt/neu, Bio-Treppe und was für Eigentümer, Käufer und Verkäufer gilt. — Roman Becker (EVERNEST), Immobilienmakler Köln.">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/heizungsgesetz-aenderung.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Änderung vom Heizungsgesetz 2026: GEG wird zum GModG",
+    "description": "Das Heizungsgesetz (GEG) wird 2026 durch das Gebäudemodernisierungsgesetz (GModG) abgelöst. Gegenüberstellung der alten und neuen Regeln, die neue Bio-Treppe und was das für Eigentümer bedeutet.",
+    "url": "https://romanbecker.de/ratgeber/heizungsgesetz-aenderung.html",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    },
+    "dateModified": "2026-07-14"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+
+    /* Gegenüberstellung / Vergleichstabelle */
+    .compare-wrap { overflow-x: auto; margin: 1.25rem 0 1.5rem; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; min-width: 560px; }
+    .compare-table th, .compare-table td { text-align: left; padding: 0.85rem 1rem; border-bottom: 1px solid var(--gray-200); vertical-align: top; line-height: 1.55; }
+    .compare-table thead th { background: var(--navy); color: var(--white); font-weight: 600; }
+    .compare-table thead th:first-child { background: var(--navy); }
+    .compare-table tbody th { font-weight: 600; color: var(--navy); background: var(--gray-100); width: 26%; }
+    .compare-table td.old { color: var(--gray-600); }
+    .compare-table td.new { color: var(--navy); }
+    .compare-table td.new strong { color: var(--gold); }
+    .compare-table tbody tr:last-child th, .compare-table tbody tr:last-child td { border-bottom: none; }
+
+    /* Info-/Stand-Box */
+    .info-box { background: var(--gray-100); border-left: 4px solid var(--gold); border-radius: var(--radius); padding: var(--space-5) var(--space-6); margin: 1.5rem 0; }
+    .info-box p { margin-bottom: 0.5rem; }
+    .info-box p:last-child { margin-bottom: 0; }
+    .stand-note { font-size: 0.85rem; color: var(--gray-600); font-style: italic; margin-top: 1rem; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ändert sich beim Heizungsgesetz 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Heizungsgesetz (GEG 2024) wird durch das Gebäudemodernisierungsgesetz (GModG) abgelöst, das Bundestag und Bundesrat am 10. Juli 2026 verabschiedet haben. Die 65-Prozent-Pflicht für erneuerbare Energien bei neuen Heizungen entfällt. Neue Gas- und Ölheizungen sind wieder erlaubt, müssen aber ab 2029 stufenweise klimaneutrale Brennstoffe beimischen (Bio-Treppe)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird die 65-Prozent-Regel abgeschafft?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Die Pflicht, neue Heizungen zu mindestens 65 Prozent mit erneuerbaren Energien zu betreiben, wird mit dem GModG ersatzlos gestrichen. An ihre Stelle tritt für fossile Heizungen eine stufenweise steigende Beimischpflicht klimaneutraler Brennstoffe."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Darf ich wieder eine neue Gas- oder Ölheizung einbauen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Nach dem GModG entscheiden Eigentümer wieder technologieoffen. Neben Wärmepumpe, Fernwärme, Hybrid- und Biomasseheizung sind auch neue Gas- und Ölheizungen zulässig. Sie unterliegen ab 2029 der sogenannten Bio-Treppe (Beimischpflicht: 10 % ab 2029, 15 % ab 2030, 30 % ab 2035, 60 % ab 2040)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gilt weiterhin die Austauschpflicht für alte Heizungen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Bestandsheizungen dürfen weiter betrieben werden, solange sie funktionstüchtig sind. Die Austauschpflicht für alte Konstanttemperatur-Kessel, die älter als 30 Jahre sind, bleibt bestehen. Das geplante Betriebsverbot für fossile Heizungen ab 2045 wird jedoch gestrichen."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Änderung vom Heizungsgesetz
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Änderung vom Heizungsgesetz 2026: Vom GEG zum Gebäudemodernisierungsgesetz</h1>
+      <p>Das „Heizungsgesetz" (GEG 2024) wird abgelöst. Was das neue Gebäudemodernisierungsgesetz (GModG) ändert – alte und neue Regeln in der direkten Gegenüberstellung.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+        <p>Das als „Heizungsgesetz" bekannte Gebäudeenergiegesetz (GEG) in der Fassung von 2024 wird grundlegend reformiert. <strong>Bundestag und Bundesrat haben am 10. Juli 2026 das neue Gebäudemodernisierungsgesetz (GModG) verabschiedet</strong>, das das bisherige Heizungsgesetz ablöst. Kernpunkt: Die umstrittene 65-Prozent-Pflicht für erneuerbare Energien entfällt, die Technologiewahl wird wieder offener – klimaneutrale Ziele bleiben, aber der Weg dorthin ändert sich.</p>
+
+        <div class="info-box">
+          <p><strong>Das Wichtigste in Kürze</strong></p>
+          <ul>
+            <li>Das <strong>GEG-„Heizungsgesetz" wird durch das GModG ersetzt</strong> (verabschiedet 10.07.2026).</li>
+            <li>Die <strong>65-%-Pflicht für erneuerbare Energien entfällt ersatzlos</strong>.</li>
+            <li><strong>Neue Gas- und Ölheizungen sind wieder erlaubt</strong> – Eigentümer entscheiden technologieoffen.</li>
+            <li>Stattdessen gilt die <strong>„Bio-Treppe"</strong>: stufenweise steigende Beimischpflicht klimaneutraler Brennstoffe.</li>
+            <li>Das <strong>Betriebsverbot für fossile Heizungen ab 2045 wird gestrichen</strong>.</li>
+            <li>Die <strong>Förderung bleibt bestehen</strong> und ist bis mindestens 2029 gesichert.</li>
+          </ul>
+        </div>
+
+        <h2>Gegenüberstellung: GEG 2024 vs. GModG 2026</h2>
+        <p>Die zentrale Änderung vom Heizungsgesetz auf einen Blick – die bisherige und die neue Rechtslage im direkten Vergleich:</p>
+
+        <div class="compare-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Thema</th>
+                <th>Bisher: GEG 2024 („Heizungsgesetz")</th>
+                <th>Neu: GModG 2026</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>65-%-Regel (erneuerbare Energien)</th>
+                <td class="old">Neue Heizungen mussten zu mind. 65 % mit erneuerbaren Energien betrieben werden.</td>
+                <td class="new"><strong>Ersatzlos gestrichen.</strong></td>
+              </tr>
+              <tr>
+                <th>Neue Gas- &amp; Ölheizungen</th>
+                <td class="old">Nur stark eingeschränkt (z. B. „H2-ready", grüne Gase).</td>
+                <td class="new"><strong>Wieder zulässig</strong> – mit Beimischpflicht ab 2029.</td>
+              </tr>
+              <tr>
+                <th>Ersatz-Verpflichtung</th>
+                <td class="old">Keine – die 65-%-Quote galt sofort auf Gebäudeebene.</td>
+                <td class="new"><strong>Bio-Treppe:</strong> steigende Beimischung klimaneutraler Brennstoffe (10 % ab 2029, 15 % ab 2030, 30 % ab 2035, 60 % ab 2040).</td>
+              </tr>
+              <tr>
+                <th>Technologiewahl</th>
+                <td class="old">Eingeschränkt, faktischer Vorrang der Wärmepumpe.</td>
+                <td class="new"><strong>Technologieoffen</strong> – Eigentümer entscheiden frei.</td>
+              </tr>
+              <tr>
+                <th>Fossiles Betriebsverbot ab 2045</th>
+                <td class="old">Vorgesehen.</td>
+                <td class="new"><strong>Gestrichen.</strong></td>
+              </tr>
+              <tr>
+                <th>Bestandsheizungen</th>
+                <td class="old">Weiterbetrieb erlaubt; Austauschpflicht bei Kesseln &gt; 30 Jahre.</td>
+                <td class="new">Unverändert – Weiterbetrieb erlaubt, 30-Jahre-Regel bleibt.</td>
+              </tr>
+              <tr>
+                <th>Kommunale Wärmeplanung</th>
+                <td class="old">Maßgeblich für Fristen und Gebiete.</td>
+                <td class="new">Bleibt relevant für Gebietsausweisungen.</td>
+              </tr>
+              <tr>
+                <th>Förderung</th>
+                <td class="old">BEG-Zuschüsse für klimafreundliche Heizungen.</td>
+                <td class="new">Bleibt bestehen, bis mind. 2029 gesichert; angepasste Konditionen.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Die neue „Bio-Treppe" im Detail</h2>
+        <p>Anstelle der starren 65-%-Regel tritt für neue fossile Heizungen eine <strong>stufenweise steigende Beimischpflicht</strong> klimaneutraler bzw. biogener Brennstoffe. Sie greift erst ab 2029 und steigt schrittweise an:</p>
+        <ul>
+          <li><strong>ab 1. Januar 2029:</strong> mindestens 10 %</li>
+          <li><strong>ab 1. Januar 2030:</strong> mindestens 15 %</li>
+          <li><strong>ab 1. Januar 2035:</strong> mindestens 30 %</li>
+          <li><strong>ab 1. Januar 2040:</strong> mindestens 60 %</li>
+        </ul>
+        <p>Auf den Anteil der klimafreundlichen Brennstoffe soll kein CO₂-Preis anfallen. Wer heute eine neue Gas- oder Ölheizung einbaut, hat damit einen deutlich längeren Planungshorizont als unter dem alten Heizungsgesetz.</p>
+
+        <h2>Was unverändert bleibt</h2>
+        <ul>
+          <li><strong>Bestandsschutz:</strong> Funktionierende Heizungen dürfen weiterlaufen.</li>
+          <li><strong>30-Jahre-Regel:</strong> Die Austauschpflicht für alte Konstanttemperatur-Kessel bleibt.</li>
+          <li><strong>Energieausweis:</strong> Pflicht bei Verkauf und Vermietung bleibt bestehen – <a href="https://romanbecker.de/ratgeber/energieausweis.html">mehr dazu im Ratgeber Energieausweis</a>.</li>
+          <li><strong>Kommunale Wärmeplanung:</strong> Bleibt für Fernwärme-Gebiete maßgeblich.</li>
+        </ul>
+
+        <h2>Was die Änderung für Eigentümer, Käufer und Verkäufer bedeutet</h2>
+        <p>Für den Kölner Immobilienmarkt bringt die Reform vor allem eines: <strong>Planungssicherheit und mehr Freiheit</strong>.</p>
+        <ul>
+          <li><strong>Eigentümer</strong> müssen bei einem Heizungstausch nicht mehr zwingend auf eine Wärmepumpe umstellen und gewinnen Spielraum bei der Investitionsplanung.</li>
+          <li><strong>Verkäufer</strong> profitieren: Objekte mit älterer Gas- oder Ölheizung verlieren durch das gestrichene 2045-Verbot an „Sanierungsdruck" – das kann sich positiv auf die Preisverhandlung auswirken.</li>
+          <li><strong>Käufer</strong> sollten den Zustand und das Alter der Heizung dennoch genau prüfen: Die 30-Jahre-Regel und künftige Beimischkosten bleiben ein realer Kostenfaktor.</li>
+        </ul>
+        <p>Eine fundierte Immobilienbewertung berücksichtigt den Zustand der Heizungsanlage und die energetische Ausstattung immer mit. Gerne ordne ich für Ihre Kölner Immobilie ein, wie sich die neue Rechtslage konkret auswirkt.</p>
+
+        <div class="info-box">
+          <p><strong>Stand &amp; Ausblick</strong></p>
+          <p>Das Gebäudemodernisierungsgesetz (GModG) wurde am 10. Juli 2026 von Bundestag und Bundesrat verabschiedet. Ausfertigung, Verkündung und Inkrafttreten stehen unmittelbar bevor. Bis zum Inkrafttreten gelten die bisherigen Regelungen und Förderbedingungen unverändert weiter.</p>
+          <p class="stand-note">Stand: 14. Juli 2026. Dieser Beitrag dient der allgemeinen Information und ersetzt keine Rechts-, Steuer- oder Energieberatung. Angaben ohne Gewähr; maßgeblich ist der jeweils geltende Gesetzestext.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Fragen zu Ihrer Kölner Immobilie?</h2>
+        <p>Ich berate Sie persönlich, unverbindlich und diskret. Als IHK-zertifizierter Immobilienmakler in Köln mit EVERNEST-Netzwerk stehe ich für marktgerechte Bewertung und professionelle Vermarktung.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/heizungsgesetz.html">Heizungsgesetz</a>
+          <a href="https://romanbecker.de/ratgeber/gebaeudeenergiegesetz.html">Gebäudeenergiegesetz (GEG)</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/daemmung-bei-immobilien.html">Dämmung</a>
+          <a href="https://romanbecker.de/ratgeber/kfw-foerderung.html">KfW-Förderung</a>
+          <a href="https://romanbecker.de/ratgeber/smart-heizung.html">Smarte Heizung</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+</body>
+</html>
