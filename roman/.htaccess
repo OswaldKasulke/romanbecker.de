@@ -36,6 +36,10 @@ RewriteRule ^eigenbedarfsklage/?$      /ratgeber/eigenbedarfsklage.html         
 
 # --- eigenbedarfsklage-2 wurde in eigenbedarfsklage.html zusammengeführt (2026-07-05) ---
 RewriteRule ^ratgeber/eigenbedarfsklage-2\.html$ /ratgeber/eigenbedarfsklage.html       [R=301,L]
+
+# --- heizungsgesetz + gebaeudeenergiegesetz in heizungsgesetz-aenderung.html zusammengeführt (2026-07-14) ---
+RewriteRule ^ratgeber/heizungsgesetz\.html$        /ratgeber/heizungsgesetz-aenderung.html [R=301,L]
+RewriteRule ^ratgeber/gebaeudeenergiegesetz\.html$ /ratgeber/heizungsgesetz-aenderung.html [R=301,L]
 RewriteRule ^flurkarte/?$              /ratgeber/flurkarte.html                         [R=301,L]
 RewriteRule ^notarkosten-beim-immobilienkauf/?$ /ratgeber/notarkosten-beim-immobilienkauf.html [R=301,L]
 RewriteRule ^smart-heizung/?$          /ratgeber/smart-heizung.html                     [R=301,L]
