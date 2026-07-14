@@ -310,7 +310,23 @@
     .footer__links a:hover { color: var(--gold); }
     .footer__disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.35); border-top: 1px solid rgba(255,255,255,0.08); padding-top: var(--space-6); }
     h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
-  </style>
+  
+    /* Bodenrichtwert-Karten (ersetzt die breiten 2-Spalten-Tabellen) */
+    .brw-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0.6rem; margin:1rem 0 2.5rem; }
+    @media (min-width:640px){ .brw-grid{ grid-template-columns:repeat(3,1fr); } }
+    @media (min-width:960px){ .brw-grid{ grid-template-columns:repeat(4,1fr); } }
+    .brw-card { display:flex; flex-direction:column; gap:0.15rem;
+      background:var(--white,#fff); border:1px solid var(--gray-200,#e5e7eb);
+      border-left:3px solid var(--gray-200,#e5e7eb); border-radius:var(--radius,8px);
+      padding:0.7rem 0.9rem; text-decoration:none;
+      transition:border-color .2s, box-shadow .2s, transform .2s; }
+    .brw-card:hover { border-left-color:var(--gold,#c2a990);
+      box-shadow:0 4px 12px rgba(0,0,0,0.08); transform:translateY(-2px); }
+    .brw-card:focus-visible { outline:2px solid var(--gold,#c2a990); outline-offset:2px; }
+    .brw-card__name { font-size:0.95rem; font-weight:600; color:var(--navy,#111); line-height:1.25; }
+    .brw-card__val  { font-size:0.82rem; font-weight:600; color:var(--gray-700,#374151);
+      font-variant-numeric:tabular-nums; }
+</style>
 </head>
 <body>
 
@@ -390,141 +406,141 @@
         <p class="section-sub">Die folgenden Werte basieren auf den zuletzt veröffentlichten Bodenrichtwertdaten des Gutachterausschusses Köln. Sie gelten für durchschnittliche Wohnbaugrundstücke und können je nach Lage, Erschließung und Bebauungspotenzial variieren.</p>
 
         <h3 style="font-size:1.125rem;font-weight:700;color:var(--navy);margin:2rem 0 1rem;">Kölner Stadtteile (86)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Stadtteil</th><th>Bodenrichtwert 2025</th></tr></thead>
-            <tbody>
-              <tr><td><a href="/stadtteile/agnesviertel.html" style="color:var(--navy);font-weight:500;">Agnesviertel</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 900–1.200 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/altstadt-nord.html" style="color:var(--navy);font-weight:500;">Altstadt-Nord</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.500–2.200 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/altstadt-sued.html" style="color:var(--navy);font-weight:500;">Altstadt-Süd</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.200–1.800 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/bayenthal.html" style="color:var(--navy);font-weight:500;">Bayenthal</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.100–1.450 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/belgisches-viertel.html" style="color:var(--navy);font-weight:500;">Belgisches Viertel</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.200–1.650 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/bickendorf.html" style="color:var(--navy);font-weight:500;">Bickendorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 550–780 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/bilderstoeckchen.html" style="color:var(--navy);font-weight:500;">Bilderstöckchen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 480–680 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/blumenberg.html" style="color:var(--navy);font-weight:500;">Blumenberg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 220–360 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/bocklemuend-mengenich.html" style="color:var(--navy);font-weight:500;">Bocklemünd/Mengenich</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 480–680 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/braunsfeld.html" style="color:var(--navy);font-weight:500;">Braunsfeld</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 750–1.050 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/brueck.html" style="color:var(--navy);font-weight:500;">Brück</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 520–720 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/buchforst.html" style="color:var(--navy);font-weight:500;">Buchforst</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 450–640 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/buchheim.html" style="color:var(--navy);font-weight:500;">Buchheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 480–670 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/chorweiler.html" style="color:var(--navy);font-weight:500;">Chorweiler</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 260–420 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/dellbrueck.html" style="color:var(--navy);font-weight:500;">Dellbrück</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 580–800 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/deutz.html" style="color:var(--navy);font-weight:500;">Deutz</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 750–1.050 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/duennwald.html" style="color:var(--navy);font-weight:500;">Dünnwald</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 460–660 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/ehrenfeld.html" style="color:var(--navy);font-weight:500;">Ehrenfeld</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 700–980 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/eil.html" style="color:var(--navy);font-weight:500;">Eil</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 380–560 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/ensen.html" style="color:var(--navy);font-weight:500;">Ensen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 390–580 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/esch-auweiler.html" style="color:var(--navy);font-weight:500;">Esch/Auweiler</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–420 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/finkenberg.html" style="color:var(--navy);font-weight:500;">Finkenberg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–580 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/flittard.html" style="color:var(--navy);font-weight:500;">Flittard</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 480–680 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/fuehlingen.html" style="color:var(--navy);font-weight:500;">Fühlingen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 290–430 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/godorf.html" style="color:var(--navy);font-weight:500;">Godorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 420–600 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/gremberghoven.html" style="color:var(--navy);font-weight:500;">Gremberghoven</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–580 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/grengel.html" style="color:var(--navy);font-weight:500;">Grengel</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 380–560 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/hahnwald.html" style="color:var(--navy);font-weight:500;">Hahnwald</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.800–2.400 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/heimersdorf.html" style="color:var(--navy);font-weight:500;">Heimersdorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 300–460 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/hoehenberg.html" style="color:var(--navy);font-weight:500;">Höhenberg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 430–620 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/hoehenhaus.html" style="color:var(--navy);font-weight:500;">Höhenhaus</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 480–680 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/holweide.html" style="color:var(--navy);font-weight:500;">Holweide</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 520–730 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/humboldt-gremberg.html" style="color:var(--navy);font-weight:500;">Humboldt/Gremberg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 430–620 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/immendorf.html" style="color:var(--navy);font-weight:500;">Immendorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–580 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/junkersdorf.html" style="color:var(--navy);font-weight:500;">Junkersdorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 800–1.100 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/kalk.html" style="color:var(--navy);font-weight:500;">Kalk</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 450–660 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/klettenberg.html" style="color:var(--navy);font-weight:500;">Klettenberg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 920–1.250 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/komponistenviertel.html" style="color:var(--navy);font-weight:500;">Komponistenviertel</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 850–1.150 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/langel.html" style="color:var(--navy);font-weight:500;">Langel</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 350–520 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/libur.html" style="color:var(--navy);font-weight:500;">Libur</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 370–540 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/lind.html" style="color:var(--navy);font-weight:500;">Lind</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 380–560 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/lindenthal.html" style="color:var(--navy);font-weight:500;">Lindenthal</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.000–1.450 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/lindweiler.html" style="color:var(--navy);font-weight:500;">Lindweiler</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–430 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/loevenich.html" style="color:var(--navy);font-weight:500;">Lövenich</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 620–860 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/longerich.html" style="color:var(--navy);font-weight:500;">Longerich</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 560–780 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/marienburg.html" style="color:var(--navy);font-weight:500;">Marienburg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 2.100–2.800 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/mauenheim.html" style="color:var(--navy);font-weight:500;">Mauenheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 580–800 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/merheim.html" style="color:var(--navy);font-weight:500;">Merheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 490–690 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/merkenich.html" style="color:var(--navy);font-weight:500;">Merkenich</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–420 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/meschenich.html" style="color:var(--navy);font-weight:500;">Meschenich</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 380–560 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/muelheim.html" style="color:var(--navy);font-weight:500;">Mülheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 460–680 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/muengersdorf.html" style="color:var(--navy);font-weight:500;">Müngersdorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 780–1.080 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/neubrueck.html" style="color:var(--navy);font-weight:500;">Neubrück</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 500–700 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/neuehrenfeld.html" style="color:var(--navy);font-weight:500;">Neuehrenfeld</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 650–900 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/neustadt-nord.html" style="color:var(--navy);font-weight:500;">Neustadt-Nord</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 950–1.350 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/neustadt-sued.html" style="color:var(--navy);font-weight:500;">Neustadt-Süd</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.000–1.450 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/niehl.html" style="color:var(--navy);font-weight:500;">Niehl</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 480–680 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/nippes.html" style="color:var(--navy);font-weight:500;">Nippes</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 680–950 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/ossendorf.html" style="color:var(--navy);font-weight:500;">Ossendorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 530–740 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/ostheim.html" style="color:var(--navy);font-weight:500;">Ostheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 410–590 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/pesch.html" style="color:var(--navy);font-weight:500;">Pesch</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 520–730 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/poll.html" style="color:var(--navy);font-weight:500;">Poll</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 580–820 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/porz.html" style="color:var(--navy);font-weight:500;">Porz</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–600 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/raderberg.html" style="color:var(--navy);font-weight:500;">Raderberg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 680–950 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/raderthal.html" style="color:var(--navy);font-weight:500;">Raderthal</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 500–700 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/rath-heumar.html" style="color:var(--navy);font-weight:500;">Rath/Heumar</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–580 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/rheinauhafen.html" style="color:var(--navy);font-weight:500;">Rheinauhafen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.900–2.600 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/riehl.html" style="color:var(--navy);font-weight:500;">Riehl</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 620–880 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/rodenkirchen.html" style="color:var(--navy);font-weight:500;">Rodenkirchen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 1.200–1.650 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/roggendorf-thenhoven.html" style="color:var(--navy);font-weight:500;">Roggendorf/Thenhoven</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 290–440 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/rondorf.html" style="color:var(--navy);font-weight:500;">Rondorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 520–730 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/seeberg.html" style="color:var(--navy);font-weight:500;">Seeberg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 440–630 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/stammheim.html" style="color:var(--navy);font-weight:500;">Stammheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 480–680 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/suelz.html" style="color:var(--navy);font-weight:500;">Sülz</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 880–1.200 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/suerth.html" style="color:var(--navy);font-weight:500;">Sürth</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 620–880 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/urbach.html" style="color:var(--navy);font-weight:500;">Urbach</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–580 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/vingst.html" style="color:var(--navy);font-weight:500;">Vingst</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 420–610 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/vogelsang.html" style="color:var(--navy);font-weight:500;">Vogelsang</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 500–700 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/volkhoven-weiler.html" style="color:var(--navy);font-weight:500;">Volkhoven/Weiler</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 290–440 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/wahn.html" style="color:var(--navy);font-weight:500;">Wahn</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–580 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/wahnheide.html" style="color:var(--navy);font-weight:500;">Wahnheide</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 380–560 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/weiden.html" style="color:var(--navy);font-weight:500;">Weiden</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 600–840 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/weidenpesch.html" style="color:var(--navy);font-weight:500;">Weidenpesch</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 580–800 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/weiss.html" style="color:var(--navy);font-weight:500;">Weiß</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 650–920 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/westhoven.html" style="color:var(--navy);font-weight:500;">Westhoven</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–580 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/widdersdorf.html" style="color:var(--navy);font-weight:500;">Widdersdorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 640–900 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/worringen.html" style="color:var(--navy);font-weight:500;">Worringen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 290–440 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/zollstock.html" style="color:var(--navy);font-weight:500;">Zollstock</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 700–980 €/m²</td></tr>
-              <tr><td><a href="/stadtteile/zuendorf.html" style="color:var(--navy);font-weight:500;">Zündorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 420–620 €/m²</td></tr>
-            </tbody>
-          </table>
+        <div class="brw-grid">
+          
+            
+            
+              <a class="brw-card" href="/stadtteile/agnesviertel.html"><span class="brw-card__name">Agnesviertel</span><span class="brw-card__val">ca. 900–1.200 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/altstadt-nord.html"><span class="brw-card__name">Altstadt-Nord</span><span class="brw-card__val">ca. 1.500–2.200 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/altstadt-sued.html"><span class="brw-card__name">Altstadt-Süd</span><span class="brw-card__val">ca. 1.200–1.800 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/bayenthal.html"><span class="brw-card__name">Bayenthal</span><span class="brw-card__val">ca. 1.100–1.450 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/belgisches-viertel.html"><span class="brw-card__name">Belgisches Viertel</span><span class="brw-card__val">ca. 1.200–1.650 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/bickendorf.html"><span class="brw-card__name">Bickendorf</span><span class="brw-card__val">ca. 550–780 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/bilderstoeckchen.html"><span class="brw-card__name">Bilderstöckchen</span><span class="brw-card__val">ca. 480–680 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/blumenberg.html"><span class="brw-card__name">Blumenberg</span><span class="brw-card__val">ca. 220–360 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/bocklemuend-mengenich.html"><span class="brw-card__name">Bocklemünd/Mengenich</span><span class="brw-card__val">ca. 480–680 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/braunsfeld.html"><span class="brw-card__name">Braunsfeld</span><span class="brw-card__val">ca. 750–1.050 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/brueck.html"><span class="brw-card__name">Brück</span><span class="brw-card__val">ca. 520–720 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/buchforst.html"><span class="brw-card__name">Buchforst</span><span class="brw-card__val">ca. 450–640 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/buchheim.html"><span class="brw-card__name">Buchheim</span><span class="brw-card__val">ca. 480–670 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/chorweiler.html"><span class="brw-card__name">Chorweiler</span><span class="brw-card__val">ca. 260–420 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/dellbrueck.html"><span class="brw-card__name">Dellbrück</span><span class="brw-card__val">ca. 580–800 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/deutz.html"><span class="brw-card__name">Deutz</span><span class="brw-card__val">ca. 750–1.050 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/duennwald.html"><span class="brw-card__name">Dünnwald</span><span class="brw-card__val">ca. 460–660 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/ehrenfeld.html"><span class="brw-card__name">Ehrenfeld</span><span class="brw-card__val">ca. 700–980 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/eil.html"><span class="brw-card__name">Eil</span><span class="brw-card__val">ca. 380–560 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/ensen.html"><span class="brw-card__name">Ensen</span><span class="brw-card__val">ca. 390–580 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/esch-auweiler.html"><span class="brw-card__name">Esch/Auweiler</span><span class="brw-card__val">ca. 280–420 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/finkenberg.html"><span class="brw-card__name">Finkenberg</span><span class="brw-card__val">ca. 400–580 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/flittard.html"><span class="brw-card__name">Flittard</span><span class="brw-card__val">ca. 480–680 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/fuehlingen.html"><span class="brw-card__name">Fühlingen</span><span class="brw-card__val">ca. 290–430 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/godorf.html"><span class="brw-card__name">Godorf</span><span class="brw-card__val">ca. 420–600 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/gremberghoven.html"><span class="brw-card__name">Gremberghoven</span><span class="brw-card__val">ca. 400–580 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/grengel.html"><span class="brw-card__name">Grengel</span><span class="brw-card__val">ca. 380–560 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/hahnwald.html"><span class="brw-card__name">Hahnwald</span><span class="brw-card__val">ca. 1.800–2.400 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/heimersdorf.html"><span class="brw-card__name">Heimersdorf</span><span class="brw-card__val">ca. 300–460 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/hoehenberg.html"><span class="brw-card__name">Höhenberg</span><span class="brw-card__val">ca. 430–620 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/hoehenhaus.html"><span class="brw-card__name">Höhenhaus</span><span class="brw-card__val">ca. 480–680 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/holweide.html"><span class="brw-card__name">Holweide</span><span class="brw-card__val">ca. 520–730 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/humboldt-gremberg.html"><span class="brw-card__name">Humboldt/Gremberg</span><span class="brw-card__val">ca. 430–620 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/immendorf.html"><span class="brw-card__name">Immendorf</span><span class="brw-card__val">ca. 400–580 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/junkersdorf.html"><span class="brw-card__name">Junkersdorf</span><span class="brw-card__val">ca. 800–1.100 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/kalk.html"><span class="brw-card__name">Kalk</span><span class="brw-card__val">ca. 450–660 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/klettenberg.html"><span class="brw-card__name">Klettenberg</span><span class="brw-card__val">ca. 920–1.250 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/komponistenviertel.html"><span class="brw-card__name">Komponistenviertel</span><span class="brw-card__val">ca. 850–1.150 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/langel.html"><span class="brw-card__name">Langel</span><span class="brw-card__val">ca. 350–520 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/libur.html"><span class="brw-card__name">Libur</span><span class="brw-card__val">ca. 370–540 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/lind.html"><span class="brw-card__name">Lind</span><span class="brw-card__val">ca. 380–560 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/lindenthal.html"><span class="brw-card__name">Lindenthal</span><span class="brw-card__val">ca. 1.000–1.450 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/lindweiler.html"><span class="brw-card__name">Lindweiler</span><span class="brw-card__val">ca. 280–430 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/loevenich.html"><span class="brw-card__name">Lövenich</span><span class="brw-card__val">ca. 620–860 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/longerich.html"><span class="brw-card__name">Longerich</span><span class="brw-card__val">ca. 560–780 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/marienburg.html"><span class="brw-card__name">Marienburg</span><span class="brw-card__val">ca. 2.100–2.800 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/mauenheim.html"><span class="brw-card__name">Mauenheim</span><span class="brw-card__val">ca. 580–800 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/merheim.html"><span class="brw-card__name">Merheim</span><span class="brw-card__val">ca. 490–690 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/merkenich.html"><span class="brw-card__name">Merkenich</span><span class="brw-card__val">ca. 280–420 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/meschenich.html"><span class="brw-card__name">Meschenich</span><span class="brw-card__val">ca. 380–560 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/muelheim.html"><span class="brw-card__name">Mülheim</span><span class="brw-card__val">ca. 460–680 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/muengersdorf.html"><span class="brw-card__name">Müngersdorf</span><span class="brw-card__val">ca. 780–1.080 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/neubrueck.html"><span class="brw-card__name">Neubrück</span><span class="brw-card__val">ca. 500–700 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/neuehrenfeld.html"><span class="brw-card__name">Neuehrenfeld</span><span class="brw-card__val">ca. 650–900 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/neustadt-nord.html"><span class="brw-card__name">Neustadt-Nord</span><span class="brw-card__val">ca. 950–1.350 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/neustadt-sued.html"><span class="brw-card__name">Neustadt-Süd</span><span class="brw-card__val">ca. 1.000–1.450 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/niehl.html"><span class="brw-card__name">Niehl</span><span class="brw-card__val">ca. 480–680 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/nippes.html"><span class="brw-card__name">Nippes</span><span class="brw-card__val">ca. 680–950 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/ossendorf.html"><span class="brw-card__name">Ossendorf</span><span class="brw-card__val">ca. 530–740 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/ostheim.html"><span class="brw-card__name">Ostheim</span><span class="brw-card__val">ca. 410–590 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/pesch.html"><span class="brw-card__name">Pesch</span><span class="brw-card__val">ca. 520–730 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/poll.html"><span class="brw-card__name">Poll</span><span class="brw-card__val">ca. 580–820 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/porz.html"><span class="brw-card__name">Porz</span><span class="brw-card__val">ca. 400–600 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/raderberg.html"><span class="brw-card__name">Raderberg</span><span class="brw-card__val">ca. 680–950 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/raderthal.html"><span class="brw-card__name">Raderthal</span><span class="brw-card__val">ca. 500–700 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/rath-heumar.html"><span class="brw-card__name">Rath/Heumar</span><span class="brw-card__val">ca. 400–580 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/rheinauhafen.html"><span class="brw-card__name">Rheinauhafen</span><span class="brw-card__val">ca. 1.900–2.600 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/riehl.html"><span class="brw-card__name">Riehl</span><span class="brw-card__val">ca. 620–880 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/rodenkirchen.html"><span class="brw-card__name">Rodenkirchen</span><span class="brw-card__val">ca. 1.200–1.650 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/roggendorf-thenhoven.html"><span class="brw-card__name">Roggendorf/Thenhoven</span><span class="brw-card__val">ca. 290–440 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/rondorf.html"><span class="brw-card__name">Rondorf</span><span class="brw-card__val">ca. 520–730 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/seeberg.html"><span class="brw-card__name">Seeberg</span><span class="brw-card__val">ca. 440–630 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/stammheim.html"><span class="brw-card__name">Stammheim</span><span class="brw-card__val">ca. 480–680 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/suelz.html"><span class="brw-card__name">Sülz</span><span class="brw-card__val">ca. 880–1.200 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/suerth.html"><span class="brw-card__name">Sürth</span><span class="brw-card__val">ca. 620–880 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/urbach.html"><span class="brw-card__name">Urbach</span><span class="brw-card__val">ca. 400–580 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/vingst.html"><span class="brw-card__name">Vingst</span><span class="brw-card__val">ca. 420–610 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/vogelsang.html"><span class="brw-card__name">Vogelsang</span><span class="brw-card__val">ca. 500–700 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/volkhoven-weiler.html"><span class="brw-card__name">Volkhoven/Weiler</span><span class="brw-card__val">ca. 290–440 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/wahn.html"><span class="brw-card__name">Wahn</span><span class="brw-card__val">ca. 400–580 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/wahnheide.html"><span class="brw-card__name">Wahnheide</span><span class="brw-card__val">ca. 380–560 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/weiden.html"><span class="brw-card__name">Weiden</span><span class="brw-card__val">ca. 600–840 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/weidenpesch.html"><span class="brw-card__name">Weidenpesch</span><span class="brw-card__val">ca. 580–800 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/weiss.html"><span class="brw-card__name">Weiß</span><span class="brw-card__val">ca. 650–920 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/westhoven.html"><span class="brw-card__name">Westhoven</span><span class="brw-card__val">ca. 400–580 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/widdersdorf.html"><span class="brw-card__name">Widdersdorf</span><span class="brw-card__val">ca. 640–900 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/worringen.html"><span class="brw-card__name">Worringen</span><span class="brw-card__val">ca. 290–440 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/zollstock.html"><span class="brw-card__name">Zollstock</span><span class="brw-card__val">ca. 700–980 €/m²</span></a>
+              <a class="brw-card" href="/stadtteile/zuendorf.html"><span class="brw-card__name">Zündorf</span><span class="brw-card__val">ca. 420–620 €/m²</span></a>
+            
+          
         </div>
 
         <h3 style="font-size:1.125rem;font-weight:700;color:var(--navy);margin:2.5rem 0 1rem;">Umland Köln (31 Städte)</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Stadt</th><th>Bodenrichtwert 2025</th></tr></thead>
-            <tbody>
-              <tr><td><a href="/bodenrichtwert-alfter.html" style="color:var(--navy);font-weight:500;">Alfter</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 350–520 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-bedburg.html" style="color:var(--navy);font-weight:500;">Bedburg</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 200–350 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-bergheim.html" style="color:var(--navy);font-weight:500;">Bergheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–420 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-bergisch-gladbach.html" style="color:var(--navy);font-weight:500;">Bergisch Gladbach</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 450–700 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-bornheim.html" style="color:var(--navy);font-weight:500;">Bornheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–600 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-bruehl.html" style="color:var(--navy);font-weight:500;">Brühl</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 500–750 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-dormagen.html" style="color:var(--navy);font-weight:500;">Dormagen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–450 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-duerren.html" style="color:var(--navy);font-weight:500;">Düren</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 180–320 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-elsdorf.html" style="color:var(--navy);font-weight:500;">Elsdorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 180–300 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-erftstadt.html" style="color:var(--navy);font-weight:500;">Erftstadt</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–450 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-eschweiler.html" style="color:var(--navy);font-weight:500;">Eschweiler</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 180–320 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-frechen.html" style="color:var(--navy);font-weight:500;">Frechen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–620 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-huerth.html" style="color:var(--navy);font-weight:500;">Hürth</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 450–680 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-juechen.html" style="color:var(--navy);font-weight:500;">Jüchen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 150–280 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-juelich.html" style="color:var(--navy);font-weight:500;">Jülich</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 200–380 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-kerpen.html" style="color:var(--navy);font-weight:500;">Kerpen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–450 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-leichlingen.html" style="color:var(--navy);font-weight:500;">Leichlingen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 300–500 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-leverkusen.html" style="color:var(--navy);font-weight:500;">Leverkusen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 450–720 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-lohmar.html" style="color:var(--navy);font-weight:500;">Lohmar</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–450 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-much.html" style="color:var(--navy);font-weight:500;">Much</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 150–280 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-neunkirchen-seelscheid.html" style="color:var(--navy);font-weight:500;">Neunkirchen-Seelscheid</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 200–380 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-niederkassel.html" style="color:var(--navy);font-weight:500;">Niederkassel</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 350–560 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-odenthal.html" style="color:var(--navy);font-weight:500;">Odenthal</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–480 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-overath.html" style="color:var(--navy);font-weight:500;">Overath</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 300–520 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-pulheim.html" style="color:var(--navy);font-weight:500;">Pulheim</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–650 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-roesrath.html" style="color:var(--navy);font-weight:500;">Rösrath</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–650 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-rommerskirchen.html" style="color:var(--navy);font-weight:500;">Rommerskirchen</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 200–360 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-sankt-augustin.html" style="color:var(--navy);font-weight:500;">Sankt Augustin</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 350–580 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-swisttal.html" style="color:var(--navy);font-weight:500;">Swisttal</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 280–450 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-troisdorf.html" style="color:var(--navy);font-weight:500;">Troisdorf</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 400–620 €/m²</td></tr>
-              <tr><td><a href="/bodenrichtwert-wesseling.html" style="color:var(--navy);font-weight:500;">Wesseling</a></td><td style="color:var(--gray-700);font-weight:600;">ca. 420–650 €/m²</td></tr>
-            </tbody>
-          </table>
+        <div class="brw-grid">
+          
+            
+            
+              <a class="brw-card" href="/bodenrichtwert-alfter.html"><span class="brw-card__name">Alfter</span><span class="brw-card__val">ca. 350–520 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-bedburg.html"><span class="brw-card__name">Bedburg</span><span class="brw-card__val">ca. 200–350 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-bergheim.html"><span class="brw-card__name">Bergheim</span><span class="brw-card__val">ca. 280–420 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-bergisch-gladbach.html"><span class="brw-card__name">Bergisch Gladbach</span><span class="brw-card__val">ca. 450–700 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-bornheim.html"><span class="brw-card__name">Bornheim</span><span class="brw-card__val">ca. 400–600 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-bruehl.html"><span class="brw-card__name">Brühl</span><span class="brw-card__val">ca. 500–750 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-dormagen.html"><span class="brw-card__name">Dormagen</span><span class="brw-card__val">ca. 280–450 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-duerren.html"><span class="brw-card__name">Düren</span><span class="brw-card__val">ca. 180–320 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-elsdorf.html"><span class="brw-card__name">Elsdorf</span><span class="brw-card__val">ca. 180–300 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-erftstadt.html"><span class="brw-card__name">Erftstadt</span><span class="brw-card__val">ca. 280–450 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-eschweiler.html"><span class="brw-card__name">Eschweiler</span><span class="brw-card__val">ca. 180–320 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-frechen.html"><span class="brw-card__name">Frechen</span><span class="brw-card__val">ca. 400–620 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-huerth.html"><span class="brw-card__name">Hürth</span><span class="brw-card__val">ca. 450–680 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-juechen.html"><span class="brw-card__name">Jüchen</span><span class="brw-card__val">ca. 150–280 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-juelich.html"><span class="brw-card__name">Jülich</span><span class="brw-card__val">ca. 200–380 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-kerpen.html"><span class="brw-card__name">Kerpen</span><span class="brw-card__val">ca. 280–450 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-leichlingen.html"><span class="brw-card__name">Leichlingen</span><span class="brw-card__val">ca. 300–500 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-leverkusen.html"><span class="brw-card__name">Leverkusen</span><span class="brw-card__val">ca. 450–720 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-lohmar.html"><span class="brw-card__name">Lohmar</span><span class="brw-card__val">ca. 280–450 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-much.html"><span class="brw-card__name">Much</span><span class="brw-card__val">ca. 150–280 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-neunkirchen-seelscheid.html"><span class="brw-card__name">Neunkirchen-Seelscheid</span><span class="brw-card__val">ca. 200–380 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-niederkassel.html"><span class="brw-card__name">Niederkassel</span><span class="brw-card__val">ca. 350–560 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-odenthal.html"><span class="brw-card__name">Odenthal</span><span class="brw-card__val">ca. 280–480 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-overath.html"><span class="brw-card__name">Overath</span><span class="brw-card__val">ca. 300–520 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-pulheim.html"><span class="brw-card__name">Pulheim</span><span class="brw-card__val">ca. 400–650 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-roesrath.html"><span class="brw-card__name">Rösrath</span><span class="brw-card__val">ca. 400–650 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-rommerskirchen.html"><span class="brw-card__name">Rommerskirchen</span><span class="brw-card__val">ca. 200–360 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-sankt-augustin.html"><span class="brw-card__name">Sankt Augustin</span><span class="brw-card__val">ca. 350–580 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-swisttal.html"><span class="brw-card__name">Swisttal</span><span class="brw-card__val">ca. 280–450 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-troisdorf.html"><span class="brw-card__name">Troisdorf</span><span class="brw-card__val">ca. 400–620 €/m²</span></a>
+              <a class="brw-card" href="/bodenrichtwert-wesseling.html"><span class="brw-card__name">Wesseling</span><span class="brw-card__val">ca. 420–650 €/m²</span></a>
+            
+          
         </div>
         <p class="table-note">Quelle: Gutachterausschüsse der jeweiligen Kommunen / BORIS NRW. Alle Angaben unverbindlich, ohne Gewähr. Richtwerte für typische Wohnbaugrundstücke in mittleren Lagen; Spitzenlagen können erheblich abweichen.</p>
       </div>
