@@ -332,7 +332,7 @@ ${refHTML(d)}
   <section class="section">
     <div class="container">
       <span class="section-label">Immobilienmarkt ${d.n}</span>
-      <h2>Immobilie in ${fn} kaufen oder verkaufen \u2013 aktuelle Marktdaten</h2>
+      <h2>Haus oder Wohnung in ${fn} kaufen oder verkaufen \u2013 aktuelle Marktdaten</h2>
       <p class="text-muted mb-8 max-w-prose">Als Immobilienmakler in ${fn} berate ich Verk\u00e4ufer und K\u00e4ufer auf Basis aktueller Vergleichsdaten. Die folgenden Werte geben Ihnen eine erste Orientierung \u2013 f\u00fcr eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.</p>
       <div class="market-grid">
         <div class="market-stat"><div class="market-stat__value">~${d.mk.e} \u20ac</div><div class="market-stat__label">Kaufpreis pro m\u00b2<br>Eigentumswohnung</div></div>
