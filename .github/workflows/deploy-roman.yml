@@ -46,6 +46,30 @@ jobs:
           protocol: ftp
           port: 21
 
+      - name: IndexNow – geänderte Seiten an Bing/Yandex melden
+        if: github.ref == 'refs/heads/main'
+        run: |
+          KEY="ad31390dcfcf4fdc03dea50343c9f4f2"
+          # Neue + geänderte HTML-Seiten aus diesem Push (leer bei workflow_dispatch)
+          FILES=$(jq -r '[.commits[]?.added[]?, .commits[]?.modified[]?] | unique[]' "$GITHUB_EVENT_PATH" 2>/dev/null | grep -E '^roman/.*\.html$' || true)
+          if [ -z "$FILES" ]; then
+            echo "Keine geänderten HTML-Seiten in diesem Push – IndexNow übersprungen."
+            exit 0
+          fi
+          URLS=$(echo "$FILES" | sed 's#^roman/#https://romanbecker.de/#')
+          echo "Melde an IndexNow:"; echo "$URLS"
+          URLJSON=$(echo "$URLS" | jq -R . | jq -s .)
+          BODY=$(jq -n --arg host "romanbecker.de" --arg key "$KEY" \
+            --arg loc "https://romanbecker.de/$KEY.txt" --argjson urls "$URLJSON" \
+            '{host:$host, key:$key, keyLocation:$loc, urlList:$urls}')
+          code=$(curl -s -o /tmp/indexnow.out -w '%{http_code}' -X POST \
+            "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" --data "$BODY")
+          echo "IndexNow-Antwort: HTTP $code"
+          cat /tmp/indexnow.out 2>/dev/null || true
+          # Nicht-2xx soll den Deploy nicht rot färben
+          case "$code" in 2*) echo "OK";; *) echo "::warning::IndexNow lieferte HTTP $code";; esac
+
       - name: FTP Deploy (Preview)
         if: github.ref == 'refs/heads/develop'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
