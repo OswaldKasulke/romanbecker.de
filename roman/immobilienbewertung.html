@@ -1907,6 +1907,21 @@
     }
   </script>
 
+  <script>
+    /* Prefill Adresse aus Query-Parametern (?strasse=…&ort=…&plz=…),
+       z. B. verlinkt aus dem Straßenverzeichnis der Stadtteilseiten. */
+    (function () {
+      try {
+        var p = new URLSearchParams(location.search);
+        var map = { strasse: 'immo_strasse', ort: 'immo_ort', plz: 'immo_plz' };
+        Object.keys(map).forEach(function (key) {
+          var val = p.get(key);
+          var el = document.getElementById(map[key]);
+          if (val && el) { el.value = val; }
+        });
+      } catch (e) {}
+    })();
+  </script>
   <script src="stadtteile/search.js" defer></script>
 </body>
 </html>
