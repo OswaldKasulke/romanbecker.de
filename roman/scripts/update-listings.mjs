@@ -338,7 +338,9 @@ function replaceBlock(html, startMarker, endMarker, replacement) {
 
 async function injectIntoHtml(path, romanHtml, koelnHtml, activeCount) {
   let html = await readFile(path, 'utf-8');
-  html = replaceBlock(html, '<!-- LISTINGS-START -->', '<!-- LISTINGS-END -->', romanHtml);
+  // "Meine Immobilien (Auswahl)"-Sektion wurde bewusst entfernt (Kunden konnten
+  // eigene vs. EVERNEST-Objekte nicht differenzieren). Marker existieren nicht mehr,
+  // daher hier NICHT mehr ersetzen. (romanHtml bleibt ungenutzt.)
   html = replaceBlock(html, '<!-- KOELN-LISTINGS-START -->', '<!-- KOELN-LISTINGS-END -->', koelnHtml);
 
   // Update trust bar (no-op if the marker isn't present in this file)
