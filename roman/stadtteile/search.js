@@ -173,7 +173,10 @@
 
   function norm(s) {
     return s.toLowerCase()
-      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/stra(ss)e/g,'')          // "straße"/"strasse" ignorieren
+      .replace(/str(?=[^a-z]|$)/g,'')     // "str"/"str." als Suffix ignorieren
+      .replace(/[^a-z0-9]/g,'');          // Leerzeichen, Punkte, Bindestriche ignorieren
   }
 
   var wrap = document.getElementById('navSearch');
