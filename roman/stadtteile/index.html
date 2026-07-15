@@ -56,13 +56,13 @@
     })();
   </script>
 
-  <title>Immobilienmakler Köln – Alle Stadtteile | Roman Becker</title>
+  <title>Immobilienpreise Köln: Kaufpreise aller 86 Stadtteile | Roman Becker</title>
   <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
-  <meta name="description" content="Roman Becker – Ihr Immobilienmakler für alle 86 Kölner Stadtteile. Aktuelle Kaufpreise, Marktdaten und lokale Expertise in jedem Veedel.">
+  <meta name="description" content="Aktuelle Immobilienpreise für alle 86 Kölner Stadtteile: Quadratmeterpreise für Häuser und Wohnungen mit Preisentwicklung pro Jahr. Kostenlose Bewertung von Roman Becker (EVERNEST).">
   <link rel="canonical" href="https://romanbecker.de/stadtteile/">
 
-  <meta property="og:title" content="Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung Köln Stadtteile">
-  <meta property="og:description" content="Alle 86 Kölner Stadtteile: Kaufpreise, Markttrends und Makler-Expertise von Roman Becker (EVERNEST).">
+  <meta property="og:title" content="Immobilienpreise Köln: Kaufpreise aller 86 Stadtteile">
+  <meta property="og:description" content="Quadratmeterpreise und Preisentwicklung für jedes Kölner Veedel – von Roman Becker (EVERNEST).">
   <meta property="og:url" content="https://romanbecker.de/stadtteile/">
   <meta property="og:type" content="website">
 
@@ -85,12 +85,44 @@
   <style>
     .st-index-hero {
       background: var(--navy);
-      padding: 3rem 0 2.5rem;
+      padding: 3.5rem 0 3rem;
       color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .st-index-hero .container { max-width: 900px; }
-    .st-index-hero h1 { font-family: 'Inter', sans-serif; font-size: 2rem; margin-bottom: 0.75rem; }
-    .st-index-hero p { color: rgba(255,255,255,0.75); max-width: 600px; }
+    .st-index-hero .section-label { color: var(--gold); margin-bottom: var(--space-3); }
+    /* color explizit setzen: shared.css hat h1 { color: var(--navy) }, das schlaegt
+       das geerbte #fff des dunklen Heros — sonst schwarz auf schwarz. */
+    .st-index-hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 0.9rem;
+      max-width: 800px;
+    }
+    .st-index-hero p { color: rgba(255,255,255,0.72); max-width: 640px; line-height: 1.7; }
+
+    .st-index-hero__facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      list-style: none;
+      margin: 1.75rem 0 0;
+      padding: 1.25rem 0 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .st-index-hero__facts li { font-size: 0.8125rem; color: rgba(255,255,255,0.55); }
+    .st-index-hero__facts strong {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1.2;
+      margin-bottom: 0.1rem;
+    }
+    .st-index-hero__cta { margin-top: 1.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .st-index-hero__cta .btn { font-size: 0.9rem; padding: 0.7rem 1.4rem; }
 
     .st-index-body { max-width: 900px; margin: 0 auto; padding: 2.5rem var(--space-4); }
 
@@ -218,11 +250,17 @@
     <!-- HERO -->
     <section class="st-index-hero">
       <div class="container">
-        <h1>Immobilienmakler Köln – Alle Stadtteile</h1>
-        <p>86 Kölner Stadtteile. Aktuelle Kaufpreise, lokale Marktdaten und persönliche Expertise von Roman Becker (EVERNEST). Klicken Sie auf Ihr Veedel.</p>
-        <div style="margin-top:1.25rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
-          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary" style="font-size:0.9rem;padding:0.6rem 1.25rem;">Kostenlose Immobilienbewertung</a>
-          <a href="tel:+491775156969" class="btn btn--white-outline" style="font-size:0.9rem;padding:0.6rem 1.25rem;">+49 177 515 69 69</a>
+        <span class="section-label">Marktdaten Köln &middot; Stand Juli 2026</span>
+        <h1>Immobilienpreise Köln: Kaufpreise in allen 86 Stadtteilen</h1>
+        <p>Was kostet der Quadratmeter in Ihrem Veedel? Aktuelle Kaufpreise für Häuser und Wohnungen in jedem Kölner Stadtteil – mit Preisentwicklung pro Jahr, Straßenverzeichnis und verkauften Objekten aus dem EVERNEST-Netzwerk. Wählen Sie Ihren Stadtteil für die lokalen Marktdaten.</p>
+        <ul class="st-index-hero__facts">
+          <li><strong>86</strong> Stadtteile</li>
+          <li><strong>5.980</strong> Straßen</li>
+          <li><strong>30</strong> Städte im Umland</li>
+        </ul>
+        <div class="st-index-hero__cta">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
         </div>
       </div>
     </section>
