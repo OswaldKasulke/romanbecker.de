@@ -67,7 +67,7 @@ const LANGS = [
     romanAria: 'Meine Immobilienangebote',
     consultCta: 'Beratungsgespräch vereinbaren',
     koelnLabel: 'EVERNEST Köln',
-    koelnTitle: 'Unsere Immobilienreferenzen in Köln und im Umland (Auswahl)',
+    koelnTitle: 'Unsere Immobilien in Köln und im Kölner Umland',
     koelnAria: 'EVERNEST Köln Portfolio',
     koelnAll: 'Alle Objekte bei EVERNEST Köln',
   },
