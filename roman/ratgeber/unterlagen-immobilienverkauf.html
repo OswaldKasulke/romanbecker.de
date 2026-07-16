@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Unterlagen Immobilienverkauf &amp; Finanzierung | Makler Köln</title>
+  <meta name="description" content="Welche Unterlagen brauchen Sie beim Verkauf von Haus, Wohnung oder Mehrfamilienhaus – und was die Bank zur Finanzierung verlangt. Checkliste.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/unterlagen-immobilienverkauf.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Unterlagen Immobilienverkauf &amp; Finanzierung | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Welche Unterlagen brauchen Sie beim Verkauf von Haus, Wohnung oder Mehrfamilienhaus – und was die Bank zur Finanzierung verlangt. — Roman Becker (EVERNEST), Immobilienmakler Köln.">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/unterlagen-immobilienverkauf.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Unterlagen für den Immobilienverkauf und die Finanzierung",
+    "description": "Welche Unterlagen brauchen Sie beim Verkauf von Haus, Wohnung oder Mehrfamilienhaus – und was die Bank zur Finanzierung verlangt.",
+    "url": "https://romanbecker.de/ratgeber/unterlagen-immobilienverkauf.html",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    },
+    "dateModified": "2026-07-16"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Welche Unterlagen braucht die Bank für die Finanzierung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Bank benötigt Unterlagen zur Immobilie (Grundbuchauszug, Grundriss, Wohnflächenberechnung, Lageplan, Energieausweis, Fotos, bei Eigentumswohnungen zusätzlich Teilungserklärung und Wohngeldabrechnung) sowie Unterlagen zur Person: Personalausweis, die letzten drei Gehaltsabrechnungen, Einkommensteuerbescheide, Eigenkapitalnachweis und eine Selbstauskunft."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie alt darf der Grundbuchauszug beim Immobilienverkauf sein?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Grundbuchauszug sollte nicht älter als drei Monate sein. Banken und Notare verlangen in der Regel einen aktuellen Auszug, weil sich Belastungen in Abteilung II und III kurzfristig ändern können."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist der Energieausweis beim Verkauf Pflicht?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Der Energieausweis muss spätestens bei der Besichtigung unaufgefordert vorgelegt und dem Käufer bei Vertragsabschluss übergeben werden. Fehlt er, drohen Bußgelder von bis zu 10.000 Euro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wer besorgt die Unterlagen für den Immobilienverkauf?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Grundsätzlich der Eigentümer. Ein Makler übernimmt die Beschaffung in der Regel für Sie – etwa Grundbuchauszug, Flurkarte, Baulastenauskunft und Unterlagen aus der Bauakte – und weiß, welche Dokumente Käufer und finanzierende Bank tatsächlich sehen wollen."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Unterlagen für den Immobilienverkauf
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Unterlagen für den Immobilienverkauf – und was die Bank zur Finanzierung braucht</h1>
+      <p>Welche Dokumente Sie beim Verkauf von Haus, Wohnung oder Mehrfamilienhaus zusammenstellen müssen – und welche Unterlagen die finanzierende Bank Ihres Käufers zusätzlich verlangt.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Vollständige Unterlagen sind der unterschätzte Hebel beim Immobilienverkauf. Sie entscheiden nicht nur darüber, wie professionell Ihr Objekt wirkt – sie bestimmen vor allem, <strong>wie schnell die Bank Ihres Käufers die Finanzierung zusagt</strong>. Fehlt ein Dokument, verzögert sich der Notartermin oft um Wochen. Im schlimmsten Fall springt der Käufer ab.</p>
+
+<p>Welche Unterlagen konkret nötig sind, hängt vom Objekttyp ab. Hier die Checklisten für Haus, Eigentumswohnung und Mehrfamilienhaus – und danach die Unterlagen, die die Bank für die Finanzierung sehen will.</p>
+
+<div class="doc-note">
+  <p><strong>Tipp:</strong> Beginnen Sie mit der Beschaffung, bevor Sie inserieren. Grundbuchauszug, Flurkarte und Baulastenauskunft brauchen bei den Ämtern erfahrungsgemäß ein bis drei Wochen – und ein Interessent, der zwei Wochen auf den Grundriss wartet, ist meist schon beim nächsten Objekt.</p>
+</div>
+
+<h2>Unterlagen für den Verkauf eines Hauses</h2>
+<ul>
+  <li><strong>Legitimationsdokument</strong> – Personalausweis oder Reisepass aller im Grundbuch eingetragenen Eigentümer</li>
+  <li><strong>Vollmacht</strong> – falls Sie nicht selbst verkaufen, etwa bei Erbengemeinschaft, Betreuung oder Verkauf durch Angehörige</li>
+  <li><strong>Grundbuchauszug</strong> – nicht älter als 3 Monate (<a href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">so fordern Sie ihn an</a>)</li>
+  <li><strong>Vermaßte Grundrisse</strong> – aller Geschosse inklusive Keller und Dachgeschoss</li>
+  <li><strong>Ansichten und Schnitte</strong> – aus der Bauakte</li>
+  <li><strong>Wohn-/Nutzflächenberechnung</strong> – Grundlage für den Quadratmeterpreis</li>
+  <li><strong>Baubeschreibung, Baugenehmigung und Abnahme</strong></li>
+  <li><strong>Nachweis der Wohngebäudeversicherung</strong></li>
+  <li><strong>Auszug aus dem <a href="https://romanbecker.de/ratgeber/baulastenverzeichnis.html">Baulastenverzeichnis</a></strong></li>
+  <li><strong><a href="https://romanbecker.de/ratgeber/flurkarte.html">Flurkarte</a></strong> (Liegenschaftskarte)</li>
+  <li><strong><a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a></strong> – gesetzlich Pflicht</li>
+  <li><strong>Aktueller Grundbesitzabgabenbescheid</strong> – Grundsteuer, Abfall, Straßenreinigung</li>
+  <li><strong>Altlastenauskunft</strong> – im Kölner Süden besonders relevant</li>
+  <li><strong>Auflistung der jährlichen Kosten</strong> – Betriebskosten, Wartung, Rücklagen</li>
+  <li><strong>Mietverträge</strong> – falls das Haus ganz oder teilweise vermietet ist</li>
+</ul>
+
+<h2>Unterlagen für den Verkauf einer Eigentumswohnung</h2>
+<p>Bei einer Eigentumswohnung kommen die Unterlagen der Wohnungseigentümergemeinschaft (WEG) hinzu – genau die prüft die Bank besonders kritisch:</p>
+<ul>
+  <li><strong>Legitimationsdokument</strong> – Personalausweis oder Reisepass</li>
+  <li><strong>Vollmacht</strong> – falls zutreffend</li>
+  <li><strong>Grundbuchauszug</strong> – nicht älter als 3 Monate</li>
+  <li><strong>Teilungserklärung</strong> – regelt Sondereigentum und Gemeinschaftseigentum</li>
+  <li><strong>Abgeschlossenheitsbescheinigung</strong></li>
+  <li><strong>Aufteilungsplan</strong> – Bestandteil der Teilungserklärung</li>
+  <li><strong>Die letzten 3 Wohngeldabrechnungen</strong></li>
+  <li><strong>Die letzten 3 Protokolle der Eigentümerversammlungen</strong> – zeigen beschlossene und anstehende Sanierungen</li>
+  <li><strong>Aktueller <a href="https://romanbecker.de/ratgeber/wirtschaftsplan.html">Wirtschaftsplan</a></strong></li>
+  <li><strong>Vermaßter Grundriss</strong></li>
+  <li><strong>Baubeschreibung, Baugenehmigung und Abnahme</strong></li>
+  <li><strong>Wohn-/Nutzflächenberechnung</strong></li>
+  <li><strong><a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a></strong></li>
+  <li><strong>Auszug aus dem <a href="https://romanbecker.de/ratgeber/baulastenverzeichnis.html">Baulastenverzeichnis</a></strong></li>
+  <li><strong><a href="https://romanbecker.de/ratgeber/flurkarte.html">Flurkarte</a></strong></li>
+  <li><strong>Mietverträge</strong> – bei vermieteten Wohnungen</li>
+</ul>
+
+<h2>Unterlagen für den Verkauf eines Mehrfamilienhauses</h2>
+<p>Beim Mehrfamilienhaus kauft der Erwerber vor allem eine Rendite. Entsprechend stehen Mieten und laufende Kosten im Mittelpunkt – die Bank rechnet damit den Objektwert:</p>
+<ul>
+  <li><strong>Legitimationsdokument</strong> – Personalausweis oder Reisepass</li>
+  <li><strong>Vollmacht</strong> – falls zutreffend</li>
+  <li><strong>Grundbuchauszug</strong> – nicht älter als 3 Monate</li>
+  <li><strong>Vermaßte Grundrisse</strong> – aller Einheiten</li>
+  <li><strong>Ansichten und Schnitte</strong></li>
+  <li><strong>Wohn-/Nutzflächenberechnung</strong></li>
+  <li><strong>Baubeschreibung, Baugenehmigung und Abnahme</strong></li>
+  <li><strong>Nachweis der Wohngebäudeversicherung</strong></li>
+  <li><strong>Auszug aus dem <a href="https://romanbecker.de/ratgeber/baulastenverzeichnis.html">Baulastenverzeichnis</a></strong></li>
+  <li><strong><a href="https://romanbecker.de/ratgeber/flurkarte.html">Flurkarte</a></strong> – nicht älter als 6 Monate</li>
+  <li><strong><a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a></strong></li>
+  <li><strong>Teilungserklärung inklusive möglicher Nachtragsurkunden</strong> – falls das Haus in Wohnungseigentum aufgeteilt ist</li>
+  <li><strong>Altlastenauskunft</strong> – im Kölner Süden besonders relevant</li>
+  <li><strong>Auflistung der jährlichen Kosten</strong></li>
+  <li><strong>Mietverträge aller Einheiten</strong> – idealerweise mit Mietaufstellung (Mieterliste)</li>
+</ul>
+
+<h2>Welche Unterlagen braucht die Bank für die Finanzierung?</h2>
+<p>Die finanzierende Bank Ihres Käufers prüft immer zwei Seiten: das <strong>Objekt</strong> (als Sicherheit) und die <strong>Person</strong> (als Schuldner). Als Verkäufer liefern Sie die Objektunterlagen – die persönlichen Unterlagen bringt der Käufer selbst mit.</p>
+
+<h3>Unterlagen zur Immobilie – die liefern Sie als Verkäufer</h3>
+<ul>
+  <li><strong>Grundbuchauszug</strong> – aktuell, nicht älter als 3 Monate</li>
+  <li><strong>Grundrisse und Bauzeichnungen</strong> – vermaßt</li>
+  <li><strong>Wohn-/Nutzflächenberechnung</strong></li>
+  <li><strong>Lageplan / Flurkarte</strong></li>
+  <li><strong>Energieausweis</strong></li>
+  <li><strong>Aussagekräftige Fotos</strong> – innen und außen</li>
+  <li><strong>Baubeschreibung, Baujahr und Modernisierungen</strong> – mit Jahreszahlen belegt</li>
+  <li><strong>Kaufvertragsentwurf des Notars</strong></li>
+  <li><strong>Bei Eigentumswohnungen zusätzlich:</strong> Teilungserklärung, letzte Wohngeldabrechnung, aktueller Wirtschaftsplan, Protokolle der Eigentümerversammlungen</li>
+  <li><strong>Bei vermieteten Objekten zusätzlich:</strong> Mietverträge und Mietaufstellung</li>
+</ul>
+
+<h3>Unterlagen zur Person – die bringt der Käufer mit</h3>
+<ul>
+  <li><strong>Personalausweis</strong> – oder Reisepass mit Meldebescheinigung</li>
+  <li><strong>Die letzten 3 Gehaltsabrechnungen</strong></li>
+  <li><strong>Arbeitsvertrag</strong> – Nachweis eines unbefristeten Arbeitsverhältnisses außerhalb der Probezeit</li>
+  <li><strong>Einkommensteuerbescheide</strong> – bei Selbstständigen zusätzlich BWA sowie Bilanzen oder EÜR der letzten 2–3 Jahre</li>
+  <li><strong>Eigenkapitalnachweis</strong> – Kontoauszüge, Depotauszug, Bausparvertrag, Schenkungszusage</li>
+  <li><strong>Selbstauskunft und Schufa-Auskunft</strong></li>
+  <li><strong>Übersicht bestehender Kredite</strong> – Raten, Restschulden, Leasingverträge</li>
+</ul>
+
+<div class="doc-note">
+  <p><strong>Aus der Praxis:</strong> Der häufigste Grund für eine verzögerte Finanzierungszusage ist nicht die Bonität des Käufers – es sind fehlende oder veraltete Objektunterlagen. Wer Grundbuchauszug, Flurkarte und Wohnflächenberechnung schon beim ersten Besichtigungstermin bereithält, verkürzt den Weg zum Notartermin oft um mehrere Wochen.</p>
+</div>
+
+<h2>Wo bekommen Sie die Unterlagen?</h2>
+<ul>
+  <li><strong>Grundbuchauszug</strong> – beim Grundbuchamt des Amtsgerichts (<a href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">Anleitung</a>)</li>
+  <li><strong>Flurkarte</strong> – beim Katasteramt bzw. Amt für Liegenschaften der Stadt Köln</li>
+  <li><strong>Baulastenauskunft</strong> – bei der Bauaufsicht der Stadt Köln</li>
+  <li><strong>Grundrisse, Baugenehmigung, Ansichten und Schnitte</strong> – aus dem Bauaktenarchiv der Stadt Köln</li>
+  <li><strong>Teilungserklärung, Wohngeldabrechnungen, Wirtschaftsplan, Protokolle</strong> – bei Ihrer Hausverwaltung</li>
+  <li><strong>Energieausweis</strong> – bei einem zugelassenen Aussteller; für den Verbrauchsausweis brauchen Sie die Heizkostenabrechnungen der letzten 3 Jahre</li>
+  <li><strong>Altlastenauskunft</strong> – beim Umwelt- und Verbraucherschutzamt der Stadt Köln</li>
+</ul>
+<p>Als Ihr Makler übernehme ich die Beschaffung in der Regel komplett – inklusive der Behördenwege. Das spart Ihnen nicht nur Zeit, sondern verhindert auch, dass eine Lücke erst dann auffällt, wenn die Bank sie moniert.</p>
+
+<h2>Häufige Fragen</h2>
+<h3>Wie alt darf der Grundbuchauszug sein?</h3>
+<p>Nicht älter als drei Monate. Banken und Notare verlangen einen aktuellen Auszug, weil sich Belastungen in Abteilung II und III kurzfristig ändern können.</p>
+
+<h3>Ist der Energieausweis Pflicht?</h3>
+<p>Ja. Er muss spätestens bei der Besichtigung unaufgefordert vorgelegt und dem Käufer bei Vertragsabschluss übergeben werden. Fehlt er, drohen Bußgelder von bis zu 10.000 Euro.</p>
+
+<h3>Was passiert, wenn Unterlagen fehlen?</h3>
+<p>Die Bank finanziert nicht oder nur unter Vorbehalt – der Notartermin verschiebt sich. Bei gravierenden Lücken (etwa einer nicht genehmigten Ausbaufläche) mindert sich der erzielbare Kaufpreis, weil der Käufer das Risiko einpreist.</p>
+
+<h3>Wer bezahlt die Beschaffung?</h3>
+<p>Die Gebühren trägt der Eigentümer. Sie bewegen sich meist im niedrigen zweistelligen Bereich je Dokument – der Energieausweis ist mit Abstand der größte Posten.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Unterlagen unvollständig? Ich kümmere mich darum.</h2>
+        <p>Ich beschaffe die fehlenden Dokumente für Sie – vom Grundbuchauszug bis zur Baulastenauskunft – und weiß, was Käufer und finanzierende Bank in Köln tatsächlich sehen wollen. Persönlich, unverbindlich und diskret.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">Grundbuchauszug anfordern</a>
+          <a href="https://romanbecker.de/ratgeber/flurkarte.html">Flurkarte</a>
+          <a href="https://romanbecker.de/ratgeber/baulastenverzeichnis.html">Baulastenverzeichnis</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/wirtschaftsplan.html">Wirtschaftsplan</a>
+          <a href="https://romanbecker.de/ratgeber/baufinanzierung.html">Baufinanzierung</a>
+          <a href="https://romanbecker.de/ratgeber/annuitaetendarlehen.html">Annuitätendarlehen</a>
+          <a href="https://romanbecker.de/ratgeber/hypothek.html">Hypothek</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+          <a href="https://romanbecker.de/ratgeber/kaufnebenkosten.html">Kaufnebenkosten</a>
+          <a href="https://romanbecker.de/ratgeber/maklerkosten-beim-immobilienkauf.html">Maklerkosten</a>
+          <a href="https://romanbecker.de/ratgeber/notarkosten-beim-immobilienkauf.html">Notarkosten</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+</body>
+</html>
