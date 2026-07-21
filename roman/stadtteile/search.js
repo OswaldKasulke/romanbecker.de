@@ -171,6 +171,12 @@
       {t:'Ratgeber: Spekulationssteuer', u:'/ratgeber/spekulationssteuer.html', c:'Ratgeber', k:'spekulationssteuer steuer gewinn verkauf haltefrist 10 jahre eigennutzung veräußerungsgewinn estg einkommensteuer immobilienverkauf steuer'},
       {t:'Ratgeber: KfW-Förderung', u:'/ratgeber/kfw-foerderung.html', c:'Ratgeber', k:'kfw förderung kfw297 kfw298 kfw300 kfw124 kfw261 kfw458 energieeffizient neubau sanierung wohngebäude kredit zuschuss tilgungszuschuss beg bundesförderung effizienzhaus wärmepumpe'},
       {t:'Ratgeber: Kaufnebenkosten', u:'/ratgeber/kaufnebenkosten.html', c:'Ratgeber', k:'kaufnebenkosten grunderwerbsteuer nrw 6,5 prozent notar notarkosten grundbuch maklerprovision nebenkosten immobilienkauf köln nordrhein westfalen'},
+      {t:'Ratgeber: Nießbrauch & Wohnrecht', u:'/ratgeber/niessbrauch-wohnrecht.html', c:'Ratgeber', k:'nießbrauch niesbrauch wohnrecht wohnungsrecht lebenszeit lebenslang auf lebenszeit immobilienverkauf verkauf mit nießbrauch immobilienwert erbschaft schenkung grundbuch notar eingetragen belastung ältere eigentümer kapital freisetzen leibrente verrentung'},
+      {t:'Ratgeber: Maklerleistungen', u:'/ratgeber/leistungen-makler.html', c:'Ratgeber', k:'maklerleistungen leistungen makler immobilienmakler was macht ein makler provision courtage exposé fotografie bonitätsprüfung besichtigung vermarktung leistung überblick'},
+      {t:'Ratgeber: Bauzinsen', u:'/ratgeber/bauzinsen.html', c:'Ratgeber', k:'bauzinsen zinsen bauzins finanzierung kredit darlehen immobilienkauf zinsentwicklung zinssatz hypothekenzinsen finanzierungszinsen'},
+      {t:'Ratgeber: Erbbauzins', u:'/ratgeber/erbbauzins.html', c:'Ratgeber', k:'erbbauzins erbpacht erbbaurecht pacht zins immobilienwert erbpachtimmobilie berechnung daumenregel'},
+      {t:'Ratgeber: Grundbuchauszug anfordern', u:'/ratgeber/grundbuchauszug-anfordern.html', c:'Ratgeber', k:'grundbuchauszug anfordern beantragen grundbuch notar grundbuchamt kosten einsicht berechtigtes interesse eigentümer'},
+      {t:'Ratgeber: Grundschuld löschen', u:'/ratgeber/grundschuld-loeschen.html', c:'Ratgeber', k:'grundschuld löschen loeschung löschungsbewilligung notar grundbuch kosten ablauf hypothek restschuld immobilienverkauf bank'},
       {t:'Immobilien-Ratgeber Übersicht', u:'/ratgeber/', c:'Ratgeber', k:'ratgeber immobilien tipps wissen leitfaden übersicht'},
     ];
 
