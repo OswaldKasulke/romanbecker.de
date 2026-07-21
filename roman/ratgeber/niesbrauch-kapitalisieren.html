@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Nießbrauch kapitalisieren: Wert berechnen | Makler Köln</title>
+  <meta name="description" content="Nießbrauch kapitalisieren: Wert = Jahreswert × Vervielfältiger (BewG). Formel, 18,6-Regel und Rechenbeispiel – und was das beim Immobilienverkauf bedeutet.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/niesbrauch-kapitalisieren.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nießbrauch kapitalisieren: Wert berechnen (Formel &amp; Beispiel) | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Nießbrauch kapitalisieren: Wert = Jahreswert × Vervielfältiger (§§ 13, 14, 16 BewG). Formel, 18,6-Regel und Rechenbeispiel – und was das beim Immobilienverkauf bedeutet. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/niesbrauch-kapitalisieren.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Nießbrauch kapitalisieren: So berechnen Sie den Wert",
+    "description": "Wie man den Wert eines Nießbrauchs berechnet: Jahreswert × Vervielfältiger nach §§ 13, 14 und 16 BewG, mit 18,6-Regel und Rechenbeispiel – und was das beim Immobilienverkauf in Köln bedeutet.",
+    "url": "https://romanbecker.de/ratgeber/niesbrauch-kapitalisieren.html",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    },
+    "dateModified": "2026-07-22"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .formula { background: var(--navy); color: var(--white); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; text-align: center; font-size: 1.15rem; font-weight: 600; }
+    .calc-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0 var(--space-8); font-size: 0.95rem; }
+    .calc-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .calc-table td:last-child { text-align: right; white-space: nowrap; color: var(--navy); font-weight: 600; }
+    .calc-table tr:last-child td { border-top: 2px solid var(--navy); border-bottom: none; color: var(--navy); font-weight: 700; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie berechnet man den Wert eines Nießbrauchs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Kapitalwert des Nießbrauchs ergibt sich aus Jahreswert × Vervielfältiger. Der Jahreswert ist der jährliche wirtschaftliche Nutzen (in der Regel die Jahresnettokaltmiete bzw. der Mietwert bei Eigennutzung), höchstens jedoch der Steuerwert der Immobilie geteilt durch 18,6 (§ 16 BewG). Der Vervielfältiger richtet sich bei lebenslangem Nießbrauch nach Alter und Geschlecht des Berechtigten (§ 14 BewG, jährliche BMF-Tabelle), bei befristetem Nießbrauch nach der Laufzeit (§ 13 BewG)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist die 18,6-Regel beim Nießbrauch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nach § 16 BewG darf der Jahreswert einer Nutzung höchstens den Steuerwert des Wirtschaftsguts geteilt durch 18,6 betragen. Bei einer Immobilie mit einem Steuerwert von 500.000 Euro liegt der maximale Jahreswert also bei rund 26.882 Euro. Liegt die tatsächliche Jahresmiete darunter, ist diese maßgeblich."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Woher kommt der Vervielfältiger für den Nießbrauch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei einem lebenslangen Nießbrauch veröffentlicht das Bundesfinanzministerium jährlich eine Tabelle mit Vervielfältigern, gestaffelt nach Alter und Geschlecht des Berechtigten (auf Basis der aktuellen Sterbetafel des Statistischen Bundesamts). Je jünger die Person, desto höher der Vervielfältiger. Bei einem zeitlich befristeten Nießbrauch wird der Barwert über die Laufzeit ermittelt (§ 13 BewG, Zinssatz 5,5 %), höchstens mit dem Faktor 18,589."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie wirkt sich der Nießbrauch auf den Verkaufspreis aus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine mit Nießbrauch belastete Immobilie ist weniger wert, weil der Käufer sie nicht frei nutzen kann. Vom Verkehrswert wird der kapitalisierte Wert des Nießbrauchs abgezogen. Verkauft ein älterer Eigentümer mit vorbehaltenem Nießbrauch, erhält er also einen geringeren Kaufpreis, darf die Immobilie aber weiterhin bewohnen oder vermieten."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Nießbrauch kapitalisieren
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Nießbrauch kapitalisieren: So berechnen Sie den Wert</h1>
+      <p>Ob bei Schenkung, Erbschaft oder Verkauf mit Wohnrecht: Der Nießbrauch hat einen konkreten Geldwert. Wie er berechnet wird – mit Formel, der 18,6-Regel und einem Rechenbeispiel.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Ein Nießbrauch gibt dem Berechtigten das Recht, eine Immobilie zu nutzen – also selbst zu bewohnen oder zu vermieten und die Mieten zu behalten –, obwohl er nicht (mehr) Eigentümer ist. Dieses Recht ist Geld wert, und dieser Wert lässt sich <strong>kapitalisieren</strong>, das heißt in einen einmaligen Kapitalbetrag umrechnen. Genau darauf kommt es an, wenn eine Immobilie mit Nießbrauch <strong>verschenkt, vererbt oder verkauft</strong> wird. Einen allgemeinen Überblick finden Sie in unserem Ratgeber <a href="https://romanbecker.de/ratgeber/niesbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a> – hier geht es um die konkrete Berechnung.</p>
+
+<div class="formula">
+  Kapitalwert des Nießbrauchs = Jahreswert × Vervielfältiger
+</div>
+
+<h2>Schritt 1: Der Jahreswert</h2>
+<p>Der Jahreswert ist der <strong>jährliche wirtschaftliche Nutzen</strong> des Nießbrauchs. Bei einer vermieteten Immobilie ist das in der Regel die <strong>Jahresnettokaltmiete</strong>; bei Eigennutzung wird die ortsübliche Nettokaltmiete angesetzt, die der Berechtigte durch das Wohnrecht spart.</p>
+<p>Wichtig ist die <strong>Deckelung nach § 16 BewG</strong> (die „18,6-Regel"): Der Jahreswert darf höchstens <strong>den Steuerwert der Immobilie geteilt durch 18,6</strong> betragen. Diese Grenze verhindert, dass der Nießbrauch rechnerisch mehr wert ist als die Immobilie selbst.</p>
+
+<h2>Schritt 2: Der Vervielfältiger</h2>
+<p>Der Vervielfältiger (Kapitalisierungsfaktor) bildet ab, <strong>wie lange</strong> der Nießbrauch voraussichtlich läuft:</p>
+<ul>
+  <li><strong>Lebenslanger Nießbrauch (Leibnießbrauch):</strong> Der Faktor richtet sich nach <strong>Alter und Geschlecht</strong> des Berechtigten (§ 14 BewG). Das Bundesfinanzministerium veröffentlicht dazu <strong>jährlich eine Tabelle</strong> auf Basis der aktuellen Sterbetafel. Faustregel: je jünger die Person, desto höher der Faktor; Frauen liegen wegen der höheren Lebenserwartung über Männern.</li>
+  <li><strong>Befristeter Nießbrauch (feste Laufzeit):</strong> Hier wird der Barwert über die Jahre abgezinst (§ 13 BewG, gesetzlicher Zinssatz 5,5 %). Der Faktor steigt mit der Laufzeit, höchstens auf <strong>18,589</strong>.</li>
+</ul>
+
+<h2>Rechenbeispiel</h2>
+<p>Eine vermietete Eigentumswohnung in Köln, Verkehrs-/Steuerwert <strong>500.000 €</strong>, Jahresnettokaltmiete <strong>15.000 €</strong>. Berechtigte: eine Frau, 70 Jahre, lebenslanger Nießbrauch.</p>
+<table class="calc-table">
+  <tr><td>Höchst-Jahreswert nach § 16 BewG (500.000 € ÷ 18,6)</td><td>26.882 €</td></tr>
+  <tr><td>Tatsächliche Jahresnettokaltmiete (liegt darunter → maßgeblich)</td><td>15.000 €</td></tr>
+  <tr><td>Vervielfältiger, Frau, 70 J. (beispielhaft, BMF-Tabelle)</td><td>≈ 10,0</td></tr>
+  <tr><td>Kapitalwert des Nießbrauchs (15.000 € × 10,0)</td><td>≈ 150.000 €</td></tr>
+</table>
+<p>Der Nießbrauch ist in diesem Beispiel rund <strong>150.000 €</strong> wert. Bei einer Schenkung mindert dieser Betrag den steuerlichen Wert der Immobilie; bei einem Verkauf mit vorbehaltenem Nießbrauch reduziert er den Kaufpreis entsprechend.</p>
+
+<div class="doc-note">
+  <p><strong>Hinweis:</strong> Der Vervielfältiger im Beispiel ist gerundet und dient nur der Veranschaulichung. Der genaue Faktor ergibt sich aus der jeweils gültigen BMF-Tabelle für das Kalenderjahr und dem exakten Alter. Die verbindliche Berechnung – gerade für das Finanzamt – gehört in die Hände eines Steuerberaters oder Notars.</p>
+</div>
+
+<h2>Wofür man die Kapitalisierung braucht</h2>
+<ul>
+  <li><strong>Schenkung / vorweggenommene Erbfolge:</strong> Wer eine Immobilie zu Lebzeiten überträgt, aber den Nießbrauch behält, senkt den steuerpflichtigen Wert um den Kapitalwert des Nießbrauchs. In Kombination mit den alle zehn Jahre neu nutzbaren Freibeträgen lässt sich so Schenkung- und spätere Erbschaftsteuer sparen.</li>
+  <li><strong>Erbschaft:</strong> Ein auf der Immobilie lastender Nießbrauch mindert den steuerlichen Wert des geerbten Objekts.</li>
+  <li><strong>Verkauf mit vorbehaltenem Nießbrauch:</strong> Ältere Eigentümer können Kapital freisetzen und trotzdem wohnen bleiben – der Kaufpreis wird um den kapitalisierten Nießbrauch reduziert. Siehe auch <a href="https://romanbecker.de/ratgeber/niesbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a>.</li>
+  <li><strong>Ablösung / Verzicht:</strong> Soll ein Nießbrauch vorzeitig aufgehoben werden, dient der Kapitalwert als Grundlage für eine faire Abfindung.</li>
+</ul>
+
+<h2>Was das für den Immobilienverkauf bedeutet</h2>
+<p>Für den Verkauf ist die Kapitalisierung entscheidend: Eine mit Nießbrauch belastete Immobilie erzielt <strong>weniger als eine lastenfreie</strong>, weil der Käufer sie nicht sofort frei nutzen kann. Wird der Nießbrauch zu hoch angesetzt, verschenken Sie Kaufpreis; wird er zu niedrig angesetzt, finden Sie keinen Käufer. Als Makler sorge ich dafür, dass der Abschlag marktgerecht ist – und dass Interessenten das Konstrukt verstehen und akzeptieren.</p>
+
+<h2>Häufige Fragen</h2>
+<h3>Was ist der Unterschied zwischen Nießbrauch und Wohnrecht?</h3>
+<p>Das Wohnrecht erlaubt nur das eigene Bewohnen. Der Nießbrauch geht weiter: Er umfasst auch das Recht, die Immobilie zu vermieten und die Erträge zu behalten. Deshalb ist der Kapitalwert eines Nießbrauchs in der Regel höher.</p>
+
+<h3>Kann der Nießbrauchwert höher sein als die Immobilie?</h3>
+<p>Nein. Die 18,6-Grenze beim Jahreswert (§ 16 BewG) stellt sicher, dass der kapitalisierte Nießbrauch den Wert der Immobilie nicht übersteigt.</p>
+
+<h3>Wer berechnet den Nießbrauchwert verbindlich?</h3>
+<p>Für steuerliche Zwecke der Steuerberater; die Beurkundung übernimmt der Notar. Für die Einordnung am Immobilienmarkt – also den realistischen Kaufpreis-Effekt – berate ich Sie gern.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Immobilie mit Nießbrauch – verkaufen oder bewerten?</h2>
+        <p>Ob Verkauf mit vorbehaltenem Nießbrauch oder Bewertung einer belasteten Immobilie: Ich ermittle den marktgerechten Preis und finde diskret passende Käufer. Persönlich, unverbindlich und diskret.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/niesbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/ratgeber/erbpacht.html">Erbpacht</a>
+          <a href="https://romanbecker.de/ratgeber/erbbauzins.html">Erbbauzins</a>
+          <a href="https://romanbecker.de/ratgeber/unterlagen-immobilienverkauf.html">Unterlagen für den Verkauf</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+          <a href="https://romanbecker.de/ratgeber/notarkosten-beim-immobilienkauf.html">Notarkosten</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" style="opacity:0.6;font-size:0.8rem;">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Steuer- oder Rechtsberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+</body>
+</html>
