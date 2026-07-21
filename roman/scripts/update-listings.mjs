@@ -196,8 +196,14 @@ async function fetchKoelnListings() {
   console.log(`After Köln/Rheinland filter: ${koeln.length} listings`);
 
   return koeln
-    .slice(0, KOELN_MAX_LISTINGS)
-    .map(mapListing);
+    .map(mapListing)
+    // Galerie von teuer zu günstig: aktive vor verkauft, dann Preis absteigend
+    // (Objekte ohne Preis / "auf Anfrage" ans Ende).
+    .sort((a, b) => {
+      if (!!a.sold !== !!b.sold) return a.sold ? 1 : -1;
+      return (b.priceRaw ?? 0) - (a.priceRaw ?? 0);
+    })
+    .slice(0, KOELN_MAX_LISTINGS);
 }
 
 // ---------------------------------------------------------------------------
