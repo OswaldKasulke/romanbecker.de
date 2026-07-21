@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Bau-Turbo (§ 246e BauGB): Das bedeutet die Novelle | Makler Köln</title>
+  <meta name="description" content="Der Bau-Turbo (§ 246e BauGB) gilt seit 30.10.2025: schnellere Genehmigungen, Bauen ohne Bebauungsplan, Nachverdichtung. Was das für Eigentümer in Köln heißt.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/bau-turbo-baurechtsnovelle.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bau-Turbo (§ 246e BauGB): Was die Novelle für Eigentümer bedeutet | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Der Bau-Turbo (§ 246e BauGB) ist seit 30.10.2025 in Kraft: schnellere Genehmigungen, Bauen ohne Bebauungsplan, Nachverdichtung. Was das für Eigentümer in Köln bedeutet. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/bau-turbo-baurechtsnovelle.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Bau-Turbo (§ 246e BauGB): Was die Baurechts-Novelle für Eigentümer in Köln bedeutet",
+    "description": "Der Bau-Turbo (§ 246e BauGB) ist seit dem 30.10.2025 in Kraft: beschleunigte Genehmigungen, Bauen ohne Bebauungsplan, Nachverdichtung und Umnutzung. Was das für Eigentümer und Verkäufer in Köln bedeutet.",
+    "url": "https://romanbecker.de/ratgeber/bau-turbo-baurechtsnovelle.html",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    },
+    "dateModified": "2026-07-22"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist der Bau-Turbo (§ 246e BauGB)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Bau-Turbo ist ein neuer Paragraf im Baugesetzbuch (§ 246e BauGB), der seit dem 30. Oktober 2025 gilt. Er erlaubt Kommunen, zusätzlichen Wohnraum in einem stark verkürzten Verfahren zu genehmigen – auch ohne Bebauungsplan und mit Abweichungen von den sonst geltenden Vorgaben des Baugesetzbuchs. Ziel ist es, den Wohnungsbau zu beschleunigen. Die Regelung ist bis zum 31. Dezember 2030 befristet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gilt der Bau-Turbo automatisch für jedes Grundstück?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Der Bau-Turbo ist ein Angebot an die Kommunen: Die Gemeinde muss dem einzelnen Vorhaben aktiv zustimmen (Einvernehmen nach § 36a BauGB). Sie kann die Zustimmung verweigern oder an Bedingungen knüpfen – zum Beispiel an eine Quote für bezahlbaren Wohnraum. Ob und wie stark die Stadt Köln den Bau-Turbo nutzt, entscheidet die Verwaltung im Einzelfall."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Vorhaben erleichtert der Bau-Turbo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Erfasst sind Vorhaben, die neuen Wohnraum schaffen: Neubau, Erweiterung, Erneuerung oder Änderung bestehender Gebäude sowie die Nutzungsänderung – etwa der Umbau von leerstehenden Büro- oder Gewerbeflächen zu Wohnungen. Auch Nachverdichtung wie Aufstockung, Dachgeschossausbau oder Bebauung im rückwärtigen Grundstücksbereich (Hinterlandbebauung) fällt darunter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was bedeutet der Bau-Turbo für den Wert meiner Immobilie in Köln?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zusätzliches Baurecht kann den Wert steigern: Ein Grundstück mit Potenzial für Nachverdichtung, eine mögliche Aufstockung oder ein ausbaufähiges Dachgeschoss werden für Käufer und Projektentwickler attraktiver. Entscheidend ist aber, ob die Kommune mitzieht. Eine realistische Einschätzung des tatsächlich erzielbaren Preises setzt eine individuelle Bewertung voraus."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bis wann gilt der Bau-Turbo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "§ 246e BauGB ist bis zum 31. Dezember 2030 befristet. Das Gesetz zur Beschleunigung des Wohnungsbaus wurde am 9. Oktober 2025 vom Bundestag beschlossen und trat am 30. Oktober 2025 in Kraft."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung/">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Bau-Turbo (§ 246e BauGB)
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Bau-Turbo (§ 246e BauGB): Was die Baurechts-Novelle für Eigentümer in Köln bedeutet</h1>
+      <p>Seit dem 30. Oktober 2025 gilt der „Bau-Turbo". Er soll den Wohnungsbau beschleunigen – und schafft für Eigentümer neue Chancen bei Nachverdichtung, Aufstockung und Umnutzung. Ein Überblick.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Wohnungsbau ist in Deutschland zu langsam, zu teuer und zu bürokratisch – das ist Konsens quer durch die Politik. Mit dem sogenannten <strong>Bau-Turbo</strong> hat der Gesetzgeber im Herbst 2025 reagiert und das Baugesetzbuch um einen neuen Paragrafen ergänzt: <strong>§ 246e BauGB</strong>. Für Eigentümer, Verkäufer und Kapitalanleger im Großraum Köln ist das mehr als eine juristische Randnotiz – denn zusätzliches Baurecht wirkt sich unmittelbar auf den Wert von Grundstücken und Bestandsimmobilien aus.</p>
+
+<div class="factbox">
+  <p><strong>Auf einen Blick</strong></p>
+  <p>• <strong>Gesetz:</strong> Gesetz zur Beschleunigung des Wohnungsbaus und zur Sicherung von Wohnraum („Bau-Turbo")</p>
+  <p>• <strong>Kern:</strong> neuer § 246e Baugesetzbuch (BauGB)</p>
+  <p>• <strong>Beschluss Bundestag:</strong> 9. Oktober 2025 (CDU/CSU und SPD)</p>
+  <p>• <strong>In Kraft seit:</strong> 30. Oktober 2025</p>
+  <p>• <strong>Befristet bis:</strong> 31. Dezember 2030</p>
+  <p>• <strong>Verantwortlich:</strong> Bundesbauministerin Verena Hubertz (SPD)</p>
+</div>
+
+<h2>Was ist der Bau-Turbo?</h2>
+<p>Der Bau-Turbo ist ein <strong>Beschleunigungsinstrument</strong>. Er erlaubt es Kommunen, Wohnungsbauvorhaben in einem stark verkürzten Verfahren zu genehmigen – und dabei von den sonst geltenden Vorgaben des Baugesetzbuchs abzuweichen. Das Besondere: Ein <strong>Bebauungsplan ist nicht zwingend erforderlich</strong>. Wo bisher jahrelange Planverfahren nötig waren, soll künftig eine deutlich schnellere Einzelfallentscheidung möglich sein.</p>
+<p>Wichtig ist der Charakter der Regelung: § 246e BauGB ist ein <strong>Angebot an die Städte und Gemeinden</strong>, kein Automatismus. Die Kommune entscheidet, ob sie den Bau-Turbo für ein konkretes Vorhaben anwendet. Ohne ihr aktives Einvernehmen (§ 36a BauGB) geht es nicht.</p>
+
+<h2>Die wichtigsten Neuerungen</h2>
+<ul>
+  <li><strong>Bauen ohne Bebauungsplan:</strong> Zusätzlicher Wohnraum kann genehmigt werden, ohne dass erst ein Bebauungsplan aufgestellt oder geändert werden muss.</li>
+  <li><strong>Abweichungen im Innen- und Außenbereich:</strong> Erleichterungen für das Bauen im unbeplanten Innenbereich (§ 34) und – enger gefasst – im Außenbereich (§ 35).</li>
+  <li><strong>Nachverdichtung:</strong> Aufstockung, Dachgeschossausbau, Anbauten und Bebauung im rückwärtigen Grundstücksbereich (Hinterlandbebauung) werden erleichtert.</li>
+  <li><strong>Umnutzung zu Wohnraum:</strong> Leerstehende Büro- und Gewerbeflächen lassen sich einfacher in Wohnungen umwandeln (Nutzungsänderung).</li>
+  <li><strong>Wohnen neben Gewerbe:</strong> Wohnungsbau in der Nähe von Betrieben wird durch innovative Lärmschutzlösungen erleichtert.</li>
+  <li><strong>Verkürzte Verfahren:</strong> Die Kommune entscheidet in kurzer Frist; reagiert sie nicht fristgerecht, kann ihr Einvernehmen als erteilt gelten (§ 36a BauGB).</li>
+  <li><strong>Befristung:</strong> Die Sonderregeln gelten bis zum 31. Dezember 2030.</li>
+</ul>
+
+<h2>Was der Bau-Turbo für Eigentümer und Verkäufer in Köln bedeutet</h2>
+<p>Köln ist ein angespannter Wohnungsmarkt mit knappem Bauland – genau die Konstellation, für die der Bau-Turbo gedacht ist. Für Eigentümer eröffnet das mehrere Perspektiven:</p>
+<ul>
+  <li><strong>Grundstücke gewinnen an Wert.</strong> Wo Nachverdichtung realistisch wird, steigt das Interesse von Käufern und Projektentwicklern. Ein großes Grundstück in guter Lage – etwa in Sülz, Lindenthal oder im Kölner Süden – kann durch zusätzliches Baupotenzial deutlich attraktiver werden.</li>
+  <li><strong>Ausbaupotenzial wird zum Verkaufsargument.</strong> Ein ausbaufähiges Dachgeschoss, eine mögliche Aufstockung oder Reserveflächen im Garten lassen sich beim Verkauf gezielt als Chance kommunizieren.</li>
+  <li><strong>Gewerbe wird zu Wohnraum.</strong> Eigentümer schwer vermietbarer Büro- oder Ladenflächen erhalten mit der erleichterten Umnutzung eine neue Option.</li>
+  <li><strong>Kapitalanleger profitieren</strong> von zusätzlichen Wohneinheiten auf bestehenden Flächen – mehr Mietfläche ohne Grundstückszukauf.</li>
+</ul>
+
+<div class="doc-note">
+  <p><strong>Wichtig:</strong> Der Bau-Turbo verspricht Potenzial, keine Garantie. Ob ein Vorhaben genehmigungsfähig ist, hängt von der Stadt Köln ab – sie kann zustimmen, ablehnen oder Bedingungen (etwa eine Quote für geförderten Wohnraum) stellen. Für den Preis Ihrer Immobilie zählt am Ende nicht das theoretische Baurecht, sondern das, was am Markt realistisch durchsetzbar ist.</p>
+</div>
+
+<h2>Kritik und Grenzen</h2>
+<p>Die Novelle ist umstritten. Die wichtigsten Einwände:</p>
+<ul>
+  <li><strong>Flächenverbrauch:</strong> Umwelt- und Oppositionsvertreter (Grüne, Linke) warnen vor zusätzlichem Flächenfraß und Bodenspekulation, insbesondere durch Erleichterungen im Außenbereich.</li>
+  <li><strong>Bezahlbarkeit:</strong> Mieterverbände sehen die Gefahr, dass vor allem hochpreisiger Wohnraum entsteht, und fordern flankierenden Schutz für bezahlbare Wohnungen.</li>
+  <li><strong>Wirkung fraglich:</strong> Kritiker (u. a. AfD) bezweifeln den Effekt und verweisen darauf, dass hohe Bau- und Finanzierungskosten das eigentliche Hemmnis seien – nicht allein die Verfahrensdauer.</li>
+  <li><strong>Kommunale Kapazitäten:</strong> Schnellere Genehmigungen setzen voraus, dass die Bauämter personell überhaupt liefern können.</li>
+</ul>
+
+<h2>Fazit</h2>
+<p>Der Bau-Turbo ist eine der relevantesten baurechtlichen Änderungen der letzten Jahre. Für Eigentümer im Großraum Köln lohnt sich ein genauer Blick auf das eigene Grundstück: Wo bisher „geht nicht" galt, kann sich bis 2030 ein Fenster öffnen – für Nachverdichtung, Aufstockung oder Umnutzung. Ob sich daraus ein konkreter Mehrwert ergibt, hängt vom Einzelfall und von der Haltung der Stadt Köln ab. Eine fundierte Bewertung schafft Klarheit.</p>
+
+<h2>Häufige Fragen</h2>
+<h3>Gilt der Bau-Turbo automatisch für mein Grundstück?</h3>
+<p>Nein. Die Kommune muss dem konkreten Vorhaben aktiv zustimmen und kann Bedingungen stellen. Der Bau-Turbo ist ein Angebot, kein Rechtsanspruch.</p>
+
+<h3>Brauche ich weiterhin einen Bauantrag?</h3>
+<p>Ja. Der Bau-Turbo beschleunigt und erleichtert das Verfahren, ersetzt aber nicht die baurechtliche Prüfung. Für die Einschätzung der Genehmigungsfähigkeit ist häufig eine <a href="https://romanbecker.de/ratgeber/bauvoranfrage.html">Bauvoranfrage</a> sinnvoll.</p>
+
+<h3>Bis wann gilt die Regelung?</h3>
+<p>§ 246e BauGB ist bis zum 31. Dezember 2030 befristet.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Welches Potenzial steckt in Ihrem Grundstück?</h2>
+        <p>Ich prüfe für Sie, welche Chancen der Bau-Turbo für Ihre Immobilie oder Ihr Grundstück in Köln eröffnet – und was das für einen möglichen Verkauf bedeutet. Persönlich, unverbindlich und diskret.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/bauvoranfrage.html">Bauvoranfrage</a>
+          <a href="https://romanbecker.de/ratgeber/unterlagen-immobilienverkauf.html">Unterlagen für den Verkauf</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/heizungsgesetz-aenderung.html">Heizungsgesetz</a>
+          <a href="https://romanbecker.de/ratgeber/kfw-foerderung.html">KfW-Förderung</a>
+          <a href="https://romanbecker.de/ratgeber/denkmal-afa.html">Denkmal-AfA</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/flurkarte.html">Flurkarte</a>
+          <a href="https://romanbecker.de/ratgeber/baulastenverzeichnis.html">Baulastenverzeichnis</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" style="opacity:0.6;font-size:0.8rem;">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechtsberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+</body>
+</html>
