@@ -40,7 +40,7 @@ const MAX_SOLD = 20;
 // If Roman's Evernest profile doesn't include one, it is pulled from the
 // Köln search results instead.
 const PINNED_ROMAN_IDS = [
-  '5sbhUeXVmLizAAbmOfaZv8', // Apotheke Köln-Marienburg (Gewerbeeinheit, 986.500 €)
+  // Kein Pinning mehr – die Galerie sortiert rein nach Preis (teuer zu günstig).
 ];
 
 // ---------------------------------------------------------------------------
