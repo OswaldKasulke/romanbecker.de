@@ -8,10 +8,17 @@ on:
     paths:
       - 'roman/**'
   workflow_dispatch:  # Manuell auslösbar (z. B. nach automatisiertem Listings-Commit)
+  workflow_run:
+    workflows: ["Update Roman Listings"]  # nach täglichem Listings-Update automatisch deployen
+    types:
+      - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # Bei workflow_run nur deployen, wenn das Listings-Update erfolgreich war.
+    # (push / workflow_dispatch laufen unverändert.)
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
