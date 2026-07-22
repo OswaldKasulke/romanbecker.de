@@ -25,6 +25,59 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
 
   <style>
+    /* Hero im Stil der Startseite */
+    .hero { background: #000000; color: var(--white); padding: 0; overflow: hidden; }
+    .hero__content {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-12) var(--space-6);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      align-items: center;
+    }
+    .hero__text { display: flex; flex-direction: column; }
+    .hero__label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-4);
+    }
+    .hero__title { font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.15; margin-bottom: var(--space-6); }
+    .hero__subline {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: var(--space-8);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    .hero__subline .pipe { color: var(--gold); opacity: 0.6; }
+    .hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+    .hero .btn--primary { background: var(--white); color: var(--navy); border-color: var(--gold); }
+    .hero .btn--primary:hover { background: var(--off-white); border-color: var(--gold); }
+    .hero__cta-subline { margin-top: var(--space-4); font-size: 0.875rem; color: rgba(255,255,255,0.7); }
+    .hero__photo-wrap { display: flex; justify-content: center; order: -1; }
+    .hero__photo {
+      width: 320px;
+      height: 350px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 4px;
+      border: 3px solid var(--gold);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+    @media (min-width: 1024px) {
+      .hero__content { grid-template-columns: 1fr 380px; gap: var(--space-12); }
+      .hero__photo-wrap { order: 1; justify-content: flex-end; }
+      .hero__photo { width: 380px; height: 420px; }
+    }
+
     /* Kachel-Stil identisch zur Empfehlungs-Sektion der Startseite */
     .section--gray { background: var(--off-white); }
     .section-label {
@@ -140,13 +193,33 @@
   </nav>
 
   <section class="hero">
-    <div class="container">
-      <div class="hero__badge">✓ Immobilienmakler im EVERNEST-Netzwerk · Köln &amp; Rheinland</div>
-      <h1>Leistungen – was ich als Immobilienmakler in Köln für Sie tue</h1>
-      <p class="hero__subtitle">Vom ersten Wertgespräch bis zur Schlüsselübergabe: Ich verkaufe Wohnungen, Häuser, Mehrfamilienhäuser und Grundstücke in Köln und im Rheinland — diskret, datenbasiert und über das Off-Market-Netzwerk von EVERNEST. Auf dieser Seite finden Sie alle Leistungen und Marktdaten im Überblick.</p>
-      <div class="hero__buttons">
-        <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Bewertung starten</a>
-        <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+    <div class="hero__content">
+      <div class="hero__text">
+        <span class="hero__label">Leistungen &amp; Marktdaten</span>
+        <h1 class="hero__title">Was ich als Immobilienmakler in Köln für Sie tue</h1>
+        <p class="hero__subline">
+          IHK-zertifiziert
+          <span class="pipe">|</span>
+          EVERNEST-Netzwerk
+          <span class="pipe">|</span>
+          400+ Makler &amp; Partner deutschlandweit
+          <span class="pipe">|</span>
+          <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln/@50.9436867,6.9395297,255m/data=!3m2!1e3!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m16!1m9!3m8!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!2sRoman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln!8m2!3d50.9436867!4d6.9406741!9m1!1b1!16s%2Fg%2F11w4rp9vvy!3m5!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!16s%2Fg%2F11w4rp9vvy?entry=ttu" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">5,0 ★ auf Google</a>
+        </p>
+        <div class="hero__ctas">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Köln durch Roman Becker">Immobilienbewertung</a>
+        </div>
+        <p class="hero__cta-subline">Vom ersten Wertgespräch bis zur Schlüsselübergabe — diskret, datenbasiert und über das Off-Market-Netzwerk von EVERNEST.</p>
+      </div>
+      <div class="hero__photo-wrap">
+        <picture><source srcset="/roman-portrait.webp" type="image/webp"><img
+          src="/roman-portrait.jpg"
+          alt="Roman Becker – Immobilienmakler und Immobilienbewertung in Köln"
+          class="hero__photo"
+          width="380"
+          height="420"
+          fetchpriority="high"
+        ></picture>
       </div>
     </div>
   </section>
