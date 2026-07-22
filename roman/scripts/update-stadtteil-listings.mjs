@@ -138,6 +138,12 @@ function buildCard(l) {
   const imgTag = img
     ? `<img class="listing-card__img" src="${img}" alt="${escapeAttr(type + ' in ' + title)}" loading="lazy" width="800" height="534">`
     : `<div class="listing-card__img" aria-hidden="true"></div>`;
+  // Bei verkauften Objekten kein "Preis auf Anfrage" ausgeben — das Verkauft-Badge
+  // sagt bereits alles. Ein tatsächlich bekannter Preis bleibt erhalten.
+  const priceHidden = l.hidePrice || l.price == null;
+  const priceLine = (l.sold && priceHidden)
+    ? ''
+    : `\n            <span class="listing-card__price">${priceString(l)}</span>`;
 
   return `        <a class="listing-card" href="${escapeAttr(l.url)}" target="_blank" rel="noopener">
           <div class="listing-card__imgwrap">
@@ -146,8 +152,7 @@ function buildCard(l) {
           <div class="listing-card__body">
             <span class="listing-card__type">${escapeAttr(type)}</span>
             <span class="listing-card__title">${escapeAttr(title)}</span>
-            ${factsStr ? `<span class="listing-card__facts">${escapeAttr(factsStr)}</span>` : ''}
-            <span class="listing-card__price">${priceString(l)}</span>
+            ${factsStr ? `<span class="listing-card__facts">${escapeAttr(factsStr)}</span>` : ''}${priceLine}
           </div>
         </a>`;
 }
