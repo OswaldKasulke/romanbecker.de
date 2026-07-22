@@ -64,22 +64,39 @@ def git_dates():
     return dates
 
 
+def git_modified():
+    """Dateien mit uncommitteten Änderungen -> die sind 'heute' geändert.
+    Wichtig in CI: dort laufen erst die Listings-Skripte, dann diese Datei."""
+    out = subprocess.run(['git', '-C', REPO, 'status', '--porcelain', '--', 'roman/'],
+                         capture_output=True, text=True).stdout
+    mod = set()
+    for line in out.splitlines():
+        p = line[3:].strip().strip('"')
+        if '->' in p:                       # Renames: Zielpfad nehmen
+            p = p.split('->')[-1].strip()
+        if p.endswith('.html'):
+            mod.add(p)
+    return mod
+
+
 def old_settings():
-    """URL -> (changefreq, priority) aus der bestehenden sitemap.xml."""
+    """URL -> (changefreq, priority, lastmod) aus der bestehenden sitemap.xml."""
     if not os.path.exists(OUT):
         return {}
     xml = open(OUT, encoding='utf-8').read()
     res = {}
     for m in re.finditer(
-        r'<loc>' + re.escape(BASE) + r'([^<]*)</loc>.*?<changefreq>([^<]*)</changefreq>\s*<priority>([^<]*)</priority>',
+        r'<loc>' + re.escape(BASE) + r'([^<]*)</loc><lastmod>([^<]*)</lastmod>'
+        r'<changefreq>([^<]*)</changefreq><priority>([^<]*)</priority>',
         xml):
-        res[m.group(1)] = (m.group(2), m.group(3))
+        res[m.group(1)] = (m.group(3), m.group(4), m.group(2))
     return res
 
 
 def main():
     prev = old_settings()
     gd = git_dates()
+    modified = git_modified()
     today = date.today().isoformat()
 
     pages = []
@@ -100,7 +117,7 @@ def main():
     rows, skipped = [], 0
     for rel in sorted(pages):
         u = url_for(rel)
-        cf, pr = prev.get(u, ('', ''))
+        cf, pr, old_lm = prev.get(u, ('', '', ''))
         if not cf:
             for pred, c, p in DEFAULTS:
                 if pred(u):
@@ -108,9 +125,13 @@ def main():
                     break
             else:
                 cf, pr = FALLBACK
-        lm = gd.get('roman/' + rel)
-        if not lm:
-            lm = date.fromtimestamp(os.path.getmtime(os.path.join(ROOT, rel))).isoformat()
+        # lastmod: in diesem Lauf geändert -> heute; sonst Git-Datum;
+        # sonst alter Sitemap-Wert (schützt vor "alles heute" bei flachem Clone)
+        key = 'roman/' + rel
+        if key in modified:
+            lm = today
+        else:
+            lm = gd.get(key) or old_lm or today
         rows.append((u, lm, cf, pr))
 
     # sortieren: Startseite, dann nach Priorität (hoch→niedrig), dann URL

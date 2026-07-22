@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # volle History: generate-sitemap.py liest lastmod aus git log
 
       - name: Setup Node 20
         uses: actions/setup-node@v4
@@ -26,10 +28,13 @@ jobs:
       - name: Update Stadtteil/Umland listings
         run: node roman/scripts/update-stadtteil-listings.mjs
 
+      - name: Regenerate sitemap
+        run: python3 roman/scripts/generate-sitemap.py
+
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet roman/index.html roman/en/index.html roman/bautraeger.html roman/stadtteile/; then
+          if git diff --quiet roman/index.html roman/en/index.html roman/bautraeger.html roman/stadtteile/ roman/sitemap.xml; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changes detected."
           else
@@ -42,6 +47,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add roman/index.html roman/en/index.html roman/bautraeger.html roman/stadtteile/
-          git commit -m "chore(roman): update Evernest listings + Standorte [automated]"
+          git add roman/index.html roman/en/index.html roman/bautraeger.html roman/stadtteile/ roman/sitemap.xml
+          git commit -m "chore(roman): update Evernest listings + Standorte + Sitemap [automated]"
           git push
