@@ -24,6 +24,51 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
 
+  <style>
+    /* Kachel-Stil identisch zur Empfehlungs-Sektion der Startseite */
+    .section--gray { background: var(--off-white); }
+    .section-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555555;
+      margin-bottom: var(--space-2);
+    }
+    .leistung__card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      border-top: 3px solid var(--gold);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .leistung__card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .leistung__card h3 { color: var(--navy); margin-bottom: var(--space-4); }
+    .leistung__card p {
+      color: var(--gray-600);
+      font-size: 0.9375rem;
+      margin-bottom: var(--space-6);
+      flex: 1;
+    }
+    .leistung__card .btn { align-self: flex-start; }
+    .leistung__card .btn--primary {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--gold);
+      border-width: 2px;
+    }
+    .leistung__card .btn--primary:hover {
+      background: #333333;
+      border-color: var(--gold);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+  </style>
+
   <script type="application/ld+json">
   [
     {
@@ -106,71 +151,78 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--gray">
     <div class="container">
+      <span class="section-label">Leistungen</span>
       <h2 class="mb-4">Für Eigentümer und Verkäufer</h2>
       <p class="max-w-prose mb-8">Sie wollen wissen, was Ihre Immobilie wert ist, oder denken über einen Verkauf nach? Diese sechs Leistungen decken den kompletten Weg ab.</p>
 
       <div class="grid-3">
-        <article class="card">
-          <h3><a href="https://romanbecker.de/immobilien-verkaufen-koeln.html" class="link-gold">Immobilie verkaufen in Köln</a></h3>
-          <p>Diskreter Verkauf zum Höchstpreis — Haus, Wohnung, Mehrfamilienhaus oder Grundstück. Kostenlose Erstbewertung, Off-Market-Vermarktung im EVERNEST-Netzwerk, professionelle Aufbereitung und Begleitung bis zum Notartermin.</p>
-          <p><a href="https://romanbecker.de/immobilien-verkaufen-koeln.html" class="btn btn--outline">Zum Verkaufsablauf</a></p>
-        </article>
-
-        <article class="card">
-          <h3><a href="https://romanbecker.de/immobilienbewertung.html" class="link-gold">Kostenlose Immobilienbewertung</a></h3>
-          <p>In zwei Minuten zur ersten Einschätzung: Wohnung, Haus, Mehrfamilienhaus oder Grundstück online bewerten lassen — unverbindlich und ohne Kosten. Die Grundlage für jede Verkaufsentscheidung.</p>
-          <p><a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--outline">Wert ermitteln</a></p>
-        </article>
-
-        <article class="card">
-          <h3><a href="https://romanbecker.de/immobiliengutachter-koeln.html" class="link-gold">Marktwertermittlung</a></h3>
-          <p>Fundierte Wertermittlung für Haus, Wohnung und Grundstück nach Vergleichs-, Ertrags- und Sachwertverfahren. Wird ein rechtssicheres Verkehrswertgutachten nach § 194 BauGB gebraucht — für Gericht, Finanzamt oder Bank —, vermittle ich öffentlich bestellte und vereidigte Sachverständige aus meinem Netzwerk.</p>
-          <p><a href="https://romanbecker.de/immobiliengutachter-koeln.html" class="btn btn--outline">Zur Marktwertermittlung</a></p>
-        </article>
-
-        <article class="card">
-          <h3><a href="https://romanbecker.de/luxus-immobilienmakler-koeln.html" class="link-gold">Luxusimmobilien &amp; Premium-Lagen</a></h3>
-          <p>Diskrete Vermarktung in Hahnwald, Marienburg, Lindenthal und Rodenkirchen. Off-Market, ohne öffentliches Exposé, mit gezielter Ansprache vorgemerkter Käufer aus dem EVERNEST-Netzwerk.</p>
-          <p><a href="https://romanbecker.de/luxus-immobilienmakler-koeln.html" class="btn btn--outline">Premium-Segment ansehen</a></p>
-        </article>
-
-        <article class="card">
-          <h3><a href="https://romanbecker.de/bautraeger.html" class="link-gold">Vermarktung für Bauträger</a></h3>
-          <p>Vertriebspartner für Neubauprojekte in Köln und im Rheinland — von der Preisfindung über die Vertriebsstrategie bis zur Abverkaufssteuerung ganzer Einheiten.</p>
-          <p><a href="https://romanbecker.de/bautraeger.html" class="btn btn--outline">Für Projektentwickler</a></p>
-        </article>
-
-        <article class="card">
-          <h3><a href="https://romanbecker.de/bodenrichtwert-koeln.html" class="link-gold">Bodenrichtwerte Köln &amp; Umland</a></h3>
-          <p>Was ist Ihr Grundstück wirklich wert? Aktuelle amtliche Bodenrichtwerte für Köln und 31 Umlandkommunen — von Bergisch Gladbach über Frechen bis Leverkusen.</p>
-          <p><a href="https://romanbecker.de/bodenrichtwert-koeln.html" class="btn btn--outline">Bodenrichtwert prüfen</a></p>
-        </article>
+        <div class="leistung__card">
+          <span class="section-label">Für Eigentümer</span>
+          <h3>Immobilie verkaufen in Köln</h3>
+          <p>Diskreter Verkauf zum Höchstpreis — Haus, Wohnung, Mehrfamilienhaus oder Grundstück. Kostenlose Erstbewertung, Off-Market-Vermarktung im EVERNEST-Netzwerk und Begleitung bis zum Notartermin.</p>
+          <a href="https://romanbecker.de/immobilien-verkaufen-koeln.html" class="btn btn--primary">Zum Verkaufsablauf</a>
+        </div>
+        <div class="leistung__card">
+          <span class="section-label">Kostenlos &amp; unverbindlich</span>
+          <h3>Was ist Ihre Immobilie wert?</h3>
+          <p>In zwei Minuten zur ersten Einschätzung: Wohnung, Haus, Mehrfamilienhaus oder Grundstück online bewerten lassen — ohne Kosten und ohne Auftragspflicht.</p>
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Wert ermitteln</a>
+        </div>
+        <div class="leistung__card">
+          <span class="section-label">Wertermittlung</span>
+          <h3>Marktwert fundiert ermitteln</h3>
+          <p>Wertermittlung nach Vergleichs-, Ertrags- und Sachwertverfahren. Wird ein rechtssicheres Verkehrswertgutachten nach § 194 BauGB gebraucht — für Gericht, Finanzamt oder Bank —, vermittle ich öffentlich bestellte und vereidigte Sachverständige aus meinem Netzwerk.</p>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html" class="btn btn--primary">Zur Marktwertermittlung</a>
+        </div>
+        <div class="leistung__card">
+          <span class="section-label">Premium-Segment</span>
+          <h3>Luxusimmobilien diskret verkaufen</h3>
+          <p>Vermarktung in Hahnwald, Marienburg, Lindenthal und Rodenkirchen — off-market, ohne öffentliches Exposé, mit gezielter Ansprache vorgemerkter Käufer aus dem EVERNEST-Netzwerk.</p>
+          <a href="https://romanbecker.de/luxus-immobilienmakler-koeln.html" class="btn btn--primary">Premium-Segment ansehen</a>
+        </div>
+        <div class="leistung__card">
+          <span class="section-label">Für Projektentwickler</span>
+          <h3>Neubauprojekte vermarkten</h3>
+          <p>Vertriebspartner für Bauträger in Köln und im Rheinland — von der Preisfindung über die Vertriebsstrategie bis zur Abverkaufssteuerung ganzer Einheiten.</p>
+          <a href="https://romanbecker.de/bautraeger.html" class="btn btn--primary">Für Bauträger</a>
+        </div>
+        <div class="leistung__card">
+          <span class="section-label">Grundstückswerte</span>
+          <h3>Was ist Ihr Grundstück wert?</h3>
+          <p>Aktuelle amtliche Bodenrichtwerte für Köln und 31 Umlandkommunen — von Bergisch Gladbach über Frechen bis Leverkusen, mit Erläuterung zur Anwendung.</p>
+          <a href="https://romanbecker.de/bodenrichtwert-koeln.html" class="btn btn--primary">Bodenrichtwert prüfen</a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2 class="mb-4">Marktdaten und Wissen</h2>
+      <span class="section-label">Marktdaten</span>
+      <h2 class="mb-4">Zahlen, mit denen ich arbeite</h2>
       <p class="max-w-prose mb-8">Alle Zahlen, mit denen ich arbeite, sind auch für Sie offen zugänglich — kostenlos und ohne Registrierung.</p>
 
       <div class="grid-3">
-        <article class="card">
-          <h3><a href="https://romanbecker.de/stadtteile/" class="link-gold">Immobilienpreise nach Stadtteil</a></h3>
+        <div class="leistung__card">
+          <span class="section-label">Alle 86 Stadtteile</span>
+          <h3>Immobilienpreise nach Veedel</h3>
           <p>Kaufpreise für alle 86 Kölner Stadtteile plus Umlandorte: Quadratmeterpreise für Häuser und Wohnungen, Preisentwicklung und Lageeinschätzung — je Veedel eine eigene Seite.</p>
-        </article>
-
-        <article class="card">
-          <h3><a href="https://romanbecker.de/marktanalyse/" class="link-gold">Marktanalyse Köln</a></h3>
+          <a href="https://romanbecker.de/stadtteile/" class="btn btn--primary">Stadtteile ansehen</a>
+        </div>
+        <div class="leistung__card">
+          <span class="section-label">Quartalsbericht</span>
+          <h3>Marktanalyse Köln</h3>
           <p>Quartalsweise aktualisierte Marktberichte zum Kölner Immobilienmarkt: Kaufpreise, Mietpreise und Trends über alle Stadtteile hinweg.</p>
-        </article>
-
-        <article class="card">
-          <h3><a href="https://romanbecker.de/ratgeber/" class="link-gold">Immobilien-Ratgeber</a></h3>
+          <a href="https://romanbecker.de/marktanalyse/" class="btn btn--primary">Zum Marktbericht</a>
+        </div>
+        <div class="leistung__card">
+          <span class="section-label">Wissen</span>
+          <h3>Immobilien-Ratgeber</h3>
           <p>Über 45 Beiträge zu Maklerkosten, Baufinanzierung, Grundbuch, Energieausweis, Erbschaft und Mietrecht — verständlich erklärt statt Juristendeutsch.</p>
-        </article>
+          <a href="https://romanbecker.de/ratgeber/" class="btn btn--primary">Zum Ratgeber</a>
+        </div>
       </div>
     </div>
   </section>
