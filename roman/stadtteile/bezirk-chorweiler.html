@@ -93,9 +93,13 @@
     /* Diese Bloecke sind freie divs statt der Standard-Sektion –
        hier bekommen sie dieselben Abstaende und dieselbe linke Kante */
     .hub-intro,
+    .market-section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-12) var(--space-6);
+    }
     .hub-intro > *,
     .market-section > * { max-width: 720px; }
-    .hub-intro > * { max-width: 720px; }
     .hub-intro h2 { margin-bottom: var(--space-4); }
     .hub-intro p {
       color: var(--gray-600);
