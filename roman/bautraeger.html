@@ -54,9 +54,6 @@
 
     .hero h1 em { color: var(--gold); font-style: normal; }
 
-    /* shared.css kennt .text-muted nur für helle Sektionen –
-       auf Schwarz wäre --gray-600 zu kontrastarm */
-    .section--navy .text-muted { color: rgba(255,255,255,0.75); }
 
     /* HERO-STATS */
     .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); padding-top: var(--space-12); border-top: 1px solid rgba(255,255,255,0.1); margin-top: var(--space-12); }
@@ -65,33 +62,39 @@
 
     /* REFERENZPROJEKTE */
     .refprojekt-list { display: flex; flex-direction: column; gap: var(--space-6); margin-top: var(--space-8); }
-    .refprojekt { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; display: grid; grid-template-columns: 1fr; }
-    @media (min-width: 768px) { .refprojekt { grid-template-columns: 1fr 1fr; } }
+    .refprojekt { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; display: grid; grid-template-columns: 1fr; }
+    @media (min-width: 768px) { .refprojekt { grid-template-columns: 1.2fr 0.8fr; } }
     .refprojekt__status { align-self: flex-start; display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 20px; }
     .refprojekt__status--active { background: rgba(34,197,94,0.1); color: #16a34a; border: 1px solid rgba(34,197,94,0.25); }
-    .refprojekt__status--sold { background: rgba(194,169,144,0.15); color: var(--gold); border: 1px solid rgba(194,169,144,0.3); }
+    .refprojekt__status--sold { background: rgba(194,169,144,0.15); color: #8a7259; border: 1px solid rgba(194,169,144,0.4); }
     .refprojekt__status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
     .refprojekt__info { padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-4); align-items: flex-start; }
-    .refprojekt__label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .refprojekt__label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8a7259; }
     .refprojekt__desc { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.7; }
     .refprojekt__facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); width: 100%; }
-    .refprojekt__fact { background: var(--off-white); border-radius: var(--radius); padding: 0.75rem 1rem; }
+    .refprojekt__fact { background: var(--off-white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 0.75rem 1rem; }
     .refprojekt__fact-val { font-size: 1.125rem; font-weight: 700; color: var(--navy); display: block; }
     .refprojekt__fact-key { font-size: 0.75rem; color: var(--gray-600); }
-    .refprojekt__visual { background: #000000; padding: var(--space-8); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-6); }
+    /* rechte Spalte: helle Beistellfläche statt schwarzem Block */
+    .refprojekt__visual { background: var(--off-white); border-top: 1px solid var(--gray-200); padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-6); }
+    @media (min-width: 768px) { .refprojekt__visual { border-top: 0; border-left: 1px solid var(--gray-200); } }
     .refprojekt__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-    .refprojekt__tag { background: rgba(194,169,144,0.15); border: 1px solid rgba(194,169,144,0.3); color: var(--gold); border-radius: 20px; padding: 0.25rem 0.75rem; font-size: 0.8125rem; }
-    .refprojekt__quote { color: rgba(255,255,255,0.7); font-size: 0.9375rem; line-height: 1.7; font-style: italic; border-left: 3px solid var(--gold); padding-left: var(--space-4); }
+    .refprojekt__tag { background: var(--white); border: 1px solid var(--gray-200); color: var(--gray-600); border-radius: 20px; padding: 0.25rem 0.75rem; font-size: 0.8125rem; }
+    .refprojekt__quote { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.7; font-style: italic; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin: 0; }
+    .refprojekt__by { margin-top: auto; }
+    .refprojekt__by-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 0.25rem; }
+    .refprojekt__by-name { font-weight: 700; color: var(--navy); }
+    .refprojekt__by-loc { font-size: 0.875rem; color: var(--gray-600); }
     .refprojekt__link svg { margin-left: 0.5rem; transition: transform var(--transition); }
     .refprojekt__link:hover svg { transform: translateX(3px); }
 
     /* ZIELGRUPPEN */
-    .target-card { background: var(--navy-light); border-radius: var(--radius-lg); padding: var(--space-8); }
-    .target-card h3 { color: var(--white); margin-bottom: var(--space-4); }
-    .target-card__label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: var(--space-2); }
-    .target-card__intro { color: rgba(255,255,255,0.7); font-size: 0.9375rem; margin-bottom: var(--space-6); }
+    .target-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--space-8); display: flex; flex-direction: column; align-items: flex-start; }
+    .target-card h3 { margin-bottom: var(--space-4); }
+    .target-card__label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #8a7259; margin-bottom: var(--space-2); }
+    .target-card__intro { color: var(--gray-600); font-size: 0.9375rem; margin-bottom: var(--space-6); }
     .target-card__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin: 0 0 var(--space-8); padding: 0; }
-    .target-card__list li { display: flex; align-items: flex-start; gap: var(--space-3); color: rgba(255,255,255,0.85); font-size: 0.9375rem; }
+    .target-card__list li { display: flex; align-items: flex-start; gap: var(--space-3); color: var(--gray-800); font-size: 0.9375rem; }
     .target-card__list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 0.55rem; }
 
     /* PROZESS */
@@ -323,10 +326,10 @@
           <blockquote class="refprojekt__quote">
             „Kompaktes Neubauprojekt in gefragter Refrather Lage – hochwertige Ausstattung, überschaubare Einheitenzahl, vermarktet über den EVERNEST-Käuferpool."
           </blockquote>
-          <div>
-            <p style="color:rgba(255,255,255,0.45); font-size:0.75rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.08em;">Vermarktung durch</p>
-            <p style="color:var(--white); font-weight:700;">Roman Becker · EVERNEST Köln</p>
-            <p style="color:rgba(255,255,255,0.6); font-size:0.875rem;">51427 Bergisch Gladbach-Refrath</p>
+          <div class="refprojekt__by">
+            <p class="refprojekt__by-label">Vermarktung durch</p>
+            <p class="refprojekt__by-name">Roman Becker · EVERNEST Köln</p>
+            <p class="refprojekt__by-loc">51427 Bergisch Gladbach-Refrath</p>
           </div>
         </div>
       </div>
@@ -361,10 +364,10 @@
           <blockquote class="refprojekt__quote">
             „Zeitgemäßes Design mit hochwertigen Materialien und nachhaltiger Bauweise – vermarktet über den EVERNEST-Käuferpool noch vor Portalstart."
           </blockquote>
-          <div>
-            <p style="color:rgba(255,255,255,0.45); font-size:0.75rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.08em;">Vermarktung durch</p>
-            <p style="color:var(--white); font-weight:700;">Roman Becker · EVERNEST Köln</p>
-            <p style="color:rgba(255,255,255,0.6); font-size:0.875rem;">51069 Köln-Dellbrück</p>
+          <div class="refprojekt__by">
+            <p class="refprojekt__by-label">Vermarktung durch</p>
+            <p class="refprojekt__by-name">Roman Becker · EVERNEST Köln</p>
+            <p class="refprojekt__by-loc">51069 Köln-Dellbrück</p>
           </div>
         </div>
       </div>
@@ -398,10 +401,10 @@
           <blockquote class="refprojekt__quote">
             „Erfolgreich vermittelt – vom Erstkontakt bis zum Notartermin strukturiert begleitet."
           </blockquote>
-          <div>
-            <p style="color:rgba(255,255,255,0.45); font-size:0.75rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.08em;">Vermarktung durch</p>
-            <p style="color:var(--white); font-weight:700;">Roman Becker · EVERNEST Köln</p>
-            <p style="color:rgba(255,255,255,0.6); font-size:0.875rem;">50259 Pulheim</p>
+          <div class="refprojekt__by">
+            <p class="refprojekt__by-label">Vermarktung durch</p>
+            <p class="refprojekt__by-name">Roman Becker · EVERNEST Köln</p>
+            <p class="refprojekt__by-loc">50259 Pulheim</p>
           </div>
         </div>
       </div>
@@ -411,7 +414,7 @@
   </section>
 
   <!-- FÜR BAUTRÄGER & KOMMUNEN -->
-  <section id="bautraeger" class="section section--navy">
+  <section id="bautraeger" class="section">
     <div class="container">
       <span class="section-label">Zwei Zielgruppen</span>
       <h2>Bauträgervertrieb Köln – wer mit uns arbeitet</h2>
