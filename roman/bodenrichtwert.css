@@ -19,7 +19,7 @@
     .nav__logo{text-decoration:none;display:flex;flex-direction:column;line-height:1.25;white-space:nowrap;flex-shrink:0;}
     .nav__logo-primary{color:var(--white);font-weight:700;font-size:1.0625rem;}
     .nav__logo-sub{font-size:0.6875rem;font-weight:400;color:rgba(255,255,255,0.60);letter-spacing:0.01em;}
-    .nav__links{display:flex;gap:1.5rem;margin-left:auto;}
+    .nav__links{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;margin-left:auto;}
     .nav__links a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.875rem;transition:color var(--transition);}
     .nav__links a:hover{color:var(--white);}
     .nav__phone{color:var(--gold);text-decoration:none;font-size:0.875rem;font-weight:600;white-space:nowrap;}

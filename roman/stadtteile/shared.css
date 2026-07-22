@@ -126,7 +126,8 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .site-header__nav {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  flex-wrap: wrap;
+  gap: 0.5rem var(--space-6);
 }
 .site-header__nav a {
   color: rgba(255,255,255,0.75);
