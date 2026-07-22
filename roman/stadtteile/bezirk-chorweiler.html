@@ -91,10 +91,11 @@
   <style>
 
     .hub-intro {
-      max-width: 720px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
+      max-width: var(--max-width);
+      margin: var(--space-12) auto;
+      padding: 0 var(--space-6);
     }
+    .hub-intro > * { max-width: 720px; }
     .hub-intro h2 {
       font-family: 'Inter', sans-serif;
       font-size: 1.6rem;
