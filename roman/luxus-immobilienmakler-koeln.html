@@ -58,8 +58,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
@@ -109,90 +107,35 @@
   </script>
 
   <style>
-    :root {
-      --navy: #111111;
-      --navy-light: #1c1c1c;
-      --gold: #c2a990;
-      --gold-light: #d4b8a0;
-      --white: #ffffff;
-      --off-white: #f5f5f5;
-      --gray-100: #f3f3f3;
-      --gray-200: #e4e4e4;
-      --gray-400: #9a9a9a;
-      --gray-500: #6b6b6b;
-      --gray-600: #555555;
-      --gray-800: #1a1a1a;
-      --font-base: 'Inter', sans-serif;
-      --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem;
-      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
-      --max-width: 1280px;
-      --nav-height: 72px;
-      --radius: 8px;
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
-      --transition: 0.2s ease;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
-    body { font-family: var(--font-base); font-size: 1rem; line-height: 1.6; color: var(--gray-800); background: var(--white); overflow-x: hidden; }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
-    .section { padding: var(--space-20) 0; }
-    .section--gray { background: var(--gray-100); }
-    .section--navy { background: var(--navy); color: var(--white); }
-    .section-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: var(--space-4); }
-    .section-title { font-size: 2rem; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: var(--space-4); }
-    .section--navy .section-title { color: var(--white); }
-    .section-sub { font-size: 1.0625rem; color: var(--gray-600); max-width: 680px; margin-bottom: var(--space-12); }
-    .section--navy .section-sub { color: rgba(255,255,255,0.75); }
-
-    /* NAV */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); height: var(--nav-height); display: flex; align-items: center; }
-    .nav__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; width: 100%; display: flex; align-items: center; gap: 2rem; }
-    .nav__logo { text-decoration: none; display: flex; flex-direction: column; line-height: 1.25; white-space: nowrap; flex-shrink: 0; }
-    .nav__logo-primary { color: var(--white); font-weight: 700; font-size: 1.0625rem; }
-    .nav__logo-sep { display: none; }
-    .nav__logo-sub { font-size: 0.6875rem; font-weight: 400; color: rgba(255,255,255,0.60); letter-spacing: 0.01em; }
-    .nav__links { display: flex; gap: 1.5rem; margin-left: auto; }
-    .nav__links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.875rem; transition: color var(--transition); }
-    .nav__links a:hover { color: var(--white); }
-    .nav__phone { color: var(--gold); text-decoration: none; font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
-    @media (max-width: 768px) {
-      .nav__links { display: none; }
-      .nav__logo-sub { font-size: 0.6875rem; font-weight: 400; color: rgba(255,255,255,0.60); letter-spacing: 0.01em; }
-    }
-
+    /* Seitenspezifisch – Basis, Nav, Buttons, Hero, Sektionen,
+       CTA und Footer kommen aus stadtteile/shared.css */
     /* HERO */
     .hero { background: var(--navy); padding: calc(var(--nav-height) + var(--space-20)) 0 var(--space-20); }
     .hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    @media (max-width: 768px) { .hero__inner { grid-template-columns: 1fr; } }
-    .hero__tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: var(--space-4); }
-    .hero__title { font-size: 2rem; font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: var(--space-6); }
-    .hero__title em { color: var(--gold); font-style: normal; }
-    .hero__text { color: rgba(255,255,255,0.75); font-size: 1.0625rem; max-width: 520px; margin-bottom: var(--space-8); }
+    @media (max-width: 768px) {
+    .hero__inner { grid-template-columns: 1fr; }
+  }
     .hero__badges { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: var(--space-8); }
-    .hero__badge { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 0.35rem 1rem; font-size: 0.8125rem; color: rgba(255,255,255,0.75); }
     .hero__badge--gold { background: rgba(194,169,144,0.15); border-color: rgba(194,169,144,0.4); color: var(--gold); font-weight: 600; }
-    .hero__btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-
     /* BUTTONS */
     .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: var(--radius); font-weight: 600; font-size: 0.9375rem; text-decoration: none; border: 2px solid transparent; transition: all var(--transition); cursor: pointer; }
-    .btn--primary { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-    .btn--primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
-    .btn--outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.3); }
-    .btn--outline:hover { border-color: var(--white); }
-
     /* HERO VISUAL */
     .hero__visual { display: flex; flex-direction: column; gap: 1rem; }
-    @media (max-width: 768px) { .hero__visual { display: none; } }
+    @media (max-width: 768px) {
+    .hero__visual { display: none; }
+  }
     .hero-stat-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
     .hero-stat-card__val { font-size: 2rem; font-weight: 700; color: var(--gold); display: block; line-height: 1.1; }
     .hero-stat-card__key { font-size: 0.8125rem; color: rgba(255,255,255,0.55); margin-top: 0.25rem; }
     .hero-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
     /* STADTTEILE */
     .lage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: var(--space-8); }
-    @media (max-width: 900px) { .lage-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 500px) { .lage-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+    .lage-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+    @media (max-width: 500px) {
+    .lage-grid { grid-template-columns: 1fr; }
+  }
     .lage-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
     .lage-card__header { background: var(--navy); padding: 1.25rem 1.5rem; }
     .lage-card__name { color: var(--white); font-weight: 700; font-size: 1.125rem; margin-bottom: 0.25rem; }
@@ -203,10 +146,11 @@
     .lage-card__desc { color: var(--gray-600); font-size: 0.875rem; line-height: 1.6; }
     .lage-card__tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.875rem; }
     .lage-card__tag { background: var(--gray-100); border-radius: 20px; padding: 0.2rem 0.625rem; font-size: 0.75rem; color: var(--gray-600); }
-
     /* OFF-MARKET */
     .offmarket-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-top: var(--space-8); }
-    @media (max-width: 768px) { .offmarket-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+    .offmarket-grid { grid-template-columns: 1fr; }
+  }
     .offmarket-content p { color: rgba(255,255,255,0.75); font-size: 0.9375rem; line-height: 1.7; margin-bottom: 1rem; }
     .offmarket-content strong { color: var(--gold); }
     .offmarket-steps { display: flex; flex-direction: column; gap: 0; counter-reset: step; }
@@ -216,84 +160,40 @@
     .offmarket-step__content { flex: 1; }
     .offmarket-step__title { color: var(--white); font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.25rem; }
     .offmarket-step__text { color: rgba(255,255,255,0.6); font-size: 0.875rem; }
-
     /* PREMIUM SERVICE */
     .premium-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: var(--space-8); }
-    @media (max-width: 600px) { .premium-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+    .premium-grid { grid-template-columns: 1fr; }
+  }
     .premium-card { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-8); }
     .premium-card__icon { width: 44px; height: 44px; background: var(--navy); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4); }
     .premium-card__title { font-weight: 700; color: var(--navy); margin-bottom: 0.625rem; font-size: 1rem; }
     .premium-card__text { color: var(--gray-600); font-size: 0.875rem; line-height: 1.65; }
-
     /* TRUST SECTION */
     .trust-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; padding: var(--space-12) 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: var(--space-12); }
-    @media (max-width: 900px) { .trust-bar { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 900px) {
+    .trust-bar { grid-template-columns: repeat(2, 1fr); }
+  }
     .trust-item { text-align: center; }
     .trust-item__val { font-size: 1.75rem; font-weight: 700; color: var(--navy); display: block; }
     .trust-item__key { font-size: 0.8125rem; color: var(--gray-500); margin-top: 0.25rem; }
     .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    @media (max-width: 900px) { .testimonial-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+    .testimonial-grid { grid-template-columns: 1fr; }
+  }
     .testimonial { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-8); }
     .testimonial__stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
     .testimonial__text { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
     .testimonial__author { font-weight: 700; color: var(--navy); font-size: 0.875rem; }
     .testimonial__detail { font-size: 0.8125rem; color: var(--gray-500); }
-
     /* CTA BOX */
     .cta-box { background: #e5e7eb; border-radius: var(--radius); padding: var(--space-16); text-align: center; color: #111111; border: 1px solid #d7dbe0;}
-    .cta-box h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #111111; margin-bottom: var(--space-4); }
-    .cta-box p { color: #636363; font-size: 1.0625rem; max-width: 560px; margin: 0 auto var(--space-8); }
-    .cta-box .btn--outline { color: #111111; border-color: rgba(0,0,0,0.25); }
-    .cta-box .btn--outline:hover { border-color: #111111; background: rgba(0,0,0,0.05); }
-    .cta-box__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .cta-box__note { color: #6b6b6b; font-size: 0.8125rem; margin-top: 1.25rem; }
-
     /* FOOTER */
     .footer { background: var(--navy); padding: var(--space-12) 0; margin-top: auto; }
-    .footer__inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: var(--space-8); }
-    .footer__brand { display: flex; flex-direction: column; gap: 0.5rem; }
-    .footer__links { display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
-    .footer__links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; transition: color var(--transition); }
-    .footer__links a:hover { color: var(--gold); }
-    .footer__disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.35); border-top: 1px solid rgba(255,255,255,0.08); padding-top: var(--space-6); }
-    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
-  
     /* HEADER SEARCH */
     .nav__search { position: relative; display: flex; align-items: center; }
-    .nav__search-btn {
-      background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer;
-      padding: 0.375rem; display: flex; align-items: center; justify-content: center;
-      border-radius: 4px; transition: color var(--transition), background var(--transition);
-      min-width: 36px; min-height: 36px;
-    }
-    .nav__search-btn:hover { color: var(--white); background: rgba(255,255,255,0.08); }
-    .nav__search-input {
-      max-width: 0; opacity: 0; border: none; background: none; color: var(--white);
-      font-family: var(--font-base); font-size: 0.875rem;
-      transition: max-width 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
-      outline: none; padding: 0;
-    }
-    .nav__search-input::placeholder { color: rgba(255,255,255,0.4); }
-    .nav__search.open .nav__search-input {
-      max-width: min(200px, 38vw); opacity: 1;
-      padding: 0.25rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.3);
-    }
-    .nav__search-dropdown {
-      position: absolute; top: calc(100% + 14px); right: 0; width: 300px;
-      background: var(--white); border-radius: var(--radius);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25); overflow: hidden; z-index: 500; display: none;
-    }
-    .nav__search-dropdown.visible { display: block; }
-    .search-result {
-      display: block; padding: 0.7rem 1rem; color: var(--navy); font-size: 0.875rem;
-      border-bottom: 1px solid var(--gray-200); text-decoration: none; transition: background 0.15s;
-    }
-    .search-result:last-child { border-bottom: none; }
-    .search-result:hover { background: var(--gray-100); }
-    .search-result__title { font-weight: 600; }
-    .search-result__type { font-size: 0.725rem; color: var(--gray-400); margin-top: 1px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .search-no-results { padding: 1rem; color: var(--gray-400); font-size: 0.875rem; text-align: center; }
-</style>
+  </style>
 
   <script type="application/ld+json">
   {
@@ -330,32 +230,28 @@
 </head>
 <body>
 
-  <nav id="nav" class="nav">
-    <div class="nav__inner">
-      <a href="https://romanbecker.de" class="nav__logo">
-        <span class="nav__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span>
-        <span class="nav__logo-sep"> | </span>
-        <span class="nav__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span>
-      </a>
-      <div class="nav__links">
-        <a href="/leistungen.html">Leistungen</a>
-        <a href="https://romanbecker.de#fuer-wen">Für Verkäufer</a>
-        <a href="/bautraeger.html">Für Bauträger</a>
-        <a href="https://romanbecker.de#faq">FAQ</a>
-        <a href="/ratgeber/">Ratgeber</a>
-        <a href="https://romanbecker.de#kontakt">Kontakt</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
       </div>
-      <div class="nav__search" id="navSearch">
-        <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
-        <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        </button>
-        <div class="nav__search-dropdown" id="navSearchDropdown"></div>
-      </div>
-
-      <a href="tel:+491775156969" class="nav__phone">+49 177 515 69 69</a>
     </div>
-  </nav>
+  </header>
 
   <main>
 
@@ -364,16 +260,16 @@
       <div class="container">
         <div class="hero__inner">
           <div>
-            <p class="hero__tag">Luxusimmobilien Köln · Hahnwald · Marienburg · Lindenthal</p>
-            <h1 class="hero__title">Luxus Immobilienmakler Köln – Ihr <em>diskreter Partner</em> für Premium-Lagen</h1>
-            <p class="hero__text">Premiumimmobilien in Kölns besten Lagen verdienen einen Vertrieb, der auf Stärke beruht: ein exklusiver Käuferpool, maximale Diskretion und Erfahrung mit anspruchsvollen Käufern. Kein Portal-Start ohne Ihren ausdrücklichen Wunsch.</p>
+            <div class="hero__badge">Luxusimmobilien Köln · Hahnwald · Marienburg · Lindenthal</div>
+            <h1>Luxus Immobilienmakler Köln – Ihr <em>diskreter Partner</em> für Premium-Lagen</h1>
+            <p class="hero__subtitle">Premiumimmobilien in Kölns besten Lagen verdienen einen Vertrieb, der auf Stärke beruht: ein exklusiver Käuferpool, maximale Diskretion und Erfahrung mit anspruchsvollen Käufern. Kein Portal-Start ohne Ihren ausdrücklichen Wunsch.</p>
             <div class="hero__badges">
               <span class="hero__badge hero__badge--gold">5,0 ★ Google</span>
               <span class="hero__badge">IHK-zertifiziert</span>
               <span class="hero__badge">Off-Market möglich</span>
               <span class="hero__badge">100.000+ Suchprofile</span>
             </div>
-            <div class="hero__btns">
+            <div class="hero__buttons">
               <a href="https://romanbecker.de#kontakt" class="btn btn--primary">Diskretes Erstgespräch vereinbaren</a>
               <a href="tel:+491775156969" class="btn btn--outline">+49 177 515 69 69</a>
             </div>
@@ -406,8 +302,8 @@
     <section class="section">
       <div class="container">
         <span class="section-label">Kölner Toplagen</span>
-        <h2 class="section-title">Die begehrtesten Lagen Kölns</h2>
-        <p class="section-sub">Köln verfügt über einige der wertvollsten Wohnlagen Nordrhein-Westfalens. Jede Lage hat ihre eigene Käuferstruktur, ihr eigenes Preisniveau und ihre eigenen Besonderheiten – die ich aus jahrelanger Erfahrung kenne.</p>
+        <h2>Die begehrtesten Lagen Kölns</h2>
+        <p class="text-muted mb-8 max-w-prose">Köln verfügt über einige der wertvollsten Wohnlagen Nordrhein-Westfalens. Jede Lage hat ihre eigene Käuferstruktur, ihr eigenes Preisniveau und ihre eigenen Besonderheiten – die ich aus jahrelanger Erfahrung kenne.</p>
         <div class="lage-grid">
           <div class="lage-card">
             <div class="lage-card__header">
@@ -507,8 +403,8 @@
     <section class="section section--navy">
       <div class="container">
         <span class="section-label">Off-Market Verkauf</span>
-        <h2 class="section-title">Warum Luxusimmobilien selten im Portal landen</h2>
-        <p class="section-sub">Die besten Immobilien werden nie inseriert. Das ist kein Geheimnis – es ist Strategie. Und sie schützt Ihr Eigentum und Ihre Privatsphäre.</p>
+        <h2>Warum Luxusimmobilien selten im Portal landen</h2>
+        <p class="text-muted mb-8 max-w-prose">Die besten Immobilien werden nie inseriert. Das ist kein Geheimnis – es ist Strategie. Und sie schützt Ihr Eigentum und Ihre Privatsphäre.</p>
         <div class="offmarket-grid">
           <div class="offmarket-content">
             <p>Ein Portal-Start ist für Premiumimmobilien oft kontraproduktiv: Wochenlange Sichtbarkeit bei unqualifizierten Interessenten signalisiert am Markt Schwäche – und erzeugt Druck, den Preis zu senken.</p>
@@ -554,8 +450,8 @@
     <section class="section">
       <div class="container">
         <span class="section-label">Premium Service</span>
-        <h2 class="section-title">Was Premium-Käufer erwarten</h2>
-        <p class="section-sub">Käufer von Luxusimmobilien prüfen nicht nur die Immobilie – sie prüfen auch den Makler. Meine Vermarktung erfüllt die Ansprüche dieser Zielgruppe konsequent.</p>
+        <h2>Was Premium-Käufer erwarten</h2>
+        <p class="text-muted mb-8 max-w-prose">Käufer von Luxusimmobilien prüfen nicht nur die Immobilie – sie prüfen auch den Makler. Meine Vermarktung erfüllt die Ansprüche dieser Zielgruppe konsequent.</p>
         <div class="premium-grid">
           <div class="premium-card">
             <div class="premium-card__icon">
@@ -593,8 +489,8 @@
     <section class="section section--gray">
       <div class="container">
         <span class="section-label">Vertrauenssignale</span>
-        <h2 class="section-title">Warum Eigentümer mir ihr Premium-Objekt anvertrauen</h2>
-        <p class="section-sub">Netzwerk, Erfahrung und nachweisbare Ergebnisse – das sind die drei Säulen meiner Arbeit im Luxussegment.</p>
+        <h2>Warum Eigentümer mir ihr Premium-Objekt anvertrauen</h2>
+        <p class="text-muted mb-8 max-w-prose">Netzwerk, Erfahrung und nachweisbare Ergebnisse – das sind die drei Säulen meiner Arbeit im Luxussegment.</p>
 
         <div class="trust-bar">
           <div class="trust-item">
@@ -644,7 +540,7 @@
         <div class="cta-box">
           <h2>Luxusimmobilie diskret verkaufen –<br>unverbindliches Erstgespräch</h2>
           <p>Erzählen Sie mir von Ihrer Immobilie. Ich höre zu, bewerte realistisch und erkläre Ihnen offen, wie ich in Ihrer Lage vorgehen würde. Kein Auftrag, keine Verpflichtung.</p>
-          <div class="cta-box__btns">
+          <div class="cta-buttons">
             <a href="https://romanbecker.de#kontakt" class="btn btn--primary">Diskretes Erstgespräch vereinbaren</a>
             <a href="tel:+491775156969" class="btn btn--outline">+49 177 515 69 69</a>
           </div>

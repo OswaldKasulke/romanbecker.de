@@ -73,8 +73,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stadtteile/shared.css">
 
   <style>
+    /* Seitenspezifisch – Basis, Nav, Buttons, Hero, Sektionen,
+       CTA und Footer kommen aus stadtteile/shared.css */
     /* ===========================
        CUSTOM PROPERTIES
     =========================== */
@@ -113,7 +116,6 @@
       --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
       --transition: 0.2s ease;
     }
-
     /* ===========================
        RESET
     =========================== */
@@ -122,27 +124,6 @@
       margin: 0;
       padding: 0;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font-base);
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--gray-800);
-      background: var(--off-white);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
     /* ===========================
        CONTAINER
     =========================== */
@@ -152,122 +133,6 @@
       margin: 0 auto;
       padding: 0 var(--space-6);
     }
-
-    /* ===========================
-       NAV
-    =========================== */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: var(--navy);
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-    }
-
-    .nav__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 var(--space-6);
-    }
-
-    .nav__logo { text-decoration: none; display: flex; flex-direction: column; line-height: 1.25; white-space: nowrap; }
-    .nav__logo-primary { color: var(--white); font-weight: 700; font-size: 1.0625rem; }
-    .nav__logo-sub { font-size: 0.6875rem; font-weight: 400; color: rgba(255,255,255,0.60); letter-spacing: 0.01em; }
-
-    .nav__links {
-      display: none;
-      gap: var(--space-6);
-    }
-
-    @media (min-width: 768px) {
-      .nav__links {
-        display: flex;
-      }
-    }
-
-    .nav__links a {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color var(--transition);
-    }
-
-    .nav__links a:hover {
-      color: var(--gold);
-    }
-
-    .nav__phone {
-      color: var(--gold);
-      font-weight: 600;
-      font-size: 0.875rem;
-      display: none;
-    }
-
-    @media (min-width: 768px) {
-      .nav__phone {
-        display: block;
-      }
-    }
-
-    .nav__hamburger {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    @media (min-width: 768px) {
-      .nav__hamburger {
-        display: none;
-      }
-    }
-
-    .nav__hamburger span {
-      width: 22px;
-      height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-    }
-
-    .nav__mobile {
-      display: none;
-      position: fixed;
-      top: var(--nav-height);
-      left: 0;
-      right: 0;
-      background: var(--navy-light);
-      padding: var(--space-6);
-      flex-direction: column;
-      gap: var(--space-4);
-      z-index: 999;
-    }
-
-    .nav__mobile.active {
-      display: flex;
-    }
-
-    .nav__mobile a {
-      color: rgba(255,255,255,0.85);
-      font-size: 1rem;
-      padding: var(--space-2) 0;
-    }
-
-    .nav__mobile-phone {
-      color: var(--gold) !important;
-      font-weight: 600;
-    }
-
     /* ===========================
        HERO HEADER
     =========================== */
@@ -276,25 +141,21 @@
       padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-16);
       text-align: center;
     }
-
     .page-hero h1 {
       color: var(--white);
       font-size: clamp(1.75rem, 4vw, 2.5rem);
       font-weight: 700;
       margin-bottom: var(--space-4);
     }
-
     .page-hero h1 span {
       color: var(--gold);
     }
-
     .page-hero p {
       color: rgba(255,255,255,0.85);
       font-size: 1.0625rem;
       max-width: 600px;
       margin: 0 auto;
     }
-
     /* ===========================
        PROGRESS BAR
     =========================== */
@@ -305,7 +166,6 @@
       gap: var(--space-2);
       margin-bottom: var(--space-12);
     }
-
     .progress__step {
       width: 36px;
       height: 36px;
@@ -320,17 +180,10 @@
       transition: all var(--transition);
       flex-shrink: 0;
     }
-
     .progress__step.active {
       background: var(--gold);
       color: var(--white);
     }
-
-    .progress__step.done {
-      background: var(--navy);
-      color: var(--white);
-    }
-
     .progress__line {
       width: 24px;
       height: 2px;
@@ -338,22 +191,16 @@
       transition: background var(--transition);
       flex-shrink: 0;
     }
-
-    .progress__line.done {
-      background: var(--navy);
-    }
-
     @media (max-width: 480px) {
-      .progress__step {
+    .progress__step {
         width: 30px;
         height: 30px;
         font-size: 0.75rem;
       }
-      .progress__line {
+    .progress__line {
         width: 12px;
       }
-    }
-
+  }
     /* ===========================
        FORM AREA
     =========================== */
@@ -361,7 +208,6 @@
       flex: 1;
       padding: var(--space-12) 0 var(--space-20);
     }
-
     .form-card {
       background: var(--white);
       border-radius: var(--radius-lg);
@@ -370,37 +216,31 @@
       margin: 0 auto;
       padding: var(--space-10);
     }
-
     @media (max-width: 480px) {
-      .form-card {
+    .form-card {
         padding: var(--space-6);
       }
-    }
-
+  }
     /* ===========================
        STEPS
     =========================== */
     .step {
       display: none;
     }
-
     .step.active {
       display: block;
     }
-
     .step__title {
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--gray-800);
       margin-bottom: var(--space-2);
     }
-
     .step__subtitle {
       font-size: 0.9375rem;
       color: var(--gray-600);
       margin-bottom: var(--space-8);
     }
-
     /* ===========================
        RADIO CARDS
     =========================== */
@@ -409,25 +249,21 @@
       grid-template-columns: 1fr 1fr;
       gap: var(--space-4);
     }
-
     @media (max-width: 480px) {
-      .radio-cards {
+    .radio-cards {
         grid-template-columns: 1fr;
       }
-    }
-
+  }
     .radio-card {
       position: relative;
       cursor: pointer;
     }
-
     .radio-card input {
       position: absolute;
       opacity: 0;
       width: 0;
       height: 0;
     }
-
     .radio-card__label {
       display: flex;
       flex-direction: column;
@@ -442,32 +278,26 @@
       color: var(--gray-800);
       transition: all var(--transition);
     }
-
     .radio-card__label:hover {
       border-color: var(--gold-light);
     }
-
     .radio-card input:checked + .radio-card__label {
       border-color: var(--gold);
       background: rgba(201,168,76,0.06);
       color: var(--navy);
     }
-
     .radio-card__icon {
       font-size: 1.75rem;
     }
-
     /* ===========================
        INPUT FIELDS
     =========================== */
     .field {
       margin-bottom: var(--space-6);
     }
-
     .field:last-child {
       margin-bottom: 0;
     }
-
     .field label {
       display: block;
       font-size: 0.875rem;
@@ -475,7 +305,6 @@
       color: var(--gray-800);
       margin-bottom: var(--space-2);
     }
-
     .field input,
     .field select {
       width: 100%;
@@ -488,31 +317,25 @@
       background: var(--white);
       transition: border-color var(--transition);
     }
-
     .field input:focus,
     .field select:focus {
       outline: none;
       border-color: var(--gold);
     }
-
     .field input::placeholder {
       color: var(--gray-600);
     }
-
     .field__hint {
       font-size: 0.8125rem;
       color: var(--gray-600);
       margin-top: var(--space-1);
     }
-
     .field__unit {
       position: relative;
     }
-
     .field__unit input {
       padding-right: 3.5rem;
     }
-
     .field__unit::after {
       content: attr(data-unit);
       position: absolute;
@@ -523,19 +346,16 @@
       color: var(--gray-600);
       pointer-events: none;
     }
-
     .field-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--space-4);
     }
-
     @media (max-width: 480px) {
-      .field-row {
+    .field-row {
         grid-template-columns: 1fr;
       }
-    }
-
+  }
     /* ===========================
        CONDITION RADIO
     =========================== */
@@ -544,19 +364,16 @@
       flex-direction: column;
       gap: var(--space-3);
     }
-
     .condition-option {
       position: relative;
       cursor: pointer;
     }
-
     .condition-option input {
       position: absolute;
       opacity: 0;
       width: 0;
       height: 0;
     }
-
     .condition-option__label {
       display: flex;
       align-items: center;
@@ -566,26 +383,21 @@
       border-radius: var(--radius);
       transition: all var(--transition);
     }
-
     .condition-option__label:hover {
       border-color: var(--gold-light);
     }
-
     .condition-option input:checked + .condition-option__label {
       border-color: var(--gold);
       background: rgba(201,168,76,0.06);
     }
-
     .condition-option__title {
       font-weight: 600;
       font-size: 0.9375rem;
     }
-
     .condition-option__desc {
       font-size: 0.8125rem;
       color: var(--gray-600);
     }
-
     /* ===========================
        BUTTONS
     =========================== */
@@ -595,84 +407,49 @@
       gap: var(--space-4);
       margin-top: var(--space-10);
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-2);
-      padding: var(--space-3) var(--space-8);
-      border: none;
-      border-radius: var(--radius);
-      font-family: var(--font-base);
-      font-size: 0.9375rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .btn--primary {
-      background: var(--gold);
-      color: var(--white);
-      border: 2px solid var(--navy);
-    }
-
-    .btn--primary:hover {
-      background: var(--gold-light);
-    }
-
     .btn--secondary {
       background: transparent;
       color: var(--gray-600);
       border: 2px solid var(--gray-200);
     }
-
     .btn--secondary:hover {
       border-color: var(--gray-400);
       color: var(--gray-800);
     }
-
     .btn--large {
       padding: var(--space-4) var(--space-10);
       font-size: 1rem;
     }
-
     .btn:disabled {
       opacity: 0.4;
       cursor: not-allowed;
     }
-
     /* ===========================
        RESULT
     =========================== */
     .result {
       text-align: center;
     }
-
     .result__icon {
       font-size: 3rem;
       margin-bottom: var(--space-6);
     }
-
     .result__label {
       font-size: 0.9375rem;
       color: var(--gray-600);
       margin-bottom: var(--space-2);
     }
-
     .result__value {
       font-size: clamp(2rem, 5vw, 2.75rem);
       font-weight: 700;
       color: var(--navy);
       margin-bottom: var(--space-2);
     }
-
     .result__range {
       font-size: 0.9375rem;
       color: var(--gray-600);
       margin-bottom: var(--space-8);
     }
-
     .result__note {
       background: var(--off-white);
       border-radius: var(--radius);
@@ -680,30 +457,25 @@
       text-align: left;
       margin-bottom: var(--space-8);
     }
-
     .result__note p {
       font-size: 0.875rem;
       color: var(--gray-600);
       line-height: 1.7;
     }
-
     .result__note strong {
       color: var(--gray-800);
     }
-
     .result__cta {
       display: flex;
       flex-direction: column;
       gap: var(--space-4);
       align-items: center;
     }
-
     .result__cta .btn {
       width: 100%;
       max-width: 420px;
       white-space: nowrap;
     }
-
     /* ===========================
        GDPR CHECKBOX
     =========================== */
@@ -713,43 +485,26 @@
       gap: var(--space-3);
       margin-top: var(--space-6);
     }
-
     .gdpr input[type="checkbox"] {
       margin-top: 3px;
       accent-color: var(--gold);
       flex-shrink: 0;
     }
-
     .gdpr label {
       font-size: 0.8125rem;
       color: var(--gray-600);
       line-height: 1.5;
     }
-
     .gdpr a {
       color: var(--gold);
       text-decoration: underline;
     }
-
-    /* ===========================
-       VALIDATION
-    =========================== */
-    .field--error input,
-    .field--error select {
-      border-color: #e74c3c;
-    }
-
     .field__error {
       font-size: 0.8125rem;
       color: #e74c3c;
       margin-top: var(--space-1);
       display: none;
     }
-
-    .field--error .field__error {
-      display: block;
-    }
-
     /* ===========================
        FOOTER
     =========================== */
@@ -758,65 +513,17 @@
       padding: var(--space-10) 0;
       border-top: 1px solid rgba(255,255,255,0.07);
     }
-
-    .footer__inner {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-6);
-    }
-
-    @media (min-width: 768px) {
-      .footer__inner {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
-    }
-
-    .footer__brand {
-      color: rgba(255,255,255,0.85);
-      font-size: 0.9375rem;
-    }
-
     .footer__brand strong {
       display: block;
       color: var(--white);
       margin-bottom: var(--space-1);
     }
-
     .footer__brand address {
       font-style: normal;
       color: rgba(255,255,255,0.55);
       font-size: 0.875rem;
       margin-top: var(--space-2);
     }
-
-    .footer__links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-4) var(--space-6);
-    }
-
-    .footer__links a {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.875rem;
-      transition: color var(--transition);
-    }
-
-    .footer__links a:hover {
-      color: var(--gold);
-    }
-
-    .footer__disclaimer {
-      color: rgba(255,255,255,0.35);
-      font-size: 0.75rem;
-      line-height: 1.6;
-      max-width: 700px;
-      margin-top: var(--space-6);
-      padding-top: var(--space-6);
-      border-top: 1px solid rgba(255,255,255,0.07);
-    }
-
     /* ===========================
        FOCUS & A11Y
     =========================== */
@@ -825,51 +532,9 @@
       outline: 2px solid var(--gold);
       outline-offset: 2px;
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-      }
-    }
-    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
-  
     /* HEADER SEARCH */
     .nav__search { position: relative; display: flex; align-items: center; }
-    .nav__search-btn {
-      background: none; border: none; color: rgba(255,255,255,0.8); cursor: pointer;
-      padding: 0.375rem; display: flex; align-items: center; justify-content: center;
-      border-radius: 4px; transition: color var(--transition), background var(--transition);
-      min-width: 36px; min-height: 36px;
-    }
-    .nav__search-btn:hover { color: var(--white); background: rgba(255,255,255,0.08); }
-    .nav__search-input {
-      max-width: 0; opacity: 0; border: none; background: none; color: var(--white);
-      font-family: var(--font-base); font-size: 0.875rem;
-      transition: max-width 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
-      outline: none; padding: 0;
-    }
-    .nav__search-input::placeholder { color: rgba(255,255,255,0.4); }
-    .nav__search.open .nav__search-input {
-      max-width: min(200px, 38vw); opacity: 1;
-      padding: 0.25rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.3);
-    }
-    .nav__search-dropdown {
-      position: absolute; top: calc(100% + 14px); right: 0; width: 300px;
-      background: var(--white); border-radius: var(--radius);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25); overflow: hidden; z-index: 500; display: none;
-    }
-    .nav__search-dropdown.visible { display: block; }
-    .search-result {
-      display: block; padding: 0.7rem 1rem; color: var(--navy); font-size: 0.875rem;
-      border-bottom: 1px solid var(--gray-200); text-decoration: none; transition: background 0.15s;
-    }
-    .search-result:last-child { border-bottom: none; }
-    .search-result:hover { background: var(--gray-100); }
-    .search-result__title { font-weight: 600; }
-    .search-result__type { font-size: 0.725rem; color: var(--gray-400); margin-top: 1px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .search-no-results { padding: 1rem; color: var(--gray-400); font-size: 0.875rem; text-align: center; }
-</style>
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -927,36 +592,28 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav__inner">
-      <a href="/" class="nav__logo"><span class="nav__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span><span class="nav__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
-      <div class="nav__links">
-        <a href="/leistungen.html">Leistungen</a>
-        <a href="/">Startseite</a>
-        <a href="/ratgeber/">Ratgeber</a>
-        <a href="/#kontakt">Kontakt</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span style="color:var(--gold);font-size:0.6875rem;font-weight:500;letter-spacing:0.04em;">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
       </div>
-      <div class="nav__search" id="navSearch">
-        <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
-        <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        </button>
-        <div class="nav__search-dropdown" id="navSearchDropdown"></div>
-      </div>
-
-      <a href="tel:+491775156969" class="nav__phone">+49 177 515 69 69</a>
-      <button class="nav__hamburger" aria-label="Menü öffnen" onclick="document.querySelector('.nav__mobile').classList.toggle('active')">
-        <span></span><span></span><span></span>
-      </button>
     </div>
-    <div class="nav__mobile" role="menu" aria-label="Hauptmenü">
-      <a href="/" onclick="this.parentElement.classList.remove('active')">Startseite</a>
-      <a href="/ratgeber/" onclick="this.parentElement.classList.remove('active')">Ratgeber</a>
-      <a href="/#kontakt" onclick="this.parentElement.classList.remove('active')">Kontakt</a>
-      <a href="tel:+491775156969" class="nav__mobile-phone">+49 177 515 69 69</a>
-    </div>
-  </nav>
+  </header>
 
   <!-- HERO -->
   <section class="page-hero">
