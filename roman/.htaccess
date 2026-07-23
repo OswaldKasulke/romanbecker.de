@@ -44,6 +44,11 @@ RewriteRule ^ratgeber/eigenbedarfsklage-2\.html$ /ratgeber/eigenbedarfsklage.htm
 # --- heizungsgesetz + gebaeudeenergiegesetz in heizungsgesetz-aenderung.html zusammengeführt (2026-07-14) ---
 RewriteRule ^ratgeber/heizungsgesetz\.html$        /ratgeber/heizungsgesetz-aenderung.html [R=301,L]
 RewriteRule ^ratgeber/gebaeudeenergiegesetz\.html$ /ratgeber/heizungsgesetz-aenderung.html [R=301,L]
+
+# --- Bezirks-Hubseiten entfernt (2026-07-23): kannibalisierten die
+#     gleichnamigen Stadtteilseiten porz.html / chorweiler.html ---
+RewriteRule ^stadtteile/bezirk-porz\.html$       /stadtteile/porz.html       [R=301,L]
+RewriteRule ^stadtteile/bezirk-chorweiler\.html$ /stadtteile/chorweiler.html [R=301,L]
 RewriteRule ^flurkarte/?$              /ratgeber/flurkarte.html                         [R=301,L]
 RewriteRule ^notarkosten-beim-immobilienkauf/?$ /ratgeber/notarkosten-beim-immobilienkauf.html [R=301,L]
 RewriteRule ^smart-heizung/?$          /ratgeber/smart-heizung.html                     [R=301,L]

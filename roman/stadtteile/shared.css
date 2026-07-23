@@ -471,6 +471,14 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .footer__links { display: flex; gap: 1rem 2rem; flex-wrap: wrap; }
 .footer__links a { font-size: 0.875rem; }
 .footer__disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.4); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-6); margin-top: 0; }
+/* Markenblock: Name, Copyright und Adresse in Gold.
+   Ersetzt je 3 Inline-styles pro Seite. */
+.footer__brand strong,
+.footer__brand span,
+.footer__brand address { color: var(--gold); }
+.footer__brand address { font-style: normal; }
+/* Doppelte Klasse noetig: .footer__links a setzt sonst 0.875rem durch. */
+.footer__links a.footer__credit { opacity: 0.6; font-size: 0.8rem; }
 
 /* REVIEW BADGE */
 .review-badge {
@@ -590,118 +598,3 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 }
 .strassen-grid .strassen-pin:hover { opacity: 1; }
 
-/* ============================================================
-   BEZIRKS-HUBSEITEN (bezirk-porz.html, bezirk-chorweiler.html)
-   Vorher 109 Zeilen identisches Inline-CSS in beiden Dateien.
-   ============================================================ */
-
-/* Diese Bloecke sind freie divs statt der Standard-Sektion –
-   hier bekommen sie dieselben Abstaende und dieselbe linke Kante */
-.hub-intro,
-.market-section {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--space-12) var(--space-6);
-}
-.hub-intro > *,
-.market-section > * { max-width: 720px; }
-.hub-intro h2 { margin-bottom: var(--space-4); }
-.hub-intro p {
-  color: var(--gray-600);
-  line-height: 1.75;
-  margin-bottom: 1rem;
-}
-
-/* Stadtteil-Kacheln */
-.stadtteile-grid-section {
-  background: var(--off-white);
-  padding: var(--space-12) var(--space-6);
-}
-.stadtteile-grid-section h2 { max-width: var(--max-width); margin: 0 auto var(--space-8); }
-.st-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-4);
-  max-width: var(--max-width);
-  margin: var(--space-8) auto 0;
-}
-.st-card {
-  background: #fff;
-  border-radius: 8px;
-  padding: 1.25rem 1rem;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid #e8e0d8;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.st-card:hover {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  transform: translateY(-2px);
-}
-.st-card .name {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.05rem;
-  color: var(--navy);
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-}
-.st-card .price {
-  font-size: 0.85rem;
-  color: #666;
-}
-.st-card .trend {
-  font-size: 0.78rem;
-  color: #2a7a3b;
-  font-weight: 600;
-}
-
-/* Marktdaten-Tabelle */
-.market-section h2 { margin-bottom: var(--space-4); }
-.market-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-.market-table th {
-  background: var(--navy);
-  color: #fff;
-  padding: 0.6rem 0.75rem;
-  text-align: left;
-  font-weight: 600;
-}
-.market-table td {
-  padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid #e8e0d8;
-  color: #333;
-}
-.market-table tr:nth-child(even) td { background: var(--off-white); }
-.market-table td.trend { color: #2a7a3b; font-weight: 600; }
-.market-table a { color: var(--navy); text-decoration: none; }
-.market-table a:hover { text-decoration: underline; }
-
-/* Kontaktbox auf schwarzem Grund */
-.contact-box {
-  background: #000000;
-  color: var(--white);
-  border-radius: var(--radius-lg);
-  padding: var(--space-12) var(--space-8);
-  text-align: center;
-  max-width: var(--max-width);
-  margin: var(--space-12) auto;
-}
-.contact-box h2 { color: var(--white); margin-bottom: var(--space-4); }
-.contact-box p {
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 1.5rem;
-  line-height: 1.65;
-}
-.contact-box a.btn {
-  display: inline-block;
-  background: var(--gold);
-  color: var(--navy);
-  padding: 0.75rem 2rem;
-  border-radius: 4px;
-  font-weight: 700;
-  text-decoration: none;
-  margin: 0.25rem;
-}
