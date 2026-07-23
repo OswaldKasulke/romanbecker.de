@@ -480,6 +480,11 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 /* Doppelte Klasse noetig: .footer__links a setzt sonst 0.875rem durch. */
 .footer__links a.footer__credit { opacity: 0.6; font-size: 0.8rem; }
 
+/* Ersetzt wiederkehrende Inline-styles (Stand 2026-07-23) */
+.faq-list { max-width: 800px; }
+.map-caption { font-size: 0.75rem; color: var(--gray-400); margin-top: var(--space-2); text-align: center; }
+.site-header__logo-tag { color: var(--gold); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.04em; }
+
 /* REVIEW BADGE */
 .review-badge {
   display: inline-flex;
