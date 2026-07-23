@@ -1,5 +1,7 @@
 (function() {
     var IDX = [
+      {t:'Ratgeber – Übersicht aller Themen', u:'/ratgeber/', c:'Übersicht', k:'ratgeber ratgeberseiten immobilien tipps wissen leitfaden übersicht alle themen artikel lexikon glossar erklärt'},
+      {t:'Checklisten – alle Checklisten im Überblick', u:'/ratgeber/#checklisten', c:'Übersicht', k:'checkliste checklisten liste listen übersicht alle abhaken haken to-do todo vorbereitung was brauche ich welche unterlagen dokumente ratgeber'},
       {t:'Immobilienbewertung Köln', u:'/immobilienbewertung.html', c:'Seite', k:'bewertung wert schätzung gutachten verkehrswert marktwert wertermittlung haus wohnung grundstück kostenlos immobilie immobilienpreis berechnen preisermittlung wertgutachten'},
       {t:'Bodenrichtwert Köln & Umland', u:'/bodenrichtwert-koeln.html', c:'Seite', k:'bodenwert grundstück boris nrw quadratmeterpreis boden richtwert lagebewertung mikrolage makrolage immobilienpreise preise nrw'},
       {t:'Immobilien verkaufen Köln', u:'/immobilien-verkaufen-koeln.html', c:'Seite', k:'verkauf haus wohnung notar makler provision käufer kaufvertrag grunderwerbsteuer spekulationssteuer eigentum mehrfamilienhaus reihenhaus doppelhaus doppelhaushälfte eigentumswohnung gewerbeimmobilie gewerbe grundstück maklervertrag alleinauftrag verkaufsstrategie immobilienmarketing exposé expose erstellen homestaging besichtigung organisieren offene einzelbesichtigung bieterverfahren kaufpreisverhandlung preisstrategie mindestpreis diskret off-market erbschaft erbschaftsimmobilie geerbtes scheidungsimmobilie scheidung vermietete leerstehende leerstand kredit trotz tipps checkliste ablauf dauer käufer bonitätsprüfung finanzierungsbestätigung übergabeprotokoll besitzübergang schlüsselübergabe vorfälligkeitsentschädigung löschungsbewilligung restschuld renovierung wertsteigernde maßnahmen neubau sanierungsbedürftig sanierungsbedürftiges seniorenimmobilie barrierefrei barrierefreie anzeige schreiben zielgruppe zielgruppenanalyse käuferzielgruppe eigennutzer kapitalanleger ansprechen emotional psychologie erfolgreicher diskreter reservierungsvereinbarung kaufpreisfälligkeit sachmängelhaftung gewährleistung immobilienrecht balkon terrasse garten stellplatz garage aufzug maisonette'},
@@ -178,7 +180,6 @@
       {t:'Ratgeber: Erbbauzins', u:'/ratgeber/erbbauzins.html', c:'Ratgeber', k:'erbbauzins erbpacht erbbaurecht pacht zins immobilienwert erbpachtimmobilie berechnung daumenregel'},
       {t:'Ratgeber: Grundbuchauszug anfordern', u:'/ratgeber/grundbuchauszug-anfordern.html', c:'Ratgeber', k:'grundbuchauszug anfordern beantragen grundbuch notar grundbuchamt kosten einsicht berechtigtes interesse eigentümer'},
       {t:'Ratgeber: Grundschuld löschen', u:'/ratgeber/grundschuld-loeschen.html', c:'Ratgeber', k:'grundschuld löschen loeschung löschungsbewilligung notar grundbuch kosten ablauf hypothek restschuld immobilienverkauf bank'},
-      {t:'Immobilien-Ratgeber Übersicht', u:'/ratgeber/', c:'Ratgeber', k:'ratgeber immobilien tipps wissen leitfaden übersicht'},
     ];
 
     // Strassenverzeichnis: [Ort, PLZ, 'Strasse|Strasse|...'] — kompakt, da auf jeder Seite geladen
