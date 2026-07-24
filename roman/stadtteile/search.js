@@ -115,7 +115,7 @@
       {t:'Alfter', u:'/stadtteile/alfter.html', c:'Umland', k:'alfter 53347 rhein-sieg-kreis bonn makler immobilien haus wohnung verkaufen grundstück'},
       {t:'Bornheim', u:'/stadtteile/bornheim.html', c:'Umland', k:'bornheim 53332 rhein-sieg-kreis vorgebirge makler immobilien haus wohnung verkaufen grundstück Heisterbacher Str.'},
       {t:'Dormagen', u:'/stadtteile/dormagen.html', c:'Umland', k:'dormagen 41539 rhein-kreis neuss zons rhein makler immobilien haus wohnung verkaufen grundstück Kurt-Schumacher-Straße Neusser Str. Raabestraße'},
-      {t:'Düren', u:'/stadtteile/duerren.html', c:'Umland', k:'düren duerren 52349 kreis düren rur makler immobilien haus wohnung verkaufen grundstück'},
+      {t:'Düren', u:'/stadtteile/dueren.html', c:'Umland', k:'düren dueren 52349 kreis düren rur makler immobilien haus wohnung verkaufen grundstück'},
       {t:'Eschweiler', u:'/stadtteile/eschweiler.html', c:'Umland', k:'eschweiler 52249 städteregion aachen makler immobilien haus wohnung verkaufen grundstück'},
       {t:'Hürth', u:'/stadtteile/huerth.html', c:'Umland', k:'hürth huerth 50354 rhein-erft-kreis köln makler immobilien haus wohnung verkaufen grundstück Minnepfad Eintrachtstraße Nelkenweg Theresiastr. Bergmannstraße Josef-Metternich-Straße'},
       {t:'Jüchen', u:'/stadtteile/juechen.html', c:'Umland', k:'jüchen juechen 41363 rhein-kreis neuss makler immobilien haus wohnung verkaufen grundstück Auf der Hecke Peter-Stahs-Straße'},
