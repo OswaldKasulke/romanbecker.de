@@ -344,6 +344,14 @@
     .method { background: var(--gray-100); border-left: 3px solid var(--gold); padding: var(--space-6); margin: var(--space-8) 0; font-size: 0.9rem; color: var(--gray-700); }
     footer { padding: var(--space-8) 0; background: var(--navy); color: rgba(255,255,255,0.6); font-size: 0.85rem; text-align: center; }
     footer a { color: var(--gold); }
+    .footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: var(--space-12) 0 var(--space-8); font-size: 0.8125rem; text-align: left; }
+    .footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .footer a:hover { color: var(--white); }
+    .footer__inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: var(--space-8); }
+    .footer__brand { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer__links { display: flex; gap: 1rem 2rem; flex-wrap: wrap; }
+    .footer__links a { font-size: 0.875rem; }
+    .footer__disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.4); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-6); margin-top: 0; }
   </style>
 </head>
 <body>
@@ -1204,9 +1212,28 @@
     </div>
   </main>
 
-  <footer>
+  <footer id="footer" class="footer">
     <div class="container">
-      <p>© 2026 Roman Becker - EVERNEST · <a href="https://romanbecker.de/">Startseite</a> · <a href="https://romanbecker.de/impressum.html">Impressum</a> · <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a></p>
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span style="color:var(--gold)">© 2026 Roman Becker EVERNEST</span>
+          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" style="opacity:0.6;font-size:0.8rem;">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
     </div>
   </footer>
 </body>
