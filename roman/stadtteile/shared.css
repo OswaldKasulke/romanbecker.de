@@ -261,6 +261,13 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   margin-bottom: var(--space-6);
 }
 
+.hero__kicker {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: var(--space-3);
+}
+
 /* GRIDS */
 .grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
 .grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
