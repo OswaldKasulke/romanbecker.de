@@ -46,6 +46,14 @@ const TYPE_LABEL = {
   land: 'Grundstück', villa: 'Villa',
 };
 
+// Korrektur fehlerhafter propertyType-Angaben aus den Evernest-Stammdaten.
+// Key = listing sys.id, Value = korrekter propertyType (siehe TYPE_LABEL).
+// 5sbhUeXVmLizAAbmOfaZv8: in der API als "apartment" geführt, ist aber eine
+// Gewerbeeinheit in Köln-Marienburg (986.500 €, ohne Zimmer/Wohnfläche).
+const TYPE_OVERRIDE = {
+  '5sbhUeXVmLizAAbmOfaZv8': 'commercial',
+};
+
 // ---------------------------------------------------------------------------
 function slugify(s) {
   return String(s).toLowerCase()
@@ -96,7 +104,7 @@ function mapListing(item) {
     priceFrom: epd.priceFrom != null,
     rooms: epd.rooms ?? null,
     livingSpace: epd.livingSpace ?? null,
-    propertyType: epd.propertyType ?? null,
+    propertyType: TYPE_OVERRIDE[item.sys?.id] ?? epd.propertyType ?? null,
     address: item.displayAddress ?? '',
     imageUrl: item.featuredImage?.url ?? null,
     url: `https://www.evernest.com/de/listing/${item.sys?.id}/`,
