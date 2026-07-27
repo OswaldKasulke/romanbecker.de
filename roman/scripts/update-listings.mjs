@@ -164,18 +164,24 @@ async function fetchRomanListings() {
   return items.map(mapListing);
 }
 
+// Umland Nord: Orte zwischen Köln und Düsseldorf, die postalisch schon zu
+// 40xxx gehören, geografisch aber ins Kölner Umland passen.
+const EXTRA_PLZ = ['40764', '40789']; // Langenfeld (Rheinland), Monheim am Rhein
+
 // Returns true if a listing's address is in the Köln/Rheinland area (PLZ 50xxx–53xxx)
 function isKoelnArea(item) {
   const addr = item.displayAddress ?? '';
   const plzMatch = addr.match(/\b(\d{5})\b/);
   if (plzMatch) {
+    if (EXTRA_PLZ.includes(plzMatch[1])) return true;
     const prefix = parseInt(plzMatch[1].slice(0, 2), 10);
     return prefix >= 50 && prefix <= 53;
   }
   // Fallback: city name check
   const cities = ['Köln','Leverkusen','Frechen','Brühl','Pulheim','Kerpen',
     'Bergheim','Bedburg','Rommerskirchen','Bergisch Gladbach','Troisdorf',
-    'Siegburg','Bonn','Dormagen','Grevenbroich','Erftstadt','Hürth','Wesseling'];
+    'Siegburg','Bonn','Dormagen','Grevenbroich','Erftstadt','Hürth','Wesseling',
+    'Langenfeld','Monheim'];
   return cities.some(c => addr.includes(c));
 }
 
