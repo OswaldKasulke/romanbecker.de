@@ -588,7 +588,7 @@ Langfristig interessant ist die Perspektive des Strukturwandels: Wenn der Tageba
     var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
     function onScroll(){
       var pos = window.scrollY + 120, idx = 0;
-      for (var i=0;i<sections.length;i++){ if (sections[i] && sections[i].offsetTop <= pos) idx = i; }
+      for (var i=0; i < sections.length; i++){ if (sections[i] && sections[i].offsetTop <= pos) idx = i; }
       links.forEach(function(a,i){ a.classList.toggle('is-active', i===idx); });
     }
     window.addEventListener('scroll', onScroll, {passive:true});
