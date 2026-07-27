@@ -150,47 +150,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
-<style id="toc-style">
-/* Floating Sektions-Übersicht (nur Bedburg) */
-#aktuelle-angebote, #verkaufte-objekte, #immobilienpreise, #stadtprofil, #infrastruktur, #immobilientypen, #baugrundstueck, #faq, #kontakt { scroll-margin-top: 84px; }
-.page-toc { position: fixed; z-index: 90; }
-.page-toc__heading { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--gold); font-weight: 700; padding: 0 .75rem .5rem; margin: 0; }
-.page-toc__list { list-style: none; margin: 0; padding: 0; }
-.page-toc__list a { display: block; padding: .4rem .75rem; font-size: .875rem; color: var(--gray-600); text-decoration: none; border-left: 2px solid transparent; line-height: 1.3; transition: color .15s, border-color .15s; }
-.page-toc__list a:hover { color: var(--navy); }
-.page-toc__list a.is-active { color: var(--navy); border-left-color: var(--gold); font-weight: 600; }
-.page-toc__toggle { display: none; }
-/* Breiter Desktop: offenes Panel rechts, sticky, vertikal zentriert */
-@media (min-width: 1600px) {
-  .page-toc { top: 50%; right: 16px; transform: translateY(-50%); width: 180px; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 1rem .5rem; max-height: 82vh; overflow: auto; }
-}
-/* Schmaler/Mobil: einklappbarer Button unten rechts */
-@media (max-width: 1599px) {
-  .page-toc { right: max(var(--space-6), calc((100vw - var(--max-width)) / 2 + var(--space-6))); top: 200px; transform: translateY(-50%); }
-  .page-toc__heading { display: none; }
-  .page-toc__toggle { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; background: transparent; color: var(--white); border: 2px solid var(--white); border-radius: var(--radius); padding: 0.875rem 2rem; font-family: var(--font-base); font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all var(--transition); }
-  .page-toc__toggle:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
-  .page-toc__list { position: absolute; top: calc(100% + .5rem); right: 0; width: 230px; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: .5rem; max-height: 45vh; overflow: auto; display: none; }
-  .page-toc.is-open .page-toc__list { display: block; }
-}
-</style>
 </head>
 <body>
-  <nav class="page-toc" id="pageToc" aria-label="Seiteninhalt">
-    <button class="page-toc__toggle" type="button" aria-expanded="false" aria-controls="pageTocList"><span aria-hidden="true">☰</span> Inhalt</button>
-    <p class="page-toc__heading">Auf dieser Seite</p>
-    <ul class="page-toc__list" id="pageTocList">
-    <li><a href="#aktuelle-angebote">Aktuelle Angebote</a></li>
-    <li><a href="#verkaufte-objekte">Verkaufte Objekte</a></li>
-    <li><a href="#immobilienpreise">Immobilienpreise</a></li>
-    <li><a href="#stadtprofil">Stadtprofil</a></li>
-    <li><a href="#infrastruktur">Infrastruktur</a></li>
-    <li><a href="#immobilientypen">Immobilientypen</a></li>
-    <li><a href="#baugrundstueck">Baugrundstück</a></li>
-    <li><a href="#faq">Häufige Fragen</a></li>
-    <li><a href="#kontakt">Beratung</a></li>
-    </ul>
-  </nav>
 
   <header class="site-header">
     <div class="container">
@@ -575,27 +536,6 @@ Langfristig interessant ist die Perspektive des Strukturwandels: Wenn der Tageba
     </div>
   </footer>
   <script src="search.js" defer></script>
-  <script>
-  (function(){
-    var toc = document.getElementById('pageToc');
-    if(!toc) return;
-    var toggle = toc.querySelector('.page-toc__toggle');
-    var links = Array.prototype.slice.call(toc.querySelectorAll('.page-toc__list a'));
-    toggle.addEventListener('click', function(){
-      var open = toc.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    links.forEach(function(a){ a.addEventListener('click', function(){ toc.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); }); });
-    var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
-    function onScroll(){
-      var pos = window.scrollY + 120, idx = 0;
-      for (var i=0; i < sections.length; i++){ if (sections[i] && sections[i].offsetTop <= pos) idx = i; }
-      links.forEach(function(a,i){ a.classList.toggle('is-active', i===idx); });
-    }
-    window.addEventListener('scroll', onScroll, {passive:true});
-    window.addEventListener('resize', onScroll);
-    onScroll();
-  })();
-  </script>
+  <script src="page-toc.js" defer></script>
 </body>
 </html>

@@ -218,5 +218,6 @@
   document.querySelectorAll('.faq-question').forEach(function(btn){btn.addEventListener('click',function(){var exp=this.getAttribute('aria-expanded')==='true';document.querySelectorAll('.faq-question').forEach(function(b){b.setAttribute('aria-expanded','false');var id=b.getAttribute('data-target');if(id&&document.getElementById(id))document.getElementById(id).classList.remove('open');});if(!exp){this.setAttribute('aria-expanded','true');var t=this.getAttribute('data-target');if(t&&document.getElementById(t))document.getElementById(t).classList.add('open');}});});
   </script>
   <script src="stadtteile/search.js" defer></script>
+  <script src="stadtteile/page-toc.js" defer></script>
 </body>
 </html>
