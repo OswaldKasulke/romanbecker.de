@@ -503,6 +503,21 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .review-badge:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
 .review-badge__stars { color: #FBBC04; }
 
+/* Dezenter Google-Hinweis unter dem Abschluss-CTA – bewusst ohne Kasten,
+   damit er als Fußnote wirkt und nicht mit den Buttons konkurriert. */
+.review-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: var(--space-6);
+  font-size: 0.8125rem;
+  color: var(--gray-600);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.review-line:hover { color: var(--gray-800); text-decoration: underline; }
+.review-line__stars { color: #FBBC04; letter-spacing: 0.05em; }
+
 /* ---- Aktuelle Angebote (Stadtteil-Listings) ---- */
 .listings__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-6); margin-top: var(--space-8); }
 .listing-card { position: relative; display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition); text-decoration: none; color: inherit; }
