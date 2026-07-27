@@ -168,7 +168,8 @@
 @media (max-width: 1599px) {
   .page-toc { right: max(var(--space-6), calc((100vw - var(--max-width)) / 2 + var(--space-6))); top: 200px; transform: translateY(-50%); }
   .page-toc__heading { display: none; }
-  .page-toc__toggle { display: inline-flex; align-items: center; gap: .5rem; background: var(--gold); color: var(--navy); border: none; border-radius: 999px; padding: .7rem 1.1rem; font-size: .9rem; font-weight: 600; box-shadow: var(--shadow); cursor: pointer; }
+  .page-toc__toggle { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; background: transparent; color: var(--white); border: 2px solid var(--white); border-radius: var(--radius); padding: 0.875rem 2rem; font-family: var(--font-base); font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all var(--transition); }
+  .page-toc__toggle:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
   .page-toc__list { position: absolute; top: calc(100% + .5rem); right: 0; width: 230px; background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: .5rem; max-height: 45vh; overflow: auto; display: none; }
   .page-toc.is-open .page-toc__list { display: block; }
 }
