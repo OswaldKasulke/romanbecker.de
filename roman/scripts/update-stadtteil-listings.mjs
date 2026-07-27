@@ -169,14 +169,15 @@ function buildCard(l) {
 }
 
 function buildSection(display, listings) {
-  // Active first, then reserved, then sold (references);
-  // innerhalb jeder Gruppe von teuer nach günstig, Objekte ohne Preis ans Ende.
-  const order = (l) => (l.sold ? 2 : l.reserved ? 1 : 0);
-  const priceOf = (l) => (l.hidePrice || l.price == null ? -1 : Number(l.price));
+  // Galerie strikt nach Preis absteigend (unabhängig vom Status).
+  // Objekte ohne Preis ans Ende, verkaufte Referenzen ganz zum Schluss.
+  const priceOf = (l) => (l.hidePrice || l.price == null ? null : Number(l.price));
   const sorted = [...listings].sort((a, b) => {
-    const d = order(a) - order(b);
-    if (d !== 0) return d;
-    return priceOf(b) - priceOf(a);
+    const pa = priceOf(a), pb = priceOf(b);
+    if (pa != null && pb != null) return pb - pa;
+    if (pa != null) return -1;
+    if (pb != null) return 1;
+    return (a.sold ? 1 : 0) - (b.sold ? 1 : 0);
   });
   const cards = sorted.map(buildCard).join('\n');
   const count = listings.length;
