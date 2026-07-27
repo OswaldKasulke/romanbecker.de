@@ -4,13 +4,44 @@
  * Baut auf jeder Seite automatisch ein Inhaltsverzeichnis aus deren eigenen
  * <section>-Blöcken. Kein seitenspezifisches Markup nötig: Label kommt aus
  * .section-label (kurz) bzw. ersatzweise aus der h2. Fehlende IDs werden
- * ergänzt. Styles stehen in shared.css (.page-toc*).
+ * ergänzt. Die Styles bringt das Skript selbst mit (siehe CSS-Konstante),
+ * damit es auch auf Seiten ohne shared.css funktioniert.
  */
 (function () {
   'use strict';
 
   var MIN_ENTRIES = 3;
   var MAX_LABEL = 28;
+
+  /* Styles bringt das Skript selbst mit, damit es auch auf Seiten ohne
+     shared.css funktioniert. Fallback-Werte fangen fehlende Variablen ab. */
+  var CSS = '' +
+    '.toc-target{scroll-margin-top:84px}' +
+    '.page-toc{position:fixed;z-index:90;top:200px;' +
+      'right:max(var(--space-6,1.5rem),calc((100vw - var(--max-width,1200px))/2 + var(--space-6,1.5rem)));' +
+      'transform:translateY(-50%)}' +
+    '.page-toc__heading{display:none}' +
+    '.page-toc__toggle{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;' +
+      'background:#000;color:#fff;border:2px solid #fff;border-radius:var(--radius,8px);' +
+      'padding:.875rem 2rem;font-family:var(--font-base,inherit);font-size:.9375rem;font-weight:600;' +
+      'cursor:pointer;box-shadow:var(--shadow,0 4px 12px rgba(0,0,0,.1));transition:all .2s}' +
+    '.page-toc__toggle:hover{background:#1a1a1a;transform:translateY(-1px)}' +
+    '.page-toc__list{position:absolute;top:calc(100% + .5rem);right:0;width:230px;list-style:none;' +
+      'margin:0;padding:.5rem;background:#fff;border-radius:var(--radius-lg,16px);' +
+      'box-shadow:var(--shadow,0 4px 12px rgba(0,0,0,.1));max-height:45vh;overflow:auto;display:none}' +
+    '.page-toc.is-open .page-toc__list{display:block}' +
+    '.page-toc__list a{display:block;padding:.4rem .75rem;font-size:.875rem;color:var(--gray-600,#636363);' +
+      'text-decoration:none;border-left:2px solid transparent;line-height:1.3;transition:color .15s,border-color .15s}' +
+    '.page-toc__list a:hover{color:var(--navy,#111)}' +
+    '.page-toc__list a.is-active{color:var(--navy,#111);border-left-color:var(--gold,#c2a990);font-weight:600}';
+
+  function injectStyles() {
+    if (document.getElementById('page-toc-css')) return;
+    var st = document.createElement('style');
+    st.id = 'page-toc-css';
+    st.textContent = CSS;
+    document.head.appendChild(st);
+  }
 
   function slugify(s) {
     return String(s).toLowerCase()
@@ -143,6 +174,7 @@
     if (document.getElementById('pageToc')) return;
     var items = collect();
     if (items.length < MIN_ENTRIES) return;
+    injectStyles();
     build(items);
   }
 
