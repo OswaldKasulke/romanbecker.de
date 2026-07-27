@@ -28,6 +28,28 @@
     return (sp > 12 ? cut.slice(0, sp) : cut) + '…';
   }
 
+  // Unterblöcke, die inhaltlich eigene Abschnitte sind, aber in einer
+  // gemeinsamen <section> stecken (z. B. Themengruppen der Ratgeber-Übersicht).
+  var SUBBLOCKS = '.category-section';
+
+  function add(out, used, el, index) {
+    var label = el.querySelector('.section-label');
+    var h2 = el.querySelector('h2');
+    var raw = label ? label.textContent : (h2 ? h2.textContent : '');
+    if (!raw || !raw.trim()) return;
+
+    var id = el.id;
+    if (!id) {
+      id = slugify(raw) || ('abschnitt-' + index);
+      if (used[id] || document.getElementById(id)) id = id + '-' + index;
+      el.id = id;
+    }
+    if (used[id]) return;
+    used[id] = true;
+    el.classList.add('toc-target');
+    out.push({ id: id, label: shorten(raw), el: el });
+  }
+
   function collect() {
     var out = [], used = {};
     var sections = document.querySelectorAll('section');
@@ -39,21 +61,13 @@
       // verschachtelte Sections überspringen
       if (sec.parentElement && sec.parentElement.closest('section')) continue;
 
-      var label = sec.querySelector('.section-label');
-      var h2 = sec.querySelector('h2');
-      var raw = label ? label.textContent : (h2 ? h2.textContent : '');
-      if (!raw || !raw.trim()) continue;
-
-      var text = shorten(raw);
-      var id = sec.id;
-      if (!id) {
-        id = slugify(raw) || ('abschnitt-' + i);
-        if (used[id] || document.getElementById(id)) id = id + '-' + i;
-        sec.id = id;
+      // Enthält die Section eigenständige Unterblöcke? Dann diese listen.
+      var subs = sec.querySelectorAll(SUBBLOCKS);
+      if (subs.length) {
+        for (var j = 0; j < subs.length; j++) add(out, used, subs[j], i + '-' + j);
+        continue;
       }
-      used[id] = true;
-      sec.classList.add('toc-target');
-      out.push({ id: id, label: text, el: sec });
+      add(out, used, sec, i);
     }
     return out;
   }
