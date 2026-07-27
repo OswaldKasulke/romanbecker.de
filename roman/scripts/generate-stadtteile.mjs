@@ -313,7 +313,7 @@ ${faqLD}
   <section class="hero">
     <div class="container">
       <div class="hero__badge">\u2713 IHK-zertifiziert \u00b7 EVERNEST-Netzwerk \u00b7 ${fn}</div>
-      <h1>Immobilienmakler in ${fn} \u2013 Roman Becker</h1>
+      <h1>Immobilienmakler in ${fn}</h1>
       <p class="hero__subtitle">${d.intro}</p>
       <div class="hero__buttons">
         <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary" title="${ctaTopTitle}">${ctaTopBtn}</a>
