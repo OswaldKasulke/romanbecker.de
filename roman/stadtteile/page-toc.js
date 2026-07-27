@@ -33,7 +33,15 @@
     '.page-toc__list a{display:block;padding:.4rem .75rem;font-size:.875rem;color:var(--gray-600,#636363);' +
       'text-decoration:none;border-left:2px solid transparent;line-height:1.3;transition:color .15s,border-color .15s}' +
     '.page-toc__list a:hover{color:var(--navy,#111)}' +
-    '.page-toc__list a.is-active{color:var(--navy,#111);border-left-color:var(--gold,#c2a990);font-weight:600}';
+    '.page-toc__list a.is-active{color:var(--navy,#111);border-left-color:var(--gold,#c2a990);font-weight:600}' +
+    /* Platz freihalten, damit keine Ueberschrift unter den Button laeuft */
+    'body.page-toc-on .hero h1,body.page-toc-on .article-hero h1{padding-right:150px}' +
+    /* Auf schmalen Screens nur das Symbol -> weniger Platzbedarf */
+    '@media(max-width:640px){' +
+      '.page-toc__toggle{padding:.75rem}' +
+      '.page-toc__label{display:none}' +
+      'body.page-toc-on .hero h1,body.page-toc-on .article-hero h1{padding-right:64px}' +
+    '}';
 
   function injectStyles() {
     if (document.getElementById('page-toc-css')) return;
@@ -114,7 +122,7 @@
     btn.type = 'button';
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-controls', 'pageTocList');
-    btn.innerHTML = '<span aria-hidden="true">☰</span> Inhalt';
+    btn.innerHTML = '<span aria-hidden="true">☰</span><span class="page-toc__label">Inhalt</span>';
 
     var head = document.createElement('p');
     head.className = 'page-toc__heading';
@@ -137,6 +145,7 @@
     nav.appendChild(head);
     nav.appendChild(ul);
     document.body.appendChild(nav);
+    document.body.classList.add('page-toc-on');
 
     btn.addEventListener('click', function () {
       var open = nav.classList.toggle('is-open');
