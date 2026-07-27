@@ -21,7 +21,7 @@ const EN_INDEX_PATH   = join(__dirname, '..', 'en', 'index.html');
 const BAUTRAEGER_PATH = join(__dirname, '..', 'bautraeger.html');
 
 const ROMAN_PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
-const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.938361&lng=6.959974&zoom=11';
+const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.942688&lng=7.031386&zoom=10';
 const KOELN_SEARCH_URL  = 'https://www.evernest.com/api/properties/';
 // Bounding box for zoom=11 centred on Köln (50.938361, 6.959974)
 const KOELN_BOUNDS = {

@@ -25,7 +25,7 @@ const __dirname = dirname(__filename);
 const STADTTEILE_DIR = join(__dirname, '..', 'stadtteile');
 
 const SEARCH_URL = 'https://www.evernest.com/api/properties/';
-const OFFICE_URL = 'https://www.evernest.com/de/search/?lat=50.938361&lng=6.959974&zoom=11';
+const OFFICE_URL = 'https://www.evernest.com/de/search/?lat=50.942688&lng=7.031386&zoom=10';
 const KOELN_BOUNDS = {
   nw: { lat: 51.20, lng: 6.50 },
   ne: { lat: 51.20, lng: 7.42 },
@@ -166,9 +166,15 @@ function buildCard(l) {
 }
 
 function buildSection(display, listings) {
-  // Active first, then reserved, then sold (references)
+  // Active first, then reserved, then sold (references);
+  // innerhalb jeder Gruppe von teuer nach günstig, Objekte ohne Preis ans Ende.
   const order = (l) => (l.sold ? 2 : l.reserved ? 1 : 0);
-  const sorted = [...listings].sort((a, b) => order(a) - order(b));
+  const priceOf = (l) => (l.hidePrice || l.price == null ? -1 : Number(l.price));
+  const sorted = [...listings].sort((a, b) => {
+    const d = order(a) - order(b);
+    if (d !== 0) return d;
+    return priceOf(b) - priceOf(a);
+  });
   const cards = sorted.map(buildCard).join('\n');
   const count = listings.length;
   const noun = count === 1 ? 'Objekt' : 'Objekte';
