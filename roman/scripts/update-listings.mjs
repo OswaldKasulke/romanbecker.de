@@ -21,14 +21,17 @@ const EN_INDEX_PATH   = join(__dirname, '..', 'en', 'index.html');
 const BAUTRAEGER_PATH = join(__dirname, '..', 'bautraeger.html');
 
 const ROMAN_PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
-const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.942688&lng=7.031386&zoom=10';
+const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.922439&lng=7.003492&zoom=10';
 const KOELN_SEARCH_URL  = 'https://www.evernest.com/api/properties/';
 // Bounding box for zoom=11 centred on Köln (50.938361, 6.959974)
+// Kartenausschnitt identisch zu OFFICE_URL / KOELN_SEARCH_LINK
+// (lat 50.922439, lng 7.003492, zoom 10) — so speist sich die Galerie aus
+// demselben Ausschnitt, den der "Alle Objekte"-Button oeffnet.
 const KOELN_BOUNDS = {
-  nw: { lat: 51.20, lng: 6.50 },
-  ne: { lat: 51.20, lng: 7.42 },
-  sw: { lat: 50.68, lng: 6.50 },
-  se: { lat: 50.68, lng: 7.42 },
+  nw: { lat: 51.4424, lng: 6.0835 },
+  ne: { lat: 51.4424, lng: 7.9235 },
+  sw: { lat: 50.4024, lng: 6.0835 },
+  se: { lat: 50.4024, lng: 7.9235 },
 };
 const KOELN_MAX_LISTINGS = 100;
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
@@ -178,7 +181,8 @@ function isKoelnArea(item) {
 
 async function fetchKoelnListings() {
   // Use the search API with the Köln bounding box.
-  // The API ignores the bounds, so we filter client-side by PLZ (50xxx–53xxx).
+  // Die API wertet die Bounds aus; zusaetzlich filtern wir per PLZ (50xxx–53xxx),
+  // damit die Galerie trotz weitem Kartenausschnitt auf Koeln/Rheinland begrenzt bleibt.
   console.log('Fetching EVERNEST listings via API…');
   const body = JSON.stringify({ bounds: KOELN_BOUNDS, preview: false });
   const res = await fetch(KOELN_SEARCH_URL, {

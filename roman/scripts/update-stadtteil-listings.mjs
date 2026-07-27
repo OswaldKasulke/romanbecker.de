@@ -25,12 +25,15 @@ const __dirname = dirname(__filename);
 const STADTTEILE_DIR = join(__dirname, '..', 'stadtteile');
 
 const SEARCH_URL = 'https://www.evernest.com/api/properties/';
-const OFFICE_URL = 'https://www.evernest.com/de/search/?lat=50.942688&lng=7.031386&zoom=10';
+const OFFICE_URL = 'https://www.evernest.com/de/search/?lat=50.922439&lng=7.003492&zoom=10';
+// Kartenausschnitt identisch zu OFFICE_URL / KOELN_SEARCH_LINK
+// (lat 50.922439, lng 7.003492, zoom 10) — so speist sich die Galerie aus
+// demselben Ausschnitt, den der "Alle Objekte"-Button oeffnet.
 const KOELN_BOUNDS = {
-  nw: { lat: 51.20, lng: 6.50 },
-  ne: { lat: 51.20, lng: 7.42 },
-  sw: { lat: 50.68, lng: 6.50 },
-  se: { lat: 50.68, lng: 7.42 },
+  nw: { lat: 51.4424, lng: 6.0835 },
+  ne: { lat: 51.4424, lng: 7.9235 },
+  sw: { lat: 50.4024, lng: 6.0835 },
+  se: { lat: 50.4024, lng: 7.9235 },
 };
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 const IMG_PARAMS = '?w=800&h=534&fit=fill&fm=jpg&q=80';
