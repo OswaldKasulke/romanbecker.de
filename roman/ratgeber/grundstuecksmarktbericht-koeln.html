@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Grundstücksmarktbericht Köln 2026: Zahlen des Gutachterausschusses | Makler Köln</title>
+  <meta name="description" content="Grundstücksmarktbericht Köln 2026 des Gutachterausschusses: 7.831 Kaufverträge, 5,68 Mrd. Euro Geldumsatz (+21 %), Zahlen nach Stadtbezirk. Kostenlos, amtlich, erklärt.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Grundstücksmarktbericht Köln 2026: die amtlichen Zahlen des Gutachterausschusses | Makler Köln – Roman Becker">
+  <meta property="og:description" content="7.831 Kaufverträge, 5,68 Mrd. Euro Geldumsatz (+21 %): Was im Grundstücksmarktbericht Köln steht, wie Sie ihn kostenlos bekommen und was Bodenrichtwert, Immobilienrichtwert und Verkehrswert unterscheidet. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Grundstücksmarktbericht Köln: Die amtlichen Zahlen des Gutachterausschusses",
+    "description": "Der Grundstücksmarktbericht des Gutachterausschusses für Grundstückswerte in der Stadt Köln ist die einzige amtliche Auswertung aller notariellen Kaufverträge. Zahlen, Teilmärkte, Bodenrichtwerte und Immobilienrichtwerte im Überblick.",
+    "url": "https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    },
+    "dateModified": "2026-07-28",
+    "citation": [
+      {
+        "@type": "CreativeWork",
+        "name": "Grundstücksmarktbericht 2026 für die Stadt Köln",
+        "url": "https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB2026_Digitalversion.pdf"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Grundstücksmarktbericht 2025 für die Stadt Köln",
+        "url": "https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB_114_2025_pflichtig.pdf"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table tr.total td { font-weight: 700; color: var(--navy); background: #f0f4ff; border-top: 2px solid var(--navy); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+    .table-source { font-size: 0.85rem; color: var(--gray-600); margin-top: -0.75rem; margin-bottom: 1.75rem; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist der Grundstücksmarktbericht Köln?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Grundstücksmarktbericht ist die jährliche amtliche Auswertung des Kölner Immobilienmarkts. Herausgeber ist der Gutachterausschuss für Grundstückswerte in der Stadt Köln. Grundlage ist die Kaufpreissammlung: Jeder Notar muss jeden Immobilienkaufvertrag dorthin melden. Der Bericht wertet damit tatsächlich beurkundete Kaufpreise aus – keine Angebotspreise aus Immobilienportalen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet der Grundstücksmarktbericht Köln?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Download über BORIS.NRW ist gebührenfrei. Nur wenn die Geschäftsstelle des Gutachterausschusses das Dokument bereitstellt oder ein gedrucktes Exemplar liefert, fallen 50 Euro je Exemplar an. Die Daten stehen unter der Datenlizenz Deutschland Zero 2.0 und dürfen ohne Einschränkungen genutzt werden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Immobilien wurden 2025 in Köln verkauft?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Im Berichtsjahr 2025 wurden in Köln 7.831 Kaufverträge erfasst – 8 Prozent mehr als 2024. Der Geldumsatz stieg um 21 Prozent auf rund 5,68 Milliarden Euro. Damit liegt der Markt weiter unter dem Niveau von 2021 (8.146 Kaufverträge, 6,70 Milliarden Euro), hat sich vom Tiefpunkt 2023 (5.918 Kaufverträge) aber deutlich erholt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen Bodenrichtwert und Immobilienrichtwert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Bodenrichtwert beziffert den Wert des unbebauten Grund und Bodens in Euro pro Quadratmeter Grundstücksfläche. Der Immobilienrichtwert beziffert dagegen den Wert einer bebauten Immobilie – eines normierten Objekts – in Euro pro Quadratmeter Wohnfläche. Der Gutachterausschuss Köln beschließt Immobilienrichtwerte für Eigentumswohnungen seit 2022 und für Ein- und Zweifamilienhäuser seit dem Bericht 2025. Beide werden in BORIS.NRW veröffentlicht."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ersetzt der Grundstücksmarktbericht eine Immobilienbewertung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Der Bericht liefert Durchschnittswerte und Preisspannen für ganze Teilmärkte und Stadtteile. Er sagt nichts über Ihre konkrete Immobilie aus – Lage im Stadtteil, Baujahr, Zustand, Grundriss, Energieeffizienz, Vermietungssituation und Ausstattung führen zu erheblichen Abweichungen. Der Gutachterausschuss selbst weist ausdrücklich darauf hin, dass die Kenndaten der Markttransparenz dienen und keine sachverständige Wertermittlung im Einzelfall ersetzen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie oft erscheint der Grundstücksmarktbericht Köln?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jährlich. Der Bericht wird üblicherweise Ende März veröffentlicht und wertet das jeweils vorangegangene Kalenderjahr aus. Der Grundstücksmarktbericht 2025 erschien am 31. März 2025 und deckt den Zeitraum 1. Januar bis 31. Dezember 2024 ab; der Grundstücksmarktbericht 2026 wertet entsprechend das Jahr 2025 aus."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wo bekomme ich den Grundstücksmarktbericht Köln?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Als PDF-Download über BORIS.NRW beziehungsweise das Portal der Gutachterausschüsse GARS.NRW. Persönlich erreichbar ist die Geschäftsstelle des Gutachterausschusses am Willy-Brandt-Platz 2 in 50679 Köln, telefonisch montags bis freitags von 8 bis 12 Uhr unter 0221 221-23017 oder per E-Mail an gutachterausschuss@stadt-koeln.de."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Grundstücksmarktbericht Köln
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Grundstücksmarktbericht Köln: die amtlichen Zahlen des Gutachterausschusses</h1>
+      <p>Einmal im Jahr wertet der Gutachterausschuss jeden einzelnen notariellen Kaufvertrag in Köln aus. Das Ergebnis ist die belastbarste Datenquelle zum Kölner Immobilienmarkt – und sie ist kostenlos. Was drinsteht und wie Sie sie lesen.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Wer wissen will, was Immobilien in Köln <em>wirklich</em> kosten, findet die Antwort nicht auf Immobilienportalen. Dort stehen Angebotspreise – also das, was Verkäufer sich wünschen. Was am Ende beim Notar beurkundet wird, ist etwas anderes. Genau diese Lücke schließt der <strong>Grundstücksmarktbericht</strong>: die jährliche amtliche Auswertung aller Kaufverträge im Kölner Stadtgebiet, herausgegeben vom <strong>Gutachterausschuss für Grundstückswerte in der Stadt Köln</strong>.</p>
+
+<div class="factbox">
+  <p><strong>Auf einen Blick</strong></p>
+  <p>• <strong>Herausgeber:</strong> Gutachterausschuss für Grundstückswerte in der Stadt Köln</p>
+  <p>• <strong>Datenbasis:</strong> Kaufpreissammlung – jeder notariell beurkundete Kaufvertrag</p>
+  <p>• <strong>Erscheint:</strong> jährlich, üblicherweise Ende März für das Vorjahr</p>
+  <p>• <strong>Umfang:</strong> rund 170 Seiten mit Tabellen, Boxplots und Karten</p>
+  <p>• <strong>Preis:</strong> kostenlos als Download über BORIS.NRW · 50 € je gedrucktes Exemplar</p>
+  <p>• <strong>Lizenz:</strong> Datenlizenz Deutschland Zero 2.0 – Nutzung ohne Einschränkungen</p>
+  <p>• <strong>ISSN:</strong> 1867-5050</p>
+</div>
+
+<h2>Wer ist der Gutachterausschuss?</h2>
+<p>Der Gutachterausschuss ist ein <strong>unabhängiges Gremium</strong> aus ehrenamtlichen Sachverständigen, das bei der Stadt Köln angesiedelt, aber nicht weisungsgebunden ist. Seine gesetzliche Grundlage steht im Baugesetzbuch (§§ 192 ff. BauGB). Drei Aufgaben sind für Eigentümer relevant:</p>
+<ul>
+  <li><strong>Führung der Kaufpreissammlung.</strong> Notare sind verpflichtet, jeden Immobilienkaufvertrag an den Gutachterausschuss zu übermitteln. Daraus entsteht ein lückenloses Bild aller tatsächlichen Transaktionen.</li>
+  <li><strong>Beschluss der Bodenrichtwerte und Immobilienrichtwerte.</strong> Diese werden über das Landesportal <strong>BORIS.NRW</strong> veröffentlicht.</li>
+  <li><strong>Erstattung von Verkehrswertgutachten</strong> im Einzelfall – etwa bei Erbauseinandersetzungen, Scheidungen oder Zwangsversteigerungen.</li>
+</ul>
+<p>Der Unterschied zu jeder anderen Marktstatistik: Hier werden keine Inserate hochgerechnet, sondern <strong>beurkundete Kaufpreise</strong> ausgewertet.</p>
+
+<h2>Die Kölner Zahlen: Berichtsjahr 2025</h2>
+<p>Der Grundstücksmarktbericht 2026 beschreibt für Köln „eine anhaltende Stabilisierung und Erholung in einigen Teilmärkten". In Zahlen: <strong>7.831 Kaufverträge</strong> (+ 8 %) und ein <strong>Geldumsatz von rund 5,68 Milliarden Euro</strong> (+ 21 %). Der Umsatz wächst also deutlich schneller als die Zahl der Verträge – ein Hinweis darauf, dass wieder mehr im höheren Preissegment gehandelt wird.</p>
+
+<h3>Fünf Jahre Kölner Grundstücksmarkt</h3>
+<table class="cost-table">
+  <thead>
+    <tr>
+      <th>Jahr</th>
+      <th class="num">Kaufverträge</th>
+      <th class="num">Geldumsatz</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>2021</td><td class="num">8.146</td><td class="num">6,70 Mrd. €</td></tr>
+    <tr><td>2022</td><td class="num">6.890</td><td class="num">4,35 Mrd. €</td></tr>
+    <tr><td>2023</td><td class="num">5.918</td><td class="num">3,56 Mrd. €</td></tr>
+    <tr><td>2024</td><td class="num">7.226</td><td class="num">4,68 Mrd. €</td></tr>
+    <tr class="total"><td>2025</td><td class="num">7.831</td><td class="num">5,68 Mrd. €</td></tr>
+  </tbody>
+</table>
+<p class="table-source">Quelle: Grundstücksmarktbericht 2026 für die Stadt Köln, Kapitel 3.1</p>
+
+<p>Die Kurve zeigt das ganze Zinsdrama: 2023 der Einbruch auf 5.918 Verträge – laut Gutachterausschuss einer der niedrigsten Werte seit Jahrzehnten. Seitdem geht es wieder aufwärts, aber das Niveau von 2021 ist noch nicht erreicht.</p>
+
+<h3>Die vier Teilmärkte 2025</h3>
+<table class="cost-table">
+  <thead>
+    <tr>
+      <th>Teilmarkt</th>
+      <th class="num">Anzahl</th>
+      <th class="num">Geldumsatz</th>
+      <th class="num">Umsatz ggü. 2024</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Unbebaute Grundstücke</td><td class="num">265</td><td class="num">364,9 Mio. €</td><td class="num">+ 29 %</td></tr>
+    <tr><td>Bebaute Grundstücke</td><td class="num">2.215</td><td class="num">3.446,9 Mio. €</td><td class="num">+ 24 %</td></tr>
+    <tr><td>Wohnungs- &amp; Teileigentum</td><td class="num">5.132</td><td class="num">1.811,4 Mio. €</td><td class="num">+ 17 %</td></tr>
+    <tr><td>Erbbaurechte &amp; Erbbaugrundstücke</td><td class="num">219</td><td class="num">59,3 Mio. €</td><td class="num">− 23 %</td></tr>
+    <tr class="total"><td>Gesamt</td><td class="num">7.831</td><td class="num">5.682,4 Mio. €</td><td class="num">+ 21 %</td></tr>
+  </tbody>
+</table>
+<p class="table-source">Quelle: Grundstücksmarktbericht 2026 für die Stadt Köln, Kapitel 3.1</p>
+
+<p>Der mit Abstand größte Teilmarkt nach Stückzahl ist das <strong>Wohnungseigentum</strong>: Zwei von drei Kaufverträgen in Köln betreffen eine Eigentumswohnung. Nach Geldumsatz dominieren dagegen die bebauten Grundstücke mit gut 60 Prozent.</p>
+
+<h3>Köln nach Stadtbezirken</h3>
+<table class="cost-table">
+  <thead>
+    <tr>
+      <th>Stadtbezirk</th>
+      <th class="num">Kaufverträge</th>
+      <th class="num">Geldumsatz</th>
+      <th class="num">Anteil Umsatz</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1 – Innenstadt</td><td class="num">1.143</td><td class="num">1.478,7 Mio. €</td><td class="num">26 %</td></tr>
+    <tr><td>2 – Rodenkirchen</td><td class="num">972</td><td class="num">751,9 Mio. €</td><td class="num">13 %</td></tr>
+    <tr><td>3 – Lindenthal</td><td class="num">1.312</td><td class="num">874,1 Mio. €</td><td class="num">15 %</td></tr>
+    <tr><td>4 – Ehrenfeld</td><td class="num">742</td><td class="num">474,2 Mio. €</td><td class="num">8 %</td></tr>
+    <tr><td>5 – Nippes</td><td class="num">830</td><td class="num">644,0 Mio. €</td><td class="num">11 %</td></tr>
+    <tr><td>6 – Chorweiler</td><td class="num">467</td><td class="num">277,4 Mio. €</td><td class="num">5 %</td></tr>
+    <tr><td>7 – Porz</td><td class="num">872</td><td class="num">381,6 Mio. €</td><td class="num">7 %</td></tr>
+    <tr><td>8 – Kalk</td><td class="num">659</td><td class="num">322,7 Mio. €</td><td class="num">6 %</td></tr>
+    <tr><td>9 – Mülheim</td><td class="num">834</td><td class="num">477,8 Mio. €</td><td class="num">9 %</td></tr>
+    <tr class="total"><td>Gesamt</td><td class="num">7.831</td><td class="num">5.682,4 Mio. €</td><td class="num">100 %</td></tr>
+  </tbody>
+</table>
+<p class="table-source">Quelle: Grundstücksmarktbericht 2026 für die Stadt Köln, Kapitel 3.1</p>
+
+<p>Zwei Zahlen lohnen den zweiten Blick. <strong>Lindenthal</strong> verzeichnet die meisten Kaufverträge (1.312), aber weniger Umsatz als die <strong>Innenstadt</strong> mit 1.143 Verträgen – dort werden pro Vertrag also deutlich größere Summen bewegt. Und <strong>Porz</strong> liegt bei der Vertragszahl vor Nippes, beim Umsatz aber klar dahinter: viele Transaktionen, niedrigeres Preisniveau.</p>
+
+<h2>Preisentwicklung: was sich 2025 bewegt hat</h2>
+<p>Der Gutachterausschuss weist die Preisentwicklung über <strong>Indizes</strong> und <strong>Richtwerte</strong> aus, nicht über simple Durchschnitte. Für das Berichtsjahr 2025 gilt:</p>
+<ul>
+  <li><strong>Immobilienrichtwerte Eigentumswohnungen:</strong> + 3 %</li>
+  <li><strong>Immobilienrichtwerte Ein- und Zweifamilienhäuser, linksrheinisch (inkl. Deutz):</strong> + 3 %</li>
+  <li><strong>Immobilienrichtwerte Ein- und Zweifamilienhäuser, rechtsrheinisch (ohne Deutz):</strong> knapp + 6 %</li>
+  <li><strong>Neubauwohnungen:</strong> rund 450 Kaufverträge, + 22 % gegenüber 2024</li>
+  <li><strong>Bodenpreisindex individueller Wohnungsbau:</strong> linksrheinisch + 3 %, rechtsrheinisch − 5 %</li>
+  <li><strong>Bodenpreisindex Geschosswohnungsbau:</strong> ± 0 %</li>
+  <li><strong>Bodenrichtwerte Gewerbegrundstücke:</strong> überwiegend unverändert</li>
+</ul>
+<p>Der Bericht ergänzt diese Zahlen mit einer wichtigen Einschränkung: Die Entwicklung innerhalb des Stadtgebiets war <strong>heterogen</strong> – in einzelnen Teilbereichen sind die Kaufpreise auch gesunken. Ein stadtweites Plus von 3 Prozent bedeutet also nicht, dass Ihre Immobilie 3 Prozent mehr wert ist.</p>
+
+<div class="doc-note">
+  <p><strong>Bemerkenswert:</strong> Beim Bauland für Ein- und Zweifamilienhäuser laufen die Rheinseiten auseinander – linksrheinisch + 3 %, rechtsrheinisch − 5 %. Gleichzeitig steigen die Immobilienrichtwerte für <em>bebaute</em> Ein- und Zweifamilienhäuser rechtsrheinisch mit knapp + 6 % am stärksten. Übersetzt: Das fertige Haus ist gefragt, das unbebaute Grundstück wegen der hohen Baukosten deutlich weniger.</p>
+</div>
+
+<h2>Der Vorjahresbericht zum Vergleich (Berichtsjahr 2024)</h2>
+<p>Der <strong>Grundstücksmarktbericht 2025</strong> (Berichtszeitraum 1.1.–31.12.2024, erschienen am 31. März 2025) enthält Durchschnittspreise, die als Orientierung weiterhin nützlich sind:</p>
+<ul>
+  <li><strong>Bestandswohnung im Weiterverkauf:</strong> Ø 4.127 €/m² (− 1,4 %)</li>
+  <li><strong>Neubauwohnung:</strong> Ø 7.026 €/m² (− 0,6 %)</li>
+  <li><strong>Mehrfamilienhäuser:</strong> Rohertragsvervielfältiger von 22 auf 21 gesunken</li>
+  <li><strong>Bodenpreisindex individueller Wohnungsbau:</strong> linksrheinisch − 10 %, rechtsrheinisch − 4 %</li>
+  <li><strong>Bodenpreisindex Geschosswohnungsbau:</strong> − 5 %</li>
+</ul>
+<p>Der Vergleich beider Berichte zeigt den Wendepunkt sehr deutlich: 2024 fielen die Bodenpreise noch zweistellig, 2025 stagnieren sie oder steigen leicht. Der Rohertragsvervielfältiger von 21 heißt übrigens: Käufer von Mehrfamilienhäusern zahlten 2024 im Schnitt das 21-fache der Jahresnettomiete – das entspricht rund 4,8 Prozent Bruttorendite.</p>
+
+<h2>Bodenrichtwert, Immobilienrichtwert, Verkehrswert – der Unterschied</h2>
+<p>Diese drei Begriffe werden ständig verwechselt. Sie bezeichnen völlig Verschiedenes:</p>
+<table class="cost-table">
+  <thead>
+    <tr>
+      <th>Begriff</th>
+      <th>Bezieht sich auf</th>
+      <th>Einheit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Bodenrichtwert</strong></td><td>unbebauter Grund und Boden einer Zone</td><td>€/m² Grundstücksfläche</td></tr>
+    <tr><td><strong>Immobilienrichtwert</strong></td><td>normiertes bebautes Objekt einer Lage</td><td>€/m² Wohnfläche</td></tr>
+    <tr><td><strong>Verkehrswert</strong></td><td>Ihre konkrete Immobilie (§ 194 BauGB)</td><td>Euro gesamt</td></tr>
+  </tbody>
+</table>
+
+<p>Bodenrichtwerte und Immobilienrichtwerte sind <strong>Durchschnittswerte für ein Gebiet</strong>. Der Verkehrswert ist der Wert <strong>Ihres</strong> Objekts – mit seinem Baujahr, Zuschnitt, Zustand, Energieausweis und seiner Vermietungssituation. Mehr dazu im Ratgeber <a href="https://romanbecker.de/bodenrichtwert-koeln.html">Bodenrichtwert Köln</a>.</p>
+
+<h2>Was der Grundstücksmarktbericht nicht leistet</h2>
+<p>Der Bericht ist die beste öffentliche Datenquelle, die es zum Kölner Markt gibt. Er hat aber klare Grenzen – und der Gutachterausschuss benennt sie selbst:</p>
+<ul>
+  <li><strong>Er ersetzt keine Wertermittlung.</strong> Im Bericht heißt es wörtlich, die dargestellten Kenndaten dienten der Markttransparenz und ersetzten „keine sachverständige Wertermittlung im Einzelfall".</li>
+  <li><strong>Er ist rückwärtsgerichtet.</strong> Ein im Frühjahr erschienener Bericht wertet das abgeschlossene Vorjahr aus. Zinsänderungen oder Marktstimmungen der letzten Monate stehen nicht drin.</li>
+  <li><strong>Kleine Stichproben.</strong> Auswertungen werden erst ab drei auswertbaren Kaufverträgen je Stadtteil veröffentlicht, Boxplots ab fünf. In kleinen Stadtteilen sind Durchschnitte entsprechend wackelig.</li>
+  <li><strong>Durchschnitte verdecken Spannen.</strong> Ein Mittelwert von 4.127 €/m² kann eine Spanne von 2.500 bis 9.000 €/m² zusammenfassen.</li>
+  <li><strong>Bereinigte Preise.</strong> Garagen, Stellplätze, mitverkauftes Inventar und wertrelevante Rechte werden herausgerechnet. Der ausgewiesene Preis ist nicht zwingend der Betrag auf der Notarurkunde.</li>
+</ul>
+
+<h2>So kommen Sie an den Bericht</h2>
+<div class="factbox">
+  <p><strong>Kostenloser Download</strong></p>
+  <p>• <a href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB2026_Digitalversion.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 für die Stadt Köln (PDF)</a> – Berichtsjahr 2025</p>
+  <p>• <a href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB_114_2025_pflichtig.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2025 für die Stadt Köln (PDF)</a> – Berichtsjahr 2024</p>
+  <p>• <a href="https://www.gars.nrw/koeln/produkte-koeln/grundstuecksmarktbericht-koeln" target="_blank" rel="noopener">Übersicht aller Jahrgänge bei GARS.NRW</a></p>
+  <p>• <a href="https://www.boris.nrw" target="_blank" rel="noopener">BORIS.NRW</a> – Bodenrichtwerte und Immobilienrichtwerte auf der Karte</p>
+</div>
+
+<div class="factbox">
+  <p><strong>Geschäftsstelle des Gutachterausschusses Köln</strong></p>
+  <p>• <strong>Adresse:</strong> Willy-Brandt-Platz 2, 50679 Köln</p>
+  <p>• <strong>Post:</strong> Stadthaus, 50605 Köln</p>
+  <p>• <strong>Telefon:</strong> 0221 221-23017 (Mo–Fr 8–12 Uhr)</p>
+  <p>• <strong>E-Mail:</strong> gutachterausschuss@stadt-koeln.de</p>
+  <p>• <strong>Gebühr:</strong> Download gebührenfrei · 50 € je Exemplar bei Bereitstellung durch die Geschäftsstelle</p>
+</div>
+
+<h2>Was das für Ihre Immobilie bedeutet</h2>
+<p>Die Botschaft aus zwei Jahrgängen Grundstücksmarktbericht lautet: <strong>Der Kölner Markt funktioniert wieder.</strong> 7.831 Kaufverträge und 5,68 Milliarden Euro Umsatz sind kein Krisenmarkt – der Tiefpunkt lag 2023 und ist überwunden. Für Verkäufer heißt das: Es gibt wieder Käufer, und sie schließen ab.</p>
+<p>Gleichzeitig warnt der Bericht, die Preisfindung gestalte sich „in zahlreichen Teilmärkten nach wie vor als Herausforderung". Genau hier entscheidet sich der Verkaufserfolg. Ein zu hoher Startpreis kostet in einem heterogenen Markt Monate und am Ende bares Geld – ein zu niedriger noch mehr. Was zählt, ist nicht der stadtweite Durchschnitt, sondern der Preis, den <em>Ihr</em> Objekt in <em>Ihrer</em> Straße erzielt.</p>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Was kostet der Grundstücksmarktbericht Köln?</h3>
+<p>Nichts, wenn Sie ihn über BORIS.NRW herunterladen. 50 Euro je Exemplar, wenn die Geschäftsstelle ihn bereitstellt oder gedruckt liefert. Die Daten stehen unter der Datenlizenz Deutschland Zero 2.0 und dürfen ohne Einschränkungen weiterverwendet werden.</p>
+
+<h3>Wann erscheint der nächste Bericht?</h3>
+<p>Der Bericht erscheint jährlich, üblicherweise Ende März, und wertet das jeweils abgeschlossene Vorjahr aus. Der Grundstücksmarktbericht 2025 wurde am 31. März 2025 erstveröffentlicht.</p>
+
+<h3>Finde ich meinen Stadtteil im Bericht?</h3>
+<p>In der Regel ja – der Bericht wertet nach allen neun Stadtbezirken und darunter nach Stadtteilen aus. Voraussetzung sind mindestens drei auswertbare Kaufverträge im Berichtsjahr. Stadtteilbezogene Einschätzungen finden Sie auch in unserer <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a> und auf den <a href="https://romanbecker.de/stadtteile/">Stadtteilseiten</a>.</p>
+
+<h3>Kann ich den Bericht für die Erbschaftsteuer nutzen?</h3>
+<p>Als Argumentationsgrundlage ja. Für den Nachweis eines niedrigeren gemeinen Werts gegenüber dem Finanzamt verlangt die Finanzverwaltung aber in der Regel ein Verkehrswertgutachten – etwa vom Gutachterausschuss selbst oder von einem zertifizierten Sachverständigen. Mehr dazu unter <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>.</p>
+
+<h3>Warum weichen die Zahlen von Immobilienportalen ab?</h3>
+<p>Weil Portale Angebotspreise auswerten und der Gutachterausschuss beurkundete Kaufpreise. Zwischen beiden liegt die Verhandlung – und in einem Markt mit schwieriger Preisfindung ist diese Differenz erheblich.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Was ist Ihre Immobilie wirklich wert?</h2>
+        <p>Der Grundstücksmarktbericht liefert den Rahmen – den Preis macht Ihr Objekt. Ich ordne die amtlichen Zahlen für Ihre Lage, Ihren Stadtteil und Ihre Immobilie ein. Persönlich, unverbindlich und diskret.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/bodenrichtwert-koeln.html">Bodenrichtwert Köln</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+          <a href="https://romanbecker.de/ratgeber/mietspiegel.html">Mietspiegel</a>
+          <a href="https://romanbecker.de/ratgeber/vergleichsmiete.html">Vergleichsmiete</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/erbbauzins.html">Erbbauzins</a>
+          <a href="https://romanbecker.de/ratgeber/bau-turbo-baurechtsnovelle.html">Bau-Turbo</a>
+          <a href="https://romanbecker.de/ratgeber/bauzinsen.html">Bauzinsen</a>
+          <a href="https://romanbecker.de/ratgeber/flurkarte.html">Flurkarte</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Quellenangabe: Grundstücksmarktbericht 2026 und 2025 für die Stadt Köln, Gutachterausschuss für Grundstückswerte in der Stadt Köln, bereitgestellt über BORIS.NRW unter der Datenlizenz Deutschland Zero 2.0 (dl-de/zero-2-0). Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechtsberatung oder Wertermittlung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
