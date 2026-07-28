@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Geerbte Immobilie verkaufen: Fristen, Steuern, Ablauf | Makler Köln</title>
+  <meta name="description" content="Geerbtes Haus oder Wohnung verkaufen: Erbschein, Grundbuchberichtigung, Spekulationsfrist und Erbschaftsteuer. Alle Fristen und der Ablauf Schritt für Schritt – für Köln und das Rheinland.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/geerbte-immobilie-verkaufen.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Geerbte Immobilie verkaufen: Fristen, Steuern und Ablauf | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Von der Grundbuchberichtigung bis zum Notartermin: Was beim Verkauf einer geerbten Immobilie zu beachten ist – Fristen, Spekulationssteuer, Erbschaftsteuer und Unterlagen. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/geerbte-immobilie-verkaufen.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Geerbte Immobilie verkaufen: Fristen, Steuern und Ablauf",
+    "description": "Erbschein, Grundbuchberichtigung, Spekulationsfrist und Erbschaftsteuer beim Verkauf einer geerbten Immobilie – mit allen Fristen und dem Ablauf Schritt für Schritt.",
+    "url": "https://romanbecker.de/ratgeber/geerbte-immobilie-verkaufen.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-07-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie schnell muss ich eine geerbte Immobilie verkaufen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es gibt keine Frist, innerhalb derer verkauft werden müsste. Zeitkritisch sind andere Punkte: die Ausschlagung des Erbes binnen sechs Wochen ab Kenntnis, die Anzeige des Erwerbs beim Finanzamt binnen drei Monaten und die Grundbuchberichtigung, die nur innerhalb von zwei Jahren nach dem Todestag gebührenfrei ist." }
+    },
+    {
+      "@type": "Question",
+      "name": "Muss ich das Grundbuch nach dem Erbfall ändern lassen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, für einen Verkauf muss der Erbe als Eigentümer eingetragen sein. Wird der Antrag innerhalb von zwei Jahren nach dem Todestag gestellt, fallen dafür nach dem Kostenverzeichnis zum GNotKG keine Grundbuchgebühren an. Die Kosten eines gegebenenfalls nötigen Erbscheins sind davon nicht erfasst." }
+    },
+    {
+      "@type": "Question",
+      "name": "Fällt beim Verkauf einer geerbten Immobilie Spekulationssteuer an?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Der Erbfall selbst ist kein Anschaffungsvorgang. Der Erbe tritt in die Spekulationsfrist des Erblassers ein: Maßgeblich ist, wann der Erblasser die Immobilie gekauft hat. Liegt dieser Kauf mehr als zehn Jahre zurück, ist der Verkauf steuerfrei. Alternativ entfällt die Steuer bei Eigennutzung im Verkaufsjahr und den beiden vorangegangenen Kalenderjahren." }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauche ich einen Erbschein für den Verkauf?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nicht zwingend. Liegt ein notarielles Testament oder ein Erbvertrag mit Eröffnungsprotokoll des Nachlassgerichts vor, genügt in der Regel diese Urkunde. Nur bei privatschriftlichem Testament oder gesetzlicher Erbfolge verlangen Grundbuchamt und Notar üblicherweise einen Erbschein." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist, wenn wir mehrere Erben sind?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Dann bilden Sie eine Erbengemeinschaft. Der Verkauf der Immobilie ist eine Verfügung über einen Nachlassgegenstand und erfordert nach § 2040 BGB die Zustimmung aller Miterben. Einigen sich die Erben nicht, bleiben der Verkauf des eigenen Erbteils oder als letztes Mittel die Teilungsversteigerung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Verkaufen, vermieten oder selbst einziehen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das hängt von Zustand, Lage, Finanzierungsbedarf und der Zahl der Erben ab. Für einen Verkauf sprechen Sanierungsstau, mehrere Erben und der Wunsch nach klarer Abwicklung. Für das Behalten sprechen gute Lage, laufende Mieteinnahmen und ein möglicher Steuervorteil bei Selbstnutzung des Familienheims." }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Geerbte Immobilie verkaufen
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Geerbte Immobilie verkaufen: Fristen, Steuern und Ablauf</h1>
+      <p>Ein Erbfall bringt Trauer und Bürokratie zugleich. Was wirklich eilt, was warten kann – und wie der Verkauf einer geerbten Immobilie in Köln geordnet über die Bühne geht.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Wer ein Haus oder eine Wohnung erbt, steht selten vor einer rein wirtschaftlichen Entscheidung. Meist geht es um das Elternhaus, oft sind mehrere Geschwister beteiligt, und der Zeitpunkt ist der denkbar schlechteste. Dieser Ratgeber sortiert, was in welcher Reihenfolge zu tun ist.</p>
+
+<div class="factbox">
+  <p><strong>Die vier Fristen, die zählen</strong></p>
+  <p>• <strong>6 Wochen</strong> – Ausschlagung des Erbes ab Kenntnis von Erbfall und Berufungsgrund (§ 1944 BGB)</p>
+  <p>• <strong>3 Monate</strong> – Anzeige des Erwerbs beim Finanzamt (§ 30 ErbStG)</p>
+  <p>• <strong>2 Jahre</strong> – Antrag auf Grundbuchberichtigung, danach entfällt die Gebührenfreiheit</p>
+  <p>• <strong>keine Frist</strong> – für den Verkauf selbst</p>
+</div>
+
+<h2>Schritt 1: Erbe annehmen oder ausschlagen</h2>
+<p>Wer erbt, erbt alles – auch Schulden, Grundschulden und laufende Verpflichtungen. Die <strong>Ausschlagungsfrist beträgt sechs Wochen</strong> ab dem Zeitpunkt, zu dem Sie vom Erbfall und Ihrem Erbrecht erfahren haben. Bei Auslandsbezug verlängert sie sich auf sechs Monate.</p>
+<p>Verstreicht die Frist, gilt das Erbe als angenommen. Prüfen Sie deshalb früh, ob die Immobilie noch belastet ist: Ein Blick ins Grundbuch zeigt eingetragene Grundschulden, Wohnrechte, Nießbrauch oder Wegerechte. Eine <strong>eingetragene Grundschuld bedeutet nicht automatisch, dass noch Schulden bestehen</strong> – häufig ist das Darlehen längst getilgt und nur die Löschung wurde nie beantragt.</p>
+
+<h2>Schritt 2: Erbnachweis und Grundbuchberichtigung</h2>
+<p>Verkaufen können Sie erst, wenn Sie als Eigentümer im Grundbuch stehen. Dafür brauchen Sie einen Erbnachweis:</p>
+<ul>
+  <li><strong>Notarielles Testament oder Erbvertrag</strong> nebst Eröffnungsprotokoll des Nachlassgerichts – reicht in aller Regel aus, ein Erbschein ist dann entbehrlich.</li>
+  <li><strong>Privatschriftliches Testament oder gesetzliche Erbfolge</strong> – hier verlangen Grundbuchamt und Notar üblicherweise einen <strong>Erbschein</strong>.</li>
+</ul>
+
+<div class="doc-note">
+  <p><strong>Das kostet bares Geld, wenn Sie es verschlafen:</strong> Die Berichtigung des Grundbuchs ist <strong>gebührenfrei, wenn der Antrag innerhalb von zwei Jahren nach dem Todestag</strong> gestellt wird (Kostenverzeichnis zum GNotKG, Nr. 14110). Entscheidend ist allein der rechtzeitige Antrag – es müssen noch nicht alle Unterlagen vorliegen. Nach Ablauf der zwei Jahre fällt die volle Gebühr nach dem Grundstückswert an. Die Kosten eines Erbscheins sind davon übrigens nicht erfasst, die entstehen zusätzlich.</p>
+</div>
+
+<h2>Schritt 3: Wert ermitteln – bevor Sie entscheiden</h2>
+<p>Ohne belastbaren Wert lässt sich weder die Erbschaftsteuer einschätzen noch eine Erbengemeinschaft fair auseinandersetzen noch ein Verkaufspreis festlegen. Das Finanzamt setzt zunächst einen <strong>Grundbesitzwert</strong> in einem typisierten Verfahren an – dieser liegt in der Praxis nicht selten über dem tatsächlich erzielbaren Preis, etwa bei Sanierungsstau.</p>
+<p>Ist der Grundbesitzwert zu hoch, können Sie nach <strong>§ 198 BewG</strong> einen niedrigeren gemeinen Wert nachweisen. Anerkannt sind dafür allerdings nur Gutachten des Gutachterausschusses oder öffentlich bestellter beziehungsweise nach DIN EN ISO/IEC 17024 zertifizierter Sachverständiger. Mehr dazu im Ratgeber <a href="https://romanbecker.de/ratgeber/erbschaftsteuer-immobilie.html">Erbschaftsteuer auf Immobilien</a>.</p>
+
+<h2>Schritt 4: Verkaufen, vermieten oder einziehen?</h2>
+<table class="cost-table">
+  <thead>
+    <tr><th>Weg</th><th>Spricht dafür</th><th>Spricht dagegen</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Verkaufen</strong></td><td>mehrere Erben, Sanierungsstau, Liquidität für die Erbschaftsteuer, klare Abwicklung</td><td>emotionale Bindung, laufende Rendite entfällt</td></tr>
+    <tr><td><strong>Vermieten</strong></td><td>gute Lage, stabile Mieteinnahmen, Abschreibung möglich</td><td>Verwaltungsaufwand, Instandhaltung, Erbengemeinschaft bleibt bestehen</td></tr>
+    <tr><td><strong>Selbst einziehen</strong></td><td>Steuerbefreiung des Familienheims möglich, kein Umzugsdruck für Angehörige</td><td>Zehnjahresbindung bei der Steuerbefreiung, Auszahlung der Miterben nötig</td></tr>
+  </tbody>
+</table>
+<p>Ein Punkt wird oft übersehen: Wer als Kind das <strong>Familienheim</strong> erbt und selbst einzieht, kann es unter bestimmten Voraussetzungen steuerfrei erhalten – muss es dann aber zehn Jahre lang selbst bewohnen. Ein Verkauf innerhalb dieser Frist lässt die Befreiung rückwirkend entfallen. Diese Entscheidung sollte also vor dem Einzug fallen, nicht danach.</p>
+
+<h2>Schritt 5: Spekulationssteuer prüfen</h2>
+<p>Hier liegt der häufigste Irrtum. Viele Erben nehmen an, mit dem Erbfall beginne eine neue Zehnjahresfrist. Das Gegenteil ist der Fall:</p>
+<div class="doc-note">
+  <p><strong>Der Erbfall ist kein Anschaffungsvorgang.</strong> Der Erbe tritt in die Rechtsstellung des Erblassers ein – maßgeblich ist das <strong>Kaufdatum des Erblassers</strong>. Hat dieser die Immobilie vor mehr als zehn Jahren erworben, ist der Verkauf für Sie einkommensteuerfrei, selbst wenn Sie erst gestern geerbt haben. Umgekehrt gilt: Wurde vor acht Jahren gekauft, laufen noch zwei Jahre.</p>
+</div>
+<p>Zweiter Ausweg ist die <strong>Eigennutzung</strong>: Wurde die Immobilie im Jahr des Verkaufs und in den beiden vorangegangenen Kalenderjahren zu eigenen Wohnzwecken genutzt, entfällt die Steuer ebenfalls. In einer Erbengemeinschaft wird die Spekulationssteuer übrigens nicht für die Gemeinschaft insgesamt, sondern <strong>für jeden Miterben einzeln</strong> beurteilt. Details im Ratgeber <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>.</p>
+
+<h2>Schritt 6: Unterlagen zusammentragen</h2>
+<p>Erfahrungsgemäß der zeitaufwendigste Teil, weil die Unterlagen bei Erbfällen oft unvollständig sind:</p>
+<ul>
+  <li>Grundbuchauszug (aktuell) und Erbnachweis</li>
+  <li>Flurkarte und Liegenschaftskarte</li>
+  <li>Energieausweis – Pflicht, spätestens bei der Besichtigung; fehlt er, drohen bis zu 15.000 € Bußgeld</li>
+  <li>Wohnflächenberechnung, Grundrisse, Baugenehmigung</li>
+  <li>bei Eigentumswohnungen: Teilungserklärung, WEG-Protokolle, Wirtschaftsplan, Hausgeldabrechnungen</li>
+  <li>bei Vermietung: Mietverträge, Nebenkostenabrechnungen</li>
+  <li>Nachweise über Modernisierungen und Sanierungen</li>
+</ul>
+<p>Vieles davon lässt sich neu beschaffen – Grundbuchauszug beim Amtsgericht, Flurkarte beim Katasteramt, Bauakte über die Akteneinsicht beim Bauordnungsamt. Eine vollständige Liste finden Sie unter <a href="https://romanbecker.de/ratgeber/unterlagen-immobilienverkauf.html">Unterlagen für den Immobilienverkauf</a>.</p>
+
+<h2>Schritt 7: Verkauf</h2>
+<p>Ab hier läuft es wie ein normaler Verkauf – mit zwei Besonderheiten. Erstens müssen bei mehreren Erben <strong>alle</strong> den Kaufvertrag unterschreiben. Zweitens sind geerbte Objekte häufig lange nicht modernisiert worden, was Käufer im Preis einkalkulieren. Hier entscheidet sich, ob vor dem Verkauf noch etwas gemacht wird oder ob das Objekt bewusst als Sanierungsobjekt vermarktet wird.</p>
+<p>Realistischer Zeitrahmen ab Verkaufsstart: zwei bis vier Wochen für Bewertung und Vorbereitung, vier bis zwölf Wochen aktive Vermarktung, vier bis acht Wochen bis zur Kaufpreiszahlung nach dem Notartermin.</p>
+
+<h2>Die häufigsten Fehler</h2>
+<ul>
+  <li><strong>Zwei Jahre verstreichen lassen</strong> und die gebührenfreie Grundbuchberichtigung verschenken</li>
+  <li><strong>Den Grundbesitzwert des Finanzamts ungeprüft hinnehmen</strong>, obwohl das Objekt weniger wert ist</li>
+  <li><strong>Ins Familienheim einziehen</strong> und kurz darauf verkaufen – die Steuerbefreiung entfällt rückwirkend</li>
+  <li><strong>Untereinander mündlich einigen</strong>, ohne die Auseinandersetzung schriftlich zu regeln</li>
+  <li><strong>Renovieren vor der Bewertung</strong> – teuer, und nicht jede Maßnahme zahlt sich im Kaufpreis aus</li>
+</ul>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Muss ich verkaufen, um die Erbschaftsteuer zu zahlen?</h3>
+<p>Nicht zwingend. Bei zu Wohnzwecken vermieteten Objekten und beim selbstgenutzten Familienheim sieht das Gesetz unter Voraussetzungen eine Stundung vor, wenn die Steuer nur durch Veräußerung aufgebracht werden könnte. Das ist ein Fall für den Steuerberater.</p>
+
+<h3>Was, wenn ein Miterbe nicht verkaufen will?</h3>
+<p>Der Verkauf erfordert Einstimmigkeit. Bleibt es beim Nein, kann jeder Miterbe seinen Erbteil verkaufen oder die Teilungsversteigerung beantragen. Ausführlich im Ratgeber <a href="https://romanbecker.de/ratgeber/erbengemeinschaft.html">Erbengemeinschaft</a>.</p>
+
+<h3>Ist ein Wohnrecht oder Nießbrauch im Grundbuch ein Problem?</h3>
+<p>Es mindert den Wert deutlich, macht einen Verkauf aber nicht unmöglich. Wie stark sich das auswirkt, steht im Ratgeber <a href="https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a>.</p>
+
+<h3>Ersetzt dieser Ratgeber eine Beratung?</h3>
+<p>Nein. Erbrecht und Erbschaftsteuer sind Einzelfallmaterie. Dieser Text ordnet die Zusammenhänge; die rechtliche und steuerliche Beurteilung gehört zu Notar, Fachanwalt für Erbrecht und Steuerberater.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Was ist die geerbte Immobilie wert?</h2>
+        <p>Ob Auszahlung der Miterben, Nachweis gegenüber dem Finanzamt oder Verkauf: Am Anfang steht immer ein belastbarer Wert. Ich sehe mir das Objekt an und ordne es für Ihre Situation ein – kostenlos, unverbindlich und diskret.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/erbengemeinschaft.html">Erbengemeinschaft</a>
+          <a href="https://romanbecker.de/ratgeber/erbschaftsteuer-immobilie.html">Erbschaftsteuer auf Immobilien</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a>
+          <a href="https://romanbecker.de/ratgeber/unterlagen-immobilienverkauf.html">Unterlagen für den Verkauf</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">Grundbuchauszug anfordern</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld-loeschen.html">Grundschuld löschen</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/zwangsversteigerung.html">Zwangsversteigerung</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Rechtsstand: Juli 2026. Genannte Vorschriften: § 1944 BGB, § 2040 BGB, § 30 ErbStG, § 13 ErbStG, § 23 EStG, § 198 BewG, Kostenverzeichnis zum GNotKG Nr. 14110. Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechts- oder Steuerberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Erbschaftsteuer auf Immobilien: Freibeträge, Familienheim, Bewertung | Makler Köln</title>
+  <meta name="description" content="Erbschaftsteuer auf Immobilien: Freibeträge bis 500.000 €, Steuerklassen und Sätze, Steuerbefreiung für das Familienheim und wie Sie mit § 198 BewG einen zu hohen Grundbesitzwert korrigieren.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/erbschaftsteuer-immobilie.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Erbschaftsteuer auf Immobilien: Freibeträge, Familienheim und Bewertung | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Wie das Finanzamt geerbte Immobilien bewertet, welche Freibeträge gelten, wann das Familienheim steuerfrei bleibt – und wie Sie einen zu hohen Grundbesitzwert nach § 198 BewG korrigieren. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/erbschaftsteuer-immobilie.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Erbschaftsteuer auf Immobilien: Freibeträge, Familienheim und Bewertung",
+    "description": "Freibeträge und Steuersätze, die Steuerbefreiung des Familienheims nach § 13 ErbStG und der Nachweis eines niedrigeren gemeinen Werts nach § 198 BewG.",
+    "url": "https://romanbecker.de/ratgeber/erbschaftsteuer-immobilie.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-07-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table tr.total td { font-weight: 700; color: var(--navy); background: #f0f4ff; border-top: 2px solid var(--navy); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+    .table-source { font-size: 0.85rem; color: var(--gray-600); margin-top: -0.75rem; margin-bottom: 1.75rem; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie hoch ist der Freibetrag bei der Erbschaftsteuer?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ehegatten und eingetragene Lebenspartner haben einen persönlichen Freibetrag von 500.000 Euro, Kinder und Stiefkinder je 400.000 Euro. Enkel erhalten 200.000 Euro, bei bereits verstorbenen Eltern ebenfalls 400.000 Euro. Für alle Erwerber der Steuerklassen II und III gelten 20.000 Euro. Die Beträge sind seit 2010 unverändert." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann bleibt das Familienheim steuerfrei?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nach § 13 ErbStG bleibt das selbstgenutzte Familienheim steuerfrei, wenn der Erblasser es bis zum Tod selbst bewohnt hat und der Erbe unverzüglich einzieht und es zehn Jahre lang selbst nutzt. Bei Ehegatten gilt keine Flächenbegrenzung, bei Kindern ist die Befreiung auf 200 Quadratmeter Wohnfläche begrenzt – der darüber liegende Anteil wird besteuert." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie bewertet das Finanzamt eine geerbte Immobilie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das Finanzamt ermittelt einen Grundbesitzwert in einem typisierten Verfahren nach dem Bewertungsgesetz – je nach Objektart im Vergleichswert-, Ertragswert- oder Sachwertverfahren. Individuelle Merkmale wie Sanierungsstau, Schadstoffe oder ein ungünstiger Zuschnitt bleiben dabei weitgehend unberücksichtigt, weshalb der Wert höher ausfallen kann als der tatsächlich erzielbare Preis." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kann ich tun, wenn der Wert des Finanzamts zu hoch ist?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sie können nach § 198 BewG einen niedrigeren gemeinen Wert nachweisen. Anerkannt sind dafür ein Gutachten des zuständigen Gutachterausschusses oder von Personen, die von einer staatlichen, staatlich anerkannten oder nach DIN EN ISO/IEC 17024 akkreditierten Stelle als Sachverständige für die Wertermittlung von Grundstücken bestellt oder zertifiziert wurden. Alternativ kann ein innerhalb eines Jahres um den Bewertungsstichtag erzielter Kaufpreis als Nachweis dienen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Muss ich das Erbe beim Finanzamt anzeigen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Nach § 30 ErbStG ist der Erwerb dem zuständigen Finanzamt innerhalb von drei Monaten ab Kenntnis anzuzeigen. Die Anzeige ist formlos möglich. Erst danach fordert das Finanzamt gegebenenfalls eine Erbschaftsteuererklärung an." }
+    },
+    {
+      "@type": "Question",
+      "name": "Fällt Erbschaftsteuer auch auf vermietete Immobilien an?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, allerdings begünstigt: Zu Wohnzwecken vermietete Grundstücke werden nach § 13d ErbStG nur mit 90 Prozent ihres Werts angesetzt. Zehn Prozent bleiben also außer Ansatz." }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Erbschaftsteuer auf Immobilien
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Erbschaftsteuer auf Immobilien: Freibeträge, Familienheim, Bewertung</h1>
+      <p>In Kölner Toplagen reicht ein Reihenhaus, um den Freibetrag zu sprengen. Wie das Finanzamt rechnet, welche Befreiungen es gibt – und wo Sie einen zu hohen Wert korrigieren können.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Die persönlichen Freibeträge der Erbschaftsteuer sind <strong>seit 2010 unverändert</strong>. Die Immobilienpreise in Köln sind das nicht. Was vor fünfzehn Jahren noch komfortabel unter dem Freibetrag lag, führt heute regelmäßig zu einer Steuerlast – gerade in Lindenthal, Sülz, Marienburg oder Rodenkirchen.</p>
+
+<h2>Die Freibeträge</h2>
+<table class="cost-table">
+  <thead>
+    <tr><th>Erwerber</th><th class="num">Freibetrag</th><th class="num">Steuerklasse</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Ehegatte / eingetragener Lebenspartner</td><td class="num">500.000 €</td><td class="num">I</td></tr>
+    <tr><td>Kinder, Stiefkinder, Adoptivkinder</td><td class="num">400.000 €</td><td class="num">I</td></tr>
+    <tr><td>Enkel (Eltern bereits verstorben)</td><td class="num">400.000 €</td><td class="num">I</td></tr>
+    <tr><td>Enkel (Eltern leben)</td><td class="num">200.000 €</td><td class="num">I</td></tr>
+    <tr><td>Eltern und Großeltern (Erwerb von Todes wegen)</td><td class="num">100.000 €</td><td class="num">I</td></tr>
+    <tr><td>Geschwister, Nichten, Neffen, Schwiegerkinder</td><td class="num">20.000 €</td><td class="num">II</td></tr>
+    <tr><td>alle Übrigen, auch nichteheliche Lebensgefährten</td><td class="num">20.000 €</td><td class="num">III</td></tr>
+  </tbody>
+</table>
+<p>Die Freibeträge gelten <strong>pro Erwerber</strong>, nicht pro Nachlass. Erben zwei Kinder gemeinsam ein Haus, stehen ihnen zusammen 800.000 Euro zur Verfügung. Und sie gelten je Zehnjahreszeitraum – weshalb frühzeitige Schenkungen ein wirksames Instrument sind.</p>
+
+<h2>Die Steuersätze</h2>
+<table class="cost-table">
+  <thead>
+    <tr><th>Wert des steuerpflichtigen Erwerbs bis</th><th class="num">Kl. I</th><th class="num">Kl. II</th><th class="num">Kl. III</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>75.000 €</td><td class="num">7 %</td><td class="num">15 %</td><td class="num">30 %</td></tr>
+    <tr><td>300.000 €</td><td class="num">11 %</td><td class="num">20 %</td><td class="num">30 %</td></tr>
+    <tr><td>600.000 €</td><td class="num">15 %</td><td class="num">25 %</td><td class="num">30 %</td></tr>
+    <tr><td>6.000.000 €</td><td class="num">19 %</td><td class="num">30 %</td><td class="num">30 %</td></tr>
+    <tr><td>13.000.000 €</td><td class="num">23 %</td><td class="num">35 %</td><td class="num">50 %</td></tr>
+    <tr><td>26.000.000 €</td><td class="num">27 %</td><td class="num">40 %</td><td class="num">50 %</td></tr>
+    <tr><td>darüber</td><td class="num">30 %</td><td class="num">43 %</td><td class="num">50 %</td></tr>
+  </tbody>
+</table>
+<p>Besteuert wird nur der Betrag, der den Freibetrag übersteigt. Der Sprung zwischen den Stufen ist allerdings hart – wer knapp über einer Grenze liegt, versteuert den <em>gesamten</em> Erwerb mit dem höheren Satz. Für Härtefälle gibt es einen Ausgleich, der die Mehrbelastung abmildert.</p>
+
+<h2>Das Familienheim: die wichtigste Befreiung</h2>
+<p>§ 13 ErbStG stellt das selbstgenutzte Familienheim unter Bedingungen komplett steuerfrei – unabhängig vom Wert.</p>
+<div class="factbox">
+  <p><strong>Voraussetzungen</strong></p>
+  <p>• Der <strong>Erblasser</strong> hat die Wohnung bis zum Tod selbst bewohnt (oder war aus zwingenden Gründen daran gehindert)</p>
+  <p>• Der <strong>Erbe zieht unverzüglich ein</strong> und nutzt sie selbst zu Wohnzwecken</p>
+  <p>• Die Selbstnutzung besteht <strong>zehn Jahre</strong> fort</p>
+  <p>• Bei <strong>Ehegatten</strong>: keine Flächenbegrenzung</p>
+  <p>• Bei <strong>Kindern</strong>: begrenzt auf 200 m² Wohnfläche</p>
+</div>
+<p>Die 200-Quadratmeter-Grenze wirkt <strong>nicht als Alles-oder-nichts-Regel</strong>: Übersteigt die Wohnfläche 200 m², bleibt der darauf entfallende Anteil steuerfrei, nur der Rest wird besteuert. Die Grenze gilt objektbezogen, nicht je erbendem Kind.</p>
+
+<div class="doc-note">
+  <p><strong>Die Zehnjahresfalle:</strong> Wer innerhalb von zehn Jahren auszieht, verkauft oder vermietet, verliert die Befreiung <strong>rückwirkend und vollständig</strong> – die Steuer wird dann nachträglich festgesetzt. Ausgenommen sind zwingende Gründe, etwa wenn Pflegebedürftigkeit den Umzug in ein Heim erforderlich macht. Wer also erwägt, das Elternhaus mittelfristig zu verkaufen, sollte diese Entscheidung <em>vor</em> dem Einzug treffen.</p>
+</div>
+
+<h2>Vermietete Immobilien: 10 Prozent Abschlag</h2>
+<p>Zu Wohnzwecken vermietete Grundstücke werden nach § 13d ErbStG nur mit <strong>90 Prozent ihres Werts</strong> angesetzt. Ein vermietetes Mehrfamilienhaus mit einem Grundbesitzwert von 1.000.000 Euro geht also mit 900.000 Euro in die Berechnung ein. Der Abschlag gilt unabhängig vom Verwandtschaftsgrad.</p>
+
+<h2>Wie das Finanzamt bewertet – und warum das oft zu hoch ist</h2>
+<p>Das Finanzamt ermittelt einen <strong>Grundbesitzwert</strong> nach dem Bewertungsgesetz, in einem typisierten Massenverfahren: Vergleichswertverfahren bei Eigentumswohnungen und Ein- bis Zweifamilienhäusern, Ertragswertverfahren bei Mietwohngrundstücken, Sachwertverfahren, wenn keine Vergleichsdaten vorliegen.</p>
+<p>Diese Verfahren arbeiten mit Durchschnitten. Was sie systematisch <strong>nicht</strong> abbilden:</p>
+<ul>
+  <li>Sanierungsstau, marode Haustechnik, feuchter Keller</li>
+  <li>Schadstoffe wie Asbest</li>
+  <li>ungünstiger Zuschnitt, schlechter Grundriss, Lärmbelastung</li>
+  <li>Wohnrechte, Nießbrauch oder Wegerechte im Grundbuch</li>
+  <li>Denkmalschutzauflagen</li>
+</ul>
+<p>Die Folge: Der Steuerwert liegt nicht selten <strong>über</strong> dem Preis, den Sie am Markt tatsächlich erzielen würden. Versteuert wird dann ein Wert, den es nie gab.</p>
+
+<h2>Gegenwehr: der niedrigere gemeine Wert nach § 198 BewG</h2>
+<p>Genau dafür gibt es § 198 BewG. Sie dürfen nachweisen, dass der gemeine Wert niedriger ist als der vom Finanzamt angesetzte Wert. Zwei Nachweiswege:</p>
+<ol>
+  <li><strong>Gutachten.</strong> Anerkannt sind ausschließlich Gutachten des zuständigen <strong>Gutachterausschusses</strong> oder von Personen, die von einer staatlichen, staatlich anerkannten oder nach <strong>DIN EN ISO/IEC 17024</strong> akkreditierten Stelle als Sachverständige für die Wertermittlung von Grundstücken bestellt oder zertifiziert wurden.</li>
+  <li><strong>Kaufpreis.</strong> Ein im gewöhnlichen Geschäftsverkehr innerhalb eines Jahres vor oder nach dem Bewertungsstichtag zustande gekommener Kaufpreis kann ebenfalls als Nachweis dienen – sofern sich die maßgeblichen Umstände nicht verändert haben.</li>
+</ol>
+<div class="doc-note">
+  <p><strong>Wichtig für die Praxis:</strong> Wenn Sie ohnehin verkaufen wollen, ist Punkt 2 der einfachste Hebel. Ein zeitnah erzielter Marktpreis ist der überzeugendste Beleg dafür, was die Immobilie wert war – und macht ein separates Gutachten häufig entbehrlich. Wer dagegen behalten will, kommt am qualifizierten Gutachten nicht vorbei. Achten Sie dabei auf die Qualifikation: Die Anforderungen des § 198 BewG sind strenger als bei der <a href="https://romanbecker.de/ratgeber/restnutzungsdauer.html">Restnutzungsdauer</a>, wo seit Dezember 2025 keine feste Gutachterqualifikation mehr vorgeschrieben ist.</p>
+</div>
+
+<h2>Rechenbeispiel</h2>
+<p>Ein Kind erbt von einem Elternteil ein Reihenhaus in Köln-Sülz. Das Finanzamt setzt einen Grundbesitzwert von <strong>780.000 €</strong> an. Das Kind zieht nicht ein, die Befreiung für das Familienheim greift also nicht.</p>
+<table class="cost-table">
+  <tbody>
+    <tr><td>Grundbesitzwert laut Finanzamt</td><td class="num">780.000 €</td></tr>
+    <tr><td>persönlicher Freibetrag (Kind)</td><td class="num">− 400.000 €</td></tr>
+    <tr><td>steuerpflichtiger Erwerb</td><td class="num">380.000 €</td></tr>
+    <tr class="total"><td>Erbschaftsteuer, Steuerklasse I, 15 %</td><td class="num">57.000 €</td></tr>
+  </tbody>
+</table>
+<p>Ergibt ein Gutachten oder ein zeitnaher Verkauf, dass das Haus wegen Sanierungsstaus tatsächlich nur <strong>680.000 €</strong> wert ist, sinkt der steuerpflichtige Erwerb auf 280.000 € und die Steuer auf 30.800 € – bei einem Satz von 11 Prozent, weil damit auch die Wertstufe unterschritten wird. <strong>Ersparnis: 26.200 €.</strong> Das illustriert, warum sich die Prüfung des Steuerwerts lohnt.</p>
+<p class="table-source"><em>Vereinfachtes Beispiel ohne Nachlassverbindlichkeiten, Erbfallkostenpauschale und weitere Nachlassgegenstände.</em></p>
+
+<h2>Fristen und Ablauf</h2>
+<ul>
+  <li><strong>Drei Monate:</strong> Anzeige des Erwerbs beim Finanzamt (§ 30 ErbStG), formlos möglich</li>
+  <li>Das Finanzamt fordert anschließend gegebenenfalls eine <strong>Erbschaftsteuererklärung</strong> an</li>
+  <li>Die Bewertung des Grundbesitzes erfolgt gesondert; dagegen ist ein eigener <strong>Einspruch</strong> möglich</li>
+  <li>Reicht die Liquidität nicht, sieht das Gesetz für Wohnimmobilien unter Voraussetzungen eine <strong>Stundung</strong> vor, wenn die Steuer sonst nur durch Verkauf aufgebracht werden könnte</li>
+</ul>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Zählt der Freibetrag pro Immobilie?</h3>
+<p>Nein, pro Erwerber und Zehnjahreszeitraum – über den gesamten Erwerb hinweg, also inklusive Bankguthaben, Wertpapieren und Hausrat.</p>
+
+<h3>Gilt das auch für Schenkungen zu Lebzeiten?</h3>
+<p>Weitgehend ja, Erbschaft- und Schenkungsteuer folgen denselben Regeln. Wichtige Unterschiede: Bei Schenkungen zählen Eltern und Großeltern zur Steuerklasse II, und die Befreiung des Familienheims greift bei Kindern nur im Erbfall, nicht bei Schenkung.</p>
+
+<h3>Mindert ein Nießbrauch die Steuer?</h3>
+<p>Ja. Ein im Grundbuch eingetragenes Nießbrauch- oder Wohnrecht mindert den steuerlichen Wert. Wie stark, hängt vom Jahreswert und der statistischen Lebenserwartung des Berechtigten ab – siehe <a href="https://romanbecker.de/ratgeber/niessbrauch-kapitalisieren.html">Nießbrauch kapitalisieren</a>.</p>
+
+<h3>Ersetzt dieser Ratgeber eine Steuerberatung?</h3>
+<p>Nein. Die Berechnung im Einzelfall hängt von Nachlassverbindlichkeiten, Vorschenkungen, Versorgungsfreibeträgen und weiteren Faktoren ab. Dieser Text ordnet die Zusammenhänge; die Berechnung gehört zum Steuerberater.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Ist der Wert des Finanzamts realistisch?</h2>
+        <p>Wenn der Grundbesitzwert über dem liegt, was am Markt erzielbar wäre, zahlen Sie Steuern auf einen Wert, den es nie gab. Ich ordne den Steuerwert gegen die tatsächliche Marktlage in Ihrem Kölner Stadtteil ein – kostenlos und unverbindlich.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/geerbte-immobilie-verkaufen.html">Geerbte Immobilie verkaufen</a>
+          <a href="https://romanbecker.de/ratgeber/erbengemeinschaft.html">Erbengemeinschaft</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/bodenrichtwert-koeln.html">Bodenrichtwert Köln</a>
+          <a href="https://romanbecker.de/ratgeber/niessbrauch-kapitalisieren.html">Nießbrauch kapitalisieren</a>
+          <a href="https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/restnutzungsdauer.html">Restnutzungsdauer</a>
+          <a href="https://romanbecker.de/ratgeber/abschreibung-bei-immobilien.html">Abschreibung</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Rechtsstand: Juli 2026. Genannte Vorschriften: §§ 13, 13d, 15, 16, 19, 30 ErbStG; § 198 BewG. Die persönlichen Freibeträge sind seit 2010 unverändert. Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Steuer- oder Rechtsberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
