@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Restnutzungsdauer-Gutachten: mehr AfA nach § 7 Abs. 4 EStG | Makler Köln</title>
+  <meta name="description" content="Restnutzungsdauer-Gutachten: statt 2 % pauschal die tatsächliche Nutzungsdauer abschreiben. Das BMF-Schreiben von 2023 ist seit 1.12.2025 aufgehoben – was jetzt gilt.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/restnutzungsdauer.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Restnutzungsdauer-Gutachten: mehr Abschreibung nach § 7 Abs. 4 Satz 2 EStG | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Mit einem Restnutzungsdauer-Gutachten schreiben Sie Ihre vermietete Immobilie schneller ab. Seit der Aufhebung des BMF-Schreibens zum 1.12.2025 sind die Anforderungen deutlich gelockert. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/restnutzungsdauer.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Restnutzungsdauer-Gutachten: mehr Abschreibung nach § 7 Abs. 4 Satz 2 EStG",
+    "description": "Wer eine kürzere tatsächliche Nutzungsdauer nachweist, schreibt sein Gebäude schneller ab. Rechtslage nach Aufhebung des BMF-Schreibens vom 22.02.2023, Rechenbeispiel, Anforderungen an das Gutachten.",
+    "url": "https://romanbecker.de/ratgeber/restnutzungsdauer.html",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    },
+    "dateModified": "2026-07-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table tr.total td { font-weight: 700; color: var(--navy); background: #f0f4ff; border-top: 2px solid var(--navy); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist die Restnutzungsdauer einer Immobilie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Restnutzungsdauer ist der Zeitraum, in dem ein Gebäude bei ordnungsgemäßer Unterhaltung voraussichtlich noch wirtschaftlich genutzt werden kann. Steuerlich unterstellt das Gesetz für Wohngebäude im Bestand pauschal 50 Jahre. Die tatsächliche Restnutzungsdauer kann davon erheblich abweichen – etwa bei Altbauten, unsanierten Objekten oder Gebäuden mit veralteter Haustechnik."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viel Steuer spare ich mit einem Restnutzungsdauer-Gutachten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das hängt vom Gebäudewert und der ermittelten Restnutzungsdauer ab. Beispiel: Bei einem Gebäudewert von 500.000 Euro und der pauschalen Abschreibung von 2 Prozent sind das 10.000 Euro AfA pro Jahr. Wird eine Restnutzungsdauer von 20 Jahren nachgewiesen, steigt die AfA auf 25.000 Euro jährlich. Die zusätzlichen 15.000 Euro bringen bei einem Grenzsteuersatz von 42 Prozent rund 6.300 Euro Steuerersparnis pro Jahr."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gilt das BMF-Schreiben vom 22. Februar 2023 noch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Das Bundesfinanzministerium hat das Schreiben vom 22. Februar 2023 mit Schreiben vom 1. Dezember 2025 aufgehoben. Damit entfallen die dort geforderten Einschränkungen – insbesondere die Pflicht zu einem öffentlich bestellten und vereidigten oder nach DIN EN ISO/IEC 17024 zertifizierten Sachverständigen. Maßgeblich sind wieder der Gesetzeswortlaut des § 7 Absatz 4 Satz 2 EStG und die Rechtsprechung des Bundesfinanzhofs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wer darf ein Restnutzungsdauer-Gutachten erstellen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seit der Aufhebung des BMF-Schreibens gibt es keine gesetzlich vorgeschriebene Gutachterqualifikation mehr. Der Bundesfinanzhof lässt jede sachverständige Methode zu, die im Einzelfall zum Nachweis geeignet ist. Entscheidend sind Qualifikation, Unabhängigkeit und eine nachvollziehbare Begründung. In der Praxis empfiehlt sich weiterhin ein qualifizierter Sachverständiger, weil der Steuerpflichtige die Darlegungs- und Feststellungslast trägt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reicht ein Gutachten nach der ImmoWertV aus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Der Bundesfinanzhof hat mit Urteil vom 23. Januar 2024 (IX R 14/23) entschieden, dass das Modell zur Ermittlung der Restnutzungsdauer nach der ImmoWertV eine gutachterlich anerkannte Schätzungsmethode ist. Ein gesondertes Bausubstanzgutachten ist nicht zwingend erforderlich."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Für wen lohnt sich ein Restnutzungsdauer-Gutachten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vor allem für Eigentümer vermieteter Bestandsimmobilien mit hohem Gebäudewertanteil, älterer Bausubstanz oder Sanierungsstau – und für Vermieter mit hohem persönlichem Steuersatz. Bei selbstgenutzten Immobilien bringt es nichts, weil dort keine AfA geltend gemacht werden kann."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet ein Restnutzungsdauer-Gutachten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Kosten richten sich nach Objektgröße und Aufwand und liegen für Eigentumswohnungen und Einfamilienhäuser üblicherweise im Bereich von etwa 900 bis 1.800 Euro; für Mehrfamilienhäuser entsprechend höher. Die Gutachtenkosten sind bei vermieteten Objekten in der Regel als Werbungskosten abziehbar."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Restnutzungsdauer
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Restnutzungsdauer-Gutachten: mehr Abschreibung für vermietete Immobilien</h1>
+      <p>Das Finanzamt unterstellt pauschal 50 Jahre Nutzungsdauer. Ist Ihr Gebäude tatsächlich kürzer nutzbar, dürfen Sie schneller abschreiben – und sparen jedes Jahr vierstellig. Seit Dezember 2025 sind die Anforderungen deutlich gelockert.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Wer eine Immobilie vermietet, darf das Gebäude über die Jahre abschreiben – die <strong>Absetzung für Abnutzung (AfA)</strong>. Der Gesetzgeber arbeitet dabei mit Pauschalen: 50 Jahre für Wohngebäude im Bestand, macht 2 Prozent pro Jahr. Diese Pauschale hat mit dem Zustand Ihres Hauses nichts zu tun. Ein unsanierter Altbau von 1960 wird genauso behandelt wie ein durchsanierter Bau von 2010.</p>
+
+<p>Genau hier setzt das <strong>Restnutzungsdauer-Gutachten</strong> an. § 7 Absatz 4 Satz 2 EStG erlaubt ausdrücklich, statt der Pauschale die <em>tatsächliche</em> Nutzungsdauer anzusetzen – wenn sie kürzer ist und nachgewiesen wird.</p>
+
+<div class="factbox">
+  <p><strong>Auf einen Blick</strong></p>
+  <p>• <strong>Rechtsgrundlage:</strong> § 7 Absatz 4 Satz 2 EStG</p>
+  <p>• <strong>Wirkung:</strong> kürzere Nutzungsdauer = höhere jährliche AfA</p>
+  <p>• <strong>Gilt für:</strong> vermietete und betrieblich genutzte Gebäude</p>
+  <p>• <strong>Gilt nicht für:</strong> selbstgenutztes Wohneigentum und den Grundstücksanteil</p>
+  <p>• <strong>Nachweis:</strong> Sachverständigengutachten, Methode frei wählbar</p>
+  <p>• <strong>Wichtig:</strong> BMF-Schreiben vom 22.02.2023 zum 01.12.2025 aufgehoben</p>
+</div>
+
+<h2>Was ist die Restnutzungsdauer?</h2>
+<p>Die Restnutzungsdauer ist der Zeitraum, in dem ein Gebäude bei ordnungsgemäßer Unterhaltung voraussichtlich noch <strong>wirtschaftlich genutzt</strong> werden kann. Sie ist keine Aussage darüber, wann das Haus einstürzt – sondern wann es sich nicht mehr rentiert, es weiter zu betreiben.</p>
+<p>Beeinflusst wird sie unter anderem von:</p>
+<ul>
+  <li><strong>Baujahr und Bauweise</strong> – Massivbau, Fertigbau, Konstruktionsart</li>
+  <li><strong>Zustand der Bausubstanz</strong> – Dach, Fassade, Fenster, Keller, Feuchtigkeit</li>
+  <li><strong>Haustechnik</strong> – Alter von Heizung, Elektrik, Sanitär- und Leitungssystemen</li>
+  <li><strong>Modernisierungsstand</strong> – durchgeführte oder unterlassene Sanierungen</li>
+  <li><strong>Bauschäden und Sanierungsstau</strong></li>
+  <li><strong>Schadstoffe</strong> wie Asbest, die eine Sanierung verteuern oder wirtschaftlich unmöglich machen</li>
+</ul>
+
+<h2>Die pauschalen AfA-Sätze</h2>
+<table class="cost-table">
+  <thead>
+    <tr>
+      <th>Gebäudeart</th>
+      <th class="num">AfA-Satz</th>
+      <th class="num">Nutzungsdauer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Wohngebäude, fertiggestellt ab 01.01.2023</td><td class="num">3,0 %</td><td class="num">33 Jahre</td></tr>
+    <tr><td>Wohngebäude, fertiggestellt vor 01.01.2023</td><td class="num">2,0 %</td><td class="num">50 Jahre</td></tr>
+    <tr><td>Wohngebäude, fertiggestellt vor 01.01.1925</td><td class="num">2,5 %</td><td class="num">40 Jahre</td></tr>
+  </tbody>
+</table>
+<p>Der mit Abstand häufigste Fall am Kölner Markt ist die mittlere Zeile: <strong>2 Prozent über 50 Jahre</strong>. Und genau dort liegt das größte Potenzial für ein Gutachten.</p>
+
+<h2>Rechenbeispiel: was das konkret bringt</h2>
+<p>Angenommen, Sie haben eine vermietete Immobilie erworben. Nach Aufteilung des Kaufpreises entfallen <strong>500.000 Euro auf das Gebäude</strong> (der Grundstücksanteil wird nicht abgeschrieben). Ein Gutachten weist eine Restnutzungsdauer von 20 Jahren nach.</p>
+<table class="cost-table">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th class="num">ohne Gutachten</th>
+      <th class="num">mit Gutachten</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Nutzungsdauer</td><td class="num">50 Jahre</td><td class="num">20 Jahre</td></tr>
+    <tr><td>AfA-Satz</td><td class="num">2,0 %</td><td class="num">5,0 %</td></tr>
+    <tr><td>Abschreibung pro Jahr</td><td class="num">10.000 €</td><td class="num">25.000 €</td></tr>
+    <tr><td>zusätzliches AfA-Volumen</td><td class="num">–</td><td class="num">15.000 €</td></tr>
+    <tr class="total"><td>Steuerersparnis p. a. bei 42 % Grenzsteuersatz</td><td class="num">–</td><td class="num">ca. 6.300 €</td></tr>
+  </tbody>
+</table>
+<p>Über die verbleibenden 20 Jahre summiert sich das auf einen sechsstelligen Betrag. Die Kosten des Gutachtens amortisieren sich in aller Regel schon im ersten Jahr.</p>
+
+<div class="doc-note">
+  <p><strong>Wichtig:</strong> Sie schreiben nicht mehr <em>insgesamt</em> ab, sondern <em>schneller</em>. Das AfA-Volumen bleibt der Gebäudewert – es verteilt sich nur auf weniger Jahre. Der Vorteil ist also in erster Linie ein Zins- und Liquiditätsvorteil, und er ist umso größer, je höher Ihr persönlicher Steuersatz heute ist.</p>
+</div>
+
+<h2>Die Rechtslage – und was sich zum 1. Dezember 2025 geändert hat</h2>
+<p>Dieses Thema hat eine bewegte Geschichte, und der aktuelle Stand ist für Eigentümer die mit Abstand günstigste Fassung seit Jahren.</p>
+
+<h3>BFH, 28.07.2021 (IX R 25/19): freie Methodenwahl</h3>
+<p>Der Bundesfinanzhof stellte klar, dass sich Steuerpflichtige <strong>jeder Darlegungsmethode bedienen dürfen</strong>, die im Einzelfall zum Nachweis geeignet erscheint. Ein spezielles Bausubstanzgutachten ist nicht erforderlich.</p>
+
+<h3>BMF-Schreiben vom 22.02.2023: die Gegenreaktion</h3>
+<p>Die Finanzverwaltung reagierte mit einem Schreiben, das die Hürden wieder deutlich anhob: Verlangt wurde ein Gutachten eines öffentlich bestellten und vereidigten oder nach DIN EN ISO/IEC 17024 zertifizierten Sachverständigen. Die reine Übernahme einer Restnutzungsdauer aus einem ImmoWertV-Gutachten sollte ausdrücklich <em>nicht</em> genügen.</p>
+
+<h3>BFH, 23.01.2024 (IX R 14/23): ImmoWertV genügt</h3>
+<p>Der Bundesfinanzhof widersprach: Das Modell zur Ermittlung der Restnutzungsdauer nach der ImmoWertV ist eine <strong>gutachterlich anerkannte Schätzungsmethode</strong>. Im entschiedenen Fall wurde eine Restnutzungsdauer von 19 statt 50 Jahren bestätigt.</p>
+
+<h3>Aufhebung zum 01.12.2025</h3>
+<p>Mit Schreiben vom <strong>1. Dezember 2025</strong> hat das Bundesfinanzministerium sein Schreiben vom 22. Februar 2023 <strong>vollständig aufgehoben</strong>. Die dort formulierten Anforderungen finden keine Anwendung mehr. Maßgeblich sind wieder der Gesetzeswortlaut des § 7 Absatz 4 Satz 2 EStG und die höchstrichterliche Rechtsprechung.</p>
+
+<div class="doc-note">
+  <p><strong>Was das praktisch bedeutet:</strong> Die starre Pflicht zum öffentlich bestellten oder ISO-zertifizierten Sachverständigen ist entfallen. Es zählen Qualifikation, Unabhängigkeit und eine nachvollziehbare Begründung – nicht ein bestimmter Titel. Wer den Antrag in der Vergangenheit wegen der 2023er-Hürden zurückgestellt hat, sollte ihn jetzt neu prüfen.</p>
+</div>
+
+<h2>Nicht verwechseln: § 7 EStG und § 198 BewG</h2>
+<p>Hier werden zwei völlig verschiedene Dinge regelmäßig durcheinandergebracht:</p>
+<table class="cost-table">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th>Restnutzungsdauer</th>
+      <th>Niedrigerer gemeiner Wert</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Norm</td><td>§ 7 Abs. 4 S. 2 EStG</td><td>§ 198 BewG</td></tr>
+    <tr><td>Zweck</td><td>höhere AfA bei Vermietung</td><td>weniger Erbschaft-/Schenkungsteuer</td></tr>
+    <tr><td>Gutachter</td><td>keine feste Vorgabe mehr</td><td>Gutachterausschuss oder bestellter bzw. zertifizierter Sachverständiger</td></tr>
+  </tbody>
+</table>
+<p>Die strengen Qualifikationsanforderungen gelten also weiterhin – aber nur bei Erbschaft und Schenkung, nicht bei der Abschreibung. Mehr dazu unter <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>.</p>
+
+<h2>Was im Gutachten stehen muss</h2>
+<p>Der Steuerpflichtige trägt die <strong>Darlegungs- und Feststellungslast</strong>. Das Gutachten muss also aus sich heraus überzeugen:</p>
+<ul>
+  <li><strong>Objektbesichtigung</strong> – ein reines Schreibtischgutachten nach Aktenlage ist angreifbar</li>
+  <li><strong>Nachvollziehbare Herleitung</strong> der Restnutzungsdauer, nicht nur das Ergebnis</li>
+  <li><strong>Konkrete Befunde</strong> zu Bausubstanz, Haustechnik und Modernisierungsstand, idealerweise mit Fotos</li>
+  <li><strong>Stichtagsbezug</strong> – maßgeblich ist der Zeitpunkt des Erwerbs beziehungsweise der Beginn der Vermietung</li>
+  <li><strong>Abgrenzung des Gebäudewerts</strong> vom nicht abschreibbaren Grundstücksanteil</li>
+</ul>
+
+<h2>Für wen es sich lohnt – und für wen nicht</h2>
+<h3>Lohnt sich häufig</h3>
+<ul>
+  <li>vermietete Bestandsimmobilien mit Baujahr vor etwa 1990</li>
+  <li>Objekte mit Sanierungsstau, alter Heizung oder unsanierter Elektrik</li>
+  <li>hoher Gebäudewertanteil am Kaufpreis</li>
+  <li>Eigentümer mit hohem persönlichem Grenzsteuersatz</li>
+  <li>Mehrfamilienhäuser und Kapitalanlagen im Bestand</li>
+</ul>
+<h3>Lohnt sich meist nicht</h3>
+<ul>
+  <li><strong>selbstgenutzte Immobilien</strong> – ohne Vermietung keine AfA</li>
+  <li>Neubauten und kernsanierte Objekte – die tatsächliche Nutzungsdauer liegt hier kaum unter der Pauschale</li>
+  <li>Objekte mit sehr niedrigem Gebäudewertanteil, etwa Grundstücke in Spitzenlagen mit einfachem Bestand</li>
+  <li>Eigentümer mit geringem zu versteuerndem Einkommen</li>
+</ul>
+
+<h2>Kosten und Ablauf</h2>
+<p>Für Eigentumswohnungen und Einfamilienhäuser liegen die Kosten üblicherweise im Bereich von etwa <strong>900 bis 1.800 Euro</strong>, bei Mehrfamilienhäusern entsprechend höher. Bei vermieteten Objekten sind die Gutachtenkosten in der Regel als <strong>Werbungskosten</strong> abziehbar.</p>
+<p>Der übliche Ablauf:</p>
+<ol>
+  <li>Vorabprüfung, ob sich das Gutachten in Ihrem Fall rechnet</li>
+  <li>Beauftragung des Sachverständigen, Zusammenstellung der Unterlagen</li>
+  <li>Objektbesichtigung mit Aufnahme von Bausubstanz und Haustechnik</li>
+  <li>Erstellung des Gutachtens mit hergeleiteter Restnutzungsdauer</li>
+  <li>Einreichung mit der Steuererklärung beim Finanzamt</li>
+</ol>
+<p>Läuft die Vermietung bereits, lässt sich die AfA in vielen Fällen auch noch für zurückliegende, verfahrensrechtlich offene Jahre anpassen. Das gehört auf den Tisch Ihres Steuerberaters.</p>
+
+<h2>Fazit</h2>
+<p>Das Restnutzungsdauer-Gutachten ist einer der wenigen Hebel, mit denen sich die Rendite einer vermieteten Bestandsimmobilie ohne einen Euro Investition spürbar verbessern lässt. Nach der Aufhebung des BMF-Schreibens zum 1. Dezember 2025 ist der Weg dorthin so offen wie seit Jahren nicht. Entscheidend bleibt die Qualität der Begründung – nicht der Titel auf dem Deckblatt.</p>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Kann ich das Gutachten auch nachträglich einreichen?</h3>
+<p>Häufig ja. Solange der Steuerbescheid verfahrensrechtlich noch änderbar ist – etwa unter Vorbehalt der Nachprüfung steht oder die Einspruchsfrist läuft –, lässt sich die AfA anpassen. Die Einzelheiten klärt Ihr Steuerberater.</p>
+
+<h3>Gilt das auch für Eigentumswohnungen?</h3>
+<p>Ja. Abgeschrieben wird der auf das Gebäude entfallende Anteil Ihres Sondereigentums. Der Miteigentumsanteil am Grundstück bleibt außen vor.</p>
+
+<h3>Was passiert nach Ablauf der Restnutzungsdauer?</h3>
+<p>Ist das Gebäude vollständig abgeschrieben, entfällt die AfA als Werbungskosten. Die Mieteinnahmen sind dann in voller Höhe zu versteuern – ein Punkt, der bei der langfristigen Planung mitgedacht werden sollte.</p>
+
+<h3>Brauche ich zusätzlich eine Kaufpreisaufteilung?</h3>
+<p>In der Regel ja. Abgeschrieben wird nur der Gebäudeanteil, deshalb muss der Kaufpreis sauber auf Grund und Boden einerseits und Gebäude andererseits aufgeteilt sein. Viele Sachverständige liefern beides aus einer Hand.</p>
+
+<h3>Ist dieser Ratgeber eine Steuerberatung?</h3>
+<p>Nein. Dieser Text dient der allgemeinen Information. Die steuerliche Beurteilung Ihres konkreten Falls gehört in die Hände eines Steuerberaters.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Lohnt sich das für Ihre Immobilie?</h2>
+        <p>Ob ein Restnutzungsdauer-Gutachten in Ihrem Fall Sinn ergibt, hängt vom Gebäudewertanteil, Baujahr und Zustand ab. Ich schaue mir Ihr Objekt an und sage Ihnen ehrlich, ob sich der Aufwand rechnet – und vermittle bei Bedarf den passenden Sachverständigen.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/abschreibung-bei-immobilien.html">Abschreibung bei Immobilien</a>
+          <a href="https://romanbecker.de/ratgeber/denkmal-afa.html">Denkmal-AfA</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/asbest.html">Asbest</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/daemmung-bei-immobilien.html">Dämmung</a>
+          <a href="https://romanbecker.de/ratgeber/heizungsgesetz-aenderung.html">Heizungsgesetz</a>
+          <a href="https://romanbecker.de/ratgeber/nebenkostenabrechnung.html">Nebenkostenabrechnung</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Rechtsstand: Juli 2026. § 7 Absatz 4 Satz 2 EStG; BFH-Urteile vom 28.07.2021 (IX R 25/19) und 23.01.2024 (IX R 14/23); BMF-Schreiben vom 22.02.2023 aufgehoben durch BMF-Schreiben vom 01.12.2025. Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Steuer- oder Rechtsberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
