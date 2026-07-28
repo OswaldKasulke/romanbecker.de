@@ -619,3 +619,32 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .strassen-grid .strassen-pin:hover { opacity: 1; }
 
 
+
+/* ============================================================
+   Ratgeber-Hinweis: Sorgfalt, Aktualität und Haftung
+   Einheitlicher Abschlussbaustein am Ende jedes Ratgeber-Artikels
+   ============================================================ */
+.ratgeber-hinweis {
+  margin: var(--space-10) 0 0;
+  padding: var(--space-6);
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+}
+.ratgeber-hinweis__title {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+  margin-bottom: var(--space-3);
+}
+.ratgeber-hinweis p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--gray-600);
+  margin-bottom: 0.7rem;
+}
+.ratgeber-hinweis p:last-child { margin-bottom: 0; }
