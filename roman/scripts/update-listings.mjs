@@ -1,11 +1,13 @@
 /**
  * update-listings.mjs
- * Fetches listings from two EVERNEST sources:
- *   1. Roman Becker's profile  → "Meine Immobilien"
- *   2. EVERNEST Köln team page → "Immobilien meiner Kollegen" (Roman's excluded)
+ * Holt die EVERNEST-Objekte im Koelner Kartenausschnitt per POST auf
+ * https://www.evernest.com/api/properties/ und schreibt daraus die Galerie
+ * "Unsere Immobilien in Koeln und im Koelner Umland".
  *
- * Both pages embed all data in __NEXT_DATA__ — no individual listing pages needed.
- * Writes the same listings into the German index.html AND the English en/index.html
+ * Die frueher zusaetzlich gepflegte Sektion "Meine Immobilien (Auswahl)" wurde
+ * entfernt (Kunden konnten eigene vs. EVERNEST-Objekte nicht differenzieren);
+ * seit dem 28.07.2026 entfaellt auch der zugehoerige Abruf des Maklerprofils.
+ * Schreibt in die deutsche index.html UND die englische en/index.html
  * (English page uses translated labels — see LANGS below).
  * Runs daily via .github/workflows/update-listings.yml
  */
@@ -20,7 +22,6 @@ const INDEX_PATH      = join(__dirname, '..', 'index.html');
 const EN_INDEX_PATH   = join(__dirname, '..', 'en', 'index.html');
 const BAUTRAEGER_PATH = join(__dirname, '..', 'bautraeger.html');
 
-const ROMAN_PROFILE_URL = 'https://www.evernest.com/de/unsere-makler/koeln/roman-becker/';
 const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.922439&lng=7.003492&zoom=10';
 const KOELN_SEARCH_URL  = 'https://www.evernest.com/api/properties/';
 // Bounding box for zoom=11 centred on Köln (50.938361, 6.959974)
@@ -37,14 +38,6 @@ const KOELN_MAX_LISTINGS = 100;
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
 
-const MAX_SOLD = 20;
-
-// Listings pinned to the front of "Meine Immobilien" (in this order).
-// If Roman's Evernest profile doesn't include one, it is pulled from the
-// Köln search results instead.
-const PINNED_ROMAN_IDS = [
-  // Kein Pinning mehr – die Galerie sortiert rein nach Preis (teuer zu günstig).
-];
 
 // ---------------------------------------------------------------------------
 // Language configs — one entry per output file.
@@ -63,12 +56,6 @@ const LANGS = [
     sold: 'Verkauft',
     priceOnRequest: 'Preis auf Anfrage',
     from: 'Ab',
-    romanLabel: 'Mein Portfolio',
-    romanTitle: 'Meine Immobilien (Auswahl)',
-    romanSubtitle: 'Entdecken Sie mein Portfolio bei EVERNEST (Auswahl)',
-    romanEmpty: 'Aktuell keine Objekte verfügbar — kontaktieren Sie mich für Off-Market Angebote.',
-    romanAria: 'Meine Immobilienangebote',
-    consultCta: 'Beratungsgespräch vereinbaren',
     koelnLabel: 'EVERNEST Köln',
     koelnTitle: 'Unsere Immobilien in Köln und im Kölner Umland',
     koelnAria: 'EVERNEST Köln Portfolio',
@@ -83,12 +70,6 @@ const LANGS = [
     sold: 'Sold',
     priceOnRequest: 'Price on request',
     from: 'From',
-    romanLabel: 'My Portfolio',
-    romanTitle: 'My Properties (Selection)',
-    romanSubtitle: 'Discover a selection of my portfolio at EVERNEST',
-    romanEmpty: 'No properties available right now — contact me for off-market opportunities.',
-    romanAria: 'My property listings',
-    consultCta: 'Schedule a Consultation',
     koelnLabel: 'EVERNEST Cologne',
     koelnTitle: 'A selection of our property references in Cologne and the surrounding area',
     koelnAria: 'EVERNEST Cologne Portfolio',
@@ -112,20 +93,6 @@ function priceString(l, L) {
   return l.priceFrom ? `${L.from} ${fmt} €` : `${fmt} €`;
 }
 
-function extractItems(data) {
-  const pageProps = data?.props?.pageProps;
-  const candidates = [
-    pageProps?.data?.propertyCollection?.items,
-    pageProps?.data?.broker?.propertyCollection?.items,
-    pageProps?.data?.cityBroker?.propertyCollection?.items,
-    pageProps?.data?.city?.propertyCollection?.items,
-    pageProps?.data?.properties,
-  ];
-  for (const c of candidates) {
-    if (Array.isArray(c) && c.length > 0) return c;
-  }
-  return null;
-}
 
 function mapListing(item) {
   const epd = item.exportedPropertyData?.data ?? {};
@@ -145,24 +112,6 @@ function mapListing(item) {
 // ---------------------------------------------------------------------------
 // Fetch helpers
 // ---------------------------------------------------------------------------
-
-async function fetchPage(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': UA } });
-  if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
-  const html = await res.text();
-  const match = html.match(/id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
-  if (!match) throw new Error(`__NEXT_DATA__ not found in ${url}`);
-  return JSON.parse(match[1]);
-}
-
-async function fetchRomanListings() {
-  const data = await fetchPage(ROMAN_PROFILE_URL);
-  const items = extractItems(data);
-  if (!Array.isArray(items) || items.length === 0) {
-    throw new Error('propertyCollection.items not found on Roman profile page');
-  }
-  return items.map(mapListing);
-}
 
 // Umland Nord: Orte zwischen Köln und Düsseldorf, die postalisch schon zu
 // 40xxx gehören, geografisch aber ins Kölner Umland passen.
@@ -226,9 +175,7 @@ function buildCard(l, L) {
   const meta   = l.address ? `${l.address} — ${price}` : price;
   const imgSrc = l.imageUrl ? `${l.imageUrl}${IMG_PARAMS}` : '';
   const badge  = l.sold ? `\n                  <div class="listing-card__badge">${L.sold}</div>` : '';
-  const pinnedAttr = PINNED_ROMAN_IDS.includes(l.id) ? ' data-pinned="1"' : '';
-
-  return `            <li class="splide__slide"${pinnedAttr}>
+  return `            <li class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="${l.url}" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="${imgSrc}" alt="${escapeAttr(title)}" loading="lazy">${badge}
@@ -244,55 +191,6 @@ function buildCard(l, L) {
 // ---------------------------------------------------------------------------
 // Section builders
 // ---------------------------------------------------------------------------
-
-function buildRomanSection(listings, L) {
-  const active = listings.filter(l => !l.sold);
-  const sold   = listings.filter(l => l.sold).slice(0, MAX_SOLD);
-  const shown  = [...active, ...sold];
-
-  if (shown.length === 0) {
-    return `  <!-- LISTINGS-START -->
-  <section id="objekte" class="section">
-    <div class="container">
-      <span class="section-label">${L.romanLabel}</span>
-      <h2 class="section-title">${L.romanTitle}</h2>
-      <p class="section-subtitle">${L.romanEmpty}</p>
-      <div class="objekte__cta">
-        <div class="objekte__buttons">
-          <a href="#kontakt" class="btn btn--primary">${L.consultCta}</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- LISTINGS-END -->`;
-  }
-
-  const cards = shown.map(l => buildCard(l, L)).join('\n');
-
-  return `  <!-- LISTINGS-START -->
-  <section id="objekte" class="section section--gray">
-    <div class="container">
-      <span class="section-label">${L.romanLabel}</span>
-      <h2 class="section-title">${L.romanTitle}</h2>
-      <p class="section-subtitle">${L.romanSubtitle}</p>
-
-      <div class="listings-carousel splide" aria-label="${L.romanAria}">
-        <div class="splide__track">
-          <ul class="splide__list">
-${cards}
-          </ul>
-        </div>
-      </div>
-
-      <div class="objekte__cta">
-        <div class="objekte__buttons" style="justify-content:center">
-          <a href="#kontakt" class="btn btn--primary">${L.consultCta}</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- LISTINGS-END -->`;
-}
 
 function buildKoelnSection(listings, L) {
   const shown = listings; // already filtered & limited to KOELN_MAX_LISTINGS
@@ -352,19 +250,9 @@ function replaceBlock(html, startMarker, endMarker, replacement) {
     + html.slice(ei + endMarker.length);
 }
 
-async function injectIntoHtml(path, romanHtml, koelnHtml, activeCount) {
+async function injectIntoHtml(path, koelnHtml) {
   let html = await readFile(path, 'utf-8');
-  // "Meine Immobilien (Auswahl)"-Sektion wurde bewusst entfernt (Kunden konnten
-  // eigene vs. EVERNEST-Objekte nicht differenzieren). Marker existieren nicht mehr,
-  // daher hier NICHT mehr ersetzen. (romanHtml bleibt ungenutzt.)
   html = replaceBlock(html, '<!-- KOELN-LISTINGS-START -->', '<!-- KOELN-LISTINGS-END -->', koelnHtml);
-
-  // Update trust bar (no-op if the marker isn't present in this file)
-  html = html.replace(
-    /<!-- TRUST-ACTIVE-COUNT -->\d+<!-- \/TRUST-ACTIVE-COUNT -->/,
-    `<!-- TRUST-ACTIVE-COUNT -->${activeCount}<!-- /TRUST-ACTIVE-COUNT -->`
-  );
-
   await writeFile(path, html, 'utf-8');
 }
 
@@ -414,9 +302,6 @@ async function injectStandorte(standorte) {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log('Fetching Roman Becker profile…');
-  let romanListings = await fetchRomanListings();
-
   console.log('Fetching EVERNEST Köln search page…');
   let koelnListings = [];
   try {
@@ -428,34 +313,11 @@ async function main() {
     console.warn('Köln section will show empty state.');
   }
 
-  // Roman section order: pinned listings first (added from the Köln results
-  // if his profile lacks them), then active by price descending, then sold
-  // in source order (buildRomanSection slices the first MAX_SOLD of those).
-  for (const id of PINNED_ROMAN_IDS) {
-    if (!romanListings.some(l => l.id === id)) {
-      const extra = koelnListings.find(l => l.id === id);
-      if (extra) romanListings.push(extra);
-      else console.warn(`Warning: pinned listing ${id} not found in profile or Köln results`);
-    }
-  }
-  const pinned = PINNED_ROMAN_IDS
-    .map(id => romanListings.find(l => l.id === id && !l.sold))
-    .filter(Boolean);
-  const activeRest = romanListings
-    .filter(l => !l.sold && !pinned.includes(l))
-    .sort((a, b) => (b.priceRaw ?? 0) - (a.priceRaw ?? 0));
-  const soldListings = romanListings.filter(l => l.sold);
-  romanListings = [...pinned, ...activeRest, ...soldListings];
-
-  const romanActive = pinned.length + activeRest.length;
-  console.log(`Roman: ${romanListings.length} listings (${romanActive} active, ${pinned.length} pinned)`);
-
   // Inject into every language target (German = fatal, English = best-effort).
   for (const L of LANGS) {
-    const romanHtml = buildRomanSection(romanListings, L);
     const koelnHtml = buildKoelnSection(koelnListings, L);
     try {
-      await injectIntoHtml(L.path, romanHtml, koelnHtml, romanActive);
+      await injectIntoHtml(L.path, koelnHtml);
       console.log(`${L.path} updated successfully.`);
     } catch (err) {
       if (L.fatal) throw err;
