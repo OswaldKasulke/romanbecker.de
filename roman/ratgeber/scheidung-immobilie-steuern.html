@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Scheidung und Immobilie: Steuern, Spekulationsfrist, BFH-Urteil | Makler Köln</title>
+  <meta name="description" content="Scheidung und Immobilie: Warum die Übertragung des Hausanteils an den Ex Spekulationssteuer auslösen kann (BFH IX R 11/21) und warum Grunderwerbsteuer nach § 3 Nr. 5 GrEStG entfällt.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/scheidung-immobilie-steuern.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Scheidung und Immobilie: Steuern und die Spekulationsfrist | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Der BFH hat entschieden: Wer nach der Trennung auszieht und seinen Miteigentumsanteil überträgt, kann Spekulationssteuer schulden. Was das kostet und wie es sich vermeiden lässt. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/scheidung-immobilie-steuern.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Scheidung und Immobilie: Steuern und die Spekulationsfrist",
+    "description": "Grunderwerbsteuerbefreiung nach § 3 Nr. 5 GrEStG, Spekulationssteuer nach § 23 EStG und das BFH-Urteil IX R 11/21 zur Übertragung des Miteigentumsanteils nach Trennung.",
+    "url": "https://romanbecker.de/ratgeber/scheidung-immobilie-steuern.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-07-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+    .table-source { font-size: 0.85rem; color: var(--gray-600); margin-top: -0.75rem; margin-bottom: 1.75rem; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Fällt bei Scheidung Grunderwerbsteuer an?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein. Nach § 3 Nr. 5 GrEStG ist der Grundstückserwerb durch den früheren Ehegatten im Rahmen der Vermögensauseinandersetzung nach der Scheidung von der Besteuerung ausgenommen. Voraussetzung ist, dass die Scheidung ursächlich für die Übertragung war; die Feststellungslast dafür trägt der Steuerpflichtige." }
+    },
+    {
+      "@type": "Question",
+      "name": "Muss ich Spekulationssteuer zahlen, wenn ich meinen Hausanteil an meinen Ex übertrage?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das kann sein. Der Bundesfinanzhof hat mit Urteil vom 14.02.2023 (IX R 11/21) entschieden, dass die entgeltliche Übertragung des Miteigentumsanteils auf den geschiedenen Ehepartner innerhalb der Zehnjahresfrist ein steuerpflichtiges privates Veräußerungsgeschäft sein kann – selbst wenn sie im Rahmen einer Scheidungsfolgenvereinbarung und unter dem Druck einer drohenden Zwangsvollstreckung erfolgt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum greift die Eigennutzungsausnahme nach dem Auszug nicht mehr?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Weil der ausgezogene Ehegatte seinen Miteigentumsanteil nicht mehr zu eigenen Wohnzwecken nutzt. Nach der Rechtsprechung des Bundesfinanzhofs ändert daran nichts, dass der geschiedene Ehepartner und das gemeinsame minderjährige Kind weiterhin dort wohnen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kann ich die Spekulationssteuer bei Scheidung vermeiden?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Vier Konstellationen führen zur Steuerfreiheit: Die Zehnjahresfrist ab dem ursprünglichen Kaufvertrag ist abgelaufen; der Übertragende hat selbst weiter in der Immobilie gewohnt; die Übertragung erfolgt unentgeltlich, wobei die Übernahme von Darlehensschulden als Entgelt gilt; oder es entsteht kein Gewinn." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ab wann läuft die Zehnjahresfrist bei Scheidung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ab dem ursprünglichen Kaufvertrag über die Immobilie. Trennung, Scheidungsantrag und Scheidung setzen keine neue Frist in Gang." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist die Ausgleichszahlung beim Zugewinn steuerpflichtig?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die reine Geldzahlung nicht – sie erfüllt einen gesetzlichen Anspruch und löst weder Einkommen- noch Schenkungsteuer aus. Wird stattdessen die Immobilie an Erfüllungs statt übertragen, kann darin jedoch ein entgeltliches Veräußerungsgeschäft liegen." }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Scheidung: Steuern
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Scheidung und Immobilie: Steuern und die Spekulationsfrist</h1>
+      <p>Der Bundesfinanzhof hat es bestätigt: Wer nach der Trennung auszieht und später seinen Hausanteil an den Ex überträgt, kann kräftig Steuern zahlen. Was dahintersteckt.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Bei einer Scheidung denkt kaum jemand zuerst ans Finanzamt. Genau das wird teuer: Die Übertragung des Miteigentumsanteils auf den Ex-Partner kann ein <strong>steuerpflichtiges privates Veräußerungsgeschäft</strong> sein – und der Bundesfinanzhof hat das ausdrücklich bestätigt.</p>
+
+<div class="factbox">
+  <p><strong>Die zwei Steuern im Überblick</strong></p>
+  <p>• <strong>Grunderwerbsteuer:</strong> bei Übertragung unter früheren Ehegatten <strong>befreit</strong> (§ 3 Nr. 5 GrEStG)</p>
+  <p>• <strong>Spekulationssteuer:</strong> kann anfallen – innerhalb der Zehnjahresfrist des § 23 EStG</p>
+  <p>• <strong>Entscheidend:</strong> wer wann ausgezogen ist</p>
+</div>
+
+<h2>Grunderwerbsteuer: hier gibt es Entwarnung</h2>
+<p>Überträgt ein Ehegatte seinen Miteigentumsanteil auf den anderen, fällt <strong>keine Grunderwerbsteuer</strong> an. § 3 Nr. 5 GrEStG nimmt den Grundstückserwerb durch den früheren Ehegatten <strong>im Rahmen der Vermögensauseinandersetzung nach der Scheidung</strong> von der Besteuerung aus.</p>
+<p>Zwei Einschränkungen sollten Sie kennen:</p>
+<ul>
+  <li><strong>Die Scheidung muss ursächlich sein</strong> für die Vermögensverfügung. Eine Übertragung aus anderen Gründen ist nicht befreit.</li>
+  <li><strong>Die Feststellungslast trägt der Steuerpflichtige</strong>, weil es sich um einen steuermindernden Umstand handelt. Der Zusammenhang mit der Scheidung sollte deshalb aus der Scheidungsfolgenvereinbarung oder dem Übertragungsvertrag klar hervorgehen.</li>
+</ul>
+<p>Eine zeitliche Befristung enthält die Vorschrift nicht. Dennoch gilt: Je zeitnäher und endgültiger die Vermögensauseinandersetzung geregelt wird, desto einfacher der Nachweis.</p>
+
+<h2>Spekulationssteuer: hier liegt die Falle</h2>
+<p>Nach § 23 EStG ist der Verkauf einer Immobilie steuerpflichtig, wenn zwischen Anschaffung und Veräußerung <strong>weniger als zehn Jahre</strong> liegen. Ausgenommen sind Objekte, die im Jahr der Veräußerung und in den beiden vorangegangenen Kalenderjahren <strong>zu eigenen Wohnzwecken</strong> genutzt wurden.</p>
+<p>Und genau an dieser Ausnahme scheitert es bei Trennungen regelmäßig.</p>
+
+<h3>Das Urteil, das Sie kennen sollten</h3>
+<div class="doc-note">
+  <p><strong>BFH, Urteil vom 14. Februar 2023, Az. IX R 11/21.</strong> Ein Ehepaar hatte 2008 gemeinsam ein Einfamilienhaus gekauft und mit dem Kind bewohnt. 2015 zog der Ehemann aus; Ehefrau und gemeinsames minderjähriges Kind blieben. Im Rahmen der Scheidungsfolgenvereinbarung – vor dem Hintergrund einer drohenden Zwangsvollstreckung – übertrug er seinen Miteigentumsanteil entgeltlich auf sie.</p>
+  <p style="margin-top:0.8rem;">Der BFH entschied: Das ist eine <strong>willentliche Veräußerung</strong> innerhalb der Haltefrist, also ein steuerpflichtiges privates Veräußerungsgeschäft. Entscheidend war die Begründung zur Eigennutzung: Wer nach der Trennung auszieht, <strong>nutzt seinen Miteigentumsanteil nicht mehr zu eigenen Wohnzwecken</strong> – auch dann nicht, wenn der Ex-Partner und das gemeinsame minderjährige Kind weiterhin dort wohnen.</p>
+</div>
+<p>Die praktische Konsequenz ist unangenehm: Wer auszieht, verliert die Steuerbefreiung für seinen Anteil. Der Gewinn zwischen ursprünglichem Kaufpreis und Abfindung ist dann mit dem persönlichen Einkommensteuersatz zu versteuern – und das ausgerechnet in einer Phase, in der ohnehin doppelte Haushaltskosten anfallen.</p>
+
+<h3>Wann keine Steuer anfällt</h3>
+<ul>
+  <li>Die <strong>Zehnjahresfrist ist abgelaufen</strong> – gerechnet ab dem ursprünglichen Kaufvertrag.</li>
+  <li>Der Übertragende hat <strong>selbst weiter in der Immobilie gewohnt</strong>, im Jahr der Übertragung und den beiden Vorjahren.</li>
+  <li>Die Übertragung erfolgt <strong>unentgeltlich</strong> – dann liegt keine Veräußerung vor. Achtung: Die Übernahme von Darlehensschulden gilt als Entgelt.</li>
+  <li>Es entsteht <strong>kein Gewinn</strong>, etwa weil der Wert nicht gestiegen ist.</li>
+</ul>
+
+<h2>Was sich daraus für die Praxis ergibt</h2>
+<ol>
+  <li><strong>Die Frist prüfen, bevor irgendetwas unterschrieben wird.</strong> Datum des ursprünglichen Kaufvertrags heraussuchen und die zehn Jahre nachrechnen. Fehlen nur wenige Monate, kann sich Warten rechnen.</li>
+  <li><strong>Den Auszug bewusst planen.</strong> Der Auszug beendet die Eigennutzung. Wer ohnehin übertragen will und die Frist noch läuft, sollte die Reihenfolge mit dem Steuerberater abstimmen.</li>
+  <li><strong>Entgeltlichkeit sauber gestalten.</strong> Ob und in welcher Höhe ein Entgelt fließt – einschließlich übernommener Schulden – entscheidet über die Steuerpflicht.</li>
+  <li><strong>Den Scheidungsbezug dokumentieren</strong>, damit die Grunderwerbsteuerbefreiung nicht am Nachweis scheitert.</li>
+  <li><strong>Beim gemeinsamen Verkauf an Dritte</strong> gilt dasselbe: Für den bereits ausgezogenen Partner greift die Eigennutzungsausnahme nicht mehr.</li>
+</ol>
+
+<h2>Rechenbeispiel</h2>
+<p>Kauf 2019 zu 500.000 €, hälftiges Miteigentum. Trennung 2024, Ehemann zieht aus. 2026 überträgt er seinen Anteil für 350.000 € auf die Ehefrau. Die Zehnjahresfrist läuft noch bis 2029.</p>
+<table class="cost-table">
+  <tbody>
+    <tr><td>Veräußerungspreis für den hälftigen Anteil</td><td class="num">350.000 €</td></tr>
+    <tr><td>anteilige Anschaffungskosten (½ von 500.000 €)</td><td class="num">− 250.000 €</td></tr>
+    <tr><td>Veräußerungsgewinn</td><td class="num">100.000 €</td></tr>
+    <tr class="total"><td>Einkommensteuer bei 42 % Grenzsteuersatz</td><td class="num">ca. 42.000 €</td></tr>
+  </tbody>
+</table>
+<p class="table-source"><em>Vereinfachtes Beispiel ohne Nebenkosten, Abschreibungen und Solidaritätszuschlag. Die anteiligen Anschaffungsnebenkosten mindern den Gewinn zusätzlich.</em></p>
+<p>Hätte der Ehemann bis 2029 gewartet oder wäre er in der Immobilie geblieben, wäre die Übertragung steuerfrei geblieben. Diese Zahl ist der Grund, warum die steuerliche Prüfung <strong>vor</strong> die Verhandlung über die Abfindungshöhe gehört – und nicht danach.</p>
+
+<h2>Weitere Steuerfragen bei Trennung</h2>
+<ul>
+  <li><strong>Vermietete Immobilien:</strong> Mieteinnahmen sind ab dem Zeitpunkt der Übertragung dem neuen Eigentümer zuzurechnen; die <a href="https://romanbecker.de/ratgeber/abschreibung-bei-immobilien.html">Abschreibung</a> folgt dem Eigentum.</li>
+  <li><strong>Ausgleichszahlung im Zugewinn:</strong> Die reine Geldzahlung erfüllt einen gesetzlichen Anspruch und ist weder einkommen- noch schenkungsteuerpflichtig. Details unter <a href="https://romanbecker.de/ratgeber/zugewinnausgleich-immobilie.html">Zugewinnausgleich und Immobilie</a>.</li>
+  <li><strong>Vorfälligkeitsentschädigung:</strong> Bei vermieteten Objekten kann sie unter Umständen als Werbungskosten abziehbar sein, bei selbstgenutzten nicht.</li>
+</ul>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Gilt das Urteil auch, wenn ich unfreiwillig ausgezogen bin?</h3>
+<p>Im entschiedenen Fall stand die Übertragung unter dem Druck einer drohenden Zwangsvollstreckung – der BFH sah dennoch eine willentliche Veräußerung. Eine wirtschaftliche Zwangslage allein schützt also nicht.</p>
+
+<h3>Was, wenn ich meinen Anteil verschenke?</h3>
+<p>Eine unentgeltliche Übertragung ist keine Veräußerung und löst keine Spekulationssteuer aus. Aber Vorsicht: Übernimmt der andere dabei Darlehensschulden, gilt das als Entgelt – dann liegt zumindest teilweise ein Veräußerungsgeschäft vor.</p>
+
+<h3>Zählt die Frist ab Kauf oder ab Scheidung?</h3>
+<p>Ab dem ursprünglichen Kaufvertrag. Die Trennung setzt keine neue Frist in Gang.</p>
+
+<h3>Ersetzt dieser Ratgeber eine Steuerberatung?</h3>
+<p>Nein, ausdrücklich nicht. Gerade hier hängt das Ergebnis an Details – Zeitpunkt des Auszugs, Höhe und Art des Entgelts, Fristverlauf. Lassen Sie den Fall vor der Unterschrift von einem Steuerberater durchrechnen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Erst rechnen, dann verhandeln</h2>
+        <p>Bevor Sie über die Höhe einer Abfindung sprechen, sollte klar sein, was davon beim Finanzamt landet. Ich ordne den Wert Ihrer Immobilie ein und zeige, worauf Sie im Kölner Markt realistisch kommen – die steuerliche Prüfung übernimmt Ihr Steuerberater.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/scheidung-immobilie.html">Scheidung &amp; Immobilie</a>
+          <a href="https://romanbecker.de/ratgeber/zugewinnausgleich-immobilie.html">Zugewinnausgleich &amp; Immobilie</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/abschreibung-bei-immobilien.html">Abschreibung</a>
+          <a href="https://romanbecker.de/ratgeber/restnutzungsdauer.html">Restnutzungsdauer</a>
+          <a href="https://romanbecker.de/ratgeber/erbschaftsteuer-immobilie.html">Erbschaftsteuer auf Immobilien</a>
+          <a href="https://romanbecker.de/ratgeber/kaufnebenkosten.html">Kaufnebenkosten</a>
+          <a href="https://romanbecker.de/ratgeber/annuitaetendarlehen.html">Annuitätendarlehen</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Rechtsstand: Juli 2026. Genannte Vorschriften und Entscheidungen: § 23 EStG; § 3 Nr. 5 GrEStG; BFH, Urteil vom 14.02.2023, Az. IX R 11/21. Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechts- oder Steuerberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Zugewinnausgleich und Immobilie: Stichtag, Bewertung, Berechnung | Makler Köln</title>
+  <meta name="description" content="Zugewinnausgleich mit Immobilie: Warum der Stichtag die Zustellung des Scheidungsantrags ist, wie der Verkehrswert angesetzt wird und wie sich die Ausgleichsforderung berechnet.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/zugewinnausgleich-immobilie.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Zugewinnausgleich und Immobilie: Stichtag, Bewertung, Berechnung | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Der Stichtag nach § 1384 BGB, der Ansatz Verkehrswert minus Restschuld und ein vollständiges Rechenbeispiel – plus der teuerste Fehler bei der Bewertung. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/zugewinnausgleich-immobilie.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Zugewinnausgleich und Immobilie: Stichtag, Bewertung, Berechnung",
+    "description": "Wie eine Immobilie in den Zugewinnausgleich eingeht: Stichtag nach § 1384 BGB, Verkehrswert abzüglich Restschuld, Rechenbeispiel und die Rolle des Gutachtens.",
+    "url": "https://romanbecker.de/ratgeber/zugewinnausgleich-immobilie.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-07-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+    .table-source { font-size: 0.85rem; color: var(--gray-600); margin-top: -0.75rem; margin-bottom: 1.75rem; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Welcher Stichtag gilt für die Immobilie beim Zugewinnausgleich?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Maßgeblich für das Endvermögen ist nach § 1384 BGB der Tag, an dem der Scheidungsantrag dem anderen Ehegatten zugestellt wird – nicht der Trennungstag und nicht das Scheidungsurteil. Wertänderungen nach diesem Stichtag bleiben für die Berechnung außer Betracht, egal ob es sich um Steigerungen oder Verluste handelt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Mit welchem Wert geht die Immobilie in den Zugewinn ein?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mit dem Verkehrswert nach § 194 BauGB abzüglich der am Stichtag noch offenen Darlehensschuld. Bei einem Verkehrswert von 700.000 Euro und einer Restschuld von 180.000 Euro fließen also 520.000 Euro in die Berechnung ein." }
+    },
+    {
+      "@type": "Question",
+      "name": "Bekomme ich beim Zugewinnausgleich einen Anteil an der Immobilie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein. Der Zugewinnausgleich ist ein reiner Zahlungsanspruch und verschiebt kein Eigentum. Wem die Immobilie gehört, richtet sich allein nach dem Grundbuch. Wer nicht eingetragen ist, erhält Geld, nicht Miteigentum." }
+    },
+    {
+      "@type": "Question",
+      "name": "Sollten beide Seiten ein eigenes Gutachten beauftragen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Davon ist abzuraten. Zwei Parteigutachten führen zu zwei Werten, doppelten Kosten und neuem Streit. Sinnvoller ist eine gemeinsam beauftragte neutrale Bewertung. Kommt es zum Gerichtsverfahren, bestellt das Familiengericht ohnehin einen eigenen Sachverständigen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Zählen Erbschaften zum Zugewinn?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Erbschaften und Schenkungen während der Ehe gelten als privilegierter Erwerb und werden dem Anfangsvermögen zugerechnet. In den Zugewinn fällt damit nur die Wertsteigerung, die diese Vermögenswerte während der Ehe erfahren haben." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist die Ausgleichszahlung steuerpflichtig?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Zahlung selbst löst weder Einkommen- noch Schenkungsteuer aus, weil sie einen gesetzlichen Anspruch erfüllt. Anders kann es aussehen, wenn statt Geld die Immobilie übertragen wird – das kann ein steuerpflichtiges privates Veräußerungsgeschäft darstellen." }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Zugewinnausgleich &amp; Immobilie
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Zugewinnausgleich und Immobilie: Stichtag, Bewertung, Berechnung</h1>
+      <p>Beim Zugewinnausgleich hängt fast alles an einer Zahl – dem Verkehrswert zum richtigen Stichtag. Und der liegt früher, als die meisten denken.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Der Zugewinnausgleich ist der häufigste Streitpunkt einer Scheidung – und wenn eine Immobilie im Spiel ist, hängt fast alles an einer einzigen Zahl: dem Verkehrswert zum richtigen Stichtag.</p>
+
+<div class="factbox">
+  <p><strong>Auf einen Blick</strong></p>
+  <p>• <strong>Gilt bei:</strong> Zugewinngemeinschaft – dem gesetzlichen Güterstand ohne Ehevertrag</p>
+  <p>• <strong>Prinzip:</strong> Wer während der Ehe mehr hinzugewonnen hat, zahlt die Hälfte des Überschusses aus</p>
+  <p>• <strong>Stichtag Anfangsvermögen:</strong> Tag der Eheschließung</p>
+  <p>• <strong>Stichtag Endvermögen:</strong> Zustellung des Scheidungsantrags (§ 1384 BGB)</p>
+  <p>• <strong>Ansatz der Immobilie:</strong> Verkehrswert abzüglich Restschuld</p>
+  <p>• <strong>Ausgleich erfolgt in Geld</strong> – die Immobilie selbst wird nicht geteilt</p>
+</div>
+
+<h2>Das Prinzip in einem Satz</h2>
+<p>Verglichen wird nicht das Vermögen, sondern der <strong>Zuwachs</strong>: Endvermögen minus Anfangsvermögen ergibt den Zugewinn jedes Ehegatten. Wer mehr hinzugewonnen hat, schuldet dem anderen die <strong>Hälfte der Differenz</strong> – als Geldbetrag.</p>
+<p>Wichtig: Der Zugewinnausgleich verschiebt <strong>kein Eigentum</strong>. Wem die Immobilie gehört, entscheidet allein das Grundbuch. Der Ausgleich ist ein reiner Zahlungsanspruch.</p>
+
+<h2>Der Stichtag – und warum er so oft schiefgeht</h2>
+<div class="doc-note">
+  <p>Maßgeblich für das Endvermögen ist der Tag, an dem der <strong>Scheidungsantrag dem anderen Ehegatten zugestellt</strong> wird – <em>nicht</em> der Tag der Trennung und <em>nicht</em> der Tag des Scheidungsurteils. Was danach passiert, zählt nicht mehr: Wertsteigerungen ebenso wenig wie Wertverluste. Diese Regel soll verhindern, dass jemand sein Vermögen vor der Scheidung gezielt kleinrechnet – sie wirkt aber in beide Richtungen.</p>
+</div>
+<p>Praktisch heißt das: Steigt der Kölner Markt nach dem Stichtag, profitiert davon allein der Eigentümer. Fällt er, trägt er den Verlust allein. Und die Bewertung muss <strong>rückwirkend auf den Stichtag</strong> erfolgen, nicht auf den heutigen Tag – ein Punkt, den viele Gutachten schlicht falsch machen.</p>
+
+<h2>Wie die Immobilie angesetzt wird</h2>
+<p>Angesetzt wird der <strong>Verkehrswert nach § 194 BauGB abzüglich der am Stichtag noch offenen Darlehensschuld</strong>. Beispiel: Verkehrswert 700.000 €, Restschuld 180.000 € – in die Berechnung fließen 520.000 € ein.</p>
+<p>Was den Wert mindert und deshalb sauber dokumentiert gehören sollte:</p>
+<ul>
+  <li>Sanierungsstau, Feuchtigkeit, alte Haustechnik</li>
+  <li>Wohnrechte, Nießbrauch oder Wegerechte im Grundbuch</li>
+  <li>Denkmalschutzauflagen</li>
+  <li>ungünstiger Zuschnitt, Lärmbelastung, schwierige Lage im Stadtteil</li>
+</ul>
+
+<h2>Rechenbeispiel</h2>
+<table class="cost-table">
+  <thead>
+    <tr><th>&nbsp;</th><th class="num">Ehepartner A</th><th class="num">Ehepartner B</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Anfangsvermögen bei Eheschließung</td><td class="num">50.000 €</td><td class="num">20.000 €</td></tr>
+    <tr><td>Immobilie (Verkehrswert am Stichtag)</td><td class="num">700.000 €</td><td class="num">–</td></tr>
+    <tr><td>abzüglich Restschuld</td><td class="num">− 180.000 €</td><td class="num">–</td></tr>
+    <tr><td>sonstiges Vermögen</td><td class="num">30.000 €</td><td class="num">60.000 €</td></tr>
+    <tr><td>Endvermögen</td><td class="num">550.000 €</td><td class="num">60.000 €</td></tr>
+    <tr><td>Zugewinn</td><td class="num">500.000 €</td><td class="num">40.000 €</td></tr>
+    <tr class="total"><td>Ausgleichsforderung von A an B: (500.000 − 40.000) ÷ 2</td><td class="num">–</td><td class="num">230.000 €</td></tr>
+  </tbody>
+</table>
+<p class="table-source"><em>Vereinfachtes Beispiel ohne Indexierung des Anfangsvermögens, privilegierte Erwerbe und weitere Positionen.</em></p>
+<p>Zwei Hinweise dazu: Das Anfangsvermögen wird in der Praxis <strong>inflationsbereinigt</strong> (indexiert), was den Zugewinn spürbar senken kann. Und <strong>Erbschaften und Schenkungen</strong> während der Ehe zählen als privilegierter Erwerb zum Anfangsvermögen – nur ihre Wertsteigerung fällt in den Zugewinn.</p>
+
+<h2>Alleineigentum: der unangenehme Fall</h2>
+<p>Gehört die Immobilie nur einem Ehegatten, bleibt sie ihm – der andere erhält lediglich einen Zahlungsanspruch. Für den Eigentümer entsteht damit ein Liquiditätsproblem: Er muss auszahlen, ohne dass Geld geflossen ist.</p>
+<p>In der Praxis führt das zu drei Optionen: Refinanzierung über die Bank, Ratenzahlung nach Vereinbarung – oder eben doch der Verkauf. Ein wichtiges Detail: Der Ausgleichsanspruch ist der Höhe nach durch das <strong>vorhandene Vermögen begrenzt</strong>; niemand muss sich für den Zugewinnausgleich verschulden.</p>
+
+<h2>Ein Gutachten oder zwei?</h2>
+<p>Der häufigste und teuerste Fehler: Jede Seite beauftragt ein eigenes Gutachten. Ergebnis sind zwei Werte, die weit auseinanderliegen, doppelte Kosten – und ein neuer Streitpunkt statt einer Grundlage.</p>
+<div class="doc-note">
+  <p><strong>Besser:</strong> Eine gemeinsam beauftragte, neutrale Bewertung. Kommt es zum Gerichtsverfahren, bestellt das Familiengericht ohnehin einen eigenen Sachverständigen – dann sind private Gutachten Vorarbeit, kein Beweismittel. Für die außergerichtliche Einigung zählt vor allem, dass beide Seiten die Zahl akzeptieren.</p>
+</div>
+
+<h2>Steuern beim Zugewinnausgleich</h2>
+<ul>
+  <li><strong>Die Ausgleichszahlung selbst</strong> ist keine Schenkung und löst weder Einkommen- noch Schenkungsteuer aus – sie erfüllt einen gesetzlichen Anspruch.</li>
+  <li><strong>Wird stattdessen die Immobilie übertragen</strong> (Leistung an Erfüllungs statt), sieht es anders aus: Das kann ein steuerpflichtiges privates Veräußerungsgeschäft sein. Details unter <a href="https://romanbecker.de/ratgeber/scheidung-immobilie-steuern.html">Scheidung und Immobilie: Steuern</a>.</li>
+  <li><strong>Grunderwerbsteuer</strong> fällt bei der Übertragung unter früheren Ehegatten im Rahmen der Vermögensauseinandersetzung nach § 3 Nr. 5 GrEStG nicht an.</li>
+</ul>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Gilt der Zugewinnausgleich immer?</h3>
+<p>Nur im gesetzlichen Güterstand der Zugewinngemeinschaft – also wenn kein Ehevertrag etwas anderes regelt. Bei Gütertrennung findet kein Ausgleich statt.</p>
+
+<h3>Zählen Schulden mit?</h3>
+<p>Ja, Verbindlichkeiten werden abgezogen. Seit der Reform von 2009 kann auch ein negatives Anfangsvermögen berücksichtigt werden.</p>
+
+<h3>Was, wenn mein Ex den Wert nicht offenlegt?</h3>
+<p>Es besteht ein gesetzlicher Auskunftsanspruch über das Vermögen zum Stichtag, notfalls gerichtlich durchsetzbar – einschließlich der Vorlage eines Wertgutachtens.</p>
+
+<h3>Muss ich die Immobilie für die Bewertung verkaufen?</h3>
+<p>Nein. Bewertet wird der Verkehrswert am Stichtag, unabhängig davon, ob verkauft wird. Ein zeitnaher tatsächlicher Verkaufspreis ist allerdings das überzeugendste Argument für den Wert.</p>
+
+<h3>Ersetzt dieser Ratgeber eine Beratung?</h3>
+<p>Nein. Die Berechnung im Einzelfall hängt von Indexierung, privilegierten Erwerben und weiteren Positionen ab. Dieser Text ordnet die Systematik; die Berechnung gehört zu Fachanwalt für Familienrecht und Steuerberater.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Der Wert zum Stichtag – neutral ermittelt</h2>
+        <p>Für den Zugewinnausgleich zählt der Verkehrswert am Tag der Zustellung des Scheidungsantrags, nicht der heutige. Ich ordne Ihre Immobilie im Kölner Markt ein – nachvollziehbar und ohne Partei zu ergreifen.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/scheidung-immobilie.html">Scheidung &amp; Immobilie</a>
+          <a href="https://romanbecker.de/ratgeber/scheidung-immobilie-steuern.html">Scheidung: Steuern</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/bodenrichtwert-koeln.html">Bodenrichtwert Köln</a>
+          <a href="https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Rechtsstand: Juli 2026. Genannte Vorschriften: §§ 1373–1384 BGB; § 194 BauGB; § 3 Nr. 5 GrEStG. Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechts- oder Steuerberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>

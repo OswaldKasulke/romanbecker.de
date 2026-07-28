@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Scheidung und Immobilie: Haus verkaufen oder auszahlen? | Makler Köln</title>
+  <meta name="description" content="Scheidung und Immobilie: die fünf Wege für das gemeinsame Haus – verkaufen, auszahlen, vermieten, teilen oder Teilungsversteigerung. Mit Darlehenshaftung, Steuern und Fristen.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/scheidung-immobilie.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Scheidung und Immobilie: Haus verkaufen oder auszahlen? | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Was passiert bei einer Scheidung mit dem gemeinsamen Haus? Die fünf Wege im Vergleich, die Falle bei der Darlehenshaftung und die Steuerfragen. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/scheidung-immobilie.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Scheidung und Immobilie: verkaufen, auszahlen oder behalten?",
+    "description": "Die fünf Wege für die gemeinsame Immobilie bei Trennung und Scheidung – mit Darlehenshaftung, Grunderwerbsteuer nach § 3 Nr. 5 GrEStG, Spekulationssteuer und Teilungsversteigerung.",
+    "url": "https://romanbecker.de/ratgeber/scheidung-immobilie.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-07-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was passiert mit dem Haus bei einer Scheidung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es gibt fünf Wege: gemeinsam verkaufen, einer übernimmt und zahlt den anderen aus, gemeinsam behalten und vermieten, Realteilung bei geeigneten Objekten oder als letztes Mittel die Teilungsversteigerung. Welcher Weg passt, hängt von der Eigentumslage im Grundbuch, der Finanzierbarkeit und davon ab, ob Kinder in der Immobilie bleiben sollen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Muss mein Ex-Partner dem Verkauf zustimmen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Wenn beide im Grundbuch stehen, ja. Jede Verfügung über die Immobilie erfordert beide Unterschriften, unabhängig von der Höhe der Miteigentumsanteile. Verweigert einer die Zustimmung, bleibt nur die Teilungsversteigerung nach §§ 180 bis 185 ZVG." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was passiert mit dem gemeinsamen Kredit nach der Scheidung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nichts – die Scheidung ändert die Haftung gegenüber der Bank nicht. Haben beide den Darlehensvertrag unterschrieben, haften beide weiterhin gesamtschuldnerisch. Die Bank kann jeden von beiden voll in Anspruch nehmen. Nur eine Ablösung, eine Umschuldung oder eine ausdrückliche Schuldhaftentlassung durch die Bank beendet die Haftung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Fällt bei der Übertragung auf den Ex-Partner Grunderwerbsteuer an?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein. Der Grundstückserwerb durch den früheren Ehegatten im Rahmen der Vermögensauseinandersetzung nach der Scheidung ist nach § 3 Nr. 5 GrEStG von der Besteuerung ausgenommen. Voraussetzung ist, dass die Scheidung ursächlich für die Vermögensverfügung war; die Feststellungslast dafür trägt der Steuerpflichtige." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich schon im Trennungsjahr verkaufen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Sind sich beide Eigentümer einig, ist ein Verkauf jederzeit möglich – auch vor der rechtskräftigen Scheidung. Zu prüfen sind vorher die Spekulationsfrist und eine mögliche Vorfälligkeitsentschädigung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert eine Teilungsversteigerung bei Scheidung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das Verfahren dauert regelmäßig 12 bis 24 Monate. Nach § 180 Abs. 2 ZVG kann eine einstweilige Einstellung von jeweils bis zu sechs Monaten beantragt werden. Bei Gemeinschaften zwischen Ehegatten erlaubt § 180 Abs. 3 ZVG zum Schutz gemeinschaftlicher Kinder sogar eine mehrfache Wiederholung dieses Antrags." }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Scheidung und Immobilie
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Scheidung und Immobilie: verkaufen, auszahlen oder behalten?</h1>
+      <p>Das gemeinsame Haus ist meist der größte Vermögenswert – und der schwierigste Punkt der Trennung. Die fünf Wege, ihre Kosten und die Fallen, die im Trennungsstress übersehen werden.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Bei einer Trennung ist die gemeinsame Immobilie fast immer der größte Vermögenswert – und der schwierigste Punkt. Anders als beim Sparbuch lässt sie sich nicht halbieren. Dieser Ratgeber zeigt die fünf Wege, ihre Kosten und die Fallstricke, die im Trennungsstress regelmäßig übersehen werden.</p>
+
+<div class="factbox">
+  <p><strong>Die wichtigsten Eckpunkte</strong></p>
+  <p>• <strong>Trennungsjahr:</strong> Die Scheidung setzt in der Regel ein Jahr Getrenntleben voraus (§ 1565 Abs. 2 BGB)</p>
+  <p>• <strong>Stichtag Zugewinn:</strong> Zustellung des Scheidungsantrags, nicht das Scheidungsurteil (§ 1384 BGB)</p>
+  <p>• <strong>Miteigentum:</strong> Wer im Grundbuch steht, muss zustimmen – Quote spielt keine Rolle</p>
+  <p>• <strong>Darlehen:</strong> Die Scheidung ändert nichts an der Haftung gegenüber der Bank</p>
+  <p>• <strong>Grunderwerbsteuer:</strong> bei Übertragung unter Ex-Ehegatten befreit (§ 3 Nr. 5 GrEStG)</p>
+  <p>• <strong>Spekulationssteuer:</strong> kann trotz Scheidung anfallen – siehe unten</p>
+</div>
+
+<h2>Zuerst klären: Wem gehört die Immobilie?</h2>
+<p>Entscheidend ist allein das <strong>Grundbuch</strong>, nicht wer wie viel gezahlt hat und nicht der Güterstand.</p>
+<ul>
+  <li><strong>Beide eingetragen (Miteigentum):</strong> der Regelfall. Jede Verfügung – Verkauf, Belastung – erfordert beide Unterschriften.</li>
+  <li><strong>Nur einer eingetragen (Alleineigentum):</strong> Der andere hat keinen Anspruch auf die Immobilie selbst, aber unter Umständen einen <strong>Zahlungsanspruch aus dem Zugewinnausgleich</strong>.</li>
+</ul>
+<p>Wer nicht sicher ist, fordert einen aktuellen <a href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">Grundbuchauszug</a> an. Das ist der erste Schritt vor jedem Gespräch über Zahlen.</p>
+
+<h2>Die fünf Wege</h2>
+<table class="cost-table">
+  <thead>
+    <tr><th>Weg</th><th>Passt, wenn</th><th>Haken</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>1. Gemeinsam verkaufen</strong></td><td>beide wollen einen Schlussstrich, Erlös finanziert zwei neue Wohnsituationen</td><td>Vorfälligkeitsentschädigung, ggf. Spekulationssteuer</td></tr>
+    <tr><td><strong>2. Einer übernimmt</strong></td><td>Kinder sollen bleiben, Übernehmer kann allein finanzieren</td><td>Bank muss den anderen aus der Haftung entlassen</td></tr>
+    <tr><td><strong>3. Gemeinsam behalten und vermieten</strong></td><td>Markt gerade schlecht, beide können sachlich zusammenarbeiten</td><td>man bleibt wirtschaftlich verbunden</td></tr>
+    <tr><td><strong>4. Realteilung</strong></td><td>Zweifamilienhaus oder teilbares Grundstück</td><td>selten möglich, Aufteilung ist aufwendig</td></tr>
+    <tr><td><strong>5. Teilungsversteigerung</strong></td><td>keine Einigung erzielbar</td><td>deutlich niedrigerer Erlös, jahrelange Verzögerung möglich</td></tr>
+  </tbody>
+</table>
+
+<h3>Weg 1: Gemeinsam verkaufen</h3>
+<p>Wirtschaftlich meist die beste Lösung: Der freie Verkauf bringt den höchsten Preis, der Erlös wird nach Quoten geteilt, beide sind aus dem Darlehen heraus. Wichtig ist, den <strong>Verkaufspreis vorab gemeinsam festzulegen</strong> – sonst wird jedes Gebot zum neuen Streitpunkt.</p>
+<p>Rechnen Sie die <strong>Vorfälligkeitsentschädigung</strong> ein, wenn das Darlehen vorzeitig abgelöst wird. Bei größeren Restschulden können das schnell fünfstellige Beträge sein.</p>
+
+<h3>Weg 2: Einer übernimmt und zahlt aus</h3>
+<p>Der häufigste Wunsch, wenn Kinder im Spiel sind. Der Übernehmer erwirbt den Miteigentumsanteil des anderen und zahlt eine Abfindung – üblicherweise die Hälfte des Verkehrswerts abzüglich der halben Restschuld.</p>
+<div class="doc-note">
+  <p><strong>Der Punkt, an dem es in der Praxis scheitert:</strong> Die Bank muss den ausscheidenden Partner aus der <strong>gesamtschuldnerischen Haftung entlassen</strong>. Darauf besteht kein Anspruch. Die Bank prüft, ob der Verbleibende das Darlehen allein tragen kann – und lehnt bei knapper Bonität ab. Klären Sie das <em>vor</em> allen anderen Verhandlungen, sonst planen Sie um eine Lösung herum, die es nicht gibt.</p>
+</div>
+
+<h3>Weg 3: Behalten und vermieten</h3>
+<p>Sinnvoll, wenn der Markt gerade schwach ist oder die Spekulationsfrist bald abläuft. Voraussetzung ist, dass beide sachlich zusammenarbeiten können – Sie bleiben wirtschaftlich Partner. Regeln Sie schriftlich, wer verwaltet, wie Mieteinnahmen verteilt und Reparaturen entschieden werden.</p>
+
+<h3>Weg 4: Realteilung</h3>
+<p>Selten, aber bei Zweifamilienhäusern oder großen Grundstücken denkbar: Die Immobilie wird real geteilt, jeder erhält einen abgegrenzten Teil. Nötig sind Teilungserklärung beziehungsweise Grundstücksteilung, oft auch bauliche Maßnahmen. Aufwendig und nur bei geeigneten Objekten realistisch.</p>
+
+<h3>Weg 5: Teilungsversteigerung</h3>
+<p>Kommt keine Einigung zustande, kann <strong>jeder Miteigentümer allein</strong> die Teilungsversteigerung nach §§ 180 bis 185 ZVG beantragen. Die Immobilie wird versteigert, der Erlös tritt an ihre Stelle.</p>
+<p>Der Preis dafür ist hoch: In Versteigerungen werden regelmäßig deutlich niedrigere Erlöse erzielt als im freien Verkauf, das Verfahren dauert meist 12 bis 24 Monate. Und der andere kann bremsen – nach <strong>§ 180 Abs. 2 ZVG</strong> ist eine einstweilige Einstellung von jeweils bis zu sechs Monaten möglich, wiederholbar, in der Summe bis zu fünf Jahre.</p>
+<div class="doc-note">
+  <p><strong>Sonderregel für Ehegatten:</strong> § 180 Abs. 3 ZVG erlaubt bei Gemeinschaften zwischen Ehegatten oder früheren Ehegatten eine <strong>mehrfache Wiederholung</strong> des Einstellungsantrags, wenn dies dem Schutz gemeinschaftlicher Kinder dient. Wer auf die Teilungsversteigerung als schnellen Ausweg setzt, unterschätzt das regelmäßig. Mehr zum Verfahren im Ratgeber <a href="https://romanbecker.de/ratgeber/erbengemeinschaft.html">Erbengemeinschaft</a>, wo dieselben Vorschriften greifen.</p>
+</div>
+
+<h2>Das gemeinsame Darlehen</h2>
+<p>Ein weit verbreiteter Irrtum: Die Scheidung ändert nichts an Ihrem Darlehensvertrag. Haben beide unterschrieben, haften beide weiter <strong>gesamtschuldnerisch</strong> – die Bank kann sich aussuchen, wen sie in Anspruch nimmt. Auch eine interne Absprache, wer zahlt, wirkt gegenüber der Bank nicht.</p>
+<p>Drei Wege heraus: vollständige Ablösung durch Verkauf, Schuldhaftentlassung des Ausscheidenden mit Zustimmung der Bank, oder Umschuldung auf den Verbleibenden.</p>
+
+<h2>Steuern: der teure blinde Fleck</h2>
+<p>Zwei Steuern spielen eine Rolle – und sie verhalten sich gegenläufig:</p>
+<ul>
+  <li><strong>Grunderwerbsteuer:</strong> Die Übertragung auf den früheren Ehegatten im Rahmen der Vermögensauseinandersetzung nach der Scheidung ist nach <strong>§ 3 Nr. 5 GrEStG befreit</strong>.</li>
+  <li><strong>Spekulationssteuer:</strong> Hier lauert die Falle. Der Bundesfinanzhof hat entschieden, dass die entgeltliche Übertragung des Miteigentumsanteils an den Ex-Partner innerhalb der Zehnjahresfrist ein <strong>steuerpflichtiges privates Veräußerungsgeschäft</strong> sein kann.</li>
+</ul>
+<p>Beides ausführlich im Ratgeber <a href="https://romanbecker.de/ratgeber/scheidung-immobilie-steuern.html">Scheidung und Immobilie: Steuern</a>.</p>
+
+<h2>Der Wert: Grundlage jeder Einigung</h2>
+<p>Ob Auszahlung oder Zugewinnausgleich – ohne belastbaren Verkehrswert wird jede Zahl zum Streitpunkt. Für den Zugewinn ist der <strong>Stichtag die Zustellung des Scheidungsantrags</strong>, nicht das Scheidungsurteil. Details unter <a href="https://romanbecker.de/ratgeber/zugewinnausgleich-immobilie.html">Zugewinnausgleich und Immobilie</a>.</p>
+
+<h2>Die häufigsten Fehler</h2>
+<ul>
+  <li><strong>Auszahlung verhandeln, bevor die Bank zugestimmt hat</strong> – die Schuldhaftentlassung ist kein Automatismus</li>
+  <li><strong>Zwei Gutachten beauftragen</strong>, eines je Partei – teuer und meist Grundlage für neuen Streit statt für eine Einigung</li>
+  <li><strong>Die Spekulationsfrist nicht prüfen</strong>, bevor der Miteigentumsanteil übertragen wird</li>
+  <li><strong>Ausziehen, ohne die Folgen zu kennen</strong> – der Auszug beendet die Eigennutzung und kann die Steuerbefreiung kosten</li>
+  <li><strong>Die Vorfälligkeitsentschädigung nicht einkalkulieren</strong></li>
+</ul>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Muss ich bis zur Scheidung mit dem Verkauf warten?</h3>
+<p>Nein. Sind sich beide einig, kann jederzeit verkauft werden – auch schon im Trennungsjahr. Häufig ist das sogar sinnvoll, weil der Erlös zwei neue Wohnsituationen finanziert.</p>
+
+<h3>Kann mein Ex mich zum Verkauf zwingen?</h3>
+<p>Nicht direkt. Er oder sie kann aber die Teilungsversteigerung beantragen – und die führt am Ende ebenfalls zum Verkauf, nur zu schlechteren Konditionen für beide.</p>
+
+<h3>Wer darf während der Trennung im Haus wohnen?</h3>
+<p>Das richtet sich nach § 1361b BGB und wird notfalls vom Familiengericht entschieden. Wer auszieht, sollte wissen: Der Auszug hat steuerliche Folgen und kann Ansprüche berühren – vorher anwaltlich klären.</p>
+
+<h3>Ersetzt dieser Ratgeber eine Beratung?</h3>
+<p>Nein. Trennung und Scheidung sind Einzelfallmaterie. Dieser Text ordnet die Möglichkeiten; die Umsetzung gehört zu Fachanwalt für Familienrecht, Notar und Steuerberater.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Was ist Ihre Immobilie wert?</h2>
+        <p>Ob Auszahlung, Zugewinnausgleich oder Verkauf: Am Anfang steht ein Wert, den beide Seiten akzeptieren können. Ich erstelle eine neutrale, nachvollziehbare Einschätzung – diskret und ohne Partei zu ergreifen.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/zugewinnausgleich-immobilie.html">Zugewinnausgleich &amp; Immobilie</a>
+          <a href="https://romanbecker.de/ratgeber/scheidung-immobilie-steuern.html">Scheidung: Steuern</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/erbengemeinschaft.html">Erbengemeinschaft</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuchauszug-anfordern.html">Grundbuchauszug anfordern</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld-loeschen.html">Grundschuld löschen</a>
+          <a href="https://romanbecker.de/ratgeber/annuitaetendarlehen.html">Annuitätendarlehen</a>
+          <a href="https://romanbecker.de/ratgeber/baufinanzierung.html">Baufinanzierung</a>
+          <a href="https://romanbecker.de/ratgeber/zwangsversteigerung.html">Zwangsversteigerung</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Rechtsstand: Juli 2026. Genannte Vorschriften: §§ 1361b, 1565, 1384 BGB; §§ 180–185 ZVG; § 3 Nr. 5 GrEStG; § 23 EStG. Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechts- oder Steuerberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
