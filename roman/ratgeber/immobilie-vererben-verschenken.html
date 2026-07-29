@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Immobilie vererben oder verschenken? Freibeträge, Nießbrauch, Pflichtteil | Makler Köln</title>
+  <meta name="description" content="Immobilie vererben oder verschenken: Freibeträge alle 10 Jahre neu nutzen, Familienheim, Nießbrauchsvorbehalt und die BGH-Falle beim Pflichtteil. Der Vergleich beider Wege.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/immobilie-vererben-verschenken.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Immobilie vererben oder verschenken? Der Vergleich | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Schenken bringt den Freibetrag alle zehn Jahre neu – kostet aber die Familienheimbefreiung für Kinder. Und der Nießbrauchsvorbehalt hat eine Falle, die der BGH aufgedeckt hat. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/immobilie-vererben-verschenken.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Immobilie vererben oder verschenken: der Vergleich",
+    "description": "Vererben oder verschenken: Freibeträge nach § 14 ErbStG, Familienheim nach § 13 ErbStG, Nießbrauchsvorbehalt und Pflichtteilsergänzung nach § 2325 BGB im direkten Vergleich.",
+    "url": "https://romanbecker.de/ratgeber/immobilie-vererben-verschenken.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-07-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ist es günstiger, eine Immobilie zu verschenken oder zu vererben?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das hängt vor allem vom Zeithorizont ab. Bei einer Schenkung stehen die persönlichen Freibeträge nach § 14 ErbStG alle zehn Jahre erneut zur Verfügung, im Erbfall dagegen nur einmal. Wer früh beginnt, kann denselben Freibetrag mehrfach nutzen. Dagegen sprechen der Verlust der Familienheimbefreiung bei Schenkung an Kinder, die ungünstigere Steuerklasse für Eltern und Großeltern sowie der Kontrollverlust." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie oft kann ich den Freibetrag bei einer Schenkung nutzen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Alle zehn Jahre. Sämtliche Schenkungen desselben Schenkers an denselben Beschenkten werden innerhalb eines Zehnjahreszeitraums zusammengerechnet. Nach Ablauf steht der volle Freibetrag erneut zur Verfügung – für ein Kind also erneut 400.000 Euro je Elternteil." }
+    },
+    {
+      "@type": "Question",
+      "name": "Bleibt das Familienheim auch bei einer Schenkung steuerfrei?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nur bei einer Schenkung an den Ehegatten oder eingetragenen Lebenspartner; diese ist nach § 13 Abs. 1 Nr. 4a ErbStG steuerfrei. Die Schenkung des Familienheims an Kinder ist dagegen nicht befreit – deren Befreiung nach § 13 Abs. 1 Nr. 4c ErbStG gilt ausschließlich im Erbfall und ist auf 200 Quadratmeter Wohnfläche sowie zehn Jahre Selbstnutzung begrenzt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was bringt ein Nießbrauchsvorbehalt bei der Schenkung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Steuerlich mindert der Kapitalwert des Nießbrauchs den steuerpflichtigen Wert der Schenkung erheblich. Aber Vorsicht: Nach der Rechtsprechung des BGH (Urteil vom 29.06.2016, IV ZR 474/15) beginnt die Zehnjahresfrist für die Pflichtteilsergänzung nach § 2325 Abs. 3 BGB gar nicht zu laufen, wenn sich der Schenker den Nießbrauch vorbehält – er hat den Genuss der Sache nicht aufgegeben." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie funktioniert die Abschmelzung beim Pflichtteilsergänzungsanspruch?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nach § 2325 Abs. 3 BGB wird eine Schenkung im ersten Jahr vor dem Erbfall voll berücksichtigt und danach je Jahr um ein Zehntel weniger. Nach zehn Jahren bleibt sie außer Betracht. Bei Schenkungen unter Ehegatten beginnt die Frist erst mit Auflösung der Ehe." }
+    },
+    {
+      "@type": "Question",
+      "name": "Fällt bei einer Immobilienschenkung Grunderwerbsteuer an?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein. Sowohl der Erwerb von Todes wegen als auch die Grundstücksschenkung unter Lebenden sind nach § 3 Nr. 2 GrEStG von der Grunderwerbsteuer ausgenommen. Anders liegt es, wenn der Beschenkte Darlehensschulden übernimmt – insoweit ist die Übertragung entgeltlich." }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Vererben oder verschenken
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Immobilie vererben oder verschenken?</h1>
+      <p>Steuerlich gelten dieselben Freibeträge – aber beim Verschenken alle zehn Jahre neu. Was für welchen Weg spricht, und warum die beliebteste Gestaltung eine Falle hat.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Wer eine Immobilie an die nächste Generation weitergeben will, hat zwei Wege: <strong>vererben</strong> – die Übertragung geschieht mit dem Tod – oder <strong>verschenken</strong> zu Lebzeiten. Steuerlich gelten dieselben Freibeträge, praktisch unterscheiden sich beide Wege erheblich. Und die beliebteste Gestaltung hat einen Haken, den der BGH aufgedeckt hat.</p>
+
+<h2>Der entscheidende Unterschied: die Zehnjahresfrist</h2>
+<div class="doc-note">
+  <p>Die persönlichen Freibeträge gelten <strong>je Zehnjahreszeitraum</strong>. Alle Schenkungen desselben Schenkers an denselben Beschenkten werden innerhalb von zehn Jahren zusammengerechnet (§ 14 ErbStG). Danach steht der volle Freibetrag <strong>erneut</strong> zur Verfügung.</p>
+  <p style="margin-top:0.8rem;">Beim Vererben gibt es diesen Effekt nicht – dort zählt der Freibetrag <strong>einmal</strong>. Genau das ist der wirtschaftliche Kern: Wer früh anfängt, kann denselben Freibetrag mehrfach nutzen.</p>
+</div>
+<p>Ein Kind kann von einem Elternteil alle zehn Jahre 400.000 Euro steuerfrei erhalten. Bei zwei Elternteilen sind das 800.000 Euro je Zehnjahreszeitraum. Wer mit 55 beginnt, kann bis zum 75. Lebensjahr rechnerisch das Dreifache dessen übertragen, was im Erbfall steuerfrei bliebe.</p>
+
+<h2>Vererben oder verschenken – der Vergleich</h2>
+<table class="cost-table">
+  <thead>
+    <tr><th>&nbsp;</th><th>Vererben</th><th>Verschenken</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Freibetrag nutzbar</td><td>einmal</td><td><strong>alle 10 Jahre neu</strong></td></tr>
+    <tr><td>Kontrolle behalten</td><td>vollständig bis zum Tod</td><td>nur über Vorbehalte im Vertrag</td></tr>
+    <tr><td>Familienheim an Ehegatten</td><td>steuerfrei (§ 13 Abs. 1 Nr. 4b)</td><td>steuerfrei (§ 13 Abs. 1 Nr. 4a)</td></tr>
+    <tr><td>Familienheim an Kinder</td><td>steuerfrei bis 200 m², 10 Jahre Selbstnutzung</td><td><strong>nicht befreit</strong></td></tr>
+    <tr><td>Eltern/Großeltern als Erwerber</td><td>Steuerklasse I</td><td>Steuerklasse II</td></tr>
+    <tr><td>Pflichtteilsergänzung</td><td>voller Nachlass zählt</td><td>Abschmelzung über 10 Jahre</td></tr>
+    <tr><td>Grunderwerbsteuer</td><td>keine</td><td>keine</td></tr>
+    <tr><td>Rückabwicklung möglich</td><td>jederzeit (Testament ändern)</td><td>nur mit vertraglichem Rückforderungsrecht</td></tr>
+  </tbody>
+</table>
+<p>Der wichtigste Fallstrick in dieser Tabelle: Die <strong>Steuerbefreiung für das Familienheim gilt bei Kindern nur im Erbfall</strong>. Wer sein selbstbewohntes Haus zu Lebzeiten an die Kinder verschenkt, verliert diese Befreiung – nur die Schenkung an den Ehegatten bleibt auch zu Lebzeiten steuerfrei.</p>
+
+<h2>Nießbrauch und Wohnrecht: Vorteil mit Haken</h2>
+<p>Die klassische Gestaltung: Die Immobilie wird verschenkt, der Schenker behält sich den <strong>Nießbrauch</strong> vor – er darf weiter dort wohnen oder die Mieten vereinnahmen. Steuerlich lohnt sich das doppelt, weil der Kapitalwert des Nießbrauchs den steuerpflichtigen Wert der Schenkung mindert. Je jünger der Schenker, desto größer der Abzug.</p>
+<div class="doc-note">
+  <p><strong>Was dabei fast immer übersehen wird:</strong> Für die <strong>Pflichtteilsergänzung</strong> beginnt die Zehnjahresfrist des § 2325 Abs. 3 BGB in diesem Fall <strong>gar nicht zu laufen</strong>. Der BGH hat entschieden (Urteil vom 29.06.2016, Az. IV ZR 474/15): Wer sich den Nießbrauch vorbehält, hat den „Genuss" der Sache nicht aufgegeben und sie wirtschaftlich nicht aus seinem Vermögen ausgegliedert. Damit liegt keine Leistung im Sinne der Vorschrift vor.</p>
+  <p style="margin-top:0.8rem;">Praktische Folge: Steuerlich sparen Sie – aber gegenüber pflichtteilsberechtigten Angehörigen wirkt die Schenkung auch nach zwanzig Jahren noch in voller Höhe. Wer beides erreichen will, muss die Gestaltung anders aufbauen.</p>
+</div>
+<p>Wie sich ein Nießbrauch rechnerisch auswirkt, steht im Ratgeber <a href="https://romanbecker.de/ratgeber/niessbrauch-kapitalisieren.html">Nießbrauch kapitalisieren</a>; die Folgen für einen späteren Verkauf unter <a href="https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a>.</p>
+
+<h2>Pflichtteilsergänzung: die Abschmelzung</h2>
+<p>Übergangene Pflichtteilsberechtigte – etwa ein nicht bedachtes Kind – können Schenkungen dem Nachlass rechnerisch hinzurechnen lassen. § 2325 Abs. 3 BGB mildert das über die Zeit ab:</p>
+<table class="cost-table">
+  <thead>
+    <tr><th>Jahre zwischen Schenkung und Erbfall</th><th class="num">berücksichtigt</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>im ersten Jahr</td><td class="num">100 %</td></tr>
+    <tr><td>im zweiten Jahr</td><td class="num">90 %</td></tr>
+    <tr><td>im fünften Jahr</td><td class="num">60 %</td></tr>
+    <tr><td>im zehnten Jahr</td><td class="num">10 %</td></tr>
+    <tr><td>nach zehn Jahren</td><td class="num">0 %</td></tr>
+  </tbody>
+</table>
+<p>Bei Schenkungen unter Ehegatten beginnt diese Frist erst mit der Auflösung der Ehe – und bei vorbehaltenem Nießbrauch, wie oben beschrieben, gar nicht.</p>
+
+<h2>Sich absichern, ohne die Kontrolle zu verlieren</h2>
+<p>Die häufigste Sorge beim Verschenken: Was, wenn das Kind die Immobilie verkauft, in Insolvenz gerät oder sich scheiden lässt? Dafür gibt es Vertragsinstrumente:</p>
+<ul>
+  <li><strong>Nießbrauch oder Wohnrecht</strong> – Sie bleiben wirtschaftlich Nutzer.</li>
+  <li><strong>Rückforderungsrecht</strong> für definierte Fälle: Vorversterben des Beschenkten, Insolvenz, Zwangsvollstreckung, Verkauf ohne Zustimmung, Scheidung. Gesichert wird es durch eine <a href="https://romanbecker.de/ratgeber/rueckauflassungsvormerkung.html">Rückauflassungsvormerkung</a> im Grundbuch.</li>
+  <li><strong>Zustimmungsvorbehalt</strong> bei Veräußerung oder Belastung.</li>
+  <li><strong>Pflegeverpflichtung</strong> oder wiederkehrende Leistungen als <a href="https://romanbecker.de/ratgeber/reallast.html">Reallast</a>.</li>
+  <li><strong>Anrechnung auf den Pflichtteil</strong> – muss ausdrücklich bei der Schenkung bestimmt werden, später geht es nicht mehr.</li>
+</ul>
+
+<h2>Weitere Steuerfragen</h2>
+<ul>
+  <li><strong>Grunderwerbsteuer</strong> fällt weder beim Erwerb von Todes wegen noch bei einer Grundstücksschenkung an – beides ist nach § 3 Nr. 2 GrEStG ausgenommen.</li>
+  <li><strong>Spekulationssteuer:</strong> Eine unentgeltliche Übertragung ist keine Veräußerung. Der Beschenkte tritt jedoch in die laufende Zehnjahresfrist des Schenkers ein – verkauft er zu früh, zahlt er. Details unter <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>.</li>
+  <li><strong>Achtung bei Schulden:</strong> Übernimmt der Beschenkte ein Darlehen, ist die Übertragung insoweit <em>entgeltlich</em> – dann kann anteilig ein steuerpflichtiges Veräußerungsgeschäft und Grunderwerbsteuer entstehen.</li>
+  <li><strong>Vermietete Objekte:</strong> Sie werden nach § 13d ErbStG nur mit 90 Prozent des Werts angesetzt – bei Schenkung wie im Erbfall.</li>
+</ul>
+
+<h2>Der erste Schritt ist immer derselbe</h2>
+<p>Ob vererben oder verschenken: Ohne belastbaren Verkehrswert lässt sich weder die Steuerlast abschätzen noch eine faire Verteilung unter mehreren Kindern gestalten. Der Wert bestimmt, ob Sie überhaupt über dem Freibetrag liegen – und ob sich eine gestaffelte Übertragung über mehrere Zehnjahresfenster lohnt.</p>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Ist Verschenken immer günstiger als Vererben?</h3>
+<p>Nein. Der Vorteil der wiederholbaren Freibeträge greift nur, wenn genug Zeit bleibt. Dagegen stehen der Verlust der Familienheimbefreiung bei Schenkung an Kinder, die schlechtere Steuerklasse für Eltern und Großeltern und der Kontrollverlust. Bei Vermögen unterhalb der Freibeträge bringt eine Schenkung steuerlich nichts.</p>
+
+<h3>Muss eine Schenkung zum Notar?</h3>
+<p>Bei Immobilien ja – die Übertragung von Grundeigentum ist notariell zu beurkunden, danach folgt die Eintragung im Grundbuch.</p>
+
+<h3>Kann ich eine Schenkung rückgängig machen?</h3>
+<p>Nur in engen gesetzlichen Ausnahmefällen – etwa bei grobem Undank oder Verarmung des Schenkers. Verlassen Sie sich nicht darauf: Wer eine Rückabwicklung ermöglichen will, muss ein vertragliches Rückforderungsrecht vereinbaren und im Grundbuch sichern.</p>
+
+<h3>Was ist mit dem Sozialamt?</h3>
+<p>Wird der Schenker innerhalb von zehn Jahren nach der Schenkung bedürftig, kann der Sozialhilfeträger die Schenkung zurückfordern. Auch das spricht dafür, früh zu beginnen.</p>
+
+<h3>Ersetzt dieser Ratgeber eine Beratung?</h3>
+<p>Nein, ausdrücklich nicht. Vorweggenommene Erbfolge ist Gestaltungsmaterie, in der Erbrecht, Steuerrecht und Familiensituation zusammenspielen. Dieser Text ordnet die Optionen; die Gestaltung gehört zu Notar, Fachanwalt für Erbrecht und Steuerberater.</p>
+
+<div class="ratgeber-hinweis">
+  <span class="ratgeber-hinweis__title">Sorgfalt, Aktualität und Haftung</span>
+  <p>Die Inhalte dieses Ratgebers recherchiere ich sorgfältig und belege sie, wo immer möglich, anhand von Gesetzestexten, amtlichen Veröffentlichungen und höchstrichterlicher Rechtsprechung. Gesetze, Fristen, Steuersätze und Urteile ändern sich jedoch laufend – und jeder Sachverhalt hat seine Besonderheiten.</p>
+  <p>Dieser Ratgeber ersetzt deshalb <strong>keine Rechts-, Steuer- oder Finanzberatung im Einzelfall</strong>. Für Vollständigkeit, Richtigkeit und Aktualität kann ich keine Haftung übernehmen. Ziehen Sie vor einer Entscheidung Notar, Fachanwältin oder Steuerberater hinzu.</p>
+  <p>Zur Marktseite berate ich Sie dagegen gern persönlich: Wenn Sie wissen möchten, was Ihre Immobilie in Ihrem Kölner Stadtteil aktuell wert ist, <a href="https://romanbecker.de/immobilienbewertung.html">melden Sie sich einfach</a> – oder rufen Sie an unter <a href="tel:+491775156969">0177 515 69 69</a>.</p>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Wie viel ist Ihre Immobilie wert?</h2>
+        <p>Ob sich eine Übertragung zu Lebzeiten lohnt, entscheidet sich am Wert: Liegen Sie überhaupt über dem Freibetrag – und lohnt eine gestaffelte Übergabe über mehrere Zehnjahresfenster? Ich ordne Ihre Immobilie im Kölner Markt ein, kostenlos und unverbindlich.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/erbschaftsteuer-immobilie.html">Erbschaftssteuer auf Immobilien</a>
+          <a href="https://romanbecker.de/ratgeber/geerbte-immobilie-verkaufen.html">Geerbte Immobilie verkaufen</a>
+          <a href="https://romanbecker.de/ratgeber/erbengemeinschaft.html">Erbengemeinschaft</a>
+          <a href="https://romanbecker.de/ratgeber/niessbrauch-kapitalisieren.html">Nießbrauch kapitalisieren</a>
+          <a href="https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html">Nießbrauch &amp; Wohnrecht</a>
+          <a href="https://romanbecker.de/ratgeber/rueckauflassungsvormerkung.html">Rückauflassungsvormerkung</a>
+          <a href="https://romanbecker.de/ratgeber/reallast.html">Reallast</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Rechtsstand: Juli 2026. Genannte Vorschriften und Entscheidungen: §§ 13, 13d, 14 ErbStG; § 2325 BGB; § 3 Nr. 2 GrEStG; § 23 EStG; BGH, Urteil vom 29.06.2016, Az. IV ZR 474/15. Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechts- oder Steuerberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>

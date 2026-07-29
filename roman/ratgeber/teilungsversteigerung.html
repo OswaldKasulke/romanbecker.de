@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Teilungsversteigerung: Ablauf, Kosten, Dauer und Alternativen | Makler Köln</title>
+  <meta name="description" content="Teilungsversteigerung nach §§ 180–185 ZVG: Ablauf, Dauer, Kosten – und warum die 7/10-Grenze hier nicht gilt. Mit den Alternativen, die mehr einbringen.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/teilungsversteigerung.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Teilungsversteigerung: Ablauf, Kosten und Alternativen | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Jeder Miteigentümer kann sie allein beantragen – und sie bringt fast immer weniger als ein freier Verkauf. Ablauf, Fristen und was Sie stattdessen tun können. — Roman Becker (EVERNEST).">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/teilungsversteigerung.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Teilungsversteigerung: Ablauf, Kosten, Dauer und Alternativen",
+    "description": "Die Teilungsversteigerung nach §§ 180–185 ZVG löst eine Gemeinschaft auf: Ablauf, Antragsberechtigung, einstweilige Einstellung nach § 180 Abs. 2 ZVG und warum die 7/10-Grenze nicht greift.",
+    "url": "https://romanbecker.de/ratgeber/teilungsversteigerung.html",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilienmakler Köln", "url": "https://romanbecker.de/" },
+    "dateModified": "2026-07-28"
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--navy); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--navy); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--navy); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist eine Teilungsversteigerung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Teilungsversteigerung nach §§ 180 bis 185 ZVG ist eine besondere Form der Zwangsversteigerung, die nicht der Vollstreckung einer Forderung dient, sondern der Aufhebung einer Gemeinschaft. Die Immobilie wird versteigert, der Erlös tritt an ihre Stelle und wird unter den Miteigentümern nach Quoten verteilt. Typische Anlässe sind blockierte Erbengemeinschaften und Trennungen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wer kann eine Teilungsversteigerung beantragen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Grundsätzlich jeder Miteigentümer und in der Erbengemeinschaft jeder Miterbe – allein und ohne Zustimmung der anderen. Zuständig ist das Vollstreckungsgericht, also das Amtsgericht, in dessen Bezirk das Grundstück liegt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum ist der Erlös bei einer Teilungsversteigerung so niedrig?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ein wesentlicher Grund: Die 7/10-Grenze des § 74a ZVG gilt in der Teilungsversteigerung nicht, weil kein betreibender Gläubiger existiert, der die Versagung des Zuschlags beantragen könnte. Zusätzlich bieten im Termin überwiegend professionelle Käufer, die auf Abschläge kalkulieren, statt Eigennutzern, die den vollen Marktpreis zahlen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert eine Teilungsversteigerung?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das Verfahren dauert regelmäßig 12 bis 24 Monate. Hinzu kommen mögliche Verzögerungen: Nach § 180 Abs. 2 ZVG kann ein Miteigentümer die einstweilige Einstellung von jeweils bis zu sechs Monaten beantragen, wiederholbar. Nach § 180 Abs. 4 ZVG ist die Gesamtdauer aller Einstellungen auf höchstens fünf Jahre begrenzt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich bei der Teilungsversteigerung meiner eigenen Immobilie mitbieten?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Miteigentümer dürfen im Versteigerungstermin mitbieten und die Immobilie selbst erwerben. Sie treten dabei allerdings gegen fremde Bieter an und müssen den vollen Zuschlagspreis aufbringen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kann ich tun, um eine Teilungsversteigerung zu verhindern?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Am wirksamsten ist eine Einigung auf Basis einer neutralen Bewertung: gemeinsamer freier Verkauf, Übernahme durch einen Beteiligten gegen Abfindung oder – in der Erbengemeinschaft – der Verkauf des eigenen Erbteils nach § 2033 BGB. Alle drei Wege bringen regelmäßig mehr als eine Versteigerung." }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker EVERNEST <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Teilungsversteigerung
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln · EVERNEST</div>
+      <h1>Teilungsversteigerung: Ablauf, Kosten, Dauer und Alternativen</h1>
+      <p>Jeder Miteigentümer kann sie allein beantragen – deshalb ist sie ein starkes Druckmittel. Und sie bringt fast immer deutlich weniger als ein freier Verkauf. Warum das so ist.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Die Teilungsversteigerung ist das letzte Mittel, wenn sich Miteigentümer nicht einigen können – bei Erbengemeinschaften ebenso wie nach einer Trennung. Sie ist wirksam, weil sie <strong>ein Einzelner allein durchsetzen kann</strong>. Und sie ist teuer, weil sie regelmäßig deutlich weniger einbringt als ein freier Verkauf.</p>
+
+<div class="factbox">
+  <p><strong>Auf einen Blick</strong></p>
+  <p>• <strong>Rechtsgrundlage:</strong> §§ 180 bis 185 ZVG</p>
+  <p>• <strong>Zweck:</strong> Aufhebung einer Gemeinschaft, nicht Vollstreckung einer Schuld</p>
+  <p>• <strong>Antragsberechtigt:</strong> jeder Miteigentümer beziehungsweise Miterbe allein</p>
+  <p>• <strong>Zuständig:</strong> Vollstreckungsgericht am Ort des Grundstücks</p>
+  <p>• <strong>Dauer:</strong> regelmäßig 12 bis 24 Monate</p>
+  <p>• <strong>Verzögerung möglich:</strong> einstweilige Einstellung, kumuliert bis zu fünf Jahre</p>
+</div>
+
+<h2>Was die Teilungsversteigerung von der Zwangsversteigerung unterscheidet</h2>
+<p>Beide heißen im Gesetz „Zwangsversteigerung", verfolgen aber gegensätzliche Zwecke:</p>
+<table class="cost-table">
+  <thead>
+    <tr><th>&nbsp;</th><th>Teilungsversteigerung</th><th>Zwangsversteigerung</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Zweck</td><td>Gemeinschaft auflösen</td><td>Forderung eines Gläubigers durchsetzen</td></tr>
+    <tr><td>Betreibt</td><td>ein Miteigentümer</td><td>ein Gläubiger, meist die Bank</td></tr>
+    <tr><td>Anlass</td><td>Uneinigkeit</td><td>Zahlungsausfall</td></tr>
+    <tr><td>Erlös</td><td>wird unter den Eigentümern verteilt</td><td>tilgt die Schuld</td></tr>
+    <tr><td>7/10-Grenze (§ 74a ZVG)</td><td><strong>gilt nicht</strong></td><td>gilt</td></tr>
+  </tbody>
+</table>
+
+<div class="doc-note">
+  <p><strong>Der Punkt, der über den Preis entscheidet:</strong> In der normalen Zwangsversteigerung kann der betreibende Gläubiger den Zuschlag verhindern, wenn das Höchstgebot unter sieben Zehnteln des Verkehrswerts liegt. In der Teilungsversteigerung <strong>gibt es diesen Schutz nicht</strong> – schlicht weil kein betreibender Gläubiger existiert, der ihn beantragen könnte. Genau deshalb fallen die Erlöse hier so oft deutlich unter den Marktwert.</p>
+</div>
+
+<h2>Wann sie zum Einsatz kommt</h2>
+<ul>
+  <li><strong>Erbengemeinschaft:</strong> Ein Miterbe blockiert den Verkauf, obwohl die anderen verkaufen wollen. Mehr dazu im Ratgeber <a href="https://romanbecker.de/ratgeber/erbengemeinschaft.html">Erbengemeinschaft</a>.</li>
+  <li><strong>Trennung und Scheidung:</strong> Beide stehen im Grundbuch, einer will raus, der andere blockiert. Siehe <a href="https://romanbecker.de/ratgeber/scheidung-immobilie.html">Scheidung und Immobilie</a>.</li>
+  <li><strong>Aufgelöste Gesellschaft:</strong> etwa eine GbR, deren Gesellschafter sich über die Verwertung nicht einigen.</li>
+</ul>
+<p>Gemeinsam ist allen: Die Immobilie lässt sich nicht real teilen – und ohne Einigung bleibt nur, sie in teilbares Geld zu verwandeln.</p>
+
+<h2>Der Ablauf</h2>
+<ol>
+  <li><strong>Antrag</strong> beim Vollstreckungsgericht – dem Amtsgericht, in dessen Bezirk das Grundstück liegt. Der Antrag muss das Grundstück, das Gemeinschaftsverhältnis und die eigene Beteiligung ausweisen.</li>
+  <li><strong>Anordnungsbeschluss</strong> und Eintragung eines Versteigerungsvermerks im Grundbuch.</li>
+  <li><strong>Verkehrswertermittlung</strong> durch einen vom Gericht bestellten Sachverständigen. Gegen die Wertfestsetzung ist ein Rechtsmittel möglich.</li>
+  <li><strong>Terminbestimmung</strong> und öffentliche Bekanntmachung.</li>
+  <li><strong>Versteigerungstermin</strong> mit Bietstunde. Mitbieten darf jeder – auch die Miteigentümer selbst.</li>
+  <li><strong>Zuschlag</strong> an das Höchstgebot.</li>
+  <li><strong>Verteilungstermin:</strong> Der Erlös tritt an die Stelle der Immobilie und wird nach Quoten verteilt, nach Abzug von Verfahrenskosten und valutierenden Grundpfandrechten.</li>
+</ol>
+
+<h2>Die Bremse: einstweilige Einstellung</h2>
+<p>Wer die Teilungsversteigerung als schnellen Hebel einplant, unterschätzt regelmäßig § 180 ZVG:</p>
+<ul>
+  <li><strong>Absatz 2:</strong> Ein Miteigentümer kann die einstweilige Einstellung des Verfahrens beantragen – jeweils <strong>bis zu sechs Monate</strong>. Der Antrag ist <strong>wiederholbar</strong>, wenn dies bei Abwägung der Interessen angemessen erscheint.</li>
+  <li><strong>Absatz 3:</strong> Besteht die Gemeinschaft nur zwischen Ehegatten, früheren Ehegatten oder Lebenspartnern, kann der Antrag <strong>zum Schutz gemeinschaftlicher Kinder mehrfach wiederholt</strong> werden.</li>
+  <li><strong>Absatz 4:</strong> Die Gesamtdauer aller Einstellungen ist auf <strong>höchstens fünf Jahre</strong> begrenzt.</li>
+</ul>
+<p>Ein entschlossener Blockierer kann das Verfahren also über Jahre strecken – in Scheidungsfällen mit Kindern besonders wirksam. Das ist der Hauptgrund, warum die Teilungsversteigerung praktisch eher als Druckmittel wirkt denn als schneller Ausweg.</p>
+
+<h2>Warum sie fast immer die schlechteste Lösung ist</h2>
+<table class="cost-table">
+  <thead>
+    <tr><th>&nbsp;</th><th>freier Verkauf</th><th>Teilungsversteigerung</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Erlös</td><td>Marktpreis</td><td>regelmäßig deutlich darunter</td></tr>
+    <tr><td>Mindestgebotsschutz</td><td>Sie entscheiden</td><td>7/10-Grenze gilt nicht</td></tr>
+    <tr><td>Dauer</td><td>Monate</td><td>12–24 Monate, mit Einstellungen bis 5 Jahre länger</td></tr>
+    <tr><td>Kosten</td><td>Courtage, Notar</td><td>Gerichtskosten, Sachverständigengutachten, Anwalt</td></tr>
+    <tr><td>Vermarktung</td><td>Fotos, Exposé, Zielgruppe</td><td>amtliche Bekanntmachung</td></tr>
+    <tr><td>Steuerung</td><td>bei den Eigentümern</td><td>beim Gericht</td></tr>
+  </tbody>
+</table>
+<p>Dazu kommt: Im Versteigerungstermin bieten überwiegend professionelle Käufer, die auf Abschläge kalkulieren. Ein Eigennutzer, der emotional mitgeht und den besten Preis zahlt, findet sich dort selten.</p>
+
+<h2>Was Sie stattdessen tun können</h2>
+<ol>
+  <li><strong>Neutrale Bewertung als Grundlage.</strong> Die meisten Blockaden entstehen nicht aus Bosheit, sondern aus unterschiedlichen Wertvorstellungen. Eine unabhängige Einschätzung nimmt der Diskussion die Schärfe.</li>
+  <li><strong>Übernahme gegen Abfindung.</strong> Wer bleiben will, zahlt die anderen aus – oft der beste Kompromiss, wenn die Finanzierung steht.</li>
+  <li><strong>Eigenen Anteil verkaufen.</strong> In der Erbengemeinschaft ist der Erbteilsverkauf nach § 2033 BGB möglich.</li>
+  <li><strong>Den Antrag ankündigen.</strong> Allein die ernsthafte Ankündigung bringt festgefahrene Verhandlungen häufig in Bewegung – weil allen klar wird, dass am Ende alle verlieren.</li>
+</ol>
+
+<h2>Kosten</h2>
+<p>Die Kosten richten sich nach dem Verkehrswert und umfassen Gerichtsgebühren für Anordnung, Termin und Zuschlag, das Sachverständigengutachten sowie – dringend zu empfehlen – die anwaltliche Begleitung. Sie werden in der Regel aus dem Erlös vorweg beglichen, mindern also die Verteilungsmasse aller Beteiligten.</p>
+<p>Teilungsversteigerungen gelten als besonders komplexe und konfliktträchtige Verfahren und sollten nicht ohne anwaltliche Begleitung betrieben werden. Es gibt Kanzleien, die sich darauf spezialisiert haben – erkennbar am <strong>Fachanwalt für Erbrecht</strong> oder <strong>Familienrecht</strong> und an einschlägigen Referenzen zu Zwangsversteigerungsverfahren.</p>
+
+<h2>Häufige Fragen</h2>
+
+<h3>Kann ich die Teilungsversteigerung allein beantragen?</h3>
+<p>Ja. Antragsberechtigt ist grundsätzlich jeder Miteigentümer – und in der Erbengemeinschaft jeder Miterbe. Zustimmung der anderen ist nicht erforderlich.</p>
+
+<h3>Kann ich selbst mitbieten?</h3>
+<p>Ja, und das ist ein häufig genutzter Weg: Wer die Immobilie behalten möchte, kann im Termin mitbieten und sie erwerben. Bedenken Sie aber, dass Sie dann gegen fremde Bieter antreten und den vollen Zuschlagspreis aufbringen müssen.</p>
+
+<h3>Was passiert mit dem laufenden Darlehen?</h3>
+<p>Im Grundbuch eingetragene Grundpfandrechte werden im Verfahren berücksichtigt; valutierende Darlehen werden aus dem Erlös bedient. Eine persönliche Haftung aus dem Darlehensvertrag kann darüber hinaus bestehen bleiben – das gehört vorab geklärt.</p>
+
+<h3>Muss ich ausziehen?</h3>
+<p>Nicht sofort. Mit dem Zuschlag wird der Ersteher Eigentümer und kann die Räumung betreiben; der Zuschlagsbeschluss ist ein Vollstreckungstitel. Bis dahin bleibt die Nutzung in der Regel unverändert.</p>
+
+<h3>Ersetzt dieser Ratgeber eine Beratung?</h3>
+<p>Nein. Das Verfahren ist komplex und die Fristen sind kurz. Dieser Text ordnet die Systematik; die Vertretung gehört in die Hände eines spezialisierten Anwalts.</p>
+
+<div class="ratgeber-hinweis">
+  <span class="ratgeber-hinweis__title">Sorgfalt, Aktualität und Haftung</span>
+  <p>Die Inhalte dieses Ratgebers recherchiere ich sorgfältig und belege sie, wo immer möglich, anhand von Gesetzestexten, amtlichen Veröffentlichungen und höchstrichterlicher Rechtsprechung. Gesetze, Fristen, Steuersätze und Urteile ändern sich jedoch laufend – und jeder Sachverhalt hat seine Besonderheiten.</p>
+  <p>Dieser Ratgeber ersetzt deshalb <strong>keine Rechts-, Steuer- oder Finanzberatung im Einzelfall</strong>. Für Vollständigkeit, Richtigkeit und Aktualität kann ich keine Haftung übernehmen. Ziehen Sie vor einer Entscheidung Notar, Fachanwältin oder Steuerberater hinzu.</p>
+  <p>Zur Marktseite berate ich Sie dagegen gern persönlich: Wenn Sie wissen möchten, was Ihre Immobilie in Ihrem Kölner Stadtteil aktuell wert ist, <a href="https://romanbecker.de/immobilienbewertung.html">melden Sie sich einfach</a> – oder rufen Sie an unter <a href="tel:+491775156969">0177 515 69 69</a>.</p>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Bevor es zur Versteigerung kommt</h2>
+        <p>Die meisten Blockaden lassen sich lösen, sobald alle Beteiligten dieselbe Zahl vor sich haben. Ich erstelle eine neutrale, nachvollziehbare Bewertung – und begleite den freien Verkauf, wenn die Einigung steht.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/erbengemeinschaft.html">Erbengemeinschaft</a>
+          <a href="https://romanbecker.de/ratgeber/scheidung-immobilie.html">Scheidung &amp; Immobilie</a>
+          <a href="https://romanbecker.de/ratgeber/geerbte-immobilie-verkaufen.html">Geerbte Immobilie verkaufen</a>
+          <a href="https://romanbecker.de/ratgeber/zwangsversteigerung.html">Zwangsversteigerung</a>
+          <a href="https://romanbecker.de/ratgeber/zugewinnausgleich-immobilie.html">Zugewinnausgleich</a>
+          <a href="https://romanbecker.de/ratgeber/erbschaftsteuer-immobilie.html">Erbschaftssteuer auf Immobilien</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker EVERNEST</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/marktanalyse/">Marktanalyse Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.evernest.com/de/unsere-makler/koeln/roman-becker/" target="_blank" rel="noopener">EVERNEST-Profil</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Rechtsstand: Juli 2026. Genannte Vorschriften: §§ 74a, 85a, 180–185 ZVG; § 2033 BGB. Roman Becker ist als selbstständiger Immobilienmakler für die EVERNEST GmbH im Großraum Köln &amp; Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechts- oder Steuerberatung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
