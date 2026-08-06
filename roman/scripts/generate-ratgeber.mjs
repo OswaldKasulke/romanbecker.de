@@ -1,4 +1,21 @@
-import { writeFileSync, mkdirSync } from 'fs';
+/**
+ * ACHTUNG - Einmal-Werkzeug aus dem Erstaufbau, KEINE laufende Quelle der Wahrheit.
+ *
+ * Dieses Skript ueberschreibt die Ratgeber-Seiten vollstaendig. Viele Seiten
+ * wurden seit der Generierung direkt in ratgeber/*.html weiterentwickelt
+ * (neue Abschnitte, Koelner Detailangaben, fachliche Korrekturen). Diese
+ * Aenderungen stehen NICHT in diesem Skript und gingen bei einem Rerun verloren.
+ *
+ * Deshalb bricht das Skript ab, sobald eine Zieldatei bereits existiert.
+ *
+ *   node generate-ratgeber.mjs            -> legt nur fehlende Seiten an
+ *   node generate-ratgeber.mjs --force    -> ueberschreibt (nur bewusst nutzen!)
+ *
+ * Vor einem --force: pruefen, ob die Seitendefinition unten wirklich aktueller
+ * ist als die Datei auf der Platte. Im Zweifel die Datei direkt bearbeiten.
+ */
+
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -216,72 +233,6 @@ F\xfcr Immobilien in Sanierungsgebieten k\xf6nnen die Sanierungskosten **\xfcber
 
 - Finanzierungsrechner und Umzugsservices
 - Beratung bei der Immobilienbewertung und Mustervertr\xe4ge`
-  },
-  {
-    slug: 'heizungsgesetz',
-    title: 'Heizungsgesetz',
-    desc: 'Das neue Heizungsgesetz (GEG) ab 2024: Welche Heizungen sind erlaubt? Was gilt f\xfcr Bestandsgeb\xe4ude? F\xf6rderprogramme im \xdcberblick.',
-    content: `## 1. Pflicht zur Nutzung erneuerbarer Energien
-
-- Ab **2024** m\xfcssen neu eingebaute Heizungen zu **mindestens 65\xa0% mit erneuerbaren Energien** betrieben werden.
-- Wo keine kommunale W\xe4rmeplanung vorliegt, werden \xdcbergangsfristen und F\xf6rderungen gew\xe4hrt.
-
-## 2. Auswahl an Heizsystemen
-
-- Eigent\xfcmer haben mehrere **Optionen f\xfcr umweltfreundliche Heizungen**, z.\xa0B. W\xe4rmepumpen, Solarthermie, Fernw\xe4rme oder Biomasse. Auch der Einbau einer Gasheizung ist noch m\xf6glich, sofern sie mit gr\xfcnen Gasen betrieben werden kann.
-
-## 3. Bestandsschutz und Ausnahmen
-
-- Bestehende Heizungen d\xfcrfen weiter genutzt werden, solange sie funktionst\xfcchtig sind. Eine **Austauschpflicht** gilt nur f\xfcr Heizungen, die \xe4lter als 30 Jahre sind.
-- F\xfcr Menschen \xfcber 80 Jahre, die in ihrem eigenen Einfamilienhaus leben, gibt es Sonderregelungen.
-
-## 4. F\xf6rderung und finanzielle Unterst\xfctzung
-
-- F\xfcr den Einbau klimafreundlicher Heizungen gibt es **staatliche F\xf6rderprogramme**. Die F\xf6rderung besteht aus Zusch\xfcssen und zinsg\xfcnstigen Krediten, deren H\xf6he je nach Einkommen gestaffelt ist.
-
-## 5. Kommunale W\xe4rmeplanung
-
-- Kommunen sollen eine **W\xe4rmeplanung** erstellen, um zu kl\xe4ren, in welchen Gebieten auf Fernw\xe4rme oder andere zentrale Heizsysteme gesetzt werden kann.
-
-## Zusammenfassung
-
-- Ab 2024 m\xfcssen neue Heizungen zu **65\xa0% mit erneuerbaren Energien** betrieben werden.
-- Es gibt verschiedene Heizsysteme und staatliche F\xf6rderungen f\xfcr den Umstieg.
-- Bestandsschutz f\xfcr bestehende Heizungen; Austauschpflicht ab 30 Jahren.
-- Kommunen erstellen W\xe4rmep\xe4ne zur langfristigen Orientierung.`
-  },
-  {
-    slug: 'gebaeudeenergiegesetz',
-    title: 'Geb\xe4udeenergiegesetz (GEG)',
-    desc: 'Das Geb\xe4udeenergiegesetz (GEG) ab 2024: Anforderungen an Heizungen, Bestandsschutz, F\xf6rderprogramme und kommunale W\xe4rmeplanung.',
-    content: `## 1. Pflicht zur Nutzung erneuerbarer Energien
-
-- Ab **2024** m\xfcssen neu eingebaute Heizungen zu **mindestens 65\xa0% mit erneuerbaren Energien** betrieben werden.
-- Wo keine kommunale W\xe4rmeplanung vorliegt, werden \xdcbergangsfristen und F\xf6rderungen gew\xe4hrt.
-
-## 2. Auswahl an Heizsystemen
-
-- Eigent\xfcmer haben mehrere **Optionen f\xfcr umweltfreundliche Heizungen**, z.\xa0B. W\xe4rmepumpen, Solarthermie, Fernw\xe4rme oder Biomasse.
-
-## 3. Bestandsschutz und Ausnahmen
-
-- Bestehende Heizungen d\xfcrfen weiter genutzt werden, solange sie funktionst\xfcchtig sind. Eine **Austauschpflicht** gilt nur f\xfcr Heizungen, die \xe4lter als 30 Jahre sind.
-- F\xfcr Menschen \xfcber 80 Jahre, die in ihrem eigenen Einfamilienhaus leben, gibt es Sonderregelungen.
-
-## 4. F\xf6rderung und finanzielle Unterst\xfctzung
-
-- F\xfcr den Einbau klimafreundlicher Heizungen gibt es **staatliche F\xf6rderprogramme** \u2013 Zusch\xfcsse und zinsg\xfcnstige Kredite.
-
-## 5. Kommunale W\xe4rmeplanung
-
-- Kommunen sollen eine **W\xe4rmeplanung** erstellen, um zu kl\xe4ren, in welchen Gebieten auf Fernw\xe4rme oder andere zentrale Heizsysteme gesetzt werden kann.
-
-## Zusammenfassung
-
-- Ab 2024 m\xfcssen neue Heizungen zu **65\xa0% mit erneuerbaren Energien** betrieben werden.
-- Es gibt verschiedene Optionen f\xfcr Heizsysteme und staatliche F\xf6rderungen.
-- Bestandsschutz f\xfcr bestehende Heizungen; Austauschpflicht ab 30 Jahren.
-- Kommunen erstellen W\xe4rmep\xe4ne zur langfristigen Orientierung.`
   },
   {
     slug: 'daecher',
@@ -913,45 +864,6 @@ Ein Mietspiegel zeigt die orts\xfcblichen Vergleichsmieten auf Basis st\xe4dtisc
 In deutschen Ballungsr\xe4umen gilt eine Mietpreisbremse, welche Neuvermietungen auf maximal 10\xa0% \xfcber der Vergleichsmiete begrenzt, au\xdfer bei Neubauten und gro\xdffl\xe4chigen Renovierungen.`
   },
   {
-    slug: 'eigenbedarfsklage-2',
-    title: 'Eigenbedarfsk\xfcndigung: Ablauf und Zusammenfassung',
-    desc: 'Der vollst\xe4ndige Ablauf einer Eigenbedarfsk\xfcndigung: Form, Fristen, Widerspruch, Klage und gerichtliches Verfahren Schritt f\xfcr Schritt.',
-    content: `## 1. Eigenbedarfsk\xfcndigung
-
-Der Vermieter kann das Mietverh\xe4ltnis beenden, wenn er oder ein naher Angeh\xf6riger die Wohnung selbst ben\xf6tigt. Der Eigenbedarf muss berechtigt sein, mit einem nachvollziehbaren Grund.
-
-## 2. Form und Inhalt der K\xfcndigung
-
-- Die K\xfcndigung muss schriftlich erfolgen und vom Vermieter oder Vertreter unterzeichnet sein.
-- Der Vermieter muss den Eigenbedarf genau begr\xfcnden, einschlie\xdflich der Person, die einziehen soll, und des Nutzungsgrundes.
-
-## 3. Fristen bei Eigenbedarfsk\xfcndigung
-
-Die K\xfcndigungsfrist h\xe4ngt von der Mietdauer ab:
-
-- Bis 5 Jahre: 3 Monate
-- 5 bis 8 Jahre: 6 Monate
-- Mehr als 8 Jahre: 9 Monate
-
-## 4. Widerspruch des Mieters
-
-Mieter k\xf6nnen widersprechen, wenn der Eigenbedarf unberechtigt ist oder besondere pers\xf6nliche H\xe4rten bestehen. Der Widerspruch muss sp\xe4testens zwei Monate vor Fristablauf schriftlich eingehen.
-
-## 5. Eigenbedarfsklage
-
-Wenn der Mieter nicht auszieht, muss der Vermieter beim Amtsgericht eine Eigenbedarfsklage einreichen.
-
-## 6. Gerichtliches Verfahren und R\xe4umungsfrist
-
-Das Gericht pr\xfcft, ob der Eigenbedarf gerechtfertigt ist und ob H\xe4rtegr\xfcnde vorliegen. Bei erfolgreicher Klage wird eine R\xe4umungsfrist zwischen 2 Wochen bis maximal 6 Monaten gesetzt.
-
-## 7. Ausnahmef\xe4lle
-
-- Die Eigenbedarfsk\xfcndigung ist nicht m\xf6glich, wenn der Vermieter im Mietvertrag auf das K\xfcndigungsrecht verzichtet hat.
-- Mieter mit besonderem K\xfcndigungsschutz sind gesch\xfctzt.
-- Vorget\xe4uschter Eigenbedarf kann zu Schadensersatzpflichten f\xfchren.`
-  },
-  {
     slug: 'annuitaetendarlehen',
     title: 'Annuit\xe4tendarlehen',
     desc: 'Wie funktioniert ein Annuit\xe4tendarlehen? Konstantrate, Zins- und Tilgungsanteil, Zinsbindung, Vor- und Nachteile mit Rechenbeispiel.',
@@ -1307,12 +1219,29 @@ function buildPage(page) {
 </html>`;
 }
 
-let count = 0;
+const FORCE = process.argv.includes('--force');
+
+let written = 0;
+const skipped = [];
+
 for (const page of pages) {
-  const html = buildPage(page);
   const outPath = join(OUT_DIR, `${page.slug}.html`);
-  writeFileSync(outPath, html, 'utf-8');
-  count++;
+
+  if (existsSync(outPath) && !FORCE) {
+    skipped.push(page.slug);
+    continue;
+  }
+
+  writeFileSync(outPath, buildPage(page), 'utf-8');
+  written++;
 }
 
-console.log(`✓ ${count} Ratgeber-Seiten generiert in ${OUT_DIR}`);
+if (skipped.length) {
+  console.warn(`\n⚠  ${skipped.length} Seite(n) uebersprungen - Datei existiert bereits:`);
+  for (const slug of skipped) console.warn(`   ${slug}.html`);
+  console.warn(`\n   Diese Dateien wurden seit der Generierung teils von Hand gepflegt.`);
+  console.warn(`   Zum bewussten Ueberschreiben: node generate-ratgeber.mjs --force\n`);
+}
+
+console.log(`✓ ${written} Ratgeber-Seite(n) geschrieben in ${OUT_DIR}`);
+if (FORCE && written) console.warn(`⚠  --force war aktiv - vorhandene Dateien wurden ersetzt.`);
