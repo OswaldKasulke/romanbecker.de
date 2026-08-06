@@ -70,7 +70,7 @@ Notare fungieren als neutrale Vermittler und gew\xe4hrleisten Rechtskonformit\xe
 ## 2. Vorteile f\xfcr Selbstnutzer und Vermieter
 
 - **Selbstnutzer**: K\xf6nnen 9\xa0% der Sanierungskosten j\xe4hrlich \xfcber 10 Jahre steuerlich geltend machen.
-- **Vermieter**: K\xf6nnen 8\xa0% der Sanierungskosten j\xe4hrlich \xfcber die ersten 8 Jahre und danach 4\xa0% \xfcber weitere 4 Jahre abschreiben. Dies ergibt eine maximale Abschreibung von 100\xa0% der Sanierungskosten \xfcber 12 Jahre.
+- **Vermieter**: K\xf6nnen nach \xa7 7i EStG 9\xa0% der Sanierungskosten j\xe4hrlich \xfcber die ersten 8 Jahre und danach 7\xa0% \xfcber weitere 4 Jahre abschreiben. Dies ergibt eine maximale Abschreibung von 100\xa0% der Sanierungskosten \xfcber 12 Jahre.
 
 ## 3. Was kann abgeschrieben werden?
 
@@ -106,7 +106,7 @@ Bei gewerblich genutzten Immobilien k\xf6nnen die Anschaffungskosten ebenfalls l
 
 ## 4. Denkmal-AfA (Denkmalabschreibung)
 
-- F\xfcr denkmalgesch\xfctzte Geb\xe4ude gibt es besondere Abschreibungen. **Selbstnutzer** k\xf6nnen 9\xa0% der Sanierungskosten \xfcber 10 Jahre abschreiben, **Vermieter** sogar 8\xa0% in den ersten 8 Jahren und 4\xa0% in den darauffolgenden 4 Jahren.
+- F\xfcr denkmalgesch\xfctzte Geb\xe4ude gibt es besondere Abschreibungen. **Selbstnutzer** k\xf6nnen 9\xa0% der Sanierungskosten \xfcber 10 Jahre abschreiben, **Vermieter** nach \xa7 7i EStG 9\xa0% in den ersten 8 Jahren und 7\xa0% in den darauffolgenden 4 Jahren.
 
 ## 5. Au\xdfergew\xf6hnliche Abschreibungen
 
@@ -190,7 +190,7 @@ F\xfcr Immobilien in Sanierungsgebieten k\xf6nnen die Sanierungskosten **\xfcber
   {
     slug: 'immobilienportale',
     title: 'Immobilienportale',
-    desc: 'ImmobilienScout24, Immonet, Immowelt und Co.: Wie Immobilienportale funktionieren, was sie kosten und f\xfcr wen sie geeignet sind.',
+    desc: 'ImmobilienScout24, Immowelt und Co.: Wie Immobilienportale funktionieren, was sie kosten und f\xfcr wen sie geeignet sind.',
     content: `## 1. Funktionen und Vorteile
 
 - Immobilienportale bieten eine breite Auswahl an Inseraten f\xfcr Kauf und Miete von Wohnungen, H\xe4usern und Gewerbeobjekten
@@ -199,7 +199,7 @@ F\xfcr Immobilien in Sanierungsgebieten k\xf6nnen die Sanierungskosten **\xfcber
 
 ## 2. Bekannte Immobilienportale
 
-- In Deutschland z\xe4hlen ImmobilienScout24, Immonet und Immowelt zu den gr\xf6\xdften und beliebtesten Portalen
+- In Deutschland z\xe4hlen ImmobilienScout24 und Immowelt zu den gr\xf6\xdften und beliebtesten Portalen. Das fr\xfchere Portal Immonet wurde eingestellt – immonet.de leitet seit der Zusammenlegung auf Immowelt weiter
 - Es existieren spezialisierte Plattformen f\xfcr Luxusimmobilien, Ferienwohnungen oder Studentenwohnungen
 
 ## 3. Nutzergruppen
@@ -428,7 +428,7 @@ Eine Form der Isolierverglasung mit speziellen Beschichtungen, die die W\xe4rme 
 
 ## 8. Ornament- und Brandschutzverglasung
 
-- **Ornamentverglasung**: Strukturiertes oder gemustertes Glas f\xfcr mehr Privatsph\xe4re \u2013 oft in Badeziimmerfenstern und Eingangst\xfcren.
+- **Ornamentverglasung**: Strukturiertes oder gemustertes Glas f\xfcr mehr Privatsph\xe4re \u2013 oft in Badezimmerfenstern und Eingangst\xfcren.
 - **Brandschutzverglasung**: Stabil im Brandfall \u2013 wichtig in \xf6ffentlichen Geb\xe4uden.`
   },
   {
@@ -703,7 +703,7 @@ In der deutschen Bankenpraxis wird heute \xfcberwiegend die **Grundschuld** stat
     desc: 'Grundsteuer 2025: Neue Bewertungsgrundlagen, Hebesatz der Kommunen, Berechnung und Auswirkungen f\xfcr Eigent\xfcmer und Mieter.',
     content: `## Merkmale der Grundsteuer
 
-- **Bemessungsgrundlage**: Die Steuer basiert auf dem Einheitswert, der vom Finanzamt festgelegt wird. Die Berechnung unterscheidet sich je nach Nutzungsart (unbebaute Grundst\xfccke, Wohnimmobilien, Gewerbeimmobilien).
+- **Bemessungsgrundlage**: Die Steuer basiert seit dem 1. Januar 2025 auf dem Grundsteuerwert (\xa7 13 GrStG), der vom Finanzamt festgestellt wird und den fr\xfcheren Einheitswert ersetzt. Die Berechnung unterscheidet sich je nach Nutzungsart (unbebaute Grundst\xfccke, Wohnimmobilien, Gewerbeimmobilien).
 - **Hebesatz der Kommune**: Jede Gemeinde legt einen individuellen Hebesatz fest, der die Steuerh\xf6he direkt beeinflusst.
 - **Grundsteuerreform**: Ab 2025 werden alle Grundst\xfccke neu bewertet mit realistischeren Ma\xdfst\xe4ben. Die Reform soll zu einer gerechteren und aktuelleren Besteuerung f\xfchren und regionale Unterschiede besser ber\xfccksichtigen.
 
@@ -1237,7 +1237,7 @@ function buildPage(page) {
     <div class="container">
       <div class="cta-box">
         <span class="section-label">Pers\xf6nliche Beratung</span>
-        <h2>Fragen zur Ihrer Immobilie in K\xf6ln?</h2>
+        <h2>Fragen zu Ihrer Immobilie in K\xf6ln?</h2>
         <p>Ich berate Sie pers\xf6nlich, unverbindlich und diskret. Als IHK-zertifizierter Immobilienmakler in K\xf6ln mit EVERNEST-Netzwerk stehe ich f\xfcr marktgerechte Bewertung und professionelle Vermarktung.</p>
         <div class="cta-buttons">
           <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
