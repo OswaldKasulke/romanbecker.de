@@ -1,0 +1,46 @@
+name: Update Zwangsversteigerungstermine Köln
+
+on:
+  schedule:
+    - cron: '30 5 * * 1'   # montags um 05:30 UTC
+  workflow_dispatch:        # manuell auslösbar
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-zvg-koeln
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Das Skript bricht ab, wenn die Quelle nicht erreichbar ist oder keine
+      # Termine gefunden werden. Dann bleibt die Seite unveraendert stehen -
+      # besser ein alter Stand als eine leere Tabelle.
+      - name: Termine vom Amtsgericht Köln abrufen
+        run: python3 roman/scripts/update-zvg-koeln.py
+
+      - name: Auf Änderungen prüfen
+        id: changes
+        run: |
+          if git diff --quiet roman/ratgeber/zwangsversteigerung.html; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Keine neuen Termine."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Termine haben sich geaendert."
+          fi
+
+      - name: Commit und Push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add roman/ratgeber/zwangsversteigerung.html
+          git commit -m "chore(roman): Zwangsversteigerungstermine Koeln aktualisiert [automated]"
+          git push
