@@ -20,6 +20,11 @@ RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 
 # Nießbrauch-Seiten: alte Einfach-s-Slugs -> korrekte Doppel-s-Slugs (301)
 
+# Weitere Zusammenlegungen duenner Ratgeber-Seiten
+RewriteRule ^ratgeber/hypothek\.html$ /ratgeber/grundschuld.html [R=301,L]
+RewriteRule ^ratgeber/smart-heizung\.html$ /ratgeber/smarthome.html [R=301,L]
+RewriteRule ^ratgeber/vergleichsmiete\.html$ /ratgeber/mietspiegel.html [R=301,L]
+
 # Zusammengelegt zu fenster-tueren-dach.html (vier duenne Einzelseiten)
 RewriteRule ^ratgeber/fenster\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
 RewriteRule ^ratgeber/verglasung\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
