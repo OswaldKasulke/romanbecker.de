@@ -13,6 +13,12 @@ on:
     types:
       - completed
 
+# Deploys serialisieren: Push und taegliches Listings-Update duerfen sich
+# nicht ueberholen - beide schreiben in dieselbe FTP-Sync-State-Datei.
+concurrency:
+  group: deploy-roman-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -39,8 +45,13 @@ jobs:
           define('REPORT_SECRET', '${{ secrets.ROMAN_REPORT_SECRET }}');
           EOF
 
+      # Der all-inkl-FTP bricht sporadisch ab (Laeufe #368 und #380). Der erste
+      # Versuch darf deshalb scheitern, ohne den Job rot zu faerben; schlaegt er
+      # fehl, laeuft ein zweiter. Erst wenn auch der scheitert, ist der Job rot.
       - name: FTP Deploy (Produktion)
+        id: ftp_prod
         if: github.ref == 'refs/heads/main'
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: w019d9c9.kasserver.com
@@ -52,6 +63,22 @@ jobs:
           server-dir: /romanbecker.de/root/
           protocol: ftp
           port: 21
+          timeout: 120000
+
+      - name: FTP Deploy (Produktion) – zweiter Versuch
+        if: github.ref == 'refs/heads/main' && steps.ftp_prod.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: w019d9c9.kasserver.com
+          username: w019d9c9
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: roman/
+          exclude: |
+            **/leads.log
+          server-dir: /romanbecker.de/root/
+          protocol: ftp
+          port: 21
+          timeout: 120000
 
       - name: IndexNow – geänderte Seiten an Bing/Yandex melden
         if: github.ref == 'refs/heads/main'
