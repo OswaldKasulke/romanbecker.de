@@ -19,6 +19,13 @@ RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
 RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 
 # Nießbrauch-Seiten: alte Einfach-s-Slugs -> korrekte Doppel-s-Slugs (301)
+
+# Zusammengelegt zu fenster-tueren-dach.html (vier duenne Einzelseiten)
+RewriteRule ^ratgeber/fenster\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
+RewriteRule ^ratgeber/verglasung\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
+RewriteRule ^ratgeber/daecher\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
+RewriteRule ^ratgeber/haustueren\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
+
 RewriteRule ^ratgeber/niesbrauch-wohnrecht\.html$      /ratgeber/niessbrauch-wohnrecht.html      [R=301,L]
 RewriteRule ^ratgeber/niesbrauch-kapitalisieren\.html$ /ratgeber/niessbrauch-kapitalisieren.html [R=301,L]
 
