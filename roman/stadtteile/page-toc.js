@@ -96,6 +96,11 @@
      Reihenfolge h2 > h3 > .section-label; danach den Ortsnamen kürzen.
      Bleibt dabei ein Satzfragment übrig, gilt wieder das .section-label. */
   function labelFor(el) {
+    /* Feste Beschriftung am <section data-toc="…"> hat Vorrang vor allem
+       anderen — dort, wo weder Eyebrow noch Überschrift gut passen. */
+    var fixed = el.getAttribute && el.getAttribute('data-toc');
+    if (fixed && fixed.trim()) return fixed.replace(/\s+/g, ' ').trim();
+
     var labEl = el.querySelector('.section-label');
     var h2 = el.querySelector('h2');
     var h3 = el.querySelector('h3');
