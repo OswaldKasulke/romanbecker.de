@@ -2,8 +2,11 @@
  * page-toc.js — schwebende Sektions-Übersicht ("Inhalt")
  *
  * Baut auf jeder Seite automatisch ein Inhaltsverzeichnis aus deren eigenen
- * <section>-Blöcken. Kein seitenspezifisches Markup nötig: Label kommt aus
- * .section-label (kurz) bzw. ersatzweise aus der h2. Fehlende IDs werden
+ * <section>-Blöcken. Kein seitenspezifisches Markup nötig: Beschriftung kommt
+ * aus der echten Überschrift (h2 > h3 > .section-label), weil die kurzen
+ * Eyebrow-Labels den Abschnitt oft nicht beschreiben ("Lokale Expertise"
+ * statt "Kölner Stadtteile"). Der Ortsname der Seite wird gekürzt, damit die
+ * Einträge nicht alle mit demselben Stadtteil beginnen. Fehlende IDs werden
  * ergänzt. Die Styles bringt das Skript selbst mit (siehe CSS-Konstante),
  * damit es auch auf Seiten ohne shared.css funktioniert.
  */
@@ -11,7 +14,7 @@
   'use strict';
 
   var MIN_ENTRIES = 3;
-  var MAX_LABEL = 28;
+  var MAX_LABEL = 38;
 
   /* Styles bringt das Skript selbst mit, damit es auch auf Seiten ohne
      shared.css funktioniert. Fallback-Werte fangen fehlende Variablen ab. */
@@ -26,7 +29,7 @@
       'padding:.875rem 2rem;font-family:var(--font-base,inherit);font-size:.9375rem;font-weight:600;' +
       'cursor:pointer;box-shadow:var(--shadow,0 4px 12px rgba(0,0,0,.1));transition:all .2s}' +
     '.page-toc__toggle:hover{background:#1a1a1a;transform:translateY(-1px)}' +
-    '.page-toc__list{position:absolute;top:calc(100% + .5rem);right:0;width:230px;list-style:none;' +
+    '.page-toc__list{position:absolute;top:calc(100% + .5rem);right:0;width:min(300px,calc(100vw - 3rem));list-style:none;' +
       'margin:0;padding:.5rem;background:#fff;border-radius:var(--radius-lg,16px);' +
       'box-shadow:var(--shadow,0 4px 12px rgba(0,0,0,.1));max-height:45vh;overflow:auto;display:none}' +
     '.page-toc.is-open .page-toc__list{display:block}' +
@@ -71,11 +74,50 @@
   // gemeinsamen <section> stecken (z. B. Themengruppen der Ratgeber-Übersicht).
   var SUBBLOCKS = '.category-section';
 
-  function add(out, used, el, index) {
-    var label = el.querySelector('.section-label');
+  /* Ortsname der Seite (z. B. "Braunsfeld", "Brühl") aus der h1 ableiten.
+     Er steckt in fast jeder Überschrift und macht die Einträge unnötig lang. */
+  var pageOrt = null, ortResolved = false;
+  function getOrt() {
+    if (ortResolved) return pageOrt;
+    ortResolved = true;
+    var h1 = document.querySelector('h1');
+    var t = h1 ? h1.textContent.replace(/\s+/g, ' ').trim() : '';
+    var m = t.match(/Köln-([A-ZÄÖÜ][\wäöüß/-]*)/);
+    if (m) { pageOrt = m[1]; return pageOrt; }
+    m = t.match(/\bin ([A-ZÄÖÜ][\wäöüß-]+)\s*$/);
+    if (m) pageOrt = m[1];
+    return pageOrt;
+  }
+
+  function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  /* Beschriftung: die echte Überschrift beschreibt den Abschnitt besser als
+     das kurze .section-label ("Lokale Expertise" -> "Kölner Stadtteile").
+     Reihenfolge h2 > h3 > .section-label; danach den Ortsnamen kürzen.
+     Bleibt dabei ein Satzfragment übrig, gilt wieder das .section-label. */
+  function labelFor(el) {
+    var labEl = el.querySelector('.section-label');
     var h2 = el.querySelector('h2');
-    var raw = label ? label.textContent : (h2 ? h2.textContent : '');
-    if (!raw || !raw.trim()) return;
+    var h3 = el.querySelector('h3');
+    var lab = labEl ? labEl.textContent.replace(/\s+/g, ' ').trim() : '';
+    var raw = (h2 && h2.textContent.trim()) || (h3 && h3.textContent.trim()) || lab;
+    if (!raw) return '';
+    var r = raw.replace(/\s+/g, ' ').trim();
+    var ort = getOrt();
+    if (ort) {
+      r = r.replace(new RegExp('\\s*\\b(?:in|von|für)\\s+Köln-' + esc(ort) + '\\b', 'g'), '');
+      r = r.replace(new RegExp('\\s*Köln-' + esc(ort) + '\\b', 'g'), '');
+      r = r.replace(new RegExp('\\s*\\b(?:in|von|für)\\s+' + esc(ort) + '\\b', 'g'), '');
+    }
+    r = r.replace(/\s{2,}/g, ' ').replace(/^[\s–—,-]+|[\s–—,-]+$/g, '');
+    /* Zu kurz oder mit Kleinbuchstaben beginnend = Fragment -> Label nehmen */
+    if (r.length < 6 || (/^[a-zäöüß]/.test(r) && lab)) r = lab || raw;
+    return r.replace(/\s+/g, ' ').trim();
+  }
+
+  function add(out, used, el, index) {
+    var raw = labelFor(el);
+    if (!raw) return;
 
     var id = el.id;
     if (!id) {
