@@ -34,6 +34,9 @@ RewriteRule ^ratgeber/haustueren\.html$ /ratgeber/fenster-tueren-dach.html [R=30
 RewriteRule ^ratgeber/niesbrauch-wohnrecht\.html$      /ratgeber/niessbrauch-wohnrecht.html      [R=301,L]
 RewriteRule ^ratgeber/niesbrauch-kapitalisieren\.html$ /ratgeber/niessbrauch-kapitalisieren.html [R=301,L]
 
+# Stadtteilseite Leverkusen entfernt (09.08.2026) -> Uebersicht (301)
+RewriteRule ^stadtteile/leverkusen\.html$ /stadtteile/ [R=301,L]
+
 # Düren: alter Slug mit Doppel-r (Tippfehler) -> korrekt dueren (301)
 RewriteRule ^stadtteile/duerren\.html$    /stadtteile/dueren.html    [R=301,L]
 RewriteRule ^bodenrichtwert-duerren\.html$ /bodenrichtwert-dueren.html [R=301,L]
