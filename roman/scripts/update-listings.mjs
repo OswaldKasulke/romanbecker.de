@@ -57,6 +57,7 @@ const LANGS = [
     priceOnRequest: 'Preis auf Anfrage',
     from: 'Ab',
     koelnLabel: 'EVERNEST Köln',
+    koelnToc: 'Immobilienangebote',
     koelnTitle: 'Unsere Immobilien in Köln und im Kölner Umland',
     koelnAria: 'EVERNEST Köln Portfolio',
     koelnAll: 'Alle Objekte bei EVERNEST Köln',
@@ -71,6 +72,7 @@ const LANGS = [
     priceOnRequest: 'Price on request',
     from: 'From',
     koelnLabel: 'EVERNEST Cologne',
+    koelnToc: 'Properties',
     koelnTitle: 'A selection of our property references in Cologne and the surrounding area',
     koelnAria: 'EVERNEST Cologne Portfolio',
     koelnAll: 'All listings at EVERNEST Cologne',
@@ -197,7 +199,7 @@ function buildKoelnSection(listings, L) {
 
   if (shown.length === 0) {
     return `  <!-- KOELN-LISTINGS-START -->
-  <section id="objekte-koeln" class="section section--gray">
+  <section id="objekte-koeln" data-toc="${L.koelnToc}" class="section section--gray">
     <div class="container">
       <span class="section-label">${L.koelnLabel}</span>
       <h2 class="section-title">${L.koelnTitle}</h2>
@@ -214,7 +216,7 @@ function buildKoelnSection(listings, L) {
   const cards = shown.map(l => buildCard(l, L)).join('\n');
 
   return `  <!-- KOELN-LISTINGS-START -->
-  <section id="objekte-koeln" class="section">
+  <section id="objekte-koeln" data-toc="${L.koelnToc}" class="section">
     <div class="container">
       <span class="section-label">${L.koelnLabel}</span>
       <h2 class="section-title">${L.koelnTitle}</h2>
