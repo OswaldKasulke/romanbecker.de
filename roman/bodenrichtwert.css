@@ -8,6 +8,25 @@
 
 .table-wrap{overflow-x:auto;margin-top:var(--space-8);border-radius:var(--radius);border:1px solid var(--gray-200);}
 
+/* Die Richtwert-Tabellen tragen keine Klasse. Ohne diese Regeln erben sie nur
+   den Browser-Default: keine Zellabstaende, keine Trennlinien, keine Kopfzeile –
+   Ortsteil, PLZ und Wert kleben dann zu einer unlesbaren Zeile zusammen.
+   Das Scrollen uebernimmt .table-wrap, deshalb hier display:table statt des
+   mobilen display:block aus shared.css. */
+.table-wrap table{display:table;width:100%;border-collapse:collapse;font-size:0.9375rem;}
+
+.table-wrap thead th{background:var(--navy);color:var(--white);padding:0.75rem 1rem;text-align:left;font-weight:600;white-space:nowrap;}
+
+.table-wrap td{padding:0.7rem 1rem;border-bottom:1px solid var(--gray-200);color:var(--gray-600);vertical-align:top;}
+
+.table-wrap td:first-child{color:var(--navy);font-weight:600;}
+
+.table-wrap td:not(:first-child){white-space:nowrap;}
+
+.table-wrap tbody tr:nth-child(even) td{background:var(--gray-100);}
+
+.table-wrap tbody tr:last-child td{border-bottom:none;}
+
 .table-note{margin-top:0.75rem;font-size:0.8125rem;color:var(--gray-600);}
 
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:var(--space-8);}
