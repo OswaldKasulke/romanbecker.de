@@ -25,13 +25,15 @@ const BAUTRAEGER_PATH = join(__dirname, '..', 'bautraeger.html');
 const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.989913&lng=7.000059&zoom=11';
 const KOELN_SEARCH_URL  = 'https://www.evernest.com/api/properties/';
 // Kartenausschnitt identisch zu KOELN_OFFICE_URL
-// (lat 50.989913, lng 7.000059, zoom 11) — so speist sich die Galerie aus
-// demselben Ausschnitt, den der "Alle Immobilienangebote"-Button oeffnet.
+// (lat 50.989913, lng 7.000059, zoom 11), umgerechnet fuer ein Kartenfeld
+// von rund 600x800 px — so speist sich die Galerie aus demselben Ausschnitt,
+// den der "Alle Immobilienangebote"-Button oeffnet. Die Objektzahl dort haengt
+// von der Fenstergroesse des Besuchers ab und ist deshalb nicht fix.
 const KOELN_BOUNDS = {
-  nw: { lat: 51.2499, lng: 6.5401 },
-  ne: { lat: 51.2499, lng: 7.4601 },
-  sw: { lat: 50.7299, lng: 6.5401 },
-  se: { lat: 50.7299, lng: 7.4601 },
+  nw: { lat: 51.1628, lng: 6.7941 },
+  ne: { lat: 51.1628, lng: 7.2061 },
+  sw: { lat: 50.817, lng: 6.7941 },
+  se: { lat: 50.817, lng: 7.2061 },
 };
 const KOELN_MAX_LISTINGS = 100;
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
