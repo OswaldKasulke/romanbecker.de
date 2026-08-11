@@ -49,7 +49,7 @@ RewriteRule ^bodenrichtwert-duerren\.html$ /bodenrichtwert-dueren.html [R=301,L]
 #    Wenn weitere Legacy-URLs in GSC-Pull auftauchen, hier eintragen.
 
 # --- Top-Level-Sonderfälle (kein /ratgeber/-Pendant) ---
-RewriteRule ^evernest/?$               /#ueber-evernest                                  [R=301,L]
+RewriteRule ^evernest/?$               /                                                 [R=301,L]
 RewriteRule ^kontakt/?$                /#kontakt                                         [R=301,L]
 RewriteRule ^impressum/?$              /impressum.html                                   [R=301,L]
 RewriteRule ^linksammlung/?$           /ratgeber/                                        [R=301,L]

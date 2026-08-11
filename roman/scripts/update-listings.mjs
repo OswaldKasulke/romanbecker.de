@@ -56,11 +56,11 @@ const LANGS = [
     sold: 'Verkauft',
     priceOnRequest: 'Preis auf Anfrage',
     from: 'Ab',
-    koelnLabel: 'EVERNEST Köln',
+    koelnLabel: 'Immobilienangebote',
     koelnToc: 'Immobilienangebote',
     koelnTitle: 'Unsere Immobilien in Köln und im Kölner Umland',
-    koelnAria: 'EVERNEST Köln Portfolio',
-    koelnAll: 'Alle Objekte bei EVERNEST Köln',
+    koelnAria: 'Immobilienangebote Köln',
+    koelnAll: 'Alle Immobilienangebote',
   },
   {
     code: 'en',
@@ -71,11 +71,11 @@ const LANGS = [
     sold: 'Sold',
     priceOnRequest: 'Price on request',
     from: 'From',
-    koelnLabel: 'EVERNEST Cologne',
+    koelnLabel: 'Properties',
     koelnToc: 'Properties',
     koelnTitle: 'A selection of our property references in Cologne and the surrounding area',
-    koelnAria: 'EVERNEST Cologne Portfolio',
-    koelnAll: 'All listings at EVERNEST Cologne',
+    koelnAria: 'Properties Cologne',
+    koelnAll: 'View all listings',
   },
 ];
 
@@ -304,7 +304,7 @@ async function injectStandorte(standorte) {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log('Fetching EVERNEST Köln search page…');
+  console.log('Fetching Koeln search page…');
   let koelnListings = [];
   try {
     koelnListings = await fetchKoelnListings();

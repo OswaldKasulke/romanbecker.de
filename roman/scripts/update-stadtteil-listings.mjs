@@ -187,12 +187,12 @@ function buildSection(display, listings) {
     <div class="container">
       <span class="section-label">Aktuelle Angebote</span>
       <h2>Aktuelle Immobilienangebote in ${escapeAttr(display)}</h2>
-      <p class="max-w-prose mb-8">${count} ${noun} aus dem EVERNEST-Netzwerk in ${escapeAttr(display)} und Umgebung – jetzt ansehen. Kein passendes Objekt dabei? Ich finde diskret auch Off-Market-Immobilien für Sie.</p>
+      <p class="max-w-prose mb-8">${count} ${noun} in ${escapeAttr(display)} und Umgebung – jetzt ansehen. Kein passendes Objekt dabei? Ich finde diskret auch Off-Market-Immobilien für Sie.</p>
       <div class="listings__grid">
 ${cards}
       </div>
       <div class="cta-buttons" style="margin-top:var(--space-8)">
-        <a href="${OFFICE_URL}" class="btn btn--primary" target="_blank" rel="noopener">Alle Objekte im EVERNEST-Netzwerk</a>
+        <a href="${OFFICE_URL}" class="btn btn--primary" target="_blank" rel="noopener">Alle Immobilienangebote</a>
       </div>
     </div>
   </section>
