@@ -2,7 +2,7 @@
  * update-listings.mjs
  * Holt die EVERNEST-Objekte im Koelner Kartenausschnitt per POST auf
  * https://www.evernest.com/api/properties/ und schreibt daraus die Galerie
- * "Meine Immobilien in Koeln und im Koelner Umland".
+ * "Immobilienangebote in Koeln und im Koelner Umland".
  *
  * Die frueher zusaetzlich gepflegte Sektion "Meine Immobilien (Auswahl)" wurde
  * entfernt (Kunden konnten eigene vs. EVERNEST-Objekte nicht differenzieren);
@@ -58,7 +58,7 @@ const LANGS = [
     from: 'Ab',
     koelnLabel: 'Immobilienangebote',
     koelnToc: 'Immobilienangebote',
-    koelnTitle: 'Meine Immobilien in Köln und im Kölner Umland',
+    koelnTitle: 'Immobilienangebote in Köln und im Kölner Umland',
     koelnAria: 'Immobilienangebote Köln',
     koelnAll: 'Alle Immobilienangebote',
   },
