@@ -312,7 +312,7 @@ ${faqLD}
   </div>
   <section class="hero">
     <div class="container">
-      <div class="hero__badge">\u2713 IHK-zertifiziert \u00b7 EVERNEST-Netzwerk \u00b7 ${fn}</div>
+      <div class="hero__badge">\u2713 IHK-zertifiziert \u00b7 Netzwerk \u00b7 ${fn}</div>
       <h1>Immobilienmakler in ${fn}</h1>
       <p class="hero__subtitle">${d.intro}</p>
       <div class="hero__buttons">
