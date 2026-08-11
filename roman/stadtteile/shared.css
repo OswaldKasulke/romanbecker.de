@@ -6,6 +6,7 @@
 /* CUSTOM PROPERTIES — Palette von romanbecker.de */
 :root {
   --navy: #0c3f2d;
+  --text: #000000;
   --racing-green: #052b1f;
   --navy-light: #0f4c36;
   --gold: #c2a990;
@@ -17,7 +18,7 @@
   --gray-200: #e5e7eb;
   --gray-400: #A4A4A4;
   --gray-600: #636363;
-  --gray-800: #122e24;
+  --gray-800: #000000;
 
   --font-base: 'Inter', sans-serif;
   --font-heading: 'Inter', sans-serif;
@@ -48,7 +49,7 @@ body {
   font-family: var(--font-base);
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--gray-800);
+  color: var(--text, #000000);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
 }
@@ -62,9 +63,9 @@ a { color: inherit; }
 .section--navy { background: var(--racing-green); color: var(--white); }
 
 /* TYPOGRAPHY */
-h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--navy); }
-h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.25; color: var(--navy); margin-bottom: var(--space-4); }
-h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1.3; color: var(--navy); margin-bottom: var(--space-2); }
+h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--text, #000000); }
+h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.25; color: var(--text, #000000); margin-bottom: var(--space-4); }
+h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem); font-weight: 700; line-height: 1.3; color: var(--text, #000000); margin-bottom: var(--space-2); }
 
 .section-label {
   display: inline-block;
@@ -140,7 +141,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .site-header__nav a:hover { color: var(--white); }
 .site-header__cta {
   background: var(--gold);
-  color: var(--navy);
+  color: var(--text, #000000);
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius);
   font-weight: 600;
@@ -151,7 +152,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 }
 .site-header__cta:hover {
   background: var(--gold-light);
-  color: var(--navy);
+  color: var(--text, #000000);
 }
 
 @media (max-width: 768px) {
@@ -185,7 +186,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 }
 .nav__search-dropdown.visible { display: block; }
 .search-result {
-  display: block; padding: 0.7rem 1rem; color: var(--navy); font-size: 0.875rem;
+  display: block; padding: 0.7rem 1rem; color: var(--text, #000000); font-size: 0.875rem;
   border-bottom: 1px solid var(--gray-200); text-decoration: none; transition: background 0.15s;
 }
 .search-result:last-child { border-bottom: none; }
@@ -222,7 +223,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   transition: all var(--transition);
   border: 2px solid transparent;
 }
-.btn--primary { background: var(--gold); color: var(--navy); border-color: var(--navy); }
+.btn--primary { background: var(--gold); color: var(--text, #000000); border-color: var(--text, #000000); }
 .btn--primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,168,76,0.4); }
 .btn--outline { background: var(--navy); color: var(--white); border-color: var(--gold); }
 .btn--outline:hover { background: #12583f; border-color: var(--gold); transform: translateY(-1px); }
@@ -374,7 +375,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .faq-item summary {
   font-size: 1.0625rem;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--text, #000000);
   padding: var(--space-6) 0 var(--space-3);
   cursor: pointer;
   list-style: none;
@@ -405,15 +406,15 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 /* CTA BOX */
 .cta-box {
   background: var(--gray-200);
-  color: var(--gray-800);
+  color: var(--text, #000000);
   border: 1px solid #d7dbe0;
   border-radius: var(--radius-lg);
   padding: var(--space-12);
   text-align: center;
 }
-.cta-box h2 { color: var(--gray-800); }
+.cta-box h2 { color: var(--text, #000000); }
 .cta-box p { color: var(--gray-600); margin-bottom: var(--space-8); font-size: 1.0625rem; }
-.cta-box .btn--white-outline { border-color: var(--gray-800); color: var(--gray-800); }
+.cta-box .btn--white-outline { border-color: var(--text, #000000); color: var(--text, #000000); }
 .cta-box .btn--white-outline:hover { background: rgba(0,0,0,0.05); }
 .cta-buttons { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
 
@@ -445,7 +446,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .stadtteil-card h3 {
   font-size: 1rem;
   margin-bottom: var(--space-1);
-  color: var(--navy);
+  color: var(--text, #000000);
 }
 .stadtteil-card__price {
   font-size: 0.8125rem;
@@ -507,7 +508,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   box-shadow: var(--shadow-sm);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--text, #000000);
   text-decoration: none;
   transition: all var(--transition);
 }
@@ -526,7 +527,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   text-decoration: none;
   transition: color var(--transition);
 }
-.review-line:hover { color: var(--gray-800); text-decoration: underline; }
+.review-line:hover { color: var(--text, #000000); text-decoration: underline; }
 .review-line__stars { color: #FBBC04; letter-spacing: 0.05em; }
 
 /* ---- Aktuelle Angebote (Stadtteil-Listings) ---- */
@@ -539,9 +540,9 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .listing-card__badge--reserved { background: var(--accent); }
 .listing-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
 .listing-card__type { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
-.listing-card__title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.listing-card__title { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--text, #000000); line-height: 1.3; }
 .listing-card__facts { font-size: 0.875rem; color: var(--gray-600); }
-.listing-card__price { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-top: var(--space-1); }
+.listing-card__price { font-size: 1.15rem; font-weight: 700; color: var(--text, #000000); margin-top: var(--space-1); }
 
 /* ===== MOBILE-HEADER: kein horizontales Scrollen, Logo + Telefon lesbar =====
    Bewusst am Dateiende, damit diese Regeln die Basis-Regeln (z. B. .nav__search) sicher überschreiben. */
@@ -585,7 +586,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .strassen-directory summary {
   cursor: pointer;
   font-weight: 600;
-  color: var(--gray-800);
+  color: var(--text, #000000);
   padding: var(--space-3) 0;
   list-style: none;
 }
@@ -613,7 +614,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   padding: 0.28rem 0;
 }
 .strassen-grid .strassen-link {
-  color: var(--gray-800);
+  color: var(--text, #000000);
   text-decoration: none;
   border-bottom: 1px solid transparent;
 }
@@ -649,7 +650,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--navy);
+  color: var(--text, #000000);
   margin-bottom: var(--space-3);
 }
 .ratgeber-hinweis p {
@@ -669,5 +670,5 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
 .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
 .cost-table tr:nth-child(even) td { background: var(--gray-100); }
-.cost-table tr.total td { font-weight: 700; color: var(--navy); background: #f0f4ff; border-top: 2px solid var(--navy); }
+.cost-table tr.total td { font-weight: 700; color: var(--text, #000000); background: #f0f4ff; border-top: 2px solid var(--navy); }
 .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }

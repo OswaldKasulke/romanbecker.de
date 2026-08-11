@@ -139,7 +139,7 @@
     .info-grid { grid-template-columns: 1fr; }
   }
     .info-card { background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-8); }
-    .info-card h3 { font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; font-size: 1.0625rem; }
+    .info-card h3 { font-weight: 700; color: var(--text, #000000); margin-bottom: 0.75rem; font-size: 1.0625rem; }
     .info-card p { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.65; }
     thead { background: var(--navy); }
     thead th { color: var(--white); font-weight: 700; padding: 0.875rem 1.25rem; text-align: left; white-space: nowrap; }
@@ -147,8 +147,8 @@
     tbody tr { border-bottom: 1px solid var(--gray-200); transition: background var(--transition); }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: var(--gray-100); }
-    td { padding: 0.75rem 1.25rem; color: var(--gray-800); }
-    td:last-child { font-weight: 700; color: var(--navy); }
+    td { padding: 0.75rem 1.25rem; color: var(--text, #000000); }
+    td:last-child { font-weight: 700; color: var(--text, #000000); }
     .table-note { margin-top: 0.75rem; font-size: 0.8125rem; color: var(--gray-600); }
     /* HIGHLIGHT BOX */
     .highlight-box { background: var(--navy); border-radius: var(--radius); padding: var(--space-12) var(--space-12); margin-top: var(--space-8); }
@@ -158,20 +158,20 @@
     /* BORIS SECTION */
     .boris-card { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-8); display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; }
     .boris-card__content { flex: 1 1 300px; }
-    .boris-card__content h3 { font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; font-size: 1.125rem; }
+    .boris-card__content h3 { font-weight: 700; color: var(--text, #000000); margin-bottom: 0.75rem; font-size: 1.125rem; }
     .boris-card__content p { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.65; margin-bottom: 1rem; }
     .boris-card__steps { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
     .boris-card__steps li { display: flex; align-items: flex-start; gap: 0.75rem; color: var(--gray-600); font-size: 0.9375rem; }
     .boris-card__steps li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 0.55rem; }
     /* FAQ ACCORDION */
     .faq-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
-    .faq-question { width: 100%; background: var(--white); border: none; cursor: pointer; text-align: left; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-family: var(--font-base); font-size: 1rem; font-weight: 600; color: var(--navy); transition: background var(--transition); }
+    .faq-question { width: 100%; background: var(--white); border: none; cursor: pointer; text-align: left; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-family: var(--font-base); font-size: 1rem; font-weight: 600; color: var(--text, #000000); transition: background var(--transition); }
     .faq-question:hover { background: var(--gray-100); }
     .faq-question[aria-expanded="true"] { background: var(--gray-100); color: var(--gold); }
     .faq-icon { width: 20px; height: 20px; flex-shrink: 0; transition: transform var(--transition); }
     .faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
     /* CTA BOX */
-    .cta-box { background: #e5e7eb; border-radius: var(--radius); padding: var(--space-16); text-align: center; color: #0c3f2d; border: 1px solid #d7dbe0;}
+    .cta-box { background: #e5e7eb; border-radius: var(--radius); padding: var(--space-16); text-align: center; color: #000000; border: 1px solid #d7dbe0;}
     /* SEARCH */
     .nav__search { position: relative; display: flex; align-items: center; }
     /* FOOTER */
@@ -191,7 +191,7 @@
       transition:border-color .2s, box-shadow .2s, transform .2s; }
     .brw-card:hover { border-left-color:var(--gold,#c2a990);
       box-shadow:0 4px 12px rgba(0,0,0,0.08); transform:translateY(-2px); }
-    .brw-card__name { font-size:0.95rem; font-weight:600; color:var(--navy,#0c3f2d); line-height:1.25; }
+    .brw-card__name { font-size:0.95rem; font-weight:600; color:var(--text, #000000); line-height:1.25; }
     .brw-card__val  { font-size:0.82rem; font-weight:600; color:#a98d70;
       font-variant-numeric:tabular-nums; }
   </style>
@@ -270,7 +270,7 @@
         <h2>Aktuelle Bodenrichtwerte Köln nach Stadtteil</h2>
         <p class="text-muted mb-8 max-w-prose">Die folgenden Werte stammen aus dem amtlichen Datenbestand des Gutachterausschusses für Grundstückswerte in der Stadt Köln, abgerufen über BORIS NRW (Open Data, Datensatz vom 03.08.2026, Stichtag 01.01.2026). Angegeben ist je Stadtteil die Spanne über alle amtlichen Bodenrichtwertzonen für Wohnbauflächen — 387 Zonen in Köln. Innerhalb eines Stadtteils fallen die Werte je nach Lage, Erschließung und Bebauungspotenzial teils deutlich auseinander; maßgeblich ist immer die konkrete Zone. Angaben ohne Gewähr.</p>
 
-        <h3 style="font-size:1.125rem;font-weight:700;color:var(--navy);margin:2rem 0 1rem;">Kölner Stadtteile (86)</h3>
+        <h3 style="font-size:1.125rem;font-weight:700;color:var(--text, #000000);margin:2rem 0 1rem;">Kölner Stadtteile (86)</h3>
         <div class="brw-grid">
           
             
@@ -368,7 +368,7 @@
           
         </div>
 
-        <h3 style="font-size:1.125rem;font-weight:700;color:var(--navy);margin:2.5rem 0 1rem;">Umland Köln (30 Städte)</h3>
+        <h3 style="font-size:1.125rem;font-weight:700;color:var(--text, #000000);margin:2.5rem 0 1rem;">Umland Köln (30 Städte)</h3>
         <div class="brw-grid">
           
             

@@ -128,7 +128,7 @@
     .compare-card--free { background: var(--gray-100); border: 1px solid var(--gray-200); }
     .compare-card--formal { background: var(--navy); border: 1px solid rgba(255,255,255,0.08); }
     .compare-card__title { font-weight: 700; font-size: 1.0625rem; margin-bottom: var(--space-4); }
-    .compare-card--free .compare-card__title { color: var(--navy); }
+    .compare-card--free .compare-card__title { color: var(--text, #000000); }
     .compare-card--formal .compare-card__title { color: var(--gold); }
     .compare-card__list { list-style: none; display: flex; flex-direction: column; gap: 0.625rem; }
     .compare-card__list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9375rem; }
@@ -147,7 +147,7 @@
   }
     .need-card { background: var(--white); border: 1px solid var(--gray-200); border-top: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-8); }
     .need-card__icon { font-size: 1.5rem; margin-bottom: var(--space-4); }
-    .need-card__title { font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; font-size: 1rem; }
+    .need-card__title { font-weight: 700; color: var(--text, #000000); margin-bottom: 0.5rem; font-size: 1rem; }
     .need-card__text { color: var(--gray-600); font-size: 0.875rem; line-height: 1.6; }
     /* VERFAHREN CARDS */
     .verfahren-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: var(--space-8); }
@@ -164,11 +164,11 @@
     @media (max-width: 768px) {
     .about-box { grid-template-columns: 1fr; gap: 2rem; }
   }
-    .about-box__content h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--navy); margin-bottom: var(--space-4); }
+    .about-box__content h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--text, #000000); margin-bottom: var(--space-4); }
     .about-box__content p { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.7; margin-bottom: 1rem; }
     .about-box__content p:last-of-type { margin-bottom: var(--space-8); }
     .trust-list { list-style: none; display: flex; flex-direction: column; gap: 0.625rem; margin-bottom: var(--space-8); }
-    .trust-list li { display: flex; align-items: flex-start; gap: 0.75rem; color: var(--gray-800); font-size: 0.9375rem; font-weight: 500; }
+    .trust-list li { display: flex; align-items: flex-start; gap: 0.75rem; color: var(--text, #000000); font-size: 0.9375rem; font-weight: 500; }
     .trust-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 0.55rem; }
     .about-box__visual { background: var(--navy); border-radius: var(--radius); padding: var(--space-8); }
     .about-stat { padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -176,7 +176,7 @@
     .about-stat__val { font-size: 1.75rem; font-weight: 700; color: var(--gold); display: block; }
     .about-stat__key { font-size: 0.8125rem; color: rgba(255,255,255,0.55); }
     /* CTA BOX */
-    .cta-box { background: #e5e7eb; border-radius: var(--radius); padding: var(--space-16); text-align: center; color: #0c3f2d; border: 1px solid #d7dbe0;}
+    .cta-box { background: #e5e7eb; border-radius: var(--radius); padding: var(--space-16); text-align: center; color: #000000; border: 1px solid #d7dbe0;}
     /* FOOTER */
     .footer { background: var(--navy); padding: var(--space-12) 0; margin-top: auto; }
     /* HEADER SEARCH */

@@ -105,7 +105,7 @@
       font-family: var(--font-heading);
       font-size: 1.15rem;
       margin-bottom: var(--space-2);
-      color: var(--navy);
+      color: var(--text, #000000);
     }
     .ratgeber-card p {
       font-size: 0.875rem;
@@ -114,7 +114,7 @@
     }
     /* scroll-margin: sonst verschwindet die Sprungmarke unter dem Sticky-Header */
     .category-section { margin-bottom: var(--space-12); scroll-margin-top: 120px; }
-    .category-section h2 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: var(--space-2); color: var(--navy); }
+    .category-section h2 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: var(--space-2); color: var(--text, #000000); }
     .category-section .section-label { display: block; margin-bottom: var(--space-2); }
 
     /* SEARCH */
@@ -144,7 +144,7 @@
     }
     .nav__search-dropdown.visible { display: block; }
     .search-result {
-      display: block; padding: 0.7rem 1rem; color: #0c3f2d; font-size: 0.875rem;
+      display: block; padding: 0.7rem 1rem; color: #000000; font-size: 0.875rem;
       border-bottom: 1px solid #e5e7eb; text-decoration: none; transition: background 0.15s;
     }
     .search-result:last-child { border-bottom: none; }

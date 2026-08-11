@@ -35,8 +35,8 @@
     '.page-toc.is-open .page-toc__list{display:block}' +
     '.page-toc__list a{display:block;padding:.4rem .75rem;font-size:.875rem;color:var(--gray-600,#636363);' +
       'text-decoration:none;border-left:2px solid transparent;line-height:1.3;transition:color .15s,border-color .15s}' +
-    '.page-toc__list a:hover{color:var(--navy,#0c3f2d)}' +
-    '.page-toc__list a.is-active{color:var(--navy,#0c3f2d);border-left-color:var(--gold,#c2a990);font-weight:600}' +
+    '.page-toc__list a:hover{color:var(--text, #000000)}' +
+    '.page-toc__list a.is-active{color:var(--text, #000000);border-left-color:var(--gold,#c2a990);font-weight:600}' +
     /* Platz freihalten, damit keine Ueberschrift unter den Button laeuft */
     'body.page-toc-on .hero h1,body.page-toc-on .article-hero h1{padding-right:150px}' +
     /* Auf schmalen Screens nur das Symbol -> weniger Platzbedarf */

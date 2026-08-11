@@ -19,7 +19,7 @@
 
 .table-wrap td{padding:0.7rem 1rem;border-bottom:1px solid var(--gray-200);color:var(--gray-600);vertical-align:top;}
 
-.table-wrap td:first-child{color:var(--navy);font-weight:600;}
+.table-wrap td:first-child{color:var(--text, #000000);font-weight:600;}
 
 .table-wrap td:not(:first-child){white-space:nowrap;}
 
@@ -33,7 +33,7 @@
 
 .info-card{background:var(--white);border:1px solid var(--gray-200);border-left:3px solid var(--gold);border-radius:var(--radius);padding:var(--space-8);}
 
-.info-card h3{font-weight:700;color:var(--navy);margin-bottom:0.75rem;font-size:1.0625rem;}
+.info-card h3{font-weight:700;color:var(--text, #000000);margin-bottom:0.75rem;font-size:1.0625rem;}
 
 .info-card p{color:var(--gray-600);font-size:0.9375rem;line-height:1.65;}
 
@@ -49,7 +49,7 @@
 
 .faq-item:last-child{border-bottom:none;}
 
-.faq-question{width:100%;background:var(--white);border:none;cursor:pointer;text-align:left;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:var(--font-base);font-size:1rem;font-weight:600;color:var(--navy);transition:background var(--transition);}
+.faq-question{width:100%;background:var(--white);border:none;cursor:pointer;text-align:left;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:var(--font-base);font-size:1rem;font-weight:600;color:var(--text, #000000);transition:background var(--transition);}
 
 .faq-question:hover{background:var(--gray-100);}
 
@@ -65,20 +65,20 @@
 
 .umland-links{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:var(--space-8);}
 
-.umland-links a{background:var(--gray-100);border:1px solid var(--gray-200);border-radius:20px;padding:0.4rem 1rem;font-size:0.875rem;color:var(--navy);text-decoration:none;transition:all var(--transition);}
+.umland-links a{background:var(--gray-100);border:1px solid var(--gray-200);border-radius:20px;padding:0.4rem 1rem;font-size:0.875rem;color:var(--text, #000000);text-decoration:none;transition:all var(--transition);}
 
 .umland-links a:hover{background:var(--gold);color:var(--white);border-color:var(--gold);}
 
-.umland-links a.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.umland-links a.active{background:var(--navy);color:var(--white);border-color:var(--text, #000000);}
 
 /* --- nur in der 25er-Variante verwendet --- */
 .chips{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;}
 
-.chips a{background:var(--gray-100);border:1px solid var(--gray-200);border-radius:20px;padding:0.35rem 0.9rem;font-size:0.8125rem;color:var(--navy);transition:all var(--transition);}
+.chips a{background:var(--gray-100);border:1px solid var(--gray-200);border-radius:20px;padding:0.35rem 0.9rem;font-size:0.8125rem;color:var(--text, #000000);transition:all var(--transition);}
 
 .chips a:hover{background:var(--gold);color:var(--white);border-color:var(--gold);}
 
-.chips a.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.chips a.active{background:var(--navy);color:var(--white);border-color:var(--text, #000000);}
 
 @media(max-width:700px) {
   .info-grid{grid-template-columns:1fr;}
