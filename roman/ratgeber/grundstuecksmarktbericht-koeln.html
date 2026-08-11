@@ -135,6 +135,24 @@
     .cost-table tr.total td { font-weight: 700; color: var(--text, #000000); background: #f0f4ff; border-top: 2px solid var(--navy); }
     .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
     .table-source { font-size: 0.85rem; color: var(--gray-600); margin-top: -0.75rem; margin-bottom: 1.75rem; }
+    /* Direktdownloads: die Berichte sind der Kern dieser Seite und sollen
+       als solche erkennbar sein, nicht als Aufzaehlungspunkte */
+    .dl-list { display: grid; gap: 0.75rem; margin: 1.5rem 0 2.5rem; }
+    @media (min-width: 720px) { .dl-list--2 { grid-template-columns: 1fr 1fr; } }
+    .dl { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem;
+          border: 1px solid var(--gray-200); border-radius: var(--radius);
+          background: var(--white); text-decoration: none; transition: all 0.2s ease; }
+    .dl:hover { border-color: var(--gold); background: var(--gray-100);
+                transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .dl__icon { flex: 0 0 42px; height: 42px; border-radius: var(--radius);
+                background: var(--navy); color: var(--white); display: flex;
+                align-items: center; justify-content: center; font-size: 0.7rem;
+                font-weight: 700; letter-spacing: 0.03em; }
+    .dl__body { min-width: 0; flex: 1; }
+    .dl__title { font-weight: 600; color: var(--text, #000000); line-height: 1.35; }
+    .dl__meta { font-size: 0.85rem; color: var(--gray-600); margin-top: 0.2rem; line-height: 1.5; }
+    .dl__size { font-size: 0.8rem; color: var(--gray-400); white-space: nowrap; margin-top: 0.35rem; }
+    .dl-note { font-size: 0.85rem; color: var(--gray-600); margin: -1.75rem 0 2rem; }
   </style>
 
   <script type="application/ld+json">
@@ -408,25 +426,96 @@
 </ul>
 
 <h2>So kommen Sie an den Bericht</h2>
-<div class="factbox">
-  <p><strong>Kostenloser Download</strong></p>
-  <p>• <a href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB2026_Digitalversion.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 für die Stadt Köln (PDF)</a> – Berichtsjahr 2025</p>
-  <p>• <a href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB_114_2025_pflichtig.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2025 für die Stadt Köln (PDF)</a> – Berichtsjahr 2024</p>
-  <p>• <a href="https://www.gars.nrw/koeln/produkte-koeln/grundstuecksmarktbericht-koeln" target="_blank" rel="noopener">Übersicht aller Jahrgänge bei GARS.NRW</a></p>
-  <p>• <a href="https://www.boris.nrw" target="_blank" rel="noopener">BORIS.NRW</a> – Bodenrichtwerte und Immobilienrichtwerte auf der Karte</p>
+<p>Der Bericht kostet nichts. Die folgenden Links führen direkt auf die PDF-Datei beim Gutachterausschuss – ohne Zwischenseite, ohne Anmeldung.</p>
+
+<div class="dl-list dl-list--2">
+  <a class="dl" href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB2026_Digitalversion.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Grundstücksmarktbericht 2026 für die Stadt Köln</span>
+      <span class="dl__meta">Berichtsjahr 2025 – die aktuellen Zahlen</span>
+      <span class="dl__size">10,7 MB · 168 Seiten</span>
+    </span>
+  </a>
+  <a class="dl" href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB_114_2025_pflichtig.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Grundstücksmarktbericht 2025 für die Stadt Köln</span>
+      <span class="dl__meta">Berichtsjahr 2024 – für den Vorjahresvergleich</span>
+      <span class="dl__size">2,5 MB</span>
+    </span>
+  </a>
 </div>
+
+<p class="dl-note">Weitere Jahrgänge finden Sie in der <a href="https://www.gars.nrw/koeln/produkte-koeln/grundstuecksmarktbericht-koeln" target="_blank" rel="noopener">Übersicht bei GARS.NRW</a>. Boden- und Immobilienrichtwerte zeigt <a href="https://www.boris.nrw" target="_blank" rel="noopener">BORIS.NRW</a> auf der Karte.</p>
 
 <h2 id="umland-berichte">Grundstücksmarktberichte für das Kölner Umland</h2>
 <p>Für Städte außerhalb Kölns ist nicht der Kölner Gutachterausschuss zuständig, sondern der des jeweiligen Kreises – teils mit eigenen Ausschüssen für einzelne Städte. Diese acht Berichte sind die Quelle für die Marktdaten auf meinen Umland-Seiten. Alle sind über BORIS.NRW gebührenfrei abrufbar, Berichtsjahr 2025:</p>
-<div class="factbox">
-  <p>• <a href="https://www.gars.nrw/images/user/GA_Rhein-Erft-Kreis/GMB_2026.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 – Rhein-Erft-Kreis (PDF)</a><br><span class="text-small" style="color:var(--gray-600);">Bedburg, Bergheim, Brühl, Erftstadt, Frechen, Hürth, Kerpen, Pulheim, Wesseling</span></p>
-  <p>• <a href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_32400_2026.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 – Rhein-Sieg-Kreis und Stadt Troisdorf (PDF)</a><br><span class="text-small" style="color:var(--gray-600);">Alfter, Bornheim, Lohmar, Much, Neunkirchen-Seelscheid, Niederkassel, Sankt Augustin, Swisttal, Troisdorf</span></p>
-  <p>• <a href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_32300_2026.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 – Rheinisch-Bergischer Kreis (PDF)</a><br><span class="text-small" style="color:var(--gray-600);">Leichlingen, Odenthal, Overath, Rösrath – <em>ohne</em> Bergisch Gladbach</span></p>
-  <p>• <a href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_20700_2026.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 – Stadt Bergisch Gladbach (PDF)</a><br><span class="text-small" style="color:var(--gray-600);">Bergisch Gladbach (eigener Gutachterausschuss)</span></p>
-  <p>• <a href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_31800_2026.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 – Rhein-Kreis Neuss (PDF)</a><br><span class="text-small" style="color:var(--gray-600);">Dormagen, Jüchen, Rommerskirchen – <em>ohne</em> die Stadt Neuss</span></p>
-  <p>• <a href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_30400_2026.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 – Kreis Düren (PDF)</a><br><span class="text-small" style="color:var(--gray-600);">Jülich – <em>ohne</em> die Stadt Düren</span></p>
-  <p>• <a href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_22500_2026.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 – Stadt Düren (PDF)</a><br><span class="text-small" style="color:var(--gray-600);">Düren (eigener Gutachterausschuss)</span></p>
-  <p>• <a href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_30100_2026.pdf" target="_blank" rel="noopener">Grundstücksmarktbericht 2026 – Städteregion Aachen (PDF)</a><br><span class="text-small" style="color:var(--gray-600);">Eschweiler</span></p>
+<div class="dl-list dl-list--2">
+  <a class="dl" href="https://www.gars.nrw/images/user/GA_Rhein-Erft-Kreis/GMB_2026.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Rhein-Erft-Kreis</span>
+      <span class="dl__meta">Bedburg, Bergheim, Brühl, Erftstadt, Frechen, Hürth, Kerpen, Pulheim, Wesseling</span>
+      <span class="dl__size">2,7 MB</span>
+    </span>
+  </a>
+  <a class="dl" href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_32400_2026.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Rhein-Sieg-Kreis und Stadt Troisdorf</span>
+      <span class="dl__meta">Alfter, Bornheim, Lohmar, Much, Neunkirchen-Seelscheid, Niederkassel, Sankt Augustin, Swisttal, Troisdorf</span>
+      <span class="dl__size">6,2 MB</span>
+    </span>
+  </a>
+  <a class="dl" href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_32300_2026.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Rheinisch-Bergischer Kreis</span>
+      <span class="dl__meta">Leichlingen, Odenthal, Overath, Rösrath – <em>ohne</em> Bergisch Gladbach</span>
+      <span class="dl__size">2,5 MB</span>
+    </span>
+  </a>
+  <a class="dl" href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_20700_2026.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Stadt Bergisch Gladbach</span>
+      <span class="dl__meta">Eigener Gutachterausschuss</span>
+      <span class="dl__size">3,2 MB</span>
+    </span>
+  </a>
+  <a class="dl" href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_31800_2026.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Rhein-Kreis Neuss</span>
+      <span class="dl__meta">Dormagen, Jüchen, Rommerskirchen – <em>ohne</em> die Stadt Neuss</span>
+      <span class="dl__size">2,9 MB</span>
+    </span>
+  </a>
+  <a class="dl" href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_30400_2026.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Kreis Düren</span>
+      <span class="dl__meta">Jülich – <em>ohne</em> die Stadt Düren</span>
+      <span class="dl__size">1,5 MB</span>
+    </span>
+  </a>
+  <a class="dl" href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_22500_2026.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Stadt Düren</span>
+      <span class="dl__meta">Eigener Gutachterausschuss</span>
+      <span class="dl__size">1,9 MB</span>
+    </span>
+  </a>
+  <a class="dl" href="https://www.boris.nrw.de/borisfachdaten/gmb/2026/GMB_30100_2026.pdf" target="_blank" rel="noopener">
+    <span class="dl__icon" aria-hidden="true">PDF</span>
+    <span class="dl__body">
+      <span class="dl__title">Städteregion Aachen</span>
+      <span class="dl__meta">Eschweiler</span>
+      <span class="dl__size">18,7 MB</span>
+    </span>
+  </a>
 </div>
 
 <div class="factbox">
