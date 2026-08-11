@@ -622,13 +622,31 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   color: var(--gold);
   border-bottom-color: var(--gold);
 }
+/* Pin ist ein <button>, kein Link — siehe strassen-pin.js. Button-Defaults
+   (Rahmen, Hintergrund, eigene Schriftart) müssen daher zurückgesetzt werden,
+   damit die Darstellung unverändert bleibt. */
 .strassen-grid .strassen-pin {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
   text-decoration: none;
   font-size: 0.85em;
   opacity: 0.55;
   flex-shrink: 0;
 }
 .strassen-grid .strassen-pin:hover { opacity: 1; }
+.strassen-grid .strassen-pin:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  opacity: 1;
+}
 
 
 
