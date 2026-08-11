@@ -25,18 +25,18 @@
       'transform:translateY(-50%)}' +
     '.page-toc__heading{display:none}' +
     '.page-toc__toggle{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;' +
-      'background:#000;color:#fff;border:2px solid #fff;border-radius:var(--radius,8px);' +
+      'background:var(--navy,#0c3f2d);color:#fff;border:2px solid #fff;border-radius:var(--radius,8px);' +
       'padding:.875rem 2rem;font-family:var(--font-base,inherit);font-size:.9375rem;font-weight:600;' +
       'cursor:pointer;box-shadow:var(--shadow,0 4px 12px rgba(0,0,0,.1));transition:all .2s}' +
-    '.page-toc__toggle:hover{background:#1a1a1a;transform:translateY(-1px)}' +
+    '.page-toc__toggle:hover{background:#12583f;transform:translateY(-1px)}' +
     '.page-toc__list{position:absolute;top:calc(100% + .5rem);right:0;width:min(300px,calc(100vw - 3rem));list-style:none;' +
       'margin:0;padding:.5rem;background:#fff;border-radius:var(--radius-lg,16px);' +
       'box-shadow:var(--shadow,0 4px 12px rgba(0,0,0,.1));max-height:45vh;overflow:auto;display:none}' +
     '.page-toc.is-open .page-toc__list{display:block}' +
     '.page-toc__list a{display:block;padding:.4rem .75rem;font-size:.875rem;color:var(--gray-600,#636363);' +
       'text-decoration:none;border-left:2px solid transparent;line-height:1.3;transition:color .15s,border-color .15s}' +
-    '.page-toc__list a:hover{color:var(--navy,#111)}' +
-    '.page-toc__list a.is-active{color:var(--navy,#111);border-left-color:var(--gold,#c2a990);font-weight:600}' +
+    '.page-toc__list a:hover{color:var(--navy,#0c3f2d)}' +
+    '.page-toc__list a.is-active{color:var(--navy,#0c3f2d);border-left-color:var(--gold,#c2a990);font-weight:600}' +
     /* Platz freihalten, damit keine Ueberschrift unter den Button laeuft */
     'body.page-toc-on .hero h1,body.page-toc-on .article-hero h1{padding-right:150px}' +
     /* Auf schmalen Screens nur das Symbol -> weniger Platzbedarf */
