@@ -5,10 +5,10 @@
 
 /* CUSTOM PROPERTIES — Palette von romanbecker.de */
 :root {
-  --navy: #0c3f2d;
+  --navy: #0e4834;
   --text: #000000;
-  --racing-green: #052b1f;
-  --navy-light: #0f4c36;
+  --racing-green: #063124;
+  --navy-light: #11573e;
   --gold: #c2a990;
   --gold-light: #d4b8a0;
   --accent: #d8613c;
@@ -226,7 +226,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .btn--primary { background: var(--gold); color: var(--text, #000000); border-color: var(--text, #000000); }
 .btn--primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,168,76,0.4); }
 .btn--outline { background: var(--navy); color: var(--white); border-color: var(--gold); }
-.btn--outline:hover { background: #12583f; border-color: var(--gold); transform: translateY(-1px); }
+.btn--outline:hover { background: #156548; border-color: var(--gold); transform: translateY(-1px); }
 .btn--white-outline { background: transparent; color: var(--white); border-color: var(--gold); }
 .btn--white-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
 .section--navy .btn--outline,
