@@ -22,17 +22,16 @@ const INDEX_PATH      = join(__dirname, '..', 'index.html');
 const EN_INDEX_PATH   = join(__dirname, '..', 'en', 'index.html');
 const BAUTRAEGER_PATH = join(__dirname, '..', 'bautraeger.html');
 
-const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.922439&lng=7.003492&zoom=10';
+const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.989913&lng=7.000059&zoom=11';
 const KOELN_SEARCH_URL  = 'https://www.evernest.com/api/properties/';
-// Bounding box for zoom=11 centred on Köln (50.938361, 6.959974)
-// Kartenausschnitt identisch zu OFFICE_URL / KOELN_SEARCH_LINK
-// (lat 50.922439, lng 7.003492, zoom 10) — so speist sich die Galerie aus
-// demselben Ausschnitt, den der "Alle Objekte"-Button oeffnet.
+// Kartenausschnitt identisch zu KOELN_OFFICE_URL
+// (lat 50.989913, lng 7.000059, zoom 11) — so speist sich die Galerie aus
+// demselben Ausschnitt, den der "Alle Immobilienangebote"-Button oeffnet.
 const KOELN_BOUNDS = {
-  nw: { lat: 51.4424, lng: 6.0835 },
-  ne: { lat: 51.4424, lng: 7.9235 },
-  sw: { lat: 50.4024, lng: 6.0835 },
-  se: { lat: 50.4024, lng: 7.9235 },
+  nw: { lat: 51.2499, lng: 6.5401 },
+  ne: { lat: 51.2499, lng: 7.4601 },
+  sw: { lat: 50.7299, lng: 6.5401 },
+  se: { lat: 50.7299, lng: 7.4601 },
 };
 const KOELN_MAX_LISTINGS = 100;
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
