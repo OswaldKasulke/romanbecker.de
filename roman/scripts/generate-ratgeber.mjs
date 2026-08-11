@@ -1150,7 +1150,7 @@ function buildPage(page) {
       <div class="cta-box">
         <span class="section-label">Pers\xf6nliche Beratung</span>
         <h2>Fragen zu Ihrer Immobilie in K\xf6ln?</h2>
-        <p>Ich berate Sie pers\xf6nlich, unverbindlich und diskret. Als IHK-zertifizierter Immobilienmakler in K\xf6ln mit EVERNEST-Netzwerk stehe ich f\xfcr marktgerechte Bewertung und professionelle Vermarktung.</p>
+        <p>Ich berate Sie pers\xf6nlich, unverbindlich und diskret. Als IHK-zertifizierter Immobilienmakler in K\xf6ln stehe ich f\xfcr marktgerechte Bewertung und professionelle Vermarktung.</p>
         <div class="cta-buttons">
           <a href="https://romanbecker.de/immobilienbewertung/" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
           <a href="tel:+491775156969" class="btn btn--white-outline">+49\xa0177\xa0515\xa069\xa069</a>

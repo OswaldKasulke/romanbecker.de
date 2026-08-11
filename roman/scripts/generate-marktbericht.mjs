@@ -617,7 +617,7 @@ const indexHtml = `<!DOCTYPE html>
       <ul>
 ${reportListItems}
       </ul>
-      <p style="margin-top:2rem;font-size:0.9rem;color:#6b7280;">Die Berichte werden quartalsweise auf Basis öffentlicher Marktdaten, EVERNEST-interner Verkaufsdaten und Stadtteil-Beobachtungen aktualisiert.</p>
+      <p style="margin-top:2rem;font-size:0.9rem;color:#6b7280;">Die Berichte werden quartalsweise auf Basis öffentlicher Marktdaten, interner Verkaufsdaten und Stadtteil-Beobachtungen aktualisiert.</p>
     </div>
   </main>
   <footer>
