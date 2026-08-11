@@ -5,8 +5,8 @@
 
 /* CUSTOM PROPERTIES — Palette von romanbecker.de */
 :root {
-  --navy: #111111;
-  --navy-light: #1a1a1a;
+  --navy: #0c3f2d;
+  --navy-light: #0f4c36;
   --gold: #c2a990;
   --gold-light: #d4b8a0;
   --accent: #d8613c;
@@ -16,7 +16,7 @@
   --gray-200: #e5e7eb;
   --gray-400: #A4A4A4;
   --gray-600: #636363;
-  --gray-800: #111111;
+  --gray-800: #122e24;
 
   --font-base: 'Inter', sans-serif;
   --font-heading: 'Inter', sans-serif;
@@ -58,7 +58,7 @@ a { color: inherit; }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
 .section { padding: var(--space-12) 0; }
 .section--gray { background: var(--off-white); }
-.section--navy { background: #000000; color: var(--white); }
+.section--navy { background: #052b1f; color: var(--white); }
 
 /* TYPOGRAPHY */
 h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; line-height: 1.2; color: var(--navy); }
@@ -92,7 +92,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 
 /* SITE HEADER */
 .site-header {
-  background: #000000;
+  background: #052b1f;
   padding: var(--space-4) 0;
   position: sticky;
   top: 0;
@@ -224,7 +224,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .btn--primary { background: var(--gold); color: var(--navy); border-color: var(--navy); }
 .btn--primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,168,76,0.4); }
 .btn--outline { background: var(--navy); color: var(--white); border-color: var(--gold); }
-.btn--outline:hover { background: #333333; border-color: var(--gold); transform: translateY(-1px); }
+.btn--outline:hover { background: #12583f; border-color: var(--gold); transform: translateY(-1px); }
 .btn--white-outline { background: transparent; color: var(--white); border-color: var(--gold); }
 .btn--white-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
 .section--navy .btn--outline,
@@ -237,7 +237,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 
 /* HERO */
 .hero {
-  background: #000000;
+  background: #052b1f;
   color: var(--white);
   padding: var(--space-16) 0 var(--space-20);
 }
@@ -276,7 +276,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   box-shadow: var(--shadow);
 }
 .card--navy {
-  background: #000000;
+  background: #052b1f;
   color: var(--white);
 }
 .card__icon {
@@ -310,8 +310,13 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   gap: var(--space-4);
 }
 @media (min-width: 768px) { .market-grid { grid-template-columns: repeat(4, 1fr); } }
-/* Fuenf oder sechs Kacheln (je Haustyp eine) statt der ueblichen vier */
-@media (min-width: 768px) { .market-grid--wide { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); } }
+/* Fuenf oder sechs Kacheln (je Haustyp eine) statt der ueblichen vier:
+   auf breiten Schirmen eine Reihe, auf Tablets drei je Reihe. */
+@media (min-width: 768px) { .market-grid--5, .market-grid--6 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1100px) {
+  .market-grid--5 { grid-template-columns: repeat(5, 1fr); }
+  .market-grid--6 { grid-template-columns: repeat(6, 1fr); }
+}
 
 .market-stat {
   text-align: center;
@@ -461,7 +466,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 
 /* FOOTER */
 .footer {
-  background: #000000;
+  background: #052b1f;
   color: rgba(255,255,255,0.6);
   padding: var(--space-12) 0 var(--space-8);
   font-size: 0.8125rem;
