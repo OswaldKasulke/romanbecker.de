@@ -310,6 +310,8 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   gap: var(--space-4);
 }
 @media (min-width: 768px) { .market-grid { grid-template-columns: repeat(4, 1fr); } }
+/* Fuenf oder sechs Kacheln (je Haustyp eine) statt der ueblichen vier */
+@media (min-width: 768px) { .market-grid--wide { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); } }
 
 .market-stat {
   text-align: center;
