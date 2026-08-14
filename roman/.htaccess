@@ -48,6 +48,42 @@ RewriteRule ^bodenrichtwert-eschweiler\.html$ /bodenrichtwert-koeln.html [R=301,
 
 RewriteRule ^stadtteile/eschweiler\.html$ /stadtteile/ [R=301,L]
 
+# Umland-Orte in Kreis-Silos umgezogen (14.08.2026) -> 301
+# Rhein-Erft-Kreis
+RewriteRule ^stadtteile/bedburg\.html$ /immobilienmakler-rhein-erft/bedburg/ [R=301,L]
+RewriteRule ^stadtteile/bergheim\.html$ /immobilienmakler-rhein-erft/bergheim/ [R=301,L]
+RewriteRule ^stadtteile/bruehl\.html$ /immobilienmakler-rhein-erft/bruehl/ [R=301,L]
+RewriteRule ^stadtteile/erftstadt\.html$ /immobilienmakler-rhein-erft/erftstadt/ [R=301,L]
+RewriteRule ^stadtteile/frechen\.html$ /immobilienmakler-rhein-erft/frechen/ [R=301,L]
+RewriteRule ^stadtteile/huerth\.html$ /immobilienmakler-rhein-erft/huerth/ [R=301,L]
+RewriteRule ^stadtteile/kerpen\.html$ /immobilienmakler-rhein-erft/kerpen/ [R=301,L]
+RewriteRule ^stadtteile/pulheim\.html$ /immobilienmakler-rhein-erft/pulheim/ [R=301,L]
+RewriteRule ^stadtteile/wesseling\.html$ /immobilienmakler-rhein-erft/wesseling/ [R=301,L]
+
+# Rhein-Sieg-Kreis
+RewriteRule ^stadtteile/alfter\.html$ /immobilienmakler-rhein-sieg/alfter/ [R=301,L]
+RewriteRule ^stadtteile/bornheim\.html$ /immobilienmakler-rhein-sieg/bornheim/ [R=301,L]
+RewriteRule ^stadtteile/lohmar\.html$ /immobilienmakler-rhein-sieg/lohmar/ [R=301,L]
+RewriteRule ^stadtteile/much\.html$ /immobilienmakler-rhein-sieg/much/ [R=301,L]
+RewriteRule ^stadtteile/neunkirchen-seelscheid\.html$ /immobilienmakler-rhein-sieg/neunkirchen-seelscheid/ [R=301,L]
+RewriteRule ^stadtteile/niederkassel\.html$ /immobilienmakler-rhein-sieg/niederkassel/ [R=301,L]
+RewriteRule ^stadtteile/sankt-augustin\.html$ /immobilienmakler-rhein-sieg/sankt-augustin/ [R=301,L]
+RewriteRule ^stadtteile/swisttal\.html$ /immobilienmakler-rhein-sieg/swisttal/ [R=301,L]
+RewriteRule ^stadtteile/troisdorf\.html$ /immobilienmakler-rhein-sieg/troisdorf/ [R=301,L]
+
+# Rheinisch-Bergischer Kreis
+RewriteRule ^stadtteile/bergisch-gladbach\.html$ /immobilienmakler-rheinisch-bergisch/bergisch-gladbach/ [R=301,L]
+RewriteRule ^stadtteile/leichlingen\.html$ /immobilienmakler-rheinisch-bergisch/leichlingen/ [R=301,L]
+RewriteRule ^stadtteile/odenthal\.html$ /immobilienmakler-rheinisch-bergisch/odenthal/ [R=301,L]
+RewriteRule ^stadtteile/overath\.html$ /immobilienmakler-rheinisch-bergisch/overath/ [R=301,L]
+RewriteRule ^stadtteile/roesrath\.html$ /immobilienmakler-rheinisch-bergisch/roesrath/ [R=301,L]
+
+# Rhein-Kreis Neuss
+RewriteRule ^stadtteile/dormagen\.html$ /immobilienmakler-rhein-kreis-neuss/dormagen/ [R=301,L]
+RewriteRule ^stadtteile/juechen\.html$ /immobilienmakler-rhein-kreis-neuss/juechen/ [R=301,L]
+RewriteRule ^stadtteile/rommerskirchen\.html$ /immobilienmakler-rhein-kreis-neuss/rommerskirchen/ [R=301,L]
+
+
 # Düren: alter Slug mit Doppel-r (Tippfehler) -> korrekt dueren (301)
 RewriteRule ^stadtteile/duerren\.html$    /stadtteile/dueren.html    [R=301,L]
 RewriteRule ^bodenrichtwert-duerren\.html$ /bodenrichtwert-dueren.html [R=301,L]

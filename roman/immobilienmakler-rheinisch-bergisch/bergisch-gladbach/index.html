@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Haus verkaufen in Bergisch Gladbach – Immobilienmakler Bergisch Gladbach</title>
+  <meta name="description" content="Immobilienbewertung &amp; Hausverkauf in Bergisch Gladbach Kreisstadt des Rheinisch-Bergischen Kreises mit ~112.000 Einwohnern.">
+  <link rel="canonical" href="https://romanbecker.de/immobilienmakler-rheinisch-bergisch/bergisch-gladbach/">
+  <meta name="geo.region" content="DE-NW">
+  <meta name="geo.placename" content="Bergisch Gladbach">
+  <meta name="geo.position" content="50.9908;7.1326">
+  <meta name="ICBM" content="50.9908, 7.1326">
+  <meta property="og:title" content="Roman Becker Immobilien | Immobilienmakler & Immobilienbewertung Bergisch Gladbach">
+  <meta property="og:description" content="Immobilienbewertung &amp; Hausverkauf in Bergisch Gladbach — Roman Becker. Kreisstadt des Rheinisch-Bergischen Kreises mit ~112.000 Einwohnern. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta property="og:url" content="https://romanbecker.de/immobilienmakler-rheinisch-bergisch/bergisch-gladbach/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Roman Becker Immobilien | Immobilienmakler & Immobilienbewertung Bergisch Gladbach">
+  <meta name="twitter:description" content="Immobilienbewertung &amp; Hausverkauf in Bergisch Gladbach — Roman Becker. Kreisstadt des Rheinisch-Bergischen Kreises mit ~112.000 Einwohnern. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta name="twitter:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "RealEstateAgent",
+        "name": "Roman Becker Immobilien | Immobilienmakler & Immobilienbewertung Bergisch Gladbach",
+        "url": "https://romanbecker.de/immobilienmakler-rheinisch-bergisch/bergisch-gladbach/",
+        "telephone": "+491775156969",
+        "email": "roman.becker@evernest.com",
+        "image": "https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg",
+        "address": {"@type":"PostalAddress","streetAddress":"Kaiser-Wilhelm-Ring 17-21","addressLocality":"Köln","postalCode":"50672","addressRegion":"NW","addressCountry":"DE"},
+        "geo": {"@type":"GeoCoordinates","latitude":50.9908,"longitude":7.1326},
+        "areaServed": {"@type":"Place","name":"Bergisch Gladbach"},
+        "priceRange": "€€€",
+        "openingHours": "Mo-Sa 09:00-20:00"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Start","item":"https://romanbecker.de/"},
+          {"@type":"ListItem","position":2,"name":"Immobilienmakler Rheinisch-Bergischer Kreis","item":"https://romanbecker.de/immobilienmakler-rheinisch-bergisch/"},
+          {"@type":"ListItem","position":3,"name":"Bergisch Gladbach","item":"https://romanbecker.de/immobilienmakler-rheinisch-bergisch/bergisch-gladbach/"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was kostet eine Wohnung in Bergisch Gladbach?",
+            "acceptedAnswer": {"@type":"Answer","text":"Der durchschnittliche Kaufpreis für Eigentumswohnungen in Bergisch Gladbach liegt bei ca. 3.090 €/m² (Immobilienrichtwert, Stichtag 01.01.2026). Reihenhäuser und Einfamilienhäuser werden im Schnitt für ca. 3.660 €/m² (Ein-/Zweifamilienhaus) bzw. 3.280 €/m² (Reihen-/Doppelhaus) gehandelt. Die Kaltmieten bei Neuvermietung liegen bei 11–14 €/m². Die Preise variieren je nach Lage, Baujahr und Ausstattung teils erheblich."}
+          },
+          {
+            "@type": "Question",
+            "name": "Ist Bergisch Gladbach ein guter Standort für Familien?",
+            "acceptedAnswer": {"@type":"Answer","text":"Bergisch Gladbach bietet Familien eine hervorragende Kombination aus urbanem Leben und Natur: exzellentes Schulangebot, gut ausgebaute Kita-Infrastruktur und unmittelbarer Zugang zum Bergischen Land mit ausgedehnten Wäldern und Wanderwegen."}
+          },
+          {
+            "@type": "Question",
+            "name": "Wie entwickelt sich der Immobilienmarkt in Bergisch Gladbach?",
+            "acceptedAnswer": {"@type":"Answer","text":"Die Kaufpreise für Eigentumswohnungen in Bergisch Gladbach stiegen im Jahresvergleich um +3,2 %. Die gute S-Bahn-Anbindung nach Köln und die Beliebtheit als Wohnstandort für Gutverdiener treiben die Nachfrage nachhaltig an."}
+          },
+          {
+            "@type": "Question",
+            "name": "Für wen eignet sich Bergisch Gladbach besonders?",
+            "acceptedAnswer": {"@type":"Answer","text":"Bergisch Gladbach eignet sich besonders für Familien mit gehobenen Ansprüchen, die Kölnnähe mit viel Grün und gutem Schulangebot kombinieren möchten, sowie für Eigennutzer und Kapitalanleger, die auf stabile Wertsteigerung setzen."}
+          },
+          {
+            "@type": "Question",
+            "name": "Was sollte man beim Immobilienkauf in Bergisch Gladbach beachten?",
+            "acceptedAnswer": {"@type":"Answer","text":"Die Preise in Bergisch Gladbach sind deutlich höher als im übrigen Umland — dafür bieten Top-Lagen wie Sand und Paffrath exzellente Substanz. Die S-Bahn-Anbindung (S11) ist der zentrale Werttreiber für Pendlerlagen nahe den Bahnhöfen."}
+          }
+        ]
+      },
+      {
+        "@type": "Dataset",
+        "name": "Immobilien-Marktdaten Bergisch Gladbach Q1/2026",
+        "description": "Aktuelle Marktdaten für Bergisch Gladbach: Kaufpreise (€/m²) für Eigentumswohnungen und Häuser, Mietpreise und Jahres-Trends. Quartalsweise aktualisiert.",
+        "url": "https://romanbecker.de/immobilienmakler-rheinisch-bergisch/bergisch-gladbach/",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": {"@type": "Person", "name": "Roman Becker"},
+        "spatialCoverage": {
+          "@type": "Place",
+          "name": "Bergisch Gladbach",
+          "geo": {"@type": "GeoCoordinates", "latitude": 50.9908, "longitude": 7.1326}
+        },
+        "temporalCoverage": "2026-01-01/2026-03-31",
+        "datePublished": "2026-05-18",
+        "dateModified": "2026-05-18",
+        "isPartOf": {"@id": "https://romanbecker.de/marktanalyse/koeln-q3-2026.html"},
+        "variableMeasured": [
+          {"@type": "PropertyValue", "name": "Kaufpreis Eigentumswohnung in Bergisch Gladbach", "value": "3.090", "unitText": "EUR/m²", "description": "Durchschnittlicher Kaufpreis pro m² für Eigentumswohnungen in Bergisch Gladbach, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Kaufpreis Haus in Bergisch Gladbach", "value": "3.280", "unitText": "EUR/m²", "description": "Durchschnittlicher Kaufpreis pro m² für Häuser in Bergisch Gladbach, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Kaltmiete in Bergisch Gladbach", "value": "11–14", "unitText": "EUR/m²", "description": "Aktuelle Kaltmieten bei Neuvermietung in Bergisch Gladbach, Stand Q1/2026"},
+          {"@type": "PropertyValue", "name": "Preistrend Jahresvergleich Bergisch Gladbach", "value": "3,2", "unitText": "PERCENT", "description": "Jahresvergleich Preisentwicklung Eigentumswohnungen in Bergisch Gladbach, Q1/2025 vs Q1/2026"}
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stadtteile/shared.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+  <main>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a><span>›</span><a href="https://romanbecker.de/immobilienmakler-rheinisch-bergisch/">Rheinisch-Bergischer Kreis</a><span>›</span>Bergisch Gladbach
+    </nav>
+  </div>
+  <section class="hero">
+    <div class="container">
+      <div class="hero__grid">
+      <div class="hero__text">
+      <div class="hero__badge">✓ IHK-zertifiziert · Bergisch Gladbach</div>
+      <h1>Haus verkaufen in Bergisch Gladbach</h1>
+      <p class="hero__subtitle">Bergisch Gladbach ist mit rund 112.000 Einwohnern die Kreisstadt des Rheinisch-Bergischen Kreises und eine der begehrtesten Wohnadressen im Kölner Umland. Die Stadt vereint die Vorzüge eines vollständig ausgebauten urbanen Infrastrukturangebots mit der unmittelbaren Nähe zum Bergischen Land — ausgedehnte Wälder, Wanderwege und Naturschutzgebiete sind quasi vor der Haustür. Gutverdiener und Familien schätzen das gehobene Angebot an Einfamilienhäusern und Villen in Lagen wie Sand, Paffrath und Gronau sowie die schnelle S-Bahn-Verbindung nach Köln.</p>
+      <div class="hero__buttons">
+        <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Bergisch Gladbach durch Roman Becker">Kostenfreie Wertanalyse Bergisch Gladbach</a>
+        <a href="https://romanbecker.de/" class="btn btn--white-outline">Zur Startseite</a>
+      </div>
+      <p class="hero__cta-subline" style="margin-top:var(--space-4);font-size:0.9375rem;color:rgba(255,255,255,0.85);">Kostenlose Immobilienbewertung in Bergisch Gladbach – persönlich vor Ort.</p>
+      </div>
+      <div class="hero__photo-wrap">
+        <picture><source srcset="https://romanbecker.de/img/portraits/roman-09.webp" type="image/webp"><img
+          src="https://romanbecker.de/img/portraits/roman-09.jpg"
+          alt="Roman Becker, Immobilienmakler für Bergisch Gladbach"
+          class="hero__photo"
+          width="300"
+          height="335"
+          fetchpriority="high"
+        ></picture>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<!-- STADTTEIL-LISTINGS-START -->
+  <section id="aktuelle-angebote" class="section section--gray">
+    <div class="container">
+      <span class="section-label">Aktuelle Angebote</span>
+      <h2>Aktuelle Immobilienangebote in Bergisch Gladbach</h2>
+      <p class="max-w-prose mb-8">25 Objekte in Bergisch Gladbach und Umgebung – jetzt ansehen. Kein passendes Objekt dabei? Ich finde diskret auch Off-Market-Immobilien für Sie.</p>
+      <div class="listings__grid">
+        <a class="listing-card" href="https://www.evernest.com/de/listing/6aiaH4HbcMCoBomAkr8Uqy/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/jQGhWd9bYDdfRGvuMFOGr/6bea488b9c9e8c55ba286a12b304bf60/9dd76013-369e-410f-8042-187baa958144?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Grundstück in Bergisch Gladbach-Bensberg" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Grundstück</span>
+            <span class="listing-card__title">Bergisch Gladbach-Bensberg</span>
+            
+            <span class="listing-card__price">1.650.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/6Z7zXP636pyMpcqvah3tRt/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3htTTDunHlqMvj1OpSt3b7/47ed6d560cb78911a6c0d36b65591a69/a4ef604a-7cee-425d-a13a-6de57f4dc527?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Nußbaum" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Nußbaum</span>
+            <span class="listing-card__facts">6 Zimmer · 276 m²</span>
+            <span class="listing-card__price">1.399.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/4ViySYJ4zTnWCWwVXSAWgc/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/NLH2yOKyGxCMfsFdjiXX5/179a7c040b8d2820e4d488da88e96b88/f14e3c36-4588-48e5-aa51-3336ed000420?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Stadtmitte" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Stadtmitte</span>
+            <span class="listing-card__facts">8 Zimmer · 237 m²</span>
+            <span class="listing-card__price">945.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/4sOpQWb7lTSp2u8YVKd1b1/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/60oR1MQiK4A6kfjmUVxNkH/9337dd8a982993b4df863eef141b2eef/337733cc-e6ca-453f-9791-ac620b47be1e?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Lustheide" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Lustheide</span>
+            <span class="listing-card__facts">5 Zimmer · 202 m²</span>
+            <span class="listing-card__price">895.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/4QkJceuNhZnDcrDUTfgDCy/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/35cOcucdMu6UdqfZ2cCEis/c06f24acfae0441ff3c4cf1611036897/7d3afb4b-4a74-48f9-912e-f43fe08905cc?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Schildgen" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Schildgen</span>
+            <span class="listing-card__facts">7 Zimmer · 282 m²</span>
+            <span class="listing-card__price">892.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/kGmaKIw6dP7eSC13ZXtd6/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/VGEVr1yAX9YFZffEVqOGz/8d7a7ec7e5ab1026df97dda9ac6d5f0c/7a3df398-2521-4c4f-9bd1-c367e05f5a96?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Refrath" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Refrath</span>
+            <span class="listing-card__facts">3 Zimmer · 117 m²</span>
+            <span class="listing-card__price">640.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/1SaB4oQyKDWROzJSvwpbLv/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1A0OnyBgW6w0C1bGue4PtV/76b4d7e50dfc75ecabd13a95f3bbaca0/1a489af9-3c85-47d6-8ed7-319e45d18d8c?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Herrenstrunden" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Herrenstrunden</span>
+            <span class="listing-card__facts">8 Zimmer · 193 m²</span>
+            <span class="listing-card__price">599.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/2pVOksOD3lJ69kprWa8i1D/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/P5RjO9PWFLhVUPvnOXMmj/a85b80269a482b5963174adac3101ef7/de752037-a363-45bd-a200-21f9cb3fe229?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Bärbroich" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Bärbroich</span>
+            <span class="listing-card__facts">5 Zimmer · 95 m²</span>
+            <span class="listing-card__price">575.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/5pyXSGRbud5jAF6RVT5LJF/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3gazJkaCftzTHMzT5AeLJ3/c6883a8d95a3f4df0742e79d6ea22615/d8e0b9a0-e31d-4520-8f68-a8bf7cafb2f3?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Stadtmitte" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Stadtmitte</span>
+            <span class="listing-card__facts">5 Zimmer · 140 m²</span>
+            <span class="listing-card__price">575.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/5FYxtqa6aknNkXCDhz7F8l/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4FtibQJ9UXGhtvURXUMbIL/a30453d0e9608ecab0a17cd88fcdb752/8635f712-9fbd-47dc-9607-099bfa27e706?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Frankenforst" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Frankenforst</span>
+            <span class="listing-card__facts">4 Zimmer · 106 m²</span>
+            <span class="listing-card__price">499.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/6J9NwE5IVYBi2pGjUGDUEx/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4gM6cLKRVlYTE9EX3ezE55/6b4f7a1e3ced7cd39b6daef8fd4842c3/3be0723c-809c-4f06-80c9-eff4c7335cb6?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Stadtmitte" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Stadtmitte</span>
+            <span class="listing-card__facts">9 Zimmer · 211 m²</span>
+            <span class="listing-card__price">499.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/49onmenXN9iMpvIeb5mXxO/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2QBNMU3I0dOOboM8pf1WXq/b1fabc145bbf2432b27ebdb5120a8ab3/bee1c1e8-c320-4672-9590-a43e234021bd?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Stadtmitte" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Stadtmitte</span>
+            <span class="listing-card__facts">7 Zimmer · 135 m²</span>
+            <span class="listing-card__price">486.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/2yfFtL9eTPZRGGrBwJVNDm/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1oRXEFMrCcavwOA61b6yVV/a1fbb87765ddf6d6eee1a459e839b138/8a2b2824-8125-46e4-b66d-a3e842c51d31?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Hebborn" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Hebborn</span>
+            <span class="listing-card__facts">7 Zimmer · 191 m²</span>
+            <span class="listing-card__price">475.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/739anoEJHURONwToX1fsi9/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6VrSkiZxS3PVfDf30e21FS/3ca0b64da69a93a8c66fee80803e7475/bbf49d9a-6dc9-4932-8bf7-02e117c3821b?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Stadtmitte" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Stadtmitte</span>
+            <span class="listing-card__facts">3 Zimmer · 97 m²</span>
+            <span class="listing-card__price">370.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/0dLo3OABJS1e4BTJ7bdtM/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7e6r8vJCYnvMy3gw5Xvn3H/19af800523918cf9f65ecd86f9827012/7d92867d-15c2-48f6-9bdf-68b8b99dbb95?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Refrath" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Refrath</span>
+            <span class="listing-card__facts">2 Zimmer · 55 m²</span>
+            <span class="listing-card__price">346.500 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/1z5EfeDdbYXGhLMCBFRagt/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7e6r8vJCYnvMy3gw5Xvn3H/19af800523918cf9f65ecd86f9827012/7d92867d-15c2-48f6-9bdf-68b8b99dbb95?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Refrath" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Refrath</span>
+            <span class="listing-card__facts">2 Zimmer · 55 m²</span>
+            <span class="listing-card__price">346.500 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/4aRLJSLgnZ9xkaK8sOtqay/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7IzpYnoXYPJ80gomnQ5uEx/f5cfab9e9eb8993cda33bf61d062c668/2a727237-476f-410e-9a5f-63ecc560a069?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Refrath" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Refrath</span>
+            <span class="listing-card__facts">3 Zimmer · 83 m²</span>
+            <span class="listing-card__price">285.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/1FLLNdfJjxxjl1Hc31nmlY/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1K0TmO2yUbMQLmIFaaB4gC/82013519c3dae213d8eca307450e0e10/84eb93f0-b9fa-4a8e-95d0-1ae343a520e3?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Bockenberg" loading="lazy" width="800" height="534">
+            <span class="listing-card__badge listing-card__badge--reserved">Reserviert</span>
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Bockenberg</span>
+            <span class="listing-card__facts">2 Zimmer · 59 m²</span>
+            <span class="listing-card__price">230.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/2DQ2xJDoANUQ0pYut8vt40/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6NT2jVQX1EGnOsw1mEwVxd/b8f953561bd91b9cb49390220b6046ed/a57e7f5e-11f9-45d4-ac59-b9c9af59aa4b?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Bockenberg" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Bockenberg</span>
+            <span class="listing-card__facts">3 Zimmer · 89 m²</span>
+            <span class="listing-card__price">185.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/5h5ROLxkUKvoYxLbc3brj8/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/12HUCToDPAFBBxLcSO00aZ/02b71a671a5326e70edcf0deb85ee279/3a07ff20-2afa-4d36-8aa4-aa645d1dadc2?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Moitzfeld" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Moitzfeld</span>
+            <span class="listing-card__facts">5 Zimmer · 79 m²</span>
+            <span class="listing-card__price">180.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/3KCi3v5FcFGRZIppDPwuuQ/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6DQ9JiJ08KcBhMvU7b7okW/3763a76f11c4a09dc2566027402ddd9f/02be3a19-5caf-4b45-a48d-e99c533eba28?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Bockenberg" loading="lazy" width="800" height="534">
+            <span class="listing-card__badge listing-card__badge--reserved">Reserviert</span>
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Bockenberg</span>
+            <span class="listing-card__facts">3 Zimmer · 83 m²</span>
+            <span class="listing-card__price">175.000 €</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/1b2iW8md9sRyBgpa3zrWnU/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/xshBvzhUPe2oJUYoARyeg/9d992a4697aef920a3172182d8f6924c/8c174356-5f12-4844-8b0a-9c1e6e5f5df0?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Stadtmitte" loading="lazy" width="800" height="534">
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Stadtmitte</span>
+            <span class="listing-card__facts">10 Zimmer · 722 m²</span>
+            <span class="listing-card__price">Preis auf Anfrage</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/79T5H2ABzWbB6JhrCie8qP/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1GohMKdyEwpKHfupI1600v/43c280f723ec8b8f192eda26b980f7e9/67e7d896-c4b0-4822-94aa-39b1f6037671?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Bergisch Gladbach-Lückerath" loading="lazy" width="800" height="534">
+            <span class="listing-card__badge">Verkauft</span>
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Bergisch Gladbach-Lückerath</span>
+            <span class="listing-card__facts">4,5 Zimmer · 125 m²</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/I8bcf55brm3gjaOgyHDaR/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7f4HW5KtmWYFeQM3ZT7zke/42e0f1d37a9ec77df0e5e14a27db4ba5/26f08791-3218-47cb-ae35-31ee23fe9977?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Frankenforst" loading="lazy" width="800" height="534">
+            <span class="listing-card__badge">Verkauft</span>
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Frankenforst</span>
+            <span class="listing-card__facts">2 Zimmer · 70 m²</span>
+          </div>
+        </a>
+        <a class="listing-card" href="https://www.evernest.com/de/listing/h3fepEh1yQlMSU6oBWcV3/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3R9JwA1OfF0uB6nOxUfAvi/1c03dcd6c3c3c4aafe185d64695f7cbd/8836f687-e641-4f0c-9606-0794e5fcd8bc?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohnung in Bergisch Gladbach-Hebborn" loading="lazy" width="800" height="534">
+            <span class="listing-card__badge">Verkauft</span>
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Wohnung</span>
+            <span class="listing-card__title">Bergisch Gladbach-Hebborn</span>
+            <span class="listing-card__facts">3 Zimmer · 81 m²</span>
+          </div>
+        </a>
+      </div>
+      <div class="cta-buttons" style="margin-top:var(--space-8)">
+        <a href="https://www.evernest.com/de/search/?lat=50.989913&lng=7.000059&zoom=11" class="btn btn--primary" target="_blank" rel="noopener">Alle Immobilienangebote</a>
+      </div>
+    </div>
+  </section>
+  <!-- STADTTEIL-LISTINGS-END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- VERKAUFT-START -->
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">
+      <div class="card ref-card">
+        <div class="ref-card__text">
+          <span class="section-label">Verkaufte Objekte der letzten ca. 3 Jahre</span>
+          <h3>Verkaufte Objekte in Bergisch Gladbach</h3>
+          <ul class="infra-list object-list" style="margin-bottom: var(--space-4);">
+            <li><span class="infra-icon">•</span> <span>An der Engelsfuhr (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Töpferweg (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Voiswinkeler Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Engelsgut (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Giselbertstraße (Wohnung, 4 Einheiten)</span></li>
+            <li><span class="infra-icon">•</span> <span>Im Bruch (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Imbuschstraße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Hackberg (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Im Vogelsang (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Jakob-Euler-Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Kurt-Schumacher-Straße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Mülheimer Straße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Platzer Höhenweg (Immobilie, 2 Einheiten)</span></li>
+            <li><span class="infra-icon">•</span> <span>Beningsfeld (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Am Rittersteg (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Enrico-Fermi-Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Braunsberg (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Bensberger Straße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Scheidtbachstraße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Broicher Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Straßen (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Hufer Weg (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Dombach-Sander-Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Theodor-Storm-Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Im Mondsröttchen (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Reuterstraße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Löher Höhenweg (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Eichelstraße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Im Neuen Feld (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Häuser Dombach (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Hans-Böckler-Straße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Burgstraße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Neufeldweg (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Arnold-von-Lülsdorf-Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Engelbertstraße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Pippelstein (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Sonnenweg (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Merkelweg (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Weidenbuscher Weg (Grundstück)</span></li>
+            <li><span class="infra-icon">•</span> <span>Auf dem Kirchenfeld (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Wingertsheide (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>An der Jüch (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Im Lüh (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Franz-Coenen-Straße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>In der Taufe (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Quellenweg (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Reginharstraße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Herkenrather Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Hasselstraße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Odenthaler Straße (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Broicher Feld (Haus)</span></li>
+            <li><span class="infra-icon">•</span> <span>Am Eichenkamp (Haus)</span></li>
+          </ul>
+        </div>
+        <div class="ref-card__stat">
+          <div class="ref-card__number">56</div>
+          <div class="ref-card__label" style="color: var(--gray-600);">vermittelte Objekte<br>in Bergisch Gladbach</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- VERKAUFT-END -->
+<section class="section">
+    <div class="container">
+      <div class="card ref-card">
+        <div class="ref-card__text">
+          <span class="section-label">Aktiv in Bergisch Gladbach</span>
+          <h3>Gehobene Wohnlagen &amp; Familienimmobilien</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-4);">
+            <li><span class="infra-icon" style="color:var(--gold);">•</span> Villen · Einfamilienhäuser · Eigentumswohnungen</li>
+          </ul>
+        </div>
+        <div class="ref-card__stat">
+          <div class="ref-card__number">RBK</div>
+          <div class="ref-card__label">Rheinisch-Bergischer<br>Kreis · Kreisstadt</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Immobilienmarkt Bergisch Gladbach</span>
+      <h2>Immobilienpreise in Bergisch Gladbach – aktuelle Marktdaten</h2>
+      <p class="text-muted mb-8 max-w-prose">Als Immobilienmakler in Bergisch Gladbach berate ich Verkäufer und Käufer auf Basis aktueller Vergleichsdaten. Die folgenden Werte geben Ihnen eine erste Orientierung – für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.</p>
+      <div class="market-grid market-grid--5">
+        <div class="market-stat"><div class="market-stat__value">~3.090 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Eigentumswohnung</div></div>
+        <div class="market-stat"><div class="market-stat__value">~3.660 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Ein-/Zweifamilienhaus</div></div>
+        <div class="market-stat"><div class="market-stat__value">~3.280 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Reihen-/Doppelhaus</div></div>
+        <div class="market-stat"><div class="market-stat__value">11–14 €</div><div class="market-stat__label">Kaltmiete pro m²<br>Neuvermietung</div></div>
+        <div class="market-stat"><div class="market-stat__value">+3,2 %</div><div class="market-stat__label">Preisentwicklung<br>ETW 2025→2026</div></div>
+      </div>
+        <p class="text-muted" style="font-size:0.8125rem;margin-top:var(--space-3);">Immobilienrichtwerte zum Stichtag 01.01.2026 · Quelle: <a href="https://www.boris.nrw" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">BORIS.NRW</a>, Der Gutachterausschuss für Grundstückswerte in der Stadt Bergisch Gladbach. Werte je m² Wohnfläche, Median über die Richtwertzonen im Stadtgebiet: Eigentumswohnung 30 Zonen (1.940–5.570 €), Ein-/Zweifamilienhaus 27 Zonen (3.110–5.080 €), Reihen-/Doppelhaus 28 Zonen (2.390–4.480 €). Miete und Preisentwicklung: eigene Auswertung.</p>
+      <p style="margin-top:1.5rem;font-size:0.9375rem;"><a href="/bodenrichtwert-bergisch-gladbach.html" rel="nofollow" style="color:var(--gold);font-weight:600;">→ Bodenrichtwert Bergisch Gladbach ermitteln</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Amtliche Marktdaten</span>
+      <h2>Wird in Bergisch Gladbach überhaupt gehandelt?</h2>
+      <p class="text-muted leading-relaxed mb-6" style="max-width:820px;">
+        Preise sagen, <em>was</em> eine Immobilie wert ist – nicht, <em>ob</em> sie sich verkaufen lässt. Für Bergisch Gladbach ist nicht der Kölner Gutachterausschuss zuständig, sondern der
+        <a href="https://www.gars.nrw/stadt-gl" target="_blank" rel="noopener">Gutachterausschuss für Grundstückswerte in der Stadt Bergisch Gladbach</a>. Er wertet als einzige amtliche Quelle die tatsächlich notariell beurkundeten Kaufverträge aus, nicht Angebotspreise.
+      </p>
+
+      <table class="cost-table" style="max-width:820px;">
+        <thead>
+          <tr><th>Ein- und Zweifamilienhäuser 2025</th><th class="num">Kaufverträge</th><th class="num">Geldumsatz</th><th class="num">Ø je Vertrag</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Bergisch Gladbach</strong></td><td class="num"><strong>332</strong></td><td class="num">174,52 Mio. €</td><td class="num">525.663 €</td></tr>
+          <tr><td>Alle bebauten Grundstücke</td><td class="num">408</td><td class="num">268,29 Mio. €</td><td class="num">657.574 €</td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:var(--gray-100);border-left:3px solid var(--gold);border-radius:var(--radius);padding:var(--space-6);margin:var(--space-8) 0;max-width:820px;">
+        <p class="text-muted leading-relaxed" style="margin-bottom:0;">
+          Bergisch Gladbach hat einen eigenen Gutachterausschuss – der Kreisbericht des Rheinisch-Bergischen Kreises gilt ausdrücklich <em>ohne</em> die Stadt. 2025 wurden hier <strong>332 Ein- und Zweifamilienhäuser</strong> verkauft, <strong>17,7 % mehr als im Vorjahr</strong>, bei einem um 31,3 % gestiegenen Geldumsatz.
+        </p>
+        <p class="text-muted leading-relaxed" style="margin-top:0.8rem;margin-bottom:0;">
+          Über alle Teilmärkte hinweg registrierte der Gutachterausschuss 1.251 Kaufverträge über 482,26 Mio. € – 28 % mehr Verträge als 2024. Für Eigentümer ist das die eigentlich relevante Größe: Ein hoher Preis nützt wenig, wenn kein Käufer da ist.
+        </p>
+      </div>
+
+      <p class="text-muted" style="font-size:0.875rem;max-width:820px;">
+        Quelle: Grundstücksmarktbericht 2026 der Stadt Bergisch Gladbach, Kapitel 3 (Umsatz nach Teilmärkten), Berichtsjahr 2025. Der Ø-Wert je Vertrag ist aus Anzahl und Geldumsatz berechnet.
+      </p>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <span class="section-label">Stadtprofil</span>
+      <h2>Bergisch Gladbach – Kreisstadt zwischen Köln und Bergischem Land</h2>
+      <div class="grid-2 mb-12">
+        <div>
+          <p class="text-muted leading-relaxed mb-6">Bergisch Gladbach liegt im äußersten Osten des Kölner Umlandes, direkt an der Stadtgrenze zu <a href="/stadtteile/dellbrueck.html" style="color:inherit;">Köln-Dellbrück</a> und Köln-Holweide, und erstreckt sich weit in das hügelige Bergische Land hinein. Die Kreisstadt des Rheinisch-Bergischen Kreises vereint auf ihrem Stadtgebiet sehr unterschiedliche Charaktere: Die Innenstadt rund um den Zentralpunkt ist dicht bebaut und bietet eine vollständige Versorgungsinfrastruktur, während Stadtteile wie Sand, Paffrath, Kippekausen und Bärbroich durch großzügige Villengrundstücke, Naturparkrandlagen und ein entspanntes Wohnmilieu geprägt sind.
+
+Der Immobilienmarkt in Bergisch Gladbach gehört zu den stabilsten und gefragtesten im gesamten Kölner Umland. Die unmittelbare Grenznähe zu Köln — kombiniert mit deutlich günstigeren Grundstückspreisen als im Kölner Stadtgebiet und erheblich mehr Grün — macht die Stadt zur ersten Wahl für Familien, die in der Metropolregion Köln sesshaft werden wollen. Die S-Bahn S11 verbindet Bergisch Gladbach in rund 20 Minuten mit dem Kölner Hauptbahnhof. Mehrere Gymnasien, darunter das renommierte Albertus-Magnus-Gymnasium, und gut ausgebaute Grundschullandschaft machen die Stadt zur Bildungshochburg im östlichen Umland.
+
+Naturliebhaber finden in unmittelbarer Nähe das Naturschutzgebiet Königsforst, ausgedehnte Wanderwege ins Bergische Land und den Strunder Bach als idyllischen Grünzug durch das Stadtgebiet. Gastronomisch überzeugt die Stadtmitte mit einem breiten Angebot, das von gutbürgerlichen Restaurants bis zu modernen Bistros reicht. Der Marktplatz in Bergisch Gladbach-Mitte ist ein belebter Treffpunkt mit Wochenmarkt und inhabergeführten Geschäften. Was Kaufinteressenten wissen sollten: Bergisch Gladbach ist rechtsrheinisch und östlich von Köln — das schreckt manche ab, aber wer einmal hier wohnt, bleibt in der Regel. Die Preise liegen deutlich über dem Kreisdurchschnitt und nähern sich in Toplage den Kölner Werten an.</p>
+        </div>
+        <div>
+          <div class="map-container">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=7.0600%2C50.9600%2C7.2100%2C51.0300&layer=mapnik&marker=50.9908%2C7.1326" loading="lazy" title="Karte von Bergisch Gladbach" aria-label="OpenStreetMap Karte von Bergisch Gladbach"></iframe>
+          </div>
+          <p class="map-caption">PLZ: 51427–51469 · Rheinisch-Bergischer Kreis · Kreisstadt</p>
+        </div>
+      </div>
+      <div class="market-grid">
+        <div class="market-stat"><div class="market-stat__value">~112.000</div><div class="market-stat__label">Einwohner</div></div>
+        <div class="market-stat"><div class="market-stat__value">83 km²</div><div class="market-stat__label">Fläche</div></div>
+        <div class="market-stat"><div class="market-stat__value">43,8 J.</div><div class="market-stat__label">Durchschnittsalter</div></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Infrastruktur</span>
+      <h2>Das macht Bergisch Gladbach als Wohnlage attraktiv</h2>
+      <p class="text-muted mb-8 max-w-prose">Eine starke Infrastruktur ist ein entscheidender Werttreiber für Immobilien. Hier die wichtigsten Einrichtungen in Bergisch Gladbach.</p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg></div>
+          <h3>Schulen &amp; Bildung</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Albertus-Magnus-Gymnasium</li>
+            <li><span class="infra-icon">•</span> Herkenrath-Gymnasium</li>
+            <li><span class="infra-icon">•</span> Gesamtschule Paffrath</li>
+            <li><span class="infra-icon">•</span> Mehrere Realschulen und Grundschulen</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M12 6v2"/><path d="M9 14l-3 8"/><path d="M15 14l3 8"/><path d="M7 12a5 5 0 0 1 10 0"/><path d="M12 8v6"/></svg></div>
+          <h3>Kitas &amp; Kinderbetreuung</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Städtische Kitas in allen Stadtteilen</li>
+            <li><span class="infra-icon">•</span> Kath. und ev. Kindertagesstätten</li>
+            <li><span class="infra-icon">•</span> Waldkindergärten am Naturparkrand</li>
+            <li><span class="infra-icon">•</span> AWO- und DRK-Einrichtungen</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/></svg></div>
+          <h3>ÖPNV-Anbindung</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> S-Bahn S11 (Köln Hbf in ~20 Min.)</li>
+            <li><span class="infra-icon">•</span> Buslinien ins Bergische Land</li>
+            <li><span class="infra-icon">•</span> A4 (Anschluss Bensberg/Moitzfeld)</li>
+            <li><span class="infra-icon">•</span> Direktverbindung Düsseldorf via S11</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+          <h3>Einkaufen</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Bergische Promenade (Einkaufsmeile)</li>
+            <li><span class="infra-icon">•</span> REWE, Edeka, Kaufland</li>
+            <li><span class="infra-icon">•</span> Lidl, Aldi, Penny</li>
+            <li><span class="infra-icon">•</span> Fachmarkt-Center am Stadtrand</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12H2l10-9 10 9h-3"/><path d="M8 15H4l8-7 8 7h-4"/></svg></div>
+          <h3>Parks &amp; Freizeit</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Naturschutzgebiet Königsforst</li>
+            <li><span class="infra-icon">•</span> Strunder Bach (Grünzug)</li>
+            <li><span class="infra-icon">•</span> Wanderwege ins Bergische Land</li>
+            <li><span class="infra-icon">•</span> Freibad Gronau</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h3>Gesundheit</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Evangelisches Krankenhaus Bergisch Gladbach</li>
+            <li><span class="infra-icon">•</span> Zahlreiche Facharztpraxen</li>
+            <li><span class="infra-icon">•</span> Apotheken in allen Stadtteilen</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5L17.5 17.5"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M6 8v8"/><path d="M18 8v8"/><path d="M4 10v4"/><path d="M20 10v4"/></svg></div>
+          <h3>Fitness &amp; Sport</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> SV Bergisch Gladbach (Fußball)</li>
+            <li><span class="infra-icon">•</span> TC Bergisch Gladbach (Tennis)</li>
+            <li><span class="infra-icon">•</span> McFit und weitere Fitnessstudios</li>
+            <li><span class="infra-icon">•</span> Bergische Sportschule</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <h3>Gastronomie</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Restaurants in der Stadtmitte</li>
+            <li><span class="infra-icon">•</span> Bergischer Kaffeetisch (Traditionsrestaurants)</li>
+            <li><span class="infra-icon">•</span> Bistros und Cafés am Marktplatz</li>
+            <li><span class="infra-icon">•</span> Wochenmarkt Bergisch Gladbach</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-4h6v4"/><path d="M9 12h.01"/><path d="M15 12h.01"/></svg></div>
+          <h3>Kultur &amp; Sehenswertes</h3>
+          <ul class="infra-list">
+            <li><span class="infra-icon">•</span> Bergisches Museum Schloss Bensberg</li>
+            <li><span class="infra-icon">•</span> Schloss Bensberg (Grandhotel)</li>
+            <li><span class="infra-icon">•</span> Stadtmuseum Bergisch Gladbach</li>
+            <li><span class="infra-icon">•</span> Naturpark Bergisches Land</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <span class="section-label">Immobilientypen in Bergisch Gladbach</span>
+      <h2>Immobilientypen &amp; Lagen in Bergisch Gladbach</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Typische Objekte in der Stadt</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-6);">
+            <li><span class="infra-icon">•</span> Villen in Naturparkrandlage (Sand, Paffrath, Bärbroich)</li>
+            <li><span class="infra-icon">•</span> Einfamilienhäuser mit großen Gärten</li>
+            <li><span class="infra-icon">•</span> Doppelhaushälften in zentralen Lagen</li>
+            <li><span class="infra-icon">•</span> Eigentumswohnungen nahe S-Bahn</li>
+            <li><span class="infra-icon">•</span> Mehrfamilienhäuser als Kapitalanlage</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Immobilie in Bergisch Gladbach kaufen — für wen lohnt es sich?</h3>
+          <p class="text-muted leading-relaxed mb-4"><strong>Für Familien:</strong> Bergisch Gladbach bietet Familien eine hervorragende Kombination aus urbanem Leben und Natur: exzellentes Schulangebot, gut ausgebaute Kita-Infrastruktur und unmittelbarer Zugang zum Bergischen Land.</p>
+          <p class="text-muted leading-relaxed mb-4"><strong>Für Kapitalanleger:</strong> Stabile Wertsteigerung dank anhaltend hoher Nachfrage von Kölner Pendlern und begrenztem Neubaupotenzial in den gefragten Toplagen am Naturparkrand.</p>
+          <p class="text-muted leading-relaxed"><strong>Für Eigennutzer:</strong> Kölnnähe mit viel Grün und gehobener Wohnqualität — wer einmal in Bergisch Gladbach wohnt, möchte in der Regel nicht mehr weg.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Baugrundstück Bergisch Gladbach</span>
+      <h2>Baugrundstück in Bergisch Gladbach – so kommen Sie an einen Bauplatz</h2>
+      <p class="max-w-prose mb-8">Ob städtischer Bauplatz oder privates Grundstück – hier die wichtigsten Wege zu einem Baugrundstück in Bergisch Gladbach. Kommunale Bauplätze vergibt die Stadt Bergisch Gladbach selbst nach festen Regeln; bei privaten Grundstücken und beim Verkauf begleite ich Sie persönlich.</p>
+      <div class="grid-2">
+        <div>
+          <h3>So kommen Sie in Bergisch Gladbach an einen Bauplatz</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-6);">
+            <li><span class="infra-icon">•</span> <span>Baulückenbörse: bebaubare (private) Wohngrundstücke im Stadtgebiet auf einen Blick</span></li>
+            <li><span class="infra-icon">•</span> <span>Städtische Bauplätze über die Grundstückswirtschaft (aktuell meist keine verfügbar)</span></li>
+            <li><span class="infra-icon">•</span> <span>Rechtsverbindliche Bebauungspläne online im Geoportal</span></li>
+            <li><span class="infra-icon">•</span> <span>Zentrale Vergabestelle für städtische Verfahren</span></li>
+          </ul>
+          <p class="text-muted leading-relaxed">Mehr Details bei der Kommune: <a href="https://www.bergischgladbach.de/baulueckenboerse.aspx" target="_blank" rel="noopener">bergischgladbach.de – Baulückenbörse</a>.</p>
+        </div>
+        <div>
+          <h3>Privates Grundstück in Bergisch Gladbach – Kauf &amp; Verkauf</h3>
+          <p class="text-muted leading-relaxed mb-4">Viele Baugrundstücke werden nicht über die Kommune, sondern auf dem <strong>freien Markt</strong> gehandelt – über Makler, Eigentümer und Nachlässe.</p>
+          <p class="text-muted leading-relaxed mb-4">Sie besitzen ein Grundstück oder eine Baulücke in Bergisch Gladbach? Ich ermittle den aktuellen Wert <strong>kostenfrei und diskret</strong>.</p>
+          <p class="text-muted leading-relaxed">Von der Bewertung über die Vermarktung bis zum Notartermin begleite ich Sie – auf Wunsch auch <strong>Off-Market</strong>.</p>
+        </div>
+      </div>
+      <div class="cta-buttons" style="margin-top:var(--space-8)">
+        <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Baugrundstück in Bergisch Gladbach verkaufen? Kostenfreie Wertermittlung</a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Häufige Fragen</span>
+      <h2>Häufige Fragen zum Immobilienmarkt in Bergisch Gladbach</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Was kostet eine Wohnung in Bergisch Gladbach?</summary>
+          <div class="faq-answer">Der durchschnittliche Kaufpreis für Eigentumswohnungen in Bergisch Gladbach liegt bei ca. 3.090 €/m² (Immobilienrichtwert, Stichtag 01.01.2026). Reihenhäuser und Einfamilienhäuser werden im Schnitt für ca. 3.660 €/m² (Ein-/Zweifamilienhaus) bzw. 3.280 €/m² (Reihen-/Doppelhaus) gehandelt. Die Kaltmieten bei Neuvermietung liegen bei 11–14 €/m². Die Preise variieren je nach Lage, Baujahr und Ausstattung teils erheblich.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Ist Bergisch Gladbach ein guter Standort für Familien?</summary>
+          <div class="faq-answer">Bergisch Gladbach bietet Familien eine hervorragende Kombination aus urbanem Leben und Natur: exzellentes Schulangebot, gut ausgebaute Kita-Infrastruktur und unmittelbarer Zugang zum Bergischen Land mit ausgedehnten Wäldern und Wanderwegen.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Wie entwickelt sich der Immobilienmarkt in Bergisch Gladbach?</summary>
+          <div class="faq-answer">Die Kaufpreise für Eigentumswohnungen in Bergisch Gladbach stiegen im Jahresvergleich um +3,2 %. Die gute S-Bahn-Anbindung nach Köln und die Beliebtheit als Wohnstandort für Gutverdiener treiben die Nachfrage nachhaltig an.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Für wen eignet sich Bergisch Gladbach besonders?</summary>
+          <div class="faq-answer">Bergisch Gladbach eignet sich besonders für Familien mit gehobenen Ansprüchen, die Kölnnähe mit viel Grün und gutem Schulangebot kombinieren möchten, sowie für Eigennutzer und Kapitalanleger, die auf stabile Wertsteigerung setzen.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Was sollte man beim Immobilienkauf in Bergisch Gladbach beachten?</summary>
+          <div class="faq-answer">Die Preise in Bergisch Gladbach sind deutlich höher als im übrigen Umland — dafür bieten Top-Lagen wie Sand und Paffrath exzellente Substanz. Die S-Bahn-Anbindung (S11) ist der zentrale Werttreiber für Pendlerlagen nahe den Bahnhöfen.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Jetzt beraten lassen</span>
+        <h2>Kostenlose Immobilienbewertung in Bergisch Gladbach</h2>
+        <p>Ob Verkauf, Kauf oder Kapitalanlage — ich berate Sie persönlich, unverbindlich und diskret. Als Ihr Makler im Kölner Umland kenne ich den Markt aus erster Hand.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Bergisch Gladbach durch Roman Becker">Marktwert Ihrer Immobilie in Bergisch Gladbach</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+        <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln/@50.9436867,6.9395297,255m/data=!3m2!1e3!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m16!1m9!3m8!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!2sRoman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln!8m2!3d50.9436867!4d6.9406741!9m1!1b1!16s%2Fg%2F11w4rp9vvy!3m5!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!16s%2Fg%2F11w4rp9vvy?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="review-line" aria-label="Verifizierte Google-Bewertungen ansehen">
+          <span class="review-line__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>5,0 auf Google &middot; verifizierte Bewertungen</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container text-center">
+      <span class="section-label">Auch in den Nachbarstädten aktiv</span>
+      <h2>Immobilienmakler in der Umgebung von Bergisch Gladbach</h2>
+      <p class="text-muted mb-8">Sie suchen einen Makler in einer angrenzenden Stadt? Ich bin auch hier für Sie da:</p>
+      <div class="neighbor-links"><a href="../leichlingen/" class="btn btn--outline">Leichlingen</a><a href="../odenthal/" class="btn btn--outline">Odenthal</a><a href="../overath/" class="btn btn--outline">Overath</a><a href="../roesrath/" class="btn btn--outline">Rösrath</a><a href="../" class="btn btn--outline">Alle Orte im Rheinisch-Bergischen Kreis</a></div>
+    </div>
+  </section>
+  </main>
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
+    </div>
+  </footer>
+  <script src="/stadtteile/search.js" defer></script>
+  <script src="/stadtteile/page-toc.js" defer></script>
+</body>
+</html>
