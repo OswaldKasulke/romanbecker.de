@@ -101,6 +101,11 @@
     var fixed = el.getAttribute && el.getAttribute('data-toc');
     if (fixed && fixed.trim()) return fixed.replace(/\s+/g, ' ').trim();
 
+    /* Auf Artikelseiten sind die Eintraege die Ueberschriften selbst. */
+    if (/^H[2-3]$/.test(el.nodeName)) {
+      return el.textContent.replace(/\s+/g, ' ').trim();
+    }
+
     var labEl = el.querySelector('.section-label');
     var h2 = el.querySelector('h2');
     var h3 = el.querySelector('h3');
@@ -131,6 +136,11 @@
       el.id = id;
     }
     if (used[id]) return;
+    /* Gleiche Beschriftung zweimal (h2 im Artikel + eigene Section) waere ein
+       Doppeleintrag - der erste gewinnt. */
+    var key = 'l:' + raw.toLowerCase();
+    if (used[key]) return;
+    used[key] = true;
     used[id] = true;
     el.classList.add('toc-target');
     out.push({ id: id, label: shorten(raw), el: el });
@@ -138,6 +148,16 @@
 
   function collect() {
     var out = [], used = {};
+
+    /* Artikelseiten (Ratgeber) haben ihren Text in einem einzigen Container -
+       dort sind die h2 die Abschnitte, nicht die <section>-Bloecke. Ohne das
+       listet das Inhaltsverzeichnis nur die 2-3 Rahmen-Sections. */
+    var article = document.querySelector('.article-content');
+    if (article) {
+      var heads = article.querySelectorAll('h2');
+      for (var a = 0; a < heads.length; a++) add(out, used, heads[a], 'a' + a);
+    }
+
     var sections = document.querySelectorAll('section');
 
     for (var i = 0; i < sections.length; i++) {
