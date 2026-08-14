@@ -68,6 +68,41 @@ RewriteRule ^immobilienmakler-rhein-sieg/sankt-augustin/?$ /stadtteile/ [R=301,L
 RewriteRule ^immobilienmakler-rhein-sieg/swisttal/?$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-sieg/troisdorf/?$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-sieg/?$ /stadtteile/ [R=301,L]
+
+# Kreis Dueren entfernt (15.08.2026): Fokus auf Koeln und Rhein-Erft -> Uebersichten (301)
+RewriteRule ^stadtteile/dueren\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/juelich\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^bodenrichtwert-dueren\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-juelich\.html$ /bodenrichtwert-koeln.html [R=301,L]
+
+# Rheinisch-Bergischer Kreis und Rhein-Kreis Neuss entfernt (15.08.2026) -> Uebersichten (301)
+RewriteRule ^stadtteile/bergisch-gladbach\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/bergisch-gladbach/?$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/leichlingen\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/leichlingen/?$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/odenthal\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/odenthal/?$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/overath\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/overath/?$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/roesrath\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/roesrath/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/?$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/dormagen\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-kreis-neuss/dormagen/?$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/juechen\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-kreis-neuss/juechen/?$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/rommerskirchen\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-kreis-neuss/rommerskirchen/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-kreis-neuss/?$ /stadtteile/ [R=301,L]
+RewriteRule ^bodenrichtwert-bergisch-gladbach\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-leichlingen\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-odenthal\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-overath\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-roesrath\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-dormagen\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-juechen\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-rommerskirchen\.html$ /bodenrichtwert-koeln.html [R=301,L]
+
 RewriteRule ^bodenrichtwert-alfter\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-bornheim\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-lohmar\.html$ /bodenrichtwert-koeln.html [R=301,L]
@@ -93,21 +128,13 @@ RewriteRule ^stadtteile/wesseling\.html$ /immobilienmakler-rhein-erft/wesseling/
 
 
 # Rheinisch-Bergischer Kreis
-RewriteRule ^stadtteile/bergisch-gladbach\.html$ /immobilienmakler-rheinisch-bergisch/bergisch-gladbach/ [R=301,L]
-RewriteRule ^stadtteile/leichlingen\.html$ /immobilienmakler-rheinisch-bergisch/leichlingen/ [R=301,L]
-RewriteRule ^stadtteile/odenthal\.html$ /immobilienmakler-rheinisch-bergisch/odenthal/ [R=301,L]
-RewriteRule ^stadtteile/overath\.html$ /immobilienmakler-rheinisch-bergisch/overath/ [R=301,L]
-RewriteRule ^stadtteile/roesrath\.html$ /immobilienmakler-rheinisch-bergisch/roesrath/ [R=301,L]
 
 # Rhein-Kreis Neuss
-RewriteRule ^stadtteile/dormagen\.html$ /immobilienmakler-rhein-kreis-neuss/dormagen/ [R=301,L]
-RewriteRule ^stadtteile/juechen\.html$ /immobilienmakler-rhein-kreis-neuss/juechen/ [R=301,L]
-RewriteRule ^stadtteile/rommerskirchen\.html$ /immobilienmakler-rhein-kreis-neuss/rommerskirchen/ [R=301,L]
 
 
 # Düren: alter Slug mit Doppel-r (Tippfehler) -> korrekt dueren (301)
-RewriteRule ^stadtteile/duerren\.html$    /stadtteile/dueren.html    [R=301,L]
-RewriteRule ^bodenrichtwert-duerren\.html$ /bodenrichtwert-dueren.html [R=301,L]
+RewriteRule ^stadtteile/duerren\.html$    /stadtteile/               [R=301,L]
+RewriteRule ^bodenrichtwert-duerren\.html$ /bodenrichtwert-koeln.html  [R=301,L]
 
 # 2) Legacy-URLs einer alten Site-Struktur (vor /ratgeber/-Prefix-Umstellung)
 #    Ziele thematisch gewählt für vollen Authority-Transfer + UX.
