@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', { form_id: f.id || 'unknown', form_destination: f.action || '', page_path: location.pathname });
+      }, true);
+    })();
+  </script>
+
+  <title>Haus verkaufen in Elsdorf – Immobilienmakler Elsdorf</title>
+  <meta name="description" content="Immobilienbewertung &amp; Hausverkauf in Elsdorf Rhein-Erft-Kreis, ~26.000 Einwohner, Schloss Elsdorf. Lokale Marktexpertise, diskrete Beratung.">
+  <link rel="canonical" href="https://romanbecker.de/immobilienmakler-rhein-erft/elsdorf/">
+  <meta name="geo.region" content="DE-NW">
+  <meta name="geo.placename" content="Elsdorf">
+  <meta name="geo.position" content="51.0044;6.5705">
+  <meta name="ICBM" content="51.0044, 6.5705">
+  <meta property="og:title" content="Roman Becker Immobilien | Immobilienmakler & Immobilienbewertung Elsdorf">
+  <meta property="og:description" content="Immobilienbewertung &amp; Hausverkauf in Elsdorf — Roman Becker. Rhein-Erft-Kreis, ~26.000 Einwohner, Schloss Elsdorf. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta property="og:url" content="https://romanbecker.de/immobilienmakler-rhein-erft/elsdorf/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Roman Becker Immobilien | Immobilienmakler & Immobilienbewertung Elsdorf">
+  <meta name="twitter:description" content="Immobilienbewertung &amp; Hausverkauf in Elsdorf — Roman Becker. Rhein-Erft-Kreis, ~26.000 Einwohner, Schloss Elsdorf. Lokale Marktexpertise, diskrete Beratung. Jetzt Erstgespräch.">
+  <meta name="twitter:image" content="https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateAgent",
+      "name": "Roman Becker Immobilien | Immobilienmakler & Immobilienbewertung Elsdorf",
+      "url": "https://romanbecker.de/immobilienmakler-rhein-erft/elsdorf/",
+      "telephone": "+491775156969",
+      "email": "roman.becker@evernest.com",
+      "image": "https://images.ctfassets.net/if6f7uzjzqut/7GPShKUqk7lhFSRu0ld79d/c73d75258663658a345ed9e012237e36/Roman_Becker_Upload.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kaiser-Wilhelm-Ring 17-21",
+        "addressLocality": "Köln",
+        "postalCode": "50672",
+        "addressRegion": "NW",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.0044,
+        "longitude": 6.5705
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Elsdorf"
+      },
+      "priceRange": "€€",
+      "openingHours": "Mo-Sa 09:00-20:00"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Start",
+          "item": "https://romanbecker.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Immobilienmakler Rhein-Erft-Kreis",
+          "item": "https://romanbecker.de/immobilienmakler-rhein-erft/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Elsdorf",
+          "item": "https://romanbecker.de/immobilienmakler-rhein-erft/elsdorf/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was kostet ein Grundstück in Elsdorf?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Der Gutachterausschuss für den Rhein-Erft-Kreis weist für den individuellen Wohnungsbau 300 €/m² in guter, 230 €/m² in mittlerer und 190 €/m² in einfacher Lage aus (Stichtag 01.01.2026). Das sind die niedrigsten Werte im gesamten Kreis – in Frechen kostet dieselbe gute Lage 710 €/m²."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist mein Haus in Elsdorf wert?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für Elsdorf liegen bislang keine amtlichen Immobilienrichtwerte je m² Wohnfläche vor, wie es sie für andere Städte im Kreis gibt. Eine seriöse Einschätzung stützt sich deshalb auf den Bodenrichtwert des jeweiligen Ortsteils, den Gebäudezustand und Vergleichsverkäufe. Zur Orientierung: 2025 wurden in Elsdorf 107 Ein- und Zweifamilienhäuser verkauft, im Mittel für rund 352.000 €."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Unterscheiden sich die Ortsteile im Preis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Deutlich. Zwischen Heppendorf mit rund 310 €/m² und Niederembt mit 210 bis 220 €/m² liegen fast 50 Prozent. Elsdorf hat 13 Ortsteile, von 6.813 Einwohnern im Hauptort bis zu 35 in Frankeshoven – eine pauschale Bewertung „für Elsdorf\" führt deshalb schnell in die Irre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie lange dauert ein Verkauf in Elsdorf?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Länger als im Kölner Stadtgebiet. Der lokale Käuferkreis ist klein, und der Grundstücksmarktbericht 2026 hält für Elsdorf ausdrücklich fest, dass im Neubaubereich keine auswertbaren Verkaufsfälle in angemessener Anzahl vorlagen. Über das EVERNEST-Netzwerk erreiche ich zusätzlich Käufer aus Köln und dem übrigen Kreis."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "name": "Immobilien-Marktdaten Elsdorf Q1/2026",
+      "description": "Aktuelle Immobilienpreise und Marktdaten für Elsdorf (Rhein-Erft-Kreis) im ersten Quartal 2026: Kaufpreise für Eigentumswohnungen und Häuser, Kaltmieten sowie Preistrend.",
+      "url": "https://romanbecker.de/immobilienmakler-rhein-erft/elsdorf/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": {
+        "@type": "Person",
+        "name": "Roman Becker"
+      },
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Elsdorf",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.0044,
+          "longitude": 6.5705
+        }
+      },
+      "temporalCoverage": "2026-01-01/2026-03-31",
+      "datePublished": "2026-05-18",
+      "dateModified": "2026-05-18",
+      "variableMeasured": [
+        {
+          "@type": "PropertyValue",
+          "name": "Bodenrichtwert Elsdorf, gute Lage",
+          "value": "300",
+          "unitText": "EUR/m²"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Bodenrichtwert Elsdorf, mittlere Lage",
+          "value": "230",
+          "unitText": "EUR/m²"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Bodenrichtwert Elsdorf, einfache Lage",
+          "value": "190",
+          "unitText": "EUR/m²"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Verkaufte Ein- und Zweifamilienhäuser 2025",
+          "value": "107",
+          "unitText": "Kaufverträge"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stadtteile/shared.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+  <main>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a><span>›</span><a href="https://romanbecker.de/immobilienmakler-rhein-erft/">Rhein-Erft-Kreis</a><span>›</span>Elsdorf
+    </nav>
+  </div>
+  <section class="hero">
+    <div class="container">
+      <div class="hero__grid">
+      <div class="hero__text">
+      <div class="hero__badge">✓ IHK-zertifiziert · Elsdorf</div>
+      <h1>Haus verkaufen in Elsdorf</h1>
+      <p class="hero__subtitle">Elsdorf ist mit 22.499 Einwohnern die kleinste der zehn Städte im Rhein-Erft-Kreis und die westlichste – 13 Ortsteile verteilen sich über 66 km², das sind 340 Einwohner je Quadratkilometer. Der Ort liegt am Rand des Tagebaus Hambach, und der Strukturwandel prägt den Immobilienmarkt stärker als anderswo im Kreis. Die Grundstückspreise sind die niedrigsten im gesamten Kreisgebiet.</p>
+      <div class="hero__buttons">
+        <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Elsdorf durch Roman Becker">Kostenfreie Wertanalyse Elsdorf</a>
+        <a href="https://romanbecker.de/" class="btn btn--white-outline">Zur Startseite</a>
+      </div>
+      <p class="hero__cta-subline" style="margin-top:var(--space-4);font-size:0.9375rem;color:rgba(255,255,255,0.85);">Kostenlose Immobilienbewertung in Elsdorf – persönlich vor Ort.</p>
+      </div>
+      <div class="hero__photo-wrap">
+        <picture><source srcset="https://romanbecker.de/img/portraits/roman-06.webp" type="image/webp"><img
+          src="https://romanbecker.de/img/portraits/roman-06.jpg"
+          alt="Roman Becker, Immobilienmakler für Elsdorf"
+          class="hero__photo"
+          width="300"
+          height="335"
+          fetchpriority="high"
+        ></picture>
+      </div>
+      </div>
+    </div>
+  </section>
+
+<!-- STADTTEIL-LISTINGS-START -->
+  <section id="aktuelle-angebote" class="section section--gray">
+    <div class="container">
+      <span class="section-label">Aktuelle Angebote</span>
+      <h2>Aktuelle Immobilienangebote in Elsdorf</h2>
+      <p class="max-w-prose mb-8">1 Objekt in Elsdorf und Umgebung – jetzt ansehen. Kein passendes Objekt dabei? Ich finde diskret auch Off-Market-Immobilien für Sie.</p>
+      <div class="listings__grid">
+        <a class="listing-card" href="https://www.evernest.com/de/listing/4KCxA97RWuPJjFGMGzH5vo/" target="_blank" rel="noopener">
+          <div class="listing-card__imgwrap">
+            <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4UUUwScLD7fRhMAVxIaSYj/a6b9ba0b9af34c34025d509a88d58b0b/bb16528e-472b-4524-85e7-8708fb883bb9?w=800&amp;h=534&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Haus in Elsdorf" loading="lazy" width="800" height="534">
+            <span class="listing-card__badge">Verkauft</span>
+          </div>
+          <div class="listing-card__body">
+            <span class="listing-card__type">Haus</span>
+            <span class="listing-card__title">Elsdorf</span>
+            <span class="listing-card__facts">8 Zimmer · 341 m²</span>
+          </div>
+        </a>
+      </div>
+      <div class="cta-buttons" style="margin-top:var(--space-8)">
+        <a href="https://www.evernest.com/de/search/?lat=50.989913&lng=7.000059&zoom=11" class="btn btn--primary" target="_blank" rel="noopener">Alle Immobilienangebote</a>
+      </div>
+    </div>
+  </section>
+  <!-- STADTTEIL-LISTINGS-END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- VERKAUFT-START -->
+  <section id="verkaufte-objekte" class="section" style="padding-bottom:0;">
+    <div class="container">
+      <div class="card ref-card">
+        <div class="ref-card__text">
+          <span class="section-label">Verkaufte Objekte der letzten ca. 3 Jahre</span>
+          <h3>Verkaufte Objekte in Elsdorf</h3>
+          <ul class="infra-list object-list" style="margin-bottom: var(--space-4);">
+            <li><span class="infra-icon">•</span> <span>Am Vogsberg (Haus)</span></li>
+          </ul>
+        </div>
+        <div class="ref-card__stat">
+          <div class="ref-card__number">1</div>
+          <div class="ref-card__label" style="color: var(--gray-600);">vermittelte Objekte<br>in Elsdorf</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- VERKAUFT-END -->
+<section class="section">
+    <div class="container">
+      <div class="card ref-card">
+        <div class="ref-card__text">
+          <span class="section-label">Aktiv in Elsdorf</span>
+          <h3>Günstige Einstiegslagen &amp; Entwicklungspotenzial</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-4);">
+            <li><span class="infra-icon" style="color:var(--gold);">•</span> Einfamilienhäuser · Grundstücke · Kapitalanlage</li>
+          </ul>
+        </div>
+        <div class="ref-card__stat">
+          <div class="ref-card__number">REK</div>
+          <div class="ref-card__label">Rhein-Erft-Kreis<br>Strukturwandel</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <section class="section">
+      <div class="container">
+        <span class="section-label">Immobilienmarkt Elsdorf</span>
+        <h2>Grundstückspreise in Elsdorf – amtliche Werte</h2>
+        <p class="text-muted max-w-prose">Für Elsdorf liegen bislang keine Immobilienrichtwerte je m² Wohnfläche vor. Belastbar sind die gebietstypischen Bodenrichtwerte, die der Gutachterausschuss für den Rhein-Erft-Kreis beschlossen hat – sie sind der stärkste einzelne Hebel im Kaufpreis.</p>
+        <div class="brw-wrap">
+          <table class="brw-tab">
+            <thead><tr><th>Teilmarkt</th><th>gute Lage</th><th>mittlere Lage</th><th>einfache Lage</th></tr></thead>
+            <tbody>
+              <tr><td>Individueller Wohnungsbau</td><td>300 €/m²</td><td>230 €/m²</td><td>190 €/m²</td></tr>
+              <tr><td>Geschosswohnungsbau</td><td>–</td><td>240 €/m²</td><td>–</td></tr>
+              <tr><td>Gewerbe</td><td>–</td><td>85 €/m²</td><td>–</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="brw-quelle">Quelle: Grundstücksmarktbericht 2026 des Gutachterausschusses für Grundstückswerte im Rhein-Erft-Kreis, gebietstypische Werte, Berichtszeitraum 2025. Zum Vergleich: In Frechen kostet dieselbe gute Lage 710 €/m².</p>
+      </div>
+    </section>
+
+    >
+
+  <section class="section section--gray">
+      <div class="container">
+        <span class="section-label">Amtliche Marktdaten</span>
+        <h2>Wird in Elsdorf überhaupt gehandelt?</h2>
+        <p class="text-muted max-w-prose">Preise sagen, was eine Immobilie wert ist – nicht, ob sie sich verkaufen lässt. Zuständig ist der Gutachterausschuss für Grundstückswerte im Rhein-Erft-Kreis. Er wertet als einzige amtliche Quelle die notariell beurkundeten Kaufverträge aus, nicht Angebotspreise.</p>
+        <div class="brw-wrap">
+          <table class="brw-tab">
+            <thead><tr><th>Ein- und Zweifamilienhäuser 2025</th><th>Kaufverträge</th><th>Geldumsatz</th><th>Ø je Vertrag</th></tr></thead>
+            <tbody>
+              <tr><td>Elsdorf</td><td>107</td><td>37,68 Mio. €</td><td>352.150 €</td></tr>
+              <tr><td>Bedburg</td><td>115</td><td>41,80 Mio. €</td><td>363.478 €</td></tr>
+              <tr><td>Bergheim</td><td>281</td><td>111,90 Mio. €</td><td>398.221 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="brw-quelle">Quelle: Grundstücksmarktbericht 2026, Rhein-Erft-Kreis, Abschnitt 3.3.1. Mit 107 Kaufverträgen im Jahr wird in Elsdorf durchaus gehandelt – der Markt ist klein, aber nicht tot. Für den Neubaubereich weist der Bericht ausdrücklich aus, dass keine auswertbaren Verkaufsfälle in angemessener Anzahl vorlagen.</p>
+      </div>
+    </section>
+
+    >
+  <section class="section">
+      <div class="container">
+        <span class="section-label">Stadtprofil</span>
+        <h2>Elsdorf – 13 Ortsteile am Rand des Tagebaus</h2>
+        <p class="max-w-prose">Elsdorf liegt im äußersten Westen des Rhein-Erft-Kreises, zwischen Bergheim und dem Kreis Düren, und grenzt an den Tagebau Hambach. Die Stadt ist mit 22.499 Einwohnern die kleinste im Kreis, verteilt sich aber über 66 km² – die geringste Bevölkerungsdichte im gesamten Kreisgebiet.</p>
+        <p class="max-w-prose">Der Ortsteil Elsdorf selbst zählt 6.813 Einwohner, danach folgen Berrendorf mit 3.512 und Esch mit 2.590. Am anderen Ende stehen Dörfer wie Widdendorf mit 62 und Frankeshoven mit 35 Einwohnern. Diese Streuung erklärt, warum es innerhalb der Stadt erhebliche Preisunterschiede gibt: Heppendorf liegt bei rund 310 €/m² Bodenrichtwert, Niederembt bei 210 bis 220 €/m².</p>
+        <p class="max-w-prose">Der Bodenrichtwertindex zeigt, wie eigenständig sich Elsdorf entwickelt hat: Er steht 2026 bei 172,6 Punkten gegenüber dem Basisjahr 2002 – der niedrigste Wert westlich der Ville. Bedburg liegt bei 226,2, Bergheim bei 211,6. Wer hier kauft, kauft am günstigsten Punkt des Kreises; wer verkauft, braucht eine realistische Preisfindung und Geduld.</p>
+        <p class="max-w-prose"><strong>Die 13 Ortsteile mit Einwohnerzahlen:</strong> Elsdorf (6.813), Berrendorf (3.512), Esch (2.590), Angelsdorf (2.299), Heppendorf (1.896), Giesendorf (1.378), Niederembt (1.371), Oberembt (1.110), Grouven (642), Neu-Etzweiler (570), Tollhausen (221), Widdendorf (62), Frankeshoven (35). Postleitzahl im gesamten Stadtgebiet: 50189.</p>
+      </div>
+    </section>
+
+    >
+  >
+  <section id="immobilientypen" class="section section--gray">
+    <div class="container">
+      <span class="section-label">Immobilientypen in Elsdorf</span>
+      <h2>Immobilientypen &amp; Lagen in Elsdorf</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Typische Objekte im Stadtgebiet</h3>
+          <ul class="infra-list" style="margin-bottom:var(--space-6);">
+            <li><span class="infra-icon">•</span> Einfamilienhäuser mit großem Grundstück</li>
+            <li><span class="infra-icon">•</span> Doppelhaushälften und Reihenhäuser</li>
+            <li><span class="infra-icon">•</span> Eigentumswohnungen in Elsdorf-Mitte</li>
+            <li><span class="infra-icon">•</span> Hofanlagen und Grundstücke</li>
+            <li><span class="infra-icon">•</span> Mehrfamilienhäuser zur Kapitalanlage</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Immobilie in Elsdorf kaufen — für wen lohnt es sich?</h3>
+          <p class="text-muted leading-relaxed mb-4"><strong>Für Familien:</strong> Elsdorf bietet Familien ein ruhiges, grünes Wohnumfeld mit vollständiger Grundinfrastruktur und den günstigsten Preisen im gesamten Rhein-Erft-Kreis.</p>
+          <p class="text-muted leading-relaxed mb-4"><strong>Für Kapitalanleger:</strong> Langfristiges Wertsteigerungspotenzial durch den Strukturwandel im Rheinischen Revier bei den niedrigsten Einstiegspreisen des Kreises.</p>
+          <p class="text-muted leading-relaxed"><strong>Für Eigennutzer:</strong> Maximale Fläche zum kleinstmöglichen Preis — wer Ruhe, Natur und ein großes Grundstück priorisiert und mobil ist, findet in Elsdorf das beste Angebot im Umland.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  >
+  <section class="section section--gray">
+      <div class="container">
+        <span class="section-label">Häufige Fragen</span>
+        <h2>Häufige Fragen zum Immobilienmarkt in Elsdorf</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Was kostet ein Grundstück in Elsdorf?</summary>
+            <div class="faq-answer">Der Gutachterausschuss für den Rhein-Erft-Kreis weist für den individuellen Wohnungsbau 300 €/m² in guter, 230 €/m² in mittlerer und 190 €/m² in einfacher Lage aus (Stichtag 01.01.2026). Das sind die niedrigsten Werte im gesamten Kreis – in Frechen kostet dieselbe gute Lage 710 €/m².</div>
+          </details>
+          <details class="faq-item">
+            <summary>Was ist mein Haus in Elsdorf wert?</summary>
+            <div class="faq-answer">Für Elsdorf liegen bislang keine amtlichen Immobilienrichtwerte je m² Wohnfläche vor, wie es sie für andere Städte im Kreis gibt. Eine seriöse Einschätzung stützt sich deshalb auf den Bodenrichtwert des jeweiligen Ortsteils, den Gebäudezustand und Vergleichsverkäufe. Zur Orientierung: 2025 wurden in Elsdorf 107 Ein- und Zweifamilienhäuser verkauft, im Mittel für rund 352.000 €.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Unterscheiden sich die Ortsteile im Preis?</summary>
+            <div class="faq-answer">Deutlich. Zwischen Heppendorf mit rund 310 €/m² und Niederembt mit 210 bis 220 €/m² liegen fast 50 Prozent. Elsdorf hat 13 Ortsteile, von 6.813 Einwohnern im Hauptort bis zu 35 in Frankeshoven – eine pauschale Bewertung „für Elsdorf" führt deshalb schnell in die Irre.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Wie lange dauert ein Verkauf in Elsdorf?</summary>
+            <div class="faq-answer">Länger als im Kölner Stadtgebiet. Der lokale Käuferkreis ist klein, und der Grundstücksmarktbericht 2026 hält für Elsdorf ausdrücklich fest, dass im Neubaubereich keine auswertbaren Verkaufsfälle in angemessener Anzahl vorlagen. Über das EVERNEST-Netzwerk erreiche ich zusätzlich Käufer aus Köln und dem übrigen Kreis.</div>
+          </details>
+        </div>
+      </div>
+    </section>>
+  <section id="kontakt" class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Jetzt beraten lassen</span>
+        <h2>Kostenlose Immobilienbewertung in Elsdorf</h2>
+        <p>Ob Verkauf, Kauf oder Kapitalanlage — ich berate Sie persönlich, unverbindlich und diskret. Als Ihr Makler im Rhein-Erft-Kreis kenne ich den Markt aus erster Hand.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary" title="Kostenlose Immobilienbewertung in Elsdorf durch Roman Becker">Marktwert Ihrer Immobilie in Elsdorf</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container text-center">
+      <span class="section-label">Auch in den Nachbarstädten aktiv</span>
+      <h2>Immobilienmakler in der Umgebung von Elsdorf</h2>
+      <p class="text-muted mb-8">Sie suchen einen Makler in einer angrenzenden Stadt? Ich bin auch hier für Sie da:</p>
+      <div class="neighbor-links"><a href="../bergheim/" class="btn btn--outline">Bergheim</a><a href="../bruehl/" class="btn btn--outline">Brühl</a><a href="../erftstadt/" class="btn btn--outline">Erftstadt</a><a href="../frechen/" class="btn btn--outline">Frechen</a><a href="../huerth/" class="btn btn--outline">Hürth</a><a href="../kerpen/" class="btn btn--outline">Kerpen</a><a href="../pulheim/" class="btn btn--outline">Pulheim</a><a href="../wesseling/" class="btn btn--outline">Wesseling</a><a href="../" class="btn btn--outline">Alle Orte im Rhein-Erft-Kreis</a></div>
+    </div>
+  </section>
+  </main>
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.datenschwester.de" rel="noopener" class="footer__credit">Webentwicklung: datenschwester.de</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler im Großraum Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
+    </div>
+  </footer>
+  <script src="/stadtteile/search.js" defer></script>
+  <script src="/stadtteile/page-toc.js" defer></script>
+</body>
+</html>

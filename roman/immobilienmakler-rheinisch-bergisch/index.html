@@ -268,6 +268,14 @@
       margin-top: 0.1rem;
     }
     h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .brw-tab { width:100%; border-collapse:collapse; margin-top:1.25rem; font-size:0.9375rem; }
+    .brw-tab th, .brw-tab td { padding:0.6rem 0.75rem; border-bottom:1px solid var(--gray-200); text-align:right; }
+    .brw-tab th:first-child, .brw-tab td:first-child { text-align:left; font-weight:600; }
+    .brw-tab thead th { font-size:0.8125rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--gray-600); font-weight:600; border-bottom:2px solid var(--gold); }
+    .brw-tab tbody tr:last-child td { border-bottom:none; }
+    .brw-wrap { overflow-x:auto; }
+    .brw-quelle { font-size:0.8125rem; color:var(--gray-600); margin-top:0.9rem; line-height:1.6; }
+
   </style>
 
   
@@ -313,7 +321,7 @@
         <h1>Immobilienmakler Rheinisch-Bergischer Kreis</h1>
         <p>Östlich von Köln beginnt das Bergische Land. Bergisch Gladbach ist mit rund 3.800 €/m² der teuerste Ort in meinem gesamten Umland-Gebiet – teurer als jede Stadt im Rhein-Erft-Kreis. Nach Osten hin fallen die Preise schnell ab, in Leichlingen auf etwa 2.600 €/m².</p>
         <ul class="st-index-hero__facts">
-          <li><strong>5</strong> Städte &amp; Gemeinden</li>
+          <li><strong>5</strong> Kommunen</li>
           <li><strong>212.000</strong> Einwohner in diesen Orten</li>
           <li><strong>amtliche</strong> Bodenrichtwerte</li>
         </ul>
@@ -327,7 +335,7 @@
     <!-- ORTE -->
     <section class="section">
       <div class="container">
-        <h2>Fünf Städte und Gemeinden im Rheinisch-Bergischen Kreis</h2>
+        <h2>Fünf Kommunen im Rheinisch-Bergischen Kreis</h2>
         <div class="st-index-grid">
         <a href="bergisch-gladbach/" class="st-index-card">
           <div class="st-index-card__name">Bergisch Gladbach</div>
@@ -355,6 +363,28 @@
           <div class="st-index-card__trend">↑ +2,2 %</div>
         </a>
         </div>
+      </div>
+    </section>
+
+    <section class="section section--gray">
+      <div class="container">
+        <h2>Bodenrichtwerte im Rheinisch-Bergischen Kreis im Vergleich</h2>
+        <p class="text-muted max-w-prose">Was ein Baugrundstück je Quadratmeter kostet, ist der stärkste einzelne Hebel im Kaufpreis. Die folgenden Werte hat der zuständige Gutachterausschuss beschlossen – sie sind amtlich, nicht geschätzt.</p>
+        <div class="brw-wrap">
+          <table class="brw-tab">
+            <thead>
+              <tr><th>Kommune</th><th>gute Lage</th><th>mittlere Lage</th><th>einfache Lage</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Bergisch Gladbach*</td><td>970 €</td><td>660 €</td><td>510 €</td></tr>
+              <tr><td>Rösrath</td><td>600 €</td><td>480 €</td><td>390 €</td></tr>
+              <tr><td>Leichlingen</td><td>575 €</td><td>440 €</td><td>390 €</td></tr>
+              <tr><td>Odenthal</td><td>480 €</td><td>410 €</td><td>290 €</td></tr>
+              <tr><td>Overath</td><td>370 €</td><td>310 €</td><td>255 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="brw-quelle">Quelle: Grundstücksmarktberichte 2026 der Gutachterausschüsse für den Rheinisch-Bergischen Kreis und für die Stadt Bergisch Gladbach. Stichtag 01.01.2026. Bergisch Gladbach hat einen eigenen Gutachterausschuss; der dort ausgewiesene Wert gilt für freistehende Ein- und Zweifamilienhäuser, die übrigen Werte für den individuellen Wohnungsbau insgesamt.</p>
       </div>
     </section>
 

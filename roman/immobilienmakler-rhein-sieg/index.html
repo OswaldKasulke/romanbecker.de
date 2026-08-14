@@ -284,6 +284,14 @@
       margin-top: 0.1rem;
     }
     h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .brw-tab { width:100%; border-collapse:collapse; margin-top:1.25rem; font-size:0.9375rem; }
+    .brw-tab th, .brw-tab td { padding:0.6rem 0.75rem; border-bottom:1px solid var(--gray-200); text-align:right; }
+    .brw-tab th:first-child, .brw-tab td:first-child { text-align:left; font-weight:600; }
+    .brw-tab thead th { font-size:0.8125rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--gray-600); font-weight:600; border-bottom:2px solid var(--gold); }
+    .brw-tab tbody tr:last-child td { border-bottom:none; }
+    .brw-wrap { overflow-x:auto; }
+    .brw-quelle { font-size:0.8125rem; color:var(--gray-600); margin-top:0.9rem; line-height:1.6; }
+
   </style>
 
   
@@ -391,6 +399,32 @@
           <div class="st-index-card__trend">↑ +2,2 %</div>
         </a>
         </div>
+      </div>
+    </section>
+
+    <section class="section section--gray">
+      <div class="container">
+        <h2>Bodenrichtwerte im Rhein-Sieg-Kreis im Vergleich</h2>
+        <p class="text-muted max-w-prose">Was ein Baugrundstück je Quadratmeter kostet, ist der stärkste einzelne Hebel im Kaufpreis. Die folgenden Werte hat der zuständige Gutachterausschuss beschlossen – sie sind amtlich, nicht geschätzt.</p>
+        <div class="brw-wrap">
+          <table class="brw-tab">
+            <thead>
+              <tr><th>Kommune</th><th>gute Lage</th><th>mittlere Lage</th><th>einfache Lage</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Niederkassel</td><td>700 €</td><td>590 €</td><td>470 €</td></tr>
+              <tr><td>Sankt Augustin</td><td>610 €</td><td>590 €</td><td>550 €</td></tr>
+              <tr><td>Troisdorf</td><td>610 €</td><td>540 €</td><td>480 €</td></tr>
+              <tr><td>Alfter</td><td>600 €</td><td>580 €</td><td>390 €</td></tr>
+              <tr><td>Bornheim</td><td>600 €</td><td>510 €</td><td>410 €</td></tr>
+              <tr><td>Swisttal</td><td>500 €</td><td>390 €</td><td>170 €</td></tr>
+              <tr><td>Lohmar</td><td>430 €</td><td>390 €</td><td>280 €</td></tr>
+              <tr><td>Neunkirchen-Seelscheid</td><td>390 €</td><td>350 €</td><td>240 €</td></tr>
+              <tr><td>Much</td><td>350 €</td><td>225 €</td><td>95 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="brw-quelle">Quelle: Grundstücksmarktbericht 2026 des Gutachterausschusses für Grundstückswerte im Rhein-Sieg-Kreis und der Stadt Troisdorf. Gebietstypische Bodenrichtwerte zum Stichtag 01.01.2026, erschließungsbeitragsfrei. Sie zeigen das durchschnittliche Preisniveau der Kommune und sind für detaillierte Wertermittlungen nicht heranzuziehen.</p>
       </div>
     </section>
 
