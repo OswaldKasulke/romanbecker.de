@@ -72,6 +72,13 @@
     .container { max-width: 900px; }
     main { padding: var(--space-12) 0 var(--space-16); }
     .lead { font-size: 1.125rem; color: var(--gray-600); margin-bottom: var(--space-8); }
+    /* shared.css setzt an h2/h3 kein margin-top und kennt keine p/ul-Abstaende –
+       ohne diese Regeln kleben Ueberschriften an der Liste darueber */
+    main h2 { margin-top: var(--space-12); }
+    main h3 { margin-top: var(--space-8); }
+    main p { margin-bottom: var(--space-4); }
+    main ul { margin: 0 0 var(--space-4) 1.25rem; }
+    main li { margin-bottom: 0.35rem; }
     /* Direktdownloads: die amtlichen Berichte sollen als Downloads erkennbar
        sein, nicht als Aufzaehlungspunkte */
     .dl-list { display: grid; gap: 0.75rem; margin: 1.5rem 0 2.5rem; }
@@ -86,8 +93,8 @@
                 align-items: center; justify-content: center; font-size: 0.7rem;
                 font-weight: 700; letter-spacing: 0.03em; }
     .dl__body { min-width: 0; flex: 1; }
-    .dl__title { font-weight: 600; color: var(--text, #000000); line-height: 1.35; }
-    .dl__meta { font-size: 0.85rem; color: var(--gray-600); margin-top: 0.2rem; line-height: 1.5; }
+    .dl__title { display: block; font-weight: 600; color: var(--text, #000000); line-height: 1.35; }
+    .dl__meta { display: block; font-size: 0.85rem; color: var(--gray-600); margin-top: 0.2rem; line-height: 1.5; }
     .dl__size { display: block; font-size: 0.8rem; color: var(--gray-400); white-space: nowrap; margin-top: 0.35rem; }
     .dl-note { font-size: 0.875rem; color: var(--gray-600); margin: -1.5rem 0 2.5rem; }
   </style>
@@ -122,8 +129,6 @@
       <h1>Marktanalyse Köln — Immobilien-Marktberichte</h1>
       <p class="lead">Quartalsweise aktualisierte Markt-Übersichten zum Kölner Immobilienmarkt mit Kaufpreisen, Mietpreisen und Trends in allen Stadtteilen. Erstellt von Roman Becker, IHK-zertifizierter Immobilienmakler in Köln.</p>
       <h2>Meine Quartalsberichte für Köln</h2>
-      <p>Eigene Auswertung je Quartal – Kaufpreise, Mietpreise und Trends in allen
-      86 Stadtteilen, direkt im Browser lesbar.</p>
       <ul>
         <li><a href="koeln-q3-2026.html">Immobilienmarkt Köln Q3/2026 <strong>(aktuell)</strong></a></li>
         <li><a href="koeln-q2-2026.html">Immobilienmarkt Köln Q2/2026</a></li>
