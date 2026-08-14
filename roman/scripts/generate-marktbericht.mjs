@@ -288,7 +288,7 @@ const html = `<!DOCTYPE html>
         "@type": "BreadcrumbList",
         "itemListElement": [
           {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://romanbecker.de/"},
-          {"@type": "ListItem", "position": 2, "name": "Marktanalyse", "item": "https://romanbecker.de/marktanalyse/"},
+          {"@type": "ListItem", "position": 2, "name": "Grundstücksmarktbericht", "item": "https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html"},
           {"@type": "ListItem", "position": 3, "name": "Köln ${REPORT_LABEL}", "item": "${REPORT_URL}"}
         ]
       }
@@ -380,7 +380,7 @@ const html = `<!DOCTYPE html>
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="https://romanbecker.de/">Start</a><span>›</span>
-        <a href="/marktanalyse/">Marktanalyse</a><span>›</span>
+        <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht</a><span>›</span>
         Köln ${REPORT_LABEL}
       </nav>
 
@@ -629,8 +629,10 @@ ${reportListItems}
 </html>
 `;
 
-writeFileSync(join(outDir, 'index.html'), indexHtml);
-console.log(`✓ Index page updated (${reportFiles.length} reports listed)`);
+// Uebersichtsseite /marktanalyse/ wurde bewusst entfernt (Inhalt steckt im
+// Ratgeber-Artikel grundstuecksmarktbericht-koeln.html). Nicht neu anlegen -
+// sonst kommt sie beim naechsten Quartalslauf zurueck.
+// writeFileSync(join(outDir, 'index.html'), indexHtml);
 
 // === Sitemap automatisch ergänzen falls neuer Bericht ===
 const sitemapPath = join(ROOT, 'sitemap.xml');
@@ -645,12 +647,4 @@ if (!sitemap.includes(newUrl)) {
   console.log(`  (Sitemap already contains ${REPORT_URL})`);
 }
 
-// Index page in Sitemap
-const indexUrl = `<loc>https://romanbecker.de/marktanalyse/</loc>`;
-if (!sitemap.includes(indexUrl)) {
-  sitemap = readFileSync(sitemapPath, 'utf-8');
-  const newEntry = `  <url><loc>https://romanbecker.de/marktanalyse/</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>\n`;
-  sitemap = sitemap.replace('</urlset>', newEntry + '</urlset>');
-  writeFileSync(sitemapPath, sitemap);
-  console.log(`✓ Sitemap updated with marktanalyse index URL`);
-}
+// Index-URL nicht mehr in die Sitemap - die Uebersichtsseite gibt es nicht mehr.
