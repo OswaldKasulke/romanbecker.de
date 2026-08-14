@@ -238,8 +238,10 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .article-hero .btn--white-outline { border-color: var(--white); }
 
 /* HERO */
+/* Hero bewusst etwas heller als der Header (--racing-green #063124),
+   damit sich der Header oben absetzt. */
 .hero {
-  background: var(--racing-green);
+  background: var(--navy);
   color: var(--white);
   padding: var(--space-16) 0 var(--space-20);
 }
