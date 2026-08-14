@@ -21,6 +21,8 @@ RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 # Nießbrauch-Seiten: alte Einfach-s-Slugs -> korrekte Doppel-s-Slugs (301)
 
 # Weitere Zusammenlegungen duenner Ratgeber-Seiten
+# Q2/2026 war zu 91,6 % identisch mit Q3/2026 - zusammengelegt
+RewriteRule ^marktanalyse/koeln-q2-2026\.html$ /marktanalyse/koeln-q3-2026.html [R=301,L]
 RewriteRule ^ratgeber/hypothek\.html$ /ratgeber/grundschuld.html [R=301,L]
 RewriteRule ^ratgeber/smart-heizung\.html$ /ratgeber/smarthome.html [R=301,L]
 RewriteRule ^ratgeber/vergleichsmiete\.html$ /ratgeber/mietspiegel.html [R=301,L]
