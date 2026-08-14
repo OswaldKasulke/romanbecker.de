@@ -126,6 +126,11 @@
   }
 
   function add(out, used, el, index) {
+    /* data-toc="-" blendet einen Abschnitt aus dem Verzeichnis aus, z. B. wenn
+       er inhaltlich unter dem Eintrag darueber steckt. */
+    var optOut = el.getAttribute && el.getAttribute('data-toc');
+    if (optOut === '-' || optOut === 'none') return;
+
     var raw = labelFor(el);
     if (!raw) return;
 
