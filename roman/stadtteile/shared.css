@@ -722,3 +722,12 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 @media (min-width: 1200px) {
   .hero__photo-wrap { margin-right: var(--space-20); }
 }
+
+/* AMTLICHE WERTE-TABELLE (Kreis-Hubs + Ortsseiten) */
+.brw-tab { width:100%; border-collapse:collapse; margin-top:1.25rem; font-size:0.9375rem; }
+.brw-tab th, .brw-tab td { padding:0.6rem 0.75rem; border-bottom:1px solid var(--gray-200); text-align:right; }
+.brw-tab th:first-child, .brw-tab td:first-child { text-align:left; font-weight:600; }
+.brw-tab thead th { font-size:0.8125rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--gray-600); font-weight:600; border-bottom:2px solid var(--gold); }
+.brw-tab tbody tr:last-child td { border-bottom:none; }
+.brw-wrap { overflow-x:auto; margin-bottom:0.5rem; }
+.brw-quelle { font-size:0.8125rem; color:var(--gray-600); margin-top:0.9rem; line-height:1.6; }
