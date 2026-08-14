@@ -43,6 +43,11 @@ RewriteRule ^bodenrichtwert-leverkusen\.html$ /bodenrichtwert-koeln.html [R=301,
 
 RewriteRule ^stadtteile/leverkusen\.html$ /stadtteile/ [R=301,L]
 
+# Eschweiler entfernt (14.08.2026, Staedteregion Aachen ausserhalb des Einzugsgebiets) -> Uebersichten (301)
+RewriteRule ^bodenrichtwert-eschweiler\.html$ /bodenrichtwert-koeln.html [R=301,L]
+
+RewriteRule ^stadtteile/eschweiler\.html$ /stadtteile/ [R=301,L]
+
 # Düren: alter Slug mit Doppel-r (Tippfehler) -> korrekt dueren (301)
 RewriteRule ^stadtteile/duerren\.html$    /stadtteile/dueren.html    [R=301,L]
 RewriteRule ^bodenrichtwert-duerren\.html$ /bodenrichtwert-dueren.html [R=301,L]
