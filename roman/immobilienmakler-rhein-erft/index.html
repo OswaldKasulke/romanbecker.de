@@ -238,9 +238,12 @@
 
     .st-index-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      grid-template-columns: repeat(5, 1fr);
       gap: 0.625rem;
     }
+    @media (max-width: 1100px) { .st-index-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 860px)  { .st-index-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px)  { .st-index-grid { grid-template-columns: repeat(2, 1fr); } }
 
     .st-index-card {
       display: block;
@@ -319,11 +322,11 @@
       <div class="container">
         <span class="section-label">Rhein-Erft-Kreis &middot; Stand August 2026</span>
         <h1>Immobilienmakler Rhein-Erft-Kreis</h1>
-        <p>Der Rhein-Erft-Kreis grenzt westlich direkt an Köln – für viele Eigentümer ist es derselbe Markt, nur mit anderen Preisen. Die Spanne reicht von rund 2.500 €/m² in Bedburg bis 3.600 €/m² in Pulheim, und die Entfernung zur Stadtgrenze erklärt den größten Teil davon. Wählen Sie Ihre Stadt für die lokalen Marktdaten.</p>
+        <p>Der Rhein-Erft-Kreis grenzt westlich direkt an Köln – für viele Eigentümer ist es derselbe Markt, nur mit anderen Preisen. 2025 wechselten hier 1.708 Ein- und Zweifamilienhäuser den Besitzer, im Mittel für 429.930 €. Die Spanne reicht von 352.150 € in Elsdorf bis 535.254 € in Hürth. Wählen Sie Ihre Stadt für die lokalen Marktdaten.</p>
         <ul class="st-index-hero__facts">
           <li><strong>10</strong> Städte</li>
           <li><strong>455.000</strong> Einwohner in diesen Orten</li>
-          <li><strong>amtliche</strong> Marktdaten</li>
+          <li><strong>1.708</strong> Hausverkäufe 2025</li>
         </ul>
         <div class="st-index-hero__cta">
           <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
@@ -339,53 +342,53 @@
         <div class="st-index-grid">
         <a href="bedburg/" class="st-index-card">
           <div class="st-index-card__name">Bedburg</div>
-          <div class="st-index-card__price">~2.500 €/m²</div>
-          <div class="st-index-card__trend">↑ +1,8 %</div>
+          <div class="st-index-card__price">Ø 363.478 €</div>
+          <div class="st-index-card__trend">115 Verkäufe 2025</div>
         </a>
         <a href="bergheim/" class="st-index-card">
           <div class="st-index-card__name">Bergheim</div>
-          <div class="st-index-card__price">~2.900 €/m²</div>
-          <div class="st-index-card__trend">↑ +2,0 %</div>
+          <div class="st-index-card__price">Ø 398.221 €</div>
+          <div class="st-index-card__trend">281 Verkäufe 2025</div>
         </a>
         <a href="bruehl/" class="st-index-card">
           <div class="st-index-card__name">Brühl</div>
-          <div class="st-index-card__price">~3.400 €/m²</div>
-          <div class="st-index-card__trend">↑ +3,1 %</div>
+          <div class="st-index-card__price">Ø 479.292 €</div>
+          <div class="st-index-card__trend">113 Verkäufe 2025</div>
         </a>
         <a href="elsdorf/" class="st-index-card">
           <div class="st-index-card__name">Elsdorf</div>
-          <div class="st-index-card__price">günstigste Stadt im Kreis</div>
-          <div class="st-index-card__trend">amtliche Marktdaten</div>
+          <div class="st-index-card__price">Ø 352.150 €</div>
+          <div class="st-index-card__trend">107 Verkäufe 2025</div>
         </a>
         <a href="erftstadt/" class="st-index-card">
           <div class="st-index-card__name">Erftstadt</div>
-          <div class="st-index-card__price">~2.750 €/m²</div>
-          <div class="st-index-card__trend">↑ +2,2 %</div>
+          <div class="st-index-card__price">Ø 375.175 €</div>
+          <div class="st-index-card__trend">257 Verkäufe 2025</div>
         </a>
         <a href="frechen/" class="st-index-card">
           <div class="st-index-card__name">Frechen</div>
-          <div class="st-index-card__price">~3.200 €/m²</div>
-          <div class="st-index-card__trend">↑ +2,9 %</div>
+          <div class="st-index-card__price">Ø 502.132 €</div>
+          <div class="st-index-card__trend">136 Verkäufe 2025</div>
         </a>
         <a href="huerth/" class="st-index-card">
           <div class="st-index-card__name">Hürth</div>
-          <div class="st-index-card__price">~2.900 €/m²</div>
-          <div class="st-index-card__trend">↑ +2,2 %</div>
+          <div class="st-index-card__price">Ø 535.254 €</div>
+          <div class="st-index-card__trend">118 Verkäufe 2025</div>
         </a>
         <a href="kerpen/" class="st-index-card">
           <div class="st-index-card__name">Kerpen</div>
-          <div class="st-index-card__price">~2.800 €/m²</div>
-          <div class="st-index-card__trend">↑ +2,1 %</div>
+          <div class="st-index-card__price">Ø 382.983 €</div>
+          <div class="st-index-card__trend">238 Verkäufe 2025</div>
         </a>
         <a href="pulheim/" class="st-index-card">
           <div class="st-index-card__name">Pulheim</div>
-          <div class="st-index-card__price">~3.600 €/m²</div>
-          <div class="st-index-card__trend">↑ +3,0 %</div>
+          <div class="st-index-card__price">Ø 511.314 €</div>
+          <div class="st-index-card__trend">236 Verkäufe 2025</div>
         </a>
         <a href="wesseling/" class="st-index-card">
           <div class="st-index-card__name">Wesseling</div>
-          <div class="st-index-card__price">~2.600 €/m²</div>
-          <div class="st-index-card__trend">↑ +2,0 %</div>
+          <div class="st-index-card__price">Ø 458.785 €</div>
+          <div class="st-index-card__trend">107 Verkäufe 2025</div>
         </a>
         </div>
       </div>
