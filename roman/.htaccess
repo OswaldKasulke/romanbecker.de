@@ -48,6 +48,37 @@ RewriteRule ^bodenrichtwert-eschweiler\.html$ /bodenrichtwert-koeln.html [R=301,
 
 RewriteRule ^stadtteile/eschweiler\.html$ /stadtteile/ [R=301,L]
 
+# Rhein-Sieg-Kreis komplett entfernt (15.08.2026) -> Uebersichten (301)
+RewriteRule ^stadtteile/alfter\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/bornheim\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/lohmar\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/much\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/neunkirchen-seelscheid\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/niederkassel\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/sankt-augustin\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/swisttal\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/troisdorf\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/alfter/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/bornheim/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/lohmar/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/much/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/neunkirchen-seelscheid/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/niederkassel/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/sankt-augustin/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/swisttal/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/troisdorf/?$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-sieg/?$ /stadtteile/ [R=301,L]
+RewriteRule ^bodenrichtwert-alfter\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-bornheim\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-lohmar\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-much\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-neunkirchen-seelscheid\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-niederkassel\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-sankt-augustin\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-swisttal\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-troisdorf\.html$ /bodenrichtwert-koeln.html [R=301,L]
+
+
 # Umland-Orte in Kreis-Silos umgezogen (14.08.2026) -> 301
 # Rhein-Erft-Kreis
 RewriteRule ^stadtteile/bedburg\.html$ /immobilienmakler-rhein-erft/bedburg/ [R=301,L]
@@ -60,16 +91,6 @@ RewriteRule ^stadtteile/kerpen\.html$ /immobilienmakler-rhein-erft/kerpen/ [R=30
 RewriteRule ^stadtteile/pulheim\.html$ /immobilienmakler-rhein-erft/pulheim/ [R=301,L]
 RewriteRule ^stadtteile/wesseling\.html$ /immobilienmakler-rhein-erft/wesseling/ [R=301,L]
 
-# Rhein-Sieg-Kreis
-RewriteRule ^stadtteile/alfter\.html$ /immobilienmakler-rhein-sieg/alfter/ [R=301,L]
-RewriteRule ^stadtteile/bornheim\.html$ /immobilienmakler-rhein-sieg/bornheim/ [R=301,L]
-RewriteRule ^stadtteile/lohmar\.html$ /immobilienmakler-rhein-sieg/lohmar/ [R=301,L]
-RewriteRule ^stadtteile/much\.html$ /immobilienmakler-rhein-sieg/much/ [R=301,L]
-RewriteRule ^stadtteile/neunkirchen-seelscheid\.html$ /immobilienmakler-rhein-sieg/neunkirchen-seelscheid/ [R=301,L]
-RewriteRule ^stadtteile/niederkassel\.html$ /immobilienmakler-rhein-sieg/niederkassel/ [R=301,L]
-RewriteRule ^stadtteile/sankt-augustin\.html$ /immobilienmakler-rhein-sieg/sankt-augustin/ [R=301,L]
-RewriteRule ^stadtteile/swisttal\.html$ /immobilienmakler-rhein-sieg/swisttal/ [R=301,L]
-RewriteRule ^stadtteile/troisdorf\.html$ /immobilienmakler-rhein-sieg/troisdorf/ [R=301,L]
 
 # Rheinisch-Bergischer Kreis
 RewriteRule ^stadtteile/bergisch-gladbach\.html$ /immobilienmakler-rheinisch-bergisch/bergisch-gladbach/ [R=301,L]
