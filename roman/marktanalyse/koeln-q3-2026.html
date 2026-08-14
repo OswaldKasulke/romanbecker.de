@@ -284,6 +284,7 @@
     *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --navy: #0e4834;
+      --racing-green: #063124;
   --text: #000000;
       --gold: #c2a990;
       --white: #ffffff;
@@ -301,12 +302,18 @@
     }
     body { font-family: 'Inter', sans-serif; color: #000000; background: var(--white); line-height: 1.7; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-6); }
-    .site-header { background: var(--navy); padding: var(--space-4) 0; }
+    .site-header { background: var(--racing-green); padding: var(--space-4) 0; position: sticky; top: 0; z-index: 100; }
     .site-header a { color: var(--white); text-decoration: none; }
-    .site-header__inner { display: flex; justify-content: space-between; align-items: center; }
-    .site-header__logo { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; }
-    .site-header__nav { display: flex; gap: var(--space-6); }
-    .site-header__nav a { font-size: 0.9rem; }
+    .site-header__inner { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+    .site-header__logo { display: flex; flex-direction: column; line-height: 1.25; white-space: nowrap; }
+    .site-header__logo-primary { font-weight: 700; font-size: 1.0625rem; color: var(--white); }
+    .site-header__logo-tag { color: var(--gold); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.04em; }
+    .site-header__logo-sub { font-size: 0.6875rem; font-weight: 400; color: rgba(255,255,255,0.60); letter-spacing: 0.01em; }
+    .site-header__nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem var(--space-6); }
+    .site-header__nav a { color: rgba(255,255,255,0.75); font-size: 0.875rem; font-weight: 500; transition: color 0.2s ease; }
+    .site-header__nav a:hover { color: var(--white); }
+    .site-header__cta { background: var(--gold); color: var(--text, #000000); padding: var(--space-2) var(--space-4); border-radius: 8px; font-weight: 600; font-size: 0.8125rem; white-space: nowrap; transition: all 0.2s ease; }
+    .site-header__cta:hover { background: #d4b8a0; color: var(--text, #000000); }
     @media (max-width: 768px) { .site-header__nav { display: none; } }
     .breadcrumb { padding: var(--space-4) 0; font-size: 0.875rem; color: var(--gray-600); }
     .breadcrumb a { color: var(--gray-600); text-decoration: none; }
@@ -345,7 +352,7 @@
     .method { background: var(--gray-100); border-left: 3px solid var(--gold); padding: var(--space-6); margin: var(--space-8) 0; font-size: 0.9rem; color: var(--gray-700); }
     footer { padding: var(--space-8) 0; background: var(--navy); color: rgba(255,255,255,0.6); font-size: 0.85rem; text-align: center; }
     footer a { color: var(--gold); }
-    .footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: var(--space-12) 0 var(--space-8); font-size: 0.8125rem; text-align: left; }
+    .footer { background: var(--racing-green); color: rgba(255,255,255,0.6); padding: var(--space-12) 0 var(--space-8); font-size: 0.8125rem; text-align: left; }
     .footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
     .footer a:hover { color: var(--white); }
     .footer__inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: var(--space-8); }
@@ -359,13 +366,16 @@
   <header class="site-header">
     <div class="container">
       <div class="site-header__inner">
-        <a href="https://romanbecker.de/" class="site-header__logo">Roman Becker Immobilien</a>
-        <nav class="site-header__nav">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
           <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
           <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
           <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
           <a href="https://romanbecker.de/#kontakt">Kontakt</a>
         </nav>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
       </div>
     </div>
   </header>
@@ -1217,9 +1227,9 @@
     <div class="container">
       <div class="footer__inner">
         <div class="footer__brand">
-          <strong style="color:var(--gold)">Immobilienmakler &amp; Immobilienbewertung Köln</strong>
-          <span style="color:var(--gold)">© 2026 Roman Becker Immobilien</span>
-          <address style="color:var(--gold);font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address style="font-style:normal">Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
         </div>
         <div class="footer__links">
           <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
