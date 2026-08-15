@@ -20,19 +20,18 @@
      shared.css funktioniert. Fallback-Werte fangen fehlende Variablen ab. */
   var CSS = '' +
     '.toc-target{scroll-margin-top:84px}' +
-    /* Standard: als schwebender Knopf unten rechts -- die alte Formel setzte
-       die rechte Kante buendig auf die Textkante, wodurch der Knopf immer
-       137px breit MITTEN in der Textspalte lag (Ueberschriften, Tabellen,
-       Hero-Portrait). Ab 1500px ist der Seitenrand breit genug fuer die
-       urspruengliche Position auf halber Hoehe. */
-    '.page-toc{position:fixed;z-index:90;bottom:1.5rem;right:1.5rem}' +
+    /* Der Knopf steht oben rechts. Die urspruengliche Formel setzte seine
+       rechte Kante buendig auf die Textkante -- er lag damit immer komplett
+       IN der Textspalte und deckte Ueberschriften, Tabellen und das
+       Hero-Portrait ab. Jetzt an der Fensterkante, siehe unten. */
+    '.page-toc{position:fixed;z-index:90;top:200px;right:1rem;transform:translateY(-50%)}' +
     '.page-toc__heading{display:none}' +
     '.page-toc__toggle{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;' +
       'background:var(--navy,#0c3f2d);color:#fff;border:2px solid #fff;border-radius:var(--radius,8px);' +
       'padding:.875rem 2rem;font-family:var(--font-base,inherit);font-size:.9375rem;font-weight:600;' +
       'cursor:pointer;box-shadow:var(--shadow,0 4px 12px rgba(0,0,0,.1));transition:all .2s}' +
     '.page-toc__toggle:hover{background:#12583f;transform:translateY(-1px)}' +
-    '.page-toc__list{position:absolute;bottom:calc(100% + .5rem);right:0;width:min(300px,calc(100vw - 3rem));list-style:none;' +
+    '.page-toc__list{position:absolute;top:calc(100% + .5rem);right:0;width:min(300px,calc(100vw - 3rem));list-style:none;' +
       'margin:0;padding:.5rem;background:#fff;border-radius:var(--radius-lg,16px);' +
       'box-shadow:var(--shadow,0 4px 12px rgba(0,0,0,.1));max-height:45vh;overflow:auto;display:none}' +
     '.page-toc.is-open .page-toc__list{display:block}' +
@@ -40,16 +39,15 @@
       'text-decoration:none;border-left:2px solid transparent;line-height:1.3;transition:color .15s,border-color .15s}' +
     '.page-toc__list a:hover{color:var(--text, #000000)}' +
     '.page-toc__list a.is-active{color:var(--text, #000000);border-left-color:var(--gold,#c2a990);font-weight:600}' +
-    /* Ab 1500px passt der Knopf in den freien Seitenrand neben die Spalte */
+    /* Standard: nur das Symbol. So bleibt der Knopf schmal genug, um an der
+       Fensterkante neben der Textspalte zu stehen statt darauf. Ab 1500px ist
+       der Seitenrand breit genug fuer den Knopf mit Beschriftung. */
+    '.page-toc__toggle{padding:.75rem}' +
+    '.page-toc__label{display:none}' +
     '@media(min-width:1500px){' +
-      '.page-toc{top:200px;bottom:auto;transform:translateY(-50%);' +
-        'right:calc((100vw - var(--max-width,1200px))/2 - 9.5rem)}' +
-      '.page-toc__list{top:calc(100% + .5rem);bottom:auto}' +
-    '}' +
-    /* Auf schmalen Screens nur das Symbol -> weniger Platzbedarf */
-    '@media(max-width:640px){' +
-      '.page-toc__toggle{padding:.75rem}' +
-      '.page-toc__label{display:none}' +
+      '.page-toc{right:calc((100vw - var(--max-width,1200px))/2 - 9.5rem)}' +
+      '.page-toc__toggle{padding:.875rem 2rem}' +
+      '.page-toc__label{display:inline}' +
     '}';
 
   function injectStyles() {
