@@ -109,9 +109,75 @@ function mapListing(item) {
     livingSpace: epd.livingSpace ?? null,
     propertyType: TYPE_OVERRIDE[item.sys?.id] ?? epd.propertyType ?? null,
     address: item.displayAddress ?? '',
+    lat: item.lat ?? null,
+    lng: item.lng ?? null,
     imageUrl: item.featuredImage?.url ?? null,
     url: `https://www.evernest.com/de/listing/${item.sys?.id}/`,
   };
+}
+
+// ---------------------------------------------------------------------------
+// VEEDEL (nicht-amtliche Quartiere)
+//
+// Evernest liefert in displayAddress ausschliesslich den amtlichen Stadtteil —
+// "Koeln-Neustadt/ Nord". Das Veedel steht nirgends in den Strukturdaten,
+// sondern nur im Fliesstext des Exposes. Deshalb bekamen agnesviertel.html,
+// belgisches-viertel.html, komponistenviertel.html und rheinauhafen.html nie
+// ein Objekt zugewiesen, obwohl es dort welche gibt.
+//
+// Zwei Signale, ein Objekt reicht eines davon:
+//   1. `re`  — Veedelname in Titel, Beschreibung oder Highlight-Block des
+//              Exposes. Die Endung ist bewusst offen ([nrsm]?), weil die Texte
+//              flektieren: "im Belgischen Viertel", "Mitten im Belgischem
+//              Viertel", "im Sueden des Rheinauhafens".
+//   2. `box` — Koordinaten des Objekts. Noetig, weil der Text das Veedel nicht
+//              immer nennt: das Objekt in der Balthasarstrasse liegt im
+//              Agnesviertel, schreibt das Wort aber nirgends.
+//
+// `parents` ist die Plausibilitaetsbremse: nur Objekte, die amtlich im
+// zugehoerigen Stadtteil liegen, koennen ueberhaupt zugeordnet werden. Sonst
+// landet ein Haus in Porz auf der Agnesviertel-Seite, weil im Text "wie im
+// Belgischen Viertel" steht. Die Boxen sind an bekannten Objekten kalibriert
+// und bewusst eng.
+const VEEDEL = [
+  { slug: 'agnesviertel',       display: 'Agnesviertel',
+    re: /Agnesviertel/i,
+    box: { latMin: 50.9455, latMax: 50.9565, lngMin: 6.9470, lngMax: 6.9660 },
+    parents: ['neustadt-nord'] },
+  { slug: 'belgisches-viertel', display: 'Belgisches Viertel',
+    re: /Belgische[nrsm]?\s+Viertel/i,
+    box: { latMin: 50.9330, latMax: 50.9435, lngMin: 6.9270, lngMax: 6.9460 },
+    parents: ['neustadt-nord', 'neustadt-sued'] },
+  { slug: 'komponistenviertel', display: 'Komponistenviertel',
+    re: /Komponistenviertel/i,
+    box: { latMin: 50.9180, latMax: 50.9270, lngMin: 6.9230, lngMax: 6.9370 },
+    parents: ['neustadt-sued'] },
+  { slug: 'rheinauhafen',       display: 'Rheinauhafen',
+    re: /Rheinauhafens?/i,
+    box: { latMin: 50.9195, latMax: 50.9295, lngMin: 6.9630, lngMax: 6.9760 },
+    parents: ['altstadt-sued', 'neustadt-sued'] },
+];
+
+const VEEDEL_PARENTS = new Set(VEEDEL.flatMap(v => v.parents));
+
+function inBox(l, b) {
+  return l.lat != null && l.lng != null &&
+    l.lat >= b.latMin && l.lat <= b.latMax && l.lng >= b.lngMin && l.lng <= b.lngMax;
+}
+
+/** Titel, Fliesstext und Highlight-Block aus der Expose-Seite ziehen. */
+async function fetchDetailText(id) {
+  try {
+    const res = await fetch(`https://www.evernest.com/de/listing/${id}/`, { headers: { 'User-Agent': UA } });
+    if (!res.ok) return '';
+    const html = await res.text();
+    const title = html.match(/<title data-next-head="">(.*?)<\/title>/s)?.[1] ?? '';
+    const desc  = html.match(/<meta name="description" content="(.*?)" data-next-head/s)?.[1] ?? '';
+    let feats = '';
+    const fm = html.match(/"features":(\[.*?\])/s);
+    if (fm) { try { feats = JSON.parse(fm[1]).join(' | '); } catch { feats = fm[1]; } }
+    return [title, desc, feats].join(' | ');
+  } catch { return ''; }
 }
 
 // ---------------------------------------------------------------------------
@@ -216,7 +282,10 @@ function insertSection(html, section) {
     const si = html.indexOf(START);
     const ei = html.indexOf(END);
     const lineStart = html.lastIndexOf('\n', si) + 1;
-    return html.slice(0, lineStart) + section + '\n' + html.slice(ei + END.length).replace(/^[^\n]*\n?/, '\n').replace(/^\n/, '\n');
+    // Rest der END-Zeile verwerfen, den folgenden Zeilenumbruch aber stehen
+    // lassen. Die frueher hier angehaengte '\n' machte den Austausch nicht
+    // idempotent: jeder Lauf schob eine Leerzeile nach (bis zu 53 pro Seite).
+    return html.slice(0, lineStart) + section + html.slice(ei + END.length).replace(/^[^\n]*/, '');
   }
   // Insert after the hero section closes (first </section> after <section class="hero">)
   const heroIdx = html.indexOf('<section class="hero"');
@@ -251,6 +320,33 @@ async function main() {
     if (!m) { unmatched.push(l.address); continue; }
     if (!byPage.has(m.slug)) byPage.set(m.slug, { display: m.display, listings: [] });
     byPage.get(m.slug).listings.push(l);
+  }
+
+  // --- Veedel-Durchgang -----------------------------------------------------
+  // Nur Objekte pruefen, die amtlich in einem Bezugsstadtteil liegen — das sind
+  // wenige, der Detail-Abruf faellt damit kaum ins Gewicht.
+  const veedelCandidates = [];
+  for (const [slug, g] of byPage) {
+    if (VEEDEL_PARENTS.has(slug)) for (const l of g.listings) veedelCandidates.push({ slug, l });
+  }
+  for (const { slug, l } of veedelCandidates) {
+    const possible = VEEDEL.filter(v => v.parents.includes(slug));
+    if (!possible.length) continue;
+    const byCoords = possible.filter(v => inBox(l, v.box));
+    let hit = byCoords[0] ?? null;
+    let how = hit ? 'Koordinaten' : null;
+    if (!hit) {
+      const text = await fetchDetailText(l.id);
+      hit = possible.find(v => v.re.test(text)) ?? null;
+      how = hit ? 'Text' : null;
+    }
+    if (!hit) continue;
+    if (!byPage.has(hit.slug)) byPage.set(hit.slug, { display: hit.display, listings: [] });
+    const target = byPage.get(hit.slug);
+    if (!target.listings.some(x => x.id === l.id)) {
+      target.listings.push(l);
+      console.log(`  Veedel: ${l.address} → ${hit.slug}.html (${how})`);
+    }
   }
 
   console.log(`\nMatched ${listings.length - unmatched.length} listings → ${byPage.size} pages`);
