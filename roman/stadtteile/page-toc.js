@@ -40,6 +40,12 @@
       'text-decoration:none;border-left:2px solid transparent;line-height:1.3;transition:color .15s,border-color .15s}' +
     '.page-toc__list a:hover{color:var(--text, #000000)}' +
     '.page-toc__list a.is-active{color:var(--text, #000000);border-left-color:var(--gold,#c2a990);font-weight:600}' +
+    /* Englische Seiten haben ein groesseres Hero-Foto: es beginnt bei 104px
+       und reicht bis an die Fensterkante (1256 bei 1280 Viewport). Oben
+       rechts ist dort kein Platz, der Knopf sitzt deshalb unten rechts und
+       die Liste klappt nach oben auf. */
+    'html[lang^="en"] .page-toc{top:auto;bottom:1.5rem}' +
+    'html[lang^="en"] .page-toc__list{top:auto;bottom:calc(100% + .5rem)}' +
     /* Ab 1500px ist der Seitenrand breit genug, dass der Knopf komplett
        neben der Textspalte steht. */
     '@media(min-width:1500px){' +
@@ -199,7 +205,12 @@
     btn.type = 'button';
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-controls', 'pageTocList');
-    btn.innerHTML = '<span aria-hidden="true">☰</span><span class="page-toc__label">Inhalt</span>';
+    /* Beschriftung nach der Dokumentsprache — /en/ ist sonst der einzige
+       deutsche Text auf einer englischen Seite. */
+    var isEN = /^en/i.test(document.documentElement.lang || '');
+    btn.innerHTML = '<span aria-hidden="true">☰</span><span class="page-toc__label">'
+      + (isEN ? 'Contents' : 'Inhalt') + '</span>';
+    btn.setAttribute('aria-label', isEN ? 'Contents' : 'Inhalt');
 
     var head = document.createElement('p');
     head.className = 'page-toc__heading';
