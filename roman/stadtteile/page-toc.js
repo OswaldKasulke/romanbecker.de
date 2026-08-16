@@ -20,11 +20,12 @@
      shared.css funktioniert. Fallback-Werte fangen fehlende Variablen ab. */
   var CSS = '' +
     '.toc-target{scroll-margin-top:84px}' +
-    /* Der Knopf steht oben rechts. Die urspruengliche Formel setzte seine
-       rechte Kante buendig auf die Textkante -- er lag damit immer komplett
-       IN der Textspalte und deckte Ueberschriften, Tabellen und das
-       Hero-Portrait ab. Jetzt an der Fensterkante, siehe unten. */
-    '.page-toc{position:fixed;z-index:90;top:200px;right:1rem;transform:translateY(-50%)}' +
+    /* Knopf oben rechts, dicht unter dem Header (top 118 -> Unterkante 142).
+       Die urspruengliche Formel setzte seine rechte Kante buendig auf die
+       Textkante, wodurch er mitten in der Spalte lag. Jetzt an der
+       Fensterkante und hoch genug, dass er ueber dem Hero-Portrait bleibt:
+       dessen Oberkante liegt selbst bei kurzen Heroes nicht hoeher als 157. */
+    '.page-toc{position:fixed;z-index:90;top:118px;right:1rem}' +
     '.page-toc__heading{display:none}' +
     '.page-toc__toggle{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;' +
       'background:var(--navy,#0c3f2d);color:#fff;border:2px solid #fff;border-radius:var(--radius,8px);' +
@@ -39,15 +40,15 @@
       'text-decoration:none;border-left:2px solid transparent;line-height:1.3;transition:color .15s,border-color .15s}' +
     '.page-toc__list a:hover{color:var(--text, #000000)}' +
     '.page-toc__list a.is-active{color:var(--text, #000000);border-left-color:var(--gold,#c2a990);font-weight:600}' +
-    /* Standard: nur das Symbol. So bleibt der Knopf schmal genug, um an der
-       Fensterkante neben der Textspalte zu stehen statt darauf. Ab 1500px ist
-       der Seitenrand breit genug fuer den Knopf mit Beschriftung. */
-    '.page-toc__toggle{padding:.75rem}' +
-    '.page-toc__label{display:none}' +
+    /* Ab 1500px ist der Seitenrand breit genug, dass der Knopf komplett
+       neben der Textspalte steht. */
     '@media(min-width:1500px){' +
       '.page-toc{right:calc((100vw - var(--max-width,1200px))/2 - 9.5rem)}' +
-      '.page-toc__toggle{padding:.875rem 2rem}' +
-      '.page-toc__label{display:inline}' +
+    '}' +
+    /* Auf schmalen Screens nur das Symbol -> weniger Platzbedarf */
+    '@media(max-width:640px){' +
+      '.page-toc__toggle{padding:.75rem}' +
+      '.page-toc__label{display:none}' +
     '}';
 
   function injectStyles() {
