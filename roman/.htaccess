@@ -18,6 +18,11 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
 RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
 
+# Kurz-URLs auf die Angebots-Sektion der Startseite (fuer Google-Profil, Flyer, QR)
+RewriteRule ^objekte/?$   /#objekte-koeln [R=301,L,NE]
+RewriteRule ^immobilien/?$ /#objekte-koeln [R=301,L,NE]
+RewriteRule ^angebote/?$   /#objekte-koeln [R=301,L,NE]
+
 # Nießbrauch-Seiten: alte Einfach-s-Slugs -> korrekte Doppel-s-Slugs (301)
 
 # Weitere Zusammenlegungen duenner Ratgeber-Seiten
