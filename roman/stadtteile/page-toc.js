@@ -20,12 +20,13 @@
      shared.css funktioniert. Fallback-Werte fangen fehlende Variablen ab. */
   var CSS = '' +
     '.toc-target{scroll-margin-top:84px}' +
-    /* Knopf oben rechts, dicht unter dem Header (top 118 -> Unterkante 142).
-       Die urspruengliche Formel setzte seine rechte Kante buendig auf die
-       Textkante, wodurch er mitten in der Spalte lag. Jetzt an der
-       Fensterkante und hoch genug, dass er ueber dem Hero-Portrait bleibt:
-       dessen Oberkante liegt selbst bei kurzen Heroes nicht hoeher als 157. */
-    '.page-toc{position:fixed;z-index:90;top:118px;right:1rem}' +
+    /* Knopf oben rechts an der Fensterkante, dicht unter dem Header. Er wird
+       erst eingeblendet, wenn der Hero durchgescrollt ist (siehe spy()) --
+       sonst laege er auf Portrait und Ueberschrift. */
+    '.page-toc{position:fixed;z-index:90;top:118px;right:1rem;'+
+      'opacity:0;visibility:hidden;transform:translateY(-6px);'+
+      'transition:opacity .2s,visibility .2s,transform .2s}' +
+    '.page-toc.is-visible{opacity:1;visibility:visible;transform:none}' +
     '.page-toc__heading{display:none}' +
     '.page-toc__toggle{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;' +
       'background:var(--navy,#0c3f2d);color:#fff;border:2px solid #fff;border-radius:var(--radius,8px);' +
@@ -40,13 +41,6 @@
       'text-decoration:none;border-left:2px solid transparent;line-height:1.3;transition:color .15s,border-color .15s}' +
     '.page-toc__list a:hover{color:var(--text, #000000)}' +
     '.page-toc__list a.is-active{color:var(--text, #000000);border-left-color:var(--gold,#c2a990);font-weight:600}' +
-    /* Englische Seiten haben ein groesseres Hero-Foto: es beginnt bei 104px
-       und reicht bis an die Fensterkante (1256 bei 1280 Viewport). Oben
-       rechts ist dort kein Platz, der Knopf sitzt deshalb unten rechts und
-       die Liste klappt nach oben auf. Abstand 5rem statt 1.5rem, weil der
-       Cookie-Banner die unteren rund 55px belegt. */
-    'html[lang^="en"] .page-toc{top:auto;bottom:5rem}' +
-    'html[lang^="en"] .page-toc__list{top:auto;bottom:calc(100% + .5rem)}' +
     /* Ab 1500px ist der Seitenrand breit genug, dass der Knopf komplett
        neben der Textspalte steht. */
     '@media(min-width:1500px){' +
@@ -256,12 +250,28 @@
       }
     });
 
+    /* Der Knopf ist fixiert, der Hero scrollt darunter durch -- dabei lag er
+       auf dem Portrait bzw. der Ueberschrift. Statt an Pixelwerten zu drehen:
+       erst einblenden, wenn der Hero durchgelaufen ist. Vorher ist ein
+       Inhaltsverzeichnis ohnehin nutzlos, man steht ja am Seitenanfang. */
+    var heroEl = document.querySelector('.hero, .article-hero, .st-index-hero');
+    function heroBottom() {
+      return heroEl ? heroEl.offsetTop + heroEl.offsetHeight - 100 : 0;
+    }
+
     function spy() {
       var pos = window.pageYOffset + 120, idx = 0;
       for (var i = 0; i < items.length; i++) {
         if (items[i].el.offsetTop <= pos) idx = i;
       }
       links.forEach(function (a, i) { a.classList.toggle('is-active', i === idx); });
+
+      var show = window.pageYOffset > heroBottom();
+      nav.classList.toggle('is-visible', show);
+      if (!show) {
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
     }
     window.addEventListener('scroll', spy, { passive: true });
     window.addEventListener('resize', spy);
