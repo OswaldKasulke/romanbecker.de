@@ -336,6 +336,15 @@ margin-bottom: var(--space-3);
 .section-title {
 margin-bottom: var(--space-4);
 }
+.section-heading-row {
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+gap: var(--space-4);
+margin-bottom: var(--space-4);
+}
+.section-heading-row .section-title { margin-bottom: 0; }
+.btn--sm { padding: 0.5rem 1rem; font-size: 0.8125rem; }
 .section-subtitle {
 font-size: 1rem;
 color: var(--gray-600);
@@ -3351,7 +3360,10 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   <section id="stadtteile" data-toc="Veedel" class="section" style="padding-bottom:var(--space-4)">
     <div class="container">
       <span class="section-label">Lokale Expertise</span>
-      <h2 class="section-title">Kölner Stadtteile</h2>
+      <div class="section-heading-row">
+        <h2 class="section-title">Kölner Stadtteile</h2>
+        <a class="btn btn--primary btn--sm" href="stadtteile/">Preise aller 86 Stadtteile</a>
+      </div>
       <p class="section-subtitle">Ist Ihr Stadtteil dabei? Klicken Sie sich rein – zu jedem Kölner Stadtteil finden Sie lokale Marktdaten, Preise, Immobilienangebote sowie den Bodenrichtwert.</p>
 
       <div class="stadtteile__grid">
@@ -3452,7 +3464,10 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   <!-- KÖLNER UMLAND -->
   <section id="rhein-erft-kreis" data-toc="Rhein-Erft-Kreis" class="section section--gray" style="padding-top:var(--space-4)">
     <div class="container">
-      <h2 class="section-title">Rhein-Erft-Kreis</h2>
+      <div class="section-heading-row">
+        <h2 class="section-title">Rhein-Erft-Kreis</h2>
+        <a class="btn btn--primary btn--sm" href="immobilienmakler-rhein-erft/">Alle zehn Städte im Überblick</a>
+      </div>
       <p class="section-subtitle">Alle zehn Städte des Rhein-Erft-Kreises: lokale Marktdaten, Preise, aktuelle und frühere Immobilienangebote sowie die amtlichen Bodenrichtwerte.</p>
 
       <div class="stadtteile__grid">
