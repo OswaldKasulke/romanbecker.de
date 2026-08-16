@@ -43,7 +43,8 @@
     /* Englische Seiten haben ein groesseres Hero-Foto: es beginnt bei 104px
        und reicht bis an die Fensterkante (1256 bei 1280 Viewport). Oben
        rechts ist dort kein Platz, der Knopf sitzt deshalb unten rechts und
-       die Liste klappt nach oben auf. */
+       die Liste klappt nach oben auf. Abstand 5rem statt 1.5rem, weil der
+       Cookie-Banner die unteren rund 55px belegt. */
     'html[lang^="en"] .page-toc{top:auto;bottom:5rem}' +
     'html[lang^="en"] .page-toc__list{top:auto;bottom:calc(100% + .5rem)}' +
     /* Ab 1500px ist der Seitenrand breit genug, dass der Knopf komplett
