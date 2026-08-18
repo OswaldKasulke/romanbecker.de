@@ -1692,6 +1692,12 @@ font-weight: 600;
 .cookie-btn--decline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
 .cookie-btn--accept:hover { background: #b09880; }
 .cookie-btn--decline:hover { border-color: #fff; }
+@media (max-width: 767px) {
+  #cookie-banner { padding: 0.7rem 1rem; gap: 0.6rem; font-size: 0.8125rem; }
+  #cookie-banner p { flex: 1 1 100%; line-height: 1.35; }
+  .cookie-btns { width: 100%; gap: 0.5rem; }
+  .cookie-btn { flex: 1 1 0; padding: 0.6rem 0.5rem; font-size: 0.8125rem; }
+}
 .footer {
 background: var(--racing-green);
 padding: var(--space-12, 3rem) 0 var(--space-8, 2rem);
@@ -2060,8 +2066,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
 
       <div class="listings-carousel splide" aria-label="Immobilienangebote Köln">
         <div class="splide__track">
-          <ul class="splide__list">
-            <li class="splide__slide">
+          <div class="splide__list">
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5ENiQl64Q9aofYcukySXKD/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/20ozmquua1prXFEQz7U0mx/d644bd2ed938149a94ccf8a619b83058/03de2f20-59e6-47b8-a82c-43dcbb654d9a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2071,8 +2077,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4tHfH79xGbmufV2U0s0uJr/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/YKJEnsGp2aBQox95ucFlj/9d2ffc29a4e9cae9f334d1dec6f352f8/12561b22-9dce-4021-8d56-115293774fa8?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2082,8 +2088,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2XpBgGK4HJqOPj5U1sSHnL/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6guBd3WIA1qG84T3NOMMJ4/bebaf4480a14e8cd1400ec2920400dd7/d3fa2d91-148f-478a-87a0-7641614df260?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2093,8 +2099,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/zdXKftDmNdVHyrW7rR7IW/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4ebhzvzS6xeKmAwpJV8Wsh/a86e16cf313a3d6420084ea2db54c338/f683e182-744c-40cd-b8ad-573353ea60ea?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2104,8 +2110,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/63iu556NlBjZTKmz2QawxP/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7jvDTMglfuwJQDksqLslaj/6f1bca332e927024a2f9ad7d27f7b3f0/521c702e-a598-4393-93b5-3e808ce765c8?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2115,8 +2121,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6aiaH4HbcMCoBomAkr8Uqy/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/jQGhWd9bYDdfRGvuMFOGr/6bea488b9c9e8c55ba286a12b304bf60/9dd76013-369e-410f-8042-187baa958144?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2126,8 +2132,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5jTCkpcQXNkQrtNujMaTZq/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/ppuNSzByAvEKu5HHRixVP/9a1d63ce40a1f31964b8e5b91cb24eff/31b6d003-7036-41d8-acf0-503307f9703b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2137,8 +2143,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3kwcKwVIMYG9BIlfX0mOrQ/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6mhQNC906rAf6zNN7sQJgJ/dac25cf66ded8a6ba712809da42fff88/872b28c7-3651-43f8-929f-b5f6fca8e33d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2148,8 +2154,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1007Z6hrpTQM73XvDZS71n/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/51OKJg6BEZ1iLdPE6rfNRy/aea1ae45ee2845daa07345f6e7db541d/94277ddf-4974-4f62-ac10-5ec3971bd81e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2159,8 +2165,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6Z7zXP636pyMpcqvah3tRt/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3htTTDunHlqMvj1OpSt3b7/47ed6d560cb78911a6c0d36b65591a69/a4ef604a-7cee-425d-a13a-6de57f4dc527?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2170,8 +2176,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1Xy53sxr0Zl6KFzx4YqzVu/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7hIRY40m4aOXbIBN1WluNO/be3b22c5fc80d67f783c9b6365586b09/e31395a7-6947-417c-91d3-ae96758a8b0d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2181,8 +2187,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/35kMqsgBWPV03gmzAiMDe9/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/zZVP7ozgdw4O8EWFwKDns/f5fe85791955f77f7fb87dc8a952f60a/1d6e9abd-e6e0-4669-a65e-6a1b39b81119?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2192,8 +2198,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7uLH5U8c4bG5GmIs0ZhBHX/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/hToCjebE2JuDROeV240MG/8057a2693d3b043f41bfa37756aaf595/a077ba4f-a0c0-4b8a-af31-64120ff5988e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2203,8 +2209,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3oEfaEUpcuNzb5c68O6nbB/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6aWSe1j6NwRzUCdNJPccro/6c8b398b990e823897a8a601b00ea8f2/d47ae89d-de18-433d-9adf-1c4071f46efd?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2214,8 +2220,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5eL3eZ4qcLi47GyCrLFAec/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4yg3GXJA931UknPrMakeLK/f07fd1f45080a9b897a099cdd7a1a889/f3fc9204-334c-417a-86f8-9844e04da2db?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2225,8 +2231,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4ViySYJ4zTnWCWwVXSAWgc/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/NLH2yOKyGxCMfsFdjiXX5/179a7c040b8d2820e4d488da88e96b88/f14e3c36-4588-48e5-aa51-3336ed000420?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2236,8 +2242,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4sOpQWb7lTSp2u8YVKd1b1/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/60oR1MQiK4A6kfjmUVxNkH/9337dd8a982993b4df863eef141b2eef/337733cc-e6ca-453f-9791-ac620b47be1e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2247,8 +2253,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4QkJceuNhZnDcrDUTfgDCy/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/35cOcucdMu6UdqfZ2cCEis/c06f24acfae0441ff3c4cf1611036897/7d3afb4b-4a74-48f9-912e-f43fe08905cc?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2258,8 +2264,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/ZUXtatV9l9NnxJLqKo0DZ/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/56yJ2L4XSKMPwm7abkSHhO/f2fb5546df56ba09719424f20c7880b8/64e66707-0915-41a1-9810-f6ceba72cefa?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2269,8 +2275,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4qyd8HE1XmhzwLWGO0tZLu/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1kXch5YNhPT1bR3jDCuk1t/74118937d6598b931016dcb3283b834a/02e08a61-f960-43d0-a3cb-92dae9b6a1b1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2280,8 +2286,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4G6ifI4v5oK6OPT3Ria7Uj/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3pCnBQq6E79Mzxc8vH0Izo/f29784bfce99c144ceac3345f81a1a49/f3adef27-4ef5-4427-9072-c236891940a1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2291,8 +2297,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/62Py2QbZt9RsPi8twJDNL6/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6xlUUSesEAG5sSMJKZXcym/b51066c2924848a0fdbcf83c1885ad17/85cdfee2-51fa-47e4-a196-c6a45d4d58e7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2302,8 +2308,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7h3Nl78Za1pLM95egS9w7l/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3iwZN37uitOJFH0qBLs84/fd87a975a464fade47e57d40090caca0/09770f2b-ceac-4424-a0a9-093365795b9a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2313,8 +2319,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3LaNUwDsriCHVdljeHp2Q3/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7gumDTvZcHVn1K1xW4n85E/8d9afea1cdc1d9c92394177d8eab6c2f/ef0280e1-ea8b-40af-bb65-277fac5290f9?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2324,8 +2330,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2a0HNTmKuXRf1lohi07T7p/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5kO8RPl3P0l6T4JG8wpxCV/3296ca9e8d382f8b811ec589b6fd7a07/7a7c0d21-d168-4771-9ca3-7023dc24b9ef?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2335,8 +2341,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6jMkBNnDz5G8uJKinDSG2K/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6QiKJRtTvtuq6QU6fnReKD/4d9b99671d0d46684fad102417767954/2654e90e-9cca-49ae-9e4e-e45875babb36?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2346,8 +2352,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/kGmaKIw6dP7eSC13ZXtd6/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/VGEVr1yAX9YFZffEVqOGz/8d7a7ec7e5ab1026df97dda9ac6d5f0c/7a3df398-2521-4c4f-9bd1-c367e05f5a96?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2357,8 +2363,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/Gx1oYVId7Dgne68l4lvcK/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1HEMGHjmM9nZfBMvLfOxrd/b2c36a1e1c3277d19e814531199da07e/30ecb965-1b84-4b9d-85fc-0953f5d341fc?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2368,8 +2374,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1SaB4oQyKDWROzJSvwpbLv/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1A0OnyBgW6w0C1bGue4PtV/76b4d7e50dfc75ecabd13a95f3bbaca0/1a489af9-3c85-47d6-8ed7-319e45d18d8c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2379,8 +2385,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5pyXSGRbud5jAF6RVT5LJF/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3gazJkaCftzTHMzT5AeLJ3/c6883a8d95a3f4df0742e79d6ea22615/d8e0b9a0-e31d-4520-8f68-a8bf7cafb2f3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2390,8 +2396,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5FYxtqa6aknNkXCDhz7F8l/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4FtibQJ9UXGhtvURXUMbIL/a30453d0e9608ecab0a17cd88fcdb752/8635f712-9fbd-47dc-9607-099bfa27e706?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2401,8 +2407,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6J9NwE5IVYBi2pGjUGDUEx/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4gM6cLKRVlYTE9EX3ezE55/6b4f7a1e3ced7cd39b6daef8fd4842c3/3be0723c-809c-4f06-80c9-eff4c7335cb6?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2412,8 +2418,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/UX932RJrfkfI0QXmyIMvf/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1EvybAPrnrBtN9dOwLImgW/324c41dd2a5863d6e96b168bb6988f80/9099cd28-363a-456b-b57b-6ea8d05d8bf7?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2423,8 +2429,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4jaRhPx3kzC7VNyVpC4gHh/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5rhybvvj7xuN3bYjOtg7uy/485db2ac4fcfb96c3f0c25c50da89a3d/ecccd8a9-7e67-41a2-a232-15b94320d0d1?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2434,8 +2440,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/49onmenXN9iMpvIeb5mXxO/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4yoN32qeWKVoJfdFDx1BkW/edc5f3e1f8318b9a86843b95bc346901/5e34cac0-b5f7-4e45-b11c-7c03fd5ab2bc?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2445,8 +2451,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1ZKQZJSBzBfGNYG63GJxSq/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/76CeSFsWDiiAKSJb9tvCSe/8e58988f93315789dff5f7877458d5f5/2d598894-db1b-4133-ac08-58679835c64b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2456,8 +2462,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2yfFtL9eTPZRGGrBwJVNDm/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1oRXEFMrCcavwOA61b6yVV/a1fbb87765ddf6d6eee1a459e839b138/8a2b2824-8125-46e4-b66d-a3e842c51d31?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2467,8 +2473,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7nisTdnXmkYC1c9tzdbjyy/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2b4rNnRL3bSjnBexhBnNfU/5727e443aa8e28417c658673dbd2c767/1abc520f-3f41-444d-af9b-c0070e13857d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2478,8 +2484,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5vYysB20VmpmkoPkKj629S/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/38TVgbo7bTWLhA8Cj3dJqj/1ac49dd2464daa8244e3d90df271b89c/61f17618-a34a-4c24-b98f-7b205051f2c6?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2489,8 +2495,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/739anoEJHURONwToX1fsi9/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6VrSkiZxS3PVfDf30e21FS/3ca0b64da69a93a8c66fee80803e7475/bbf49d9a-6dc9-4932-8bf7-02e117c3821b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2500,8 +2506,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3Bs9Sfefa29TS809QZd8In/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5Mn4Vjc5ILOL29cp8vYdEN/e35d53ec7d82efc20880b8b5d5522147/74f2f9a8-7956-4cec-af05-29c745c39e34?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2511,8 +2517,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/0dLo3OABJS1e4BTJ7bdtM/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7e6r8vJCYnvMy3gw5Xvn3H/19af800523918cf9f65ecd86f9827012/7d92867d-15c2-48f6-9bdf-68b8b99dbb95?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2522,8 +2528,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1z5EfeDdbYXGhLMCBFRagt/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7e6r8vJCYnvMy3gw5Xvn3H/19af800523918cf9f65ecd86f9827012/7d92867d-15c2-48f6-9bdf-68b8b99dbb95?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2533,8 +2539,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6dfBgQE4AleYMtMGn0YqO7/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6hW2H7eNkOcbBAbeDmV9rk/23751bdd63c019e8eba09a09521c831e/823a31bf-9a0b-4895-9ccc-86ed22308a6a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2544,8 +2550,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1Hlr3aD0KLEaDIAEJnR6mE/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4vRnxYa7JW9QQIYTkvdfTm/425843d8a94931e8281ca98fe0580966/843e7a11-6dd0-4c8b-9c83-56738855febb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2555,8 +2561,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4aRLJSLgnZ9xkaK8sOtqay/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7IzpYnoXYPJ80gomnQ5uEx/f5cfab9e9eb8993cda33bf61d062c668/2a727237-476f-410e-9a5f-63ecc560a069?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2566,8 +2572,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6fvkkNfsiAfMBvH7YpcRTn/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/zDWScuoERg5IVJCx0Rbdd/fa37fcedc4d417efa40269780837d44a/eeb4452f-2786-4b61-882a-62f4b1a90f5b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2577,8 +2583,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1oU2aBuesXGEaESz13WKfU/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/68Dzklf5DAAvZ1qc34zHwW/9d93c77a856bd234a44f9d0c3d85aaa9/0f1c4bd7-f759-4e15-9484-5b1d0b61711a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2588,8 +2594,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6OweC9ulkqH21HpUETlYHO/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/9I4oBrLOwhzms4UWrIvyZ/867b354328c61f887b8c6d279dfe9f7f/c0a832c1-e314-4101-8c01-874dac5c8369?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2599,8 +2605,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6bcQEzCVvhVuHynZz1HqPz/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/m0AHNZ4SZDXlzRDon6tgB/a0e7e42429e7493473f54678d8f3da56/71e45ead-4be7-4f55-8ec9-693728dad2cc?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2610,8 +2616,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4SxD1i9QbIPTOgNgHOH9Rq/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1DjnxfRTXFOtaGb93WUgln/41e29562c2c9c0cf588f2a2e9e097eaa/16afc187-df18-45e8-a971-71452857f895?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2621,8 +2627,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/31nNgM6RGekuaURamIaJKY/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/39jgYHWZzKKLi8UjTvLXeT/7c7d7b2f2d7b0abd15a716cf82437d1c/f41b789c-e1eb-4c0c-ac89-759ac939a3f3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2632,8 +2638,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1FLLNdfJjxxjl1Hc31nmlY/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1K0TmO2yUbMQLmIFaaB4gC/82013519c3dae213d8eca307450e0e10/84eb93f0-b9fa-4a8e-95d0-1ae343a520e3?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2643,8 +2649,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1BDPQsJORLnDwN6Ro5MPUi/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6aTnAMG0tuug7rh6DjIjw8/b581e0f93abda5842baac7f7788f3529/7639b759-d84d-49cb-950e-7119b85f824b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2654,8 +2660,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7KyKKXVRinTP106GZmCYmy/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2Z7jiTkhYIHUpD6MYP0LFe/7442fa7051a617961260f32f00482ed3/a64d4ec3-124e-404c-bc38-5d6095c44aed?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2665,8 +2671,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4cIYSxT2lbC7LghNQTMn33/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6yicxUFpYt1C4v4K7FDNr4/5cbdfb45b25b8eaa01c3a6af3fd9f537/e617d2ce-f7ea-4279-bf3e-f1f3c9541ad2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2676,8 +2682,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/517unqTftzSFbar7hqh5c3/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3Y21SAxPmLFY79ZpF17b5e/94de154756acf373fd7179626c92fdd8/6e70341a-f0b8-413a-a353-0216de2e7f51?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2687,8 +2693,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2DQ2xJDoANUQ0pYut8vt40/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6NT2jVQX1EGnOsw1mEwVxd/b8f953561bd91b9cb49390220b6046ed/a57e7f5e-11f9-45d4-ac59-b9c9af59aa4b?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2698,8 +2704,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5h5ROLxkUKvoYxLbc3brj8/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/12HUCToDPAFBBxLcSO00aZ/02b71a671a5326e70edcf0deb85ee279/3a07ff20-2afa-4d36-8aa4-aa645d1dadc2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2709,8 +2715,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3KCi3v5FcFGRZIppDPwuuQ/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/6DQ9JiJ08KcBhMvU7b7okW/3763a76f11c4a09dc2566027402ddd9f/02be3a19-5caf-4b45-a48d-e99c533eba28?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2720,8 +2726,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5ZmxUCrrNhAYRY7tHXEnTE/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/28onQJwok0nsUxMHu4tpcF/17e0b3a515abd36ad62a58961ad03551/40a6fc68-386e-42b7-b294-daa19571bf0c?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2731,8 +2737,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7M0GZZAlWjYZCSlbHjRnol/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/BXyiC8YSiqPotaE9zynfQ/bccb0940b12755bbe4233b15192cf7f9/522a6b50-03ff-4cfe-a563-67ce1bfab2fb?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2742,8 +2748,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/4F8ZYrsL4UZZvHYAIfJFTK/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4uRFVAU6mU7PX5h4EDZaz4/9ef55d762058c1c3607b1d8c273df808/b4780648-a86e-40fb-86a7-292459403f44?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2753,8 +2759,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/Nz76sUFQqFTrvUMYslGMr/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3BukBxAX4e3sH3ZqUMxJph/39aebf2334f0ccdd73bec463a84c2f24/6d40e37b-ed38-406b-afbf-1ee996d8f4d4?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2764,8 +2770,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1b2iW8md9sRyBgpa3zrWnU/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/xshBvzhUPe2oJUYoARyeg/9d992a4697aef920a3172182d8f6924c/8c174356-5f12-4844-8b0a-9c1e6e5f5df0?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2775,8 +2781,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/2xTP7fOu3avF27PR8p7Xu7/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2qNnfq4qwHhOaNTqCHHeXm/787afb2d5086c23aa0eee3811cc6a336/52f5b64c-ce1b-421b-8d2d-7f797e1a9500?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2787,8 +2793,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/79T5H2ABzWbB6JhrCie8qP/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1GohMKdyEwpKHfupI1600v/43c280f723ec8b8f192eda26b980f7e9/67e7d896-c4b0-4822-94aa-39b1f6037671?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2799,8 +2805,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/I8bcf55brm3gjaOgyHDaR/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/7f4HW5KtmWYFeQM3ZT7zke/42e0f1d37a9ec77df0e5e14a27db4ba5/26f08791-3218-47cb-ae35-31ee23fe9977?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2811,8 +2817,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6wQ4n6PHLCt02wWM7IstpI/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4AK3sDturWowe6CU8M6ajz/2ba58cd63af609b8684d068547dd2e3b/ee890e2b-c5d9-47be-a3a0-55a0223775f2?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2823,8 +2829,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/ghbF3nkiG6nlynuePaHSS/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/1tsh5WNpWhyDVNWV5y42vK/a579cfbf4da6ffbcf6cb9f327ef2e410/0e764272-e629-470e-b625-04d3e84d7913?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2835,8 +2841,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/h3fepEh1yQlMSU6oBWcV3/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3R9JwA1OfF0uB6nOxUfAvi/1c03dcd6c3c3c4aafe185d64695f7cbd/8836f687-e641-4f0c-9606-0794e5fcd8bc?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2847,8 +2853,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/14dW1t6WoybvMthy2MPe2O/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/csudGOlXjL53Z40pAwWrB/1078399405164508ca356a3b780b117b/1a3c5aff-489b-458a-9223-62f6d408f45d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2859,8 +2865,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1l4qOPITwtxDUvVo2TngnR/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/nbjT1yrswv3KTMUFqXIKU/314a06d5c00ff48cfe5027be871e5d58/8635494c-77d2-49ca-a7cd-6ed08732dc25?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2871,8 +2877,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/52oENkRBN9VAn4WOsUKyhm/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/5Z8nLC1VwyRwVhIdxk9rWC/a14989cc1afbab6d56095e2c8e9342e2/0d68bcfe-a680-4dd6-8d71-27020d7fb165?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2883,8 +2889,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5BzIvgn0DQHKyD4yxtQl1U/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/4dSlOOIEa5IwerHUBGXG6M/98de22caa6ea118ffedfdf0c290742f1/925b9a72-3455-43b5-a27a-44f52fd8cb6d?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2895,8 +2901,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1AHPYoh2csxtV4uS8as99f/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2bQWP4lahv7bskQoSQh0HE/9516d7c6a6837c4c5bde78ff76730f45/fb41e32e-0f4c-492e-840a-688cf929291f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2907,8 +2913,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1oScstDm8cT86rVr6mINm1/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/FXzZ3dMxzjiFOTQaTsqf0/5b87e577927e2a99da9331d10ed89ef8/38f8e3d9-961e-4783-b75a-50e1ed73aa8f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2919,8 +2925,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/1gms6r5wHb7YhX0PenWUXv/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/302OuevY5KNm3QM1thukQ/1b408d92529f444639c6a998a05f23db/19511b96-f9d7-4c57-9f45-31579ce5efee?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2931,8 +2937,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5whHAg7n9rDaYbsNPJWn69/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2kCJoDajwprziD6U1pOpYZ/b9af73af025cbc7e10e175a58e0b1001/e96df47b-6f9f-4e04-9795-15d7121bd14f?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2943,8 +2949,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/KSkzOSWqSuXXsEJymHeNQ/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/kR4m2lYb27VbXVAuWCKuQ/8e6fb2eb7c53c4f9a8d9f113ac512d58/29726b66-0c66-4917-ad21-5686e8269ff6?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2955,8 +2961,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/6mPxKRQ9TCKYgQapSJztzx/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/439BIJfNuVXV2YX2LHe1ew/1ef5f846c3acd20bbbc2bd022ab6c3ee/f391f9e4-33a9-40e2-abcb-42d28cf4416a?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2967,8 +2973,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/5mjcqHTFVA5gKzosNMFCRU/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/2FMRXJL51IjyUvbhocLBXx/30ed7e5ed806fe8720d6c556111d47d8/7e93ac5b-335c-43d8-9d4e-8f90598db51e?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2979,8 +2985,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/7jvdC6JxHn2atjUz3D3IMc/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/3XDwfsng4yKctYO1lNCkHo/51ccfeaef4b2b8ce66ebc368babc3ea6/4f60b188-f0fd-4e52-9760-b2b04b86a798?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -2991,8 +2997,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-            <li class="splide__slide">
+            </div>
+            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="https://www.evernest.com/de/listing/3Y1GWDiE8ebrghZnTr7wI1/" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="https://images.ctfassets.net/if6f7uzjzqut/70QgGIyxEVGW5XrOtlSBW5/c357cec7f7c07eabc6e72838df4a0aa9/03a43b6d-bdc1-4aba-85db-94fa77e05b10?w=960&h=600&fit=fill&fm=jpg&q=85" alt="Immobilie" loading="lazy">
@@ -3003,8 +3009,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
                   </div>
                 </a>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -3789,8 +3795,8 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   <!-- COOKIE BANNER -->
   <div id="cookie-banner" style="display:none;">
     <p>
-      Diese Website verwendet Cookies für Analyse-Zwecke (Google Analytics).
-      Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+      Wir nutzen Google Analytics zur Reichweitenmessung. Details in der
+      <a href="datenschutz.html">Datenschutzerklärung</a>.
     </p>
     <div class="cookie-btns">
       <button class="cookie-btn cookie-btn--decline" onclick="cookieDecline()">Ablehnen</button>

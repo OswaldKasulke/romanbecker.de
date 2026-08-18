@@ -178,7 +178,7 @@ function buildCard(l, L) {
   const meta   = l.address ? `${l.address} — ${price}` : price;
   const imgSrc = l.imageUrl ? `${l.imageUrl}${IMG_PARAMS}` : '';
   const badge  = l.sold ? `\n                  <div class="listing-card__badge">${L.sold}</div>` : '';
-  return `            <li class="splide__slide">
+  return `            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="${l.url}" target="_blank" rel="noopener">
                   <img class="listing-card__img" src="${imgSrc}" alt="${escapeAttr(title)}" loading="lazy">${badge}
@@ -188,7 +188,7 @@ function buildCard(l, L) {
                   </div>
                 </a>
               </div>
-            </li>`;
+            </div>`;
 }
 
 // ---------------------------------------------------------------------------
@@ -224,9 +224,9 @@ function buildKoelnSection(listings, L) {
 
       <div class="listings-carousel splide" aria-label="${L.koelnAria}">
         <div class="splide__track">
-          <ul class="splide__list">
+          <div class="splide__list">
 ${cards}
-          </ul>
+          </div>
         </div>
       </div>
 
