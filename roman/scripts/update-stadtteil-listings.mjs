@@ -156,6 +156,22 @@ const VEEDEL = [
     re: /Rheinauhafens?/i,
     box: { latMin: 50.9195, latMax: 50.9295, lngMin: 6.9630, lngMax: 6.9760 },
     parents: ['altstadt-sued', 'neustadt-sued'] },
+  { slug: 'eigelstein',          display: 'Eigelstein',
+    re: /Eigelstein(viertel)?/i,
+    box: { latMin: 50.9440, latMax: 50.9515, lngMin: 6.9510, lngMax: 6.9640 },
+    parents: ['altstadt-nord'] },
+  { slug: 'kwartier-lataeng',    display: 'Kwartier Latäng',
+    re: /Kwartier\s+Lat[aä]ng|Quartier\s+Latin/i,
+    box: { latMin: 50.9255, latMax: 50.9325, lngMin: 6.9335, lngMax: 6.9430 },
+    parents: ['neustadt-sued', 'altstadt-sued'] },
+  { slug: 'suedstadt',           display: 'Südstadt',
+    re: /S[üu]dstadt/i,
+    box: { latMin: 50.9150, latMax: 50.9250, lngMin: 6.9495, lngMax: 6.9700 },
+    parents: ['neustadt-sued', 'altstadt-sued'] },
+  { slug: 'malerviertel',        display: 'Malerviertel',
+    re: /Malerviertel/i,
+    box: { latMin: 50.9380, latMax: 50.9450, lngMin: 6.8540, lngMax: 6.8635 },
+    parents: ['muengersdorf'] },
 ];
 
 const VEEDEL_PARENTS = new Set(VEEDEL.flatMap(v => v.parents));
