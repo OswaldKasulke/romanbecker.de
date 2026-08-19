@@ -1,11 +1,19 @@
 name: Update Roman Marktbericht (Quartalsweise)
 
 on:
-  schedule:
-    # Quartalsweise: 1. Januar / 1. April / 1. Juli / 1. Oktober — jeweils 06:00 UTC
-    # (~alle 90 Tage, an Quartalsanfängen für saubere Berichts-Periodisierung)
-    - cron: '0 6 1 1,4,7,10 *'
-  workflow_dispatch:       # Manuell auslösbar
+  # Cron am 20.08.2026 abgeschaltet.
+  #
+  # Der Generator speist den Bericht aus den mk-Bloecken in
+  # stadtteile-data.mjs. Die stammen aus einem Generierungslauf vom
+  # April 2026 und haben keine Quelle. Solange das so ist, wuerde jeder
+  # automatische Lauf unbelegte Zahlen unter dem Namen Roman Becker
+  # neu veroeffentlichen.
+  #
+  # Wieder einschalten, sobald der Bericht auf eine belegte Datenbasis
+  # steht - dann diesen Block wiederherstellen:
+  #   schedule:
+  #     - cron: '0 6 1 1,4,7,10 *'
+  workflow_dispatch:       # nur noch manuell ausloesbar
 
 permissions:
   contents: write
