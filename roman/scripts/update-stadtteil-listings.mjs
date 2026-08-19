@@ -269,7 +269,7 @@ function buildSection(display, listings) {
     <div class="container">
       <span class="section-label">Aktuelle Angebote</span>
       <h2>Aktuelle Immobilienangebote in ${escapeAttr(display)}</h2>
-      <p class="max-w-prose mb-8">${count} ${noun} in ${escapeAttr(display)} und Umgebung – jetzt ansehen. Kein passendes Objekt dabei? Ich finde diskret auch Off-Market-Immobilien für Sie.</p>
+      <p class="max-w-prose mb-8">${count} ${noun} in ${escapeAttr(display)} und Umgebung – jetzt ansehen. Kein passendes Objekt dabei? Schicken Sie mir <a href="https://romanbecker.de/#kontakt">eine Nachricht mit Ihren Präferenzen</a> – ich trage Sie in unsere Datenbank ein.</p>
       <div class="listings__grid">
 ${cards}
       </div>
