@@ -1,8 +1,33 @@
 #!/usr/bin/env node
 /**
- * generate-stadtteile.mjs
- * Generates all 80 missing Stadtteil landing pages for romanbecker.de
+ * generate-stadtteile.mjs — STILLGELEGT am 19.08.2026
+ *
+ * Dieser Generator hat im April 2026 die 80 Stadtteilseiten erzeugt. Seitdem
+ * wurden die Seiten direkt gepflegt: im August 2026 wurden Einwohnerzahlen,
+ * Flaechen, Stadtteilnummern, PLZ und zahlreiche Sachfehler gegen amtliche
+ * Quellen korrigiert, Preis-Kacheln ohne belastbare Quelle entfernt und
+ * Titel/H1 umgestellt.
+ *
+ * stadtteile-data.mjs hat diese Korrekturen NICHT mitbekommen. Ein Lauf
+ * wuerde die geprueften Seiten mit dem Stand von April ueberschreiben.
+ *
+ * Maßgeblich sind ab sofort die Dateien unter stadtteile/. Wer hier wieder
+ * generieren will, baut den Generator neu und speist ihn aus den Seiten,
+ * nicht aus stadtteile-data.mjs. Die alte Fassung steht in der Historie:
+ *   git log -- scripts/generate-stadtteile.mjs
  */
+console.error([
+  '',
+  'generate-stadtteile.mjs ist stillgelegt (19.08.2026).',
+  '',
+  'Ein Lauf wuerde die im August gegen amtliche Quellen korrigierten',
+  'Stadtteilseiten mit dem Datenstand von April 2026 ueberschreiben.',
+  'Die Seiten unter stadtteile/ sind die maßgebliche Quelle.',
+  '',
+].join('\n'));
+process.exit(1);
+
+/* eslint-disable */
 import { writeFile, access } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -463,3 +488,4 @@ async function main() {
   console.log('\nGenerated '+count+' pages.');
 }
 main();
+

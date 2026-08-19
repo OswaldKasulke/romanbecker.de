@@ -1,4 +1,22 @@
-// stadtteile-data.mjs — Alle 80 neuen Stadtteil-Datensätze für romanbecker.de
+// stadtteile-data.mjs — Stadtteil-Datensätze für romanbecker.de
+//
+// ACHTUNG (19.08.2026): Diese Datei ist NICHT mehr die Quelle der Stadtteilseiten.
+// generate-stadtteile.mjs ist stillgelegt; maßgeblich sind die Dateien unter stadtteile/.
+//
+// Noch ausgewertet wird die Datei ausschließlich von generate-marktbericht.mjs,
+// und zwar nur diese Felder:
+//   n, s, b, bn  → Name, Slug, Bezirk, Bezirksname
+//   nr           → nur zum Sortieren innerhalb eines Bezirks, wird nicht ausgegeben
+//   mk           → Marktdaten (e, h, m, t)
+//
+// VERALTET und von nichts mehr gelesen: intro, portrait, h, e (Einwohner), fl,
+// au, al, inf, immo, nb. Diese Felder stehen auf dem Stand von April 2026 und
+// enthalten die Fehler, die im August 2026 auf den Seiten korrigiert wurden
+// (z. B. Altstadt-Nord 2.200 statt 18.400 Einwohner). Nicht als Quelle verwenden.
+//
+// Auch mk.t (Preistrend) ist ungeprueft und fliesst über generate-marktbericht.mjs
+// in die Quartalsberichte — vor dem naechsten Lauf gegen den
+// Grundstuecksmarktbericht halten.
 // Bezirke 1-9, ohne die 6 existierenden (Sülz, Lindenthal, Nippes, Rodenkirchen, Bilderstöckchen, Zollstock)
 export default [
 // ═══════════════════════════════════════════════════════
