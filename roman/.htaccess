@@ -28,8 +28,10 @@ RewriteRule ^angebote/?$   /#objekte-koeln [R=301,L,NE]
 # Weitere Zusammenlegungen duenner Ratgeber-Seiten
 # Marktanalyse-Uebersicht entfernt - Inhalt steckt im Ratgeber-Artikel
 RewriteRule ^marktanalyse/?$ /ratgeber/grundstuecksmarktbericht-koeln.html [R=301,L]
-# Q2/2026 war zu 91,6 % identisch mit Q3/2026 - zusammengelegt
-RewriteRule ^marktanalyse/koeln-q2-2026\.html$ /marktanalyse/koeln-q3-2026.html [R=301,L]
+# Marktbericht folgt seit 20.08.2026 dem jaehrlichen Grundstuecksmarktbericht,
+# nicht mehr dem Quartal - Quartals-URLs zeigen auf den Jahresbericht (301)
+RewriteRule ^marktanalyse/koeln-q2-2026\.html$ /marktanalyse/koeln-2026.html [R=301,L]
+RewriteRule ^marktanalyse/koeln-q3-2026\.html$ /marktanalyse/koeln-2026.html [R=301,L]
 RewriteRule ^ratgeber/hypothek\.html$ /ratgeber/grundschuld.html [R=301,L]
 RewriteRule ^ratgeber/smart-heizung\.html$ /ratgeber/smarthome.html [R=301,L]
 RewriteRule ^ratgeber/vergleichsmiete\.html$ /ratgeber/mietspiegel.html [R=301,L]

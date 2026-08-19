@@ -25,9 +25,10 @@ const REPORT_Q = Math.ceil((now.getMonth() + 1) / 3);  // 1-4
 const REPORT_Y = now.getFullYear();
 const DATA_Q = REPORT_Q === 1 ? 4 : REPORT_Q - 1;
 const DATA_Y = REPORT_Q === 1 ? REPORT_Y - 1 : REPORT_Y;
-// Slug ist festgenagelt: 90 Seiten verlinken diese URL. Der Bericht folgt seit
-// 20.08.2026 dem jaehrlichen Grundstuecksmarktbericht, nicht mehr dem Quartal.
-const FILE_SLUG = 'koeln-q3-2026';
+// Slug ist festgenagelt und folgt dem Berichtsjahr, nicht dem Quartal: der
+// Bericht speist sich seit 20.08.2026 aus dem jaehrlichen
+// Grundstuecksmarktbericht. Alte Quartals-URLs zeigen per 301 hierher.
+const FILE_SLUG = 'koeln-2026';
 const REPORT_LABEL = '2026';
 const DATA_LABEL = 'Grundstuecksmarktbericht 2026';
 const QUELLE = 'Grundstücksmarktbericht 2026 für die Stadt Köln, Kapitel 6.1 (Eigentumswohnungen, Weiterverkauf) und 5.1.2 (Häuser nach Typ)';
