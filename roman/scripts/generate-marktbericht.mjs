@@ -25,9 +25,12 @@ const REPORT_Q = Math.ceil((now.getMonth() + 1) / 3);  // 1-4
 const REPORT_Y = now.getFullYear();
 const DATA_Q = REPORT_Q === 1 ? 4 : REPORT_Q - 1;
 const DATA_Y = REPORT_Q === 1 ? REPORT_Y - 1 : REPORT_Y;
-const FILE_SLUG = `koeln-q${REPORT_Q}-${REPORT_Y}`;
-const REPORT_LABEL = `Q${REPORT_Q}/${REPORT_Y}`;
-const DATA_LABEL = `Q${DATA_Q}/${DATA_Y}`;
+// Slug ist festgenagelt: 90 Seiten verlinken diese URL. Der Bericht folgt seit
+// 20.08.2026 dem jaehrlichen Grundstuecksmarktbericht, nicht mehr dem Quartal.
+const FILE_SLUG = 'koeln-q3-2026';
+const REPORT_LABEL = '2026';
+const DATA_LABEL = 'Grundstuecksmarktbericht 2026';
+const QUELLE = 'Grundstücksmarktbericht 2026 für die Stadt Köln, Kapitel 6.1 (Eigentumswohnungen, Weiterverkauf) und 5.1.2 (Häuser nach Typ)';
 const TEMP_COV = `${DATA_Y}-Q${DATA_Q}/${REPORT_Y}-Q${REPORT_Q}`;
 const REPORT_URL = `https://romanbecker.de/marktanalyse/${FILE_SLUG}.html`;
 
@@ -43,120 +46,107 @@ const EXISTING_SLUGS = [
   {s: 'zollstock', n: 'Zollstock', b: 2, bn: 'Rodenkirchen', nr: 209},
 ];
 
+// Alle Werte stammen aus den Stadtteilseiten. Dort stehen sie mit Quellenangabe
+// (Grundstuecksmarktbericht der Stadt Koeln). Aus stadtteile-data.mjs wird nur
+// noch die Identitaet gelesen - Name, Slug, Bezirk, Sortiernummer.
+const LABELS = [
+  [/Eigentumswohnung/, 'e'],
+  [/Haus \(Reihenmittelhaus\)/, 'rmh'],
+  [/Haus \(Doppelhaush/, 'dhh'],
+  [/Haus \(freistehend\)/, 'efh'],
+];
+
 function extractMarketData(slug) {
   const path = join(ROOT, 'stadtteile', slug + '.html');
   if (!existsSync(path)) return null;
   const html = readFileSync(path, 'utf-8');
-
-  // Pattern: <div class="market-stat__value">~6.100 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Eigentumswohnung</div>
-  // Wir matchen value + label paarweise
-  const valuePattern = /<div class="market-stat__value">([^<]+)<\/div>\s*<div class="market-stat__label">([^<]+(?:<br>[^<]+)?)<\/div>/g;
+  const valuePattern = /<div class="market-stat__value">([^<]+)<\/div>\s*<div class="market-stat__label">([^<]+(?:<br>[^<]+)*)<\/div>/g;
   const stats = {};
   let m;
   while ((m = valuePattern.exec(html)) !== null) {
     const label = m[2].replace(/<br>/g, ' ').trim();
-    const value = m[1].replace(/[~€\s]/g, '').replace(/–/g, '-').trim();
-    if (label.includes('Eigentumswohnung')) stats.e = value;
-    else if (label.includes('Haus')) stats.h = value;
-    else if (label.includes('Miete') || label.includes('Kaltmiete')) stats.m = value;
-    else if (label.includes('Trend') || label.includes('Jahresvergleich')) stats.t = value;
+    const value = m[1].replace(/[~€\s]/g, '').trim();
+    if (!/^[\d.]+$/.test(value)) continue;           // nur echte Preisangaben
+    for (const [re, key] of LABELS) {
+      if (re.test(label) && !stats[key]) { stats[key] = value; break; }
+    }
   }
   return stats;
 }
 
-// Baue komplette Liste aller Stadtteile mit Marktdaten
 const all = [];
-
-for (const d of stadtteile) {
-  if (!d.mk) continue;
-  all.push({
-    n: d.n, s: d.s, b: d.b, bn: d.bn, nr: d.nr,
-    e: d.mk.e, h: d.mk.h, m: d.mk.m, t: d.mk.t,
-  });
-}
-
-for (const meta of EXISTING_SLUGS) {
+const ohneZahlen = [];
+const IDENT = [
+  ...stadtteile.map(d => ({n: d.n, s: d.s, b: d.b, bn: d.bn, nr: d.nr})),
+  ...EXISTING_SLUGS,
+];
+for (const meta of IDENT) {
   const data = extractMarketData(meta.s);
-  if (!data) {
-    console.warn('Keine Daten gefunden für:', meta.s);
-    continue;
-  }
+  if (!data) { console.warn('Seite fehlt:', meta.s); continue; }
+  if (!data.e && !data.rmh && !data.dhh && !data.efh) { ohneZahlen.push(meta.n); continue; }
   all.push({
     n: meta.n, s: meta.s, b: meta.b, bn: meta.bn, nr: meta.nr,
-    e: data.e || '—', h: data.h || '—', m: data.m || '—', t: data.t || '—',
+    e: data.e || '—', rmh: data.rmh || '—', dhh: data.dhh || '—', efh: data.efh || '—',
   });
 }
+if (ohneZahlen.length) console.warn('Ohne belegte Werte, nicht aufgenommen:', ohneZahlen.join(', '));
 
-// Sortiere nach Bezirk-Nr, dann Stadtteil-Nr
 all.sort((a, b) => a.b - b.b || a.nr - b.nr);
 
-// Hilfsfunktionen
 const num = s => {
   if (!s || s === '—' || s === '-') return null;
   const n = parseFloat(String(s).replace(/\./g, '').replace(',', '.').replace(/[^0-9.\-+]/g, ''));
   return isNaN(n) ? null : n;
 };
 
-// Top-Listen (sortiert nach ETW-Preis)
 const withE = all.filter(x => num(x.e) !== null);
 const top5Teuer = [...withE].sort((a, b) => num(b.e) - num(a.e)).slice(0, 5);
 const top5Guenstig = [...withE].sort((a, b) => num(a.e) - num(b.e)).slice(0, 5);
+const withH = all.filter(x => num(x.rmh) !== null);
+const top5Haus = [...withH].sort((a, b) => num(b.rmh) - num(a.rmh)).slice(0, 5);
 
-// Top Trends
-const withT = all.filter(x => num(x.t) !== null);
-const top5Trend = [...withT].sort((a, b) => num(b.t) - num(a.t)).slice(0, 5);
-
-// Bezirks-Aggregate
 const byBezirk = {};
 for (const x of all) {
-  if (!byBezirk[x.bn]) byBezirk[x.bn] = {bn: x.bn, b: x.b, items: [], avgE: null, avgT: null};
+  if (!byBezirk[x.bn]) byBezirk[x.bn] = {bn: x.bn, b: x.b, items: [], avgE: null};
   byBezirk[x.bn].items.push(x);
 }
 for (const bz of Object.values(byBezirk)) {
   const es = bz.items.map(x => num(x.e)).filter(v => v !== null);
-  const ts = bz.items.map(x => num(x.t)).filter(v => v !== null);
   bz.avgE = es.length ? Math.round(es.reduce((a, b) => a + b, 0) / es.length) : null;
-  bz.avgT = ts.length ? +(ts.reduce((a, b) => a + b, 0) / ts.length).toFixed(1) : null;
+  bz.nE = es.length;
 }
 const bezirke = Object.values(byBezirk).sort((a, b) => a.b - b.b);
 
-// JSON-LD Dataset
-const datasetItems = all.map(x => ({
+const datasetItems = withE.map(x => ({
   "@type": "PropertyValue",
   "name": x.n,
   "value": x.e,
   "unitText": "EUR/m²",
-  "description": `Durchschnittlicher Kaufpreis pro m² Eigentumswohnung in Köln-${x.n} (Stand ${DATA_LABEL}, veröffentlicht ${REPORT_LABEL})`
+  "description": `Durchschnittlicher Kaufpreis pro m² Eigentumswohnung in Köln-${x.n} laut ${QUELLE}`
 }));
 
-// HTML-Generator
 const today = new Date().toISOString().slice(0, 10);
-const buildRow = (x) => {
-  const trend = num(x.t);
-  const trendClass = trend === null ? '' : trend > 0 ? 'trend-up' : trend < 0 ? 'trend-down' : '';
-  const trendStr = x.t === '—' ? '—' : (x.t.startsWith('+') || x.t.startsWith('-') ? x.t : '+' + x.t) + ' %';
-  return `        <tr>
+const cell = v => v === '—' ? '—' : '~' + v + ' €';
+const buildRow = (x) => `        <tr>
           <td><a href="/stadtteile/${x.s}.html">Köln-${x.n}</a></td>
           <td>${x.bn}</td>
-          <td class="num">${x.e === '—' ? '—' : '~' + x.e + ' €'}</td>
-          <td class="num">${x.h === '—' ? '—' : '~' + x.h + ' €'}</td>
-          <td class="num">${x.m === '—' ? '—' : x.m + ' €'}</td>
-          <td class="num ${trendClass}">${trendStr}</td>
+          <td class="num">${cell(x.e)}</td>
+          <td class="num">${cell(x.rmh)}</td>
+          <td class="num">${cell(x.dhh)}</td>
+          <td class="num">${cell(x.efh)}</td>
         </tr>`;
-};
-
-const tableRows = all.map(buildRow).join('\n');
 
 const buildBezirkRow = bz => `        <tr>
           <td><strong>${bz.bn}</strong></td>
-          <td class="num">${bz.items.length}</td>
+          <td class="num">${bz.nE}</td>
           <td class="num">${bz.avgE ? '~' + bz.avgE.toLocaleString('de-DE') + ' €' : '—'}</td>
-          <td class="num">${bz.avgT !== null ? (bz.avgT > 0 ? '+' : '') + bz.avgT + ' %' : '—'}</td>
         </tr>`;
 
 const bezirkRows = bezirke.map(buildBezirkRow).join('\n');
 
 const top5Rows = (list, valueKey, unit) => list.map((x, i) => `          <li><strong>${i + 1}. Köln-${x.n}</strong> <span class="muted">(${x.bn})</span> — ${x[valueKey]}${unit}</li>`).join('\n');
+
+const tableRows = all.map(buildRow).join('\n');
 
 const html = `<!DOCTYPE html>
 <html lang="de">
@@ -217,19 +207,19 @@ const html = `<!DOCTYPE html>
   </script>
 
   <title>Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile | Roman Becker</title>
-  <meta name="description" content="Roman Becker - EVERNEST | Immobilienmarkt-Analyse Köln ${REPORT_LABEL}: durchschnittliche Kaufpreise (€/m²) für Eigentumswohnungen, Häuser, Mietpreise und Jahres-Trends in 86 Kölner Stadtteilen.">
+  <meta name="description" content="Roman Becker - EVERNEST | Kaufpreise Köln ${REPORT_LABEL}: durchschnittliche €/m² für Eigentumswohnungen und Häuser nach Stadtteilen, aus dem Grundstücksmarktbericht der Stadt Köln.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="${REPORT_URL}">
 
   <meta property="og:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile">
-  <meta property="og:description" content="Aktuelle Kaufpreise, Mietpreise und Marktrends in allen Kölner Stadtteilen — datierte Analyse von Roman Becker (EVERNEST).">
+  <meta property="og:description" content="Amtliche Kaufpreise für Eigentumswohnungen und Häuser in den Kölner Stadtteilen — aus dem Grundstücksmarktbericht der Stadt Köln, zusammengestellt von Roman Becker (EVERNEST).">
   <meta property="og:type" content="article">
   <meta property="og:url" content="${REPORT_URL}">
   <meta property="og:locale" content="de_DE">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile">
-  <meta name="twitter:description" content="Aktuelle Kaufpreise, Mietpreise und Marktrends in allen Kölner Stadtteilen.">
+  <meta name="twitter:description" content="Amtliche Kaufpreise für Eigentumswohnungen und Häuser in den Kölner Stadtteilen.">
 
   <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
 
@@ -239,8 +229,8 @@ const html = `<!DOCTYPE html>
     "@graph": [
       {
         "@type": "Article",
-        "headline": "Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile",
-        "description": "Quartalsweise aktualisierte Marktanalyse für den Kölner Immobilienmarkt: durchschnittliche Kaufpreise pro m², Mietpreise und Jahres-Trends in allen 86 Stadtteilen Kölns.",
+        "headline": "Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen",
+        "description": "Durchschnittliche Kaufpreise pro m² für Eigentumswohnungen und Häuser in den Kölner Stadtteilen, übernommen aus dem Grundstücksmarktbericht 2026 der Stadt Köln.",
         "datePublished": "${today}",
         "dateModified": "${today}",
         "inLanguage": "de-DE",
@@ -261,7 +251,7 @@ const html = `<!DOCTYPE html>
           {"@type": "Thing", "name": "Immobilienmarkt Köln"},
           {"@type": "Place", "name": "Köln", "@id": "https://www.wikidata.org/wiki/Q365"}
         ],
-        "keywords": "Immobilienpreise Köln, Marktbericht Köln 2026, Immobilienmarkt Köln, Kaufpreise Köln, Mietpreise Köln, Stadtteil-Analyse Köln"
+        "keywords": "Immobilienpreise Köln, Grundstücksmarktbericht Köln, Kaufpreise Köln, Immobilienmarkt Köln, Stadtteil-Analyse Köln"
       },
       {
         "@type": "Dataset",
@@ -384,8 +374,8 @@ const html = `<!DOCTYPE html>
         Köln ${REPORT_LABEL}
       </nav>
 
-      <h1>Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile</h1>
-      <p class="lead">Aktuelle Kaufpreise, Mietpreise und Jahres-Trends im Kölner Immobilienmarkt — quartalsweise aktualisiert von Roman Becker (EVERNEST). Datenbasis: ${all.length} Kölner Stadtteile in 9 Bezirken.</p>
+      <h1>Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen</h1>
+      <p class="lead">Durchschnittliche Kaufpreise für Eigentumswohnungen und Häuser in ${all.length} Kölner Stadtteilen, vollständig aus dem Grundstücksmarktbericht 2026 der Stadt Köln übernommen. Zusammengestellt von Roman Becker (EVERNEST).</p>
 
       <div class="meta">
         <span><strong>Veröffentlicht:</strong> ${today}</span>
@@ -410,23 +400,22 @@ ${top5Guenstig.map((x, i) => `            <li><strong>${i + 1}. Köln-${x.n}</st
           </ol>
         </div>
         <div class="top-card">
-          <h3>Top 5 stärkste Trends (% YoY)</h3>
+          <h3>Top 5 teuerste Hauslagen (€/m² Reihenmittelhaus)</h3>
           <ol>
-${top5Trend.map((x, i) => `            <li><strong>${i + 1}. Köln-${x.n}</strong> <span class="muted">(${x.bn})</span> — ${x.t.startsWith('+') || x.t.startsWith('-') ? x.t : '+' + x.t} %</li>`).join('\n')}
+${top5Haus.map((x, i) => `            <li><strong>${i + 1}. Köln-${x.n}</strong> <span class="muted">(${x.bn})</span> — ~${x.rmh} €/m²</li>`).join('\n')}
           </ol>
         </div>
       </div>
 
       <h2>Bezirks-Übersicht</h2>
-      <p>Aggregierte Durchschnittspreise und Trends pro Stadtbezirk — als Orientierung über das gesamte Kölner Stadtgebiet.</p>
+      <p>Durchschnitt der Stadtteilwerte je Stadtbezirk, gebildet aus den Eigentumswohnungs-Preisen des Grundstücksmarktberichts. Ein ungewichteter Mittelwert über die Stadtteile, keine Auswertung des Gutachterausschusses auf Bezirksebene.</p>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th>Bezirk</th>
-              <th class="num">Stadtteile</th>
+              <th class="num">Stadtteile mit Wert</th>
               <th class="num">Ø Kaufpreis ETW</th>
-              <th class="num">Ø Trend YoY</th>
             </tr>
           </thead>
           <tbody>
@@ -436,17 +425,17 @@ ${bezirkRows}
       </div>
 
       <h2>Vollständige Stadtteil-Tabelle</h2>
-      <p>Alle erfassten Stadtteile mit aktuellen Marktdaten (Stand ${DATA_LABEL}). Klick auf den Stadtteilnamen führt zur jeweiligen Detailseite mit Markt- und Lageportrait.</p>
+      <p>Alle Stadtteile, für die der Grundstücksmarktbericht 2026 Werte ausweist. Ein Strich bedeutet: für diesen Stadtteil und diese Objektart enthält der Bericht keine Auswertung. Klick auf den Stadtteilnamen führt zur Detailseite mit der jeweiligen Quellenangabe.</p>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th>Stadtteil</th>
               <th>Bezirk</th>
-              <th class="num">ETW (€/m²)</th>
-              <th class="num">EFH (€/m²)</th>
-              <th class="num">Miete (€/m²)</th>
-              <th class="num">Trend YoY</th>
+              <th class="num">Eigentumswohnung</th>
+              <th class="num">Reihenmittelhaus</th>
+              <th class="num">Doppelhaushälfte</th>
+              <th class="num">Haus freistehend</th>
             </tr>
           </thead>
           <tbody>
@@ -456,7 +445,7 @@ ${tableRows}
       </div>
 
       <div class="method">
-        <strong>Methodik & Datenquellen:</strong> Die hier ausgewiesenen Werte sind Richtwerte basierend auf Marktbeobachtung, öffentlichen Gutachterausschuss-Daten der Stadt Köln, EVERNEST-internen Verkaufsdaten und Immobilienportal-Auswertungen. Stand der Daten: ${DATA_LABEL}, veröffentlicht im ${REPORT_LABEL}. Die tatsächlichen Verkaufspreise einzelner Objekte können erheblich abweichen — abhängig von Lage, Baujahr, Zustand, Ausstattung, Energieeffizienz und aktueller Marktsituation. Für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.
+        <strong>Methodik & Quelle:</strong> Sämtliche Preise stammen aus dem ${QUELLE}, herausgegeben vom Gutachterausschuss für Grundstückswerte in der Stadt Köln. Es sind die dort ausgewiesenen Durchschnittswerte für das Berichtsjahr 2025. Eigene Schätzungen, Portalauswertungen oder interne Verkaufsdaten fließen nicht ein. Wo der Bericht für einen Stadtteil und eine Objektart keine Auswertung enthält, steht ein Strich — es wird nichts hochgerechnet. Eine Veränderungsrate gegenüber dem Vorjahr enthält der Bericht auf Stadtteilebene nicht; die Quartalsberichte des Gutachterausschusses gelten jeweils für einen ganzen Stadtbezirk. Die tatsächlichen Verkaufspreise einzelner Objekte können erheblich abweichen — abhängig von Lage, Baujahr, Zustand, Ausstattung, Energieeffizienz und aktueller Marktsituation. Für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.
       </div>
 
       <div class="cta-box">
@@ -488,7 +477,7 @@ console.log(`  Stadtteile: ${all.length}`);
 console.log(`  Bezirke: ${bezirke.length}`);
 console.log(`  Top teuerster: Köln-${top5Teuer[0].n} (~${top5Teuer[0].e} €/m²)`);
 console.log(`  Top günstigster: Köln-${top5Guenstig[0].n} (~${top5Guenstig[0].e} €/m²)`);
-console.log(`  Top Trend: Köln-${top5Trend[0].n} (${top5Trend[0].t} %)`);
+console.log(`  Teuerste Hauslage: Köln-${top5Haus[0].n} (~${top5Haus[0].rmh} €/m² RMH)`);
 
 // === Index-Seite mit chronologischer Liste aller Berichte generieren ===
 const reportFiles = readdirSync(outDir)
