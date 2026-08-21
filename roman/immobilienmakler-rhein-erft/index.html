@@ -183,25 +183,9 @@
   <link rel="stylesheet" href="/stadtteile/shared.css">
 
   <style>
-    .st-index-hero {
-      background: var(--navy);
-      padding: 3.5rem 0 3rem;
-      color: #fff;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .st-index-hero .container { max-width: 900px; }
-    .st-index-hero .section-label { color: var(--gold); margin-bottom: var(--space-3); }
+    .hero .section-label { color: var(--gold); margin-bottom: var(--space-3); }
     /* color explizit setzen: shared.css hat h1 { color: var(--text, #000000) }, das schlaegt
        das geerbte #fff des dunklen Heros — sonst schwarz auf schwarz. */
-    .st-index-hero h1 {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      line-height: 1.15;
-      color: #fff;
-      margin-bottom: 0.9rem;
-      max-width: 800px;
-    }
-    .st-index-hero p { color: rgba(255,255,255,0.72); max-width: 640px; line-height: 1.7; }
 
     .st-index-hero__facts {
       display: flex;
@@ -292,7 +276,8 @@
         <nav class="site-header__nav" aria-label="Hauptnavigation">
           <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
           <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
-          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
           <a href="https://romanbecker.de/#kontakt">Kontakt</a>
         </nav>
         <div class="nav__search" id="navSearch">
@@ -302,7 +287,7 @@
           </button>
           <div class="nav__search-dropdown" id="navSearchDropdown"></div>
         </div>
-        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
       </div>
     </div>
   </header>
@@ -318,13 +303,14 @@
     </div>
 
     <!-- HERO -->
-    <section class="st-index-hero">
+    <section class="hero">
       <div class="container">
       <div class="hero__grid">
       <div class="hero__text">
         <span class="section-label">Rhein-Erft-Kreis &middot; Stand August 2026</span>
         <h1>Immobilienmakler Rhein-Erft-Kreis</h1>
-        <p>Der Rhein-Erft-Kreis grenzt westlich direkt an Köln – für viele Eigentümer ist es derselbe Markt, nur mit anderen Preisen. 2025 wechselten hier 1.708 Ein- und Zweifamilienhäuser den Besitzer, im Mittel für 429.930 €. Die Spanne reicht von 352.150 € in Elsdorf bis 535.254 € in Hürth. Der Preisindex für Eigentumswohnungen im Kreis stieg 2025 von 192 auf 201 Punkte, das sind 4,7 Prozent (Grundstücksmarktbericht 2026 für den Rhein-Erft-Kreis; die Reihe gilt kreisweit, nicht je Stadt). Wählen Sie Ihre Stadt für die lokalen Marktdaten.</p>
+        <p class="hero__trust">IHK-zertifiziert <span class="pipe">|</span> 400+ Makler &amp; Partner deutschlandweit <span class="pipe">|</span> <a href="https://www.google.com/maps/place/Roman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln/@50.9436867,6.9395297,255m/data=!3m2!1e3!5s0x47bf2508eec9b9e5:0xde7724a887a26811!4m16!1m9!3m8!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!2sRoman+Becker+-+EVERNEST+%7C+Immobilienmakler+%26+Immobilienbewertung+K%C3%B6ln!8m2!3d50.9436867!4d6.9406741!9m1!1b1!16s%2Fg%2F11w4rp9vvy!3m5!1s0x47bf25639c834cd5:0xa1f403fda5f75a31!8m2!3d50.9436867!4d6.9406741!16s%2Fg%2F11w4rp9vvy?entry=ttu" target="_blank" rel="noopener">5,0 &#9733; auf Google</a></p>
+        <p class="hero__subtitle">Der Rhein-Erft-Kreis grenzt westlich direkt an Köln – für viele Eigentümer ist es derselbe Markt, nur mit anderen Preisen. 2025 wechselten hier 1.708 Ein- und Zweifamilienhäuser den Besitzer, im Mittel für 429.930 €. Die Spanne reicht von 352.150 € in Elsdorf bis 535.254 € in Hürth. Der Preisindex für Eigentumswohnungen im Kreis stieg 2025 von 192 auf 201 Punkte, das sind 4,7 Prozent (Grundstücksmarktbericht 2026 für den Rhein-Erft-Kreis; die Reihe gilt kreisweit, nicht je Stadt). Wählen Sie Ihre Stadt für die lokalen Marktdaten.</p>
         <ul class="st-index-hero__facts">
           <li><strong>10</strong> Städte</li>
           <li><strong>455.000</strong> Einwohner in diesen Orten</li>

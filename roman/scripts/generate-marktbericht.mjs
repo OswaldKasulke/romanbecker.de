@@ -28,12 +28,12 @@ const DATA_Y = REPORT_Q === 1 ? REPORT_Y - 1 : REPORT_Y;
 // Slug ist festgenagelt und folgt dem Berichtsjahr, nicht dem Quartal: der
 // Bericht speist sich seit 20.08.2026 aus dem jaehrlichen
 // Grundstuecksmarktbericht. Alte Quartals-URLs zeigen per 301 hierher.
-const FILE_SLUG = 'koeln-2026';
+const FILE_SLUG = 'marktanalyse';
 const REPORT_LABEL = '2026';
 const DATA_LABEL = 'Grundstuecksmarktbericht 2026';
 const QUELLE = 'Grundstücksmarktbericht 2026 für die Stadt Köln, Kapitel 6.1 (Eigentumswohnungen, Weiterverkauf) und 5.1.2 (Häuser nach Typ)';
 const TEMP_COV = `${DATA_Y}-Q${DATA_Q}/${REPORT_Y}-Q${REPORT_Q}`;
-const REPORT_URL = `https://romanbecker.de/marktanalyse/${FILE_SLUG}.html`;
+const REPORT_URL = `https://romanbecker.de/ratgeber/${FILE_SLUG}.html`;
 
 const stadtteile = (await import('./stadtteile-data.mjs')).default;
 
@@ -208,12 +208,12 @@ const html = `<!DOCTYPE html>
   </script>
 
   <title>Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile | Roman Becker</title>
-  <meta name="description" content="Roman Becker - EVERNEST | Kaufpreise Köln ${REPORT_LABEL}: durchschnittliche €/m² für Eigentumswohnungen und Häuser nach Stadtteilen, aus dem Grundstücksmarktbericht der Stadt Köln.">
+  <meta name="description" content="Roman Becker Immobilien | Kaufpreise Köln ${REPORT_LABEL}: durchschnittliche €/m² für Eigentumswohnungen und Häuser nach Stadtteilen, aus dem Grundstücksmarktbericht der Stadt Köln.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="${REPORT_URL}">
 
   <meta property="og:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile">
-  <meta property="og:description" content="Amtliche Kaufpreise für Eigentumswohnungen und Häuser in den Kölner Stadtteilen — aus dem Grundstücksmarktbericht der Stadt Köln, zusammengestellt von Roman Becker (EVERNEST).">
+  <meta property="og:description" content="Amtliche Kaufpreise für Eigentumswohnungen und Häuser in den Kölner Stadtteilen — aus dem Grundstücksmarktbericht der Stadt Köln. Zusammengestellt von Roman Becker.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="${REPORT_URL}">
   <meta property="og:locale" content="de_DE">
@@ -243,7 +243,7 @@ const html = `<!DOCTYPE html>
         },
         "publisher": {
           "@type": "Organization",
-          "name": "Roman Becker - EVERNEST",
+          "name": "Roman Becker Immobilien",
           "url": "https://romanbecker.de"
         },
         "url": "${REPORT_URL}",
@@ -290,6 +290,8 @@ const html = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <script src="../stadtteile/search.js" defer></script>
   <style>
     *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -310,12 +312,6 @@ const html = `<!DOCTYPE html>
     }
     body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: var(--white); line-height: 1.7; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-6); }
-    .site-header { background: var(--navy); padding: var(--space-4) 0; }
-    .site-header a { color: var(--white); text-decoration: none; }
-    .site-header__inner { display: flex; justify-content: space-between; align-items: center; }
-    .site-header__logo { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; }
-    .site-header__nav { display: flex; gap: var(--space-6); }
-    .site-header__nav a { font-size: 0.9rem; }
     .breadcrumb { padding: var(--space-4) 0; font-size: 0.875rem; color: var(--gray-600); }
     .breadcrumb a { color: var(--gray-600); text-decoration: none; }
     .breadcrumb span { margin: 0 var(--space-2); }
@@ -357,12 +353,22 @@ const html = `<!DOCTYPE html>
   <header class="site-header">
     <div class="container">
       <div class="site-header__inner">
-        <a href="https://romanbecker.de/" class="site-header__logo">Roman Becker - EVERNEST</a>
-        <nav class="site-header__nav">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
           <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
-          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
           <a href="https://romanbecker.de/#kontakt">Kontakt</a>
         </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
       </div>
     </div>
   </header>
@@ -376,7 +382,7 @@ const html = `<!DOCTYPE html>
       </nav>
 
       <h1>Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen</h1>
-      <p class="lead">Durchschnittliche Kaufpreise für Eigentumswohnungen und Häuser in ${all.length} Kölner Stadtteilen, vollständig aus dem Grundstücksmarktbericht 2026 der Stadt Köln übernommen. Zusammengestellt von Roman Becker (EVERNEST).</p>
+      <p class="lead">Durchschnittliche Kaufpreise für Eigentumswohnungen und Häuser in ${all.length} Kölner Stadtteilen, vollständig aus dem Grundstücksmarktbericht 2026 der Stadt Köln übernommen. Zusammengestellt von Roman Becker.</p>
 
       <div class="meta">
         <span><strong>Veröffentlicht:</strong> ${today}</span>
@@ -459,7 +465,7 @@ ${tableRows}
 
   <footer>
     <div class="container">
-      <p>© 2026 Roman Becker - EVERNEST · <a href="https://romanbecker.de/">Startseite</a> · <a href="https://romanbecker.de/impressum.html">Impressum</a> · <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a></p>
+      <p>© 2026 Roman Becker Immobilien · <a href="https://romanbecker.de/">Startseite</a> · <a href="https://romanbecker.de/impressum.html">Impressum</a> · <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a></p>
     </div>
   </footer>
 </body>
@@ -467,7 +473,7 @@ ${tableRows}
 `;
 
 // Stelle sicher dass marktanalyse/ existiert
-const outDir = join(ROOT, 'marktanalyse');
+const outDir = join(ROOT, 'ratgeber');
 if (!existsSync(outDir)) mkdirSync(outDir, {recursive: true});
 
 const outPath = join(outDir, FILE_SLUG + '.html');
