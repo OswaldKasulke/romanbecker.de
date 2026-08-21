@@ -207,149 +207,60 @@ const html = `<!DOCTYPE html>
     })();
   </script>
 
-  <title>Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile | Roman Becker</title>
-  <meta name="description" content="Roman Becker Immobilien | Kaufpreise Köln ${REPORT_LABEL}: durchschnittliche €/m² für Eigentumswohnungen und Häuser nach Stadtteilen, aus dem Grundstücksmarktbericht der Stadt Köln.">
-  <meta name="robots" content="index, follow">
+  <title>Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen</title>
+  <meta name="description" content="Durchschnittliche Kaufpreise pro m² für Eigentumswohnungen und Häuser in ${all.length} Kölner Stadtteilen — vollständig aus dem Grundstücksmarktbericht der Stadt Köln.">
   <link rel="canonical" href="${REPORT_URL}">
-
-  <meta property="og:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile">
-  <meta property="og:description" content="Amtliche Kaufpreise für Eigentumswohnungen und Häuser in den Kölner Stadtteilen — aus dem Grundstücksmarktbericht der Stadt Köln. Zusammengestellt von Roman Becker.">
-  <meta property="og:type" content="article">
+  <meta property="og:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen">
+  <meta property="og:description" content="Amtliche Kaufpreise für Eigentumswohnungen und Häuser in den Kölner Stadtteilen, aus dem Grundstücksmarktbericht der Stadt Köln.">
   <meta property="og:url" content="${REPORT_URL}">
+  <meta property="og:type" content="article">
   <meta property="og:locale" content="de_DE">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — Preisanalyse 86 Stadtteile">
-  <meta name="twitter:description" content="Amtliche Kaufpreise für Eigentumswohnungen und Häuser in den Kölner Stadtteilen.">
-
-  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        "headline": "Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen",
-        "description": "Durchschnittliche Kaufpreise pro m² für Eigentumswohnungen und Häuser in den Kölner Stadtteilen, übernommen aus dem Grundstücksmarktbericht 2026 der Stadt Köln.",
-        "datePublished": "${today}",
-        "dateModified": "${today}",
-        "inLanguage": "de-DE",
-        "author": {
-          "@type": "Person",
-          "name": "Roman Becker",
-          "jobTitle": "Immobilienmakler (IHK)",
-          "url": "https://romanbecker.de"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Roman Becker Immobilien",
-          "url": "https://romanbecker.de"
-        },
-        "url": "${REPORT_URL}",
-        "mainEntityOfPage": "${REPORT_URL}",
-        "about": [
-          {"@type": "Thing", "name": "Immobilienmarkt Köln"},
-          {"@type": "Place", "name": "Köln", "@id": "https://www.wikidata.org/wiki/Q365"}
-        ],
-        "keywords": "Immobilienpreise Köln, Grundstücksmarktbericht Köln, Kaufpreise Köln, Immobilienmarkt Köln, Stadtteil-Analyse Köln"
-      },
-      {
-        "@type": "Dataset",
-        "name": "Immobilien-Marktdaten Köln ${REPORT_LABEL}",
-        "description": "Durchschnittliche Kaufpreise (€/m²) für Eigentumswohnungen in 86 Kölner Stadtteilen, Stand ${DATA_LABEL}.",
-        "url": "${REPORT_URL}",
-        "license": "https://creativecommons.org/licenses/by/4.0/",
-        "creator": {
-          "@type": "Person",
-          "name": "Roman Becker"
-        },
-        "spatialCoverage": {
-          "@type": "Place",
-          "name": "Köln, Nordrhein-Westfalen, Deutschland",
-          "@id": "https://www.wikidata.org/wiki/Q365"
-        },
-        "temporalCoverage": "${TEMP_COV}",
-        "datePublished": "${today}",
-        "dateModified": "${today}",
-        "keywords": ["Immobilienpreise", "Kölner Stadtteile", "Kaufpreis pro m²", "Marktrend"],
-        "variableMeasured": ${JSON.stringify(datasetItems.slice(0, 20), null, 2).replace(/\n/g, '\n        ')}
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://romanbecker.de/"},
-          {"@type": "ListItem", "position": 2, "name": "Grundstücksmarktbericht", "item": "https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html"},
-          {"@type": "ListItem", "position": 3, "name": "Köln ${REPORT_LABEL}", "item": "${REPORT_URL}"}
-        ]
-      }
-    ]
-  }
-  </script>
-
+<link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../stadtteile/shared.css">
-  <script src="../stadtteile/search.js" defer></script>
-  <style>
-    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --navy: #111111;
-      --gold: #c2a990;
-      --white: #ffffff;
-      --off-white: #f8f8f8;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-600: #4b5563;
-      --gray-700: #374151;
-      --space-2: 0.5rem;
-      --space-3: 0.75rem;
-      --space-4: 1rem;
-      --space-6: 1.5rem;
-      --space-8: 2rem;
-      --space-12: 3rem;
-    }
-    body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: var(--white); line-height: 1.7; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-6); }
-    .breadcrumb { padding: var(--space-4) 0; font-size: 0.875rem; color: var(--gray-600); }
-    .breadcrumb a { color: var(--gray-600); text-decoration: none; }
-    .breadcrumb span { margin: 0 var(--space-2); }
-    main { padding: var(--space-8) 0 var(--space-12); }
-    h1 { font-family: 'Inter', sans-serif; font-size: 2.4rem; line-height: 1.2; margin-bottom: var(--space-4); color: var(--navy); }
-    h2 { font-family: 'Inter', sans-serif; font-size: 1.7rem; margin: var(--space-12) 0 var(--space-4); color: var(--navy); }
-    h3 { font-size: 1.15rem; margin-bottom: var(--space-3); color: var(--navy); }
-    p { margin-bottom: var(--space-4); color: var(--gray-700); }
-    .lead { font-size: 1.125rem; color: var(--gray-700); }
-    .meta { font-size: 0.875rem; color: var(--gray-600); padding: var(--space-4) 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin: var(--space-6) 0; display: flex; gap: var(--space-6); flex-wrap: wrap; }
-    .meta strong { color: var(--navy); }
-    .top-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-8); margin: var(--space-8) 0; }
-    @media (min-width: 800px) { .top-grid { grid-template-columns: repeat(3, 1fr); } }
-    .top-card { background: var(--gray-100); border-radius: 8px; padding: var(--space-6); }
-    .top-card ol { list-style: none; padding-left: 0; }
-    .top-card li { padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-200); font-size: 0.95rem; }
-    .top-card li:last-child { border-bottom: none; }
-    .muted { color: var(--gray-600); font-weight: 400; font-size: 0.875rem; }
-    .table-wrap { overflow-x: auto; margin: var(--space-6) 0; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
-    thead { background: var(--off-white); }
-    th, td { padding: var(--space-3) var(--space-4); text-align: left; border-bottom: 1px solid var(--gray-200); }
-    th { font-weight: 600; color: var(--navy); white-space: nowrap; }
-    td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
-    td a { color: var(--navy); text-decoration: none; border-bottom: 1px dotted var(--gray-200); }
-    td a:hover { color: var(--gold); border-bottom-color: var(--gold); }
-    .trend-up { color: #16a34a; font-weight: 600; }
-    .trend-down { color: #dc2626; font-weight: 600; }
-    .cta-box { background: var(--navy); color: var(--white); padding: var(--space-8); border-radius: 8px; margin: var(--space-12) 0; text-align: center; }
-    .cta-box h2 { color: var(--white); margin: 0 0 var(--space-3); }
-    .cta-box p { color: rgba(255,255,255,0.85); margin-bottom: var(--space-6); }
-    .cta-btn { display: inline-block; background: var(--gold); color: var(--navy); padding: var(--space-3) var(--space-6); text-decoration: none; font-weight: 600; border-radius: 4px; }
-    .method { background: var(--gray-100); border-left: 3px solid var(--gold); padding: var(--space-6); margin: var(--space-8) 0; font-size: 0.9rem; color: var(--gray-700); }
-    footer { padding: var(--space-8) 0; background: var(--navy); color: rgba(255,255,255,0.6); font-size: 0.85rem; text-align: center; }
-    footer a { color: var(--gold); }
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Kaufpreise nach Stadtteilen, Köln ${REPORT_LABEL}",
+    "description": "Durchschnittliche Kaufpreise pro Quadratmeter für Eigentumswohnungen und Häuser in ${all.length} Kölner Stadtteilen, Quelle: ${QUELLE}.",
+    "url": "${REPORT_URL}",
+    "dateModified": "${today}",
+    "creator": {"@type": "Person", "name": "Roman Becker"},
+    "spatialCoverage": {"@type": "Place", "name": "Köln"},
+    "variableMeasured": ${JSON.stringify(datasetItems)}
+  }
+  </script>
+<style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--text, #000000); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text, #000000); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--text, #000000); font-weight: 600; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .highlight-box { background: #fffbf0; border-left: 4px solid var(--gold); padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 0 var(--radius) var(--radius) 0; }
+    .highlight-box p { margin: 0; color: var(--text, #000000); }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
   </style>
 </head>
+</head>
 <body>
+
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <div class="site-header__inner">
@@ -376,259 +287,154 @@ const html = `<!DOCTYPE html>
   <main>
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="https://romanbecker.de/">Start</a><span>›</span>
-        <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht</a><span>›</span>
-        Köln ${REPORT_LABEL}
+        <a href="https://romanbecker.de/">Start</a>
+        <span>›</span>
+        <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+        <span>›</span>
+        Immobilienmarkt Köln ${REPORT_LABEL}
       </nav>
+    </div>
 
-      <h1>Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen</h1>
-      <p class="lead">Durchschnittliche Kaufpreise für Eigentumswohnungen und Häuser in ${all.length} Kölner Stadtteilen, vollständig aus dem Grundstücksmarktbericht 2026 der Stadt Köln übernommen. Zusammengestellt von Roman Becker.</p>
-
-      <div class="meta">
-        <span><strong>Veröffentlicht:</strong> ${today}</span>
-        <span><strong>Datenstand:</strong> ${DATA_LABEL}</span>
-        <span><strong>Stadtteile erfasst:</strong> ${all.length}</span>
-        <span><strong>Bezirke:</strong> ${bezirke.length}</span>
-        <span><strong>Autor:</strong> Roman Becker (IHK-zertifiziert)</span>
+    <section class="article-hero">
+      <div class="container">
+        <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln</div>
+        <h1>Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen</h1>
+        <p>Durchschnittliche Kaufpreise für Eigentumswohnungen und Häuser in ${all.length} Kölner Stadtteilen, vollständig aus dem Grundstücksmarktbericht der Stadt Köln übernommen.</p>
       </div>
+    </section>
 
-      <h2>Auf einen Blick</h2>
-      <div class="top-grid">
-        <div class="top-card">
-          <h3>Top 5 teuerste Lagen (€/m² ETW)</h3>
-          <ol>
-${top5Teuer.map((x, i) => `            <li><strong>${i + 1}. Köln-${x.n}</strong> <span class="muted">(${x.bn})</span> — ~${x.e} €/m²</li>`).join('\n')}
-          </ol>
-        </div>
-        <div class="top-card">
-          <h3>Top 5 günstigste Lagen (€/m² ETW)</h3>
-          <ol>
-${top5Guenstig.map((x, i) => `            <li><strong>${i + 1}. Köln-${x.n}</strong> <span class="muted">(${x.bn})</span> — ~${x.e} €/m²</li>`).join('\n')}
-          </ol>
-        </div>
-        <div class="top-card">
-          <h3>Top 5 teuerste Hauslagen (€/m² Reihenmittelhaus)</h3>
-          <ol>
-${top5Haus.map((x, i) => `            <li><strong>${i + 1}. Köln-${x.n}</strong> <span class="muted">(${x.bn})</span> — ~${x.rmh} €/m²</li>`).join('\n')}
-          </ol>
-        </div>
-      </div>
+    <section class="section">
+      <div class="container">
+        <div class="article-content">
 
-      <h2>Bezirks-Übersicht</h2>
-      <p>Durchschnitt der Stadtteilwerte je Stadtbezirk, gebildet aus den Eigentumswohnungs-Preisen des Grundstücksmarktberichts. Ein ungewichteter Mittelwert über die Stadtteile, keine Auswertung des Gutachterausschusses auf Bezirksebene.</p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Bezirk</th>
-              <th class="num">Stadtteile mit Wert</th>
-              <th class="num">Ø Kaufpreis ETW</th>
-            </tr>
-          </thead>
-          <tbody>
+          <h2>Auf einen Blick</h2>
+          <p><strong>Die fünf teuersten Lagen für Eigentumswohnungen</strong></p>
+          <ol>
+${top5Teuer.map(x => `            <li><a href="/stadtteile/${x.s}.html">Köln-${x.n}</a> (${x.bn}) — rund ${x.e} €/m²</li>`).join('\n')}
+          </ol>
+          <p><strong>Die fünf günstigsten Lagen für Eigentumswohnungen</strong></p>
+          <ol>
+${top5Guenstig.map(x => `            <li><a href="/stadtteile/${x.s}.html">Köln-${x.n}</a> (${x.bn}) — rund ${x.e} €/m²</li>`).join('\n')}
+          </ol>
+          <p><strong>Die fünf teuersten Lagen für Reihenmittelhäuser</strong></p>
+          <ol>
+${top5Haus.map(x => `            <li><a href="/stadtteile/${x.s}.html">Köln-${x.n}</a> (${x.bn}) — rund ${x.rmh} €/m²</li>`).join('\n')}
+          </ol>
+
+          <div class="highlight-box">
+            <p><strong>Woher die Zahlen stammen:</strong> Alle Werte auf dieser Seite sind dem ${QUELLE} entnommen. Eine Veränderungsrate gegenüber dem Vorjahr enthält der Bericht auf Stadtteilebene nicht — die Quartalsberichte des Gutachterausschusses gelten jeweils für einen ganzen Stadtbezirk.</p>
+          </div>
+
+          <h2>Übersicht nach Stadtbezirk</h2>
+          <p>Der Durchschnitt je Bezirk, gebildet aus den Stadtteilen mit ausgewiesenem Wohnungspreis.</p>
+          <div class="table-scroll">
+          <table class="cost-table">
+            <thead><tr><th>Bezirk</th><th>Stadtteile</th><th>Ø Kaufpreis ETW</th></tr></thead>
+            <tbody>
 ${bezirkRows}
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+          </div>
 
-      <h2>Vollständige Stadtteil-Tabelle</h2>
-      <p>Alle Stadtteile, für die der Grundstücksmarktbericht 2026 Werte ausweist. Ein Strich bedeutet: für diesen Stadtteil und diese Objektart enthält der Bericht keine Auswertung. Klick auf den Stadtteilnamen führt zur Detailseite mit der jeweiligen Quellenangabe.</p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Stadtteil</th>
-              <th>Bezirk</th>
-              <th class="num">Eigentumswohnung</th>
-              <th class="num">Reihenmittelhaus</th>
-              <th class="num">Doppelhaushälfte</th>
-              <th class="num">Haus freistehend</th>
-            </tr>
-          </thead>
-          <tbody>
+          <h2>Alle Stadtteile im Detail</h2>
+          <p>Kaufpreise pro Quadratmeter. Ein Klick auf den Stadtteil führt zur Detailseite mit Markt- und Lageportrait.</p>
+          <div class="table-scroll">
+          <table class="cost-table">
+            <thead><tr><th>Stadtteil</th><th>Bezirk</th><th>ETW</th><th>Reihenmittelhaus</th><th>Doppelhaushälfte</th><th>freistehend</th></tr></thead>
+            <tbody>
 ${tableRows}
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+          </div>
 
-      <div class="method">
-        <strong>Methodik & Quelle:</strong> Sämtliche Preise stammen aus dem ${QUELLE}, herausgegeben vom Gutachterausschuss für Grundstückswerte in der Stadt Köln. Es sind die dort ausgewiesenen Durchschnittswerte für das Berichtsjahr 2025. Eigene Schätzungen, Portalauswertungen oder interne Verkaufsdaten fließen nicht ein. Wo der Bericht für einen Stadtteil und eine Objektart keine Auswertung enthält, steht ein Strich — es wird nichts hochgerechnet. Eine Veränderungsrate gegenüber dem Vorjahr enthält der Bericht auf Stadtteilebene nicht; die Quartalsberichte des Gutachterausschusses gelten jeweils für einen ganzen Stadtbezirk. Die tatsächlichen Verkaufspreise einzelner Objekte können erheblich abweichen — abhängig von Lage, Baujahr, Zustand, Ausstattung, Energieeffizienz und aktueller Marktsituation. Für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.
-      </div>
+          <h2>Methodik und Datenquelle</h2>
+          <p>Grundlage ist der ${QUELLE}. Eigentumswohnungen stammen aus Kapitel 6.1 (Weiterverkauf), Häuser aus Kapitel 5.1.2, jeweils als Durchschnitt je Stadtteil. Ein Strich bedeutet, dass der Bericht für diesen Stadtteil und diesen Objekttyp keine Auswertung enthält — meist wegen zu weniger Kauffälle.</p>
+          <p>Die Werte sind Durchschnitte. Der Preis einer einzelnen Immobilie weicht davon je nach Lage, Baujahr, Zustand, Ausstattung und Energieeffizienz erheblich ab. Für eine Einschätzung Ihrer Immobilie sprechen Sie mich an.</p>
 
+        </div>
+      </div>
+    </section>
+
+<section class="section section--gray">
+    <div class="container">
       <div class="cta-box">
-        <h2>Was ist Ihre Immobilie wert?</h2>
-        <p>Kostenlose, persönliche Marktwert-Analyse für Ihre Immobilie in Köln — IHK-zertifiziert, diskret, ohne Verpflichtung.</p>
-        <a href="https://romanbecker.de/immobilienbewertung.html" class="cta-btn" title="Kostenlose Immobilienbewertung in Köln durch Roman Becker">Kostenlose Immobilienbewertung anfordern</a>
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Fragen zu Ihrer Dom-Stadt Immobilie?</h2>
+        <p>Ich berate Sie persönlich, unverbindlich und diskret. Als IHK-zertifizierter Immobilienmakler in Köln stehe ich für marktgerechte Bewertung und professionelle Vermarktung.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
       </div>
     </div>
+  </section>
   </main>
 
-  <footer>
+<section class="section">
     <div class="container">
-      <p>© 2026 Roman Becker Immobilien · <a href="https://romanbecker.de/">Startseite</a> · <a href="https://romanbecker.de/impressum.html">Impressum</a> · <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a></p>
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/ratgeber/mietspiegel.html">Mietspiegel</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/wohnflaechenberechnung.html">Wohnflächenberechnung</a>
+          <a href="https://romanbecker.de/ratgeber/restnutzungsdauer.html">Restnutzungsdauer</a>
+          <a href="https://romanbecker.de/ratgeber/kaufnebenkosten.html">Kaufnebenkosten</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler für Köln &amp; das Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
     </div>
   </footer>
-</body>
-</html>
-`;
 
-// Stelle sicher dass marktanalyse/ existiert
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>`;
+
+// Die Uebersichtsseite /marktanalyse/ wurde am 14.08.2026 entfernt und per 301
+// auf den Ratgeber-Artikel umgebogen. Das zugehoerige Template ist am 21.08.2026
+// geloescht worden - es wurde seither nicht mehr geschrieben und referenzierte
+// Variablen, die es nicht mehr gibt.
+
+// === Bericht schreiben ===
 const outDir = join(ROOT, 'ratgeber');
 if (!existsSync(outDir)) mkdirSync(outDir, {recursive: true});
-
 const outPath = join(outDir, FILE_SLUG + '.html');
 writeFileSync(outPath, html);
-console.log(`✓ Generated ${outPath}`);
-console.log(`  Quartal: ${REPORT_LABEL} (Datenstand ${DATA_LABEL})`);
+console.log(`\u2713 Generated ${outPath}`);
 console.log(`  Stadtteile: ${all.length}`);
-console.log(`  Bezirke: ${bezirke.length}`);
-console.log(`  Top teuerster: Köln-${top5Teuer[0].n} (~${top5Teuer[0].e} €/m²)`);
-console.log(`  Top günstigster: Köln-${top5Guenstig[0].n} (~${top5Guenstig[0].e} €/m²)`);
-console.log(`  Teuerste Hauslage: Köln-${top5Haus[0].n} (~${top5Haus[0].rmh} €/m² RMH)`);
-
-// === Index-Seite mit chronologischer Liste aller Berichte generieren ===
-const reportFiles = readdirSync(outDir)
-  .filter(f => /^koeln-q\d-\d{4}\.html$/.test(f))
-  .map(f => {
-    const m = f.match(/^koeln-q(\d)-(\d{4})\.html$/);
-    return {file: f, q: parseInt(m[1]), y: parseInt(m[2])};
-  })
-  .sort((a, b) => b.y - a.y || b.q - a.q);
-
-const reportListItems = reportFiles.map(r => {
-  const isCurrent = r.file === FILE_SLUG + '.html';
-  return `        <li><a href="${r.file}">Immobilienmarkt Köln Q${r.q}/${r.y}${isCurrent ? ' <strong>(aktuell)</strong>' : ''}</a></li>`;
-}).join('\n');
-
-const indexHtml = `<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Analytics (nur nach Einwilligung) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      wait_for_update: 500
-    });
-    function loadAnalytics() {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
-      document.head.appendChild(s);
-      gtag('js', new Date());
-      gtag('consent', 'update', { analytics_storage: 'granted' });
-      gtag('config', 'G-HQXZQF4ZBN');
-    }
-    if (localStorage.getItem('cookie_consent') === 'granted') {
-      loadAnalytics();
-    }
-  </script>
-  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
-  <script>
-    (function() {
-      function track(name, params) {
-        if (typeof gtag === 'function') gtag('event', name, params || {});
-      }
-      document.addEventListener('click', function(e) {
-        var a = e.target.closest && e.target.closest('a');
-        if (!a) return;
-        var href = a.getAttribute('href') || '';
-        if (href.indexOf('tel:') === 0) {
-          track('click_phone', { phone_number: href.replace('tel:', '') });
-        } else if (href.indexOf('mailto:') === 0) {
-          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
-        } else if (/wa\\.me|api\\.whatsapp\\.com|chat\\.whatsapp\\.com/.test(href)) {
-          track('click_whatsapp');
-        }
-      }, true);
-      document.addEventListener('submit', function(e) {
-        var f = e.target;
-        if (!f || f.nodeName !== 'FORM') return;
-        track('generate_lead', {
-          form_id: f.id || 'unknown',
-          form_destination: f.action || '',
-          page_path: location.pathname
-        });
-      }, true);
-    })();
-  </script>
-
-  <title>Marktanalyse Köln — Quartalsweise Immobilien-Marktberichte | Roman Becker</title>
-  <meta name="description" content="Roman Becker - EVERNEST | Quartalsweise aktualisierte Marktberichte über den Kölner Immobilienmarkt — alle Stadtteile, Kaufpreise, Mietpreise und Trends.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://romanbecker.de/marktanalyse/">
-  <meta property="og:title" content="Marktanalyse Köln — Quartalsweise Immobilien-Marktberichte | Roman Becker">
-  <meta property="og:description" content="Quartalsweise aktualisierte Marktberichte über den Kölner Immobilienmarkt.">
-  <meta property="og:url" content="https://romanbecker.de/marktanalyse/">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #fff; line-height: 1.7; }
-    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
-    .site-header { background: #111; padding: 1rem 0; }
-    .site-header a { color: #fff; text-decoration: none; }
-    .site-header__inner { display: flex; justify-content: space-between; align-items: center; }
-    .site-header__logo { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; }
-    .site-header__nav a { font-size: 0.9rem; margin-left: 1.5rem; color: #fff; }
-    main { padding: 3rem 0 4rem; }
-    h1 { font-family: 'Inter', sans-serif; font-size: 2.4rem; line-height: 1.2; margin-bottom: 1rem; color: #111; }
-    .lead { font-size: 1.125rem; color: #374151; margin-bottom: 2rem; }
-    h2 { font-family: 'Inter', sans-serif; font-size: 1.5rem; margin: 2.5rem 0 1rem; color: #111; }
-    p { margin-bottom: 1rem; color: #374151; }
-    ul { list-style: none; padding: 0; }
-    ul li { padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb; font-size: 1.05rem; }
-    ul li a { color: #111; text-decoration: none; border-bottom: 1px dotted #e5e7eb; }
-    ul li a:hover { color: #c2a990; border-bottom-color: #c2a990; }
-    footer { padding: 2rem 0; background: #111; color: rgba(255,255,255,0.6); font-size: 0.85rem; text-align: center; }
-    footer a { color: #c2a990; }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <div class="site-header__inner">
-        <a href="https://romanbecker.de/" class="site-header__logo">Roman Becker - EVERNEST</a>
-        <nav>
-          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
-          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
-          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-  <main>
-    <div class="container">
-      <h1>Marktanalyse Köln — Immobilien-Marktberichte</h1>
-      <p class="lead">Quartalsweise aktualisierte Markt-Übersichten zum Kölner Immobilienmarkt mit Kaufpreisen, Mietpreisen und Trends in allen Stadtteilen. Erstellt von Roman Becker (EVERNEST), IHK-zertifizierter Immobilienmakler in Köln.</p>
-      <h2>Aktuelle und vergangene Berichte</h2>
-      <ul>
-${reportListItems}
-      </ul>
-      <p style="margin-top:2rem;font-size:0.9rem;color:#6b7280;">Die Berichte werden quartalsweise auf Basis öffentlicher Marktdaten, interner Verkaufsdaten und Stadtteil-Beobachtungen aktualisiert.</p>
-    </div>
-  </main>
-  <footer>
-    <div class="container">
-      <p>© ${REPORT_Y} Roman Becker - EVERNEST · <a href="https://romanbecker.de/">Startseite</a> · <a href="https://romanbecker.de/impressum.html">Impressum</a></p>
-    </div>
-  </footer>
-</body>
-</html>
-`;
-
-// Uebersichtsseite /marktanalyse/ wurde bewusst entfernt (Inhalt steckt im
-// Ratgeber-Artikel grundstuecksmarktbericht-koeln.html). Nicht neu anlegen -
-// sonst kommt sie beim naechsten Quartalslauf zurueck.
-// writeFileSync(join(outDir, 'index.html'), indexHtml);
 
 // === Sitemap automatisch ergänzen falls neuer Bericht ===
 const sitemapPath = join(ROOT, 'sitemap.xml');
