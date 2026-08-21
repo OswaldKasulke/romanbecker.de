@@ -630,7 +630,7 @@ margin-bottom: var(--space-6);
 }
 .hero__subline {
 font-size: 1rem;
-color: rgba(255,255,255,0.8);
+color: var(--gold);
 margin-bottom: var(--space-8);
 display: flex;
 flex-wrap: wrap;
@@ -639,8 +639,14 @@ align-items: center;
 }
 .hero__subline .pipe {
 color: var(--gold);
-opacity: 0.6;
+opacity: 0.45;
 }
+.hero__subline a {
+color: inherit;
+text-decoration-color: rgba(194,169,144,0.5);
+text-underline-offset: 2px;
+}
+.hero__subline a:hover { text-decoration-color: currentColor; }
 .hero__ctas {
 display: flex;
 flex-wrap: wrap;
