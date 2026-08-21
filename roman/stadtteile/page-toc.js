@@ -20,13 +20,10 @@
      shared.css funktioniert. Fallback-Werte fangen fehlende Variablen ab. */
   var CSS = '' +
     '.toc-target{scroll-margin-top:84px}' +
-    /* Knopf oben rechts an der Fensterkante, dicht unter dem Header. Er wird
-       erst eingeblendet, wenn der Hero durchgescrollt ist (siehe spy()) --
-       sonst laege er auf Portrait und Ueberschrift. */
-    '.page-toc{position:fixed;z-index:90;top:118px;right:1rem;'+
-      'opacity:0;visibility:hidden;transform:translateY(-6px);'+
-      'transition:opacity .2s,visibility .2s,transform .2s}' +
-    '.page-toc.is-visible{opacity:1;visibility:visible;transform:none}' +
+    /* Knopf oben rechts an der Fensterkante, dicht unter dem Header. Er ist
+       vom ersten Moment an sichtbar, damit das Inhaltsverzeichnis auch im
+       Hero direkt erreichbar ist. */
+    '.page-toc{position:fixed;z-index:90;top:118px;right:1rem}' +
     '.page-toc__heading{display:none}' +
     '.page-toc__toggle{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;' +
       'background:var(--navy,#0c3f2d);color:#fff;border:2px solid #fff;border-radius:var(--radius,8px);' +
@@ -250,28 +247,12 @@
       }
     });
 
-    /* Der Knopf ist fixiert, der Hero scrollt darunter durch -- dabei lag er
-       auf dem Portrait bzw. der Ueberschrift. Statt an Pixelwerten zu drehen:
-       erst einblenden, wenn der Hero durchgelaufen ist. Vorher ist ein
-       Inhaltsverzeichnis ohnehin nutzlos, man steht ja am Seitenanfang. */
-    var heroEl = document.querySelector('.hero, .article-hero, .st-index-hero');
-    function heroBottom() {
-      return heroEl ? heroEl.offsetTop + heroEl.offsetHeight - 100 : 0;
-    }
-
     function spy() {
       var pos = window.pageYOffset + 120, idx = 0;
       for (var i = 0; i < items.length; i++) {
         if (items[i].el.offsetTop <= pos) idx = i;
       }
       links.forEach(function (a, i) { a.classList.toggle('is-active', i === idx); });
-
-      var show = window.pageYOffset > heroBottom();
-      nav.classList.toggle('is-visible', show);
-      if (!show) {
-        nav.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
     }
     window.addEventListener('scroll', spy, { passive: true });
     window.addEventListener('resize', spy);
