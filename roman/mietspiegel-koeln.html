@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+    })();
+  </script>
+
+
+  <title>Mietspiegel Köln 2025 – alle Werte nach Baujahr, Größe und Wohnlage</title>
+  <meta name="description" content="Kölner Mietspiegel 2025: alle Werte nach Baujahr, Wohnungsgröße, Wohnlage und Ausstattung – 4,20–17,90 €/m² nettokalt. Amtliche Vergleichsmiete, kostenlos und vollständig.">
+  <link rel="canonical" href="https://romanbecker.de/mietspiegel-koeln.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mietspiegel Köln 2025 – alle Werte im Überblick | Roman Becker">
+  <meta property="og:description" content="Die vollständige Mietspiegel-Tabelle für Köln: nach Baujahr, Wohnungsgröße, Wohnlage und Ausstattung – plus die Wahrheit über Bestand und Neuvermietung.">
+  <meta property="og:url" content="https://romanbecker.de/mietspiegel-koeln.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://romanbecker.de/roman-portrait.jpg">
+  <meta property="og:locale" content="de_DE">
+
+  <link rel="stylesheet" href="stadtteile/shared.css">
+  <style>
+    .ms-gruppe{font-size:1.0625rem;font-weight:700;color:var(--text,#000);margin:2.25rem 0 .35rem;}
+    .ms-gruppe:first-of-type{margin-top:.5rem;}
+    .brw-tab td.ms-leer{color:var(--gray-400,#9ca3af);}
+    .ms-key{display:grid;gap:.6rem;margin:1.25rem 0 0;padding:0;list-style:none;}
+    .ms-key li{font-size:.9rem;color:var(--gray-600);line-height:1.6;}
+    .ms-key strong{color:var(--text,#000);}
+    .ms-warn{margin:1.5rem 0 0;padding:var(--space-6,1.5rem);background:#fff8e6;
+      border:1px solid #f0dca8;border-left:3px solid var(--gold,#c9a227);}
+    .ms-warn p{font-size:.95rem;line-height:1.7;color:var(--gray-600);margin:0 0 .7rem;}
+    .ms-warn p:last-child{margin-bottom:0;}
+    .ms-warn strong{color:var(--text,#000);}
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type":"Question","name":"Bildet der Mietspiegel Neuvermietungsmieten ab?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Kölner Mietspiegel weist die ortsübliche Vergleichsmiete nach § 558c BGB aus – also die Mieten bestehender Mietverhältnisse. Mieten bei Neuvermietung liegen in der Regel darüber und werden im Mietspiegel nicht erhoben. Wer eine Wohnung neu vermietet, findet dort die rechtliche Obergrenze für Mieterhöhungen, nicht den am Markt erzielbaren Angebotspreis."}},
+          {"@type":"Question","name":"Gibt es Mietspiegel-Werte für einzelne Kölner Stadtteile?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Mietspiegel gliedert nach Baualtersgruppe, Wohnungsgröße, Wohnlage und Ausstattung – nicht nach Stadtteilen. Die Wohnlage wird über Merkmale des Objekts und seines Umfelds bestimmt (Lärm- und Geruchsbelastung, Bebauungsdichte, Grün, Durchgangsverkehr), nicht über die Adresse. Ein Straßen- oder Stadtteilverzeichnis enthält er nicht. Zwei Wohnungen im selben Stadtteil können deshalb in unterschiedlichen Wohnlagen liegen."}},
+          {"@type":"Question","name":"Was ist die Nettokaltmiete?","acceptedAnswer":{"@type":"Answer","text":"Die reine Miete für die Wohnfläche, ohne Betriebs- und Heizkosten. Betriebskosten wie Grundsteuer, Müllabfuhr, Hauswart, Wasser, Aufzug oder Gebäudeversicherung können daneben gesondert erhoben werden, wenn der Mietvertrag das vorsieht. Sind sie in den Mietpreis eingerechnet, müssen sie für den Vergleich mit dem Mietspiegel zunächst herausgerechnet werden."}},
+          {"@type":"Question","name":"Gilt der Mietspiegel auch für Einfamilienhäuser?","acceptedAnswer":{"@type":"Answer","text":"Nein. Einfamilienhäuser und Kleinappartements sind ausdrücklich nicht erfasst. Der Mietspiegel gilt für frei finanzierte Wohnungen im Stadtgebiet Köln."}},
+          {"@type":"Question","name":"Was bedeuten die Ausstattungsstufen 1, 2 und 3?","acceptedAnswer":{"@type":"Answer","text":"Stufe 1 steht für Wohnungen ohne Heizung, Stufe 2 für Wohnungen mit Heizung sowie Bad/WC, Stufe 3 für Wohnungen mit besonderer Ausstattung – etwa Zweitbad, separates WC, Einbauküche, Einbauschränke gehobener Qualität oder großer Balkon, Terrasse oder Garten. Für Stufe 3 müssen mehrere dieser Merkmale zusammenkommen. Bei Gebäuden ab Baujahr 2018 entfällt die Unterscheidung, weil dort durchgehend ein hoher Standard vorliegt."}},
+          {"@type":"Question","name":"Wie hoch sind die Mieten in Köln laut Mietspiegel?","acceptedAnswer":{"@type":"Answer","text":"Über alle Baualtersgruppen, Wohnungsgrößen, Wohnlagen und Ausstattungsstufen reichen die Werte von 4,20 bis 17,90 €/m² nettokalt. Den höchsten Wert erreichen kleine Neubauwohnungen ab Baujahr 2018 in sehr guter Wohnlage, den niedrigsten große Altbauwohnungen ohne Heizung in einfacher Lage."}},
+          {"@type":"Question","name":"Was kostet der Mietspiegel und wo bekomme ich ihn?","acceptedAnswer":{"@type":"Answer","text":"Der Kölner Mietspiegel ist kostenlos. Herausgeber ist die Rheinische Immobilienbörse e.V., erstellt unter Mitarbeit der Stadt Köln (Amt für Wohnungswesen), des Mietervereins Köln, der Haus- und Grundbesitzervereine, der Kölner Wohnungsunternehmen und der Geschäftsstelle des Gutachterausschusses für Grundstückswerte. Er erscheint alle zwei Jahre; die aktuelle Ausgabe hat den Stand April 2025."}}
+        ]
+      },
+      {
+        "@type": "Dataset",
+        "name": "Kölner Mietspiegel April 2025",
+        "description": "Ortsübliche Vergleichsmieten für frei finanzierte Wohnungen im Stadtgebiet Köln, gegliedert nach Baualtersgruppe, Wohnungsgröße, Wohnlage und Ausstattung. Nettokaltmiete je m² Wohnfläche.",
+        "creator": {"@type": "Organization", "name": "Rheinische Immobilienbörse e.V."},
+        "spatialCoverage": {"@type": "Place", "name": "Köln"},
+        "temporalCoverage": "2025-04",
+        "license": "https://www.rheinische-immobilienboerse.de/",
+        "url": "https://romanbecker.de/mietspiegel-koeln.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/#prozess">Verkaufsprozess</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero__badge">Amtliche Datengrundlage · Stand April 2025</div>
+      <h1>Mietspiegel Köln 2025 – alle Werte auf einen Blick</h1>
+      <p class="hero__subtitle">
+        Die vollständige Tabelle des Kölner Mietspiegels: 4,20 bis 17,90 €/m² nettokalt,
+        gegliedert nach Baujahr, Wohnungsgröße, Wohnlage und Ausstattung. Dazu der Punkt, an dem
+        die meisten Mietübersichten im Netz falsch liegen – der Unterschied zwischen Bestandsmiete
+        und Neuvermietung.
+      </p>
+      <div class="hero__buttons">
+        <a href="/immobilienbewertung.html" class="btn btn--primary">Immobilie bewerten lassen</a>
+        <a href="#tabellen" class="btn btn--outline">Direkt zu den Tabellen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Was der Kölner Mietspiegel ist</h2>
+      <p class="text-muted mb-8 max-w-prose">
+        Der „Mietspiegel für frei finanzierte Wohnungen“ ist die Richtlinie zur Ermittlung der
+        ortsüblichen Vergleichsmiete nach § 558c BGB. Herausgeber ist die Rheinische Immobilienbörse e.V.,
+        erstellt unter Mitarbeit der Stadt Köln, des Mietervereins, der Haus- und Grundbesitzervereine
+        und der Geschäftsstelle des Gutachterausschusses für Grundstückswerte. Er erscheint alle zwei Jahre.
+      </p>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Nettokaltmiete</h3>
+          <p>Alle Werte sind reine Mieten je m² Wohnfläche. Betriebs- und Heizkosten kommen gesondert dazu, wenn der Mietvertrag das vorsieht.</p>
+        </div>
+        <div class="info-card">
+          <h3>Bestand, nicht Neuvermietung</h3>
+          <p>Abgebildet wird die ortsübliche Vergleichsmiete laufender Mietverhältnisse. Neuvermietungsmieten liegen darüber und sind hier nicht erfasst.</p>
+        </div>
+        <div class="info-card">
+          <h3>Keine Stadtteile</h3>
+          <p>Die Gliederung erfolgt nach Wohnlage, nicht nach Adresse. Ein Straßen- oder Stadtteilverzeichnis enthält der Mietspiegel nicht.</p>
+        </div>
+        <div class="info-card">
+          <h3>Nur Wohnungen</h3>
+          <p>Einfamilienhäuser und Kleinappartements sind ausdrücklich nicht erfasst. Es geht um frei finanzierte Wohnungen im Stadtgebiet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="container">
+      <h2>Bestandsmiete oder Neuvermietung – der wichtigste Unterschied</h2>
+      <p class="text-muted mb-8 max-w-prose">
+        Viele Mietübersichten im Netz nennen Zahlen „bei Neuvermietung“ und berufen sich dabei auf
+        den Mietspiegel. Das geht nicht zusammen: Der Mietspiegel erhebt Neuvermietungsmieten gar nicht.
+      </p>
+      <div class="ms-warn">
+        <p><strong>Was im Mietspiegel steht:</strong> die ortsübliche Vergleichsmiete nach § 558c BGB –
+        also das, was in bestehenden Mietverhältnissen für vergleichbare Wohnungen tatsächlich gezahlt wird.
+        Das ist die rechtliche Bezugsgröße für Mieterhöhungen im laufenden Vertrag.</p>
+        <p><strong>Was nicht darin steht:</strong> die Miete, die eine Wohnung heute bei einer Neuvermietung
+        am Markt erzielt. Diese Angebotsmieten liegen regelmäßig über der ortsüblichen Vergleichsmiete,
+        weil Bestandsverträge über Jahre hinter der Marktentwicklung zurückbleiben. Eine amtliche Quelle
+        für Neuvermietungsmieten in Köln gibt es nicht.</p>
+        <p><strong>Praktisch heißt das:</strong> Wer eine Kapitalanlage rechnet, darf die Mietspiegel-Werte
+        nicht als erzielbare Miete ansetzen. Und wer eine Mieterhöhung prüft, darf umgekehrt nicht mit
+        Angebotsmieten aus Immobilienportalen argumentieren.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tabellen">
+    <div class="container">
+      <h2>Die Mietspiegel-Tabellen</h2>
+      <p class="text-muted mb-8 max-w-prose">
+        Alle Werte in €/m² Wohnfläche, nettokalt. Die Spannen geben den Schwerpunkt des Marktes wieder –
+        höhere und niedrigere Mieten sind damit nicht ausgeschlossen. Ein „–“ bedeutet, dass für diese
+        Kombination kein ausreichendes Datenmaterial vorlag.
+      </p>
+
+<h3 class="ms-gruppe">Gruppe 1 · Baujahr bis 1960</h3>
+<div class="brw-wrap"><table class="brw-tab">
+<thead><tr><th>Wohnfläche</th><th>Ausst.</th><th>einfache Lage</th><th>mittlere Lage</th><th>sehr gute Lage</th></tr></thead>
+<tbody>
+<tr><td>30 – 49,9 m²</td><td>1</td><td>4,70 – 7,20</td><td>5,00 – 7,40</td><td class="ms-leer">–</td></tr>
+<tr><td>30 – 49,9 m²</td><td>2</td><td>6,80 – 8,70</td><td>7,50 – 9,60</td><td>8,00 – 10,10</td></tr>
+<tr><td>50 – 69,9 m²</td><td>1</td><td>4,60 – 7,20</td><td>5,10 – 7,40</td><td class="ms-leer">–</td></tr>
+<tr><td>50 – 69,9 m²</td><td>2</td><td>6,40 – 9,30</td><td>7,00 – 10,00</td><td>7,60 – 10,60</td></tr>
+<tr><td>70 – 89,9 m²</td><td>1</td><td>4,40 – 7,10</td><td>5,00 – 7,40</td><td class="ms-leer">–</td></tr>
+<tr><td>70 – 89,9 m²</td><td>2</td><td>6,00 – 9,10</td><td>6,50 – 9,50</td><td>7,10 – 10,00</td></tr>
+<tr><td>90 – 109,9 m²</td><td>1</td><td>4,20 – 5,70</td><td>4,70 – 6,20</td><td class="ms-leer">–</td></tr>
+<tr><td>90 – 109,9 m²</td><td>2</td><td>5,50 – 8,40</td><td>6,00 – 9,00</td><td>6,60 – 9,20</td></tr>
+<tr><td>110 – 140 m²</td><td>1</td><td>4,20 – 5,50</td><td>4,40 – 5,80</td><td class="ms-leer">–</td></tr>
+<tr><td>110 – 140 m²</td><td>2</td><td>5,20 – 7,80</td><td>5,90 – 8,80</td><td>6,30 – 9,20</td></tr>
+</tbody></table></div>
+
+<h3 class="ms-gruppe">Gruppe 2 · Baujahr 1961–1975</h3>
+<div class="brw-wrap"><table class="brw-tab">
+<thead><tr><th>Wohnfläche</th><th>Ausst.</th><th>einfache Lage</th><th>mittlere Lage</th><th>sehr gute Lage</th></tr></thead>
+<tbody>
+<tr><td>30 – 49,9 m²</td><td>2</td><td>7,30 – 10,10</td><td>7,50 – 10,60</td><td>7,90 – 11,20</td></tr>
+<tr><td>30 – 49,9 m²</td><td>3</td><td>7,70 – 10,40</td><td>7,80 – 10,90</td><td>8,40 – 11,60</td></tr>
+<tr><td>50 – 69,9 m²</td><td>2</td><td>6,90 – 9,50</td><td>7,10 – 9,90</td><td>7,80 – 10,30</td></tr>
+<tr><td>50 – 69,9 m²</td><td>3</td><td>7,20 – 9,90</td><td>7,30 – 10,10</td><td>8,10 – 10,70</td></tr>
+<tr><td>70 – 89,9 m²</td><td>2</td><td>7,30 – 9,40</td><td>7,00 – 9,80</td><td>7,40 – 10,30</td></tr>
+<tr><td>70 – 89,9 m²</td><td>3</td><td>7,60 – 10,10</td><td>7,30 – 10,30</td><td>8,00 – 10,90</td></tr>
+<tr><td>90 – 109,9 m²</td><td>2</td><td>7,00 – 9,50</td><td>6,90 – 9,50</td><td>7,30 – 9,90</td></tr>
+<tr><td>90 – 109,9 m²</td><td>3</td><td>7,20 – 9,80</td><td>6,90 – 10,00</td><td>7,80 – 10,60</td></tr>
+<tr><td>110 – 140 m²</td><td>2</td><td>7,60 – 9,80</td><td>7,70 – 9,70</td><td>8,30 – 10,10</td></tr>
+<tr><td>110 – 140 m²</td><td>3</td><td class="ms-leer">–</td><td>8,00 – 10,10</td><td>8,60 – 10,90</td></tr>
+</tbody></table></div>
+
+<h3 class="ms-gruppe">Gruppe 3 · Baujahr 1976–1989</h3>
+<div class="brw-wrap"><table class="brw-tab">
+<thead><tr><th>Wohnfläche</th><th>Ausst.</th><th>einfache Lage</th><th>mittlere Lage</th><th>sehr gute Lage</th></tr></thead>
+<tbody>
+<tr><td>30 – 49,9 m²</td><td>2</td><td class="ms-leer">–</td><td>7,60 – 10,70</td><td>8,90 – 11,60</td></tr>
+<tr><td>30 – 49,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,00 – 11,70</td><td>10,30 – 13,00</td></tr>
+<tr><td>50 – 69,9 m²</td><td>2</td><td class="ms-leer">–</td><td>7,60 – 10,40</td><td>8,50 – 11,30</td></tr>
+<tr><td>50 – 69,9 m²</td><td>3</td><td class="ms-leer">–</td><td>8,80 – 11,80</td><td>9,90 – 13,10</td></tr>
+<tr><td>70 – 89,9 m²</td><td>2</td><td class="ms-leer">–</td><td>7,40 – 10,00</td><td>8,30 – 10,70</td></tr>
+<tr><td>70 – 89,9 m²</td><td>3</td><td class="ms-leer">–</td><td>8,30 – 10,70</td><td>9,40 – 11,90</td></tr>
+<tr><td>90 – 109,9 m²</td><td>2</td><td class="ms-leer">–</td><td>7,60 – 10,40</td><td>8,50 – 11,30</td></tr>
+<tr><td>90 – 109,9 m²</td><td>3</td><td class="ms-leer">–</td><td>8,50 – 11,20</td><td>9,50 – 12,20</td></tr>
+<tr><td>110 – 140 m²</td><td>2</td><td class="ms-leer">–</td><td>7,00 – 10,00</td><td>8,00 – 10,70</td></tr>
+<tr><td>110 – 140 m²</td><td>3</td><td class="ms-leer">–</td><td>7,60 – 10,70</td><td>8,70 – 11,70</td></tr>
+</tbody></table></div>
+
+<h3 class="ms-gruppe">Gruppe 4 · Baujahr 1990–2004</h3>
+<div class="brw-wrap"><table class="brw-tab">
+<thead><tr><th>Wohnfläche</th><th>Ausst.</th><th>einfache Lage</th><th>mittlere Lage</th><th>sehr gute Lage</th></tr></thead>
+<tbody>
+<tr><td>30 – 49,9 m²</td><td>2</td><td class="ms-leer">–</td><td>7,80 – 11,50</td><td>10,00 – 11,30</td></tr>
+<tr><td>30 – 49,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,90 – 12,70</td><td>11,20 – 13,60</td></tr>
+<tr><td>50 – 69,9 m²</td><td>2</td><td class="ms-leer">–</td><td>7,70 – 11,30</td><td>9,10 – 11,50</td></tr>
+<tr><td>50 – 69,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,60 – 12,20</td><td>10,50 – 13,10</td></tr>
+<tr><td>70 – 89,9 m²</td><td>2</td><td class="ms-leer">–</td><td>7,70 – 11,20</td><td>9,40 – 11,20</td></tr>
+<tr><td>70 – 89,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,50 – 12,20</td><td>9,80 – 12,30</td></tr>
+<tr><td>90 – 109,9 m²</td><td>2</td><td class="ms-leer">–</td><td>7,70 – 10,80</td><td>9,30 – 11,30</td></tr>
+<tr><td>90 – 109,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,00 – 11,80</td><td>9,50 – 12,00</td></tr>
+<tr><td>110 – 140 m²</td><td>2</td><td class="ms-leer">–</td><td>8,50 – 11,40</td><td>9,70 – 11,80</td></tr>
+<tr><td>110 – 140 m²</td><td>3</td><td class="ms-leer">–</td><td>9,60 – 12,30</td><td>10,40 – 13,10</td></tr>
+</tbody></table></div>
+
+<h3 class="ms-gruppe">Gruppe 5 · Baujahr 2005–2017</h3>
+<div class="brw-wrap"><table class="brw-tab">
+<thead><tr><th>Wohnfläche</th><th>Ausst.</th><th>einfache Lage</th><th>mittlere Lage</th><th>sehr gute Lage</th></tr></thead>
+<tbody>
+<tr><td>30 – 49,9 m²</td><td>2</td><td class="ms-leer">–</td><td>9,60 – 12,60</td><td>10,90 – 13,30</td></tr>
+<tr><td>30 – 49,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,70 – 12,80</td><td>11,00 – 14,00</td></tr>
+<tr><td>50 – 69,9 m²</td><td>2</td><td class="ms-leer">–</td><td>8,80 – 12,10</td><td>9,60 – 13,00</td></tr>
+<tr><td>50 – 69,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,40 – 12,20</td><td>10,50 – 13,30</td></tr>
+<tr><td>70 – 89,9 m²</td><td>2</td><td class="ms-leer">–</td><td>8,80 – 12,00</td><td>9,70 – 12,60</td></tr>
+<tr><td>70 – 89,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,60 – 12,10</td><td>10,30 – 12,80</td></tr>
+<tr><td>90 – 109,9 m²</td><td>2</td><td class="ms-leer">–</td><td>9,20 – 12,40</td><td>10,10 – 13,20</td></tr>
+<tr><td>90 – 109,9 m²</td><td>3</td><td class="ms-leer">–</td><td>9,90 – 12,50</td><td>10,80 – 13,10</td></tr>
+<tr><td>110 – 140 m²</td><td>2</td><td class="ms-leer">–</td><td>9,70 – 13,10</td><td>10,70 – 13,80</td></tr>
+<tr><td>110 – 140 m²</td><td>3</td><td class="ms-leer">–</td><td>10,70 – 13,70</td><td>11,50 – 14,50</td></tr>
+</tbody></table></div>
+
+<h3 class="ms-gruppe">Gruppe 6 · Baujahr ab 2018</h3>
+<div class="brw-wrap"><table class="brw-tab">
+<thead><tr><th>Wohnfläche</th><th>einfache Lage</th><th>mittlere Lage</th><th>sehr gute Lage</th></tr></thead>
+<tbody>
+<tr><td>30 – 49,9 m²</td><td class="ms-leer">–</td><td>9,80 – 16,70</td><td>11,10 – 17,90</td></tr>
+<tr><td>50 – 69,9 m²</td><td class="ms-leer">–</td><td>9,00 – 16,50</td><td>9,80 – 17,60</td></tr>
+<tr><td>70 – 89,9 m²</td><td class="ms-leer">–</td><td>9,00 – 16,30</td><td>9,90 – 17,20</td></tr>
+<tr><td>90 – 109,9 m²</td><td class="ms-leer">–</td><td>8,60 – 16,10</td><td>9,50 – 17,00</td></tr>
+<tr><td>110 – 140 m²</td><td class="ms-leer">–</td><td>8,40 – 15,90</td><td>9,40 – 16,90</td></tr>
+</tbody></table></div>
+
+      <ul class="ms-key">
+        <li><strong>Ausstattung 1</strong> – ohne Heizung</li>
+        <li><strong>Ausstattung 2</strong> – mit Heizung, Bad/WC</li>
+        <li><strong>Ausstattung 3</strong> – mit besonderer Ausstattung (z.&nbsp;B. Zweitbad, separates WC, Einbauküche, Einbauschränke gehobener Qualität, großer Balkon, Terrasse oder Garten – mehrere Merkmale müssen zusammenkommen)</li>
+        <li>Bei Gebäuden <strong>ab Baujahr 2018</strong> entfällt die Unterscheidung: Dort liegt in der Regel durchgehend ein sehr hoher Standard vor.</li>
+      </ul>
+
+      <p class="brw-quelle">
+        Quelle: Kölner Mietspiegel für frei finanzierte Wohnungen, Stadtgebiet Köln, Stand April 2025.
+        Herausgeber: Rheinische Immobilienbörse e.&nbsp;V. unter Mitarbeit von Stadt Köln (Amt für Wohnungswesen),
+        Mieterverein Köln e.&nbsp;V., Kölner Haus- und Grundbesitzerverein von 1888, Vereinigung von Haus-, Wohnungs-
+        und Grundeigentümern Köln e.&nbsp;V., köln ag, Geschäftsstelle des Gutachterausschusses für Grundstückswerte
+        in der Stadt Köln, IVD und Verband der Immobilienberater Region West e.&nbsp;V.
+        Die Wohnflächenberechnung folgt der Wohnflächenverordnung; Balkon- und Terrassenflächen werden in der Regel
+        zu einem Viertel angerechnet.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="container">
+      <h2>Wie die Wohnlage bestimmt wird</h2>
+      <p class="text-muted mb-8 max-w-prose">
+        Die Wohnlage ist die Stellschraube mit dem größten Einfluss auf den Wert – und sie hängt nicht
+        an der Adresse, sondern am Objekt und seinem unmittelbaren Umfeld.
+      </p>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Einfache Wohnlage</h3>
+          <p>Das Wohnen wird durch Geräusch- oder Geruchsbelästigung oder andere Kriterien kontinuierlich erheblich beeinträchtigt und der Wohnwert dadurch gemindert.</p>
+        </div>
+        <div class="info-card">
+          <h3>Mittlere Wohnlage</h3>
+          <p>Normale Lage ohne besondere Vor- und Nachteile, meist dicht bebaut, ohne dauerhafte Belastung durch Geräusch oder Geruch. Hier liegt die überwiegende Zahl der Kölner Wohnungen.</p>
+        </div>
+        <div class="info-card">
+          <h3>Gute und sehr gute Wohnlage</h3>
+          <p>Lockere Bebauung, Baumbestand an der Straße oder Garten, fehlender Durchgangsverkehr, gute Einkaufsmöglichkeiten und keine beeinträchtigenden Einrichtungen im Umfeld.</p>
+        </div>
+        <div class="info-card">
+          <h3>Modernisierung</h3>
+          <p>Umfassend modernisierte Wohnungen orientieren sich an Gruppe 3. Wurden alle Maßnahmen nach 1990 ausgeführt, rechtfertigt das eine Eingruppierung in Gruppe 4.</p>
+        </div>
+      </div>
+      <div class="ratgeber-hinweis">
+        <span class="ratgeber-hinweis__title">Warum es hier keine Miete je Stadtteil gibt</span>
+        <p>
+          Auf vielen Portalen finden Sie Mietangaben je Kölner Stadtteil. Amtlich belegbar sind sie nicht:
+          Der Mietspiegel differenziert nach Wohnlage, und zwei Wohnungen in derselben Straße können
+          unterschiedlichen Wohnlagen zugeordnet sein – etwa wenn die eine zur Hauptverkehrsachse und die
+          andere zum begrünten Innenhof liegt. Wir weisen deshalb auf den Stadtteilseiten Kaufpreise aus,
+          die der Gutachterausschuss tatsächlich je Stadtteil erhebt, und Mieten nur dort, wo der
+          Mietspiegel sie hergibt.
+        </p>
+        <p>
+          Für Kaufpreise je Stadtteil: <a class="link-gold" href="/stadtteile/">Immobilienpreise aller 86 Kölner Stadtteile</a>
+          und <a class="link-gold" href="/bodenrichtwert-koeln.html">Bodenrichtwerte Köln</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>FAQ: Mietspiegel Köln</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Bildet der Mietspiegel Neuvermietungsmieten ab?</summary>
+          <div class="faq-answer">Nein. Der Kölner Mietspiegel weist die ortsübliche Vergleichsmiete nach § 558c BGB aus – also die Mieten bestehender Mietverhältnisse. Mieten bei Neuvermietung liegen in der Regel darüber und werden im Mietspiegel nicht erhoben. Wer eine Wohnung neu vermietet, findet dort die rechtliche Obergrenze für Mieterhöhungen, nicht den am Markt erzielbaren Angebotspreis.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Gibt es Mietspiegel-Werte für einzelne Kölner Stadtteile?</summary>
+          <div class="faq-answer">Nein. Der Mietspiegel gliedert nach Baualtersgruppe, Wohnungsgröße, Wohnlage und Ausstattung – nicht nach Stadtteilen. Die Wohnlage wird über Merkmale des Objekts und seines Umfelds bestimmt (Lärm- und Geruchsbelastung, Bebauungsdichte, Grün, Durchgangsverkehr), nicht über die Adresse. Ein Straßen- oder Stadtteilverzeichnis enthält er nicht. Zwei Wohnungen im selben Stadtteil können deshalb in unterschiedlichen Wohnlagen liegen.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Was ist die Nettokaltmiete?</summary>
+          <div class="faq-answer">Die reine Miete für die Wohnfläche, ohne Betriebs- und Heizkosten. Betriebskosten wie Grundsteuer, Müllabfuhr, Hauswart, Wasser, Aufzug oder Gebäudeversicherung können daneben gesondert erhoben werden, wenn der Mietvertrag das vorsieht. Sind sie in den Mietpreis eingerechnet, müssen sie für den Vergleich mit dem Mietspiegel zunächst herausgerechnet werden.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Gilt der Mietspiegel auch für Einfamilienhäuser?</summary>
+          <div class="faq-answer">Nein. Einfamilienhäuser und Kleinappartements sind ausdrücklich nicht erfasst. Der Mietspiegel gilt für frei finanzierte Wohnungen im Stadtgebiet Köln.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Was bedeuten die Ausstattungsstufen 1, 2 und 3?</summary>
+          <div class="faq-answer">Stufe 1 steht für Wohnungen ohne Heizung, Stufe 2 für Wohnungen mit Heizung sowie Bad/WC, Stufe 3 für Wohnungen mit besonderer Ausstattung – etwa Zweitbad, separates WC, Einbauküche, Einbauschränke gehobener Qualität oder großer Balkon, Terrasse oder Garten. Für Stufe 3 müssen mehrere dieser Merkmale zusammenkommen. Bei Gebäuden ab Baujahr 2018 entfällt die Unterscheidung, weil dort durchgehend ein hoher Standard vorliegt.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie hoch sind die Mieten in Köln laut Mietspiegel?</summary>
+          <div class="faq-answer">Über alle Baualtersgruppen, Wohnungsgrößen, Wohnlagen und Ausstattungsstufen reichen die Werte von 4,20 bis 17,90 €/m² nettokalt. Den höchsten Wert erreichen kleine Neubauwohnungen ab Baujahr 2018 in sehr guter Wohnlage, den niedrigsten große Altbauwohnungen ohne Heizung in einfacher Lage.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Was kostet der Mietspiegel und wo bekomme ich ihn?</summary>
+          <div class="faq-answer">Der Kölner Mietspiegel ist kostenlos. Herausgeber ist die Rheinische Immobilienbörse e.V., erstellt unter Mitarbeit der Stadt Köln (Amt für Wohnungswesen), des Mietervereins Köln, der Haus- und Grundbesitzervereine, der Kölner Wohnungsunternehmen und der Geschäftsstelle des Gutachterausschusses für Grundstückswerte. Er erscheint alle zwei Jahre; die aktuelle Ausgabe hat den Stand April 2025.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy">
+    <div class="container text-center">
+      <h2>Wohnung vermieten oder verkaufen?</h2>
+      <p class="text-muted mb-8" style="max-width:46rem;margin-left:auto;margin-right:auto;">
+        Ob sich Vermieten oder Verkaufen rechnet, entscheidet sich an der tatsächlich erzielbaren Miete –
+        nicht am Mietspiegel. Ich schaue mir Ihre Wohnung an und rechne beides gegeneinander.
+      </p>
+      <div class="cta-buttons">
+        <a href="/immobilienbewertung.html" class="btn btn--primary">Kostenlose Bewertung</a>
+        <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/mietspiegel-koeln.html">Mietspiegel Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler für Köln &amp; das Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
+      </p>
+    </div>
+  </footer>
+
+
+  <script src="/stadtteile/search.js" defer></script>
+  <script src="/stadtteile/page-toc.js" defer></script>
+
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-question').forEach(function(b) {
+          b.setAttribute('aria-expanded', 'false');
+          var t = b.getAttribute('data-target');
+          if (t) { var el = document.getElementById(t); if (el) el.classList.remove('open'); }
+        });
+        if (!expanded) {
+          this.setAttribute('aria-expanded', 'true');
+          var target = this.getAttribute('data-target');
+          if (target) { var ans = document.getElementById(target); if (ans) ans.classList.add('open'); }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+
