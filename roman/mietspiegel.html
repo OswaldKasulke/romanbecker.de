@@ -47,14 +47,13 @@
   </script>
 
 
-  <title>Mietspiegel Köln 2025 – alle Werte nach Baujahr, Größe und Wohnlage</title>
-  <meta name="description" content="Kölner Mietspiegel 2025: alle Werte nach Baujahr, Wohnungsgröße, Wohnlage und Ausstattung – 4,20–17,90 €/m² nettokalt. Amtliche Vergleichsmiete, kostenlos und vollständig.">
-  <link rel="canonical" href="https://romanbecker.de/mietspiegel-koeln.html">
+  <title>Mietspiegel Köln 2025 – alle Werte, Vergleichsmiete und Mietpreisbremse</title>
+  <meta name="description" content="Kölner Mietspiegel 2025 vollständig: alle Werte nach Baujahr, Wohnungsgröße, Wohnlage und Ausstattung (4,20–17,90 €/m² nettokalt), dazu Vergleichsmiete, Kappungsgrenze und Mietpreisbremse.">
+  <link rel="canonical" href="https://romanbecker.de/mietspiegel.html">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Mietspiegel Köln 2025 – alle Werte im Überblick | Roman Becker">
-  <meta property="og:description" content="Die vollständige Mietspiegel-Tabelle für Köln: nach Baujahr, Wohnungsgröße, Wohnlage und Ausstattung – plus die Wahrheit über Bestand und Neuvermietung.">
-  <meta property="og:url" content="https://romanbecker.de/mietspiegel-koeln.html">
+  <meta property="og:description" content="Die vollständige Mietspiegel-Tabelle für Köln plus die Rechtslage zu Mieterhöhung und Mietpreisbremse.">
+  <meta property="og:url" content="https://romanbecker.de/mietspiegel.html">
   <meta property="og:type" content="article">
   <meta property="og:image" content="https://romanbecker.de/roman-portrait.jpg">
   <meta property="og:locale" content="de_DE">
@@ -67,29 +66,36 @@
     .ms-key{display:grid;gap:.6rem;margin:1.25rem 0 0;padding:0;list-style:none;}
     .ms-key li{font-size:.9rem;color:var(--gray-600);line-height:1.6;}
     .ms-key strong{color:var(--text,#000);}
-    .ms-warn{margin:1.5rem 0 0;padding:var(--space-6,1.5rem);background:#fff8e6;
-      border:1px solid #f0dca8;border-left:3px solid var(--gold,#c9a227);}
+    .ms-warn{margin:1.5rem 0 0;padding:1.5rem;background:#fff8e6;border:1px solid #f0dca8;
+      border-left:3px solid var(--gold,#c9a227);}
     .ms-warn p{font-size:.95rem;line-height:1.7;color:var(--gray-600);margin:0 0 .7rem;}
     .ms-warn p:last-child{margin-bottom:0;}
     .ms-warn strong{color:var(--text,#000);}
+    .ms-recht p{color:var(--gray-600);line-height:1.75;margin-bottom:1rem;max-width:800px;}
+    .ms-recht strong{color:var(--text,#000);font-weight:600;}
+    .ratgeber-nav{margin-top:2rem;padding:1.5rem;background:var(--gray-100);border-radius:var(--radius);}
+    .ratgeber-nav h3{font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-600);margin-bottom:1rem;}
+    .ratgeber-nav-links{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .ratgeber-nav-links a{font-size:.85rem;color:var(--gray-600);text-decoration:none;padding:.25rem .6rem;border:1px solid var(--gray-200);border-radius:4px;}
+    .ratgeber-nav-links a:hover{background:var(--gold);color:var(--white);border-color:var(--gold);}
   </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {"@type":"Question","name":"Bildet der Mietspiegel Neuvermietungsmieten ab?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Kölner Mietspiegel weist die ortsübliche Vergleichsmiete nach § 558c BGB aus – also die Mieten bestehender Mietverhältnisse. Mieten bei Neuvermietung liegen in der Regel darüber und werden im Mietspiegel nicht erhoben. Wer eine Wohnung neu vermietet, findet dort die rechtliche Obergrenze für Mieterhöhungen, nicht den am Markt erzielbaren Angebotspreis."}},
-          {"@type":"Question","name":"Gibt es Mietspiegel-Werte für einzelne Kölner Stadtteile?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Mietspiegel gliedert nach Baualtersgruppe, Wohnungsgröße, Wohnlage und Ausstattung – nicht nach Stadtteilen. Die Wohnlage wird über Merkmale des Objekts und seines Umfelds bestimmt (Lärm- und Geruchsbelastung, Bebauungsdichte, Grün, Durchgangsverkehr), nicht über die Adresse. Ein Straßen- oder Stadtteilverzeichnis enthält er nicht. Zwei Wohnungen im selben Stadtteil können deshalb in unterschiedlichen Wohnlagen liegen."}},
+      { "@type": "FAQPage", "mainEntity": [
+          {"@type":"Question","name":"Bildet der Mietspiegel Neuvermietungsmieten ab?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Kölner Mietspiegel weist die ortsübliche Vergleichsmiete nach § 558c BGB aus – also die Mieten bestehender Mietverhältnisse. Mieten bei Neuvermietung liegen in der Regel darüber und werden dort nicht erhoben. Bei der Neuvermietung greift stattdessen die Mietpreisbremse: höchstens 10 Prozent über der ortsüblichen Vergleichsmiete."}},
+          {"@type":"Question","name":"Ist der Kölner Mietspiegel ein qualifizierter Mietspiegel?","acceptedAnswer":{"@type":"Answer","text":"Nein, Köln hat einen einfachen Mietspiegel nach § 558c BGB. Der Unterschied ist vor Gericht bedeutsam: Für einen qualifizierten Mietspiegel nach § 558d BGB, der nach anerkannten wissenschaftlichen Grundsätzen erstellt wird, gilt die gesetzliche Vermutung, dass seine Werte die ortsübliche Vergleichsmiete abbilden. Ein einfacher Mietspiegel hat diese Vermutungswirkung nicht – er ist ein anerkanntes Begründungsmittel und eine Orientierung."}},
+          {"@type":"Question","name":"Gibt es Mietspiegel-Werte für einzelne Kölner Stadtteile?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Mietspiegel gliedert nach Baualtersgruppe, Wohnungsgröße, Wohnlage und Ausstattung – nicht nach Stadtteilen. Die Wohnlage wird über Merkmale des Objekts und seines Umfelds bestimmt (Lärm- und Geruchsbelastung, Bebauungsdichte, Grün, Durchgangsverkehr), nicht über die Adresse. Zwei Wohnungen im selben Stadtteil können deshalb in unterschiedlichen Wohnlagen liegen."}},
+          {"@type":"Question","name":"Um wie viel darf die Miete erhöht werden?","acceptedAnswer":{"@type":"Answer","text":"Es gelten zwei Grenzen nebeneinander. Obergrenze ist die ortsübliche Vergleichsmiete – darüber hinaus ist eine Erhöhung nach § 558 BGB nicht möglich. Zusätzlich gilt die Kappungsgrenze von höchstens 20 Prozent in drei Jahren; in Gebieten mit angespanntem Wohnungsmarkt, darunter Köln, höchstens 15 Prozent. Auch wer die Kappungsgrenze einhält, darf die Vergleichsmiete nicht überschreiten."}},
           {"@type":"Question","name":"Was ist die Nettokaltmiete?","acceptedAnswer":{"@type":"Answer","text":"Die reine Miete für die Wohnfläche, ohne Betriebs- und Heizkosten. Betriebskosten wie Grundsteuer, Müllabfuhr, Hauswart, Wasser, Aufzug oder Gebäudeversicherung können daneben gesondert erhoben werden, wenn der Mietvertrag das vorsieht. Sind sie in den Mietpreis eingerechnet, müssen sie für den Vergleich mit dem Mietspiegel zunächst herausgerechnet werden."}},
           {"@type":"Question","name":"Gilt der Mietspiegel auch für Einfamilienhäuser?","acceptedAnswer":{"@type":"Answer","text":"Nein. Einfamilienhäuser und Kleinappartements sind ausdrücklich nicht erfasst. Der Mietspiegel gilt für frei finanzierte Wohnungen im Stadtgebiet Köln."}},
           {"@type":"Question","name":"Was bedeuten die Ausstattungsstufen 1, 2 und 3?","acceptedAnswer":{"@type":"Answer","text":"Stufe 1 steht für Wohnungen ohne Heizung, Stufe 2 für Wohnungen mit Heizung sowie Bad/WC, Stufe 3 für Wohnungen mit besonderer Ausstattung – etwa Zweitbad, separates WC, Einbauküche, Einbauschränke gehobener Qualität oder großer Balkon, Terrasse oder Garten. Für Stufe 3 müssen mehrere dieser Merkmale zusammenkommen. Bei Gebäuden ab Baujahr 2018 entfällt die Unterscheidung, weil dort durchgehend ein hoher Standard vorliegt."}},
           {"@type":"Question","name":"Wie hoch sind die Mieten in Köln laut Mietspiegel?","acceptedAnswer":{"@type":"Answer","text":"Über alle Baualtersgruppen, Wohnungsgrößen, Wohnlagen und Ausstattungsstufen reichen die Werte von 4,20 bis 17,90 €/m² nettokalt. Den höchsten Wert erreichen kleine Neubauwohnungen ab Baujahr 2018 in sehr guter Wohnlage, den niedrigsten große Altbauwohnungen ohne Heizung in einfacher Lage."}},
-          {"@type":"Question","name":"Was kostet der Mietspiegel und wo bekomme ich ihn?","acceptedAnswer":{"@type":"Answer","text":"Der Kölner Mietspiegel ist kostenlos. Herausgeber ist die Rheinische Immobilienbörse e.V., erstellt unter Mitarbeit der Stadt Köln (Amt für Wohnungswesen), des Mietervereins Köln, der Haus- und Grundbesitzervereine, der Kölner Wohnungsunternehmen und der Geschäftsstelle des Gutachterausschusses für Grundstückswerte. Er erscheint alle zwei Jahre; die aktuelle Ausgabe hat den Stand April 2025."}}
-        ]
-      },
+          {"@type":"Question","name":"Kann ich zu viel gezahlte Miete zurückfordern?","acceptedAnswer":{"@type":"Answer","text":"Einen allgemeinen Anspruch auf Mietsenkung gibt es nicht, nur weil die Miete über der Vergleichsmiete liegt. Zurückfordern lässt sich zu viel gezahlte Miete nur in zwei Fällen: bei einem Verstoß gegen die Mietpreisbremse nach § 556g BGB – das gilt nur für Neuverträge, und der Mieter muss den Verstoß rügen – oder bei Mietwucher nach § 5 WiStG beziehungsweise § 291 StGB, wofür zusätzlich die Ausnutzung einer Zwangslage nachzuweisen ist."}},
+          {"@type":"Question","name":"Wo bekomme ich den Kölner Mietspiegel?","acceptedAnswer":{"@type":"Answer","text":"Kostenlos bei der Rheinischen Immobilienbörse e.V., bei der er zusammengestellt wird – unter Mitarbeit der Stadt Köln (Amt für Wohnungswesen), des Mietervereins Köln, der Haus- und Grundbesitzervereine, der Kölner Wohnungsunternehmen und der Geschäftsstelle des Gutachterausschusses für Grundstückswerte. Er erscheint alle zwei Jahre; die aktuelle Ausgabe hat den Stand April 2025."}}
+      ]},
       {
         "@type": "Dataset",
         "name": "Kölner Mietspiegel April 2025",
@@ -97,8 +103,7 @@
         "creator": {"@type": "Organization", "name": "Rheinische Immobilienbörse e.V."},
         "spatialCoverage": {"@type": "Place", "name": "Köln"},
         "temporalCoverage": "2025-04",
-        "license": "https://www.rheinische-immobilienboerse.de/",
-        "url": "https://romanbecker.de/mietspiegel-koeln.html"
+        "url": "https://romanbecker.de/mietspiegel.html"
       }
     ]
   }
@@ -135,9 +140,9 @@
       <h1>Mietspiegel Köln 2025 – alle Werte auf einen Blick</h1>
       <p class="hero__subtitle">
         Die vollständige Tabelle des Kölner Mietspiegels: 4,20 bis 17,90 €/m² nettokalt,
-        gegliedert nach Baujahr, Wohnungsgröße, Wohnlage und Ausstattung. Dazu der Punkt, an dem
-        die meisten Mietübersichten im Netz falsch liegen – der Unterschied zwischen Bestandsmiete
-        und Neuvermietung.
+        gegliedert nach Baujahr, Wohnungsgröße, Wohnlage und Ausstattung. Dazu die Rechtslage –
+        was bei einer Mieterhöhung gilt, wo die Mietpreisbremse greift und warum der Mietspiegel
+        keine Neuvermietungsmieten abbildet.
       </p>
       <div class="hero__buttons">
         <a href="/immobilienbewertung.html" class="btn btn--primary">Immobilie bewerten lassen</a>
@@ -148,30 +153,28 @@
 
   <section class="section">
     <div class="container">
-      <h2>Was der Kölner Mietspiegel ist</h2>
-      <p class="text-muted mb-8 max-w-prose">
-        Der „Mietspiegel für frei finanzierte Wohnungen“ ist die Richtlinie zur Ermittlung der
-        ortsüblichen Vergleichsmiete nach § 558c BGB. Herausgeber ist die Rheinische Immobilienbörse e.V.,
-        erstellt unter Mitarbeit der Stadt Köln, des Mietervereins, der Haus- und Grundbesitzervereine
-        und der Geschäftsstelle des Gutachterausschusses für Grundstückswerte. Er erscheint alle zwei Jahre.
-      </p>
+      <h2>Ortsübliche Vergleichsmiete und Mietspiegel</h2>
+      <div class="ms-recht">
+        <p>Die ortsübliche Vergleichsmiete ist der gesetzliche Maßstab (§ 558 Abs. 2 BGB): das übliche
+        Entgelt für vergleichbaren Wohnraum nach Art, Größe, Ausstattung, Beschaffenheit und Lage –
+        gebildet aus den Mieten, die in den letzten sechs Jahren vereinbart oder geändert wurden.
+        Der Mietspiegel ist das Werkzeug, mit dem sich dieser Maßstab beziffern lässt.</p>
+        <p>Köln hat einen <strong>einfachen Mietspiegel nach § 558c BGB</strong>. Der Unterschied zum
+        qualifizierten Mietspiegel nach § 558d BGB ist praktisch bedeutsam: Ein qualifizierter
+        Mietspiegel wird nach anerkannten wissenschaftlichen Grundsätzen erstellt, und für die dort
+        genannten Werte gilt vor Gericht die gesetzliche Vermutung, dass sie die ortsübliche
+        Vergleichsmiete abbilden. Ein einfacher Mietspiegel hat diese Vermutungswirkung nicht – er ist
+        ein anerkanntes Begründungsmittel und eine Orientierung.</p>
+      </div>
       <div class="info-grid">
-        <div class="info-card">
-          <h3>Nettokaltmiete</h3>
-          <p>Alle Werte sind reine Mieten je m² Wohnfläche. Betriebs- und Heizkosten kommen gesondert dazu, wenn der Mietvertrag das vorsieht.</p>
-        </div>
-        <div class="info-card">
-          <h3>Bestand, nicht Neuvermietung</h3>
-          <p>Abgebildet wird die ortsübliche Vergleichsmiete laufender Mietverhältnisse. Neuvermietungsmieten liegen darüber und sind hier nicht erfasst.</p>
-        </div>
-        <div class="info-card">
-          <h3>Keine Stadtteile</h3>
-          <p>Die Gliederung erfolgt nach Wohnlage, nicht nach Adresse. Ein Straßen- oder Stadtteilverzeichnis enthält der Mietspiegel nicht.</p>
-        </div>
-        <div class="info-card">
-          <h3>Nur Wohnungen</h3>
-          <p>Einfamilienhäuser und Kleinappartements sind ausdrücklich nicht erfasst. Es geht um frei finanzierte Wohnungen im Stadtgebiet.</p>
-        </div>
+        <div class="info-card"><h3>Nettokaltmiete</h3>
+          <p>Alle Werte sind reine Mieten je m² Wohnfläche. Betriebs- und Heizkosten kommen gesondert dazu, wenn der Mietvertrag das vorsieht.</p></div>
+        <div class="info-card"><h3>Bestand, nicht Neuvermietung</h3>
+          <p>Abgebildet wird die Vergleichsmiete laufender Mietverhältnisse. Neuvermietungsmieten liegen darüber und sind hier nicht erfasst.</p></div>
+        <div class="info-card"><h3>Keine Stadtteile</h3>
+          <p>Die Gliederung erfolgt nach Wohnlage, nicht nach Adresse. Ein Straßen- oder Stadtteilverzeichnis enthält der Mietspiegel nicht.</p></div>
+        <div class="info-card"><h3>Nur Wohnungen</h3>
+          <p>Einfamilienhäuser und Kleinappartements sind ausdrücklich nicht erfasst. Es geht um frei finanzierte Wohnungen im Stadtgebiet.</p></div>
       </div>
     </div>
   </section>
@@ -185,15 +188,15 @@
       </p>
       <div class="ms-warn">
         <p><strong>Was im Mietspiegel steht:</strong> die ortsübliche Vergleichsmiete nach § 558c BGB –
-        also das, was in bestehenden Mietverhältnissen für vergleichbare Wohnungen tatsächlich gezahlt wird.
-        Das ist die rechtliche Bezugsgröße für Mieterhöhungen im laufenden Vertrag.</p>
-        <p><strong>Was nicht darin steht:</strong> die Miete, die eine Wohnung heute bei einer Neuvermietung
-        am Markt erzielt. Diese Angebotsmieten liegen regelmäßig über der ortsüblichen Vergleichsmiete,
-        weil Bestandsverträge über Jahre hinter der Marktentwicklung zurückbleiben. Eine amtliche Quelle
-        für Neuvermietungsmieten in Köln gibt es nicht.</p>
-        <p><strong>Praktisch heißt das:</strong> Wer eine Kapitalanlage rechnet, darf die Mietspiegel-Werte
-        nicht als erzielbare Miete ansetzen. Und wer eine Mieterhöhung prüft, darf umgekehrt nicht mit
-        Angebotsmieten aus Immobilienportalen argumentieren.</p>
+        also das, was in bestehenden Mietverhältnissen für vergleichbare Wohnungen tatsächlich gezahlt
+        wird. Das ist die Bezugsgröße für Mieterhöhungen im laufenden Vertrag.</p>
+        <p><strong>Was nicht darin steht:</strong> die Miete, die eine Wohnung heute bei einer
+        Neuvermietung erzielt. Diese Angebotsmieten liegen regelmäßig darüber, weil Bestandsverträge
+        über Jahre hinter der Marktentwicklung zurückbleiben. Eine amtliche Quelle für
+        Neuvermietungsmieten in Köln gibt es nicht.</p>
+        <p><strong>Praktisch heißt das:</strong> Wer eine Kapitalanlage rechnet, darf die
+        Mietspiegel-Werte nicht als erzielbare Miete ansetzen. Und wer eine Mieterhöhung prüft, darf
+        umgekehrt nicht mit Angebotsmieten aus Immobilienportalen argumentieren.</p>
       </div>
     </div>
   </section>
@@ -307,12 +310,12 @@
 
       <p class="brw-quelle">
         Quelle: Kölner Mietspiegel für frei finanzierte Wohnungen, Stadtgebiet Köln, Stand April 2025.
-        Herausgeber: Rheinische Immobilienbörse e.&nbsp;V. unter Mitarbeit von Stadt Köln (Amt für Wohnungswesen),
-        Mieterverein Köln e.&nbsp;V., Kölner Haus- und Grundbesitzerverein von 1888, Vereinigung von Haus-, Wohnungs-
-        und Grundeigentümern Köln e.&nbsp;V., köln ag, Geschäftsstelle des Gutachterausschusses für Grundstückswerte
-        in der Stadt Köln, IVD und Verband der Immobilienberater Region West e.&nbsp;V.
-        Die Wohnflächenberechnung folgt der Wohnflächenverordnung; Balkon- und Terrassenflächen werden in der Regel
-        zu einem Viertel angerechnet.
+        Zusammengestellt bei der Rheinischen Immobilienbörse e.&nbsp;V. unter Mitarbeit von Stadt Köln
+        (Amt für Wohnungswesen), Mieterverein Köln e.&nbsp;V., Kölner Haus- und Grundbesitzerverein von 1888,
+        Vereinigung von Haus-, Wohnungs- und Grundeigentümern Köln e.&nbsp;V., köln ag, Geschäftsstelle des
+        Gutachterausschusses für Grundstückswerte in der Stadt Köln, IVD und Verband der Immobilienberater
+        Region West e.&nbsp;V. Die Wohnflächenberechnung folgt der Wohnflächenverordnung; Balkon- und
+        Terrassenflächen werden in der Regel zu einem Viertel angerechnet.
       </p>
     </div>
   </section>
@@ -325,52 +328,94 @@
         an der Adresse, sondern am Objekt und seinem unmittelbaren Umfeld.
       </p>
       <div class="info-grid">
-        <div class="info-card">
-          <h3>Einfache Wohnlage</h3>
-          <p>Das Wohnen wird durch Geräusch- oder Geruchsbelästigung oder andere Kriterien kontinuierlich erheblich beeinträchtigt und der Wohnwert dadurch gemindert.</p>
-        </div>
-        <div class="info-card">
-          <h3>Mittlere Wohnlage</h3>
-          <p>Normale Lage ohne besondere Vor- und Nachteile, meist dicht bebaut, ohne dauerhafte Belastung durch Geräusch oder Geruch. Hier liegt die überwiegende Zahl der Kölner Wohnungen.</p>
-        </div>
-        <div class="info-card">
-          <h3>Gute und sehr gute Wohnlage</h3>
-          <p>Lockere Bebauung, Baumbestand an der Straße oder Garten, fehlender Durchgangsverkehr, gute Einkaufsmöglichkeiten und keine beeinträchtigenden Einrichtungen im Umfeld.</p>
-        </div>
-        <div class="info-card">
-          <h3>Modernisierung</h3>
-          <p>Umfassend modernisierte Wohnungen orientieren sich an Gruppe 3. Wurden alle Maßnahmen nach 1990 ausgeführt, rechtfertigt das eine Eingruppierung in Gruppe 4.</p>
-        </div>
-      </div>
-      <div class="ratgeber-hinweis">
-        <span class="ratgeber-hinweis__title">Warum es hier keine Miete je Stadtteil gibt</span>
-        <p>
-          Auf vielen Portalen finden Sie Mietangaben je Kölner Stadtteil. Amtlich belegbar sind sie nicht:
-          Der Mietspiegel differenziert nach Wohnlage, und zwei Wohnungen in derselben Straße können
-          unterschiedlichen Wohnlagen zugeordnet sein – etwa wenn die eine zur Hauptverkehrsachse und die
-          andere zum begrünten Innenhof liegt. Wir weisen deshalb auf den Stadtteilseiten Kaufpreise aus,
-          die der Gutachterausschuss tatsächlich je Stadtteil erhebt, und Mieten nur dort, wo der
-          Mietspiegel sie hergibt.
-        </p>
-        <p>
-          Für Kaufpreise je Stadtteil: <a class="link-gold" href="/stadtteile/">Immobilienpreise aller 86 Kölner Stadtteile</a>
-          und <a class="link-gold" href="/bodenrichtwert-koeln.html">Bodenrichtwerte Köln</a>.
-        </p>
+        <div class="info-card"><h3>Einfache Wohnlage</h3>
+          <p>Das Wohnen wird durch Geräusch- oder Geruchsbelästigung oder andere Kriterien kontinuierlich erheblich beeinträchtigt und der Wohnwert dadurch gemindert.</p></div>
+        <div class="info-card"><h3>Mittlere Wohnlage</h3>
+          <p>Normale Lage ohne besondere Vor- und Nachteile, meist dicht bebaut, ohne dauerhafte Belastung durch Geräusch oder Geruch. Hier liegt die überwiegende Zahl der Kölner Wohnungen.</p></div>
+        <div class="info-card"><h3>Gute und sehr gute Wohnlage</h3>
+          <p>Lockere Bebauung, Baumbestand an der Straße oder Garten, fehlender Durchgangsverkehr, gute Einkaufsmöglichkeiten und keine beeinträchtigenden Einrichtungen im Umfeld.</p></div>
+        <div class="info-card"><h3>Modernisierung</h3>
+          <p>Umfassend modernisierte Wohnungen orientieren sich an Gruppe 3. Wurden alle Maßnahmen nach 1990 ausgeführt, rechtfertigt das eine Eingruppierung in Gruppe 4.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
+      <h2>Mieterhöhung: die beiden Grenzen</h2>
+      <div class="ms-recht">
+        <p><strong>Obergrenze ist die ortsübliche Vergleichsmiete.</strong> Darüber hinaus ist eine
+        Erhöhung nach § 558 BGB nicht möglich.</p>
+        <p><strong>Kappungsgrenze:</strong> höchstens 20 Prozent in drei Jahren – in Gebieten mit
+        angespanntem Wohnungsmarkt, darunter Köln, höchstens 15 Prozent. Beide Grenzen gelten
+        nebeneinander: Auch wer die Kappungsgrenze einhält, darf die Vergleichsmiete nicht überschreiten.</p>
+      </div>
+
+      <h2>Neuvermietung: die Mietpreisbremse</h2>
+      <div class="ms-recht">
+        <p>Sie gilt nicht automatisch in jedem Ballungsraum, sondern nur in Gebieten, die das Bundesland
+        per Rechtsverordnung als Markt mit angespannter Wohnungslage ausgewiesen hat – Köln gehört dazu.
+        Dort darf die Miete bei Neuvermietung höchstens 10 Prozent über der ortsüblichen Vergleichsmiete
+        liegen. Ausgenommen sind Neubauten, die nach dem 1. Oktober 2014 erstmals genutzt und vermietet
+        wurden, sowie umfassend modernisierte Wohnungen. Ebenfalls zulässig bleibt eine Miete, die der
+        Vormieter bereits gezahlt hat.</p>
+      </div>
+
+      <h2>Wenn die Miete zu hoch ist</h2>
+      <div class="ms-recht">
+        <p>Einen allgemeinen Anspruch auf Mietsenkung gibt es nicht, nur weil die Miete über der
+        Vergleichsmiete liegt. Zu viel gezahlte Miete lässt sich nur in zwei Fällen zurückfordern:</p>
+        <p><strong>Verstoß gegen die Mietpreisbremse</strong> nach § 556g BGB – nur bei Neuverträgen,
+        und der Mieter muss den Verstoß rügen.<br>
+        <strong>Mietwucher</strong> nach § 5 WiStG oder § 291 StGB – hohe Hürde, weil zusätzlich die
+        Ausnutzung einer Zwangslage nachzuweisen ist.</p>
+      </div>
+
+      <h2>Grenzen des Mietspiegels</h2>
+      <div class="ms-recht">
+        <p>Er beruht auf Spannen und bildet nicht jede Wohnlage genau ab. Kleinteilige Unterschiede
+        innerhalb eines Stadtteils, ungewöhnliche Grundrisse oder besondere Ausstattung findet man dort
+        nicht wieder. Eine Gliederung nach Stadtteilen enthält er ohnehin nicht – zwei Wohnungen in
+        derselben Straße können unterschiedlichen Wohnlagen zugeordnet sein, je nachdem ob sie zur
+        Hauptverkehrsachse oder zum begrünten Innenhof liegen.</p>
+        <p>Für eine Einschätzung im Einzelfall – etwa vor einer Vermietung oder beim Kauf einer
+        Anlageimmobilie – braucht es den Blick auf vergleichbare Objekte und die tatsächliche Nachfrage
+        im Viertel. Wie sich das Mietniveau auf die Rendite auswirkt, behandelt der Ratgeber
+        <a class="link-gold" href="/ratgeber/kapitalanlage.html">Immobilien als Kapitalanlage</a>;
+        welche Kosten daneben auf Mieter umgelegt werden dürfen, steht unter
+        <a class="link-gold" href="/ratgeber/nebenkostenabrechnung.html">Nebenkostenabrechnung</a>.</p>
+        <p>Kaufpreise erhebt der Gutachterausschuss dagegen sehr wohl je Stadtteil – diese finden Sie
+        unter <a class="link-gold" href="/stadtteile/">Immobilienpreise aller 86 Kölner Stadtteile</a>
+        und <a class="link-gold" href="/bodenrichtwert-koeln.html">Bodenrichtwerte Köln</a>.</p>
+      </div>
+      <div class="ratgeber-hinweis">
+  <span class="ratgeber-hinweis__title">Sorgfalt, Aktualität und Haftung</span>
+  <p>Die Inhalte dieses Ratgebers recherchiere ich sorgfältig und belege sie, wo immer möglich, anhand von Gesetzestexten, amtlichen Veröffentlichungen und höchstrichterlicher Rechtsprechung. Gesetze, Fristen, Steuersätze und Urteile ändern sich jedoch laufend – und jeder Sachverhalt hat seine Besonderheiten.</p>
+  <p>Dieser Ratgeber ersetzt deshalb <strong>keine Rechts-, Steuer- oder Finanzberatung im Einzelfall</strong>. Für Vollständigkeit, Richtigkeit und Aktualität kann ich keine Haftung übernehmen. Ziehen Sie vor einer Entscheidung Notar, Fachanwältin oder Steuerberater hinzu.</p>
+  <p>Zur Marktseite berate ich Sie dagegen gern persönlich: Wenn Sie wissen möchten, was Ihre Immobilie in Ihrem Kölner Stadtteil aktuell wert ist, <a href="https://romanbecker.de/immobilienbewertung.html">melden Sie sich einfach</a> – oder rufen Sie an unter <a href="tel:+491775156969">0177 515 69 69</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="container">
       <h2>FAQ: Mietspiegel Köln</h2>
       <div class="faq-list">
         <details class="faq-item">
           <summary>Bildet der Mietspiegel Neuvermietungsmieten ab?</summary>
-          <div class="faq-answer">Nein. Der Kölner Mietspiegel weist die ortsübliche Vergleichsmiete nach § 558c BGB aus – also die Mieten bestehender Mietverhältnisse. Mieten bei Neuvermietung liegen in der Regel darüber und werden im Mietspiegel nicht erhoben. Wer eine Wohnung neu vermietet, findet dort die rechtliche Obergrenze für Mieterhöhungen, nicht den am Markt erzielbaren Angebotspreis.</div>
+          <div class="faq-answer">Nein. Der Kölner Mietspiegel weist die ortsübliche Vergleichsmiete nach § 558c BGB aus – also die Mieten bestehender Mietverhältnisse. Mieten bei Neuvermietung liegen in der Regel darüber und werden dort nicht erhoben. Bei der Neuvermietung greift stattdessen die Mietpreisbremse: höchstens 10 Prozent über der ortsüblichen Vergleichsmiete.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Ist der Kölner Mietspiegel ein qualifizierter Mietspiegel?</summary>
+          <div class="faq-answer">Nein, Köln hat einen einfachen Mietspiegel nach § 558c BGB. Der Unterschied ist vor Gericht bedeutsam: Für einen qualifizierten Mietspiegel nach § 558d BGB, der nach anerkannten wissenschaftlichen Grundsätzen erstellt wird, gilt die gesetzliche Vermutung, dass seine Werte die ortsübliche Vergleichsmiete abbilden. Ein einfacher Mietspiegel hat diese Vermutungswirkung nicht – er ist ein anerkanntes Begründungsmittel und eine Orientierung.</div>
         </details>
         <details class="faq-item">
           <summary>Gibt es Mietspiegel-Werte für einzelne Kölner Stadtteile?</summary>
-          <div class="faq-answer">Nein. Der Mietspiegel gliedert nach Baualtersgruppe, Wohnungsgröße, Wohnlage und Ausstattung – nicht nach Stadtteilen. Die Wohnlage wird über Merkmale des Objekts und seines Umfelds bestimmt (Lärm- und Geruchsbelastung, Bebauungsdichte, Grün, Durchgangsverkehr), nicht über die Adresse. Ein Straßen- oder Stadtteilverzeichnis enthält er nicht. Zwei Wohnungen im selben Stadtteil können deshalb in unterschiedlichen Wohnlagen liegen.</div>
+          <div class="faq-answer">Nein. Der Mietspiegel gliedert nach Baualtersgruppe, Wohnungsgröße, Wohnlage und Ausstattung – nicht nach Stadtteilen. Die Wohnlage wird über Merkmale des Objekts und seines Umfelds bestimmt (Lärm- und Geruchsbelastung, Bebauungsdichte, Grün, Durchgangsverkehr), nicht über die Adresse. Zwei Wohnungen im selben Stadtteil können deshalb in unterschiedlichen Wohnlagen liegen.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Um wie viel darf die Miete erhöht werden?</summary>
+          <div class="faq-answer">Es gelten zwei Grenzen nebeneinander. Obergrenze ist die ortsübliche Vergleichsmiete – darüber hinaus ist eine Erhöhung nach § 558 BGB nicht möglich. Zusätzlich gilt die Kappungsgrenze von höchstens 20 Prozent in drei Jahren; in Gebieten mit angespanntem Wohnungsmarkt, darunter Köln, höchstens 15 Prozent. Auch wer die Kappungsgrenze einhält, darf die Vergleichsmiete nicht überschreiten.</div>
         </details>
         <details class="faq-item">
           <summary>Was ist die Nettokaltmiete?</summary>
@@ -389,8 +434,12 @@
           <div class="faq-answer">Über alle Baualtersgruppen, Wohnungsgrößen, Wohnlagen und Ausstattungsstufen reichen die Werte von 4,20 bis 17,90 €/m² nettokalt. Den höchsten Wert erreichen kleine Neubauwohnungen ab Baujahr 2018 in sehr guter Wohnlage, den niedrigsten große Altbauwohnungen ohne Heizung in einfacher Lage.</div>
         </details>
         <details class="faq-item">
-          <summary>Was kostet der Mietspiegel und wo bekomme ich ihn?</summary>
-          <div class="faq-answer">Der Kölner Mietspiegel ist kostenlos. Herausgeber ist die Rheinische Immobilienbörse e.V., erstellt unter Mitarbeit der Stadt Köln (Amt für Wohnungswesen), des Mietervereins Köln, der Haus- und Grundbesitzervereine, der Kölner Wohnungsunternehmen und der Geschäftsstelle des Gutachterausschusses für Grundstückswerte. Er erscheint alle zwei Jahre; die aktuelle Ausgabe hat den Stand April 2025.</div>
+          <summary>Kann ich zu viel gezahlte Miete zurückfordern?</summary>
+          <div class="faq-answer">Einen allgemeinen Anspruch auf Mietsenkung gibt es nicht, nur weil die Miete über der Vergleichsmiete liegt. Zurückfordern lässt sich zu viel gezahlte Miete nur in zwei Fällen: bei einem Verstoß gegen die Mietpreisbremse nach § 556g BGB – das gilt nur für Neuverträge, und der Mieter muss den Verstoß rügen – oder bei Mietwucher nach § 5 WiStG beziehungsweise § 291 StGB, wofür zusätzlich die Ausnutzung einer Zwangslage nachzuweisen ist.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Wo bekomme ich den Kölner Mietspiegel?</summary>
+          <div class="faq-answer">Kostenlos bei der Rheinischen Immobilienbörse e.V., bei der er zusammengestellt wird – unter Mitarbeit der Stadt Köln (Amt für Wohnungswesen), des Mietervereins Köln, der Haus- und Grundbesitzervereine, der Kölner Wohnungsunternehmen und der Geschäftsstelle des Gutachterausschusses für Grundstückswerte. Er erscheint alle zwei Jahre; die aktuelle Ausgabe hat den Stand April 2025.</div>
         </details>
       </div>
     </div>
@@ -410,6 +459,34 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/ratgeber/maklerkosten-beim-immobilienkauf.html">Maklerkosten</a>
+          <a href="https://romanbecker.de/ratgeber/notarkosten-beim-immobilienkauf.html">Notarkosten</a>
+          <a href="https://romanbecker.de/ratgeber/baufinanzierung.html">Baufinanzierung</a>
+          <a href="https://romanbecker.de/ratgeber/annuitaetendarlehen.html">Annuitätendarlehen</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+          <a href="https://romanbecker.de/ratgeber/grundschuld.html">Grundschuld</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>
+          <a href="https://romanbecker.de/ratgeber/kaufvertrag.html">Kaufvertrag</a>
+          <a href="https://romanbecker.de/ratgeber/denkmal-afa.html">Denkmal-AfA</a>
+          <a href="https://romanbecker.de/ratgeber/abschreibung-bei-immobilien.html">Abschreibung</a>
+          <a href="https://romanbecker.de/ratgeber/heizungsgesetz-aenderung.html">Heizungsgesetz</a>
+          <a href="https://romanbecker.de/ratgeber/heizungsgesetz-aenderung.html">GEG</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/erbpacht.html">Erbpacht</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienkauf.html">Immobilienkauf</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer id="footer" class="footer">
     <div class="container">
       <div class="footer__inner">
@@ -421,7 +498,7 @@
         <div class="footer__links">
           <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
           <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
-          <a href="https://romanbecker.de/mietspiegel-koeln.html">Mietspiegel Köln</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel Köln</a>
           <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
           <a href="https://romanbecker.de/impressum.html">Impressum</a>
           <a href="https://romanbecker.de/agb.html">AGB</a>

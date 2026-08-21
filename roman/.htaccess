@@ -36,7 +36,9 @@ RewriteRule ^marktanalyse/koeln-q3-2026\.html$ /ratgeber/marktanalyse.html [R=30
 RewriteRule ^marktanalyse/koeln-2026\.html$    /ratgeber/marktanalyse.html [R=301,L]
 RewriteRule ^ratgeber/hypothek\.html$ /ratgeber/grundschuld.html [R=301,L]
 RewriteRule ^ratgeber/smart-heizung\.html$ /ratgeber/smarthome.html [R=301,L]
-RewriteRule ^ratgeber/vergleichsmiete\.html$ /ratgeber/mietspiegel.html [R=301,L]
+RewriteRule ^ratgeber/vergleichsmiete\.html$ /mietspiegel.html [R=301,L]
+RewriteRule ^ratgeber/mietspiegel\.html$ /mietspiegel.html [R=301,L]
+RewriteRule ^mietspiegel-koeln\.html$ /mietspiegel.html [R=301,L]
 
 # Zusammengelegt zu fenster-tueren-dach.html (vier duenne Einzelseiten)
 RewriteRule ^ratgeber/fenster\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
