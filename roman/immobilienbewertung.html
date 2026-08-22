@@ -1421,6 +1421,39 @@
         (ueberHausnummer ? ' (über die Hausnummer bestimmt)' : '');
     }
 
+    // Liegt die Hausnummer in keinem erfassten Abschnitt, sagt diese Zeile,
+    // welche Nummern das Verzeichnis fuer die Strasse fuehrt. Nur belegte
+    // Grenzen nennen — die Luecken zwischen den Abschnitten sind echt, ein
+    // durchgehendes "44 bis 466" waere gelogen.
+    function hausnummerBereich(strasseName, nrText) {
+      var q = window.RBHausnummern;
+      var segs = q && q[strasseName];
+      var n = parseInt(nrText, 10);
+      if (!segs || !isFinite(n)) return '';
+      var idx = n % 2 ? 2 : 3;                       // 2 = ungerade, 3 = gerade
+      var wort = n % 2 ? 'ungeraden' : 'geraden';
+      var spannen = [];
+      for (var i = 0; i < segs.length; i++) {
+        var sp = segs[i][idx];
+        if (sp && sp[0] !== null && sp[1] !== null) spannen.push([sp[0], sp[1]]);
+      }
+      if (!spannen.length) return '';
+      spannen.sort(function (a, b) { return a[0] - b[0]; });
+      var min = spannen[0][0], max = spannen[spannen.length - 1][1];
+      if (n < min || n > max) {
+        return 'die ' + wort + ' Hausnummern sind von ' + min + ' bis ' + max + ' erfasst';
+      }
+      var davor = null, danach = null;
+      for (var k = 0; k < spannen.length; k++) {
+        if (spannen[k][1] < n) davor = spannen[k];
+        if (spannen[k][0] > n && !danach) danach = spannen[k];
+      }
+      if (davor && danach) {
+        return 'erfasst sind ' + davor[0] + '–' + davor[1] + ' und ' + danach[0] + '–' + danach[1];
+      }
+      return '';
+    }
+
     function lageErmitteln() {
       var api = veedelApi();
       var text = (strasseFeld.value || '').trim();
@@ -1447,9 +1480,15 @@
       // Mehrere Veedel und die Hausnummer hilft nicht weiter
       veedelAuswahlFuellen(a.treffer);
       lageZeile.className = 'lage-treffer lage-treffer--frage';
-      lageZeile.textContent = hausnummerAus(text)
-        ? 'Diese Hausnummer steht nicht im Verzeichnis – bitte das Veedel unten auswählen.'
-        : 'Diese Straße verläuft durch mehrere Veedel – Hausnummer ergänzen oder Veedel unten auswählen.';
+      var nr = hausnummerAus(text);
+      if (!nr) {
+        lageZeile.textContent = 'Diese Straße verläuft durch mehrere Veedel – Hausnummer ergänzen oder Veedel unten auswählen.';
+      } else {
+        var bereich = hausnummerBereich(a.strasse, nr);
+        lageZeile.textContent = 'Hausnummer ' + nr + ' steht nicht im Kölner Straßenverzeichnis' +
+          (bereich ? ' – ' + bereich + '. ' : '. ') +
+          'Bitte die Nummer prüfen oder das Veedel unten auswählen.';
+      }
     }
 
     if (strasseFeld) {
