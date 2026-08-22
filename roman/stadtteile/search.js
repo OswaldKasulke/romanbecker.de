@@ -415,14 +415,29 @@
   function inSpanne(n, s) {
     return !!s && s[0] !== null && s[1] !== null && n >= s[0] && n <= s[1];
   }
-  /* Normalisierter Zugriff auf strassen-hausnummern.js — die Datei ist optional. */
-  var HIDX = null;
-  function hausnummernIndex() {
-    if (HIDX) return HIDX;
-    HIDX = {};
+  /* Zweiter Schluessel, diesmal OHNE die Str.-Toleranz von norm(): dort fallen
+     "Markt" und "Marktstr." auf denselben Wert zusammen, ebenso "Flughafen" und
+     "Flughafenstr.". Fuers Suchfeld ist die Toleranz richtig, fuer die Adresse
+     nicht — "Markt 1" liegt in Kalk, die Marktstr. in Raderberg. */
+  function nameKey(s) {
+    return String(s == null ? '' : s).toLowerCase()
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/[^a-z0-9]/g, '');
+  }
+  /* Zugriff auf strassen-hausnummern.js — ueber den echten Strassennamen, nicht
+     ueber norm(); die Datei ist optional und laedt nur die Bewertungsseite. */
+  function hausnummern(name) {
     var q = window.RBHausnummern;
-    if (q) for (var k in q) if (Object.prototype.hasOwnProperty.call(q, k)) HIDX[norm(k)] = q[k];
-    return HIDX;
+    return (q && Object.prototype.hasOwnProperty.call(q, name)) ? q[name] : null;
+  }
+  var HLUECK = null;
+  function lueckenhaft(name) {
+    if (!HLUECK) {
+      HLUECK = {};
+      var l = window.RBHausnummernLueckenhaft || [];
+      for (var i = 0; i < l.length; i++) HLUECK[l[i]] = 1;
+    }
+    return !!HLUECK[name];
   }
 
   window.RBVeedel = {
@@ -462,32 +477,43 @@
         var m = name.match(/^(.*?)[\s,]+(\d+\s*[a-zA-Z]?)$/);
         if (m) { name = m[1].trim(); hausnr = m[2]; }
       }
-      var t = norm(name);
-      if (!t) return null;
+      var t = norm(name), nk = nameKey(name);
+      if (!t && !nk) return null;
 
-      // Alle Lagen, in denen es diese Strasse gibt
-      var list = strIndex(), treffer = [], gesehen = {};
-      for (var i = 0; i < list.length; i++) {
-        if (list[i].x !== t) continue;
-        var schl = list[i].o + '|' + list[i].p;
+      // Alle Lagen dieser Strasse. Exakter Name zuerst; nur wenn der nichts
+      // findet, greift die tolerante Schreibweise ("Aachener Straße" ->
+      // "Aachener Str."). Sonst wuerde "Markt" die Marktstr. mitziehen.
+      var list = strIndex(), eintraege = [], i;
+      for (i = 0; i < list.length; i++) if (nameKey(list[i].n) === nk) eintraege.push(list[i]);
+      if (!eintraege.length) for (i = 0; i < list.length; i++) if (list[i].x === t) eintraege.push(list[i]);
+      if (!eintraege.length) return null;
+
+      var treffer = [], gesehen = {};
+      for (i = 0; i < eintraege.length; i++) {
+        var schl = eintraege[i].o + '|' + eintraege[i].p;
         if (gesehen[schl]) continue;
         gesehen[schl] = 1;
-        treffer.push({name: list[i].n, veedel: list[i].o.replace(/^Köln-/, ''), plz: list[i].p});
+        treffer.push({name: eintraege[i].n, veedel: eintraege[i].o.replace(/^Köln-/, ''), plz: eintraege[i].p});
       }
-      if (!treffer.length) return null;
 
       var erg = {strasse: treffer[0].name, hausnr: hausnr || null, veedel: null, plz: null,
-                 eindeutig: false, ueberHausnummer: false,
+                 eindeutig: false, ueberHausnummer: false, hausnummerBekannt: null,
                  treffer: treffer.map(function (x) { return {veedel: x.veedel, plz: x.plz}; })};
 
-      // 1. Hausnummer entscheidet, wenn Abschnitte hinterlegt sind
-      var n = hausNr(hausnr), segs = hausnummernIndex()[t];
+      // 1. Hausnummer gegen die Bereiche der Stadt halten. Das entscheidet
+      //    zweierlei: welches Veedel es ist und ob es die Nummer ueberhaupt gibt.
+      //    hausnummerBekannt bleibt null, wo keine Aussage moeglich ist: bei
+      //    Strassen ohne Nummernangabe, bei denen mit Luecken und wenn die
+      //    Eingabe auf mehrere verschiedene Strassennamen passt.
+      var einName = eintraege.every(function (x) { return x.n === eintraege[0].n; });
+      var n = hausNr(hausnr), segs = einName ? hausnummern(eintraege[0].n) : null;
       if (n !== null && segs) {
         var passend = [];
         for (var k = 0; k < segs.length; k++) {
           var seg = segs[k];
           if (inSpanne(n, n % 2 ? seg[2] : seg[3])) passend.push({veedel: seg[0], plz: seg[1]});
         }
+        erg.hausnummerBekannt = passend.length ? true : (lueckenhaft(eintraege[0].n) ? null : false);
         var gleich = passend.length && passend.every(function (p) {
           return p.veedel === passend[0].veedel && p.plz === passend[0].plz;
         });

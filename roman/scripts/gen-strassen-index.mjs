@@ -58,12 +58,15 @@ const ende = start + rel.index + rel[0].length;
 js = js.slice(0, start) + block + js.slice(ende);
 
 // ---------------------------------------------------------------------------
-// Hausnummernbereiche der Strassen, die mehrere Veedel durchqueren
+// Hausnummernbereiche aller Strassen
 // ---------------------------------------------------------------------------
-// Aufgenommen wird jede Strasse, die in mehr als einer Veedel/PLZ-Kombination
-// vorkommt — nur dort braucht die Zuordnung die Hausnummer. Bei allen anderen
-// genuegt der Name. Das haelt die Datei klein; sie wird nur von der
-// Immobilienbewertung geladen, nicht von jeder Seite.
+// Der Master fuehrt fuer jeden Strassenabschnitt die Hausnummern getrennt nach
+// gerade und ungerade. Die Bewertungsseite braucht sie fuer zweierlei:
+//   1. Veedel und PLZ bestimmen, wenn eine Strasse durch mehrere laeuft.
+//   2. Pruefen, ob es die eingegebene Hausnummer ueberhaupt gibt — sonst
+//      bestaetigt die Seite Adressen wie "Bruesseler Platz 890".
+// Punkt 2 geht nur mit dem vollstaendigen Bestand, nicht nur mit den
+// mehrdeutigen Strassen. Die Datei laedt allein die Bewertungsseite.
 const proStrasse = new Map();
 for (const r of master) {
   if (!proStrasse.has(r.s)) proStrasse.set(r.s, []);
@@ -71,24 +74,29 @@ for (const r of master) {
 }
 const nr = w => (w === null || w === undefined ? null : parseInt(String(w), 10));
 const spanne = a => (Array.isArray(a) && a.length ? [nr(a[0]), nr(a[a.length - 1])] : null);
+const hatBereich = r => !!(r.u && r.u.length) || !!(r.g && r.g.length);
 
-const mehrdeutig = {};
-let segmente = 0;
+const bereiche = {};
+const lueckenhaft = [];   // Strassen, in denen Abschnitte ohne Nummernangabe stehen
+let segmente = 0, ohneAngabe = 0;
 for (const [name, saetze] of [...proStrasse].sort((a, b) => a[0].localeCompare(b[0], 'de'))) {
-  if (new Set(saetze.map(r => r.v + '|' + r.p)).size < 2) continue;
-  mehrdeutig[name] = saetze.map(r => {
-    segmente++;
-    // [Veedel, PLZ, ungerade von-bis, gerade von-bis]
-    return [r.v, r.p, spanne(r.u), spanne(r.g)];
-  });
+  const mit = saetze.filter(hatBereich);
+  if (!mit.length) { ohneAngabe++; continue; }
+  if (mit.length < saetze.length) lueckenhaft.push(name);
+  // [Veedel, PLZ, ungerade von-bis, gerade von-bis]
+  bereiche[name] = mit.map(r => { segmente++; return [r.v, r.p, spanne(r.u), spanne(r.g)]; });
 }
 
 writeFileSync(ZIEL_HNR,
   '/* GENERIERT von scripts/gen-strassen-index.mjs — nicht von Hand aendern.\n' +
-  '   Hausnummernbereiche der Koelner Strassen, die mehrere Veedel durchqueren.\n' +
-  '   Quelle: Strassenverzeichnis der Stadt Koeln (Quartier-Fassung).\n' +
-  '   Aufbau je Eintrag: [Veedel, PLZ, [ungerade von, bis], [gerade von, bis]] */\n' +
-  'window.RBHausnummern = ' + JSON.stringify(mehrdeutig) + ';\n', 'utf-8');
+  '   Hausnummernbereiche aller Koelner Strassen aus dem Strassenverzeichnis\n' +
+  '   der Stadt Koeln. Aufbau je Eintrag: [Veedel, PLZ, [ungerade von, bis],\n' +
+  '   [gerade von, bis]].\n' +
+  '   RBHausnummernLueckenhaft listet die Strassen, in denen einzelne Abschnitte\n' +
+  '   ohne Nummernangabe stehen — dort darf eine unbekannte Hausnummer nicht als\n' +
+  '   falsch gemeldet werden. Strassen ganz ohne Angabe fehlen hier komplett. */\n' +
+  'window.RBHausnummern = ' + JSON.stringify(bereiche) + ';\n' +
+  'window.RBHausnummernLueckenhaft = ' + JSON.stringify(lueckenhaft) + ';\n', 'utf-8');
 
 // ---------------------------------------------------------------------------
 // Preistabelle je Veedel
@@ -131,14 +139,29 @@ const exportBlock = `  /* GENERIERT von scripts/gen-strassen-index.mjs — nicht
   function inSpanne(n, s) {
     return !!s && s[0] !== null && s[1] !== null && n >= s[0] && n <= s[1];
   }
-  /* Normalisierter Zugriff auf strassen-hausnummern.js — die Datei ist optional. */
-  var HIDX = null;
-  function hausnummernIndex() {
-    if (HIDX) return HIDX;
-    HIDX = {};
+  /* Zweiter Schluessel, diesmal OHNE die Str.-Toleranz von norm(): dort fallen
+     "Markt" und "Marktstr." auf denselben Wert zusammen, ebenso "Flughafen" und
+     "Flughafenstr.". Fuers Suchfeld ist die Toleranz richtig, fuer die Adresse
+     nicht — "Markt 1" liegt in Kalk, die Marktstr. in Raderberg. */
+  function nameKey(s) {
+    return String(s == null ? '' : s).toLowerCase()
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/[^a-z0-9]/g, '');
+  }
+  /* Zugriff auf strassen-hausnummern.js — ueber den echten Strassennamen, nicht
+     ueber norm(); die Datei ist optional und laedt nur die Bewertungsseite. */
+  function hausnummern(name) {
     var q = window.RBHausnummern;
-    if (q) for (var k in q) if (Object.prototype.hasOwnProperty.call(q, k)) HIDX[norm(k)] = q[k];
-    return HIDX;
+    return (q && Object.prototype.hasOwnProperty.call(q, name)) ? q[name] : null;
+  }
+  var HLUECK = null;
+  function lueckenhaft(name) {
+    if (!HLUECK) {
+      HLUECK = {};
+      var l = window.RBHausnummernLueckenhaft || [];
+      for (var i = 0; i < l.length; i++) HLUECK[l[i]] = 1;
+    }
+    return !!HLUECK[name];
   }
 
   window.RBVeedel = {
@@ -178,32 +201,43 @@ const exportBlock = `  /* GENERIERT von scripts/gen-strassen-index.mjs — nicht
         var m = name.match(/^(.*?)[\\s,]+(\\d+\\s*[a-zA-Z]?)$/);
         if (m) { name = m[1].trim(); hausnr = m[2]; }
       }
-      var t = norm(name);
-      if (!t) return null;
+      var t = norm(name), nk = nameKey(name);
+      if (!t && !nk) return null;
 
-      // Alle Lagen, in denen es diese Strasse gibt
-      var list = strIndex(), treffer = [], gesehen = {};
-      for (var i = 0; i < list.length; i++) {
-        if (list[i].x !== t) continue;
-        var schl = list[i].o + '|' + list[i].p;
+      // Alle Lagen dieser Strasse. Exakter Name zuerst; nur wenn der nichts
+      // findet, greift die tolerante Schreibweise ("Aachener Straße" ->
+      // "Aachener Str."). Sonst wuerde "Markt" die Marktstr. mitziehen.
+      var list = strIndex(), eintraege = [], i;
+      for (i = 0; i < list.length; i++) if (nameKey(list[i].n) === nk) eintraege.push(list[i]);
+      if (!eintraege.length) for (i = 0; i < list.length; i++) if (list[i].x === t) eintraege.push(list[i]);
+      if (!eintraege.length) return null;
+
+      var treffer = [], gesehen = {};
+      for (i = 0; i < eintraege.length; i++) {
+        var schl = eintraege[i].o + '|' + eintraege[i].p;
         if (gesehen[schl]) continue;
         gesehen[schl] = 1;
-        treffer.push({name: list[i].n, veedel: list[i].o.replace(/^Köln-/, ''), plz: list[i].p});
+        treffer.push({name: eintraege[i].n, veedel: eintraege[i].o.replace(/^Köln-/, ''), plz: eintraege[i].p});
       }
-      if (!treffer.length) return null;
 
       var erg = {strasse: treffer[0].name, hausnr: hausnr || null, veedel: null, plz: null,
-                 eindeutig: false, ueberHausnummer: false,
+                 eindeutig: false, ueberHausnummer: false, hausnummerBekannt: null,
                  treffer: treffer.map(function (x) { return {veedel: x.veedel, plz: x.plz}; })};
 
-      // 1. Hausnummer entscheidet, wenn Abschnitte hinterlegt sind
-      var n = hausNr(hausnr), segs = hausnummernIndex()[t];
+      // 1. Hausnummer gegen die Bereiche der Stadt halten. Das entscheidet
+      //    zweierlei: welches Veedel es ist und ob es die Nummer ueberhaupt gibt.
+      //    hausnummerBekannt bleibt null, wo keine Aussage moeglich ist: bei
+      //    Strassen ohne Nummernangabe, bei denen mit Luecken und wenn die
+      //    Eingabe auf mehrere verschiedene Strassennamen passt.
+      var einName = eintraege.every(function (x) { return x.n === eintraege[0].n; });
+      var n = hausNr(hausnr), segs = einName ? hausnummern(eintraege[0].n) : null;
       if (n !== null && segs) {
         var passend = [];
         for (var k = 0; k < segs.length; k++) {
           var seg = segs[k];
           if (inSpanne(n, n % 2 ? seg[2] : seg[3])) passend.push({veedel: seg[0], plz: seg[1]});
         }
+        erg.hausnummerBekannt = passend.length ? true : (lueckenhaft(eintraege[0].n) ? null : false);
         var gleich = passend.length && passend.every(function (p) {
           return p.veedel === passend[0].veedel && p.plz === passend[0].plz;
         });
@@ -252,5 +286,7 @@ console.log('  Strassennamen   : ' + proStrasse.size);
 console.log('  Masterzeilen    : ' + master.length);
 console.log('  mit Preisangabe : ' + Object.keys(preisTabelle).length + ' Veedel');
 console.log('strassen-hausnummern.js aktualisiert');
-console.log('  Strassen mit mehreren Lagen   : ' + Object.keys(mehrdeutig).length);
+console.log('  Strassen mit Nummernbereich   : ' + Object.keys(bereiche).length);
 console.log('  Hausnummernabschnitte         : ' + segmente);
+console.log('  Strassen mit Luecken          : ' + lueckenhaft.length + ' (Hausnummer dort nicht pruefbar)');
+console.log('  Strassen ganz ohne Angabe     : ' + ohneAngabe);

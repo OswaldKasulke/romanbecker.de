@@ -1411,10 +1411,22 @@
       }
     }
 
-    function lageSetzen(veedel, plz, ueberHausnummer) {
+    function lageSetzen(veedel, plz, ueberHausnummer, a) {
       erkannteLage = {veedel: veedel, plz: plz || null, ueberHausnummer: !!ueberHausnummer};
       if (plz) { plzFeld.value = plz; plzAutomatisch(true); }
       if (ortFeld && !ortFeld.value.trim()) ortFeld.value = 'Köln';
+      // Auch wenn das Veedel feststeht, muss die Hausnummer stimmen. Sonst
+      // bestaetigt die Seite Adressen wie "Brüsseler Platz 890": Straße richtig,
+      // Veedel richtig, Hausnummer frei erfunden. hausnummerBekannt ist nur dann
+      // false, wenn die Straße im Verzeichnis lückenlos erfasst ist.
+      if (a && a.hausnummerBekannt === false) {
+        var bereich = hausnummerBereich(a.strasse, a.hausnr);
+        lageZeile.className = 'lage-treffer lage-treffer--frage';
+        lageZeile.textContent = 'Hausnummer ' + a.hausnr + ' steht nicht im Kölner Straßenverzeichnis' +
+          (bereich ? ' – ' + bereich + '. ' : '. ') +
+          'Bitte die Nummer prüfen. Gerechnet wird mit Köln-' + veedel + '.';
+        return;
+      }
       lageZeile.className = 'lage-treffer';
       lageZeile.innerHTML = 'Lage erkannt: <strong>Köln-' + veedel + '</strong>' +
         (plz ? ' · PLZ ' + plz : '') +
@@ -1474,7 +1486,7 @@
         return;
       }
       if (a.eindeutig && a.veedel) {
-        lageSetzen(a.veedel, a.plz, a.ueberHausnummer);
+        lageSetzen(a.veedel, a.plz, a.ueberHausnummer, a);
         return;
       }
       // Mehrere Veedel und die Hausnummer hilft nicht weiter
@@ -1483,17 +1495,28 @@
       var nr = hausnummerAus(text);
       if (!nr) {
         lageZeile.textContent = 'Diese Straße verläuft durch mehrere Veedel – Hausnummer ergänzen oder Veedel unten auswählen.';
-      } else {
+      } else if (a.hausnummerBekannt === false) {
         var bereich = hausnummerBereich(a.strasse, nr);
         lageZeile.textContent = 'Hausnummer ' + nr + ' steht nicht im Kölner Straßenverzeichnis' +
           (bereich ? ' – ' + bereich + '. ' : '. ') +
           'Bitte die Nummer prüfen oder das Veedel unten auswählen.';
+      } else {
+        // hausnummerBekannt ist true (Nummer existiert, führt aber zu mehreren
+        // Veedeln) oder null (die Straße hat Abschnitte ohne Nummernangabe, die
+        // Nummer ist also nicht prüfbar). In beiden Fällen darf hier nicht
+        // stehen, die Hausnummer gäbe es nicht.
+        lageZeile.textContent = 'Zu dieser Hausnummer führt das Verzeichnis kein eindeutiges Veedel – bitte unten auswählen.';
       }
     }
 
     if (strasseFeld) {
       strasseFeld.addEventListener('input', function () {
-        vorschlaegeZeigen(this.value.trim());
+        var text = this.value.trim();
+        vorschlaegeZeigen(text);
+        // Waehrend des Tippens mitlaufen lassen: sobald Straße und Hausnummer
+        // stehen, ist die Liste erledigt und Weiter/Enter wieder frei.
+        lageErmitteln();
+        if (erkannteLage && hausnummerAus(text)) vorschlaegeSchliessen();
       });
       strasseFeld.addEventListener('change', lageErmitteln);
       strasseFeld.addEventListener('blur', function () {
@@ -1502,6 +1525,20 @@
       });
       strasseFeld.addEventListener('keydown', function (e) {
         var eintraege = vorschlagListe.querySelectorAll('li');
+        // Enter zuerst, noch vor der Liste: ohne markierten Vorschlag heisst
+        // Enter im Formular "weiter" — vorher passierte gar nichts und der
+        // Nutzer sass vor einer offenen Liste ohne sichtbaren Ausweg.
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (eintraege.length && vorschlagIndex >= 0) {
+            vorschlagUebernehmen(eintraege[vorschlagIndex].getAttribute('data-name'));
+          } else {
+            vorschlaegeSchliessen();
+            lageErmitteln();
+            nextStep(2);
+          }
+          return;
+        }
         if (!eintraege.length) return;
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
           e.preventDefault();
@@ -1509,9 +1546,6 @@
           if (vorschlagIndex < 0) vorschlagIndex = eintraege.length - 1;
           if (vorschlagIndex >= eintraege.length) vorschlagIndex = 0;
           for (var i = 0; i < eintraege.length; i++) eintraege[i].classList.toggle('aktiv', i === vorschlagIndex);
-        } else if (e.key === 'Enter' && vorschlagIndex >= 0) {
-          e.preventDefault();
-          vorschlagUebernehmen(eintraege[vorschlagIndex].getAttribute('data-name'));
         } else if (e.key === 'Escape') {
           vorschlaegeSchliessen();
         }
