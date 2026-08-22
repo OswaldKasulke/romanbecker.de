@@ -1872,11 +1872,14 @@
         // Umland: MFH maximal Faktor 16,5 (Bruttorendite mind. ~6,1%)
         multiplikator = Math.min(multiplikator, 16.5);
       } else {
-        // Bruttorendite (= 1 / Multiplikator) darf nie über 4,5% liegen
-        // -> Multiplikator nie unter 1/0,045 ≈ 22,22 fallen lassen
-        var minMultiplikator = 1 / 0.045;
+        // Untergrenze des Multiplikators: 20, entspricht max. 5 % Bruttorendite.
+        // Vorher lag sie bei 22,22 (4,5 %) — und damit ÜBER 43 der 45 Werte in
+        // der Tabelle oben. Der Ertragswert war deshalb faktisch überall gleich:
+        // 1.000 € Kaltmiete ergaben in Chorweiler denselben Wert wie in Sülz.
+        // Mit 20 greifen die Tabellenwerte 20 bis 23 wieder durch.
+        var minMultiplikator = 20;
         multiplikator = Math.max(multiplikator, minMultiplikator);
-        if (multiplikator === minMultiplikator) rw.push('Untergrenze gegriffen: max. 4,5 % Bruttorendite -> Multiplikator auf ' + minMultiplikator.toFixed(2) + ' angehoben');
+        if (multiplikator === minMultiplikator) rw.push('Untergrenze gegriffen: max. 5 % Bruttorendite -> Multiplikator auf ' + minMultiplikator.toFixed(2) + ' angehoben');
       }
       // Kaufpreis je m² Wohnfläche. Reihenfolge der Quellen:
       //   1. Veedel-Wert aus dem Grundstücksmarktbericht (amtlich, je Stadtteil)
