@@ -59,6 +59,10 @@ $miete_ist_jahr     = clean($_POST['miete_ist_jahr'] ?? '');
 $miete_soll         = clean($_POST['miete_soll'] ?? '');
 $miete_soll_jahr    = clean($_POST['miete_soll_jahr'] ?? '');
 $ergebnis           = clean($_POST['ergebnis'] ?? '');
+// Rechenweg ist mehrzeilig - clean() wuerde die Umbrueche fressen.
+$rechenweg          = trim((string)($_POST['rechenweg'] ?? ''));
+$rechenweg          = str_replace(["\r"], '', $rechenweg);
+$rechenweg          = preg_replace('/[^\P{C}\n]+/u', '', $rechenweg);
 
 // Pflichtfelder prüfen
 if (empty($name) || empty($telefon)) {
@@ -116,6 +120,15 @@ if ($ergebnis) {
     $body .= "Geschätzter Wert:  $ergebnis\n";
 }
 
+// Rechenweg: macht nachvollziehbar, wie der Wert zustande kam
+if ($rechenweg) {
+    $body .= "\n── RECHENWEG ────────────────────\n";
+    foreach (explode("\n", $rechenweg) as $i => $zeile) {
+        $zeile = trim($zeile);
+        if ($zeile !== '') $body .= ($i + 1) . ") $zeile\n";
+    }
+}
+
 // Sonstiges
 if ($preisspanne) $body .= "\nPreisspanne: $preisspanne\n";
 if ($empfohlen)   $body .= "Empfohlen von: $empfohlen\n";
@@ -131,6 +144,7 @@ $leadRecord = [
     'email'    => $email,
     'immo_ort' => $immo_ort,
     'ergebnis' => $ergebnis,
+    'rechenweg' => $rechenweg,
     'mail_sent' => null, // wird unten gesetzt
 ];
 $leadLogPath = __DIR__ . '/leads.log';
