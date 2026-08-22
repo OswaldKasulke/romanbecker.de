@@ -1,5 +1,5 @@
 name: Deploy STARK website to doktorbecker.de/BGL
-# Market data, streets and SEO refreshed 2026-08-22
+# Evernest design and district profiles refreshed 2026-08-22
 
 on:
   push:
