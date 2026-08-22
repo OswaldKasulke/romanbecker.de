@@ -380,8 +380,13 @@
     return hits.slice(0, 7).map(function(s) {
       return {
         t: s.n,
+        // Der Link wird per JS gesetzt, nicht als HTML geparst: hier gehoert ein
+        // echtes "&" hin. Mit "&amp;" hiess der zweite Parameter "amp;ort" und
+        // die Bewertungsseite hat Ort und PLZ nie uebernommen.
+        // Als Ort steht "Köln" im Link, nicht das Veedel — das Veedel bestimmt
+        // die Bewertungsseite selbst aus Strasse und Hausnummer.
         u: '/immobilienbewertung/?strasse=' + encodeURIComponent(s.n) +
-           '&amp;ort=' + encodeURIComponent(s.o) + '&amp;plz=' + encodeURIComponent(s.p),
+           '&ort=' + encodeURIComponent('Köln') + '&plz=' + encodeURIComponent(s.p),
         c: 'Stra\u00dfe in ' + s.o
       };
     });
@@ -389,6 +394,10 @@
 
   /* GENERIERT von scripts/gen-strassen-index.mjs — nicht von Hand aendern */
   var VEEDEL = ["Agnesviertel","Altstadt/Nord","Altstadt/Süd","Bayenthal","Belgisches Viertel","Bickendorf","Bilderstöckchen","Blumenberg","Bocklemünd/Mengenich","Braunsfeld","Brück","Buchforst","Buchheim","Chorweiler","Dellbrück","Deutz","Dünnwald","Ehrenfeld","Eigelstein","Eil","Elsdorf","Ensen","Esch/Auweiler","Finkenberg","Flittard","Fühlingen","Godorf","Gremberghoven","Grengel","Hahnwald","Heimersdorf","Höhenberg","Höhenhaus","Holweide","Humboldt/Gremberg","Immendorf","Junkersdorf","Kalk","Klettenberg","Komponistenviertel","Kwartier Latäng","Langel","Libur","Lind","Lindenthal","Lindweiler","Longerich","Lövenich","Malerviertel","Marienburg","Mauenheim","Merheim","Merkenich","Meschenich","Mülheim","Müngersdorf","Neubrück","Neuehrenfeld","Neustadt/Nord","Neustadt/Süd","Niehl","Nippes","Ossendorf","Ostheim","Pesch","Poll","Porz","Raderberg","Raderthal","Rath/Heumar","Rheinauhafen","Riehl","Rodenkirchen","Roggendorf/Thenhoven","Rondorf","Seeberg","Stammheim","Südstadt","Sülz","Sürth","Urbach","Vingst","Vogelsang","Volkhoven/Weiler","Wahn","Wahnheide","Weiden","Weidenpesch","Weiß","Westhoven","Widdersdorf","Worringen","Zollstock","Zündorf"];
+  /* Kaufpreis je m2 Wohnflaeche als [Eigentumswohnung, Ein-/Zweifamilienhaus].
+     0 = fuer dieses Veedel nicht ausgewiesen.
+     Quelle: Gutachterausschuss für Grundstückswerte in der Stadt Köln, Grundstücksmarktbericht 2026, Berichtszeitraum 2025 */
+  var VEEDEL_PREIS = {"Agnesviertel":[5571,0],"Altstadt/Nord":[5894,0],"Altstadt/Süd":[5841,0],"Bayenthal":[5921,4969],"Belgisches Viertel":[5571,0],"Bickendorf":[3928,5143],"Bilderstöckchen":[3461,3802],"Blumenberg":[0,3708],"Bocklemünd/Mengenich":[3569,3301],"Braunsfeld":[5128,0],"Brück":[3233,3913],"Buchforst":[3272,0],"Buchheim":[3254,3921],"Chorweiler":[2697,0],"Dellbrück":[3630,4109],"Deutz":[4690,0],"Dünnwald":[3571,3216],"Ehrenfeld":[5078,0],"Eigelstein":[5894,0],"Eil":[2826,3826],"Elsdorf":[5195,0],"Ensen":[3385,3853],"Esch/Auweiler":[3289,3526],"Finkenberg":[2110,0],"Flittard":[2661,3467],"Fühlingen":[4785,3747],"Godorf":[0,3336],"Gremberghoven":[3129,0],"Grengel":[2637,3131],"Hahnwald":[7952,7689],"Heimersdorf":[2789,3753],"Holweide":[3301,3698],"Humboldt/Gremberg":[3049,0],"Höhenberg":[3097,0],"Höhenhaus":[3317,4009],"Immendorf":[0,3592],"Junkersdorf":[4414,7160],"Kalk":[3447,0],"Klettenberg":[5339,5809],"Komponistenviertel":[5766,0],"Kwartier Latäng":[5766,0],"Langel":[3166,0],"Lind":[3191,3575],"Lindenthal":[5569,8617],"Lindweiler":[0,3028],"Longerich":[3274,4384],"Lövenich":[3627,4729],"Malerviertel":[4789,6980],"Marienburg":[5684,9296],"Mauenheim":[3793,4900],"Merheim":[3415,3352],"Merkenich":[3919,0],"Meschenich":[2880,2567],"Mülheim":[3747,3789],"Müngersdorf":[4789,6980],"Neubrück":[2629,3854],"Neuehrenfeld":[4386,5759],"Neustadt/Nord":[5571,0],"Neustadt/Süd":[5766,0],"Niehl":[3949,4330],"Nippes":[4590,0],"Ossendorf":[4601,4352],"Ostheim":[2457,3795],"Pesch":[2984,3733],"Poll":[3576,3960],"Porz":[3140,3600],"Raderberg":[5113,0],"Raderthal":[4628,6593],"Rath/Heumar":[3728,4418],"Rheinauhafen":[5841,0],"Riehl":[4606,0],"Rodenkirchen":[4790,6451],"Rondorf":[3768,4484],"Seeberg":[2626,4357],"Stammheim":[3489,0],"Südstadt":[5766,0],"Sülz":[5055,7022],"Sürth":[4740,5276],"Urbach":[2604,3189],"Vingst":[3076,0],"Vogelsang":[4888,4073],"Volkhoven/Weiler":[3391,0],"Wahn":[3364,3856],"Wahnheide":[2898,3166],"Weiden":[3368,4993],"Weidenpesch":[3578,0],"Weiß":[3811,5405],"Westhoven":[3292,4577],"Widdersdorf":[4151,4786],"Worringen":[3485,3010],"Zollstock":[4368,4757],"Zündorf":[3166,3884]};
   function veedelKey(s) {
     return String(s || '').replace(/^K(ö|oe)ln[-\/ ]/i, '')
       .toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
@@ -396,6 +405,26 @@
   }
   var VEEDEL_NACH_KEY = {};
   for (var vi = 0; vi < VEEDEL.length; vi++) VEEDEL_NACH_KEY[veedelKey(VEEDEL[vi])] = VEEDEL[vi];
+
+  /* Hausnummer aus "12a" oder "12 a" lesen; Buchstabenzusatz spielt fuer die
+     Zuordnung keine Rolle, die Bereiche der Stadt sind auf ganze Zahlen bezogen. */
+  function hausNr(s) {
+    var m = String(s == null ? '' : s).match(/(\d+)/);
+    return m ? parseInt(m[1], 10) : null;
+  }
+  function inSpanne(n, s) {
+    return !!s && s[0] !== null && s[1] !== null && n >= s[0] && n <= s[1];
+  }
+  /* Normalisierter Zugriff auf strassen-hausnummern.js — die Datei ist optional. */
+  var HIDX = null;
+  function hausnummernIndex() {
+    if (HIDX) return HIDX;
+    HIDX = {};
+    var q = window.RBHausnummern;
+    if (q) for (var k in q) if (Object.prototype.hasOwnProperty.call(q, k)) HIDX[norm(k)] = q[k];
+    return HIDX;
+  }
+
   window.RBVeedel = {
     liste: VEEDEL,
     /* Nimmt "Altstadt-Nord", "Altstadt/Nord", "Köln-Altstadt/Nord" … und gibt
@@ -411,6 +440,74 @@
         return ap !== bp ? ap - bp : a.n.length - b.n.length;
       });
       return hits.slice(0, max || 8).map(function (s) { return {n: s.n, o: s.o, p: s.p}; });
+    },
+    /* Kaufpreis je m2 Wohnflaeche fuer ein Veedel:
+       {veedel, etw, haus} — Werte koennen null sein, wenn der
+       Grundstuecksmarktbericht fuer das Veedel keine Zahl ausweist. */
+    preis: function (name) {
+      var k = VEEDEL_NACH_KEY[veedelKey(name)];
+      var p = k && VEEDEL_PREIS[k];
+      if (!p) return null;
+      return {veedel: k, etw: p[0] || null, haus: p[1] || null};
+    },
+    /* Adresse -> Veedel. Nimmt "Aachener Str. 120" oder ("Aachener Str.", "120").
+       Liefert null, wenn die Strasse nicht im Verzeichnis steht, sonst
+       {strasse, hausnr, veedel, plz, eindeutig, treffer:[{veedel, plz}]}.
+       eindeutig=false heisst: die Strasse liegt in mehreren Veedeln und die
+       Hausnummer fehlt oder liegt in keinem hinterlegten Bereich. */
+    adresse: function (strasse, hausnr) {
+      var name = String(strasse == null ? '' : strasse).trim();
+      if (!name) return null;
+      if (hausnr === undefined || hausnr === null || hausnr === '') {
+        var m = name.match(/^(.*?)[\s,]+(\d+\s*[a-zA-Z]?)$/);
+        if (m) { name = m[1].trim(); hausnr = m[2]; }
+      }
+      var t = norm(name);
+      if (!t) return null;
+
+      // Alle Lagen, in denen es diese Strasse gibt
+      var list = strIndex(), treffer = [], gesehen = {};
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].x !== t) continue;
+        var schl = list[i].o + '|' + list[i].p;
+        if (gesehen[schl]) continue;
+        gesehen[schl] = 1;
+        treffer.push({name: list[i].n, veedel: list[i].o.replace(/^Köln-/, ''), plz: list[i].p});
+      }
+      if (!treffer.length) return null;
+
+      var erg = {strasse: treffer[0].name, hausnr: hausnr || null, veedel: null, plz: null,
+                 eindeutig: false, ueberHausnummer: false,
+                 treffer: treffer.map(function (x) { return {veedel: x.veedel, plz: x.plz}; })};
+
+      // 1. Hausnummer entscheidet, wenn Abschnitte hinterlegt sind
+      var n = hausNr(hausnr), segs = hausnummernIndex()[t];
+      if (n !== null && segs) {
+        var passend = [];
+        for (var k = 0; k < segs.length; k++) {
+          var seg = segs[k];
+          if (inSpanne(n, n % 2 ? seg[2] : seg[3])) passend.push({veedel: seg[0], plz: seg[1]});
+        }
+        var gleich = passend.length && passend.every(function (p) {
+          return p.veedel === passend[0].veedel && p.plz === passend[0].plz;
+        });
+        if (gleich) {
+          erg.veedel = passend[0].veedel; erg.plz = passend[0].plz;
+          erg.eindeutig = true; erg.ueberHausnummer = true;
+          return erg;
+        }
+      }
+
+      // 2. Ohne Hausnummer reicht der Name, solange die Strasse nur in einem
+      //    Veedel liegt. Die PLZ bleibt offen, wenn sie innerhalb des Veedels wechselt.
+      var einVeedel = treffer.every(function (x) { return x.veedel === treffer[0].veedel; });
+      if (einVeedel) {
+        erg.veedel = treffer[0].veedel;
+        erg.eindeutig = true;
+        var einePlz = treffer.every(function (x) { return x.plz === treffer[0].plz; });
+        if (einePlz) erg.plz = treffer[0].plz;
+      }
+      return erg;
     }
   };
   /* ENDE GENERIERT */

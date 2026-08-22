@@ -1,0 +1,591 @@
+{
+ "_quelle": "Gutachterausschuss für Grundstückswerte in der Stadt Köln, Grundstücksmarktbericht 2026, Berichtszeitraum 2025",
+ "_kapitel": {
+  "etw": "6.1.1 Eigentumswohnungen, Verkaufsfall Weiterverkauf, arithmetischer Mittelwert Euro je m² Wohnfläche",
+  "haus": "5.1.2 Ein- und Zweifamilienhäuser, Weiterverkauf, über die Anbauweisen mit der Fallzahl gewichtet"
+ },
+ "_erzeugt_von": "scripts/gmb-preise.py",
+ "_hinweis": "Stadtteile mit weniger als drei auswertbaren Kaufverträgen weist der Bericht nicht aus; für sie fehlt hier der Wert und die Bewertung fällt auf die PLZ-Tabelle zurück.",
+ "veedel": {
+  "Agnesviertel": {
+   "t": "Neustadt/Nord",
+   "etw": 5571,
+   "etwN": 163
+  },
+  "Altstadt/Nord": {
+   "t": "Altstadt/Nord",
+   "etw": 5894,
+   "etwN": 63
+  },
+  "Altstadt/Süd": {
+   "t": "Altstadt/Süd",
+   "etw": 5841,
+   "etwN": 126
+  },
+  "Bayenthal": {
+   "t": "Bayenthal",
+   "etw": 5921,
+   "etwN": 30,
+   "haus": 4969,
+   "hausN": 4
+  },
+  "Belgisches Viertel": {
+   "t": "Neustadt/Nord",
+   "etw": 5571,
+   "etwN": 163
+  },
+  "Bickendorf": {
+   "t": "Bickendorf",
+   "etw": 3928,
+   "etwN": 24,
+   "haus": 5143,
+   "hausN": 6
+  },
+  "Bilderstöckchen": {
+   "t": "Bilderstöckchen",
+   "etw": 3461,
+   "etwN": 35,
+   "haus": 3802,
+   "hausN": 4
+  },
+  "Blumenberg": {
+   "t": "Blumenberg",
+   "haus": 3708,
+   "hausN": 5
+  },
+  "Bocklemünd/Mengenich": {
+   "t": "Bocklemünd/Mengenich",
+   "etw": 3569,
+   "etwN": 29,
+   "haus": 3301,
+   "hausN": 3
+  },
+  "Braunsfeld": {
+   "t": "Braunsfeld",
+   "etw": 5128,
+   "etwN": 37
+  },
+  "Brück": {
+   "t": "Brück",
+   "etw": 3233,
+   "etwN": 31,
+   "haus": 3913,
+   "hausN": 26
+  },
+  "Buchforst": {
+   "t": "Buchforst",
+   "etw": 3272,
+   "etwN": 4
+  },
+  "Buchheim": {
+   "t": "Buchheim",
+   "etw": 3254,
+   "etwN": 27,
+   "haus": 3921,
+   "hausN": 10
+  },
+  "Chorweiler": {
+   "t": "Chorweiler",
+   "etw": 2697,
+   "etwN": 11
+  },
+  "Dellbrück": {
+   "t": "Dellbrück",
+   "etw": 3630,
+   "etwN": 53,
+   "haus": 4109,
+   "hausN": 35
+  },
+  "Deutz": {
+   "t": "Deutz",
+   "etw": 4690,
+   "etwN": 40
+  },
+  "Dünnwald": {
+   "t": "Dünnwald",
+   "etw": 3571,
+   "etwN": 12,
+   "haus": 3216,
+   "hausN": 21
+  },
+  "Ehrenfeld": {
+   "t": "Ehrenfeld",
+   "etw": 5078,
+   "etwN": 112
+  },
+  "Eigelstein": {
+   "t": "Altstadt/Nord",
+   "etw": 5894,
+   "etwN": 63
+  },
+  "Eil": {
+   "t": "Eil",
+   "etw": 2826,
+   "etwN": 32,
+   "haus": 3826,
+   "hausN": 15
+  },
+  "Elsdorf": {
+   "t": "Elsdorf",
+   "etw": 5195,
+   "etwN": 5
+  },
+  "Ensen": {
+   "t": "Ensen",
+   "etw": 3385,
+   "etwN": 24,
+   "haus": 3853,
+   "hausN": 6
+  },
+  "Esch/Auweiler": {
+   "t": "Esch/Auweiler",
+   "etw": 3289,
+   "etwN": 10,
+   "haus": 3526,
+   "hausN": 22
+  },
+  "Finkenberg": {
+   "t": "Finkenberg",
+   "etw": 2110,
+   "etwN": 16
+  },
+  "Flittard": {
+   "t": "Flittard",
+   "etw": 2661,
+   "etwN": 9,
+   "haus": 3467,
+   "hausN": 19
+  },
+  "Fühlingen": {
+   "t": "Fühlingen",
+   "etw": 4785,
+   "etwN": 4,
+   "haus": 3747,
+   "hausN": 3
+  },
+  "Godorf": {
+   "t": "Godorf",
+   "haus": 3336,
+   "hausN": 6
+  },
+  "Gremberghoven": {
+   "t": "Gremberghoven",
+   "etw": 3129,
+   "etwN": 12
+  },
+  "Grengel": {
+   "t": "Grengel",
+   "etw": 2637,
+   "etwN": 21,
+   "haus": 3131,
+   "hausN": 13
+  },
+  "Hahnwald": {
+   "t": "Hahnwald",
+   "etw": 7952,
+   "etwN": 5,
+   "haus": 7689,
+   "hausN": 10
+  },
+  "Heimersdorf": {
+   "t": "Heimersdorf",
+   "etw": 2789,
+   "etwN": 12,
+   "haus": 3753,
+   "hausN": 22
+  },
+  "Holweide": {
+   "t": "Holweide",
+   "etw": 3301,
+   "etwN": 44,
+   "haus": 3698,
+   "hausN": 18
+  },
+  "Humboldt/Gremberg": {
+   "t": "Humboldt/Gremberg",
+   "etw": 3049,
+   "etwN": 63
+  },
+  "Höhenberg": {
+   "t": "Höhenberg",
+   "etw": 3097,
+   "etwN": 61
+  },
+  "Höhenhaus": {
+   "t": "Höhenhaus",
+   "etw": 3317,
+   "etwN": 26,
+   "haus": 4009,
+   "hausN": 44
+  },
+  "Immendorf": {
+   "t": "Immendorf",
+   "haus": 3592,
+   "hausN": 6
+  },
+  "Junkersdorf": {
+   "t": "Junkersdorf",
+   "etw": 4414,
+   "etwN": 103,
+   "haus": 7160,
+   "hausN": 22
+  },
+  "Kalk": {
+   "t": "Kalk",
+   "etw": 3447,
+   "etwN": 38
+  },
+  "Klettenberg": {
+   "t": "Klettenberg",
+   "etw": 5339,
+   "etwN": 49,
+   "haus": 5809,
+   "hausN": 7
+  },
+  "Komponistenviertel": {
+   "t": "Neustadt/Süd",
+   "etw": 5766,
+   "etwN": 216
+  },
+  "Kwartier Latäng": {
+   "t": "Neustadt/Süd",
+   "etw": 5766,
+   "etwN": 216
+  },
+  "Langel": {
+   "t": "Langel",
+   "etw": 3166,
+   "etwN": 3
+  },
+  "Libur": {
+   "t": "Libur"
+  },
+  "Lind": {
+   "t": "Lind",
+   "etw": 3191,
+   "etwN": 16,
+   "haus": 3575,
+   "hausN": 5
+  },
+  "Lindenthal": {
+   "t": "Lindenthal",
+   "etw": 5569,
+   "etwN": 144,
+   "haus": 8617,
+   "hausN": 18
+  },
+  "Lindweiler": {
+   "t": "Lindweiler",
+   "haus": 3028,
+   "hausN": 9
+  },
+  "Longerich": {
+   "t": "Longerich",
+   "etw": 3274,
+   "etwN": 23,
+   "haus": 4384,
+   "hausN": 17
+  },
+  "Lövenich": {
+   "t": "Lövenich",
+   "etw": 3627,
+   "etwN": 28,
+   "haus": 4729,
+   "hausN": 31
+  },
+  "Malerviertel": {
+   "t": "Müngersdorf",
+   "etw": 4789,
+   "etwN": 19,
+   "haus": 6980,
+   "hausN": 23
+  },
+  "Marienburg": {
+   "t": "Marienburg",
+   "etw": 5684,
+   "etwN": 47,
+   "haus": 9296,
+   "hausN": 3
+  },
+  "Mauenheim": {
+   "t": "Mauenheim",
+   "etw": 3793,
+   "etwN": 13,
+   "haus": 4900,
+   "hausN": 4
+  },
+  "Merheim": {
+   "t": "Merheim",
+   "etw": 3415,
+   "etwN": 23,
+   "haus": 3352,
+   "hausN": 17
+  },
+  "Merkenich": {
+   "t": "Merkenich",
+   "etw": 3919,
+   "etwN": 4
+  },
+  "Meschenich": {
+   "t": "Meschenich",
+   "etw": 2880,
+   "etwN": 5,
+   "haus": 2567,
+   "hausN": 22
+  },
+  "Mülheim": {
+   "t": "Mülheim",
+   "etw": 3747,
+   "etwN": 118,
+   "haus": 3789,
+   "hausN": 12
+  },
+  "Müngersdorf": {
+   "t": "Müngersdorf",
+   "etw": 4789,
+   "etwN": 19,
+   "haus": 6980,
+   "hausN": 23
+  },
+  "Neubrück": {
+   "t": "Neubrück",
+   "etw": 2629,
+   "etwN": 29,
+   "haus": 3854,
+   "hausN": 20
+  },
+  "Neuehrenfeld": {
+   "t": "Neuehrenfeld",
+   "etw": 4386,
+   "etwN": 84,
+   "haus": 5759,
+   "hausN": 8
+  },
+  "Neustadt/Nord": {
+   "t": "Neustadt/Nord",
+   "etw": 5571,
+   "etwN": 163
+  },
+  "Neustadt/Süd": {
+   "t": "Neustadt/Süd",
+   "etw": 5766,
+   "etwN": 216
+  },
+  "Niehl": {
+   "t": "Niehl",
+   "etw": 3949,
+   "etwN": 75,
+   "haus": 4330,
+   "hausN": 11
+  },
+  "Nippes": {
+   "t": "Nippes",
+   "etw": 4590,
+   "etwN": 141
+  },
+  "Ossendorf": {
+   "t": "Ossendorf",
+   "etw": 4601,
+   "etwN": 13,
+   "haus": 4352,
+   "hausN": 8
+  },
+  "Ostheim": {
+   "t": "Ostheim",
+   "etw": 2457,
+   "etwN": 14,
+   "haus": 3795,
+   "hausN": 8
+  },
+  "Pesch": {
+   "t": "Pesch",
+   "etw": 2984,
+   "etwN": 18,
+   "haus": 3733,
+   "hausN": 37
+  },
+  "Poll": {
+   "t": "Poll",
+   "etw": 3576,
+   "etwN": 29,
+   "haus": 3960,
+   "hausN": 19
+  },
+  "Porz": {
+   "t": "Porz",
+   "etw": 3140,
+   "etwN": 72,
+   "haus": 3600,
+   "hausN": 8
+  },
+  "Raderberg": {
+   "t": "Raderberg",
+   "etw": 5113,
+   "etwN": 13
+  },
+  "Raderthal": {
+   "t": "Raderthal",
+   "etw": 4628,
+   "etwN": 11,
+   "haus": 6593,
+   "hausN": 7
+  },
+  "Rath/Heumar": {
+   "t": "Rath/Heumar",
+   "etw": 3728,
+   "etwN": 15,
+   "haus": 4418,
+   "hausN": 31
+  },
+  "Rheinauhafen": {
+   "t": "Altstadt/Süd",
+   "etw": 5841,
+   "etwN": 126
+  },
+  "Riehl": {
+   "t": "Riehl",
+   "etw": 4606,
+   "etwN": 54
+  },
+  "Rodenkirchen": {
+   "t": "Rodenkirchen",
+   "etw": 4790,
+   "etwN": 79,
+   "haus": 6451,
+   "hausN": 41
+  },
+  "Roggendorf/Thenhoven": {
+   "t": "Roggendorf/Thenhoven"
+  },
+  "Rondorf": {
+   "t": "Rondorf",
+   "etw": 3768,
+   "etwN": 17,
+   "haus": 4484,
+   "hausN": 35
+  },
+  "Seeberg": {
+   "t": "Seeberg",
+   "etw": 2626,
+   "etwN": 13,
+   "haus": 4357,
+   "hausN": 8
+  },
+  "Stammheim": {
+   "t": "Stammheim",
+   "etw": 3489,
+   "etwN": 9
+  },
+  "Südstadt": {
+   "t": "Neustadt/Süd",
+   "etw": 5766,
+   "etwN": 216
+  },
+  "Sülz": {
+   "t": "Sülz",
+   "etw": 5055,
+   "etwN": 121,
+   "haus": 7022,
+   "hausN": 5
+  },
+  "Sürth": {
+   "t": "Sürth",
+   "etw": 4740,
+   "etwN": 37,
+   "haus": 5276,
+   "hausN": 26
+  },
+  "Urbach": {
+   "t": "Urbach",
+   "etw": 2604,
+   "etwN": 49,
+   "haus": 3189,
+   "hausN": 21
+  },
+  "Vingst": {
+   "t": "Vingst",
+   "etw": 3076,
+   "etwN": 18
+  },
+  "Vogelsang": {
+   "t": "Vogelsang",
+   "etw": 4888,
+   "etwN": 5,
+   "haus": 4073,
+   "hausN": 12
+  },
+  "Volkhoven/Weiler": {
+   "t": "Volkhoven/Weiler",
+   "etw": 3391,
+   "etwN": 9
+  },
+  "Wahn": {
+   "t": "Wahn",
+   "etw": 3364,
+   "etwN": 16,
+   "haus": 3856,
+   "hausN": 5
+  },
+  "Wahnheide": {
+   "t": "Wahnheide",
+   "etw": 2898,
+   "etwN": 34,
+   "haus": 3166,
+   "hausN": 12
+  },
+  "Weiden": {
+   "t": "Weiden",
+   "etw": 3368,
+   "etwN": 132,
+   "haus": 4993,
+   "hausN": 23
+  },
+  "Weidenpesch": {
+   "t": "Weidenpesch",
+   "etw": 3578,
+   "etwN": 51
+  },
+  "Weiß": {
+   "t": "Weiß",
+   "etw": 3811,
+   "etwN": 16,
+   "haus": 5405,
+   "hausN": 29
+  },
+  "Westhoven": {
+   "t": "Westhoven",
+   "etw": 3292,
+   "etwN": 25,
+   "haus": 4577,
+   "hausN": 5
+  },
+  "Widdersdorf": {
+   "t": "Widdersdorf",
+   "etw": 4151,
+   "etwN": 16,
+   "haus": 4786,
+   "hausN": 39
+  },
+  "Worringen": {
+   "t": "Worringen",
+   "etw": 3485,
+   "etwN": 8,
+   "haus": 3010,
+   "hausN": 22
+  },
+  "Zollstock": {
+   "t": "Zollstock",
+   "etw": 4368,
+   "etwN": 114,
+   "haus": 4757,
+   "hausN": 5
+  },
+  "Zündorf": {
+   "t": "Zündorf",
+   "etw": 3166,
+   "etwN": 52,
+   "haus": 3884,
+   "hausN": 29
+  }
+ }
+}

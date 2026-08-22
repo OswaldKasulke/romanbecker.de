@@ -465,6 +465,58 @@
       display: none;
     }
     /* ===========================
+       STRASSEN-VORSCHLAEGE
+    =========================== */
+    .field__suche {
+      position: relative;
+    }
+    .vorschlaege {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      z-index: 30;
+      margin: 0;
+      padding: var(--space-1) 0;
+      list-style: none;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+      max-height: 260px;
+      overflow-y: auto;
+      display: none;
+    }
+    .vorschlaege.offen {
+      display: block;
+    }
+    .vorschlaege li {
+      padding: var(--space-2) var(--space-4);
+      cursor: pointer;
+      font-size: 0.9375rem;
+      line-height: 1.35;
+    }
+    .vorschlaege li:hover,
+    .vorschlaege li.aktiv {
+      background: var(--gold-light, #fdf8ee);
+    }
+    .vorschlaege li span {
+      display: block;
+      font-size: 0.8125rem;
+      color: var(--gray-600);
+    }
+    .lage-treffer {
+      font-size: 0.8125rem;
+      margin-top: var(--space-1);
+      color: var(--gray-600);
+    }
+    .lage-treffer strong {
+      color: var(--text, #000000);
+    }
+    .lage-treffer--frage {
+      color: #8a6a00;
+    }
+    /* ===========================
        FOOTER
     =========================== */
     .footer {
@@ -668,8 +720,14 @@
 
             <div class="field" id="field-immo-strasse">
               <label for="immo_strasse">Straße + Hausnr.</label>
-              <input type="text" id="immo_strasse" name="immo_strasse" placeholder="Musterstraße 12">
-              <p class="field__hint">Optional – hilft bei der genauen Lagebewertung.</p>
+              <div class="field__suche">
+                <input type="text" id="immo_strasse" name="immo_strasse" placeholder="Musterstraße 12"
+                       autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list"
+                       aria-controls="strassen-vorschlaege">
+                <ul class="vorschlaege" id="strassen-vorschlaege" role="listbox"></ul>
+              </div>
+              <p class="field__hint">Optional – mit Hausnummer wird das Veedel exakt bestimmt.</p>
+              <p class="lage-treffer" id="immo-lage" aria-live="polite"></p>
             </div>
 
             <div class="field-row">
@@ -682,6 +740,12 @@
                 <label for="immo_ort">Ort</label>
                 <input type="text" id="immo_ort" name="immo_ort" placeholder="Köln" value="Köln">
               </div>
+            </div>
+
+            <div class="field" id="field-immo-veedel" style="display:none;">
+              <label for="immo_veedel">Veedel</label>
+              <select id="immo_veedel" name="immo_veedel"></select>
+              <p class="field__hint">Diese Straße verläuft durch mehrere Veedel – bitte auswählen.</p>
             </div>
 
             <div class="step__buttons">
@@ -1123,6 +1187,9 @@
       }
 
       if (step === 2) {
+        // Der Nutzer kann "Weiter" klicken, ohne das Strassenfeld zu verlassen —
+        // die Lage (und damit die PLZ) muss dann trotzdem stehen.
+        lageErmitteln();
         var immoPlz = document.getElementById('immo_plz');
         var fieldImmoPlz = document.getElementById('field-immo-plz');
         if (!immoPlz.value || immoPlz.value.length < 5) {
@@ -1232,6 +1299,178 @@
         this.closest('.field').classList.remove('field--error');
       });
     });
+
+    // ===========================
+    // LAGE: STRASSE -> VEEDEL
+    // ===========================
+    // window.RBVeedel steht in stadtteile/search.js und wird aus dem
+    // Strassenverzeichnis der Stadt Koeln erzeugt (scripts/gen-strassen-index.mjs).
+    // window.RBHausnummern (stadtteile/strassen-hausnummern.js) haelt die
+    // Hausnummernbereiche der Strassen, die durch mehrere Veedel laufen.
+    // erkannteLage ist die einzige Stelle, an der die Bewertung die Lage liest.
+    var erkannteLage = null;   // {veedel, plz, ueberHausnummer} oder null
+    var letzteAdresse = null;  // zuletzt ausgewerteter Feldinhalt
+
+    var strasseFeld   = document.getElementById('immo_strasse');
+    var plzFeld       = document.getElementById('immo_plz');
+    var ortFeld       = document.getElementById('immo_ort');
+    var lageZeile     = document.getElementById('immo-lage');
+    var vorschlagListe = document.getElementById('strassen-vorschlaege');
+    var veedelFeld    = document.getElementById('immo_veedel');
+    var veedelWrapper = document.getElementById('field-immo-veedel');
+    var vorschlagIndex = -1;
+
+    function veedelApi() { return window.RBVeedel || null; }
+
+    function hausnummerAus(text) {
+      var m = String(text || '').match(/[\s,]+(\d+\s*[a-zA-Z]?)\s*$/);
+      return m ? m[1].replace(/\s+/g, '') : '';
+    }
+
+    function vorschlaegeSchliessen() {
+      vorschlagListe.innerHTML = '';
+      vorschlagListe.classList.remove('offen');
+      strasseFeld.setAttribute('aria-expanded', 'false');
+      vorschlagIndex = -1;
+    }
+
+    function vorschlaegeZeigen(text) {
+      var api = veedelApi();
+      if (!api) return;
+      var reineStrasse = text.replace(/[\s,]+\d+\s*[a-zA-Z]?\s*$/, '').trim();
+      if (reineStrasse.length < 3) { vorschlaegeSchliessen(); return; }
+
+      // Die Suche liefert je Veedel und PLZ einen Treffer — fuer die Liste
+      // interessiert nur der Strassenname, die Lage klaert die Hausnummer.
+      // Grosszuegig abfragen: die Lagen einer Strasse muessen vollstaendig im
+      // Ergebnis stehen, sonst wuerde eine Strasse durch mehrere Veedel
+      // faelschlich als eindeutig angezeigt.
+      var roh = api.strassen(reineStrasse, 300), namen = [], gesehen = {};
+      for (var i = 0; i < roh.length && namen.length < 7; i++) {
+        var n = roh[i].n;
+        if (gesehen[n]) continue;
+        gesehen[n] = 1;
+        var lagen = roh.filter(function (r) { return r.n === n; });
+        var veedel = lagen.map(function (r) { return r.o.replace(/^Köln-/, ''); });
+        var eindeutig = veedel.every(function (v) { return v === veedel[0]; });
+        namen.push({name: n, hinweis: eindeutig ? 'Köln-' + veedel[0] : 'mehrere Veedel – Hausnummer angeben'});
+      }
+      if (!namen.length) { vorschlaegeSchliessen(); return; }
+
+      vorschlagListe.innerHTML = namen.map(function (e, i) {
+        return '<li role="option" id="vorschlag-' + i + '" data-name="' + e.name.replace(/"/g, '&quot;') + '">' +
+               e.name + '<span>' + e.hinweis + '</span></li>';
+      }).join('');
+      vorschlagListe.classList.add('offen');
+      strasseFeld.setAttribute('aria-expanded', 'true');
+      vorschlagIndex = -1;
+    }
+
+    function vorschlagUebernehmen(name) {
+      var nr = hausnummerAus(strasseFeld.value);
+      strasseFeld.value = nr ? name + ' ' + nr : name + ' ';
+      vorschlaegeSchliessen();
+      lageErmitteln();
+      strasseFeld.focus();
+    }
+
+    function veedelAuswahlFuellen(treffer) {
+      var namen = [], gesehen = {};
+      for (var i = 0; i < treffer.length; i++) {
+        if (gesehen[treffer[i].veedel]) continue;
+        gesehen[treffer[i].veedel] = 1;
+        namen.push(treffer[i]);
+      }
+      veedelFeld.innerHTML = '<option value="">Bitte wählen</option>' + namen.map(function (t) {
+        return '<option value="' + t.veedel + '" data-plz="' + t.plz + '">Köln-' + t.veedel + '</option>';
+      }).join('');
+      veedelWrapper.style.display = 'block';
+    }
+
+    function lageSetzen(veedel, plz, ueberHausnummer) {
+      erkannteLage = {veedel: veedel, plz: plz || null, ueberHausnummer: !!ueberHausnummer};
+      if (plz) plzFeld.value = plz;
+      if (ortFeld && !ortFeld.value.trim()) ortFeld.value = 'Köln';
+      lageZeile.className = 'lage-treffer';
+      lageZeile.innerHTML = 'Lage erkannt: <strong>Köln-' + veedel + '</strong>' +
+        (plz ? ' · PLZ ' + plz : '') +
+        (ueberHausnummer ? ' (über die Hausnummer bestimmt)' : '');
+    }
+
+    function lageErmitteln() {
+      var api = veedelApi();
+      var text = (strasseFeld.value || '').trim();
+      // Unveraendertes Feld nicht neu auswerten — sonst wuerde eine von Hand
+      // getroffene Veedel-Auswahl beim naechsten Aufruf wieder verworfen.
+      if (text === letzteAdresse) return;
+      letzteAdresse = text;
+      erkannteLage = null;
+      veedelWrapper.style.display = 'none';
+      veedelFeld.innerHTML = '';
+      if (!api || !text) { lageZeile.textContent = ''; lageZeile.className = 'lage-treffer'; return; }
+
+      var a = api.adresse(text);
+      if (!a) {
+        lageZeile.className = 'lage-treffer';
+        lageZeile.textContent = 'Diese Straße steht nicht im Kölner Straßenverzeichnis – gerechnet wird mit der PLZ.';
+        return;
+      }
+      if (a.eindeutig && a.veedel) {
+        lageSetzen(a.veedel, a.plz, a.ueberHausnummer);
+        return;
+      }
+      // Mehrere Veedel und die Hausnummer hilft nicht weiter
+      veedelAuswahlFuellen(a.treffer);
+      lageZeile.className = 'lage-treffer lage-treffer--frage';
+      lageZeile.textContent = hausnummerAus(text)
+        ? 'Diese Hausnummer steht nicht im Verzeichnis – bitte das Veedel unten auswählen.'
+        : 'Diese Straße verläuft durch mehrere Veedel – Hausnummer ergänzen oder Veedel unten auswählen.';
+    }
+
+    if (strasseFeld) {
+      strasseFeld.addEventListener('input', function () {
+        vorschlaegeZeigen(this.value.trim());
+      });
+      strasseFeld.addEventListener('change', lageErmitteln);
+      strasseFeld.addEventListener('blur', function () {
+        // Klick auf einen Vorschlag zuerst durchlassen
+        setTimeout(function () { vorschlaegeSchliessen(); lageErmitteln(); }, 150);
+      });
+      strasseFeld.addEventListener('keydown', function (e) {
+        var eintraege = vorschlagListe.querySelectorAll('li');
+        if (!eintraege.length) return;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          vorschlagIndex += (e.key === 'ArrowDown' ? 1 : -1);
+          if (vorschlagIndex < 0) vorschlagIndex = eintraege.length - 1;
+          if (vorschlagIndex >= eintraege.length) vorschlagIndex = 0;
+          for (var i = 0; i < eintraege.length; i++) eintraege[i].classList.toggle('aktiv', i === vorschlagIndex);
+        } else if (e.key === 'Enter' && vorschlagIndex >= 0) {
+          e.preventDefault();
+          vorschlagUebernehmen(eintraege[vorschlagIndex].getAttribute('data-name'));
+        } else if (e.key === 'Escape') {
+          vorschlaegeSchliessen();
+        }
+      });
+      vorschlagListe.addEventListener('mousedown', function (e) {
+        var li = e.target.closest('li');
+        if (!li) return;
+        e.preventDefault();
+        vorschlagUebernehmen(li.getAttribute('data-name'));
+      });
+    }
+
+    if (veedelFeld) {
+      veedelFeld.addEventListener('change', function () {
+        var opt = this.options[this.selectedIndex];
+        if (!this.value) { erkannteLage = null; return; }
+        lageSetzen(this.value, opt.getAttribute('data-plz'), false);
+      });
+    }
+
+    // Aus der PLZ allein laesst sich das Veedel nicht bestimmen — mehrere
+    // Veedel teilen sich eine PLZ. Die PLZ-Tabellen unten bleiben deshalb der
+    // Rueckfallweg, wenn keine Strasse eingegeben wurde.
 
     // ===========================
     // PLZ-TABELLEN (Köln)
@@ -1382,10 +1621,38 @@
         multiplikator = Math.max(multiplikator, minMultiplikator);
         if (multiplikator === minMultiplikator) rw.push('Untergrenze gegriffen: max. 4,5 % Bruttorendite -> Multiplikator auf ' + minMultiplikator.toFixed(2) + ' angehoben');
       }
-      // MFH: Kaufpreis/m² aus Mietmultiplikator ableiten. Wohnung/Haus: feste Tabelle.
-      var preisProQm = art === 'mehrfamilienhaus'
-        ? qmPreisAusMultiplikator(multiplikator)
-        : (plzWohnPreise[plz] || defaultWohnPreis);
+      // Kaufpreis je m² Wohnfläche. Reihenfolge der Quellen:
+      //   1. Veedel-Wert aus dem Grundstücksmarktbericht (amtlich, je Stadtteil)
+      //   2. PLZ-Tabelle
+      //   3. Kölner Durchschnitt
+      // Mehrfamilienhäuser bleiben beim Mietmultiplikator: der Bericht weist
+      // Renditekennzahlen nur fürs ganze Stadtgebiet aus, nicht je Stadtteil.
+      var veedelPreis = (erkannteLage && window.RBVeedel) ? window.RBVeedel.preis(erkannteLage.veedel) : null;
+      var artFaktor = art === 'mehrfamilienhaus' ? 0.9
+                    : art === 'haus'             ? 1.05
+                    : 1.0;
+      var preisProQm, qmQuelle;
+      if (art === 'mehrfamilienhaus') {
+        preisProQm = qmPreisAusMultiplikator(multiplikator);
+        qmQuelle = 'aus dem Mietmultiplikator abgeleitet';
+      } else if (art === 'haus' && veedelPreis && veedelPreis.haus) {
+        preisProQm = veedelPreis.haus;
+        artFaktor = 1.0;   // der Wert ist bereits ein Hauspreis, kein Wohnungspreis
+        qmQuelle = 'Grundstuecksmarktbericht, Ein-/Zweifamilienhaeuser in Koeln-' + veedelPreis.veedel;
+      } else if (veedelPreis && veedelPreis.etw) {
+        preisProQm = veedelPreis.etw;
+        qmQuelle = 'Grundstuecksmarktbericht, Eigentumswohnungen in Koeln-' + veedelPreis.veedel +
+                   (art === 'haus' ? ' (kein Hauswert ausgewiesen, Objektartfaktor greift)' : '');
+      } else if (plzWohnPreise[plz]) {
+        preisProQm = plzWohnPreise[plz];
+        qmQuelle = 'PLZ-Tabelle ' + plz;
+      } else {
+        preisProQm = defaultWohnPreis;
+        qmQuelle = 'Koelner Durchschnittswert';
+      }
+      rw.push('Lage: ' + (erkannteLage ? 'Koeln-' + erkannteLage.veedel +
+              (erkannteLage.ueberHausnummer ? ' (ueber die Hausnummer bestimmt)' : '') : 'kein Veedel erkannt'));
+      rw.push('Preis je m2: ' + Math.round(preisProQm) + ' EUR (' + qmQuelle + ')');
       var bodenrichtwert = plzBoden[plz]          || defaultBoden;
 
       var value = 0;
@@ -1420,13 +1687,10 @@
           rw.push('Jahresnettokaltmiete: ' + kaltmiete.toFixed(2) + ' x 12 = ' + (kaltmiete*12).toFixed(2) + ' EUR');
           rw.push('Ertragswert: ' + (kaltmiete*12).toFixed(2) + ' x ' + multiplikator.toFixed(4) + ' = ' + value.toFixed(2) + ' EUR');
         } else {
-          // Sachwert-Fallback: m² × PLZ-Preis/m² × Objektart-Faktor × Zustand
-          var artFaktor = art === 'mehrfamilienhaus' ? 0.9
-                        : art === 'haus'             ? 1.05
-                        : 1.0;
+          // Sachwert-Fallback: m² × Preis/m² der Lage × Objektart-Faktor × Zustand
           value = wohnflaeche * preisProQm * artFaktor * faktor;
           rw.push('Verfahren: Sachwert (keine Kaltmiete angegeben)');
-          rw.push('Wohnflaeche ' + wohnflaeche + ' m2 x ' + preisProQm + ' EUR/m2 x Objektart ' + artFaktor + ' x Zustand ' + faktor + ' = ' + value.toFixed(2) + ' EUR');
+          rw.push('Wohnflaeche ' + wohnflaeche + ' m2 x ' + Math.round(preisProQm) + ' EUR/m2 x Objektart ' + artFaktor + ' x Zustand ' + faktor + ' = ' + value.toFixed(2) + ' EUR');
         }
       }
 
@@ -1485,13 +1749,22 @@
         objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.';
       }
 
-      // PLZ-Hinweis im Ergebnis
+      // Lage-Hinweis im Ergebnis
       var plz = (document.getElementById('immo_plz').value || '').trim();
       var plzHinweis = document.getElementById('result-plz');
       if (plzHinweis) {
-        plzHinweis.textContent = plz && (plzWohnPreise[plz] || plzMultiplikatoren[plz] || plzBoden[plz])
-          ? 'Lagekorrektur für PLZ ' + plz + ' eingerechnet.'
-          : 'PLZ nicht erkannt – Kölner Durchschnittswert verwendet.';
+        var vp = (erkannteLage && window.RBVeedel) ? window.RBVeedel.preis(erkannteLage.veedel) : null;
+        if (vp && (vp.etw || vp.haus)) {
+          plzHinweis.textContent = 'Lage Köln-' + erkannteLage.veedel +
+            ' – gerechnet mit den Stadtteilwerten des Grundstücksmarktberichts 2026.';
+        } else if (erkannteLage) {
+          plzHinweis.textContent = 'Lage Köln-' + erkannteLage.veedel +
+            ' – der Grundstücksmarktbericht weist für dieses Veedel keinen Wert aus, gerechnet mit der PLZ.';
+        } else {
+          plzHinweis.textContent = plz && (plzWohnPreise[plz] || plzMultiplikatoren[plz] || plzBoden[plz])
+            ? 'Lagekorrektur für PLZ ' + plz + ' eingerechnet – mit Straße und Hausnummer wird es genauer.'
+            : 'PLZ nicht erkannt – Kölner Durchschnittswert verwendet.';
+        }
       }
 
       showStep(7);
@@ -1519,6 +1792,7 @@
       formData.append('miete_soll_jahr', document.getElementById('miete_soll_jahr').value);
       formData.append('immo_strasse', document.getElementById('immo_strasse').value);
       formData.append('immo_plz', document.getElementById('immo_plz').value);
+      formData.append('immo_veedel', erkannteLage ? 'Köln-' + erkannteLage.veedel : '');
       formData.append('immo_ort', document.getElementById('immo_ort').value);
       formData.append('website', document.getElementById('bw-website').value);
       formData.append('vorname', document.getElementById('vorname').value);
@@ -1558,7 +1832,15 @@
         });
       } catch (e) {}
     })();
+
+    /* search.js laedt mit defer, RBVeedel steht also erst nach dem Parsen bereit.
+       Deshalb die Lage erst dann bestimmen — sonst bliebe ein per Query-Parameter
+       vorbelegtes Strassenfeld ohne Veedel. */
+    window.addEventListener('DOMContentLoaded', function () {
+      if (strasseFeld && strasseFeld.value.trim()) lageErmitteln();
+    });
   </script>
+  <script src="stadtteile/strassen-hausnummern.js" defer></script>
   <script src="stadtteile/search.js" defer></script>
   <script src="stadtteile/page-toc.js" defer></script>
 </body>
