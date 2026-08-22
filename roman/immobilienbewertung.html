@@ -998,7 +998,6 @@
               <p class="result__label">Geschätzter Immobilienwert</p>
               <p class="result__value" id="result-value">—</p>
               <p class="result__range" id="result-range"></p>
-              <p id="result-plz" style="font-size:0.8125rem;color:var(--gray-500);margin-top:0.5rem;"></p>
 
               <div id="result-send-error" style="display:none;background:#fdecea;border-left:3px solid #d32f2f;padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
                 <p style="margin:0;font-size:0.9rem;line-height:1.5;color:#b71c1c;"><strong>Ihre Anfrage konnte nicht automatisch übermittelt werden.</strong> Bitte rufen Sie mich direkt an oder schreiben Sie mir per WhatsApp, damit ich Ihre Bewertung persönlich erhalte: <a href="tel:+491775156969" style="color:#b71c1c;text-decoration:underline;">+49 177 515 69 69</a></p>
@@ -1847,23 +1846,10 @@
         objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.';
       }
 
-      // Lage-Hinweis im Ergebnis
-      var plz = (document.getElementById('immo_plz').value || '').trim();
-      var plzHinweis = document.getElementById('result-plz');
-      if (plzHinweis) {
-        var vp = (erkannteLage && window.RBVeedel) ? window.RBVeedel.preis(erkannteLage.veedel) : null;
-        if (vp && (vp.etw || vp.haus)) {
-          plzHinweis.textContent = 'Lage Köln-' + erkannteLage.veedel +
-            ' – gerechnet mit den Stadtteilwerten des Grundstücksmarktberichts 2026.';
-        } else if (erkannteLage) {
-          plzHinweis.textContent = 'Lage Köln-' + erkannteLage.veedel +
-            ' – der Grundstücksmarktbericht weist für dieses Veedel keinen Wert aus, gerechnet mit der PLZ.';
-        } else {
-          plzHinweis.textContent = plz && (plzWohnPreise[plz] || plzMultiplikatoren[plz] || plzBoden[plz])
-            ? 'Lagekorrektur für PLZ ' + plz + ' eingerechnet – mit Straße und Hausnummer wird es genauer.'
-            : 'PLZ nicht erkannt – Kölner Durchschnittswert verwendet.';
-        }
-      }
+      // Kein Hinweis auf die Rechengrundlage im Ergebnis: Woher die Lagewerte
+      // stammen und wie gerechnet wird, geht den Interessenten nichts an.
+      // Der vollstaendige Rechenweg steht weiterhin in der Lead-Mail an Roman
+      // (lastRechenweg), nicht auf der Seite.
 
       showStep(7);
       // Google Ads Conversion Event
