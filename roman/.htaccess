@@ -14,6 +14,12 @@ AddCharset UTF-8 .html .css .js .json .xml .txt
 
 RewriteEngine On
 
+# Arbeitsdateien sperren: /scripts/ (Generatoren) und /data/ (Straßenverzeichnis
+# der Stadt, Master, Veedel-Preise) werden von keiner Seite geladen und gehören
+# nicht ins Web. Der FTP-Deploy laedt sie seit 22.08.2026 nicht mehr hoch,
+# loescht aber nicht, was schon oben liegt — diese Regel sperrt beides zuverlaessig.
+RewriteRule ^(scripts|data)/ - [F,L]
+
 # 1) www. → non-www. (301)
 RewriteCond %{HTTP_HOST} ^www\.romanbecker\.de$ [NC]
 RewriteRule ^(.*)$ https://romanbecker.de/$1 [R=301,L]
