@@ -1,12 +1,20 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
+# STILLGELEGT am 22.08.2026 — laeuft nur noch von Hand.
+# Zwei Gruende:
+#  1. Der Lauf scheiterte bei JEDEM Push, weil fuer dieses Repository kein
+#     GitHub Pages eingerichtet ist ("Get Pages site failed"). Allein am
+#     22.08.2026 sind so 10 Fehlermails entstanden, in denen ein echter
+#     Deploy-Fehler untergegangen waere.
+#  2. Der Schritt "Upload artifact" nimmt path: '.', also das komplette
+#     Repository. Sobald jemand Pages aktiviert, steht die ganze Website ein
+#     zweites Mal unter github.io - eine indexierbare Kopie von
+#     romanbecker.de. Fuer die Rankings waere das ein Eigentor.
+# Wer das Deployment wirklich will: Pages im Repository einschalten, path auf
+# das gewuenschte Verzeichnis eingrenzen, dann den push-Trigger wieder aktivieren.
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Nur manuell aus dem Actions-Tab
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
