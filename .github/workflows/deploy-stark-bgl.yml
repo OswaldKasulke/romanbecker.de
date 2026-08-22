@@ -10,11 +10,11 @@ jobs:
   inspect:
     runs-on: ubuntu-latest
     steps:
-      - name: List FTP root directories
+      - name: List doktorbecker.de directory
         env:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           test -n "$FTP_PASSWORD"
           curl --fail --silent --show-error --list-only \
             --user "w019d9c9:$FTP_PASSWORD" \
-            "ftp://w019d9c9.kasserver.com/"
+            "ftp://w019d9c9.kasserver.com/doktorbecker.de/"
