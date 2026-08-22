@@ -1768,20 +1768,43 @@
 
     // Mietmultiplikator für Ertragswertberechnung (Kaltmiete × 12 × x)
     // Skaliert auf Spanne 15 (niedrigster) – 23 (höchster), siehe data/plz-multiplikatoren.json
+    // Stand 23.08.2026: Die Spanne ist auf 17 bis 23 gestaucht. Vorher reichte
+    // sie von 15 bis 23, wirkte aber gar nicht — die Untergrenze von 22,22
+    // (max. 4,5 % Rendite) lag ueber 43 der 45 Werte und machte den
+    // Ertragswert ueberall gleich. Jetzt greift jeder Wert.
     var plzMultiplikatoren = {
       '50667': 23, '50668': 22, '50670': 22, '50672': 22,
       '50674': 22, '50676': 22, '50677': 20, '50678': 21,
       '50679': 19,
-      '50733': 20, '50735': 19, '50737': 19, '50739': 18,
-      '50765': 15, '50767': 15, '50769': 16,
-      '50823': 20, '50825': 20, '50827': 18, '50829': 17,
+      '50733': 20, '50735': 19, '50737': 19, '50739': 19,
+      '50765': 17, '50767': 17, '50769': 17,
+      '50823': 20, '50825': 20, '50827': 19, '50829': 17,
       '50858': 19, '50859': 20,
       '50931': 23, '50933': 21, '50935': 20, '50937': 19, '50939': 21,
-      '50968': 21, '50969': 18,
+      '50968': 21, '50969': 19,
       '50996': 20, '50997': 21, '50999': 22,
       '51061': 17, '51063': 17, '51065': 17, '51067': 19, '51069': 19,
-      '51103': 17, '51105': 17, '51107': 18, '51109': 18,
-      '51143': 16, '51145': 16, '51147': 16, '51149': 16,
+      '51103': 17, '51105': 17, '51107': 19, '51109': 19,
+      '51143': 17, '51145': 17, '51147': 17, '51149': 17,
+    };
+
+    // Umland: eigene Tabelle, NICHT in die Koelner oben mischen. Die
+    // Mehrfamilienhaus-Rechnung unterscheidet ueber "steht die PLZ in der
+    // Koelner Tabelle" zwischen Stadt und Umland — eine gemeinsame Tabelle
+    // wuerde MFH im Umland still auf die Koelner Skalierung umstellen.
+    var plzMultiplikatorenUmland = {
+      '50126': 17, '50127': 17, '50129': 17,  // Bergheim
+      '50169': 17, '50170': 17, '50171': 17,  // Kerpen
+      '50181': 17,  // Bedburg
+      '50189': 17,  // Elsdorf
+      '50226': 17,  // Frechen
+      '50259': 17,  // Pulheim
+      '50321': 17,  // Brühl
+      '50374': 17,  // Erftstadt
+      '50389': 17,  // Wesseling
+      '50354': 19,  // Hürth
+      '51375': 19, '51377': 19, '51379': 19, '51381': 19,  // Leverkusen
+      '51427': 19, '51429': 19, '51465': 19, '51467': 19,  // Bergisch Gladbach
     };
 
     // Bodenrichtwert €/m² für Grundstücke
@@ -1862,8 +1885,11 @@
 
       // PLZ-abhängige Werte (Fallback wenn PLZ unbekannt)
       var istKoelnPlz = Object.prototype.hasOwnProperty.call(plzMultiplikatoren, plz);
-      var multiplikator = istKoelnPlz ? plzMultiplikatoren[plz] : defaultMultiplikator;
-      rw.push('PLZ ' + (plz || '—') + ': ' + (istKoelnPlz ? 'in der Koelner Tabelle' : 'nicht in der Koelner Tabelle, Standardwert') + ' -> Multiplikator ' + (istKoelnPlz ? plzMultiplikatoren[plz] : defaultMultiplikator));
+      var istUmlandPlz = Object.prototype.hasOwnProperty.call(plzMultiplikatorenUmland, plz);
+      var multiplikator = istKoelnPlz ? plzMultiplikatoren[plz]
+                        : istUmlandPlz ? plzMultiplikatorenUmland[plz]
+                        : defaultMultiplikator;
+      rw.push('PLZ ' + (plz || '—') + ': ' + (istKoelnPlz ? 'Koelner Tabelle' : istUmlandPlz ? 'Umland-Tabelle' : 'keine Tabelle, Standardwert') + ' -> Multiplikator ' + multiplikator);
       if (art === 'mehrfamilienhaus' && istKoelnPlz) {
         // Köln: Tabellenwerte (Spanne 15–23) linear auf die MFH-Spanne
         // 17 (schlechteste Lage) – 22 (beste Lage) skalieren
@@ -1872,12 +1898,10 @@
         // Umland: MFH maximal Faktor 16,5 (Bruttorendite mind. ~6,1%)
         multiplikator = Math.min(multiplikator, 16.5);
       } else {
-        // Untergrenze des Multiplikators: 20, entspricht max. 5 % Bruttorendite.
-        // Vorher lag sie bei 22,22 (4,5 %) — und damit ÜBER 43 der 45 Werte in
-        // der Tabelle oben. Der Ertragswert war deshalb faktisch überall gleich:
-        // 1.000 € Kaltmiete ergaben in Chorweiler denselben Wert wie in Sülz.
-        // Mit 20 greifen die Tabellenwerte 20 bis 23 wieder durch.
-        var minMultiplikator = 20;
+        // Untergrenze 17, entspricht max. 5,9 % Bruttorendite. Sie ist nur noch
+        // ein Notnagel für PLZ ohne Tabelleneintrag — 17 ist zugleich der
+        // niedrigste gepflegte Wert, greift also in keine Lage mehr ein.
+        var minMultiplikator = 17;
         multiplikator = Math.max(multiplikator, minMultiplikator);
         if (multiplikator === minMultiplikator) rw.push('Untergrenze gegriffen: max. 5 % Bruttorendite -> Multiplikator auf ' + minMultiplikator.toFixed(2) + ' angehoben');
       }
