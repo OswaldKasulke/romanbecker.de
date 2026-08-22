@@ -1,4 +1,18 @@
 <?php
+// Erlaubt der Bewertungsstrecke auf doktorbecker.de/BGL den serverseitigen
+// Lead-Versand über diesen bestehenden SMTP-Endpunkt.
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$allowedOrigins = ['https://doktorbecker.de', 'http://doktorbecker.de'];
+if (in_array($origin, $allowedOrigins, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+    header('Vary: Origin');
+}
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    http_response_code(204);
+    exit;
+}
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     exit('Method Not Allowed');
@@ -34,6 +48,7 @@ $immobilientyp  = clean($_POST['immobilientyp'] ?? '');
 $preisspanne    = clean($_POST['preisspanne'] ?? '');
 $nachricht      = clean($_POST['nachricht'] ?? '');
 $empfohlen      = clean($_POST['empfohlen'] ?? '');
+$site            = clean($_POST['site'] ?? 'roman');
 
 // Kontakt-Adresse des Interessenten
 $kontakt_strasse = clean($_POST['kontakt_strasse'] ?? '');
@@ -72,12 +87,13 @@ if (empty($name) || empty($telefon)) {
 
 // Betreff je nach Formulartyp
 $type = $_POST['type'] ?? 'kontakt';
+$siteLabel = $site === 'BGL' ? 'doktorbecker.de/BGL' : 'romanbecker.de';
 $subject = $type === 'immobilienbewertung'
-    ? 'Neue Immobilienbewertung von ' . $name . ' – romanbecker.de'
-    : 'Neue Kontaktanfrage von ' . $name . ' – romanbecker.de';
+    ? 'Neue Immobilienbewertung von ' . $name . ' – ' . $siteLabel
+    : 'Neue Kontaktanfrage von ' . $name . ' – ' . $siteLabel;
 
 // E-Mail-Body
-$body = "Neue Anfrage über romanbecker.de\n";
+$body = "Neue Anfrage über $siteLabel\n";
 $body .= "================================\n\n";
 
 // Kontaktdaten
