@@ -1338,7 +1338,17 @@
     var plzHinweis    = document.getElementById('immo-plz-hinweis');
     var vorschlagIndex = -1;
 
+    // Zweiter Datensatz: der Rhein-Erft-Kreis. Anderer Zuschnitt als Köln —
+    // Ortseinheit ist die Gemeinde, und 655 Straßennamen kommen in mehreren
+    // Gemeinden vor. Deshalb entscheidet dort das Ortsfeld, nicht die Hausnummer.
+    var erkanntesUmland = null;   // {gemeinde, plz, ortsteil} oder null
+
     function veedelApi() { return window.RBVeedel || null; }
+    function umlandApi() { return window.RBRheinErft || null; }
+
+    function istKoelnOrt(ort) {
+      return !ort || /^k(ö|oe)ln/i.test(ort.trim());
+    }
 
     function hausnummerAus(text) {
       var m = String(text || '').match(/[\s,]+(\d+\s*[a-zA-Z]?)\s*$/);
@@ -1371,12 +1381,25 @@
         var lagen = roh.filter(function (r) { return r.n === n; });
         var veedel = lagen.map(function (r) { return r.o.replace(/^Köln-/, ''); });
         var eindeutig = veedel.every(function (v) { return v === veedel[0]; });
-        namen.push({name: n, hinweis: eindeutig ? 'Köln-' + veedel[0] : 'mehrere Veedel – Hausnummer angeben'});
+        namen.push({name: n, ort: 'Köln',
+                    hinweis: eindeutig ? 'Köln-' + veedel[0] : 'mehrere Veedel – Hausnummer angeben'});
+      }
+
+      // Rhein-Erft-Kreis anhaengen: dort steht je Gemeinde eine eigene Zeile,
+      // weil derselbe Straßenname in bis zu zehn Gemeinden vorkommt.
+      var um = umlandApi();
+      if (um) {
+        var rohU = um.strassen(reineStrasse, 12);
+        for (var u = 0; u < rohU.length && namen.length < 9; u++) {
+          namen.push({name: rohU[u].n, ort: rohU[u].gemeinde,
+                      hinweis: rohU[u].gemeinde + ortZusatz(rohU[u].gemeinde, rohU[u].ortsteil)});
+        }
       }
       if (!namen.length) { vorschlaegeSchliessen(); return; }
 
       vorschlagListe.innerHTML = namen.map(function (e, i) {
-        return '<li role="option" id="vorschlag-' + i + '" data-name="' + e.name.replace(/"/g, '&quot;') + '">' +
+        return '<li role="option" id="vorschlag-' + i + '" data-name="' + e.name.replace(/"/g, '&quot;') +
+               '" data-ort="' + e.ort.replace(/"/g, '&quot;') + '">' +
                e.name + '<span>' + e.hinweis + '</span></li>';
       }).join('');
       vorschlagListe.classList.add('offen');
@@ -1384,12 +1407,63 @@
       vorschlagIndex = -1;
     }
 
-    function vorschlagUebernehmen(name) {
+    function vorschlagUebernehmen(name, ort) {
       var nr = hausnummerAus(strasseFeld.value);
       strasseFeld.value = nr ? name + ' ' + nr : name + ' ';
+      // Der Ort entscheidet, in welchem Verzeichnis gesucht wird — beim
+      // Übernehmen also mitsetzen, sonst sucht "Akazienweg – Hürth" in Köln.
+      if (ort && ortFeld) { ortFeld.value = ort; letzteAdresse = null; }
       vorschlaegeSchliessen();
       lageErmitteln();
       strasseFeld.focus();
+    }
+
+    // Das Auswahlfeld dient beiden Datensaetzen: in Köln steht dort das Veedel,
+    // im Rhein-Erft-Kreis die Gemeinde. Beschriftung entsprechend umstellen.
+    // Der Datensatz fuehrt den Hauptort als eigenen Ortsteil ("Bedburg · Bedburg").
+    // Doppelt anzeigen muss man das nicht.
+    function ortZusatz(gemeinde, ortsteil) {
+      return ortsteil && ortsteil !== gemeinde ? ' · ' + ortsteil : '';
+    }
+
+    function auswahlBeschriften(wort, hinweis) {
+      var label = document.querySelector('#field-immo-veedel label');
+      var tipp = document.querySelector('#field-immo-veedel .field__hint');
+      if (label) label.textContent = wort;
+      if (tipp) tipp.textContent = hinweis;
+    }
+
+    function gemeindeAuswahlFuellen(treffer) {
+      var namen = [], gesehen = {};
+      for (var i = 0; i < treffer.length; i++) {
+        var schl = treffer[i].gemeinde + '|' + treffer[i].plz;
+        if (gesehen[schl]) continue;
+        gesehen[schl] = 1;
+        namen.push(treffer[i]);
+      }
+      veedelFeld.innerHTML = '<option value="">Bitte wählen</option>' + namen.map(function (t) {
+        return '<option value="' + t.gemeinde + '" data-plz="' + t.plz + '" data-umland="1">' +
+               t.gemeinde + ortZusatz(t.gemeinde, t.ortsteil) + '</option>';
+      }).join('');
+      auswahlBeschriften('Ort', 'Diese Straße gibt es in mehreren Gemeinden – bitte auswählen.');
+      veedelWrapper.style.display = 'block';
+    }
+
+    // Ergebnis aus dem Rhein-Erft-Kreis uebernehmen. Kein Veedel, kein
+    // Veedel-Preis — gerechnet wird ueber die PLZ-Tabelle.
+    function umlandSetzen(a) {
+      erkanntesUmland = {gemeinde: a.gemeinde, plz: a.plz || null, ortsteil: a.ortsteil || null};
+      if (ortFeld) ortFeld.value = a.gemeinde;
+      if (a.plz) { plzFeld.value = a.plz; plzAutomatisch(true); }
+      if (a.hausnummerBekannt === false) {
+        lageZeile.className = 'lage-treffer lage-treffer--frage';
+        lageZeile.textContent = 'Hausnummer ' + a.hausnr + ' steht nicht im amtlichen Verzeichnis für ' +
+          a.gemeinde + ' – bitte die Nummer prüfen. Gerechnet wird mit ' + a.gemeinde + '.';
+        return;
+      }
+      lageZeile.className = 'lage-treffer';
+      lageZeile.innerHTML = 'Lage erkannt: <strong>' + a.gemeinde + '</strong>' +
+        ortZusatz(a.gemeinde, a.ortsteil) + (a.plz ? ' · PLZ ' + a.plz : '');
     }
 
     function veedelAuswahlFuellen(treffer) {
@@ -1408,6 +1482,7 @@
         var text = 'Köln-' + t.veedel + (proVeedel[t.veedel] > 1 ? ' (' + t.plz + ')' : '');
         return '<option value="' + t.veedel + '" data-plz="' + t.plz + '">' + text + '</option>';
       }).join('');
+      auswahlBeschriften('Veedel', 'Diese Straße verläuft durch mehrere Veedel – bitte auswählen.');
       veedelWrapper.style.display = 'block';
     }
 
@@ -1477,30 +1552,8 @@
       return '';
     }
 
-    function lageErmitteln() {
-      var api = veedelApi();
-      var text = (strasseFeld.value || '').trim();
-      // Unveraendertes Feld nicht neu auswerten — sonst wuerde eine von Hand
-      // getroffene Veedel-Auswahl beim naechsten Aufruf wieder verworfen.
-      if (text === letzteAdresse) return;
-      letzteAdresse = text;
-      erkannteLage = null;
-      plzAutomatisch(false);
-      veedelWrapper.style.display = 'none';
-      veedelFeld.innerHTML = '';
-      if (!api || !text) { lageZeile.textContent = ''; lageZeile.className = 'lage-treffer'; return; }
-
-      var a = api.adresse(text);
-      if (!a) {
-        lageZeile.className = 'lage-treffer';
-        lageZeile.textContent = 'Diese Straße steht nicht im Kölner Straßenverzeichnis – gerechnet wird mit der PLZ.';
-        return;
-      }
-      if (a.eindeutig && a.veedel) {
-        lageSetzen(a.veedel, a.plz, a.ueberHausnummer, a);
-        return;
-      }
-      // Mehrere Veedel und die Hausnummer hilft nicht weiter
+    // Frage-Zweig Köln: mehrere Veedel, Hausnummer hilft nicht weiter
+    function koelnFrage(a, text) {
       veedelAuswahlFuellen(a.treffer);
       lageZeile.className = 'lage-treffer lage-treffer--frage';
       var nr = hausnummerAus(text);
@@ -1518,6 +1571,55 @@
         // stehen, die Hausnummer gäbe es nicht.
         lageZeile.textContent = 'Zu dieser Hausnummer führt das Verzeichnis kein eindeutiges Veedel – bitte unten auswählen.';
       }
+    }
+
+    // Frage-Zweig Rhein-Erft: derselbe Straßenname in mehreren Gemeinden
+    function gemeindeFrage(a) {
+      gemeindeAuswahlFuellen(a.treffer);
+      lageZeile.className = 'lage-treffer lage-treffer--frage';
+      lageZeile.textContent = 'Diese Straße gibt es in ' + a.treffer.length +
+        ' Gemeinden des Rhein-Erft-Kreises – bitte den Ort unten auswählen.';
+    }
+
+    function lageErmitteln() {
+      var text = (strasseFeld.value || '').trim();
+      // Unveraendertes Feld nicht neu auswerten — sonst wuerde eine von Hand
+      // getroffene Auswahl beim naechsten Aufruf wieder verworfen.
+      if (text === letzteAdresse) return;
+      letzteAdresse = text;
+      erkannteLage = null;
+      erkanntesUmland = null;
+      plzAutomatisch(false);
+      veedelWrapper.style.display = 'none';
+      veedelFeld.innerHTML = '';
+      if (!text) { lageZeile.textContent = ''; lageZeile.className = 'lage-treffer'; return; }
+
+      // Das Ortsfeld entscheidet, welches Verzeichnis zuerst gefragt wird.
+      // Steht dort eine Gemeinde des Kreises, wird sie als Eingrenzung
+      // weitergereicht — sonst bliebe "Akazienweg" zwischen zehn Gemeinden offen.
+      var ort = ortFeld ? (ortFeld.value || '').trim() : '';
+      var koelnZuerst = istKoelnOrt(ort);
+      var kApi = veedelApi(), uApi = umlandApi();
+      var k = kApi ? kApi.adresse(text) : null;
+      var u = uApi ? uApi.adresse(text, '', koelnZuerst ? '' : ort) : null;
+
+      var reihe = koelnZuerst ? ['k', 'u'] : ['u', 'k'];
+      for (var i = 0; i < reihe.length; i++) {
+        if (reihe[i] === 'k' && k && k.eindeutig && k.veedel) {
+          lageSetzen(k.veedel, k.plz, k.ueberHausnummer, k);
+          if (ortFeld && !istKoelnOrt(ortFeld.value)) ortFeld.value = 'Köln';
+          return;
+        }
+        if (reihe[i] === 'u' && u && u.eindeutig && u.gemeinde) { umlandSetzen(u); return; }
+      }
+      for (var j = 0; j < reihe.length; j++) {
+        if (reihe[j] === 'k' && k) { koelnFrage(k, text); return; }
+        if (reihe[j] === 'u' && u) { gemeindeFrage(u); return; }
+      }
+
+      lageZeile.className = 'lage-treffer';
+      lageZeile.textContent = 'Diese Straße steht weder im Kölner Straßenverzeichnis noch im Verzeichnis ' +
+        'des Rhein-Erft-Kreises – gerechnet wird mit der PLZ.';
     }
 
     if (strasseFeld) {
@@ -1542,7 +1644,8 @@
         if (e.key === 'Enter') {
           e.preventDefault();
           if (eintraege.length && vorschlagIndex >= 0) {
-            vorschlagUebernehmen(eintraege[vorschlagIndex].getAttribute('data-name'));
+            vorschlagUebernehmen(eintraege[vorschlagIndex].getAttribute('data-name'),
+                                 eintraege[vorschlagIndex].getAttribute('data-ort'));
           } else {
             vorschlaegeSchliessen();
             lageErmitteln();
@@ -1565,14 +1668,21 @@
         var li = e.target.closest('li');
         if (!li) return;
         e.preventDefault();
-        vorschlagUebernehmen(li.getAttribute('data-name'));
+        vorschlagUebernehmen(li.getAttribute('data-name'), li.getAttribute('data-ort'));
       });
     }
 
     if (veedelFeld) {
       veedelFeld.addEventListener('change', function () {
         var opt = this.options[this.selectedIndex];
-        if (!this.value) { erkannteLage = null; return; }
+        if (!this.value) { erkannteLage = null; erkanntesUmland = null; return; }
+        if (opt.getAttribute('data-umland')) {
+          umlandSetzen({gemeinde: this.value, plz: opt.getAttribute('data-plz'),
+                        ortsteil: null, hausnummerBekannt: null, hausnr: null});
+          erkannteLage = null;
+          return;
+        }
+        erkanntesUmland = null;
         lageSetzen(this.value, opt.getAttribute('data-plz'), false);
       });
     }
@@ -1760,7 +1870,11 @@
         qmQuelle = 'Koelner Durchschnittswert';
       }
       rw.push('Lage: ' + (erkannteLage ? 'Koeln-' + erkannteLage.veedel +
-              (erkannteLage.ueberHausnummer ? ' (ueber die Hausnummer bestimmt)' : '') : 'kein Veedel erkannt'));
+              (erkannteLage.ueberHausnummer ? ' (ueber die Hausnummer bestimmt)' : '')
+              : erkanntesUmland ? erkanntesUmland.gemeinde +
+                  (erkanntesUmland.ortsteil ? ' / ' + erkanntesUmland.ortsteil : '') +
+                  ' (Rhein-Erft-Kreis, kein Veedel-Wert - es gilt die PLZ-Tabelle)'
+              : 'kein Veedel erkannt'));
       rw.push('Preis je m2: ' + Math.round(preisProQm) + ' EUR (' + qmQuelle + ')');
       var bodenrichtwert = plzBoden[plz]          || defaultBoden;
 
@@ -1888,7 +2002,10 @@
       formData.append('miete_soll_jahr', document.getElementById('miete_soll_jahr').value);
       formData.append('immo_strasse', document.getElementById('immo_strasse').value);
       formData.append('immo_plz', document.getElementById('immo_plz').value);
-      formData.append('immo_veedel', erkannteLage ? 'Köln-' + erkannteLage.veedel : '');
+      formData.append('immo_veedel', erkannteLage ? 'Köln-' + erkannteLage.veedel
+                                    : erkanntesUmland ? erkanntesUmland.gemeinde +
+                                        (erkanntesUmland.ortsteil ? ' · ' + erkanntesUmland.ortsteil : '')
+                                    : '');
       formData.append('immo_ort', document.getElementById('immo_ort').value);
       formData.append('website', document.getElementById('bw-website').value);
       formData.append('vorname', document.getElementById('vorname').value);
@@ -1937,6 +2054,7 @@
     });
   </script>
   <script src="stadtteile/strassen-hausnummern.js" defer></script>
+  <script src="stadtteile/strassen-rhein-erft.js" defer></script>
   <script src="stadtteile/search.js" defer></script>
   <script src="stadtteile/page-toc.js" defer></script>
 </body>

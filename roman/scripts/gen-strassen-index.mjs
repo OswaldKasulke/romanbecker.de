@@ -24,6 +24,8 @@ const MASTER = join(ROOT, 'data', 'strassen-master.json');
 const PREISE = join(ROOT, 'data', 'veedel-preise.json');
 const ZIEL = join(ROOT, 'stadtteile', 'search.js');
 const ZIEL_HNR = join(ROOT, 'stadtteile', 'strassen-hausnummern.js');
+const REK = join(ROOT, 'data', 'strassen-rhein-erft.json');
+const ZIEL_REK = join(ROOT, 'stadtteile', 'strassen-rhein-erft.js');
 
 const master = JSON.parse(readFileSync(MASTER, 'utf-8'));
 
@@ -99,6 +101,39 @@ writeFileSync(ZIEL_HNR,
   'window.RBHausnummernLueckenhaft = ' + JSON.stringify(lueckenhaft) + ';\n', 'utf-8');
 
 // ---------------------------------------------------------------------------
+// Rhein-Erft-Kreis: Strassen mit Hausnummernbereichen
+// ---------------------------------------------------------------------------
+// Anderer Zuschnitt als in Koeln: die Ortseinheit ist die Gemeinde, nicht das
+// Veedel, und acht der zehn Gemeinden haben nur eine einzige PLZ. Die
+// Hausnummer entscheidet die PLZ nur bei 4 von 5.124 Strassen — sie steckt hier
+// vor allem drin, damit die Bewertung erkennt, ob es die Adresse ueberhaupt
+// gibt. 655 Strassennamen kommen in mehreren Gemeinden vor, deshalb traegt
+// jeder Eintrag die Gemeinde mit.
+let rekStrassen = 0, rekZeilen = 0, rekGemeinden = [];
+if (existsSync(REK)) {
+  const rek = JSON.parse(readFileSync(REK, 'utf-8'));
+  const proName = {};
+  for (const r of rek) {
+    if (!proName[r.s]) proName[r.s] = [];
+    // [Gemeinde, PLZ, ungerade von-bis, gerade von-bis, Ortsteil]
+    proName[r.s].push([r.gem, r.p, r.u, r.g, r.ot || null]);
+    rekZeilen++;
+  }
+  rekStrassen = Object.keys(proName).length;
+  rekGemeinden = [...new Set(rek.map(r => r.gem))].sort((a, b) => a.localeCompare(b, 'de'));
+  const sortiert = {};
+  for (const name of Object.keys(proName).sort((a, b) => a.localeCompare(b, 'de'))) sortiert[name] = proName[name];
+  writeFileSync(ZIEL_REK,
+    '/* GENERIERT von scripts/gen-strassen-index.mjs — nicht von Hand aendern.\n' +
+    '   Strassen des Rhein-Erft-Kreises mit Hausnummernbereichen, aus\n' +
+    '   data/strassen-rhein-erft.json (amtliche Gebaeudereferenzen NRW).\n' +
+    '   Aufbau je Eintrag: [Gemeinde, PLZ, [ungerade von, bis], [gerade von, bis], Ortsteil]\n' +
+    '   ACHTUNG: Gebaeudereferenzen bilden Hausnummern ab, kein Strassenregister —\n' +
+    '   Strassen ganz ohne Hausnummer fehlen. */\n' +
+    'window.RBRheinErftStrassen = ' + JSON.stringify(sortiert) + ';\n', 'utf-8');
+}
+
+// ---------------------------------------------------------------------------
 // Preistabelle je Veedel
 // ---------------------------------------------------------------------------
 let preisTabelle = {};
@@ -163,6 +198,117 @@ const exportBlock = `  /* GENERIERT von scripts/gen-strassen-index.mjs — nicht
     }
     return !!HLUECK[name];
   }
+
+  /* ---------------------------------------------------------------------
+     Rhein-Erft-Kreis
+     ---------------------------------------------------------------------
+     Die Strassen liegen in stadtteile/strassen-rhein-erft.js (window.
+     RBRheinErftStrassen) und werden nur von der Bewertungsseite geladen.
+     Ortseinheit ist die Gemeinde: 655 Strassennamen kommen in mehreren
+     Gemeinden vor, die Hausnummer entscheidet die PLZ dagegen nur bei 4 von
+     5.124 Strassen. Sie steckt vor allem drin, damit erkennbar bleibt, ob es
+     die Adresse ueberhaupt gibt. */
+  var REKIDX = null;
+  function rekIndex() {
+    if (REKIDX) return REKIDX;
+    REKIDX = [];
+    var q = window.RBRheinErftStrassen;
+    if (q) for (var k in q) if (Object.prototype.hasOwnProperty.call(q, k)) {
+      REKIDX.push({n: k, x: norm(k), k: nameKey(k), a: q[k]});
+    }
+    return REKIDX;
+  }
+  window.RBRheinErft = {
+    /* Strassensuche: eine Zeile je Gemeinde, damit "Akazienweg" nicht zehnmal
+       gleich aussieht. */
+    strassen: function (q, max) {
+      var t = norm(q || ''); if (!t) return [];
+      var list = rekIndex(), hits = [];
+      for (var i = 0; i < list.length; i++) if (list[i].x.indexOf(t) !== -1) hits.push(list[i]);
+      hits.sort(function (a, b) {
+        var ap = a.x.indexOf(t) === 0 ? 0 : 1, bp = b.x.indexOf(t) === 0 ? 0 : 1;
+        return ap !== bp ? ap - bp : a.n.length - b.n.length;
+      });
+      var out = [], gesehen = {};
+      for (var j = 0; j < hits.length && out.length < (max || 8); j++) {
+        for (var s = 0; s < hits[j].a.length; s++) {
+          var seg = hits[j].a[s], schl = hits[j].n + '|' + seg[0];
+          if (gesehen[schl]) continue;
+          gesehen[schl] = 1;
+          out.push({n: hits[j].n, gemeinde: seg[0], plz: seg[1], ortsteil: seg[4]});
+          if (out.length >= (max || 8)) break;
+        }
+      }
+      return out;
+    },
+    /* Adresse -> Gemeinde und PLZ. gemeinde eingrenzen, wenn der Ort bekannt
+       ist — sonst bleibt "Akazienweg" zwischen zehn Gemeinden offen. */
+    adresse: function (strasse, hausnr, gemeinde) {
+      var name = String(strasse == null ? '' : strasse).trim();
+      if (!name) return null;
+      if (hausnr === undefined || hausnr === null || hausnr === '') {
+        var m = name.match(/^(.*?)[\\s,]+(\\d+\\s*[a-zA-Z]?)$/);
+        if (m) { name = m[1].trim(); hausnr = m[2]; }
+      }
+      var t = norm(name), nk = nameKey(name);
+      // ALLE Eintraege mit passendem Schluessel einsammeln, nicht nur den
+      // ersten: "Zur Alten Burg" (Bedburg) und "Zur alten Burg" (Erftstadt)
+      // unterscheiden sich nur in der Grossschreibung und haben denselben
+      // Schluessel — wer hier abbricht, verliert eine der beiden Gemeinden.
+      var list = rekIndex(), segs = [], i, j;
+      for (i = 0; i < list.length; i++) if (list[i].k === nk)
+        for (j = 0; j < list[i].a.length; j++) segs.push({n: list[i].n, s: list[i].a[j]});
+      if (!segs.length) for (i = 0; i < list.length; i++) if (list[i].x === t)
+        for (j = 0; j < list[i].a.length; j++) segs.push({n: list[i].n, s: list[i].a[j]});
+      if (!segs.length) return null;
+
+      if (gemeinde) {
+        var gk = nameKey(gemeinde);
+        var eng = segs.filter(function (x) { return nameKey(x.s[0]) === gk; });
+        if (eng.length) segs = eng;
+      }
+      var treffer = [], gesehen = {};
+      for (i = 0; i < segs.length; i++) {
+        var schl = segs[i].s[0] + '|' + segs[i].s[1];
+        if (gesehen[schl]) continue;
+        gesehen[schl] = 1;
+        treffer.push({gemeinde: segs[i].s[0], plz: segs[i].s[1], ortsteil: segs[i].s[4]});
+      }
+      var erg = {strasse: segs[0].n, hausnr: hausnr || null, gemeinde: null, plz: null,
+                 ortsteil: null, eindeutig: false, ueberHausnummer: false,
+                 hausnummerBekannt: null, treffer: treffer};
+
+      var n = hausNr(hausnr);
+      if (n !== null) {
+        var passend = [];
+        for (i = 0; i < segs.length; i++) {
+          if (inSpanne(n, n % 2 ? segs[i].s[2] : segs[i].s[3])) passend.push(segs[i]);
+        }
+        // Jede Zeile des Datensatzes hat Nummernbereiche, ein Fehltreffer ist
+        // deshalb eine belastbare Aussage — anders als in Koeln.
+        erg.hausnummerBekannt = passend.length > 0;
+        var gleich = passend.length && passend.every(function (x) {
+          return x.s[0] === passend[0].s[0] && x.s[1] === passend[0].s[1];
+        });
+        if (gleich) {
+          erg.strasse = passend[0].n;
+          erg.gemeinde = passend[0].s[0]; erg.plz = passend[0].s[1]; erg.ortsteil = passend[0].s[4];
+          erg.eindeutig = true; erg.ueberHausnummer = true;
+          return erg;
+        }
+      }
+      var eineGemeinde = treffer.every(function (x) { return x.gemeinde === treffer[0].gemeinde; });
+      if (eineGemeinde) {
+        erg.gemeinde = treffer[0].gemeinde;
+        erg.eindeutig = true;
+        var einePlz = treffer.every(function (x) { return x.plz === treffer[0].plz; });
+        if (einePlz) erg.plz = treffer[0].plz;
+        var einOrtsteil = treffer.every(function (x) { return x.ortsteil === treffer[0].ortsteil; });
+        if (einOrtsteil) erg.ortsteil = treffer[0].ortsteil;
+      }
+      return erg;
+    }
+  };
 
   window.RBVeedel = {
     liste: VEEDEL,
@@ -290,3 +436,9 @@ console.log('  Strassen mit Nummernbereich   : ' + Object.keys(bereiche).length)
 console.log('  Hausnummernabschnitte         : ' + segmente);
 console.log('  Strassen mit Luecken          : ' + lueckenhaft.length + ' (Hausnummer dort nicht pruefbar)');
 console.log('  Strassen ganz ohne Angabe     : ' + ohneAngabe);
+if (rekStrassen) {
+  console.log('strassen-rhein-erft.js aktualisiert');
+  console.log('  Strassennamen                 : ' + rekStrassen);
+  console.log('  Abschnitte                    : ' + rekZeilen);
+  console.log('  Gemeinden                     : ' + rekGemeinden.length + ' (' + rekGemeinden.join(', ') + ')');
+}
