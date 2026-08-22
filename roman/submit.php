@@ -120,7 +120,15 @@ if ($ergebnis) {
     $body .= "Geschätzter Wert:  $ergebnis\n";
 }
 
-// Rechenweg: macht nachvollziehbar, wie der Wert zustande kam
+// Rechenweg: macht nachvollziehbar, wie der Wert zustande kam.
+// Fehlt er, obwohl ein Ergebnis vorliegt, hat der Browser eine alte
+// Fassung der Seite aus dem Cache ausgefuehrt - das soll sichtbar sein,
+// statt den Abschnitt stillschweigend wegzulassen.
+if (!$rechenweg && $ergebnis) {
+    $body .= "\n── RECHENWEG ────────────────────\n";
+    $body .= "Nicht uebermittelt. Die Seite lief beim Absenden aus dem\n";
+    $body .= "Browser-Cache in einer Fassung vor dem 22.08.2026.\n";
+}
 if ($rechenweg) {
     $body .= "\n── RECHENWEG ────────────────────\n";
     foreach (explode("\n", $rechenweg) as $i => $zeile) {
