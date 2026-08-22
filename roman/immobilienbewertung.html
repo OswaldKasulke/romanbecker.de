@@ -284,6 +284,11 @@
     .field input::placeholder {
       color: var(--gray-600);
     }
+    .field input[readonly] {
+      background: var(--gray-100, #f4f4f5);
+      border-style: dashed;
+      cursor: default;
+    }
     .field__hint {
       font-size: 0.8125rem;
       color: var(--gray-600);
@@ -734,6 +739,7 @@
               <div class="field" id="field-immo-plz">
                 <label for="immo_plz">PLZ *</label>
                 <input type="text" id="immo_plz" name="immo_plz" placeholder="50939" maxlength="5" required>
+                <p class="field__hint" id="immo-plz-hinweis"></p>
                 <p class="field__error">Bitte PLZ eingeben.</p>
               </div>
               <div class="field">
@@ -1318,6 +1324,7 @@
     var vorschlagListe = document.getElementById('strassen-vorschlaege');
     var veedelFeld    = document.getElementById('immo_veedel');
     var veedelWrapper = document.getElementById('field-immo-veedel');
+    var plzHinweis    = document.getElementById('immo-plz-hinweis');
     var vorschlagIndex = -1;
 
     function veedelApi() { return window.RBVeedel || null; }
@@ -1375,21 +1382,38 @@
     }
 
     function veedelAuswahlFuellen(treffer) {
-      var namen = [], gesehen = {};
+      // Nach Veedel UND PLZ unterscheiden: eine Strasse kann innerhalb eines
+      // Veedels die PLZ wechseln (Duerener Str. in Lindenthal: 50931 und 50935).
+      // Wuerde nur nach Veedel entdoppelt, landete die zweite PLZ nie im Feld.
+      var namen = [], gesehen = {}, proVeedel = {};
       for (var i = 0; i < treffer.length; i++) {
-        if (gesehen[treffer[i].veedel]) continue;
-        gesehen[treffer[i].veedel] = 1;
+        var schl = treffer[i].veedel + '|' + treffer[i].plz;
+        if (gesehen[schl]) continue;
+        gesehen[schl] = 1;
+        proVeedel[treffer[i].veedel] = (proVeedel[treffer[i].veedel] || 0) + 1;
         namen.push(treffer[i]);
       }
       veedelFeld.innerHTML = '<option value="">Bitte wählen</option>' + namen.map(function (t) {
-        return '<option value="' + t.veedel + '" data-plz="' + t.plz + '">Köln-' + t.veedel + '</option>';
+        var text = 'Köln-' + t.veedel + (proVeedel[t.veedel] > 1 ? ' (' + t.plz + ')' : '');
+        return '<option value="' + t.veedel + '" data-plz="' + t.plz + '">' + text + '</option>';
       }).join('');
       veedelWrapper.style.display = 'block';
     }
 
+    // Die PLZ gehoert zur Adresse, nicht zur Eingabe: steht sie im Verzeichnis,
+    // wird sie uebernommen und das Feld gesperrt. Tippen muss nur, wer eine
+    // Adresse ausserhalb des Koelner Verzeichnisses bewerten laesst.
+    function plzAutomatisch(an) {
+      if (!plzFeld) return;
+      plzFeld.readOnly = !!an;
+      if (plzHinweis) {
+        plzHinweis.textContent = an ? 'Automatisch aus der Adresse übernommen.' : '';
+      }
+    }
+
     function lageSetzen(veedel, plz, ueberHausnummer) {
       erkannteLage = {veedel: veedel, plz: plz || null, ueberHausnummer: !!ueberHausnummer};
-      if (plz) plzFeld.value = plz;
+      if (plz) { plzFeld.value = plz; plzAutomatisch(true); }
       if (ortFeld && !ortFeld.value.trim()) ortFeld.value = 'Köln';
       lageZeile.className = 'lage-treffer';
       lageZeile.innerHTML = 'Lage erkannt: <strong>Köln-' + veedel + '</strong>' +
@@ -1405,6 +1429,7 @@
       if (text === letzteAdresse) return;
       letzteAdresse = text;
       erkannteLage = null;
+      plzAutomatisch(false);
       veedelWrapper.style.display = 'none';
       veedelFeld.innerHTML = '';
       if (!api || !text) { lageZeile.textContent = ''; lageZeile.className = 'lage-treffer'; return; }
