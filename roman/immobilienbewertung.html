@@ -1721,19 +1721,44 @@
       '51103': 3500, '51105': 3500, '51107': 3800, '51109': 3800,
       // Porz / Wahn / Urbach
       '51143': 3200, '51145': 3000, '51147': 3000, '51149': 3000,
-      // Umland — einheitlich 3.880 €/m² (75-m²-ETW Standard ≙ max. 320.000 € inkl. oberem Bandbreiten-Ende)
-      '50226': 3880,  // Frechen
-      '50259': 3880,  // Pulheim
-      '50126': 3880, '50127': 3880, '50129': 3880,  // Bergheim
-      '50169': 3880, '50170': 3880, '50171': 3880,  // Kerpen
-      '50321': 3880,  // Brühl
-      '50354': 3880,  // Hürth
-      '50374': 3880,  // Erftstadt
-      '50181': 3880,  // Bedburg
-      '50189': 3880,  // Elsdorf
-      '50389': 3880,  // Wesseling
-      '51375': 3880, '51377': 3880, '51379': 3880, '51381': 3880,  // Leverkusen
-      '51427': 3880, '51429': 3880, '51465': 3880, '51467': 3880,  // Bergisch Gladbach
+      // Umland — amtliche Immobilienrichtwerte, BORIS NRW, Stichtag 01.01.2026,
+      // Teilmarkt 1 (Eigentumswohnungen), Median über die Zonen der Gemeinde.
+      // Bis 22.08.2026 stand hier für das gesamte Umland pauschal 3.880 €/m²
+      // ("75-m²-ETW ≙ max. 320.000 €"). Das lag 20–40 % über den amtlichen
+      // Werten und machte jede Gemeinde gleich teuer — Elsdorf wie Hürth.
+      // Die Methode ist an Köln geprüft: dieselbe Quelle trifft dort die Werte
+      // des Grundstücksmarktberichts über 27 Stadtteile im Median auf 6 %.
+      '50126': 2300, '50127': 2300, '50129': 2300,  // Bergheim
+      '50169': 2400, '50170': 2400, '50171': 2400,  // Kerpen
+      '50181': 2300,  // Bedburg
+      '50189': 2300,  // Elsdorf
+      '50226': 3200,  // Frechen
+      '50259': 3200,  // Pulheim
+      '50321': 3100,  // Brühl
+      '50354': 3300,  // Hürth
+      '50374': 2700,  // Erftstadt
+      '50389': 2600,  // Wesseling
+      '51375': 3400, '51377': 3400, '51379': 3400, '51381': 3400,  // Leverkusen
+      '51427': 3060, '51429': 3060, '51465': 3060, '51467': 3060,  // Bergisch Gladbach
+    };
+
+    // Kaufpreis €/m² Wohnfläche für Ein-/Zweifamilien-, Reihen- und Doppelhäuser
+    // im Umland. Gleiche Quelle, Teilmärkte 2 und 3 zusammengefasst.
+    // Häuser kosten je m² mehr als Wohnungen, weil der Grundstückswert darin
+    // steckt — wer sie über den Wohnungspreis rechnet, liegt zu niedrig.
+    var plzHausPreise = {
+      '50126': 3100, '50127': 3100, '50129': 3100,  // Bergheim
+      '50169': 3400, '50170': 3400, '50171': 3400,  // Kerpen
+      '50181': 2800,  // Bedburg
+      '50189': 2700,  // Elsdorf
+      '50226': 4100,  // Frechen
+      '50259': 3900,  // Pulheim
+      '50321': 4000,  // Brühl
+      '50354': 3900,  // Hürth
+      '50374': 3200,  // Erftstadt
+      '50389': 3500,  // Wesseling
+      '51375': 4000, '51377': 4000, '51379': 4000, '51381': 4000,  // Leverkusen
+      '51427': 3690, '51429': 3690, '51465': 3690, '51467': 3690,  // Bergisch Gladbach
     };
 
     // Kaufpreis/m² für Mehrfamilienhäuser wird stattdessen aus dem PLZ-Mietmultiplikator
@@ -1875,6 +1900,11 @@
         preisProQm = veedelPreis.etw;
         qmQuelle = 'Grundstuecksmarktbericht, Eigentumswohnungen in Koeln-' + veedelPreis.veedel +
                    (art === 'haus' ? ' (kein Hauswert ausgewiesen, Objektartfaktor greift)' : '');
+      } else if (art === 'haus' && plzHausPreise[plz]) {
+        // Umland: eigener Hauswert, deshalb kein Objektartfaktor obendrauf
+        preisProQm = plzHausPreise[plz];
+        artFaktor = 1.0;
+        qmQuelle = 'Immobilienrichtwert Haeuser, PLZ ' + plz;
       } else if (plzWohnPreise[plz]) {
         preisProQm = plzWohnPreise[plz];
         qmQuelle = 'PLZ-Tabelle ' + plz;
