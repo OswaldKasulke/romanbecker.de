@@ -264,6 +264,18 @@
       color: var(--text, #000000);
       margin-bottom: var(--space-2);
     }
+    /* Zahlenfelder ohne Auf-/Ab-Pfeile: die Flaechenangabe tippt man,
+       hoch- und runterklicken bringt bei 100 m2 nichts. */
+    .field input[type="number"]::-webkit-outer-spin-button,
+    .field input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .field input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
     .field input,
     .field select {
       width: 100%;
