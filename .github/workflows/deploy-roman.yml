@@ -60,6 +60,8 @@ jobs:
           local-dir: roman/
           exclude: |
             **/leads.log
+            scripts/**
+            data/**
           server-dir: /romanbecker.de/root/
           protocol: ftp
           port: 21
@@ -75,6 +77,8 @@ jobs:
           local-dir: roman/
           exclude: |
             **/leads.log
+            scripts/**
+            data/**
           server-dir: /romanbecker.de/root/
           protocol: ftp
           port: 21
@@ -114,6 +118,8 @@ jobs:
           local-dir: roman/
           exclude: |
             **/leads.log
+            scripts/**
+            data/**
           server-dir: /preview/roman/
           protocol: ftp
           port: 21
