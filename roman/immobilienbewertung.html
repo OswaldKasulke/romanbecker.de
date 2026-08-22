@@ -1727,7 +1727,11 @@
       '50126': 3880, '50127': 3880, '50129': 3880,  // Bergheim
       '50169': 3880, '50170': 3880, '50171': 3880,  // Kerpen
       '50321': 3880,  // Brühl
+      '50354': 3880,  // Hürth
       '50374': 3880,  // Erftstadt
+      '50181': 3880,  // Bedburg
+      '50189': 3880,  // Elsdorf
+      '50389': 3880,  // Wesseling
       '51375': 3880, '51377': 3880, '51379': 3880, '51381': 3880,  // Leverkusen
       '51427': 3880, '51429': 3880, '51465': 3880, '51467': 3880,  // Bergisch Gladbach
     };
@@ -1777,15 +1781,24 @@
       '51103': 796, '51105': 792, '51107': 764, '51109': 829,
       // Köln-Porz (amtlich 2026)
       '51143': 759, '51145': 739, '51147': 571, '51149': 759,
-      // Umland
-      '50259': 620,  // Pulheim (Zentrumsnah ~670, Durchschnitt ~620)
-      '50126': 172, '50127': 172, '50129': 167,  // Bergheim
-      '50169': 187, '50170': 151, '50171': 161,  // Kerpen
-      '50226': 266,  // Frechen
-      '50321': 309,  // Brühl
-      '50374': 165,  // Erftstadt
-      '51375': 450, '51377': 450, '51379': 450, '51381': 450,  // Leverkusen
-      '51427': 847, '51429': 847, '51465': 411, '51467': 411,  // Bergisch Gladbach
+      // Umland — BORIS NRW, Stichtag 01.01.2026, Median der Bodenrichtwertzonen
+      // je PLZ über die Wohnbauflächen (Nutzungsart W/WA/WR, baureifes Land).
+      // Dieselbe Rechnung trifft die Kölner Werte oben bei 35 von 36 PLZ auf
+      // wenige Prozent — die alten Umlandwerte lagen dagegen durchweg 45–55 %
+      // darunter (Bergheim 172 statt 320–360, Brühl 309 statt 560). Woher die
+      // stammten, ließ sich nicht mehr rekonstruieren.
+      '50126': 360, '50127': 320, '50129': 320,  // Bergheim
+      '50169': 375, '50170': 335, '50171': 340,  // Kerpen
+      '50181': 250,  // Bedburg
+      '50189': 220,  // Elsdorf
+      '50226': 540,  // Frechen
+      '50259': 620,  // Pulheim (BORIS-Median 610 — der gepflegte Wert stimmt)
+      '50321': 560,  // Brühl
+      '50354': 470,  // Hürth
+      '50374': 325,  // Erftstadt
+      '50389': 400,  // Wesseling
+      '51375': 520, '51377': 440, '51379': 480, '51381': 480,  // Leverkusen
+      '51427': 850, '51429': 570, '51465': 560, '51467': 610,  // Bergisch Gladbach
     };
 
     var defaultWohnPreis    = 4200;  // Fallback: Köln-Durchschnitt

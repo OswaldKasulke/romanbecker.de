@@ -459,7 +459,9 @@
     }
     return REKIDX;
   }
+  var REK_GEMEINDEN = ["Bedburg","Bergheim","Brühl","Elsdorf","Erftstadt","Frechen","Hürth","Kerpen","Pulheim","Wesseling"];
   window.RBRheinErft = {
+    gemeinden: REK_GEMEINDEN,
     /* Strassensuche: eine Zeile je Gemeinde, damit "Akazienweg" nicht zehnmal
        gleich aussieht. */
     strassen: function (q, max) {
@@ -506,7 +508,14 @@
       if (gemeinde) {
         var gk = nameKey(gemeinde);
         var eng = segs.filter(function (x) { return nameKey(x.s[0]) === gk; });
-        if (eng.length) segs = eng;
+        if (eng.length) {
+          segs = eng;
+        } else if (REK_GEMEINDEN.some(function (g) { return nameKey(g) === gk; })) {
+          // Der Ort ist eine Gemeinde des Kreises, die Strasse liegt aber nicht
+          // darin. Dann still auf eine andere Gemeinde auszuweichen waere falsch —
+          // "Ahornstraße, Wesseling" darf nicht in Kerpen landen.
+          return null;
+        }
       }
       var treffer = [], gesehen = {};
       for (i = 0; i < segs.length; i++) {
