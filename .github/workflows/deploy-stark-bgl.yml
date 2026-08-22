@@ -48,3 +48,10 @@ jobs:
           local-dir: ./stark-site/out/
           server-dir: /doktorbecker.de/BGL/
           dangerous-clean-slate: false
+
+      - name: Verify published pages
+        run: |
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "http://doktorbecker.de/BGL/" > /dev/null
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "http://doktorbecker.de/BGL/immobilienbewertung/" > /dev/null
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "http://doktorbecker.de/BGL/stadtteile/bensberg/" > /dev/null
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://doktorbecker.de/BGL/" > /dev/null
