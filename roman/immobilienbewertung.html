@@ -1794,10 +1794,42 @@
     // Lataeng, Altstadt/Sued UND dem Belgischen Viertel. Ueber die PLZ liesse
     // sich das Belgische Viertel nicht anheben, ohne die anderen fuenf
     // mitzunehmen. Greift nur, wenn die Lage ueber die Adresse erkannt wurde.
+    // Multiplikator je Veedel — die maßgebliche Tabelle, gepflegt von Roman
+    // Becker am 23.08.2026. Sie schlaegt die PLZ-Tabelle unten, die nur noch
+    // greift, wenn sich eine Adresse nicht bis aufs Veedel aufloesen laesst.
+    // Warum je Veedel und nicht je PLZ: 34 der 94 Veedel liegen in mehreren
+    // PLZ mit unterschiedlichen Werten — Suelz kam je nach Strasse auf 19, 20
+    // oder 21. Und in der Innenstadt teilen sich bis zu sechs Veedel eine PLZ.
     var veedelMultiplikatoren = {
-      'Belgisches Viertel': 23,
-      'Rheinauhafen': 23,
-      'Eigelstein': 21,
+      // Faktor 23
+      'Belgisches Viertel': 23, 'Lindenthal': 23, 'Rheinauhafen': 23,
+      // Faktor 22
+      'Agnesviertel': 22, 'Altstadt/Nord': 22, 'Altstadt/Süd': 22, 'Braunsfeld': 22,
+      'Komponistenviertel': 22, 'Kwartier Latäng': 22, 'Marienburg': 22, 'Neustadt/Nord': 22,
+      'Neustadt/Süd': 22, 'Südstadt': 22, 'Sülz': 22,
+      // Faktor 21
+      'Bayenthal': 21, 'Ehrenfeld': 21, 'Eigelstein': 21, 'Meschenich': 21, 'Müngersdorf': 21,
+      'Raderberg': 21, 'Raderthal': 21, 'Rodenkirchen': 21,
+      // Faktor 20
+      'Deutz': 20, 'Hahnwald': 20, 'Junkersdorf': 20, 'Klettenberg': 20, 'Lövenich': 20,
+      'Malerviertel': 20, 'Mauenheim': 20, 'Neuehrenfeld': 20, 'Nippes': 20, 'Widdersdorf': 20,
+      // Faktor 19
+      'Bickendorf': 19, 'Bilderstöckchen': 19, 'Brück': 19, 'Dellbrück': 19, 'Longerich': 19,
+      'Merheim': 19, 'Mülheim': 19, 'Neubrück': 19, 'Niehl': 19, 'Ossendorf': 19, 'Pesch': 19,
+      'Poll': 19, 'Riehl': 19, 'Rondorf': 19, 'Sürth': 19, 'Weiden': 19, 'Weidenpesch': 19,
+      'Weiß': 19, 'Zollstock': 19,
+      // Faktor 18
+      'Dünnwald': 18, 'Eil': 18, 'Elsdorf': 18, 'Ensen': 18, 'Esch/Auweiler': 18,
+      'Finkenberg': 18, 'Flittard': 18, 'Fühlingen': 18, 'Godorf': 18, 'Gremberghoven': 18,
+      'Grengel': 18, 'Heimersdorf': 18, 'Holweide': 18, 'Humboldt/Gremberg': 18,
+      'Immendorf': 18, 'Ostheim': 18, 'Rath/Heumar': 18, 'Seeberg': 18, 'Stammheim': 18,
+      'Vingst': 18, 'Vogelsang': 18, 'Zündorf': 18,
+      // Faktor 17
+      'Blumenberg': 17, 'Bocklemünd/Mengenich': 17, 'Buchforst': 17, 'Buchheim': 17,
+      'Chorweiler': 17, 'Höhenberg': 17, 'Höhenhaus': 17, 'Kalk': 17, 'Langel': 17,
+      'Libur': 17, 'Lind': 17, 'Lindweiler': 17, 'Merkenich': 17, 'Porz': 17,
+      'Roggendorf/Thenhoven': 17, 'Urbach': 17, 'Volkhoven/Weiler': 17, 'Wahn': 17,
+      'Wahnheide': 17, 'Westhoven': 17, 'Worringen': 17,
     };
 
     // Umland: eigene Tabelle, NICHT in die Koelner oben mischen. Die
@@ -1805,18 +1837,18 @@
     // Koelner Tabelle" zwischen Stadt und Umland — eine gemeinsame Tabelle
     // wuerde MFH im Umland still auf die Koelner Skalierung umstellen.
     var plzMultiplikatorenUmland = {
-      '50126': 17, '50127': 17, '50129': 17,  // Bergheim
-      '50169': 17, '50170': 17, '50171': 17,  // Kerpen
-      '50181': 17,  // Bedburg
-      '50189': 17,  // Elsdorf
-      '50226': 17,  // Frechen
-      '50259': 17,  // Pulheim
-      '50321': 17,  // Brühl
-      '50374': 17,  // Erftstadt
-      '50389': 17,  // Wesseling
-      '50354': 19,  // Hürth
-      '51375': 19, '51377': 19, '51379': 19, '51381': 19,  // Leverkusen
+      '50181': 18,  // Bedburg
+      '50126': 18, '50127': 18, '50129': 18,  // Bergheim
       '51427': 19, '51429': 19, '51465': 19, '51467': 19,  // Bergisch Gladbach
+      '50321': 17,  // Brühl
+      '50189': 17,  // Elsdorf
+      '50374': 18,  // Erftstadt
+      '50226': 18,  // Frechen
+      '50354': 19,  // Hürth
+      '50169': 18, '50170': 18, '50171': 18,  // Kerpen
+      '51375': 19, '51377': 19, '51379': 19, '51381': 19,  // Leverkusen
+      '50259': 17,  // Pulheim
+      '50389': 17,  // Wesseling
     };
 
     // Bodenrichtwert €/m² für Grundstücke
