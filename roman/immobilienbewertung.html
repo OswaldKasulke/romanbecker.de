@@ -1603,18 +1603,27 @@
       var k = kApi ? kApi.adresse(text) : null;
       var u = uApi ? uApi.adresse(text, '', koelnZuerst ? '' : ort) : null;
 
-      var reihe = koelnZuerst ? ['k', 'u'] : ['u', 'k'];
+      // Der Ort entscheidet, welches Verzeichnis die Antwort gibt — auch dann,
+      // wenn es dort mehrdeutig ist. Sonst kaperte ein eindeutiger Treffer im
+      // Kreis eine Koelner Adresse: "Gottesweg" liegt in Koeln in Zollstock
+      // UND Suelz, im Kreis nur in Erftstadt — und landete deshalb in Erftstadt,
+      // obwohl im Ortsfeld Koeln stand. Das andere Verzeichnis kommt nur zum
+      // Zug, wenn das erste die Strasse ueberhaupt nicht kennt.
+      var reihe = koelnZuerst ? [k, u] : [u, k];
       for (var i = 0; i < reihe.length; i++) {
-        if (reihe[i] === 'k' && k && k.eindeutig && k.veedel) {
-          lageSetzen(k.veedel, k.plz, k.ueberHausnummer, k);
-          if (ortFeld && !istKoelnOrt(ortFeld.value)) ortFeld.value = 'Köln';
+        var a = reihe[i];
+        if (!a) continue;
+        if (a.veedel !== undefined) {          // Treffer aus dem Koelner Verzeichnis
+          if (a.eindeutig && a.veedel) {
+            lageSetzen(a.veedel, a.plz, a.ueberHausnummer, a);
+            if (ortFeld && !istKoelnOrt(ortFeld.value)) ortFeld.value = 'Köln';
+          } else {
+            koelnFrage(a, text);
+          }
           return;
         }
-        if (reihe[i] === 'u' && u && u.eindeutig && u.gemeinde) { umlandSetzen(u); return; }
-      }
-      for (var j = 0; j < reihe.length; j++) {
-        if (reihe[j] === 'k' && k) { koelnFrage(k, text); return; }
-        if (reihe[j] === 'u' && u) { gemeindeFrage(u); return; }
+        if (a.eindeutig && a.gemeinde) { umlandSetzen(a); } else { gemeindeFrage(a); }
+        return;
       }
 
       lageZeile.className = 'lage-treffer';
