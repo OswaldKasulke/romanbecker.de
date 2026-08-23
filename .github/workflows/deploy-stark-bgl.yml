@@ -1,4 +1,4 @@
-name: Deploy STARK website to doktorbecker.de/BGL
+name: Deploy STARK website to immobilienmakler-bergisch-gladbach.de
 # Direct valuation and background lead delivery refreshed 2026-08-22
 
 on:
@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: deploy-stark-bgl
+  group: deploy-stark-immobilienmakler-bergisch-gladbach
   cancel-in-progress: true
 
 jobs:
@@ -40,20 +40,28 @@ jobs:
         working-directory: stark-site
         run: npm run build
 
-      - name: Deploy to doktorbecker.de/BGL
+      - name: Deploy to immobilienmakler-bergisch-gladbach.de
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: w019d9c9.kasserver.com
           username: w019d9c9
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./stark-site/out/
-          server-dir: /doktorbecker.de/BGL/
+          server-dir: /immobilienmakler-bergisch-gladbach.de/
           dangerous-clean-slate: false
 
-      - name: Add lowercase path redirect
+      - name: Redirect former BGL paths to the new domain
         env:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
+          curl --fail --silent --show-error --ftp-create-dirs \
+            --user "w019d9c9:$FTP_PASSWORD" \
+            --upload-file stark-site/redirect-bgl/index.html \
+            "ftp://w019d9c9.kasserver.com/doktorbecker.de/BGL/index.html"
+          curl --fail --silent --show-error --ftp-create-dirs \
+            --user "w019d9c9:$FTP_PASSWORD" \
+            --upload-file stark-site/redirect-bgl/.htaccess \
+            "ftp://w019d9c9.kasserver.com/doktorbecker.de/BGL/.htaccess"
           curl --fail --silent --show-error --ftp-create-dirs \
             --user "w019d9c9:$FTP_PASSWORD" \
             --upload-file stark-site/redirect-bgl/index.html \
@@ -65,10 +73,8 @@ jobs:
 
       - name: Verify published pages
         run: |
-          curl --fail --silent --show-error --retry 4 --retry-delay 5 "http://doktorbecker.de/BGL/" > /dev/null
-          curl --fail --silent --show-error --retry 4 --retry-delay 5 "http://doktorbecker.de/BGL/immobilienbewertung/" > /dev/null
-          curl --fail --silent --show-error --retry 4 --retry-delay 5 "http://doktorbecker.de/BGL/stadtteile/bensberg/" > /dev/null
-          curl --fail --silent --show-error --location --retry 4 --retry-delay 5 "http://doktorbecker.de/bgl/" > /dev/null
-          if ! curl --fail --silent --show-error "https://doktorbecker.de/BGL/" > /dev/null; then
-            echo "::warning::HTTPS-Zertifikat für doktorbecker.de ist beim Hoster noch nicht passend konfiguriert."
-          fi
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://immobilienmakler-bergisch-gladbach.de/" > /dev/null
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://immobilienmakler-bergisch-gladbach.de/immobilienbewertung/" > /dev/null
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://immobilienmakler-bergisch-gladbach.de/stadtteile/bensberg/" > /dev/null
+          curl --fail --silent --show-error --location --retry 4 --retry-delay 5 "https://doktorbecker.de/BGL/" > /dev/null
+          curl --fail --silent --show-error --location --retry 4 --retry-delay 5 "https://doktorbecker.de/bgl/" > /dev/null
