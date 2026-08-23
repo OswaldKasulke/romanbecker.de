@@ -1788,6 +1788,18 @@
       '51143': 17, '51145': 17, '51147': 17, '51149': 17,
     };
 
+    // Multiplikator je Veedel — schlaegt die PLZ-Tabelle unten.
+    // Noetig, weil sich in der Innenstadt bis zu sechs Veedel eine PLZ teilen:
+    // 50674 gehoert Neustadt/Nord, Neustadt/Sued, Komponistenviertel, Kwartier
+    // Lataeng, Altstadt/Sued UND dem Belgischen Viertel. Ueber die PLZ liesse
+    // sich das Belgische Viertel nicht anheben, ohne die anderen fuenf
+    // mitzunehmen. Greift nur, wenn die Lage ueber die Adresse erkannt wurde.
+    var veedelMultiplikatoren = {
+      'Belgisches Viertel': 23,
+      'Rheinauhafen': 23,
+      'Eigelstein': 21,
+    };
+
     // Umland: eigene Tabelle, NICHT in die Koelner oben mischen. Die
     // Mehrfamilienhaus-Rechnung unterscheidet ueber "steht die PLZ in der
     // Koelner Tabelle" zwischen Stadt und Umland — eine gemeinsame Tabelle
@@ -1886,10 +1898,17 @@
       // PLZ-abhängige Werte (Fallback wenn PLZ unbekannt)
       var istKoelnPlz = Object.prototype.hasOwnProperty.call(plzMultiplikatoren, plz);
       var istUmlandPlz = Object.prototype.hasOwnProperty.call(plzMultiplikatorenUmland, plz);
-      var multiplikator = istKoelnPlz ? plzMultiplikatoren[plz]
+      var hatVeedelMult = !!(erkannteLage &&
+        Object.prototype.hasOwnProperty.call(veedelMultiplikatoren, erkannteLage.veedel));
+      var multiplikator = hatVeedelMult ? veedelMultiplikatoren[erkannteLage.veedel]
+                        : istKoelnPlz ? plzMultiplikatoren[plz]
                         : istUmlandPlz ? plzMultiplikatorenUmland[plz]
                         : defaultMultiplikator;
-      rw.push('PLZ ' + (plz || '—') + ': ' + (istKoelnPlz ? 'Koelner Tabelle' : istUmlandPlz ? 'Umland-Tabelle' : 'keine Tabelle, Standardwert') + ' -> Multiplikator ' + multiplikator);
+      rw.push('Multiplikator ' + multiplikator + ' (' +
+              (hatVeedelMult ? 'Veedel-Tabelle, Koeln-' + erkannteLage.veedel
+               : istKoelnPlz ? 'Koelner PLZ-Tabelle ' + plz
+               : istUmlandPlz ? 'Umland-Tabelle ' + plz
+               : 'keine Tabelle, Standardwert') + ')');
       if (art === 'mehrfamilienhaus' && istKoelnPlz) {
         // Köln: Tabellenwerte (Spanne 15–23) linear auf die MFH-Spanne
         // 17 (schlechteste Lage) – 22 (beste Lage) skalieren
