@@ -1011,6 +1011,13 @@
               <p class="result__value" id="result-value">—</p>
               <p class="result__range" id="result-range"></p>
 
+              <div id="result-ausserhalb" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:1rem 1.25rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
+                <p style="margin:0 0 0.5rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Für diese Lage rechne ich keinen Wert aus</p>
+                <p style="margin:0 0 0.75rem;font-size:0.9375rem;line-height:1.6;">Mein Rechenmodell liegt auf Köln und dem Kölner Umland — dort kenne ich jedes Veedel und jede Straße. Für <strong id="result-ausserhalb-plz">Ihre Postleitzahl</strong> hätte ich nur einen Durchschnittswert, und der wäre keine Bewertung, sondern eine Zahl ins Blaue.</p>
+                <p style="margin:0 0 0.75rem;font-size:0.9375rem;line-height:1.6;">Ihre Angaben sind angekommen. Ich sehe mir die Immobilie persönlich an und melde mich mit einer belastbaren Einschätzung — oder vermittle Sie an einen Kollegen vor Ort, der den Markt dort so kennt wie ich Köln.</p>
+                <p style="margin:0;font-size:0.9375rem;line-height:1.6;">Schneller geht es direkt: <a href="tel:+491775156969" style="color:var(--gold-dark,#8a6a00);font-weight:600;">+49 177 515 69 69</a></p>
+              </div>
+
               <div id="result-send-error" style="display:none;background:#fdecea;border-left:3px solid #d32f2f;padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
                 <p style="margin:0;font-size:0.9rem;line-height:1.5;color:#b71c1c;"><strong>Ihre Anfrage konnte nicht automatisch übermittelt werden.</strong> Bitte rufen Sie mich direkt an oder schreiben Sie mir per WhatsApp, damit ich Ihre Bewertung persönlich erhalte: <a href="tel:+491775156969" style="color:#b71c1c;text-decoration:underline;">+49 177 515 69 69</a></p>
               </div>
@@ -1350,6 +1357,15 @@
       return !ort || /^k(ö|oe)ln/i.test(ort.trim());
     }
 
+    function nameGleich(a, b) {
+      var f = function (x) {
+        return String(x == null ? '' : x).toLowerCase()
+          .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+          .replace(/[^a-z0-9]/g, '');
+      };
+      return f(a) === f(b);
+    }
+
     function hausnummerAus(text) {
       var m = String(text || '').match(/[\s,]+(\d+\s*[a-zA-Z]?)\s*$/);
       return m ? m[1].replace(/\s+/g, '') : '';
@@ -1599,6 +1615,21 @@
       // weitergereicht — sonst bliebe "Akazienweg" zwischen zehn Gemeinden offen.
       var ort = ortFeld ? (ortFeld.value || '').trim() : '';
       var koelnZuerst = istKoelnOrt(ort);
+      var uApi0 = umlandApi();
+      var istKreisOrt = !!(uApi0 && uApi0.gemeinden && uApi0.gemeinden.some(function (g) {
+        return nameGleich(g, ort);
+      }));
+
+      // Fremder Ort — weder Köln noch eine Gemeinde des Kreises. Dann gar nicht
+      // erst suchen: "Marktplatz 1" in Bonn wurde sonst als Kerpener Marktplatz
+      // erkannt, weil derselbe Straßenname dort vorkommt.
+      if (ort && !koelnZuerst && !istKreisOrt) {
+        lageZeile.className = 'lage-treffer';
+        lageZeile.textContent = ort + ' liegt außerhalb meines Gebiets – ich rechne hier keinen Wert aus, ' +
+          'sehe mir die Immobilie aber gern persönlich an.';
+        return;
+      }
+
       var kApi = veedelApi(), uApi = umlandApi();
       var k = kApi ? kApi.adresse(text) : null;
       var u = uApi ? uApi.adresse(text, '', koelnZuerst ? '' : ort) : null;
@@ -2078,13 +2109,38 @@
       if (value === null) { showStep(4); return; }
       var low = Math.round(value * 0.9 / 5000) * 5000;
       var high = Math.round(value * 1.1 / 5000) * 5000;
+      var art = document.querySelector('input[name="objektart"]:checked').value;
 
-      document.getElementById('result-value').textContent = formatCurrency(value);
-      document.getElementById('result-range').textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
+      // Bedienen wir diese Lage? Ja, wenn die Adresse auf ein Veedel oder eine
+      // Umlandgemeinde aufgeloest hat oder die PLZ in den Tabellen steht.
+      // Sonst blieben nur die Rueckfallwerte (4.200 EUR/m2, Bodenrichtwert 700,
+      // Multiplikator 17) — ein Koelner Durchschnitt, der ueber eine Immobilie
+      // in Hamburg nichts aussagt. Dann lieber keine Zahl als eine erfundene.
+      var plzErgebnis = (document.getElementById('immo_plz').value || '').trim();
+      var bedient = !!(erkannteLage || erkanntesUmland ||
+                       Object.prototype.hasOwnProperty.call(plzWohnPreise, plzErgebnis));
+      var ausserhalb = document.getElementById('result-ausserhalb');
+      var wertZeile = document.getElementById('result-value');
+      var spanneZeile = document.getElementById('result-range');
+      var wertLabel = document.querySelector('.result__label');
+
+      if (!bedient) {
+        wertZeile.style.display = 'none';
+        spanneZeile.style.display = 'none';
+        if (wertLabel) wertLabel.style.display = 'none';
+        document.getElementById('result-ausserhalb-plz').textContent = plzErgebnis ? 'die PLZ ' + plzErgebnis : 'Ihre Postleitzahl';
+        ausserhalb.style.display = 'block';
+      } else {
+        wertZeile.style.display = '';
+        spanneZeile.style.display = '';
+        if (wertLabel) wertLabel.style.display = '';
+        ausserhalb.style.display = 'none';
+        wertZeile.textContent = formatCurrency(value);
+        spanneZeile.textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
+      }
 
       // Grundstück-Hinweis ein-/ausblenden
-      var art = document.querySelector('input[name="objektart"]:checked').value;
-      document.getElementById('result-grundstueck-hinweis').style.display = art === 'grundstueck' ? 'block' : 'none';
+      document.getElementById('result-grundstueck-hinweis').style.display = (bedient && art === 'grundstueck') ? 'block' : 'none';
 
       // Hinweis "keine Mietangabe -> beste Marktmiete unterstellt" ein-/ausblenden
       var mieteIstCheck      = parseFloat((document.getElementById('miete_ist').value      || '').replace(',','.')) || 0;
@@ -2092,7 +2148,7 @@
       var mieteSollCheck     = parseFloat((document.getElementById('miete_soll').value     || '').replace(',','.')) || 0;
       var mieteSollJahrCheck = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',','.')) || 0;
       var keineMiete = art !== 'grundstueck' && !(mieteIstCheck || mieteIstJahrCheck || mieteSollCheck || mieteSollJahrCheck);
-      document.getElementById('result-keine-miete-hinweis').style.display = keineMiete ? 'block' : 'none';
+      document.getElementById('result-keine-miete-hinweis').style.display = (bedient && keineMiete) ? 'block' : 'none';
 
       // Objekt-Typ-Hinweis je nach Objektart anpassen
       var objekttypHinweis = document.getElementById('result-note-objekttyp');
@@ -2132,6 +2188,7 @@
       formData.append('miete_soll_jahr', document.getElementById('miete_soll_jahr').value);
       formData.append('immo_strasse', document.getElementById('immo_strasse').value);
       formData.append('immo_plz', document.getElementById('immo_plz').value);
+      formData.append('ausserhalb_gebiet', bedient ? '' : 'ja — kein Wert angezeigt, Lage ausserhalb Koeln/Umland');
       formData.append('immo_veedel', erkannteLage ? 'Köln-' + erkannteLage.veedel
                                     : erkanntesUmland ? erkanntesUmland.gemeinde +
                                         (erkanntesUmland.ortsteil ? ' · ' + erkanntesUmland.ortsteil : '')
