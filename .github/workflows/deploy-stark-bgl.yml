@@ -50,20 +50,10 @@ jobs:
           server-dir: /immobilienmakler-bergisch-gladbach.de/
           dangerous-clean-slate: false
 
-      - name: Remove former BGL redirects
-        env:
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          curl --fail --silent --show-error \
-            --user "w019d9c9:$FTP_PASSWORD" \
-            --quote "-DELE /doktorbecker.de/BGL/index.html" \
-            --quote "-DELE /doktorbecker.de/BGL/.htaccess" \
-            --quote "-DELE /doktorbecker.de/bgl/index.html" \
-            --quote "-DELE /doktorbecker.de/bgl/.htaccess" \
-            "ftp://w019d9c9.kasserver.com/"
-
       - name: Verify published pages
         run: |
           curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://immobilienmakler-bergisch-gladbach.de/" > /dev/null
           curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://immobilienmakler-bergisch-gladbach.de/immobilienbewertung/" > /dev/null
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://immobilienmakler-bergisch-gladbach.de/impressum/" > /dev/null
+          curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://immobilienmakler-bergisch-gladbach.de/agb/" > /dev/null
           curl --fail --silent --show-error --retry 4 --retry-delay 5 "https://immobilienmakler-bergisch-gladbach.de/stadtteile/bensberg/" > /dev/null
