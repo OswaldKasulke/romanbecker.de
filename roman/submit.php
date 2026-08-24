@@ -1,8 +1,13 @@
 <?php
-// Erlaubt der Bewertungsstrecke auf doktorbecker.de/BGL den serverseitigen
-// Lead-Versand über diesen bestehenden SMTP-Endpunkt.
+// Erlaubt den Bewertungs- und Kontaktstrecken der freigegebenen Websites
+// den serverseitigen Lead-Versand über diesen bestehenden SMTP-Endpunkt.
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-$allowedOrigins = ['https://doktorbecker.de', 'http://doktorbecker.de'];
+$allowedOrigins = [
+    'https://doktorbecker.de',
+    'http://doktorbecker.de',
+    'https://immobilienmakler-bergisch-gladbach.de',
+    'https://www.immobilienmakler-bergisch-gladbach.de',
+];
 if (in_array($origin, $allowedOrigins, true)) {
     header('Access-Control-Allow-Origin: ' . $origin);
     header('Vary: Origin');
@@ -87,7 +92,7 @@ if (empty($name) || empty($telefon)) {
 
 // Betreff je nach Formulartyp
 $type = $_POST['type'] ?? 'kontakt';
-$siteLabel = $site === 'BGL' ? 'doktorbecker.de/BGL' : 'romanbecker.de';
+$siteLabel = $site === 'BGL' ? 'immobilienmakler-bergisch-gladbach.de' : 'romanbecker.de';
 $subject = $type === 'immobilienbewertung'
     ? 'Neue Immobilienbewertung von ' . $name . ' – ' . $siteLabel
     : 'Neue Kontaktanfrage von ' . $name . ' – ' . $siteLabel;
@@ -189,6 +194,9 @@ try {
 
     $mail->setFrom(SMTP_USER, 'Webseite Roman Becker');
     $mail->addAddress('rb@datenschwester.de', 'Roman Becker');
+    if ($site === 'BGL') {
+        $mail->addAddress('Doreen.Kaschner@evernest.com', 'Doreen Kaschner');
+    }
     if (!empty($email)) {
         $mail->addReplyTo($email, $name);
     }
