@@ -1,5 +1,6 @@
 name: Deploy STARK website to immobilienmakler-bergisch-gladbach.de
 # Direct valuation and background lead delivery refreshed 2026-08-22
+# Manual deploy trigger 2026-08-25
 
 on:
   push:
