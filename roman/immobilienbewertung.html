@@ -1804,7 +1804,8 @@
 
     // Kaufpreis/m² für Mehrfamilienhäuser und für jede Lage ohne amtlichen Wert
     // wird stattdessen über die Fallback-Regel gerechnet (siehe
-    // qmPreisAusMultiplikator unten): 14 €/m² Kaltmiete × 12 × Faktor der Lage.
+    // qmPreisAusMultiplikator unten): 14 €/m² Kaltmiete × 12 × Faktor der Lage,
+    // beim Mehrfamilienhaus 10 €/m².
 
     // Mietmultiplikator für Ertragswertberechnung (Kaltmiete × 12 × x)
     // Skaliert auf Spanne 15 (niedrigster) – 23 (höchster), siehe data/plz-multiplikatoren.json
@@ -1936,19 +1937,27 @@
     var defaultMultiplikator = 16.67; // Kölner Umland: Jahreskaltmiete = 6% des Verkaufspreises (1 / 0,06)
     var defaultBoden        = 700;
 
-    // Fallback-Regel (Roman Becker, 25.08.2026): 14 €/m² Kaltmiete × 12 Monate
-    // × ausgewiesenem Faktor der Lage — für Chorweiler (Faktor 17) also
-    // 14 × 12 × 17 = 2.856 €/m². Sie ersetzt die frühere, aus dem Multiplikator
-    // linear abgeleitete Miete (13–22 €/m², davon 15 % Abschlag) und greift an
-    // zwei Stellen:
+    // Fallback-Regel (Roman Becker, 25.08.2026): angesetzte Kaltmiete je m²
+    // × 12 Monate × ausgewiesenem Faktor der Lage — für Chorweiler (Faktor 17)
+    // also 14 × 12 × 17 = 2.856 €/m². Sie ersetzt die frühere, aus dem
+    // Multiplikator linear abgeleitete Miete (13–22 €/m², davon 15 % Abschlag)
+    // und greift an zwei Stellen:
     //   1. als Preis je m², wenn für die Lage kein amtlicher Wert vorliegt
     //      (früher: Kölner PLZ-Schätztabelle bzw. pauschal 4.200 €/m²),
     //   2. als Untergrenze auf jeden berechneten Wert (siehe calculateValue).
     // Amtliche Werte gehen vor: der Grundstücksmarktbericht je Veedel und die
     // BORIS-Immobilienrichtwerte fürs Umland bleiben erste Wahl.
-    var fallbackMieteProQm = 14;
-    function qmPreisAusMultiplikator(m) {
-      return fallbackMieteProQm * 12 * m;
+    // Mehrfamilienhäuser rechnen mit 10 €/m² statt 14: ein Zinshaus wird über
+    // die Ist-Miete gekauft, die im Bestand deutlich unter der Neuvermietungs-
+    // miete liegt. Mit 14 €/m² hätte die Untergrenze dort fast jeden
+    // Ertragswert überschrieben.
+    var fallbackMieteProQm    = 14;
+    var fallbackMieteProQmMfh = 10;
+    function fallbackMiete(art) {
+      return art === 'mehrfamilienhaus' ? fallbackMieteProQmMfh : fallbackMieteProQm;
+    }
+    function qmPreisAusMultiplikator(m, art) {
+      return fallbackMiete(art) * 12 * m;
     }
 
     // ===========================
@@ -2012,8 +2021,8 @@
                     : 1.0;
       var preisProQm, qmQuelle;
       if (art === 'mehrfamilienhaus') {
-        preisProQm = qmPreisAusMultiplikator(multiplikator);
-        qmQuelle = 'aus dem Mietmultiplikator abgeleitet';
+        preisProQm = qmPreisAusMultiplikator(multiplikator, art);
+        qmQuelle = 'Fallback-Regel Mehrfamilienhaus ' + fallbackMiete(art) + ' EUR/m2 x 12 x Faktor ' + multiplikator.toFixed(2);
       } else if (art === 'haus' && veedelPreis && veedelPreis.haus) {
         preisProQm = veedelPreis.haus;
         artFaktor = 1.0;   // der Wert ist bereits ein Hauspreis, kein Wohnungspreis
@@ -2034,8 +2043,8 @@
         // Kein amtlicher Wert fuer die Lage: Fallback-Regel. Sie loest die
         // Koelner PLZ-Schaetztabelle und den pauschalen Durchschnitt von
         // 4.200 EUR/m2 ab, weil beide die Lage nur grob bzw. gar nicht treffen.
-        preisProQm = qmPreisAusMultiplikator(multiplikator);
-        qmQuelle = 'Fallback-Regel ' + fallbackMieteProQm + ' EUR/m2 x 12 x Faktor ' + multiplikator;
+        preisProQm = qmPreisAusMultiplikator(multiplikator, art);
+        qmQuelle = 'Fallback-Regel ' + fallbackMiete(art) + ' EUR/m2 x 12 x Faktor ' + multiplikator;
       }
       rw.push('Lage: ' + (erkannteLage ? 'Koeln-' + erkannteLage.veedel +
               (erkannteLage.ueberHausnummer ? ' (ueber die Hausnummer bestimmt)' : '')
@@ -2085,13 +2094,14 @@
         }
 
         // Untergrenze (Roman Becker, 25.08.2026): kein Objekt faellt unter
-        // 14 EUR/m2 Kaltmiete x 12 Monate x Faktor der Lage. Sie faengt vor
-        // allem untervermietete Wohnungen ab, deren Ertragswert sonst die
-        // erzielbare Marktmiete unterschlaegt, und greift auch dann, wenn der
-        // amtliche Wert je m2 darunter liegt.
-        var mindestwert = wohnflaeche * fallbackMieteProQm * 12 * multiplikator;
+        // angesetzte Kaltmiete je m2 x 12 Monate x Faktor der Lage — 14 EUR/m2,
+        // beim Mehrfamilienhaus 10. Sie faengt vor allem untervermietete
+        // Objekte ab, deren Ertragswert die erzielbare Marktmiete
+        // unterschlaegt, und greift auch dann, wenn der amtliche Wert je m2
+        // darunter liegt.
+        var mindestwert = wohnflaeche * fallbackMiete(art) * 12 * multiplikator;
         if (wohnflaeche > 0 && value < mindestwert) {
-          rw.push('Wert-Untergrenze gegriffen: ' + wohnflaeche + ' m2 x ' + fallbackMieteProQm +
+          rw.push('Wert-Untergrenze gegriffen: ' + wohnflaeche + ' m2 x ' + fallbackMiete(art) +
                   ' EUR/m2 x 12 x Faktor ' + multiplikator.toFixed(2) + ' = ' + mindestwert.toFixed(2) +
                   ' EUR (berechnet waren ' + value.toFixed(2) + ' EUR)');
           value = mindestwert;
