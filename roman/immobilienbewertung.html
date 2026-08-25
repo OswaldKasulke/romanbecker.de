@@ -1802,10 +1802,9 @@
       '51427': 3690, '51429': 3690, '51465': 3690, '51467': 3690,  // Bergisch Gladbach
     };
 
-    // Kaufpreis/m² für Mehrfamilienhäuser wird stattdessen aus dem PLZ-Mietmultiplikator
-    // abgeleitet (siehe qmPreisAusMultiplikator unten): Multiplikator 23 → Kaltmiete
-    // 22 €/m², Multiplikator 15 → Kaltmiete 13 €/m², linear interpoliert; daraus
-    // Kaufpreis/m² = Kaltmiete/m² × 12 × Multiplikator.
+    // Kaufpreis/m² für Mehrfamilienhäuser und für jede Lage ohne amtlichen Wert
+    // wird stattdessen über die Fallback-Regel gerechnet (siehe
+    // qmPreisAusMultiplikator unten): 14 €/m² Kaltmiete × 12 × Faktor der Lage.
 
     // Mietmultiplikator für Ertragswertberechnung (Kaltmiete × 12 × x)
     // Skaliert auf Spanne 15 (niedrigster) – 23 (höchster), siehe data/plz-multiplikatoren.json
@@ -1934,18 +1933,22 @@
       '51427': 850, '51429': 570, '51465': 560, '51467': 610,  // Bergisch Gladbach
     };
 
-    var defaultWohnPreis    = 4200;  // Fallback: Köln-Durchschnitt
     var defaultMultiplikator = 16.67; // Kölner Umland: Jahreskaltmiete = 6% des Verkaufspreises (1 / 0,06)
     var defaultBoden        = 700;
 
-    // Kaltmiete €/m² aus dem Mietmultiplikator ableiten (linear: 15 → 13 €/m², 23 → 22 €/m²)
-    function mietProQmAusMultiplikator(m) {
-      var basis = 13 + (m - 15) * (22 - 13) / (23 - 15);
-      return basis * 0.85; // -15%
-    }
-    // Kaufpreis €/m² = abgeleitete Kaltmiete/m² × 12 Monate × Mietmultiplikator
+    // Fallback-Regel (Roman Becker, 25.08.2026): 14 €/m² Kaltmiete × 12 Monate
+    // × ausgewiesenem Faktor der Lage — für Chorweiler (Faktor 17) also
+    // 14 × 12 × 17 = 2.856 €/m². Sie ersetzt die frühere, aus dem Multiplikator
+    // linear abgeleitete Miete (13–22 €/m², davon 15 % Abschlag) und greift an
+    // zwei Stellen:
+    //   1. als Preis je m², wenn für die Lage kein amtlicher Wert vorliegt
+    //      (früher: Kölner PLZ-Schätztabelle bzw. pauschal 4.200 €/m²),
+    //   2. als Untergrenze auf jeden berechneten Wert (siehe calculateValue).
+    // Amtliche Werte gehen vor: der Grundstücksmarktbericht je Veedel und die
+    // BORIS-Immobilienrichtwerte fürs Umland bleiben erste Wahl.
+    var fallbackMieteProQm = 14;
     function qmPreisAusMultiplikator(m) {
-      return mietProQmAusMultiplikator(m) * 12 * m;
+      return fallbackMieteProQm * 12 * m;
     }
 
     // ===========================
@@ -1995,12 +1998,12 @@
         // niedrigste gepflegte Wert, greift also in keine Lage mehr ein.
         var minMultiplikator = 17;
         multiplikator = Math.max(multiplikator, minMultiplikator);
-        if (multiplikator === minMultiplikator) rw.push('Untergrenze gegriffen: max. 5 % Bruttorendite -> Multiplikator auf ' + minMultiplikator.toFixed(2) + ' angehoben');
+        if (multiplikator === minMultiplikator) rw.push('Multiplikator-Untergrenze gegriffen: max. 5 % Bruttorendite -> Multiplikator auf ' + minMultiplikator.toFixed(2) + ' angehoben');
       }
       // Kaufpreis je m² Wohnfläche. Reihenfolge der Quellen:
       //   1. Veedel-Wert aus dem Grundstücksmarktbericht (amtlich, je Stadtteil)
-      //   2. PLZ-Tabelle
-      //   3. Kölner Durchschnitt
+      //   2. Immobilienrichtwert des Umlands (amtlich, BORIS NRW, je PLZ)
+      //   3. Fallback-Regel: 14 €/m² × 12 × Faktor der Lage
       // Mehrfamilienhäuser bleiben beim Mietmultiplikator: der Bericht weist
       // Renditekennzahlen nur fürs ganze Stadtgebiet aus, nicht je Stadtteil.
       var veedelPreis = (erkannteLage && window.RBVeedel) ? window.RBVeedel.preis(erkannteLage.veedel) : null;
@@ -2024,12 +2027,15 @@
         preisProQm = plzHausPreise[plz];
         artFaktor = 1.0;
         qmQuelle = 'Immobilienrichtwert Haeuser, PLZ ' + plz;
-      } else if (plzWohnPreise[plz]) {
+      } else if (istUmlandPlz && plzWohnPreise[plz]) {
         preisProQm = plzWohnPreise[plz];
-        qmQuelle = 'PLZ-Tabelle ' + plz;
+        qmQuelle = 'Immobilienrichtwert Wohnungen, PLZ ' + plz;
       } else {
-        preisProQm = defaultWohnPreis;
-        qmQuelle = 'Koelner Durchschnittswert';
+        // Kein amtlicher Wert fuer die Lage: Fallback-Regel. Sie loest die
+        // Koelner PLZ-Schaetztabelle und den pauschalen Durchschnitt von
+        // 4.200 EUR/m2 ab, weil beide die Lage nur grob bzw. gar nicht treffen.
+        preisProQm = qmPreisAusMultiplikator(multiplikator);
+        qmQuelle = 'Fallback-Regel ' + fallbackMieteProQm + ' EUR/m2 x 12 x Faktor ' + multiplikator;
       }
       rw.push('Lage: ' + (erkannteLage ? 'Koeln-' + erkannteLage.veedel +
               (erkannteLage.ueberHausnummer ? ' (ueber die Hausnummer bestimmt)' : '')
@@ -2077,6 +2083,19 @@
           rw.push('Verfahren: Sachwert (keine Kaltmiete angegeben)');
           rw.push('Wohnflaeche ' + wohnflaeche + ' m2 x ' + Math.round(preisProQm) + ' EUR/m2 x Objektart ' + artFaktor + ' x Zustand ' + faktor + ' = ' + value.toFixed(2) + ' EUR');
         }
+
+        // Untergrenze (Roman Becker, 25.08.2026): kein Objekt faellt unter
+        // 14 EUR/m2 Kaltmiete x 12 Monate x Faktor der Lage. Sie faengt vor
+        // allem untervermietete Wohnungen ab, deren Ertragswert sonst die
+        // erzielbare Marktmiete unterschlaegt, und greift auch dann, wenn der
+        // amtliche Wert je m2 darunter liegt.
+        var mindestwert = wohnflaeche * fallbackMieteProQm * 12 * multiplikator;
+        if (wohnflaeche > 0 && value < mindestwert) {
+          rw.push('Wert-Untergrenze gegriffen: ' + wohnflaeche + ' m2 x ' + fallbackMieteProQm +
+                  ' EUR/m2 x 12 x Faktor ' + multiplikator.toFixed(2) + ' = ' + mindestwert.toFixed(2) +
+                  ' EUR (berechnet waren ' + value.toFixed(2) + ' EUR)');
+          value = mindestwert;
+        }
       }
 
       // Auf volle 5.000 runden
@@ -2114,9 +2133,10 @@
 
       // Bedienen wir diese Lage? Ja, wenn die Adresse auf ein Veedel oder eine
       // Umlandgemeinde aufgeloest hat oder die PLZ in den Tabellen steht.
-      // Sonst blieben nur die Rueckfallwerte (4.200 EUR/m2, Bodenrichtwert 700,
-      // Multiplikator 17) — ein Koelner Durchschnitt, der ueber eine Immobilie
-      // in Hamburg nichts aussagt. Dann lieber keine Zahl als eine erfundene.
+      // Sonst blieben nur die Rueckfallwerte (Fallback-Regel mit Multiplikator
+      // 16,67, Bodenrichtwert 700) — ein Koelner Durchschnitt, der ueber eine
+      // Immobilie in Hamburg nichts aussagt. Dann lieber keine Zahl als eine
+      // erfundene.
       var plzErgebnis = (document.getElementById('immo_plz').value || '').trim();
       var bedient = !!(erkannteLage || erkanntesUmland ||
                        Object.prototype.hasOwnProperty.call(plzWohnPreise, plzErgebnis));
