@@ -554,6 +554,26 @@ ${cards}
  * Es wird nur gefiltert, nie neu erzeugt — die vollstaendige Liste bleibt
  * Sache von build_verkauft_v2.py, ein Lauf davon stellt alles wieder her.
  */
+/**
+ * Ueberschrift des Referenzblocks an die Karten darueber anpassen. Zeigt der
+ * Objektblock schon verkaufte Objekte derselben Stadt, ist "In X verkaufte
+ * Immobilien" zweimal dieselbe Aussage - die Liste fuehrt dann die *weiteren*
+ * Verkaeufe. Betrifft nur das Rhein-Erft-Silo; die Koelner Seiten tragen die
+ * "Weitere"-Fassung ohnehin schon.
+ */
+function referenzUeberschrift(html, display, hatVerkaufteKarten) {
+  const vs = html.indexOf('<!-- VERKAUFT-START -->');
+  const ve = html.indexOf('<!-- VERKAUFT-END -->');
+  if (vs === -1 || ve === -1) return html;
+  const block = html.slice(vs, ve);
+  const neu = hatVerkaufteKarten
+    ? `Weitere verkaufte Immobilien in ${display}`
+    : `In ${display} verkaufte Immobilien`;
+  const ersetzt = block.replace(/<h2>(?:Weitere verkaufte Immobilien in |In )[^<]*<\/h2>/,
+    `<h2>${escapeAttr(neu)}</h2>`);
+  return ersetzt === block ? html : html.slice(0, vs) + ersetzt + html.slice(ve);
+}
+
 function filtereReferenzliste(html, verkaufteStrassen) {
   const vs = html.indexOf('<!-- VERKAUFT-START -->');
   const ve = html.indexOf('<!-- VERKAUFT-END -->');
@@ -858,6 +878,9 @@ async function main() {
       for (const l of g.listings.filter(l => l.sold)) {
         const st = strasseVonListing(l.id, lidCache, lidStrassen);
         if (st) strassen.set(strassenKey(st), (strassen.get(strassenKey(st)) ?? 0) + 1);
+      }
+      if (key.startsWith(SILO)) {
+        html = referenzUeberschrift(html, g.display, g.listings.some(l => l.sold));
       }
       const r = filtereReferenzliste(html, strassen);
       html = r.html;
