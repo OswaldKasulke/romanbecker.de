@@ -481,7 +481,7 @@ function buildCard(l) {
         </a>`;
 }
 
-function buildSection(display, listings, ownCount, ownActive) {
+function buildSection(display, listings, ownCount, ownActive, nurEigeneStadt = false) {
   // Verfuegbare Objekte zuerst, verkaufte Referenzen danach; innerhalb beider
   // Gruppen nach Preis absteigend, Objekte ohne Preis ans Ende.
   const priceOf = (l) => (l.hidePrice || l.price == null ? null : Number(l.price));
@@ -503,7 +503,19 @@ function buildSection(display, listings, ownCount, ownActive) {
   // Objekt im Stadtteil faellt "Aktuelle Angebote in X" weg — die Karten
   // nennen ohnehin je Objekt den echten Ort und den Status.
   let heading, intro;
-  if (ownActive > 0) {
+  if (nurEigeneStadt) {
+    // Die Rhein-Erft-Seiten zeigen ausschliesslich Objekte aus der Stadt
+    // selbst — "und Umgebung" waere dort schlicht falsch.
+    if (ownActive > 0) {
+      heading = `Aktuelle Immobilienangebote in ${d}`;
+      intro = `${count} ${noun} in ${d} – jetzt ansehen.${hinweis} Kein passendes Objekt dabei? ${kontakt}`;
+    } else {
+      heading = `Verkaufte Immobilien in ${d}`;
+      intro = count === 1
+        ? `In ${d} ist derzeit kein Angebot offen. Dieses Objekt in ${d} ist bereits verkauft. Sie suchen gezielt in ${d}? ${kontakt}`
+        : `In ${d} ist derzeit kein Angebot offen. Diese ${count} Objekte in ${d} sind bereits verkauft. Sie suchen gezielt in ${d}? ${kontakt}`;
+    }
+  } else if (ownActive > 0) {
     heading = `Aktuelle Immobilienangebote in ${d}`;
     intro = `${count} ${noun} in ${d} und Umgebung – jetzt ansehen.${hinweis} Kein passendes Objekt dabei? ${kontakt}`;
   } else if (ownCount > 0) {
@@ -830,7 +842,7 @@ async function main() {
     const had = html.includes(START);
     if (byPage.has(key)) {
       const g = byPage.get(key);
-      html = insertSection(html, buildSection(g.display, g.listings, g.ownCount, g.ownActive));
+      html = insertSection(html, buildSection(g.display, g.listings, g.ownCount, g.ownActive, key.startsWith(SILO)));
       // Was oben als Karte steht, faellt unten aus "Weitere verkaufte Objekte".
       // Nur verkaufte Karten — die Referenzliste fuehrt nur Verkauftes.
       const strassen = new Map();
