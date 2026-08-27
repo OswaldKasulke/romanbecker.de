@@ -38,6 +38,18 @@ const KOELN_BOUNDS = {
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 const IMG_PARAMS = '?w=800&h=534&fit=fill&fm=jpg&q=80';
 
+// Jede Stadtteilseite soll drei Objekte zeigen. Hat der Stadtteil selbst
+// weniger, wird aus dem naeheren Umfeld aufgefuellt — auch mit verkauften
+// Referenzen. Gilt nur fuer die Koelner Stadtteilseiten unter stadtteile/;
+// das Rhein-Erft-Silo unter immobilienmakler-rhein-erft/ ruehrt dieses
+// Skript ohnehin nicht an.
+const TARGET_CARDS = 3;
+// Aus den N naechstgelegenen Kandidaten wird gezogen, statt stur die
+// naechsten zu nehmen — sonst zeigen benachbarte Seiten dieselben Objekte.
+const FILL_POOL = 12;
+// Weiter als das ist kein "naeheres Umfeld" mehr.
+const FILL_RADIUS_KM = 20;
+
 const START = '<!-- STADTTEIL-LISTINGS-START -->';
 const END = '<!-- STADTTEIL-LISTINGS-END -->';
 
@@ -64,6 +76,42 @@ function slugify(s) {
     .replace(/[\/]/g, ' ')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+/** Luftlinie in km. */
+function distanceKm(aLat, aLng, bLat, bLng) {
+  const rad = Math.PI / 180;
+  const dLat = (bLat - aLat) * rad;
+  const dLng = (bLng - aLng) * rad;
+  const h = Math.sin(dLat / 2) ** 2 +
+    Math.cos(aLat * rad) * Math.cos(bLat * rad) * Math.sin(dLng / 2) ** 2;
+  return 6371 * 2 * Math.asin(Math.sqrt(h));
+}
+
+/**
+ * Seed aus dem Slug — die Auswahl ist damit pro Seite stabil. Ein taeglicher
+ * Lauf ohne Aenderung am Objektbestand erzeugt so keinen Diff.
+ */
+function seedFrom(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+
+function seededShuffle(arr, seed) {
+  let a = seed || 1;
+  const rnd = () => {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
 }
 
 function escapeAttr(str) {
@@ -250,7 +298,7 @@ function buildCard(l) {
         </a>`;
 }
 
-function buildSection(display, listings) {
+function buildSection(display, listings, ownCount) {
   // Galerie strikt nach Preis absteigend (unabhängig vom Status).
   // Objekte ohne Preis ans Ende, verkaufte Referenzen ganz zum Schluss.
   const priceOf = (l) => (l.hidePrice || l.price == null ? null : Number(l.price));
@@ -264,12 +312,21 @@ function buildSection(display, listings) {
   const cards = sorted.map(buildCard).join('\n');
   const count = listings.length;
   const noun = count === 1 ? 'Objekt' : 'Objekte';
+  const d = escapeAttr(display);
+  // Ohne eigenes Objekt im Stadtteil darf die Seite keine Angebote "in X"
+  // behaupten. Die Karten nennen ohnehin je Objekt den echten Ort.
+  const heading = ownCount > 0
+    ? `Aktuelle Immobilienangebote in ${d}`
+    : `Immobilienangebote rund um ${d}`;
+  const intro = ownCount > 0
+    ? `${count} ${noun} in ${d} und Umgebung – jetzt ansehen. Kein passendes Objekt dabei? Schicken Sie mir <a href="https://romanbecker.de/#kontakt">eine Nachricht mit Ihren Präferenzen</a> – ich trage Sie in unsere Datenbank ein.`
+    : `In ${d} ist derzeit kein eigenes Objekt im Angebot. Diese ${count} Immobilien liegen im näheren Umfeld. Sie suchen gezielt in ${d}? Schicken Sie mir <a href="https://romanbecker.de/#kontakt">eine Nachricht mit Ihren Präferenzen</a> – ich trage Sie in unsere Datenbank ein.`;
   return `${START}
   <section id="aktuelle-angebote" class="section section--gray">
     <div class="container">
       <span class="section-label">Aktuelle Angebote</span>
-      <h2>Aktuelle Immobilienangebote in ${escapeAttr(display)}</h2>
-      <p class="max-w-prose mb-8">${count} ${noun} in ${escapeAttr(display)} und Umgebung – jetzt ansehen. Kein passendes Objekt dabei? Schicken Sie mir <a href="https://romanbecker.de/#kontakt">eine Nachricht mit Ihren Präferenzen</a> – ich trage Sie in unsere Datenbank ein.</p>
+      <h2>${heading}</h2>
+      <p class="max-w-prose mb-8">${intro}</p>
       <div class="listings__grid">
 ${cards}
       </div>
@@ -303,13 +360,17 @@ function insertSection(html, section) {
     // idempotent: jeder Lauf schob eine Leerzeile nach (bis zu 53 pro Seite).
     return html.slice(0, lineStart) + section + html.slice(ei + END.length).replace(/^[^\n]*/, '');
   }
-  // Insert after the hero section closes (first </section> after <section class="hero">)
+  // Hinter das Stadtteil-/Quartiersprofil setzen — dort steht der Block auch
+  // auf den Seiten, die ihn schon haben. Direkt hinter dem Hero saehe er
+  // anders aus als auf den bestehenden Seiten.
   const heroIdx = html.indexOf('<section class="hero"');
   if (heroIdx !== -1) {
-    const closeIdx = html.indexOf('</section>', heroIdx);
+    const profilIdx = html.indexOf('<section class="section section--gray">', heroIdx);
+    const anchor = profilIdx !== -1 ? profilIdx : heroIdx;
+    const closeIdx = html.indexOf('</section>', anchor);
     if (closeIdx !== -1) {
       const insertAt = closeIdx + '</section>'.length;
-      return html.slice(0, insertAt) + '\n\n  ' + section + html.slice(insertAt);
+      return html.slice(0, insertAt) + '\n\n' + section + html.slice(insertAt);
     }
   }
   // Fallback: before footer
@@ -365,9 +426,52 @@ async function main() {
     }
   }
 
+  // --- Auffuellen auf drei Objekte ----------------------------------------
+  // Regel: eigene Objekte des Stadtteils zuerst und vollstaendig. Sind es
+  // weniger als drei, wird aus dem naeheren Umfeld aufgefuellt — auch mit
+  // reservierten und verkauften Objekten, die Karte kennzeichnet beides.
+  const pageMeta = new Map();        // slug → { display, lat, lng }
+  for (const f of files) {
+    const slug = f.replace(/\.html$/, '');
+    const html = await readFile(join(STADTTEILE_DIR, f), 'utf-8');
+    const pos = html.match(/name="geo\.position" content="([\-0-9.]+);([\-0-9.]+)"/);
+    const name = html.match(/name="geo\.placename" content="([^"]*)"/);
+    if (!pos) { console.log(`  ! ${f}: keine geo.position — wird nicht aufgefuellt`); continue; }
+    pageMeta.set(slug, {
+      display: name ? name[1] : slug,
+      lat: Number(pos[1]), lng: Number(pos[2]),
+    });
+  }
+
+  const withCoords = listings.filter(l => l.lat != null && l.lng != null);
+  let filledPages = 0, filledCards = 0;
+  for (const [slug, meta] of pageMeta) {
+    const own = byPage.get(slug)?.listings ?? [];
+    if (own.length >= TARGET_CARDS) continue;
+    const taken = new Set(own.map(l => l.id));
+    const near = withCoords
+      .filter(l => !taken.has(l.id))
+      .map(l => ({ l, km: distanceKm(meta.lat, meta.lng, l.lat, l.lng) }))
+      .filter(x => x.km <= FILL_RADIUS_KM)
+      .sort((a, b) => a.km - b.km)
+      .slice(0, FILL_POOL);
+    if (!near.length) continue;
+    const pick = seededShuffle(near, seedFrom(slug)).slice(0, TARGET_CARDS - own.length);
+    if (!pick.length) continue;
+    if (!byPage.has(slug)) byPage.set(slug, { display: meta.display, listings: [], ownCount: 0 });
+    const g = byPage.get(slug);
+    if (g.ownCount == null) g.ownCount = own.length;
+    for (const x of pick) g.listings.push(x.l);
+    filledPages++; filledCards += pick.length;
+  }
+  for (const [slug, g] of byPage) if (g.ownCount == null) g.ownCount = g.listings.length;
+  console.log(`\nAufgefuellt: ${filledCards} Karten auf ${filledPages} Seiten (Ziel ${TARGET_CARDS}/Seite)`);
+
   console.log(`\nMatched ${listings.length - unmatched.length} listings → ${byPage.size} pages`);
   for (const [slug, g] of [...byPage].sort()) {
-    console.log(`  ${slug}.html  (${g.display})  → ${g.listings.length} listing(s)`);
+    const fill = g.listings.length - g.ownCount;
+    console.log(`  ${slug}.html  (${g.display})  → ${g.listings.length} listing(s)` +
+      (fill > 0 ? `  [${g.ownCount} eigen + ${fill} Umfeld]` : ''));
   }
   if (unmatched.length) {
     console.log(`\nUnmatched (no page): ${unmatched.length}`);
@@ -384,7 +488,7 @@ async function main() {
     const had = html.includes(START);
     if (byPage.has(slug)) {
       const g = byPage.get(slug);
-      html = insertSection(html, buildSection(g.display, g.listings));
+      html = insertSection(html, buildSection(g.display, g.listings, g.ownCount));
       await writeFile(path, html, 'utf-8');
       written++;
     } else if (had) {
