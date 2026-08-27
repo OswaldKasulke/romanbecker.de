@@ -61,6 +61,14 @@ a { color: inherit; }
 .section { padding: var(--space-12) 0; }
 .section--gray { background: var(--off-white); }
 .section--navy { background: var(--racing-green); color: var(--white); }
+/* Zwei gleichfarbige Sections direkt hintereinander (z. B. Quartiersprofil ->
+   Aktuelle Angebote): das doppelte Innenabstand-Polster erzeugt sonst eine
+   sichtbare Lücke ohne Farbwechsel. */
+.section--gray + .section--gray,
+.section--navy + .section--navy { padding-top: 0; }
+/* Der Abstand des letzten Blocks einer Section liegt ohnehin im Section-Padding. */
+.section > .container > .mb-12:last-child,
+.section > .container > .mb-8:last-child { margin-bottom: 0; }
 
 /* TYPOGRAPHY */
 h1 { font-family: var(--font-heading); font-size: clamp(1.875rem, 3.6vw, 2.5rem); font-weight: 700; line-height: 1.2; color: var(--text, #000000); }
