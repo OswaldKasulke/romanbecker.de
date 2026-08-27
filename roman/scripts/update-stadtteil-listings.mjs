@@ -17,12 +17,15 @@
  */
 
 import { readFile, writeFile, readdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const STADTTEILE_DIR = join(__dirname, '..', 'stadtteile');
+const LID_CACHE = join(__dirname, 'listing-lids.json');      // sys.id → L-Id aus dem Expose
+const LID_STRASSEN = join(__dirname, 'lid-strassen.csv');    // L-Id → Strasse aus dem CRM-Export
 
 const SEARCH_URL = 'https://www.evernest.com/api/properties/';
 const OFFICE_URL = 'https://www.evernest.com/de/search/?lat=50.989913&lng=7.000059&zoom=11';
@@ -158,6 +161,13 @@ function localityOf(address) {
   return String(address).replace(/,\s*\d{5}.*$/, '').trim(); // strip ", PLZ …"
 }
 
+// Evernest schreibt vereinzelt "Köln - Sülz" statt "Köln-Sülz". Solche Objekte
+// fielen sonst durch die Stadtteilzuordnung und standen als "Köln - Sülz" auf
+// der Karte.
+function normalizeAddress(address) {
+  return String(address).replace(/^Köln\s*[-\/]\s*/i, 'Köln-');
+}
+
 /** Returns { slug, display, isKoeln } or null if no matching page exists. */
 function matchPage(address, validSlugs) {
   const loc = localityOf(address);
@@ -192,7 +202,7 @@ function mapListing(item) {
     rooms: epd.rooms ?? null,
     livingSpace: epd.livingSpace ?? null,
     propertyType: TYPE_OVERRIDE[item.sys?.id] ?? epd.propertyType ?? null,
-    address: item.displayAddress ?? '',
+    address: normalizeAddress(item.displayAddress ?? ''),
     lat: item.lat ?? null,
     lng: item.lng ?? null,
     imageUrl: item.featuredImage?.url ?? null,
@@ -278,6 +288,58 @@ async function fetchDetailText(id) {
     if (fm) { try { feats = JSON.parse(fm[1]).join(' | '); } catch { feats = fm[1]; } }
     return [title, desc, feats].join(' | ');
   } catch { return ''; }
+}
+
+// ---------------------------------------------------------------------------
+// L-Id-Bruecke
+//
+// Die Such-API kennt nur die Contentful-Id, der CRM-Export nur die L-Id. Die
+// Expose-Seite nennt beide — dort steht die L-Id im Seitenquelltext. Einmal je
+// Objekt abgerufen und in listing-lids.json gemerkt; nur neue Objekte kosten
+// noch einen Request.
+async function ladeLidCache() {
+  if (!existsSync(LID_CACHE)) return {};
+  try { return JSON.parse(await readFile(LID_CACHE, 'utf-8')); } catch { return {}; }
+}
+
+async function ergaenzeLidCache(cache, ids) {
+  const fehlend = ids.filter(id => cache[id] === undefined);
+  if (!fehlend.length) return 0;
+  for (let i = 0; i < fehlend.length; i += 8) {
+    await Promise.all(fehlend.slice(i, i + 8).map(async id => {
+      try {
+        const res = await fetch(`https://www.evernest.com/de/listing/${id}/`, { headers: { 'User-Agent': UA } });
+        const html = res.ok ? await res.text() : '';
+        cache[id] = html.match(/"((?:L-[A-Z0-9]{6,8}|LID-\d+))"/)?.[1] ?? null;
+      } catch { cache[id] = null; }
+    }));
+  }
+  await writeFile(LID_CACHE, JSON.stringify(cache), 'utf-8');
+  return fehlend.length;
+}
+
+async function ladeLidStrassen() {
+  if (!existsSync(LID_STRASSEN)) return new Map();
+  const zeilen = (await readFile(LID_STRASSEN, 'utf-8')).trim().split('\n').slice(1);
+  const m = new Map();
+  for (const z of zeilen) {
+    const [lid, street, plz] = z.split('|');
+    if (lid && street) m.set(lid.trim(), { street: street.trim(), plz: (plz ?? '').trim() });
+  }
+  return m;
+}
+
+/** Strassenname zu einem Listing, oder null wenn nicht auflösbar. */
+function strasseVonListing(id, lidCache, lidStrassen) {
+  const lid = lidCache[id];
+  return lid ? (lidStrassen.get(lid)?.street ?? null) : null;
+}
+
+/** "Bachemer Str." und "Bachemer Straße" sollen denselben Schluessel ergeben. */
+function strassenKey(name) {
+  return String(name).toLowerCase()
+    .replace(/str\.$/, 'straße').replace(/str\.\s/, 'straße ')
+    .replace(/\s+/g, ' ').trim();
 }
 
 // ---------------------------------------------------------------------------
@@ -453,6 +515,54 @@ ${cards}
 }
 
 // ---------------------------------------------------------------------------
+/**
+ * Zieht aus "Weitere verkaufte Objekte" die Objekte ab, die oben schon als
+ * Karte stehen. Nur verkaufte Karten zaehlen — die Liste enthaelt
+ * ausschliesslich Verkauftes, ein aktives Angebot in derselben Strasse ist ein
+ * anderes Objekt (Balthasarstr. 76 steht zum Verkauf, die beiden Referenzen
+ * dort sind Nr. 58 und eine weitere).
+ *
+ * Ein Eintrag mit mehreren Einheiten wird heruntergezaehlt, nicht geloescht.
+ * Es wird nur gefiltert, nie neu erzeugt — die vollstaendige Liste bleibt
+ * Sache von build_verkauft_v2.py, ein Lauf davon stellt alles wieder her.
+ */
+function filtereReferenzliste(html, verkaufteStrassen) {
+  const vs = html.indexOf('<!-- VERKAUFT-START -->');
+  const ve = html.indexOf('<!-- VERKAUFT-END -->');
+  if (vs === -1 || ve === -1 || !verkaufteStrassen.size) return { html, entfernt: 0 };
+  let block = html.slice(vs, ve);
+  const zeilen = block.match(/^.*<li><span class="infra-icon">.*$/gm) ?? [];
+  if (!zeilen.length) return { html, entfernt: 0 };
+
+  const offen = new Map(verkaufteStrassen);   // Strasse → wie viele Karten
+  let entfernt = 0;
+  const behalten = [];
+  for (const z of zeilen) {
+    const inhalt = z.match(/<span>([^<]*)<\/span><\/li>/)?.[1] ?? '';
+    const strasse = inhalt.replace(/\s*\([^)]*\)\s*$/, '').trim();
+    const typ = inhalt.match(/\(([^,)]+)/)?.[1]?.trim() ?? 'Immobilie';
+    const n = Number(inhalt.match(/,\s*(\d+)\s*Einheiten/)?.[1] ?? 1);
+    const key = strassenKey(strasse);
+    const abzug = Math.min(n, offen.get(key) ?? 0);
+    if (!abzug) { behalten.push({ z, n }); continue; }
+    offen.set(key, (offen.get(key) ?? 0) - abzug);
+    entfernt += abzug;
+    const rest = n - abzug;
+    if (rest <= 0) continue;
+    const suf = rest > 1 ? `, ${rest} Einheiten` : '';
+    behalten.push({ z: z.replace(/<span>[^<]*<\/span><\/li>/, `<span>${escapeAttr(strasse)} (${escapeAttr(typ + suf)})</span></li>`), n: rest });
+  }
+  if (!entfernt || !behalten.length) return { html, entfernt: 0 };
+
+  const erste = block.indexOf(zeilen[0]);
+  const letzte = block.indexOf(zeilen[zeilen.length - 1]) + zeilen[zeilen.length - 1].length;
+  block = block.slice(0, erste) + behalten.map(b => b.z).join('\n') + block.slice(letzte);
+  const anzahl = behalten.reduce((sum, b) => sum + b.n, 0);
+  block = block.replace(/(<div class="ref-card__number">)\d+(<\/div>)/, `$1${anzahl}$2`);
+  return { html: html.slice(0, vs) + block + html.slice(ve), entfernt };
+}
+
+// ---------------------------------------------------------------------------
 function stripBlock(html) {
   const si = html.indexOf(START);
   const ei = html.indexOf(END);
@@ -540,6 +650,14 @@ async function main() {
     }
   }
 
+  // --- L-Id-Bruecke --------------------------------------------------------
+  // Die L-Id wird schon fuer die Auswahl gebraucht: zwei Contentful-Eintraege
+  // koennen dieselbe Immobilie sein. Einmal je Objekt abgerufen und gemerkt.
+  const lidCache = await ladeLidCache();
+  const geholt = await ergaenzeLidCache(lidCache, listings.map(l => l.id));
+  const lidStrassen = await ladeLidStrassen();
+  if (geholt) console.log(`L-Id: ${geholt} Expose(s) nachgeladen`);
+
   // --- Auffuellen auf drei Objekte ----------------------------------------
   // Regel: eigene Objekte des Stadtteils zuerst und vollstaendig. Sind es
   // weniger als drei, wird aus dem naeheren Umfeld aufgefuellt — auch mit
@@ -585,23 +703,29 @@ async function main() {
       // Der Rhein ist keine Strecke, die man mal eben quert: ein Objekt in
       // Deutz gehoert nicht auf eine linksrheinische Veedelseite.
       .filter(l => rheinSeite(l.lat, l.lng, l.address) === seite)
-      // Verkauftes aus dem eigenen Stadtteil steht auf Referenzseiten unten
-      .filter(l => !(l.sold && hatReferenzblock.has(slug) && matchPage(l.address, validSlugs)?.slug === slug))
       .map(l => ({ l, km: distanceKm(meta.lat, meta.lng, l.lat, l.lng) }))
       .filter(x => x.km <= FILL_RADIUS_KM)
       .sort((a, b) => a.km - b.km);
     // Verfuegbare Objekte vor verkauften Referenzen, innerhalb beider Gruppen
     // aus den naechstgelegenen zufaellig gezogen.
-    // Hat die Seite unten den Block "Weitere verkaufte Objekte", bleiben die
-    // verkauften Objekte des eigenen Stadtteils aus den Karten heraus — sonst
-    // stuende dasselbe Objekt zweimal auf der Seite. Welcher Listeneintrag zu
-    // welcher Karte gehoert, laesst sich nicht bestimmen: verkaufte Objekte
-    // haben in der API keinen Preis, und die Verkaufsliste kennt keine
-    // Listing-Id. Deshalb die Trennung nach Herkunft statt ein Abgleich.
-    const eigeneVerkauften = hatReferenzblock.has(slug)
-      ? []
-      : (ownSold.get(slug) ?? []).filter(l => !taken.has(l.id)).map(l => ({ l, km: 0 }));
-    const kandidaten = [...eigeneVerkauften, ...near];
+    // Verkaufte Referenzen des eigenen Stadtteils zaehlen als Entfernung 0.
+    // Wird ein solches Objekt als Karte gezeigt, faellt es unten aus der Liste
+    // "Weitere verkaufte Objekte" heraus — der Abgleich laeuft ueber die
+    // L-Id aus dem Expose, siehe strasseVonListing().
+    // Eigene verkaufte Objekte stehen auch im Nahbereich — ohne Entdopplung
+    // landete dasselbe Objekt zweimal auf der Seite. Zusaetzlich ueber die
+    // L-Id entdoppeln: zwei Contentful-Eintraege koennen dieselbe Immobilie
+    // sein (die beiden identischen Refrather Neubau-Einheiten etwa).
+    const kandidaten = [];
+    const gesehen = new Set(taken);
+    const gesehenLid = new Set(own.map(l => lidCache[l.id]).filter(Boolean));
+    for (const x of [...(ownSold.get(slug) ?? []).map(l => ({ l, km: 0 })), ...near]) {
+      const lid = lidCache[x.l.id];
+      if (gesehen.has(x.l.id) || (lid && gesehenLid.has(lid))) continue;
+      gesehen.add(x.l.id);
+      if (lid) gesehenLid.add(lid);
+      kandidaten.push(x);
+    }
     // Naehe schlaegt Status: innerhalb eines Umkreisrings kommt ein
     // verfuegbares Objekt vor einer Referenz, aber ein Objekt aus dem Veedel
     // nebenan vor einem verfuegbaren am anderen Ende der Stadt. Sonst stuende
@@ -648,9 +772,13 @@ async function main() {
     console.log('  ' + [...new Set(unmatched.map(localityOf))].join(', '));
   }
 
+  const gezeigt = new Set([...byPage.values()].flatMap(g => g.listings.map(l => l.id)));
+  const aufgeloest = [...gezeigt].filter(id => strasseVonListing(id, lidCache, lidStrassen)).length;
+  console.log(`Strasse bekannt fuer ${aufgeloest} von ${gezeigt.size} gezeigten Objekten`);
+
   if (DRY) { console.log('\n[dry run — no files written]'); return; }
 
-  let written = 0, cleared = 0;
+  let written = 0, cleared = 0, entferntGesamt = 0, seitenMitAbzug = 0;
   for (const f of files) {
     const slug = f.replace(/\.html$/, '');
     const path = join(STADTTEILE_DIR, f);
@@ -659,6 +787,16 @@ async function main() {
     if (byPage.has(slug)) {
       const g = byPage.get(slug);
       html = insertSection(html, buildSection(g.display, g.listings, g.ownCount, g.ownActive));
+      // Was oben als Karte steht, faellt unten aus "Weitere verkaufte Objekte".
+      // Nur verkaufte Karten — die Referenzliste fuehrt nur Verkauftes.
+      const strassen = new Map();
+      for (const l of g.listings.filter(l => l.sold)) {
+        const st = strasseVonListing(l.id, lidCache, lidStrassen);
+        if (st) strassen.set(strassenKey(st), (strassen.get(strassenKey(st)) ?? 0) + 1);
+      }
+      const r = filtereReferenzliste(html, strassen);
+      html = r.html;
+      if (r.entfernt) { entferntGesamt += r.entfernt; seitenMitAbzug++; }
       await writeFile(path, html, 'utf-8');
       written++;
     } else if (had) {
@@ -668,6 +806,7 @@ async function main() {
     }
   }
   console.log(`\nWrote listings into ${written} pages; cleared ${cleared} stale pages.`);
+  console.log(`Referenzliste: ${entferntGesamt} Eintrag/Eintraege auf ${seitenMitAbzug} Seite(n) entfernt, weil das Objekt oben als Karte steht.`);
 }
 
 main().catch(err => { console.error('ERROR:', err.message); process.exit(1); });
