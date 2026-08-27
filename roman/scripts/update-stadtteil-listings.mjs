@@ -761,11 +761,23 @@ async function main() {
       const [ra, sa] = a.split('|').map(Number), [rb, sb] = b.split('|').map(Number);
       return ra - rb || sa - sb;
     });
+    // Ein Neubauprojekt stellt viele fast gleiche Einheiten. Ohne Bremse
+    // fuellte sich die Bedburger Seite mit drei Wohnungen aus derselben
+    // Bergheimer Commerstrasse: dreimal dieselbe Ueberschrift, zweimal
+    // dasselbe Bild, nur ein anderer Preis. Beim Auffuellen kommt deshalb je
+    // Ortsangabe hoechstens ein Objekt auf die Seite - das ist genau der Text,
+    // der auf der Karte steht. Gibt es weniger als drei verschiedene, zeigt
+    // die Seite lieber zwei Karten als eine Dopplung.
+    const ziel = TARGET_CARDS - own.length;
     const pick = [];
+    const gezeigteOrte = new Set(own.map(l => localityOf(l.address)));
     for (const key of reihenfolge) {
-      if (pick.length >= TARGET_CARDS - own.length) break;
+      if (pick.length >= ziel) break;
       for (const x of seededShuffle(gruppen.get(key), seedFrom(slug + '|' + key))) {
-        if (pick.length >= TARGET_CARDS - own.length) break;
+        if (pick.length >= ziel) break;
+        const ort = localityOf(x.l.address);
+        if (gezeigteOrte.has(ort)) continue;
+        gezeigteOrte.add(ort);
         pick.push(x);
       }
     }
