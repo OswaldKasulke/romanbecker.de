@@ -23,6 +23,11 @@ const EN_INDEX_PATH   = join(__dirname, '..', 'en', 'index.html');
 const BAUTRAEGER_PATH = join(__dirname, '..', 'bautraeger.html');
 
 const KOELN_OFFICE_URL  = 'https://www.evernest.com/de/search/?lat=50.989913&lng=7.000059&zoom=11';
+// Der Suchseiten-Filter haengt als propertyTypes an derselben URL; erlaubte Werte
+// laut Suchseiten-Bundle: all | house | apartment | investment | plot. 'all' faellt
+// aus der URL heraus, deshalb bleibt der erste Button ohne Parameter.
+const KOELN_OFFICE_URL_WOHNUNGEN = `${KOELN_OFFICE_URL}&propertyTypes=apartment`;
+const KOELN_OFFICE_URL_HAEUSER   = `${KOELN_OFFICE_URL}&propertyTypes=house`;
 const KOELN_SEARCH_URL  = 'https://www.evernest.com/api/properties/';
 // Kartenausschnitt identisch zu KOELN_OFFICE_URL
 // (lat 50.989913, lng 7.000059, zoom 11), umgerechnet fuer ein Kartenfeld
@@ -62,6 +67,8 @@ const LANGS = [
     koelnTitle: 'Immobilienangebote in Köln und im Kölner Umland',
     koelnAria: 'Immobilienangebote Köln',
     koelnAll: 'Alle Immobilienangebote',
+    koelnFlats: 'Alle Wohnungen',
+    koelnHouses: 'Alle Häuser',
   },
   {
     code: 'en',
@@ -77,6 +84,8 @@ const LANGS = [
     koelnTitle: 'A selection of my property references in Cologne and the surrounding area',
     koelnAria: 'Properties Cologne',
     koelnAll: 'View all listings',
+    koelnFlats: 'All apartments',
+    koelnHouses: 'All houses',
   },
 ];
 
@@ -207,6 +216,8 @@ function buildKoelnSection(listings, L) {
       <div class="objekte__cta">
         <div class="objekte__buttons">
           <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">${L.koelnAll}</a>
+          <a href="${KOELN_OFFICE_URL_WOHNUNGEN}" target="_blank" rel="noopener" class="btn btn--gold-outline">${L.koelnFlats}</a>
+          <a href="${KOELN_OFFICE_URL_HAEUSER}" target="_blank" rel="noopener" class="btn btn--gold-outline">${L.koelnHouses}</a>
         </div>
       </div>
     </div>
@@ -233,6 +244,8 @@ ${cards}
       <div class="objekte__cta">
         <div class="objekte__buttons">
           <a href="${KOELN_OFFICE_URL}" target="_blank" rel="noopener" class="btn btn--gold-outline">${L.koelnAll}</a>
+          <a href="${KOELN_OFFICE_URL_WOHNUNGEN}" target="_blank" rel="noopener" class="btn btn--gold-outline">${L.koelnFlats}</a>
+          <a href="${KOELN_OFFICE_URL_HAEUSER}" target="_blank" rel="noopener" class="btn btn--gold-outline">${L.koelnHouses}</a>
         </div>
       </div>
     </div>
