@@ -48,7 +48,11 @@ const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
 // deshalb fuer 86 Stadtteile immer dieselben 20 Referenzen; die verkaufte
 // Wohnung in Zollstock war in keiner davon. Darum ein Raster ueber Koeln plus
 // Umland: jede Kachel, die die Deckelung erreicht, wird geviertelt.
-const GRID = { latMin: 50.78, latMax: 51.14, lngMin: 6.70, lngMax: 7.24 };
+// Das Raster reicht nach Westen bis 6.35, damit auch der Rhein-Erft-Kreis
+// darin liegt: Bedburg (6.57), Elsdorf (6.57) und Bergheim (6.64) lagen
+// ausserhalb der urspruenglich auf Koeln zugeschnittenen Kachel, ihre
+// verkauften Objekte fielen deshalb unter die Deckelung der Gesamtabfrage.
+const GRID = { latMin: 50.75, latMax: 51.14, lngMin: 6.35, lngMax: 7.24 };
 const SOLD_CAP = 20;
 const GRID_MAX_DEPTH = 4;
 
@@ -720,7 +724,14 @@ async function main() {
     if (own.length >= TARGET_CARDS) continue;
     const seite = RECHTSRHEINISCH.has(slug) ? 'rechts' : 'links';
     const taken = new Set(own.map(l => l.id));
-    const near = withCoords
+    // Die Rhein-Erft-Ortsseiten zeigen ausschliesslich Objekte aus der
+    // jeweiligen Stadt. Auf einer Seite fuer Bruehl hat eine Wohnung in
+    // Bornheim nichts verloren - anders als bei den Koelner Veedeln, wo das
+    // Nachbarviertel drei Strassen weiter beginnt. Aufgefuellt wird dort
+    // deshalb nur mit den eigenen verkauften Referenzen; gibt es auch die
+    // nicht, faellt der Objektblock ganz weg.
+    const nurEigeneStadt = slug.startsWith(SILO);
+    const near = nurEigeneStadt ? [] : withCoords
       .filter(l => !taken.has(l.id))
       // Der Rhein ist keine Strecke, die man mal eben quert: ein Objekt in
       // Deutz gehoert nicht auf eine linksrheinische Veedelseite.
