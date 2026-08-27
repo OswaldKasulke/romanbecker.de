@@ -545,9 +545,11 @@ async function main() {
   // weniger als drei, wird aus dem naeheren Umfeld aufgefuellt — auch mit
   // reservierten und verkauften Objekten, die Karte kennzeichnet beides.
   const pageMeta = new Map();        // slug → { display, lat, lng }
+  const hatReferenzblock = new Set(); // Seiten mit "Weitere verkaufte Objekte"
   for (const f of files) {
     const slug = f.replace(/\.html$/, '');
     const html = await readFile(join(STADTTEILE_DIR, f), 'utf-8');
+    if (html.includes('<!-- VERKAUFT-START -->')) hatReferenzblock.add(slug);
     const pos = html.match(/name="geo\.position" content="([\-0-9.]+);([\-0-9.]+)"/);
     const name = html.match(/name="geo\.placename" content="([^"]*)"/);
     if (!pos) { console.log(`  ! ${f}: keine geo.position — wird nicht aufgefuellt`); continue; }
@@ -583,16 +585,23 @@ async function main() {
       // Der Rhein ist keine Strecke, die man mal eben quert: ein Objekt in
       // Deutz gehoert nicht auf eine linksrheinische Veedelseite.
       .filter(l => rheinSeite(l.lat, l.lng, l.address) === seite)
+      // Verkauftes aus dem eigenen Stadtteil steht auf Referenzseiten unten
+      .filter(l => !(l.sold && hatReferenzblock.has(slug) && matchPage(l.address, validSlugs)?.slug === slug))
       .map(l => ({ l, km: distanceKm(meta.lat, meta.lng, l.lat, l.lng) }))
       .filter(x => x.km <= FILL_RADIUS_KM)
       .sort((a, b) => a.km - b.km);
     // Verfuegbare Objekte vor verkauften Referenzen, innerhalb beider Gruppen
     // aus den naechstgelegenen zufaellig gezogen.
-    // Verkaufte Referenzen des eigenen Stadtteils zaehlen als Entfernung 0.
-    const kandidaten = [
-      ...(ownSold.get(slug) ?? []).filter(l => !taken.has(l.id)).map(l => ({ l, km: 0 })),
-      ...near,
-    ];
+    // Hat die Seite unten den Block "Weitere verkaufte Objekte", bleiben die
+    // verkauften Objekte des eigenen Stadtteils aus den Karten heraus — sonst
+    // stuende dasselbe Objekt zweimal auf der Seite. Welcher Listeneintrag zu
+    // welcher Karte gehoert, laesst sich nicht bestimmen: verkaufte Objekte
+    // haben in der API keinen Preis, und die Verkaufsliste kennt keine
+    // Listing-Id. Deshalb die Trennung nach Herkunft statt ein Abgleich.
+    const eigeneVerkauften = hatReferenzblock.has(slug)
+      ? []
+      : (ownSold.get(slug) ?? []).filter(l => !taken.has(l.id)).map(l => ({ l, km: 0 }));
+    const kandidaten = [...eigeneVerkauften, ...near];
     // Naehe schlaegt Status: innerhalb eines Umkreisrings kommt ein
     // verfuegbares Objekt vor einer Referenz, aber ein Objekt aus dem Veedel
     // nebenan vor einem verfuegbaren am anderen Ende der Stadt. Sonst stuende
