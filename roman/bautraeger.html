@@ -73,12 +73,15 @@
     .refprojekt__fact-val { font-size: 1.125rem; font-weight: 700; color: var(--text, #000000); display: block; }
     .refprojekt__fact-key { font-size: 0.75rem; color: var(--gray-600); }
     /* rechte Spalte: helle Beistellfläche statt schwarzem Block */
-    .refprojekt__visual { background: var(--off-white); border-top: 1px solid var(--gray-200); padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-6); }
+    .refprojekt__visual { background: var(--off-white); border-top: 1px solid var(--gray-200); display: flex; flex-direction: column; }
     @media (min-width: 768px) { .refprojekt__visual { border-top: 0; border-left: 1px solid var(--gray-200); } }
-    .refprojekt__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-    .refprojekt__tag { background: var(--white); border: 1px solid var(--gray-200); color: var(--gray-600); border-radius: 20px; padding: 0.25rem 0.75rem; font-size: 0.8125rem; }
-    .refprojekt__quote { color: var(--gray-600); font-size: 0.9375rem; line-height: 1.7; font-style: italic; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin: 0; }
-    .refprojekt__by { margin-top: auto; }
+    .refprojekt__imgwrap { position: relative; display: flex; }
+    @media (min-width: 768px) { .refprojekt__imgwrap { flex: 1 1 auto; min-height: 260px; } }
+    .refprojekt__img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4 / 3; }
+    @media (min-width: 768px) { .refprojekt__img { aspect-ratio: auto; height: 100%; } }
+    /* Neubau-Aussenansichten sind Renderings, keine Fotos — das gehoert ans Bild. */
+    .refprojekt__imgnote { position: absolute; left: var(--space-3); bottom: var(--space-3); background: rgba(0,0,0,0.6); color: var(--white); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.25rem 0.5rem; border-radius: var(--radius-sm, 4px); }
+    .refprojekt__by { margin-top: auto; padding: var(--space-6) var(--space-8); }
     .refprojekt__by-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 0.25rem; }
     .refprojekt__by-name { font-weight: 700; color: var(--text, #000000); }
     .refprojekt__by-loc { font-size: 0.875rem; color: var(--gray-600); }
@@ -307,17 +310,10 @@
           </a>
         </div>
         <div class="refprojekt__visual">
-          <div class="refprojekt__tags">
-            <span class="refprojekt__tag">KfW 40</span>
-            <span class="refprojekt__tag">Luft-Wasser-Wärmepumpe</span>
-            <span class="refprojekt__tag">Fußbodenheizung</span>
-            <span class="refprojekt__tag">Dreifachverglasung</span>
-            <span class="refprojekt__tag">Wallbox-Vorbereitung</span>
-            <span class="refprojekt__tag">Glasfaser</span>
+          <div class="refprojekt__imgwrap">
+            <img class="refprojekt__img" src="https://images.ctfassets.net/if6f7uzjzqut/7e6r8vJCYnvMy3gw5Xvn3H/19af800523918cf9f65ecd86f9827012/7d92867d-15c2-48f6-9bdf-68b8b99dbb95?w=900&amp;h=900&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Wohn- und Essbereich einer Wohnung im KfW-40-Neubau in Bergisch Gladbach-Refrath" loading="lazy" width="900" height="900">
+            <span class="refprojekt__imgnote">Visualisierung</span>
           </div>
-          <blockquote class="refprojekt__quote">
-            „Kompaktes Neubauprojekt in gefragter Refrather Lage – hochwertige Ausstattung, überschaubare Einheitenzahl, vermarktet über den Käuferpool."
-          </blockquote>
           <div class="refprojekt__by">
             <p class="refprojekt__by-label">Vermarktung durch</p>
             <p class="refprojekt__by-name">Roman Becker Immobilien</p>
@@ -345,17 +341,10 @@
           </a>
         </div>
         <div class="refprojekt__visual">
-          <div class="refprojekt__tags">
-            <span class="refprojekt__tag">KfW 55</span>
-            <span class="refprojekt__tag">Luft-Wasser-Wärmepumpe</span>
-            <span class="refprojekt__tag">Barrierefrei</span>
-            <span class="refprojekt__tag">Dachbegrünung</span>
-            <span class="refprojekt__tag">9-Personen-Aufzug</span>
-            <span class="refprojekt__tag">Off-Market-Vorabvermarktung</span>
+          <div class="refprojekt__imgwrap">
+            <img class="refprojekt__img" src="https://images.ctfassets.net/if6f7uzjzqut/20ozmquua1prXFEQz7U0mx/d644bd2ed938149a94ccf8a619b83058/03de2f20-59e6-47b8-a82c-43dcbb654d9a?w=900&amp;h=900&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Außenansicht des KfW-55-Neubaus mit 22 Wohneinheiten in Köln-Dellbrück" loading="lazy" width="900" height="900">
+            <span class="refprojekt__imgnote">Visualisierung</span>
           </div>
-          <blockquote class="refprojekt__quote">
-            „Zeitgemäßes Design mit hochwertigen Materialien und nachhaltiger Bauweise – vermarktet über den Käuferpool noch vor Portalstart."
-          </blockquote>
           <div class="refprojekt__by">
             <p class="refprojekt__by-label">Vermarktung durch</p>
             <p class="refprojekt__by-name">Roman Becker Immobilien</p>
@@ -382,17 +371,9 @@
           </a>
         </div>
         <div class="refprojekt__visual">
-          <div class="refprojekt__tags">
-            <span class="refprojekt__tag">KfW 55 EE</span>
-            <span class="refprojekt__tag">Luft-Wasser-Wärmepumpe</span>
-            <span class="refprojekt__tag">Barrierefrei</span>
-            <span class="refprojekt__tag">Dachterrasse</span>
-            <span class="refprojekt__tag">Tiefgarage</span>
-            <span class="refprojekt__tag">Glasfaser</span>
+          <div class="refprojekt__imgwrap">
+            <img class="refprojekt__img" src="https://images.ctfassets.net/if6f7uzjzqut/4LfSKS7XKUVAG22l6AmpWF/d85ec512bf4ae36bb7139b82ed1a4e1f/6317e785-8ef1-47bb-b296-9f3874c4242f?w=900&amp;h=900&amp;fit=fill&amp;fm=jpg&amp;q=80" alt="Fassade der Neubauwohnungen im Amselquartier in Pulheim" loading="lazy" width="900" height="900">
           </div>
-          <blockquote class="refprojekt__quote">
-            „Erfolgreich vermittelt – vom Erstkontakt bis zum Notartermin strukturiert begleitet."
-          </blockquote>
           <div class="refprojekt__by">
             <p class="refprojekt__by-label">Vermarktung durch</p>
             <p class="refprojekt__by-name">Roman Becker Immobilien</p>
