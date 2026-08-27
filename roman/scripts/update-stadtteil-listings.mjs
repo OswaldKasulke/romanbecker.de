@@ -617,7 +617,16 @@ function insertSection(html, section) {
   // anders aus als auf den bestehenden Seiten.
   const heroIdx = html.indexOf('<section class="hero"');
   if (heroIdx !== -1) {
-    const profilIdx = html.indexOf('<section class="section section--gray">', heroIdx);
+    // Das Profil traegt nicht ueberall dieselbe Signatur: im Rhein-Erft-Silo
+    // steht dort <section id="stadtprofil" class="section section--gray">.
+    // Ohne diese Variante fiel der Anker auf den Hero zurueck und der
+    // Objektblock landete vor dem Profil (so geschehen auf der Bedburger
+    // Seite).
+    const kandidaten = [
+      html.indexOf('<section id="stadtprofil"', heroIdx),
+      html.indexOf('<section class="section section--gray">', heroIdx),
+    ].filter(i => i !== -1);
+    const profilIdx = kandidaten.length ? Math.min(...kandidaten) : -1;
     const anchor = profilIdx !== -1 ? profilIdx : heroIdx;
     const closeIdx = html.indexOf('</section>', anchor);
     if (closeIdx !== -1) {
