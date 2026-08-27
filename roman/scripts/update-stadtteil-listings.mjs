@@ -24,6 +24,9 @@ import { dirname, join } from 'node:path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const STADTTEILE_DIR = join(__dirname, '..', 'stadtteile');
+// Das Rhein-Erft-Silo liegt als immobilienmakler-rhein-erft/<ort>/index.html
+// und traegt dieselben Marker wie die Koelner Stadtteilseiten.
+const RHEIN_ERFT_DIR = join(__dirname, '..', 'immobilienmakler-rhein-erft');
 const LID_CACHE = join(__dirname, 'listing-lids.json');      // sys.id → L-Id aus dem Expose
 const LID_STRASSEN = join(__dirname, 'lid-strassen.csv');    // L-Id → Strasse aus dem CRM-Export
 
@@ -79,6 +82,7 @@ const IMG_PARAMS = '?w=800&h=534&fit=fill&fm=jpg&q=80';
 // Referenzen. Gilt nur fuer die Koelner Stadtteilseiten unter stadtteile/;
 // das Rhein-Erft-Silo unter immobilienmakler-rhein-erft/ ruehrt dieses
 // Skript ohnehin nicht an.
+const SILO = 're:';
 const TARGET_CARDS = 3;
 // Aus den N naechstgelegenen Kandidaten wird gezogen, statt stur die
 // naechsten zu nehmen — sonst zeigen benachbarte Seiten dieselben Objekte.
@@ -168,24 +172,32 @@ function normalizeAddress(address) {
   return String(address).replace(/^Köln\s*[-\/]\s*/i, 'Köln-');
 }
 
-/** Returns { slug, display, isKoeln } or null if no matching page exists. */
-function matchPage(address, validSlugs) {
+/**
+ * Returns { key, display, isKoeln } or null if no matching page exists.
+ *
+ * Koelner Adressen laufen nur gegen die Stadtteilseiten, Umland-Adressen nur
+ * gegen das Rhein-Erft-Silo. Die Trennung ist noetig, weil es Elsdorf zweimal
+ * gibt: als Koelner Stadtteil im Porzer Sueden und als Stadt im Rhein-Erft-
+ * Kreis. Ueber einen gemeinsamen Slug-Topf landete das eine auf der Seite des
+ * anderen.
+ */
+function matchPage(address, koelnSlugs, siloSlugs) {
   const loc = localityOf(address);
   if (!loc) return null;
   if (/^Köln[-\/]/i.test(loc)) {
     const district = loc.replace(/^Köln[-\/]\s*/i, '');
     const slug = slugify(district);
-    if (validSlugs.has(slug)) {
-      return { slug, display: 'Köln-' + district.replace(/\/\s*/g, '-'), isKoeln: true };
+    if (koelnSlugs.has(slug)) {
+      return { key: slug, display: 'Köln-' + district.replace(/\/\s*/g, '-'), isKoeln: true };
     }
     return null;
   }
   // Umland: town = part before the first "-", minus any "(Rheinland)"-style suffix
   const city = loc.split('-')[0].trim().replace(/\s*\(.*?\)/g, '').trim();
   const slug = slugify(city);
-  if (validSlugs.has(slug)) return { slug, display: city, isKoeln: false };
+  if (siloSlugs.has(slug)) return { key: SILO + slug, display: city, isKoeln: false };
   const full = slugify(loc);
-  if (validSlugs.has(full)) return { slug: full, display: loc, isKoeln: false };
+  if (siloSlugs.has(full)) return { key: SILO + full, display: loc, isKoeln: false };
   return null;
 }
 
@@ -605,22 +617,32 @@ function insertSection(html, section) {
 
 // ---------------------------------------------------------------------------
 async function main() {
-  const files = (await readdir(STADTTEILE_DIR))
-    .filter(f => f.endsWith('.html') && f !== 'index.html' && f !== 'search.js');
-  const validSlugs = new Set(files.map(f => f.replace(/\.html$/, '')));
+  // Seitenregister: Koelner Stadtteilseiten und Rhein-Erft-Ortsseiten. Der
+  // Schluessel ist fuer Koeln der blanke Slug (damit die gesetzte Auswahl je
+  // Seite unveraendert bleibt) und fuer das Silo 're:'+Slug.
+  const koelnSlugs = new Set((await readdir(STADTTEILE_DIR))
+    .filter(f => f.endsWith('.html') && f !== 'index.html' && f !== 'search.js')
+    .map(f => f.replace(/\.html$/, '')));
+  const siloSlugs = new Set((await readdir(RHEIN_ERFT_DIR, { withFileTypes: true }))
+    .filter(d => d.isDirectory())
+    .map(d => d.name));
+  const seiten = [
+    ...[...koelnSlugs].map(slug => ({ key: slug, slug, path: join(STADTTEILE_DIR, slug + '.html') })),
+    ...[...siloSlugs].map(slug => ({ key: SILO + slug, slug, path: join(RHEIN_ERFT_DIR, slug, 'index.html') })),
+  ];
 
   console.log('Fetching EVERNEST listings…');
   const listings = await fetchListings();
   console.log(`API returned ${listings.length} listings`);
 
   // Group by matched page
-  const byPage = new Map();          // slug → { display, listings[] }
+  const byPage = new Map();          // Seitenschluessel → { display, listings[] }
   const unmatched = [];
   for (const l of listings) {
-    const m = matchPage(l.address, validSlugs);
+    const m = matchPage(l.address, koelnSlugs, siloSlugs);
     if (!m) { unmatched.push(l.address); continue; }
-    if (!byPage.has(m.slug)) byPage.set(m.slug, { display: m.display, listings: [] });
-    byPage.get(m.slug).listings.push(l);
+    if (!byPage.has(m.key)) byPage.set(m.key, { display: m.display, listings: [] });
+    byPage.get(m.key).listings.push(l);
   }
 
   // --- Veedel-Durchgang -----------------------------------------------------
@@ -662,16 +684,16 @@ async function main() {
   // Regel: eigene Objekte des Stadtteils zuerst und vollstaendig. Sind es
   // weniger als drei, wird aus dem naeheren Umfeld aufgefuellt — auch mit
   // reservierten und verkauften Objekten, die Karte kennzeichnet beides.
-  const pageMeta = new Map();        // slug → { display, lat, lng }
+  const pageMeta = new Map();        // Seitenschluessel → { display, lat, lng }
   const hatReferenzblock = new Set(); // Seiten mit "Weitere verkaufte Objekte"
-  for (const f of files) {
-    const slug = f.replace(/\.html$/, '');
-    const html = await readFile(join(STADTTEILE_DIR, f), 'utf-8');
-    if (html.includes('<!-- VERKAUFT-START -->')) hatReferenzblock.add(slug);
+  for (const seite of seiten) {
+    const { key, slug } = seite;
+    const html = await readFile(seite.path, 'utf-8');
+    if (html.includes('<!-- VERKAUFT-START -->')) hatReferenzblock.add(key);
     const pos = html.match(/name="geo\.position" content="([\-0-9.]+);([\-0-9.]+)"/);
     const name = html.match(/name="geo\.placename" content="([^"]*)"/);
-    if (!pos) { console.log(`  ! ${f}: keine geo.position — wird nicht aufgefuellt`); continue; }
-    pageMeta.set(slug, {
+    if (!pos) { console.log(`  ! ${slug}: keine geo.position — wird nicht aufgefuellt`); continue; }
+    pageMeta.set(key, {
       display: name ? name[1] : slug,
       lat: Number(pos[1]), lng: Number(pos[2]),
     });
@@ -762,9 +784,10 @@ async function main() {
     (ohneSeite ? `; ${ohneSeite} Seite(n) ohne Kandidaten auf ihrer Rheinseite` : ''));
 
   console.log(`\nMatched ${listings.length - unmatched.length} listings → ${byPage.size} pages`);
-  for (const [slug, g] of [...byPage].sort()) {
+  for (const [key, g] of [...byPage].sort()) {
     const fill = g.listings.length - g.ownCount;
-    console.log(`  ${slug}.html  (${g.display})  → ${g.listings.length} listing(s)` +
+    const label = key.startsWith(SILO) ? `immobilienmakler-rhein-erft/${key.slice(SILO.length)}/` : `${key}.html`;
+    console.log(`  ${label}  (${g.display})  → ${g.listings.length} listing(s)` +
       (fill > 0 ? `  [${g.ownCount} eigen + ${fill} Umfeld]` : ''));
   }
   if (unmatched.length) {
@@ -779,13 +802,11 @@ async function main() {
   if (DRY) { console.log('\n[dry run — no files written]'); return; }
 
   let written = 0, cleared = 0, entferntGesamt = 0, seitenMitAbzug = 0;
-  for (const f of files) {
-    const slug = f.replace(/\.html$/, '');
-    const path = join(STADTTEILE_DIR, f);
+  for (const { key, path } of seiten) {
     let html = await readFile(path, 'utf-8');
     const had = html.includes(START);
-    if (byPage.has(slug)) {
-      const g = byPage.get(slug);
+    if (byPage.has(key)) {
+      const g = byPage.get(key);
       html = insertSection(html, buildSection(g.display, g.listings, g.ownCount, g.ownActive));
       // Was oben als Karte steht, faellt unten aus "Weitere verkaufte Objekte".
       // Nur verkaufte Karten — die Referenzliste fuehrt nur Verkauftes.
