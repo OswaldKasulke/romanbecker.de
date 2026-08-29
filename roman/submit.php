@@ -200,11 +200,9 @@ try {
 
     $mail->setFrom(SMTP_USER, 'Webseite Roman Becker');
     $mail->addAddress('rb@datenschwester.de', 'Roman Becker');
-    if ($site === 'BGL') {
+    // Beide Maklerseiten gehen an Doreen, sonst an keine weitere Adresse.
+    if ($site === 'BGL' || $site === 'LEV') {
         $mail->addAddress('Doreen.Kaschner@evernest.com', 'Doreen Kaschner');
-    }
-    if ($site === 'LEV') {
-        $mail->addAddress('leverkusen@evernest.com', 'Stark & Hoffmann Leverkusen');
     }
     if (!empty($email)) {
         $mail->addReplyTo($email, $name);
