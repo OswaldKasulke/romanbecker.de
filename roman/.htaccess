@@ -178,7 +178,9 @@ RewriteRule ^bodenrichtwert-duerren\.html$ /bodenrichtwert-koeln.html  [R=301,L]
 
 # --- Top-Level-Sonderfälle (kein /ratgeber/-Pendant) ---
 RewriteRule ^evernest/?$               /                                                 [R=301,L]
-RewriteRule ^kontakt/?$                /#kontakt                                         [R=301,L]
+# [NE] noetig: ohne den Schalter escaped Apache das # zu %23, das Ziel wird
+# /%23kontakt und liefert 404. (Gefunden 29.08.2026, 614 Impressionen.)
+RewriteRule ^kontakt/?$                /#kontakt                                         [R=301,L,NE]
 RewriteRule ^impressum/?$              /impressum.html                                   [R=301,L]
 RewriteRule ^linksammlung/?$           /ratgeber/                                        [R=301,L]
 
