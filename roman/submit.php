@@ -7,6 +7,8 @@ $allowedOrigins = [
     'http://doktorbecker.de',
     'https://immobilienmakler-bergisch-gladbach.de',
     'https://www.immobilienmakler-bergisch-gladbach.de',
+    'https://leverkusen-makler.de',
+    'https://www.leverkusen-makler.de',
 ];
 if (in_array($origin, $allowedOrigins, true)) {
     header('Access-Control-Allow-Origin: ' . $origin);
@@ -92,7 +94,11 @@ if (empty($name) || empty($telefon)) {
 
 // Betreff je nach Formulartyp
 $type = $_POST['type'] ?? 'kontakt';
-$siteLabel = $site === 'BGL' ? 'immobilienmakler-bergisch-gladbach.de' : 'romanbecker.de';
+$siteLabels = [
+    'BGL' => 'immobilienmakler-bergisch-gladbach.de',
+    'LEV' => 'leverkusen-makler.de',
+];
+$siteLabel = $siteLabels[$site] ?? 'romanbecker.de';
 $subject = $type === 'immobilienbewertung'
     ? 'Neue Immobilienbewertung von ' . $name . ' – ' . $siteLabel
     : 'Neue Kontaktanfrage von ' . $name . ' – ' . $siteLabel;
@@ -196,6 +202,9 @@ try {
     $mail->addAddress('rb@datenschwester.de', 'Roman Becker');
     if ($site === 'BGL') {
         $mail->addAddress('Doreen.Kaschner@evernest.com', 'Doreen Kaschner');
+    }
+    if ($site === 'LEV') {
+        $mail->addAddress('leverkusen@evernest.com', 'Stark & Hoffmann Leverkusen');
     }
     if (!empty($email)) {
         $mail->addReplyTo($email, $name);
