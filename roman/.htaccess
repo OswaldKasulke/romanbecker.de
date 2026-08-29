@@ -69,7 +69,6 @@ RewriteRule ^ratgeber/niesbrauch-kapitalisieren\.html$ /ratgeber/niessbrauch-kap
 # Leverkusen-Seiten entfernt (09.08.2026) -> Uebersichten (301)
 RewriteRule ^bodenrichtwert-leverkusen\.html$ /bodenrichtwert-koeln.html [R=301,L]
 
-RewriteRule ^stadtteile/leverkusen\.html$ /stadtteile/ [R=301,L]
 
 # Eschweiler entfernt (14.08.2026, Staedteregion Aachen ausserhalb des Einzugsgebiets) -> Uebersichten (301)
 RewriteRule ^bodenrichtwert-eschweiler\.html$ /bodenrichtwert-koeln.html [R=301,L]
@@ -103,18 +102,26 @@ RewriteRule ^stadtteile/juelich\.html$ /stadtteile/ [R=301,L]
 RewriteRule ^bodenrichtwert-dueren\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-juelich\.html$ /bodenrichtwert-koeln.html [R=301,L]
 
-# Rheinisch-Bergischer Kreis und Rhein-Kreis Neuss entfernt (15.08.2026) -> Uebersichten (301)
-RewriteRule ^stadtteile/bergisch-gladbach\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^immobilienmakler-rheinisch-bergisch/bergisch-gladbach/?$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/leichlingen\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^immobilienmakler-rheinisch-bergisch/leichlingen/?$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/odenthal\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^immobilienmakler-rheinisch-bergisch/odenthal/?$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/overath\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^immobilienmakler-rheinisch-bergisch/overath/?$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/roesrath\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^immobilienmakler-rheinisch-bergisch/roesrath/?$ /stadtteile/ [R=301,L]
-RewriteRule ^immobilienmakler-rheinisch-bergisch/?$ /stadtteile/ [R=301,L]
+# Bergisches Land (29.08.2026): statt auf die Koelner Uebersicht jetzt auf die
+# Schwesterseite immobilienmakler-bergisch-gladbach.de, die diese Orte abdeckt.
+# Vorher liefen diese URLs auf /stadtteile/ - thematisch unpassend, Google
+# wertet so etwas als Soft-404. Das [NE] ist Pflicht: ohne den Schalter macht
+# Apache aus dem # ein %23 und das Ziel wird ein 404 (siehe /kontakt/).
+RewriteRule ^stadtteile/bergisch-gladbach\.html$ https://immobilienmakler-bergisch-gladbach.de/ [R=301,L,NE]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/bergisch-gladbach/?$ https://immobilienmakler-bergisch-gladbach.de/ [R=301,L,NE]
+RewriteRule ^stadtteile/odenthal\.html$ https://immobilienmakler-bergisch-gladbach.de/odenthal/ [R=301,L,NE]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/odenthal/?$ https://immobilienmakler-bergisch-gladbach.de/odenthal/ [R=301,L,NE]
+RewriteRule ^stadtteile/overath\.html$ https://immobilienmakler-bergisch-gladbach.de/overath/ [R=301,L,NE]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/overath/?$ https://immobilienmakler-bergisch-gladbach.de/overath/ [R=301,L,NE]
+# Ohne eigene Ortsseite auf der Schwesterseite -> Staedte-Uebersicht dort
+RewriteRule ^stadtteile/leichlingen\.html$ https://immobilienmakler-bergisch-gladbach.de/#staedte [R=301,L,NE]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/leichlingen/?$ https://immobilienmakler-bergisch-gladbach.de/#staedte [R=301,L,NE]
+RewriteRule ^stadtteile/roesrath\.html$ https://immobilienmakler-bergisch-gladbach.de/#staedte [R=301,L,NE]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/roesrath/?$ https://immobilienmakler-bergisch-gladbach.de/#staedte [R=301,L,NE]
+RewriteRule ^stadtteile/leverkusen\.html$ https://immobilienmakler-bergisch-gladbach.de/#staedte [R=301,L,NE]
+RewriteRule ^immobilienmakler-rheinisch-bergisch/?$ https://immobilienmakler-bergisch-gladbach.de/#staedte [R=301,L,NE]
+
+# Rhein-Kreis Neuss entfernt (15.08.2026) -> Uebersichten (301)
 RewriteRule ^stadtteile/dormagen\.html$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-kreis-neuss/dormagen/?$ /stadtteile/ [R=301,L]
 RewriteRule ^stadtteile/juechen\.html$ /stadtteile/ [R=301,L]
