@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Immobilie 2015 in Köln gekauft: Was sie heute wert ist | Makler Köln</title>
+  <meta name="description" content="Wer 2015 in Köln kaufte, hat bei Wohnungen rund 71 % Wertzuwachs, bei Häusern rund 58 % – amtlich belegt. Die Zahlen, die Rechnung und was der Durchschnitt verschweigt.">
+  <link rel="canonical" href="https://romanbecker.de/ratgeber/wertentwicklung-immobilien-koeln.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Was wäre, wenn Sie vor zehn Jahren eine Immobilie in Köln gekauft hätten?">
+  <meta property="og:description" content="Wer 2015 in Köln kaufte, hat bei Wohnungen rund 71 % Wertzuwachs, bei Häusern rund 58 % – amtlich belegt. Die Zahlen, die Rechnung und was der Durchschnitt verschweigt.">
+  <meta property="og:url" content="https://romanbecker.de/ratgeber/wertentwicklung-immobilien-koeln.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Was wäre, wenn Sie vor zehn Jahren eine Immobilie in Köln gekauft hätten?",
+    "description": "Wer 2015 in Köln kaufte, hat bei Wohnungen rund 71 % Wertzuwachs, bei Häusern rund 58 % – amtlich belegt. Die Zahlen, die Rechnung und was der Durchschnitt verschweigt.",
+    "url": "https://romanbecker.de/ratgeber/wertentwicklung-immobilien-koeln.html",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilien | Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    },
+    "dateModified": "2026-08-30",
+    "citation": [
+      {
+        "@type": "CreativeWork",
+        "name": "Grundstücksmarktbericht 2026 für die Stadt Köln",
+        "url": "https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB2026_Digitalversion.pdf"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Grundstücksmarktbericht 2025 für die Stadt Köln",
+        "url": "https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB_114_2025_pflichtig.pdf"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--text, #000000); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text, #000000); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--text, #000000); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 650px; }
+    .ratgeber-nav { margin-top: var(--space-8); padding: var(--space-6); background: var(--gray-100); border-radius: var(--radius); }
+    .ratgeber-nav h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: var(--space-4); }
+    .ratgeber-nav-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
+    .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .cost-table th { background: var(--navy); color: var(--white); padding: 0.75rem 1rem; text-align: left; font-weight: 600; }
+    .cost-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .cost-table tr:nth-child(even) td { background: var(--gray-100); }
+    .cost-table tr.total td { font-weight: 700; color: var(--text, #000000); background: #f0f4ff; border-top: 2px solid var(--navy); }
+    .cost-table td.num, .cost-table th.num { text-align: right; white-space: nowrap; }
+    .table-source { font-size: 0.85rem; color: var(--gray-600); margin-top: -0.75rem; margin-bottom: 1.75rem; }
+    /* Direktdownloads: die Berichte sind der Kern dieser Seite und sollen
+       als solche erkennbar sein, nicht als Aufzaehlungspunkte */
+    .dl-list { display: grid; gap: 0.75rem; margin: 1.5rem 0 2.5rem; }
+    @media (min-width: 720px) { .dl-list--2 { grid-template-columns: 1fr 1fr; } }
+    .dl { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem;
+          border: 1px solid var(--gray-200); border-radius: var(--radius);
+          background: var(--white); text-decoration: none; transition: all 0.2s ease; }
+    .dl:hover { border-color: var(--gold); background: var(--gray-100);
+                transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .dl__icon { flex: 0 0 42px; height: 42px; border-radius: var(--radius);
+                background: var(--navy); color: var(--white); display: flex;
+                align-items: center; justify-content: center; font-size: 0.7rem;
+                font-weight: 700; letter-spacing: 0.03em; }
+    .dl__body { min-width: 0; flex: 1; }
+    .dl__title { display: block; font-weight: 600; color: var(--text, #000000); line-height: 1.35; }
+    .dl__meta { display: block; font-size: 0.85rem; color: var(--gray-600); margin-top: 0.2rem; line-height: 1.5; }
+    .dl__size { display: block; font-size: 0.8rem; color: var(--gray-400); white-space: nowrap; margin-top: 0.35rem; }
+    .dl-note { font-size: 0.85rem; color: var(--gray-600); margin: -1.75rem 0 2rem; }
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie stark sind die Immobilienpreise in Köln in den letzten zehn Jahren gestiegen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zwischen 2015 und 2025 stiegen Eigentumswohnungen in Köln im stadtweiten Durchschnitt von 2.750 auf 4.709 Euro je Quadratmeter Wohnfläche – ein Plus von rund 71 Prozent. Ein- und Zweifamilienhäuser stiegen im Median von 2.565 auf 4.048 Euro je Quadratmeter, also rund 58 Prozent. Das entspricht 5,6 beziehungsweise 4,7 Prozent pro Jahr. Quelle ist der Grundstücksmarktbericht 2026 des Gutachterausschusses für Grundstückswerte in der Stadt Köln."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich meine Immobilie nach zehn Jahren steuerfrei verkaufen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In aller Regel ja. Wer eine vermietete oder leerstehende Immobilie später als zehn Jahre nach dem Kauf verkauft, zahlt auf den Gewinn keine Einkommensteuer nach § 23 EStG. Maßgeblich sind die Daten der notariellen Beurkundung von Kauf und Verkauf, nicht Übergabe oder Grundbucheintragung. Bei durchgehender Eigennutzung ist ein steuerfreier Verkauf auch früher möglich."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Steigen die Immobilienpreise in Köln aktuell wieder?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Nach dem Rückgang 2023 weist der Grundstücksmarktbericht 2026 für das Jahr 2025 bei Eigentumswohnungen wieder ein Plus von 4,2 Prozent aus, bei Ein- und Zweifamilienhäusern 1,2 Prozent. Auch die Zahl der Kaufverträge stieg um 8 Prozent auf 7.831, der Geldumsatz um 21 Prozent auf 5,68 Milliarden Euro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gilt diese Wertsteigerung auch für meinen Stadtteil?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nicht zwingend. Alle genannten Prozentwerte sind stadtweite Durchschnitte. Der Gutachterausschuss weist eigens darauf hin, dass die Entwicklung innerhalb Kölns heterogen war und in einzelnen Teilbereichen auch Kaufpreise zurückgingen. Eine Veränderungsrate je Stadtteil enthält der Bericht bewusst nicht, weil die Fallzahlen dafür zu klein sind. Getrennt ausgewiesen wird lediglich die Rheinseite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wer 2022 gekauft hat – steht der heute schlechter da?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Höchststand lag 2022. Gemessen an den stadtweiten Indexreihen liegen Eigentumswohnungen heute rund 2 Prozent unter dem Niveau von 2022, Ein- und Zweifamilienhäuser rund 16 Prozent darunter. Seit 2024 steigen beide Teilmärkte wieder."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+      <span>›</span>
+      Wertentwicklung
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln</div>
+      <h1>Was wäre, wenn Sie vor zehn Jahren eine Immobilie in Köln gekauft hätten?</h1>
+      <p>2015 kostete ein Quadratmeter Eigentumswohnung in Köln im Schnitt 2.750 Euro. 2025 waren es 4.709 Euro. Was das für Ihre Immobilie bedeutet – und warum zehn Jahre steuerlich ein besonderes Datum sind.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p>Zehn Jahre sind eine seltsame Zeitspanne. Lang genug, dass man den Kaufpreis von damals nicht mehr im Kopf hat. Kurz genug, dass der Notartermin sich noch wie neulich anfühlt. Und für Immobilieneigentümer ist es die Frist, nach der ein Verkauf in aller Regel <strong>steuerfrei</strong> ist.</p>
+
+<p>Was in diesen zehn Jahren mit dem Wert passiert ist, lässt sich in Köln ziemlich genau beziffern. Der <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Gutachterausschuss für Grundstückswerte in der Stadt Köln</a> wertet jeden notariell beurkundeten Kaufvertrag aus und veröffentlicht daraus Indexreihen, die bis 1989 zurückreichen. Keine Angebotspreise, keine Portalauswertung – beurkundete Kaufpreise.</p>
+
+<div class="info-box">
+  <h3>Auf einen Blick</h3>
+  <ul>
+    <li><strong>Eigentumswohnungen Köln:</strong> 2.750 €/m² (2015) → 4.709 €/m² (2025) = <strong>+71 %</strong></li>
+    <li><strong>Ein- und Zweifamilienhäuser Köln:</strong> 2.565 €/m² (2015) → 4.048 €/m² (2025) = <strong>+58 %</strong></li>
+    <li>Das entspricht <strong>5,6 % bzw. 4,7 % pro Jahr</strong></li>
+    <li><strong>Baugrundstücke</strong> legten noch stärker zu: linksrheinisch +84 %, rechtsrheinisch +75 %</li>
+    <li>Der Höhepunkt lag <strong>2022</strong>, nicht heute</li>
+    <li>Quelle: Grundstücksmarktbericht 2026 für die Stadt Köln, Kapitel 5.1.4 und 6.1.3</li>
+  </ul>
+</div>
+
+<h2>Die Wohnung: aus 220.000 wurden 377.000 Euro</h2>
+
+<p>Nehmen wir eine 80-Quadratmeter-Wohnung, gekauft 2015 zum damaligen Kölner Durchschnitt.</p>
+
+<table class="cost-table">
+  <thead><tr><th></th><th class="num">2015</th><th class="num">2025</th></tr></thead>
+  <tbody>
+    <tr><td>Preis je m² Wohnfläche</td><td class="num">2.750 €</td><td class="num">4.709 €</td></tr>
+    <tr class="total"><td>80 m² Wohnfläche</td><td class="num">220.000 €</td><td class="num">376.700 €</td></tr>
+  </tbody>
+</table>
+<p class="table-source">Quelle: Grundstücksmarktbericht 2026, Kapitel 6.1.3 – Indexreihen Wohnungseigentum (stadtweiter Mittelwert)</p>
+
+<p>Das sind <strong>156.700 Euro Wertzuwachs</strong>, ein Plus von 71 Prozent.</p>
+
+<p>Ehrlich gerechnet gehören die <a href="https://romanbecker.de/ratgeber/kaufnebenkosten.html">Kaufnebenkosten</a> dazu. In Nordrhein-Westfalen fielen 2015 wie heute 6,5 % Grunderwerbsteuer an, dazu rund 1,25 % Notar und 0,5 % Grundbuch – zusammen etwa 8,25 %, also rund 18.150 Euro. Der tatsächliche Einsatz lag damit bei etwa <strong>238.150 Euro</strong>. Bleiben rund <strong>138.550 Euro</strong> Zuwachs vor den Kosten eines Verkaufs.</p>
+
+<h2>Das Haus: aus 359.000 wurden 567.000 Euro</h2>
+
+<p>Für Ein- und Zweifamilienhäuser weist der Gutachterausschuss eine eigene Reihe aus, hier als Median:</p>
+
+<table class="cost-table">
+  <thead><tr><th></th><th class="num">2015</th><th class="num">2025</th></tr></thead>
+  <tbody>
+    <tr><td>Preis je m² Wohnfläche</td><td class="num">2.565 €</td><td class="num">4.048 €</td></tr>
+    <tr class="total"><td>140 m² Wohnfläche</td><td class="num">359.100 €</td><td class="num">566.700 €</td></tr>
+  </tbody>
+</table>
+<p class="table-source">Quelle: Grundstücksmarktbericht 2026, Kapitel 5.1.4 – Indexreihen Ein- und Zweifamilienhäuser (stadtweiter Median)</p>
+
+<p><strong>207.600 Euro Zuwachs</strong>, ein Plus von 58 Prozent.</p>
+
+<p>Ein Hinweis zur Einordnung: Die beiden Reihen sind nicht identisch aufgebaut. Bei den Wohnungen ist es ein Mittelwert über Weiterverkauf, Neubau und Umwandlung; bei den Häusern ein Median nur aus Bestandsobjekten mit bekannter Wohnfläche und bekanntem Baujahr. Der direkte Vergleich der beiden Prozentzahlen gibt deshalb eine Richtung, keine Präzisionsaussage.</p>
+
+<h2>Der Boden hat mehr zugelegt als das Haus</h2>
+
+<p>Wer 2015 ein Grundstück gekauft hat, steht besser da als jeder Hauskäufer. Der Bodenpreisindex des Gutachterausschusses:</p>
+
+<table class="cost-table">
+  <thead><tr><th>Teilmarkt</th><th class="num">2015</th><th class="num">2025</th><th class="num">Veränderung</th></tr></thead>
+  <tbody>
+    <tr><td>Baugrundstücke linksrheinisch (Bezirke 1–6)</td><td class="num">10.775</td><td class="num">19.776</td><td class="num"><strong>+84 %</strong></td></tr>
+    <tr><td>Baugrundstücke rechtsrheinisch (Bezirke 7–9)</td><td class="num">7.965</td><td class="num">13.899</td><td class="num"><strong>+75 %</strong></td></tr>
+    <tr><td>Geschosswohnungsbau linksrheinisch</td><td class="num">5.540</td><td class="num">8.950</td><td class="num"><strong>+62 %</strong></td></tr>
+    <tr><td>Geschosswohnungsbau rechtsrheinisch</td><td class="num">4.445</td><td class="num">7.939</td><td class="num"><strong>+79 %</strong></td></tr>
+  </tbody>
+</table>
+<p class="table-source">Quelle: Grundstücksmarktbericht 2026, Kapitel 4.6.5 – Indexreihen (Indexwerte, Basis 1936)</p>
+
+<p>Das erklärt, warum ein älteres Haus auf einem großen Grundstück heute oft anders bewertet wird als vor zehn Jahren: Der Wertanteil hat sich vom Gebäude zum Boden verschoben. Bei Häusern mit Baujahr vor 1970 in guten Lagen ist der <a href="https://romanbecker.de/bodenrichtwert-koeln.html">Grundstückswert</a> inzwischen häufig der größere Posten.</p>
+
+<h2>Die ehrliche Seite: 2022 war der Höhepunkt</h2>
+
+<p>Diese Zahlen sind kein gleichmäßiger Anstieg. Der Kölner Markt hatte seinen Höchststand <strong>2022</strong>, danach kam der Zinsbruch:</p>
+
+<table class="cost-table">
+  <thead><tr><th>Jahr</th><th class="num">Wohnungen €/m²</th><th class="num">Veränderung</th><th class="num">Häuser €/m²</th><th class="num">Veränderung</th></tr></thead>
+  <tbody>
+    <tr><td>2020</td><td class="num">3.985</td><td class="num">+4,7 %</td><td class="num">3.745</td><td class="num">+7,0 %</td></tr>
+    <tr><td>2021</td><td class="num">4.676</td><td class="num">+17,3 %</td><td class="num">4.303</td><td class="num">+14,9 %</td></tr>
+    <tr><td>2022</td><td class="num">4.804</td><td class="num">+2,7 %</td><td class="num">4.839</td><td class="num">+12,5 %</td></tr>
+    <tr><td>2023</td><td class="num">4.433</td><td class="num">−7,7 %</td><td class="num">4.188</td><td class="num">−13,5 %</td></tr>
+    <tr><td>2024</td><td class="num">4.519</td><td class="num">+1,9 %</td><td class="num">4.000</td><td class="num">−4,5 %</td></tr>
+    <tr class="total"><td>2025</td><td class="num">4.709</td><td class="num">+4,2 %</td><td class="num">4.048</td><td class="num">+1,2 %</td></tr>
+  </tbody>
+</table>
+<p class="table-source">Quelle: Grundstücksmarktbericht 2026, Kapitel 5.1.4 und 6.1.3</p>
+
+<p>Wer 2015 gekauft hat, hat die gesamte Aufwärtsbewegung mitgenommen. Wer 2022 gekauft hat, liegt bei Wohnungen heute rund 2 % unter dem Einstand und bei Häusern rund 16 % darunter.</p>
+
+<p>Die gute Nachricht für alle: Seit 2024 steigt es wieder. Der Gutachterausschuss beschreibt für 2025 „eine anhaltende Stabilisierung und Erholung". Bei den Kaufverträgen ist das deutlich zu sehen – 7.831 Beurkundungen, 8 % mehr als im Vorjahr, und ein Geldumsatz von 5,68 Milliarden Euro, ein Plus von 21 %.</p>
+
+<h2>Der Teil, den kaum jemand mitrechnet: der Kredit</h2>
+
+<p>Die 71 Prozent gelten für den <em>Immobilienwert</em>. Die wenigsten haben ihre Wohnung 2015 bar bezahlt – und genau da wird die Rechnung interessant.</p>
+
+<p>Nehmen wir dieselbe 80-Quadratmeter-Wohnung: 220.000 Euro Kaufpreis, dazu rund 18.150 Euro Nebenkosten. Wer damals 20 % Eigenkapital einsetzte, brachte 44.000 Euro Anzahlung plus die Nebenkosten mit – zusammen <strong>62.150 Euro</strong> – und finanzierte 176.000 Euro.</p>
+
+<p>Bei einem 2015 üblichen Zinssatz von rund 1,8 % und 2 % anfänglicher Tilgung waren das etwa 557 Euro Rate im Monat. In zehn Jahren sind davon rund 38.500 Euro getilgt, die Restschuld liegt bei etwa 137.500 Euro.</p>
+
+<table class="cost-table">
+  <tbody>
+    <tr><td>Wert der Wohnung 2025</td><td class="num">376.700 €</td></tr>
+    <tr><td>− Restschuld</td><td class="num">137.500 €</td></tr>
+    <tr class="total"><td>= Nettovermögen in der Immobilie</td><td class="num">239.200 €</td></tr>
+    <tr><td>Eingesetztes Eigenkapital 2015</td><td class="num">62.150 €</td></tr>
+  </tbody>
+</table>
+
+<p>Aus 62.150 Euro Eigenkapital sind rechnerisch <strong>239.200 Euro</strong> geworden – der <strong>3,8-fache Betrag</strong>. Der Grund: Die Wertsteigerung wirkt auf den vollen Kaufpreis, nicht nur auf den eigenen Anteil. Das nennt man Hebelwirkung.</p>
+
+<p>Je mehr Eigenkapital, desto kleiner der Hebel:</p>
+
+<table class="cost-table">
+  <thead><tr><th>Eigenkapital 2015</th><th class="num">Einsatz inkl. NK</th><th class="num">Restschuld 2025</th><th class="num">Nettovermögen</th><th class="num">Faktor</th></tr></thead>
+  <tbody>
+    <tr><td>20 %</td><td class="num">62.150 €</td><td class="num">137.500 €</td><td class="num">239.200 €</td><td class="num"><strong>3,8×</strong></td></tr>
+    <tr><td>30 %</td><td class="num">84.150 €</td><td class="num">120.300 €</td><td class="num">256.400 €</td><td class="num"><strong>3,1×</strong></td></tr>
+    <tr><td>50 %</td><td class="num">128.150 €</td><td class="num">85.900 €</td><td class="num">290.800 €</td><td class="num"><strong>2,3×</strong></td></tr>
+    <tr><td>100 %</td><td class="num">238.150 €</td><td class="num">0 €</td><td class="num">376.700 €</td><td class="num"><strong>1,6×</strong></td></tr>
+  </tbody>
+</table>
+<p class="table-source">Modellrechnung auf Basis der stadtweiten Durchschnittswerte des Grundstücksmarktberichts 2026, angenommener Zinssatz 1,8 % bei 2 % anfänglicher Tilgung</p>
+
+<p><strong>Was diese Rechnung nicht enthält – und das ist wichtig:</strong> die gezahlten Zinsen (bei 20 % Eigenkapital rund 28.400 Euro über zehn Jahre), Instandhaltung und Rücklagen, Hausgeld, Grundsteuer und die Kosten eines Verkaufs. Sie enthält auch keinen Vergleich mit der Miete, die Sie in dieser Zeit <em>nicht</em> gezahlt haben – oder, bei Vermietung, den Mieteinnahmen. Und sie unterstellt einen Zinssatz, den Sie in Ihrem eigenen Vertrag nachlesen können; Ihre Konditionen von 2015 kennen nur Sie.</p>
+
+<p>Der Hebel wirkt außerdem in beide Richtungen. Wer 2022 auf dem Höchststand mit wenig Eigenkapital gekauft hat, sieht denselben Mechanismus mit umgekehrtem Vorzeichen: Ein Wertverlust von 16 % auf den vollen Kaufpreis kann bei 20 % Eigenkapital rechnerisch den größten Teil des Eigenkapitals aufzehren.</p>
+
+<div class="makler-tipp">
+  <p><strong>Hinweis:</strong> Diese Rechnung ist eine Veranschaulichung mit stadtweiten Durchschnittswerten, keine Anlage-, Finanz- oder Steuerberatung. Ich bin Immobilienmakler, kein Finanzberater. Für Aussagen zu Ihrer Finanzierung, Ihrer Steuerlast oder einer Anlageentscheidung sprechen Sie bitte mit Ihrer Bank, Ihrem Steuerberater oder einem Finanzberater.</p>
+</div>
+
+<h2>Was der Durchschnitt nicht sagt</h2>
+
+<p>Alle Zahlen oben gelten für <strong>ganz Köln</strong>. Der Gutachterausschuss weist ausdrücklich darauf hin, dass „die Entwicklung innerhalb des Kölner Stadtgebiets heterogen war, wobei in einigen Teilbereichen auch ein Rückgang der Kaufpreise zu verzeichnen war".</p>
+
+<p>Eine Veränderungsrate für einzelne <a href="https://romanbecker.de/stadtteile/">Stadtteile</a> gibt es im Bericht bewusst nicht – die Fallzahlen je Stadtteil sind dafür zu klein. Was der Bericht getrennt ausweist, ist die Rheinseite. Über die normierten Preisindizes seit Anfang 2020:</p>
+
+<ul>
+  <li><strong>Eigentumswohnungen:</strong> linksrheinisch +20 %, rechtsrheinisch +24 %</li>
+  <li><strong>Häuser:</strong> linksrheinisch +7 %, rechtsrheinisch +12 %</li>
+</ul>
+
+<p>Rechtsrheinisch ist in diesen fünf Jahren also stärker gestiegen – von einem niedrigeren Ausgangsniveau aus.</p>
+
+<p>Für Ihre konkrete Immobilie kommen Faktoren dazu, die keine Statistik abbildet: Zustand, Baujahr, Grundriss, <a href="https://romanbecker.de/ratgeber/energieausweis.html">Energieausweis</a>, Lärm, Stockwerk, ob saniert wurde. Zwei Wohnungen in derselben Straße können sich in zehn Jahren völlig unterschiedlich entwickelt haben.</p>
+
+<h2>Zehn Jahre sind steuerlich ein besonderes Datum</h2>
+
+<p>Der Zeitpunkt ist kein Zufall. Wer eine vermietete oder leerstehende Immobilie innerhalb von zehn Jahren nach dem Kauf verkauft, zahlt auf den Gewinn Einkommensteuer – die sogenannte <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a> nach § 23 EStG. Nach Ablauf der zehn Jahre ist der Verkauf steuerfrei.</p>
+
+<p>Bei den 156.700 Euro aus dem Wohnungsbeispiel ist das ein erheblicher Unterschied. Maßgeblich sind übrigens die Daten der <strong>notariellen Beurkundung</strong>, nicht die der Übergabe oder der Grundbucheintragung. Wer selbst darin gewohnt hat, kann auch früher steuerfrei verkaufen; die Bedingungen dafür stehen im Ratgeber zur Spekulationssteuer.</p>
+
+<p>Wer also 2015 gekauft hat, steht heute an einem Punkt, an dem sich beides trifft: ein deutlicher Wertzuwachs und keine Steuer darauf.</p>
+
+<h2>Was Ihre Immobilie heute wert ist</h2>
+
+<p>Der Durchschnitt sagt Ihnen, wohin sich der Markt bewegt hat. Was Ihre Wohnung oder Ihr Haus heute wert ist, sagt er nicht.</p>
+
+<p>Für eine erste Einschätzung nutzen Sie die kostenlose <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a> – sie rechnet mit den amtlichen Werten für Ihr Veedel, nicht mit einem Kölner Mittelwert. Wenn Sie es genauer wissen wollen, sehe ich mir die Immobilie vor Ort an und ordne sie in den aktuellen Markt ein. Ohne Verkaufsabsicht, ohne Kosten. Wie ein <a href="https://romanbecker.de/immobilien-verkaufen-koeln.html">Verkauf in Köln</a> abläuft, steht hier.</p>
+
+
+<h2>Häufige Fragen</h2>
+
+<h3>Wie stark sind die Immobilienpreise in Köln in den letzten zehn Jahren gestiegen?</h3>
+<p>Zwischen 2015 und 2025 stiegen Eigentumswohnungen in Köln im stadtweiten Durchschnitt von 2.750 auf 4.709 Euro je Quadratmeter Wohnfläche – ein Plus von rund 71 Prozent. Ein- und Zweifamilienhäuser stiegen im Median von 2.565 auf 4.048 Euro je Quadratmeter, also rund 58 Prozent. Das entspricht 5,6 beziehungsweise 4,7 Prozent pro Jahr. Quelle ist der Grundstücksmarktbericht 2026 des Gutachterausschusses für Grundstückswerte in der Stadt Köln.</p>
+
+<h3>Kann ich meine Immobilie nach zehn Jahren steuerfrei verkaufen?</h3>
+<p>In aller Regel ja. Wer eine vermietete oder leerstehende Immobilie später als zehn Jahre nach dem Kauf verkauft, zahlt auf den Gewinn keine Einkommensteuer nach § 23 EStG. Maßgeblich sind die Daten der notariellen Beurkundung von Kauf und Verkauf, nicht Übergabe oder Grundbucheintragung. Bei durchgehender Eigennutzung ist ein steuerfreier Verkauf auch früher möglich.</p>
+
+<h3>Steigen die Immobilienpreise in Köln aktuell wieder?</h3>
+<p>Ja. Nach dem Rückgang 2023 weist der Grundstücksmarktbericht 2026 für das Jahr 2025 bei Eigentumswohnungen wieder ein Plus von 4,2 Prozent aus, bei Ein- und Zweifamilienhäusern 1,2 Prozent. Auch die Zahl der Kaufverträge stieg um 8 Prozent auf 7.831, der Geldumsatz um 21 Prozent auf 5,68 Milliarden Euro.</p>
+
+<h3>Gilt diese Wertsteigerung auch für meinen Stadtteil?</h3>
+<p>Nicht zwingend. Alle genannten Prozentwerte sind stadtweite Durchschnitte. Der Gutachterausschuss weist eigens darauf hin, dass die Entwicklung innerhalb Kölns heterogen war und in einzelnen Teilbereichen auch Kaufpreise zurückgingen. Eine Veränderungsrate je Stadtteil enthält der Bericht bewusst nicht, weil die Fallzahlen dafür zu klein sind. Getrennt ausgewiesen wird lediglich die Rheinseite.</p>
+
+<h3>Wer 2022 gekauft hat – steht der heute schlechter da?</h3>
+<p>Der Höchststand lag 2022. Gemessen an den stadtweiten Indexreihen liegen Eigentumswohnungen heute rund 2 Prozent unter dem Niveau von 2022, Ein- und Zweifamilienhäuser rund 16 Prozent darunter. Seit 2024 steigen beide Teilmärkte wieder.</p>
+
+<div class="info-box">
+  <h3>Datengrundlage</h3>
+  <p>Grundstücksmarktbericht 2026 für die Stadt Köln, Berichtszeitraum 01.01.–31.12.2025, Stichtag 01.01.2026. Herausgeber: Gutachterausschuss für Grundstückswerte in der Stadt Köln. Kapitel 4.6.5 (Bodenpreisindizes), 5.1.4 (Indexreihen Ein- und Zweifamilienhäuser), 6.1.3 (Indexreihen Wohnungseigentum). Lizenz dl-de/zero-2-0. Alle Beispielrechnungen beruhen auf stadtweiten Durchschnittswerten und ersetzen keine Bewertung im Einzelfall.</p>
+</div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Persönliche Beratung</span>
+        <h2>Was ist Ihre Immobilie heute wert?</h2>
+        <p>Der Grundstücksmarktbericht zeigt den Kölner Durchschnitt. Was Ihre Wohnung oder Ihr Haus wert ist, sehe ich mir persönlich an — kostenlos, unverbindlich und ohne Verkaufsabsicht.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATGEBER NAV -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav">
+        <h3>Weitere Ratgeber-Themen</h3>
+        <div class="ratgeber-nav-links">
+          <a href="https://romanbecker.de/bodenrichtwert-koeln.html">Bodenrichtwert Köln</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel Köln</a>
+          <a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel</a>
+          <a href="https://romanbecker.de/ratgeber/immobilienverkauf.html">Immobilienverkauf</a>
+          <a href="https://romanbecker.de/ratgeber/kapitalanlage.html">Kapitalanlage</a>
+          <a href="https://romanbecker.de/ratgeber/spekulationssteuer.html">Spekulationssteuer</a>
+          <a href="https://romanbecker.de/ratgeber/grundsteuer.html">Grundsteuer</a>
+          <a href="https://romanbecker.de/ratgeber/erbbauzins.html">Erbbauzins</a>
+          <a href="https://romanbecker.de/ratgeber/bau-turbo-baurechtsnovelle.html">Bau-Turbo</a>
+          <a href="https://romanbecker.de/ratgeber/bauzinsen.html">Bauzinsen</a>
+          <a href="https://romanbecker.de/ratgeber/flurkarte.html">Flurkarte</a>
+          <a href="https://romanbecker.de/ratgeber/grundbuch.html">Grundbuch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Quellenangabe: Grundstücksmarktbericht 2026 und 2025 für die Stadt Köln, Gutachterausschuss für Grundstückswerte in der Stadt Köln, bereitgestellt über BORIS.NRW unter der Datenlizenz Deutschland Zero 2.0 (dl-de/zero-2-0). Roman Becker ist als Immobilienmakler für Köln &amp; das Rheinland tätig. Dieser Ratgeber dient der allgemeinen Information und ersetzt keine Rechtsberatung oder Wertermittlung. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
