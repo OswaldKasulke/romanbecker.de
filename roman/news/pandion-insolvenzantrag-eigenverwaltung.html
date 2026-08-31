@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Pandion Insolvenz: Was für Köln belegt ist | Kölner Immobilien NEWS</title>
+  <meta name="description" content="Der Kölner Projektentwickler Pandion hat Insolvenz in Eigenverwaltung beantragt. Der belegte Verfahrensstand, der Kölner Bezug – und was Eigentümer daraus ableiten können.">
+  <link rel="canonical" href="https://romanbecker.de/news/pandion-insolvenzantrag-eigenverwaltung.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pandion AG beantragt Insolvenz in Eigenverwaltung – was bislang belegt ist | Kölner Immobilien NEWS">
+  <meta property="og:description" content="Der Kölner Projektentwickler Pandion hat Insolvenz in Eigenverwaltung beantragt. Der belegte Verfahrensstand, der Kölner Bezug – und was Eigentümer daraus ableiten können.">
+  <meta property="og:url" content="https://romanbecker.de/news/pandion-insolvenzantrag-eigenverwaltung.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "Pandion AG beantragt Insolvenz in Eigenverwaltung – was bislang belegt ist",
+    "description": "Der Kölner Projektentwickler Pandion hat Insolvenz in Eigenverwaltung beantragt. Der belegte Verfahrensstand, der Kölner Bezug – und was Eigentümer daraus ableiten können.",
+    "url": "https://romanbecker.de/news/pandion-insolvenzantrag-eigenverwaltung.html",
+    "datePublished": "2026-08-31",
+    "dateModified": "2026-08-31",
+    "articleSection": "Kölner Immobilien NEWS",
+    "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
+    "publisher": { "@type": "Organization", "name": "Roman Becker Immobilien | Immobilienmakler Köln", "url": "https://romanbecker.de/" }
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--text, #000000); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text, #000000); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--text, #000000); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 700px; }
+    .news-meta { font-size: 0.85rem; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); padding-bottom: var(--space-4); margin-bottom: var(--space-8); }
+    .news-meta strong { color: var(--text, #000000); }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .news-table { width: 100%; border-collapse: collapse; margin: var(--space-6) 0; font-size: 0.92rem; }
+    .news-table th, .news-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--gray-200); text-align: right; color: var(--gray-600); }
+    .news-table th { color: var(--text, #000000); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .news-table th:first-child, .news-table td:first-child { text-align: left; }
+    .news-table td:first-child { color: var(--text, #000000); }
+    .news-table-wrap { overflow-x: auto; }
+    .news-table caption { caption-side: top; text-align: left; font-size: 0.8rem; color: var(--gray-600); padding-bottom: 0.5rem; }
+    .news-sources { background: var(--gray-100); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0 0; }
+    .news-sources h2 { font-size: 0.9rem !important; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin: 0 0 var(--space-4) !important; }
+    .news-sources ol { font-size: 0.85rem; margin-left: 1.2rem; }
+    .news-sources a { word-break: break-word; }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/news/">News</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/news/">Kölner Immobilien NEWS</a>
+      <span>›</span>
+      Pandion: Insolvenz in Eigenverwaltung
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Kölner Immobilien NEWS · Roman Becker</div>
+      <h1>Pandion AG beantragt Insolvenz in Eigenverwaltung – was bislang belegt ist</h1>
+      <p>Der Kölner Projektentwickler hat am 10. August 2026 beim Amtsgericht Köln die Eröffnung eines Insolvenzverfahrens in Eigenverwaltung beantragt. Betroffen sind die Holding und fünf Tochtergesellschaften.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p class="news-meta"><strong>31. August 2026</strong> · Roman Becker, romanbecker.de · <strong>Stand: 31. 08. 2026.</strong> Laufendes Verfahren – dieser Beitrag gibt den Kenntnisstand zum Redaktionsschluss wieder.</p>
+
+<p>Die Projektgesellschaften, die die einzelnen Bauvorhaben halten, sind nach Unternehmensangaben ausdrücklich nicht Teil des Antrags. Eine Einordnung mit dem, was belegt ist – und dem, was offen bleibt.</p>
+
+<h2>Der Verfahrensstand</h2>
+<p>Die Pandion AG hat am <strong>10. August 2026</strong> beim <strong>Amtsgericht Köln</strong> als Insolvenzgericht einen Antrag auf Eröffnung eines Insolvenzverfahrens gestellt und zugleich Eigenverwaltung beantragt. Entsprechende Anträge liegen für die PANDION Real Estate GmbH, die PANDION Vertriebsgesellschaft mbH, die PANDION Design GmbH, die PANDION Projektmanagement GmbH und die PANDION Engineering GmbH vor.</p>
+<p>Nach Angaben des Fachdienstes JUVE hat das Gericht Prof. Dr. Torsten Martini von der Kanzlei Görg zum vorläufigen Sachwalter bestellt. Wichtig für das Verständnis: <strong>Ein Antrag ist keine Eröffnung.</strong> In der Eigenverwaltung führt die Geschäftsleitung das Unternehmen unter Aufsicht eines Sachwalters weiter; über die Eröffnung des Verfahrens entscheidet das Gericht zu einem späteren Zeitpunkt.</p>
+<p>Auslöser war nach Unternehmensangaben eine Zinszahlung auf die Unternehmensanleihe (ISIN DE000A289YC5, Volumen 45 Millionen Euro, Laufzeit bis 2028), die zum 5. August 2026 nicht fristgerecht geleistet werden konnte. Als Grund nennt das Unternehmen eine angespannte Liquiditätssituation und den Wegfall eines wesentlichen Finanzierungsbausteins. In der Mitteilung heißt es, mit der Eigenverwaltung verfolge Pandion das Ziel, „den Geschäftsbetrieb fortzuführen und die bereits eingeleitete Restrukturierung innerhalb eines geordneten rechtlichen Rahmens konsequent umzusetzen“.</p>
+
+<div class="factbox">
+  <p><strong>Der belegte Stand auf einen Blick</strong></p>
+  <p>• <strong>Antrag gestellt:</strong> 10. August 2026, Amtsgericht Köln</p>
+  <p>• <strong>Verfahrensart:</strong> Eigenverwaltung beantragt – Verfahren zum 31. 08. 2026 noch nicht eröffnet</p>
+  <p>• <strong>Betroffen:</strong> PANDION AG und fünf Tochtergesellschaften</p>
+  <p>• <strong>Nicht betroffen (laut Unternehmen):</strong> die Projektgesellschaften der einzelnen Bauvorhaben</p>
+  <p>• <strong>Auslöser:</strong> ausgefallene Zinszahlung auf die Anleihe DE000A289YC5 zum 5. August 2026</p>
+</div>
+
+<h2>Was nach Unternehmensangaben nicht betroffen ist</h2>
+<p>Die Projektgesellschaften, in denen die konkreten Bauvorhaben liegen, sind nach Darstellung des Unternehmens nicht Gegenstand der Insolvenzanträge. Begonnene und weitgehend finanzierte Vorhaben sollen fortgeführt werden. Für die Beschäftigten sind Löhne und Gehälter über das Insolvenzgeld der Bundesagentur für Arbeit für August bis Oktober 2026 abgesichert.</p>
+<p>Diese Angaben stammen vom Unternehmen selbst. Sie sind der derzeitige Kenntnisstand, keine unabhängig geprüfte Aussage über den Ausgang.</p>
+
+<h2>Der Kölner Bezug</h2>
+<p>Pandion wurde 2002 von Reinhold Knodel gegründet und hat seinen Sitz in Köln. Zum Kölner Portfolio gehören das Kranhaus Nord im Rheinauhafen mit dem Wohnprojekt Pandion Vista sowie das fertiggestellte Projekt Pandion Neun Freunde in Ehrenfeld. Bundesweit nennt das Unternehmen Projekte mit rund 3.800 Wohneinheiten und etwa 200.000 Quadratmetern Bürofläche.</p>
+
+<h2>Was offen ist</h2>
+<p>Offen sind zum Redaktionsschluss am 31. August 2026: ob und wann das Gericht das Verfahren eröffnet, wie sich einzelne Bauvorhaben und Kaufverträge weiterentwickeln und wie die Anleihegläubiger gestellt werden. Auf der eigenen Website des Unternehmens war zum Redaktionsschluss keine Mitteilung zum Antrag veröffentlicht; die dortige Nachrichtenübersicht endete im Mai 2026.</p>
+
+<h2>Was das für Eigentümer bedeutet</h2>
+<p>Für den Wert einer bestehenden Wohnung oder eines bestehenden Hauses in Köln folgt aus diesem Verfahren zunächst nichts. Bestandsimmobilien sind von der Lage eines Projektentwicklers nicht unmittelbar betroffen, und ein einzelner Fall ist keine Aussage über den Markt.</p>
+<p>Zwei mittelbare Punkte sind für Verkäufer dennoch relevant. <strong>Erstens:</strong> Wenn geplante Neubauvorhaben sich verzögern, trifft das die Angebotsseite von morgen, nicht die von heute – und Bestandsobjekte stehen dann tendenziell weniger neuem Wettbewerb gegenüber. <strong>Zweitens:</strong> Der genannte Auslöser, eine weggefallene Finanzierung, verweist auf ein Umfeld, in dem Projektfinanzierungen weiterhin schwierig sind.</p>
+
+<div class="doc-note">
+  <p><strong>Für Käufer im Neubau:</strong> Wer eine Immobilie in einem laufenden Neubauprojekt gekauft hat und Fragen zum eigenen Vertrag hat, klärt diese mit dem eigenen Notar oder einer Fachanwältin für Bau- und Immobilienrecht – nicht mit einer Marktmeldung. Dieser Beitrag ist redaktionelle Information und ersetzt keine Rechtsberatung im Einzelfall.</p>
+</div>
+
+<h2>Ausblick</h2>
+<p>Der nächste belastbare Schritt ist die Entscheidung des Amtsgerichts Köln über die Eröffnung des Verfahrens. Bis dahin bleibt es beim Antragsstadium.</p>
+
+<div class="news-sources">
+  <h2>Quellen</h2>
+  <ol>
+    <li>immobilienmanager, „Pandion beantragt Insolvenz in Eigenverwaltung“, veröffentlicht 10. 08. 2026, abgerufen 31. 08. 2026 – <a href="https://www.immobilienmanager.de/pandion-beantragt-insolvenz-in-eigenverwaltung-10082026" target="_blank" rel="noopener">immobilienmanager.de</a></li>
+    <li>JUVE, „Pandion geht mit Buchalik Brömmekamp und Görg in die Eigenverwaltung“, veröffentlicht 26. 08. 2026, abgerufen 31. 08. 2026 – <a href="https://www.juve.de/verfahren/pandion-mit-buchalik-broemmekamp-und-goerg-in-die-eigenverwaltung/" target="_blank" rel="noopener">juve.de</a></li>
+    <li>Anleihen Finder, „INSOLVENZ – PANDION AG stellt Insolvenzantrag“, veröffentlicht 10. 08. 2026, abgerufen 31. 08. 2026 – <a href="https://www.anleihen-finder.de/insolvenz-pandion-ag-stellt-insolvenzantrag-00073205.html" target="_blank" rel="noopener">anleihen-finder.de</a></li>
+    <li>PANDION AG, Unternehmenswebsite (Standorte, Projekte, Newsroom-Stand), abgerufen 31. 08. 2026 – <a href="https://www.pandion.de/" target="_blank" rel="noopener">pandion.de</a></li>
+    <li>Amtliche Insolvenzbekanntmachungen der deutschen Insolvenzgerichte – <a href="https://www.insolvenzbekanntmachungen.de/" target="_blank" rel="noopener">insolvenzbekanntmachungen.de</a></li>
+  </ol>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Unverbindliche Immobilienbewertung</span>
+        <h2>Was ist Ihre Immobilie heute wert?</h2>
+        <p>Nachrichten über einzelne Unternehmen sagen nichts über den Wert eines konkreten Objekts. Was Ihre Immobilie in Ihrem Veedel wert ist, lässt sich nur am Einzelfall beurteilen – unverbindlich, diskret und ohne Zeitdruck.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEITERE NEWS -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav" style="margin-top:0;padding:var(--space-6);background:var(--gray-100);border-radius:var(--radius);">
+        <h3 style="font-size:0.9rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray-600);margin-bottom:var(--space-4);">Mehr aus Kölner Immobilien NEWS</h3>
+        <div class="ratgeber-nav-links" style="display:flex;flex-wrap:wrap;gap:var(--space-2);">
+          <a href="https://romanbecker.de/news/" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Alle Meldungen</a>
+          <a href="https://romanbecker.de/news/baugenehmigungen-koeln-halbjahr-2026.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Baugenehmigungen 1. Halbjahr 2026</a>
+          <a href="https://romanbecker.de/bautraeger.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Bauträger</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Grundstücksmarktbericht Köln</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/news/">Kölner Immobilien NEWS</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler für Köln &amp; das Rheinland tätig. Die Beiträge unter Kölner Immobilien NEWS dienen der allgemeinen Information und ersetzen keine Rechts-, Steuer- oder Finanzberatung im Einzelfall. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
