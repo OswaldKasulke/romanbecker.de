@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Kölner Immobilien NEWS: Marktzahlen, Bauprojekte, Recht | Makler Köln</title>
+  <meta name="description" content="Belegte Nachrichten zum Kölner Immobilienmarkt – Kaufpreise, Bauprojekte, Genehmigungen und Zinsen, eingeordnet für Eigentümer. Jede Zahl mit Quelle.">
+  <link rel="canonical" href="https://romanbecker.de/news/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kölner Immobilien NEWS | Makler Köln – Roman Becker">
+  <meta property="og:description" content="Belegte Nachrichten zum Kölner Immobilienmarkt – Kaufpreise, Bauprojekte, Genehmigungen und Zinsen, eingeordnet für Eigentümer. Jede Zahl mit Quelle.">
+  <meta property="og:url" content="https://romanbecker.de/news/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Kölner Immobilien NEWS",
+    "description": "Belegte Nachrichten zum Kölner Immobilienmarkt – Kaufpreise, Bauprojekte, Genehmigungen und Zinsen, eingeordnet für Eigentümer. Jede Zahl mit Quelle.",
+    "url": "https://romanbecker.de/news/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilien | Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    }
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-6); margin-top: var(--space-8); }
+    .news-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: var(--space-6); text-decoration: none; color: inherit; transition: box-shadow var(--transition), border-color var(--transition); display: block; }
+    .news-card:hover { box-shadow: var(--shadow); border-color: var(--gold); }
+    .news-card__date { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold); margin-bottom: var(--space-2); }
+    .news-card h3 { font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: var(--space-2); color: var(--text, #000000); }
+    .news-card p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.6; }
+    .news-intro { max-width: 800px; }
+    .news-intro p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .news-principles { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0 0; max-width: 800px; }
+    .news-principles p { margin-bottom: 0.5rem; font-size: 0.92rem; color: var(--gray-600); }
+    .news-principles p:last-child { margin-bottom: 0; }
+    .news-principles strong { color: var(--text, #000000); }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/news/">News</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      Kölner Immobilien NEWS
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__badge">✓ Belegte Marktnachrichten · Köln &amp; Umland</div>
+      <h1>Kölner Immobilien NEWS</h1>
+      <p class="hero__subtitle">Was sich auf dem Kölner Immobilienmarkt bewegt – Kaufpreise, Mieten, Bauprojekte, Genehmigungen und Zinsen. Jede Zahl mit Quelle, jede Meldung eingeordnet für Eigentümer.</p>
+      <div class="hero__buttons">
+        <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+        <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MELDUNGEN -->
+  <section class="section">
+    <div class="container">
+
+      <div class="news-intro">
+        <span class="section-label">Aktuelle Meldungen</span>
+        <h2>Neu im Kölner Immobilienmarkt</h2>
+        <p>Marktnachrichten sind selten so eindeutig, wie Überschriften es nahelegen. Hier steht deshalb zu jeder Zahl, woher sie stammt, auf welchen Zeitraum sie sich bezieht und was sie für Eigentümer konkret bedeutet – getrennt von dem, was sie nicht bedeutet.</p>
+      </div>
+
+      <div class="news-grid">
+        <a href="baugenehmigungen-koeln-halbjahr-2026.html" class="news-card">
+          <div class="news-card__date">31. August 2026 · Neubau</div>
+          <h3>Köln genehmigt mehr Wohnungen – während NRW insgesamt zurückfällt</h3>
+          <p>1.377 genehmigte Wohnungen im ersten Halbjahr, ein Plus von 7,1 Prozent gegen den Landestrend. Und fast alles davon im Geschosswohnungsbau: 90,5 Prozent statt 84,0 Prozent im Vorjahr.</p>
+        </a>
+      </div>
+
+      <div class="news-principles">
+        <p><strong>Wie hier gearbeitet wird</strong></p>
+        <p>• Jede Zahl, jeder Name und jedes Datum steht mit direkter Quelle und Veröffentlichungsdatum unter dem Beitrag.</p>
+        <p>• Amtliche Daten und Angebotspreise werden getrennt ausgewiesen – ein Portalpreis ist kein Kaufpreis.</p>
+        <p>• Belegte Fakten, redaktionelle Einordnung und mögliche Auswirkungen sind im Text sprachlich auseinandergehalten.</p>
+        <p>• Bei dünner oder widersprüchlicher Quellenlage erscheint kein Beitrag, sondern nichts.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Unverbindliche Immobilienbewertung</span>
+        <h2>Was bedeuten die Marktzahlen für Ihre Immobilie?</h2>
+        <p>Marktdaten beschreiben die Richtung, nicht den Wert Ihres Objekts. Den ermittle ich am konkreten Fall – unverbindlich, diskret und ohne Zeitdruck.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/news/">Kölner Immobilien NEWS</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler für Köln &amp; das Rheinland tätig. Die Beiträge unter Kölner Immobilien NEWS dienen der allgemeinen Information und ersetzen keine Rechts-, Steuer- oder Finanzberatung im Einzelfall. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>

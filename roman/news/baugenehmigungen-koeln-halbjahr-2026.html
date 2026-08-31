@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Baugenehmigungen Köln: 1. Halbjahr 2026 im Plus | Kölner Immobilien NEWS</title>
+  <meta name="description" content="NRW genehmigt 1,5 % weniger Wohnungen, Köln 7,1 % mehr – und fast nur noch im Geschosswohnungsbau. Was die Zahlen für Eigentümer bedeuten.">
+  <link rel="canonical" href="https://romanbecker.de/news/baugenehmigungen-koeln-halbjahr-2026.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Köln genehmigt mehr Wohnungen – während NRW insgesamt zurückfällt | Kölner Immobilien NEWS">
+  <meta property="og:description" content="NRW genehmigt 1,5 % weniger Wohnungen, Köln 7,1 % mehr – und fast nur noch im Geschosswohnungsbau. Was die Zahlen für Eigentümer bedeuten.">
+  <meta property="og:url" content="https://romanbecker.de/news/baugenehmigungen-koeln-halbjahr-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "Köln genehmigt mehr Wohnungen – während NRW insgesamt zurückfällt",
+    "description": "NRW genehmigt 1,5 % weniger Wohnungen, Köln 7,1 % mehr – und fast nur noch im Geschosswohnungsbau. Was die Zahlen für Eigentümer bedeuten.",
+    "url": "https://romanbecker.de/news/baugenehmigungen-koeln-halbjahr-2026.html",
+    "datePublished": "2026-08-31",
+    "dateModified": "2026-08-31",
+    "articleSection": "Kölner Immobilien NEWS",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilien | Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    }
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--text, #000000); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text, #000000); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--text, #000000); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 700px; }
+    .news-meta { font-size: 0.85rem; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); padding-bottom: var(--space-4); margin-bottom: var(--space-8); }
+    .news-meta strong { color: var(--text, #000000); }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .news-table { width: 100%; border-collapse: collapse; margin: var(--space-6) 0; font-size: 0.92rem; }
+    .news-table th, .news-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--gray-200); text-align: right; color: var(--gray-600); }
+    .news-table th { color: var(--text, #000000); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .news-table th:first-child, .news-table td:first-child { text-align: left; }
+    .news-table td:first-child { color: var(--text, #000000); }
+    .news-table-wrap { overflow-x: auto; }
+    .news-table caption { caption-side: top; text-align: left; font-size: 0.8rem; color: var(--gray-600); padding-bottom: 0.5rem; }
+    .news-sources { background: var(--gray-100); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0 0; }
+    .news-sources h2 { font-size: 0.9rem !important; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin: 0 0 var(--space-4) !important; }
+    .news-sources ol { font-size: 0.85rem; margin-left: 1.2rem; }
+    .news-sources a { word-break: break-word; }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/news/">News</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/news/">Kölner Immobilien NEWS</a>
+      <span>›</span>
+      Baugenehmigungen 1. Halbjahr 2026
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Kölner Immobilien NEWS · Roman Becker</div>
+      <h1>Köln genehmigt mehr Wohnungen – während NRW insgesamt zurückfällt</h1>
+      <p>Im ersten Halbjahr 2026 haben die nordrhein-westfälischen Bauämter 1,5 Prozent weniger Wohnungen genehmigt als ein Jahr zuvor. Köln geht den umgekehrten Weg: 1.377 genehmigte Wohnungen bedeuten ein Plus von 7,1 Prozent.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p class="news-meta"><strong>31. August 2026</strong> · Roman Becker, romanbecker.de · Quelle der Zahlen: amtliche Statistik IT.NRW vom 27. 08. 2026</p>
+
+<p>Auffällig an den neuen Genehmigungszahlen ist nicht nur die Richtung, sondern vor allem, <strong>welche Art von Wohnraum</strong> in Köln künftig entstehen soll.</p>
+
+<h2>NRW: Rückgang, aber nicht überall</h2>
+<p>Am 27. August 2026 hat Information und Technik Nordrhein-Westfalen (IT.NRW) als Statistisches Landesamt die Baugenehmigungen für das erste Halbjahr 2026 veröffentlicht. Landesweit wurden <strong>20.191 Wohnungen</strong> genehmigt – 298 Wohnungen oder 1,5 Prozent weniger als im ersten Halbjahr 2025 (20.489). Beim Neubau von Wohngebäuden fiel der Rückgang mit 15.876 Wohnungen (−5,1 Prozent) deutlicher aus.</p>
+<p>Das Bild ist zweigeteilt. Bei neuen Einfamilienhäusern stieg die Zahl der genehmigten Wohnungen um 9 Prozent auf 3.778, bei Wohngebäuden mit zwei Wohnungen um 19,6 Prozent auf 1.160. Im Geschosswohnungsbau ging es dagegen abwärts: von 12.286 auf 10.938 Wohnungen, ein Minus von 11,0 Prozent. Zur Einordnung des Niveaus: Im ersten Halbjahr 2021 waren es landesweit noch 30.628 Wohnungen, gut ein Drittel mehr als heute.</p>
+
+<h2>Köln dreht das Muster um</h2>
+<p>Zur Meldung gehört eine Anhangtabelle mit Werten für jede kreisfreie Stadt und jeden Kreis. Für Köln stehen dort <strong>1.377 genehmigte Wohnungen</strong> im ersten Halbjahr 2026 gegenüber 1.286 im Vorjahreszeitraum – ein Plus von 7,1 Prozent.</p>
+
+<div class="news-table-wrap">
+<table class="news-table">
+  <thead>
+    <tr><th>Köln, Stadt</th><th>1. Hj. 2025</th><th>1. Hj. 2026</th><th>Veränderung</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Wohnungen insgesamt</td><td>1.286</td><td>1.377</td><td>+7,1 %</td></tr>
+    <tr><td>davon in neuen Wohngebäuden</td><td>926</td><td>1.026</td><td>+10,8 %</td></tr>
+    <tr><td>darunter in Mehrfamilienhäusern</td><td>778</td><td>929</td><td>+19,4 %</td></tr>
+    <tr><td>Neue Einfamilienhäuser (Gebäude)</td><td>124</td><td>85</td><td>−31,5 %</td></tr>
+    <tr><td>Neue Mehrfamilienhäuser (Gebäude)</td><td>30</td><td>42</td><td>+40,0 %</td></tr>
+    <tr><td>Wohnungen durch Um- und Ausbau</td><td>298</td><td>327</td><td>+9,7 %</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Die Struktur läuft damit genau entgegen dem Landestrend. In der Folge entfallen <strong>929 der 1.026 Wohnungen</strong> in neuen Wohngebäuden auf Mehrfamilienhäuser: 90,5 Prozent, nach 84,0 Prozent ein Jahr zuvor.</p>
+
+<h2>Das Umland: Rhein-Erft mit dem größten Sprung</h2>
+<p>Im Umland fällt der Rhein-Erft-Kreis auf: 720 genehmigte Wohnungen bedeuten ein Plus von 22,4 Prozent, darunter 307 neue Einfamilienhäuser nach 89 im Vorjahreszeitraum. Ein Sprung dieser Größenordnung geht bei Halbjahreswerten üblicherweise auf wenige große Vorhaben zurück; welche das sind, weist die Statistik nicht aus.</p>
+<p>Leverkusen liegt mit 116 Wohnungen nahezu unverändert (−2,5 Prozent), Bonn kommt auf 457 nach 263. Der gesamte Regierungsbezirk Köln legt um 8,0 Prozent auf 5.980 Wohnungen zu.</p>
+
+<div class="factbox">
+  <p><strong>Auf einen Blick</strong></p>
+  <p>• <strong>Quelle:</strong> IT.NRW, Pressemitteilung 246/26 vom 27. 08. 2026 nebst Anhangtabelle</p>
+  <p>• <strong>NRW gesamt:</strong> 20.191 genehmigte Wohnungen (−1,5 %)</p>
+  <p>• <strong>Köln:</strong> 1.377 genehmigte Wohnungen (+7,1 %)</p>
+  <p>• <strong>Rhein-Erft-Kreis:</strong> 720 (+22,4 %) · <strong>Leverkusen:</strong> 116 (−2,5 %) · <strong>Bonn:</strong> 457 (+73,8 %)</p>
+  <p>• <strong>Anteil Mehrfamilienhaus an Kölner Neubauwohnungen:</strong> 90,5 % (Vorjahr 84,0 %)</p>
+</div>
+
+<h2>Was das für Eigentümer bedeutet</h2>
+<p>Eine Genehmigung ist kein fertiges Haus. Zwischen Genehmigung und Bezug liegen in der Regel mehrere Jahre, und ein Teil der genehmigten Vorhaben wird nie gebaut. Die Zahlen sagen deshalb nichts über das Angebot in diesem Herbst – wohl aber etwas über den Wettbewerb danach.</p>
+<p>Für Eigentümer einer Kölner <strong>Eigentumswohnung</strong> heißt das: Die Neubaukonkurrenz im Geschosswohnungsbau nimmt in Köln zu, während sie landesweit abnimmt. Wer ein <strong>Einfamilienhaus</strong> in Köln verkaufen möchte, steht umgekehrt vor einem Markt, in dem neu gebaute Alternativen im Stadtgebiet seltener werden – im Rhein-Erft-Kreis dagegen deutlich häufiger.</p>
+
+<div class="doc-note">
+  <p><strong>Einordnung:</strong> Auf den heute erzielbaren Preis wirkt das nicht. Es verschiebt aber, mit welchen Objekten ein Verkaufsangebot in ein bis drei Jahren verglichen wird. Das gehört zu den Größen, die in eine belastbare Einschätzung des eigenen Objekts einfließen.</p>
+</div>
+
+<h2>Ausblick</h2>
+<p>Die Zahlen für die ersten drei Quartale 2026 folgen erfahrungsgemäß im Spätherbst; dann lässt sich prüfen, ob Köln seinen Vorsprung hält. Wie viele der genehmigten Vorhaben tatsächlich gebaut werden, zeigt erst die Statistik der Baufertigstellungen.</p>
+
+<div class="news-sources">
+  <h2>Quellen</h2>
+  <ol>
+    <li>Information und Technik Nordrhein-Westfalen (IT.NRW), Pressemitteilung 246/26 „Baugenehmigungen für Wohnungen im 1. Halbjahr 2026“, veröffentlicht 27. 08. 2026, abgerufen 31. 08. 2026 – <a href="https://www.it.nrw/thema/bautaetigkeit" target="_blank" rel="noopener">https://www.it.nrw/thema/bautaetigkeit</a></li>
+    <li>IT.NRW, Anhangtabelle zur Pressemitteilung 246/26 „Baugenehmigung von Wohnungen in Nordrhein-Westfalen im 1. Halbjahr 2025 und 2026 … für kreisfreie Städte und Kreise“ (XLSX), veröffentlicht 27. 08. 2026, abgerufen 31. 08. 2026 – <a href="https://www.it.nrw/system/files/media/document/file/246_26_anhangtabelle.xlsx" target="_blank" rel="noopener">https://www.it.nrw/system/files/media/document/file/246_26_anhangtabelle.xlsx</a></li>
+  </ol>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Unverbindliche Immobilienbewertung</span>
+        <h2>Was heißt das für Ihr Objekt?</h2>
+        <p>Ob die anziehende Neubautätigkeit im Kölner Geschosswohnungsbau Ihre Immobilie betrifft, hängt vom Stadtteil und vom Gebäudetyp ab. Ich sehe mir das an – unverbindlich, diskret und ohne Zeitdruck.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEITERE NEWS -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav" style="margin-top:0;padding:var(--space-6);background:var(--gray-100);border-radius:var(--radius);">
+        <h3 style="font-size:0.9rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray-600);margin-bottom:var(--space-4);">Mehr aus Kölner Immobilien NEWS</h3>
+        <div class="ratgeber-nav-links" style="display:flex;flex-wrap:wrap;gap:var(--space-2);">
+          <a href="https://romanbecker.de/news/" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Alle Meldungen</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/ratgeber/bau-turbo-baurechtsnovelle.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Bau-Turbo (§ 246e BauGB)</a>
+          <a href="https://romanbecker.de/ratgeber/wertentwicklung-immobilien-koeln.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Wertentwicklung Köln</a>
+          <a href="https://romanbecker.de/immobilienmakler-rhein-erft/" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Rhein-Erft-Kreis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/news/">Kölner Immobilien NEWS</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler für Köln &amp; das Rheinland tätig. Die Beiträge unter Kölner Immobilien NEWS dienen der allgemeinen Information und ersetzen keine Rechts-, Steuer- oder Finanzberatung im Einzelfall. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
