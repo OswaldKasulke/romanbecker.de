@@ -9,6 +9,8 @@ $allowedOrigins = [
     'https://www.immobilienmakler-bergisch-gladbach.de',
     'https://leverkusen-makler.de',
     'https://www.leverkusen-makler.de',
+    'https://makler-schael-sick.de',
+    'https://www.makler-schael-sick.de',
 ];
 if (in_array($origin, $allowedOrigins, true)) {
     header('Access-Control-Allow-Origin: ' . $origin);
@@ -97,6 +99,7 @@ $type = $_POST['type'] ?? 'kontakt';
 $siteLabels = [
     'BGL' => 'immobilienmakler-bergisch-gladbach.de',
     'LEV' => 'leverkusen-makler.de',
+    'SS'  => 'makler-schael-sick.de',
 ];
 $siteLabel = $siteLabels[$site] ?? 'romanbecker.de';
 $subject = $type === 'immobilienbewertung'
@@ -200,8 +203,8 @@ try {
 
     $mail->setFrom(SMTP_USER, 'Webseite Roman Becker');
     $mail->addAddress('rb@datenschwester.de', 'Roman Becker');
-    // Beide Maklerseiten gehen an Doreen, sonst an keine weitere Adresse.
-    if ($site === 'BGL' || $site === 'LEV') {
+    // Die Maklerseiten gehen an Doreen, sonst an keine weitere Adresse.
+    if ($site === 'BGL' || $site === 'LEV' || $site === 'SS') {
         $mail->addAddress('Doreen.Kaschner@evernest.com', 'Doreen Kaschner');
     }
     if (!empty($email)) {
