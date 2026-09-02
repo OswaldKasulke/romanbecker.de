@@ -1,4 +1,7 @@
 name: Deploy STARK website to immobilienmakler-bergisch-gladbach.de
+# NOTFALLWEG. Der regulaere Deploy laeuft im Repo OswaldKasulke/stark
+# (.github/workflows/deploy-bgl.yml) automatisch bei jedem Push auf main.
+# Diesen hier nur starten, wenn der dortige Lauf klemmt.
 # Direct valuation and background lead delivery refreshed 2026-08-22
 # Manual deploy trigger 2026-08-25
 
@@ -50,6 +53,12 @@ jobs:
           local-dir: ./stark-site/out/
           server-dir: /immobilienmakler-bergisch-gladbach.de/
           dangerous-clean-slate: false
+          # Denselben State-Namen wie der regulaere Deploy im Repo stark
+          # (.github/workflows/deploy-bgl.yml). Zwei getrennte States fuer
+          # dasselbe Serververzeichnis laufen sonst auseinander, und der
+          # naechste Lauf scheitert mit 550 auf _next/<build-id>.
+          state-name: .ftp-deploy-sync-state-bgl-v2.json
+          timeout: 120000
 
       - name: Verify published pages
         run: |
