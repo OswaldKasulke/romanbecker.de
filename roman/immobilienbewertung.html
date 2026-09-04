@@ -59,7 +59,7 @@
 
   <title>Kostenlose Immobilienbewertung Köln | Immobilienmakler Köln</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta name="description" content="Kostenlose Immobilienbewertung für Köln in 1 Minute. Wohnung, Haus, Mehrfamilienhaus oder Grundstück — jetzt unverbindlich Wert ermitteln.">
+  <meta name="description" content="Kostenlose Bewertung von Haus oder Wohnung mit adressgenauer Richtwertzone und dem örtlich zuständigen amtlichen Immobilienrichtwertmodell 2026.">
   <link rel="canonical" href="https://romanbecker.de/immobilienbewertung.html">
 
   <!-- Open Graph -->
@@ -704,7 +704,7 @@
                   Haus
                 </div>
               </label>
-              <label class="radio-card">
+              <label class="radio-card" style="display:none">
                 <input type="radio" name="objektart" value="mehrfamilienhaus">
                 <div class="radio-card__label">
                   <span class="radio-card__icon">
@@ -713,7 +713,7 @@
                   Mehrfamilienhaus
                 </div>
               </label>
-              <label class="radio-card">
+              <label class="radio-card" style="display:none">
                 <input type="radio" name="objektart" value="grundstueck">
                 <div class="radio-card__label">
                   <span class="radio-card__icon">
@@ -722,6 +722,17 @@
                   Grundstück
                 </div>
               </label>
+            </div>
+
+            <div class="field" id="field-bauweise" style="display:none;margin-top:var(--space-6)">
+              <label for="bauweise">Bauweise *</label>
+              <select id="bauweise" name="bauweise">
+                <option value="">Bitte wählen</option>
+                <option value="1">Freistehend</option>
+                <option value="2">Doppelhaushälfte</option>
+                <option value="4">Reihenmittelhaus</option>
+                <option value="5">Reihenendhaus</option>
+              </select>
             </div>
 
             <div class="step__buttons">
@@ -802,8 +813,10 @@
 
           <!-- STEP 4: Zusatzinfos -->
           <div class="step" data-step="4">
-            <h2 class="step__title">Weitere Angaben</h2>
-            <p class="step__subtitle" id="step3-subtitle">Helfen Sie mir, den Wert genauer einzuschätzen.</p>
+            <h2 class="step__title">Amtliche Modellmerkmale</h2>
+            <p class="step__subtitle" id="step3-subtitle">Nur die Merkmale, die der zuständige Gutachterausschuss für diese Adresse und Objektart verwendet.</p>
+
+            <div id="field-modellfelder"></div>
 
             <!-- Zimmer (Wohnung / Haus) -->
             <div class="field" id="field-zimmer" style="display:none">
@@ -873,10 +886,10 @@
 
           <!-- STEP 5: Zustand + Baujahr -->
           <div class="step" data-step="5">
-            <h2 class="step__title">Zustand & Baujahr</h2>
-            <p class="step__subtitle">In welchem Zustand ist Ihre Immobilie in Schulnoten?</p>
+            <h2 class="step__title">Baujahr</h2>
+            <p class="step__subtitle">Das Baujahr wird nach der amtlichen Koeffiziententabelle umgerechnet. Ein eigener pauschaler Zustandsfaktor wird nicht verwendet.</p>
 
-            <div class="condition-options">
+            <div class="condition-options" style="display:none">
               <label class="condition-option">
                 <input type="radio" name="zustand" value="1" required>
                 <div class="condition-option__label">
@@ -994,6 +1007,8 @@
               <input type="checkbox" id="gdpr" name="gdpr" required>
               <label for="gdpr">Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden. <a href="/datenschutz.html">Datenschutzerklärung</a></label>
             </div>
+
+            <p id="calculation-error" class="field__error" role="alert" style="display:none;margin-top:1rem;"></p>
 
             <div class="step__buttons">
               <button type="button" class="btn btn--secondary" onclick="prevStep(6)">Zurück</button>
@@ -1132,22 +1147,15 @@
     function prepareStep3() {
       var art = document.querySelector('input[name="objektart"]:checked');
       if (!art) return;
-      var isGrund = art.value === 'grundstueck';
-      var isMfh = art.value === 'mehrfamilienhaus';
+      var isHaus = art.value === 'haus';
       var fieldWf = document.getElementById('field-wohnflaeche');
       var fieldGf = document.getElementById('field-grundstueck');
       var wfInput = document.getElementById('wohnflaeche');
       var wfHint = document.getElementById('wohnflaeche-hint');
-      fieldWf.style.display = isGrund ? 'none' : 'block';
-      wfInput.required = !isGrund && !isMfh;
-      wfHint.style.display = isMfh ? 'block' : 'none';
-      fieldGf.style.display = 'block';
-      var stepTitle = document.querySelector('.step[data-step="3"] .step__title');
-      if (isGrund) {
-        stepTitle.textContent = 'Wie groß ist das Grundstück?';
-      } else {
-        stepTitle.textContent = 'Wie groß ist die Immobilie?';
-      }
+      fieldWf.style.display = 'block';
+      wfInput.required = true;
+      wfHint.style.display = 'none';
+      fieldGf.style.display = isHaus ? 'block' : 'none';
     }
 
     function nextStep(from) {
@@ -1155,17 +1163,11 @@
       if (from === 1) {}
       if (from === 2) prepareStep3();
       if (from === 3) prepareStep4();
-      var next = from + 1;
-      // Grundstück: Schritt 5 (Zustand & Baujahr) überspringen
-      if (next === 5 && isGrundstueck()) next = 6;
-      showStep(next);
+      showStep(from + 1);
     }
 
     function prevStep(from) {
-      var prev = from - 1;
-      // Grundstück: Schritt 5 beim Zurückgehen überspringen
-      if (prev === 5 && isGrundstueck()) prev = 4;
-      showStep(prev);
+      showStep(from - 1);
     }
 
     // ===========================
@@ -1183,15 +1185,7 @@
       fieldErschliessung.style.display = 'none';
       fieldMiete.style.display = 'none';
 
-      if (art === 'wohnung' || art === 'haus') {
-        fieldZimmer.style.display = 'block';
-        fieldMiete.style.display = 'block';
-      } else if (art === 'mehrfamilienhaus') {
-        fieldEinheiten.style.display = 'block';
-        fieldMiete.style.display = 'block';
-      } else if (art === 'grundstueck') {
-        fieldErschliessung.style.display = 'block';
-      }
+      modellfelderBauen();
     }
 
     // ===========================
@@ -1209,6 +1203,10 @@
             el.style.borderColor = '#e74c3c';
             setTimeout(function() { el.style.borderColor = ''; }, 1500);
           });
+        }
+        if (art && art.value === 'haus' && !document.getElementById('bauweise').value) {
+          document.getElementById('field-bauweise').classList.add('field--error');
+          valid = false;
         }
       }
 
@@ -1242,14 +1240,14 @@
         var fieldWf = document.getElementById('field-wohnflaeche');
         var art = document.querySelector('input[name="objektart"]:checked').value;
 
-        if (art !== 'grundstueck' && art !== 'mehrfamilienhaus' && (!wf.value || parseFloat(wf.value) < 10)) {
+        if (!wf.value || parseFloat(wf.value) < 10) {
           fieldWf.classList.add('field--error');
           valid = false;
         } else {
           fieldWf.classList.remove('field--error');
         }
 
-        if (art === 'grundstueck') {
+        if (art === 'haus') {
           var gf = document.getElementById('grundstuecksflaeche');
           var fieldGf = document.getElementById('field-grundstueck');
           if (!gf.value || parseFloat(gf.value) < 10) {
@@ -1262,33 +1260,14 @@
       }
 
       if (step === 4) {
-        var artStep4 = document.querySelector('input[name="objektart"]:checked').value;
-        var mieteErrorEl = document.getElementById('miete-group-error');
-        if (artStep4 === 'mehrfamilienhaus') {
-          var mIstM = parseFloat((document.getElementById('miete_ist').value || '').replace(',', '.')) || 0;
-          var mIstJ = parseFloat((document.getElementById('miete_ist_jahr').value || '').replace(',', '.')) || 0;
-          var mSollM = parseFloat((document.getElementById('miete_soll').value || '').replace(',', '.')) || 0;
-          var mSollJ = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',', '.')) || 0;
-          if (!(mIstM || mIstJ || mSollM || mSollJ)) {
-            mieteErrorEl.style.display = 'block';
-            valid = false;
-          } else {
-            mieteErrorEl.style.display = 'none';
-          }
-        } else if (mieteErrorEl) {
-          mieteErrorEl.style.display = 'none';
-        }
+        modellAnforderungen().filter(function (key) { return ['EGART','WHNFL','FLAE','BJ'].indexOf(key) < 0; }).forEach(function (key) {
+          if (modellMerkmale[key] === undefined || modellMerkmale[key] === '') valid = false;
+        });
       }
 
       if (step === 5) {
-        var zustand = document.querySelector('input[name="zustand"]:checked');
-        if (!zustand) {
-          valid = false;
-          document.querySelectorAll('.condition-option__label').forEach(function(el) {
-            el.style.borderColor = '#e74c3c';
-            setTimeout(function() { el.style.borderColor = ''; }, 1500);
-          });
-        }
+        var baujahr = document.getElementById('baujahr');
+        if (!baujahr.value || parseFloat(baujahr.value) < 1760) valid = false;
       }
 
       if (step === 6) {
@@ -1336,6 +1315,16 @@
         this.closest('.field').classList.remove('field--error');
       });
     });
+    document.querySelectorAll('input[name="objektart"]').forEach(function (el) {
+      el.addEventListener('change', function () {
+        document.getElementById('field-bauweise').style.display = this.value === 'haus' ? 'block' : 'none';
+      });
+    });
+    document.getElementById('immo_plz').addEventListener('input', function () {
+      gemeinsameKandidaten = [];
+      letzteAdresse = null;
+      if (gemeinsameAuswahlId && hausnummerAus(strasseFeld.value)) lageErmitteln();
+    });
 
     // ===========================
     // LAGE: STRASSE -> VEEDEL
@@ -1347,6 +1336,7 @@
     // erkannteLage ist die einzige Stelle, an der die Bewertung die Lage liest.
     var erkannteLage = null;   // {veedel, plz, ueberHausnummer} oder null
     var gemeinsameAuswahlId = '', gemeinsameAuswahlName = '', gemeinsameKandidaten = [];
+    var modellMerkmale = {}, letztesGemeinsamesErgebnis = null;
     var letzteAdresse = null;  // zuletzt ausgewerteter Feldinhalt
 
     var strasseFeld   = document.getElementById('immo_strasse');
@@ -1358,6 +1348,54 @@
     var veedelWrapper = document.getElementById('field-immo-veedel');
     var plzHinweis    = document.getElementById('immo-plz-hinweis');
     var vorschlagIndex = -1;
+
+    function modellAttribute() {
+      var art = document.querySelector('input[name="objektart"]:checked');
+      var a = {
+        WHNFL: parseFloat(document.getElementById('wohnflaeche').value) || 0,
+        BJ: parseFloat(document.getElementById('baujahr').value) || 0
+      };
+      if (art && art.value === 'haus') {
+        a.FLAE = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
+        a.EGART = parseInt(document.getElementById('bauweise').value, 10) || 0;
+      }
+      Object.keys(modellMerkmale).forEach(function (key) {
+        if (modellMerkmale[key] !== '') a[key] = parseFloat(modellMerkmale[key]);
+      });
+      return a;
+    }
+
+    function modellAnforderungen() {
+      var art = document.querySelector('input[name="objektart"]:checked');
+      if (!art || !gemeinsameKandidaten.length || !window.GemeinsameBewertung) return [];
+      return window.GemeinsameBewertung.requiredFields(art.value, gemeinsameKandidaten, modellAttribute());
+    }
+
+    function modellfelderBauen() {
+      var box = document.getElementById('field-modellfelder');
+      var art = document.querySelector('input[name="objektart"]:checked');
+      if (!box || !art) return;
+      var extras = modellAnforderungen().filter(function (key) {
+        return ['EGART', 'WHNFL', 'FLAE', 'BJ'].indexOf(key) < 0;
+      });
+      if (!extras.length) {
+        box.innerHTML = '<p class="field__hint">Für dieses Modell sind keine weiteren Angaben nötig.</p>';
+        return;
+      }
+      box.innerHTML = extras.map(function (key) {
+        var info = window.GemeinsameBewertung.fieldInfo(key, art.value, gemeinsameKandidaten, modellAttribute());
+        var label = info.label + (info.unit ? ' in ' + info.unit : '') + ' *';
+        if (info.kind === 'select') {
+          return '<div class="field"><label for="modell-' + key + '">' + label + '</label><select id="modell-' + key + '" data-modell="' + key + '"><option value="">Bitte wählen</option>' + info.options.map(function (o) {
+            return '<option value="' + o.value + '"' + (String(modellMerkmale[key] || '') === String(o.value) ? ' selected' : '') + '>' + o.label + '</option>';
+          }).join('') + '</select></div>';
+        }
+        return '<div class="field"><label for="modell-' + key + '">' + label + '</label><input id="modell-' + key + '" type="number" data-modell="' + key + '" value="' + (modellMerkmale[key] || '') + '"></div>';
+      }).join('');
+      box.querySelectorAll('[data-modell]').forEach(function (el) {
+        el.addEventListener('input', function () { modellMerkmale[this.getAttribute('data-modell')] = this.value; });
+      });
+    }
 
     // Zweiter Datensatz: der Rhein-Erft-Kreis. Anderer Zuschnitt als Köln —
     // Ortseinheit ist die Gemeinde, und 655 Straßennamen kommen in mehreren
@@ -1397,7 +1435,7 @@
       if (!api) return;
       var reineStrasse = text.replace(/[\s,]+\d+\s*[a-zA-Z]?\s*$/, '').trim();
       if (reineStrasse.length < 3) { vorschlaegeSchliessen(); return; }
-      var namen = api.search(reineStrasse, 10);
+      var namen = api.search(reineStrasse, 10, plzFeld ? plzFeld.value : '');
       if (!namen.length) { vorschlaegeSchliessen(); return; }
 
       vorschlagListe.innerHTML = namen.map(function (e, i) {
@@ -1604,7 +1642,7 @@
       // Straße/Ort-Kombination bleibt beim anschliessenden Tippen der Hausnummer
       // erhalten; die Hausnummer kann mehrere Preisgebiete liefern.
       if (gemeinsameAuswahlId && window.GemeinsameBewertung) {
-        var gemeinsam = window.GemeinsameBewertung.resolve(gemeinsameAuswahlId, hausnummerAus(text));
+        var gemeinsam = window.GemeinsameBewertung.resolve(gemeinsameAuswahlId, hausnummerAus(text), plzFeld ? plzFeld.value : '');
         gemeinsameKandidaten = gemeinsam.candidates || [];
         if (!gemeinsam.valid) {
           lageZeile.className = 'lage-treffer lage-treffer--frage';
@@ -1617,10 +1655,19 @@
         } else {
           erkanntesUmland = {gemeinde:c.city, plz:c.zip, ortsteil:c.area, region:c.region};
         }
-        if (plzFeld) { plzFeld.value = c.zip; plzAutomatisch(true); }
         if (ortFeld) ortFeld.value = c.city;
         lageZeile.className = 'lage-treffer';
         lageZeile.innerHTML = 'Lage erkannt: <strong>' + c.city + (c.area ? '-' + c.area : '') + '</strong> · PLZ ' + c.zip;
+        return;
+      }
+
+      // Ohne ausgewählten Treffer aus dem Supermaster gibt es keine zweite,
+      // weichere Adressauflösung mehr. Dadurch können weder eine nur ähnliche
+      // Straße noch eine automatisch ersetzte PLZ in die Bewertung gelangen.
+      if (!gemeinsameAuswahlId) {
+        gemeinsameKandidaten = [];
+        lageZeile.className = 'lage-treffer lage-treffer--frage';
+        lageZeile.textContent = 'Bitte Straße aus der Trefferliste wählen und die vollständige Adresse prüfen.';
         return;
       }
 
@@ -1686,7 +1733,6 @@
         // Waehrend des Tippens mitlaufen lassen: sobald Straße und Hausnummer
         // stehen, ist die Liste erledigt und Weiter/Enter wieder frei.
         lageErmitteln();
-        if (erkannteLage && hausnummerAus(text)) vorschlaegeSchliessen();
       });
       strasseFeld.addEventListener('change', lageErmitteln);
       strasseFeld.addEventListener('blur', function () {
@@ -1993,6 +2039,24 @@
       var zustand = zustandEl ? zustandEl.value : '3';
       var plz = (document.getElementById('immo_plz').value || '').trim();
 
+      // Verbindlicher gemeinsamer 2026-Kern für Wohnungen und Häuser ohne
+      // Mietwertverfahren. Die nachfolgende Altrechnung bleibt nur noch für
+      // historische, in der Oberfläche nicht angebotene Objektarten stehen.
+      if (art === 'wohnung' || art === 'haus') {
+        if (!gemeinsameKandidaten.length || !window.GemeinsameBewertung) return null;
+        var a = modellAttribute();
+        var irw = window.GemeinsameBewertung.calculate({type: art, attributes: a}, gemeinsameKandidaten);
+        letztesGemeinsamesErgebnis = irw;
+        rw.push('Adresse: ' + strasseFeld.value + ', ' + plz + ' ' + (ortFeld.value || '') + '.');
+        rw.push('IRW-Zone: ' + irw.zone_id + '; Stichtag ' + irw.stichtag + '; Ausgangswert ' + irw.immobilienrichtwert_eur_m2 + ' EUR/m2.');
+        rw.push('Modell: ' + irw.modellquelle + '; Rechenart ' + irw.berechnungsart + '.');
+        rw.push('Objektmerkmale: ' + JSON.stringify(a) + '.');
+        rw.push('Angepasster Wert: ' + irw.pricePerSqm + ' EUR/m2; gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
+        if (irw.mehrdeutig) rw.push('Mehrere vollständige Varianten wurden gerechnet; gemäß Regel wurde der höchste Endwert gewählt: ' + irw.varianten.map(function (v) { return v.zone_id + ': ' + v.value + ' EUR'; }).join('; ') + '.');
+        lastRechenweg = rw.join('\n');
+        return irw.value;
+      }
+
       // Zustandsfaktor (Schulnoten 1–6)
       var conditionMult = { '1': 1.2, '2': 1.1, '3': 1.0, '4': 0.9, '5': 0.8, '6': 0.7 };
       var faktor = conditionMult[zustand] || 1.0;
@@ -2162,11 +2226,20 @@
     function submitForm() {
       if (!validateStep(6)) return;
 
-
-      var value = calculateValue();
+      var calculationError = document.getElementById('calculation-error');
+      calculationError.style.display = 'none';
+      calculationError.textContent = '';
+      var value;
+      try {
+        value = calculateValue();
+      } catch (error) {
+        calculationError.textContent = error && error.message ? error.message : 'Die Bewertung konnte mit diesen Angaben nicht berechnet werden.';
+        calculationError.style.display = 'block';
+        return;
+      }
       if (value === null) { showStep(4); return; }
-      var low = Math.round(value * 0.9 / 5000) * 5000;
-      var high = Math.round(value * 1.1 / 5000) * 5000;
+      var low = letztesGemeinsamesErgebnis ? letztesGemeinsamesErgebnis.low : Math.round(value * 0.9 / 5000) * 5000;
+      var high = letztesGemeinsamesErgebnis ? letztesGemeinsamesErgebnis.high : Math.round(value * 1.1 / 5000) * 5000;
       var art = document.querySelector('input[name="objektart"]:checked').value;
 
       // Bedienen wir diese Lage? Ja, wenn die Adresse auf ein Veedel oder eine
@@ -2176,8 +2249,7 @@
       // Immobilie in Hamburg nichts aussagt. Dann lieber keine Zahl als eine
       // erfundene.
       var plzErgebnis = (document.getElementById('immo_plz').value || '').trim();
-      var bedient = !!(erkannteLage || erkanntesUmland ||
-                       Object.prototype.hasOwnProperty.call(plzWohnPreise, plzErgebnis));
+      var bedient = gemeinsameKandidaten.length > 0 && !!letztesGemeinsamesErgebnis;
       var ausserhalb = document.getElementById('result-ausserhalb');
       var wertZeile = document.getElementById('result-value');
       var spanneZeile = document.getElementById('result-range');
@@ -2206,8 +2278,7 @@
       var mieteIstJahrCheck  = parseFloat((document.getElementById('miete_ist_jahr').value  || '').replace(',','.')) || 0;
       var mieteSollCheck     = parseFloat((document.getElementById('miete_soll').value     || '').replace(',','.')) || 0;
       var mieteSollJahrCheck = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',','.')) || 0;
-      var keineMiete = art !== 'grundstueck' && !(mieteIstCheck || mieteIstJahrCheck || mieteSollCheck || mieteSollJahrCheck);
-      document.getElementById('result-keine-miete-hinweis').style.display = (bedient && keineMiete) ? 'block' : 'none';
+      document.getElementById('result-keine-miete-hinweis').style.display = 'none';
 
       // Objekt-Typ-Hinweis je nach Objektart anpassen
       var objekttypHinweis = document.getElementById('result-note-objekttyp');
@@ -2233,11 +2304,13 @@
       var formData = new FormData();
       formData.append('type', 'immobilienbewertung');
       formData.append('objektart', document.querySelector('input[name="objektart"]:checked').value);
+      formData.append('bauweise', document.getElementById('bauweise').value);
       formData.append('wohnflaeche', document.getElementById('wohnflaeche').value);
       formData.append('grundstuecksflaeche', document.getElementById('grundstuecksflaeche').value);
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
       formData.append('zustand', zustandEl ? zustandEl.value : '');
       formData.append('baujahr', document.getElementById('baujahr').value);
+      formData.append('modellmerkmale', JSON.stringify(modellAttribute()));
       formData.append('zimmer', document.getElementById('zimmer').value);
       formData.append('einheiten', document.getElementById('einheiten').value);
       formData.append('erschliessung', document.getElementById('erschliessung').value);
