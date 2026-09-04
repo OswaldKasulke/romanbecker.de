@@ -743,7 +743,7 @@
                        aria-controls="strassen-vorschlaege">
                 <ul class="vorschlaege" id="strassen-vorschlaege" role="listbox"></ul>
               </div>
-              <p class="field__hint">Optional – mit Hausnummer wird das Veedel exakt bestimmt.</p>
+              <p class="field__hint">Gemeinsame Suche für Köln, Rhein-Erft-Kreis, Leverkusen und Bergisch Gladbach. Mit Hausnummer wird das Preisgebiet exakt bestimmt.</p>
               <p class="lage-treffer" id="immo-lage" aria-live="polite"></p>
             </div>
 
@@ -1013,7 +1013,7 @@
 
               <div id="result-ausserhalb" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:1rem 1.25rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
                 <p style="margin:0 0 0.75rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Für diese Lage kann ich leider keine Online-Bewertung anbieten.</p>
-                <p style="margin:0 0 0.75rem;font-size:0.9375rem;line-height:1.6;">Das Rechenmodell liegt auf Köln und dem Rhein-Erft-Kreis — dort kenne ich mich sehr gut aus. Für <strong id="result-ausserhalb-plz">Ihre Postleitzahl</strong> könnte ich nur einen Durchschnittswert nennen, und der wäre keine Bewertung, sondern eine Zahl ins Blaue.</p>
+                <p style="margin:0 0 0.75rem;font-size:0.9375rem;line-height:1.6;">Das gemeinsame Rechenmodell deckt Köln, den Rhein-Erft-Kreis, Leverkusen und Bergisch Gladbach ab. Für <strong id="result-ausserhalb-plz">Ihre Postleitzahl</strong> liegt keine freigegebene regionale Preisgrundlage vor.</p>
                 <p style="margin:0 0 0.75rem;font-size:0.9375rem;line-height:1.6;">Ihre Angaben sind angekommen. Ich sehe mir die Immobilie persönlich an und melde mich mit einer belastbaren Einschätzung — oder vermittle Sie an einen Kollegen vor Ort, der den Markt dort so kennt wie ich Köln.</p>
                 <p style="margin:0 0 0.75rem;font-size:0.9375rem;line-height:1.6;">Vielen Dank für Ihr Verständnis.</p>
                 <p style="margin:0;font-size:0.9375rem;line-height:1.6;">Ihr Roman Becker</p>
@@ -1218,6 +1218,17 @@
         lageErmitteln();
         var immoPlz = document.getElementById('immo_plz');
         var fieldImmoPlz = document.getElementById('field-immo-plz');
+        var fieldImmoStrasse = document.getElementById('field-immo-strasse');
+        if (!gemeinsameKandidaten.length) {
+          fieldImmoStrasse.classList.add('field--error');
+          lageZeile.className = 'lage-treffer lage-treffer--frage';
+          if (!lageZeile.textContent) {
+            lageZeile.textContent = 'Bitte eine gültige Straße und Hausnummer aus dem gemeinsamen Straßenverzeichnis auswählen.';
+          }
+          valid = false;
+        } else {
+          fieldImmoStrasse.classList.remove('field--error');
+        }
         if (!immoPlz.value || immoPlz.value.length < 5) {
           fieldImmoPlz.classList.add('field--error');
           valid = false;
@@ -1335,6 +1346,7 @@
     // Hausnummernbereiche der Strassen, die durch mehrere Veedel laufen.
     // erkannteLage ist die einzige Stelle, an der die Bewertung die Lage liest.
     var erkannteLage = null;   // {veedel, plz, ueberHausnummer} oder null
+    var gemeinsameAuswahlId = '', gemeinsameAuswahlName = '', gemeinsameKandidaten = [];
     var letzteAdresse = null;  // zuletzt ausgewerteter Feldinhalt
 
     var strasseFeld   = document.getElementById('immo_strasse');
@@ -1381,53 +1393,29 @@
     }
 
     function vorschlaegeZeigen(text) {
-      var api = veedelApi();
+      var api = window.GemeinsameBewertung;
       if (!api) return;
       var reineStrasse = text.replace(/[\s,]+\d+\s*[a-zA-Z]?\s*$/, '').trim();
       if (reineStrasse.length < 3) { vorschlaegeSchliessen(); return; }
-
-      // Die Suche liefert je Veedel und PLZ einen Treffer — fuer die Liste
-      // interessiert nur der Strassenname, die Lage klaert die Hausnummer.
-      // Grosszuegig abfragen: die Lagen einer Strasse muessen vollstaendig im
-      // Ergebnis stehen, sonst wuerde eine Strasse durch mehrere Veedel
-      // faelschlich als eindeutig angezeigt.
-      var roh = api.strassen(reineStrasse, 300), namen = [], gesehen = {};
-      for (var i = 0; i < roh.length && namen.length < 7; i++) {
-        var n = roh[i].n;
-        if (gesehen[n]) continue;
-        gesehen[n] = 1;
-        var lagen = roh.filter(function (r) { return r.n === n; });
-        var veedel = lagen.map(function (r) { return r.o.replace(/^Köln-/, ''); });
-        var eindeutig = veedel.every(function (v) { return v === veedel[0]; });
-        namen.push({name: n, ort: 'Köln',
-                    hinweis: eindeutig ? 'Köln-' + veedel[0] : 'mehrere Veedel – Hausnummer angeben'});
-      }
-
-      // Rhein-Erft-Kreis anhaengen: dort steht je Gemeinde eine eigene Zeile,
-      // weil derselbe Straßenname in bis zu zehn Gemeinden vorkommt.
-      var um = umlandApi();
-      if (um) {
-        var rohU = um.strassen(reineStrasse, 12);
-        for (var u = 0; u < rohU.length && namen.length < 9; u++) {
-          namen.push({name: rohU[u].n, ort: rohU[u].gemeinde,
-                      hinweis: rohU[u].gemeinde + ortZusatz(rohU[u].gemeinde, rohU[u].ortsteil)});
-        }
-      }
+      var namen = api.search(reineStrasse, 10);
       if (!namen.length) { vorschlaegeSchliessen(); return; }
 
       vorschlagListe.innerHTML = namen.map(function (e, i) {
         return '<li role="option" id="vorschlag-' + i + '" data-name="' + e.name.replace(/"/g, '&quot;') +
-               '" data-ort="' + e.ort.replace(/"/g, '&quot;') + '">' +
-               e.name + '<span>' + e.hinweis + '</span></li>';
+               '" data-id="' + e.id.replace(/"/g, '&quot;') + '" data-ort="' + e.city.replace(/"/g, '&quot;') + '">' +
+               e.name + '<span>' + e.city + (e.areas.length === 1 ? ' · ' + e.areas[0] : '') + '</span></li>';
       }).join('');
       vorschlagListe.classList.add('offen');
       strasseFeld.setAttribute('aria-expanded', 'true');
       vorschlagIndex = -1;
     }
 
-    function vorschlagUebernehmen(name, ort) {
+    function vorschlagUebernehmen(name, ort, id) {
       var nr = hausnummerAus(strasseFeld.value);
       strasseFeld.value = nr ? name + ' ' + nr : name + ' ';
+      gemeinsameAuswahlId = id || '';
+      gemeinsameAuswahlName = name || '';
+      gemeinsameKandidaten = [];
       // Der Ort entscheidet, in welchem Verzeichnis gesucht wird — beim
       // Übernehmen also mitsetzen, sonst sucht "Akazienweg – Hürth" in Köln.
       if (ort && ortFeld) { ortFeld.value = ort; letzteAdresse = null; }
@@ -1612,6 +1600,30 @@
       veedelFeld.innerHTML = '';
       if (!text) { lageZeile.textContent = ''; lageZeile.className = 'lage-treffer'; return; }
 
+      // Gemeinsamer Master fuer alle vier Rechner. Die ausgewaehlte
+      // Straße/Ort-Kombination bleibt beim anschliessenden Tippen der Hausnummer
+      // erhalten; die Hausnummer kann mehrere Preisgebiete liefern.
+      if (gemeinsameAuswahlId && window.GemeinsameBewertung) {
+        var gemeinsam = window.GemeinsameBewertung.resolve(gemeinsameAuswahlId, hausnummerAus(text));
+        gemeinsameKandidaten = gemeinsam.candidates || [];
+        if (!gemeinsam.valid) {
+          lageZeile.className = 'lage-treffer lage-treffer--frage';
+          lageZeile.textContent = gemeinsam.message;
+          return;
+        }
+        var c = gemeinsameKandidaten[0];
+        if (c.region === 'koeln') {
+          erkannteLage = {veedel:c.area, plz:c.zip, ueberHausnummer:!!hausnummerAus(text)};
+        } else {
+          erkanntesUmland = {gemeinde:c.city, plz:c.zip, ortsteil:c.area, region:c.region};
+        }
+        if (plzFeld) { plzFeld.value = c.zip; plzAutomatisch(true); }
+        if (ortFeld) ortFeld.value = c.city;
+        lageZeile.className = 'lage-treffer';
+        lageZeile.innerHTML = 'Lage erkannt: <strong>' + c.city + (c.area ? '-' + c.area : '') + '</strong> · PLZ ' + c.zip;
+        return;
+      }
+
       // Das Ortsfeld entscheidet, welches Verzeichnis zuerst gefragt wird.
       // Steht dort eine Gemeinde des Kreises, wird sie als Eingrenzung
       // weitergereicht — sonst bliebe "Akazienweg" zwischen zehn Gemeinden offen.
@@ -1667,6 +1679,9 @@
     if (strasseFeld) {
       strasseFeld.addEventListener('input', function () {
         var text = this.value.trim();
+        if (gemeinsameAuswahlName && text.indexOf(gemeinsameAuswahlName) !== 0) {
+          gemeinsameAuswahlId = ''; gemeinsameAuswahlName = ''; gemeinsameKandidaten = [];
+        }
         vorschlaegeZeigen(text);
         // Waehrend des Tippens mitlaufen lassen: sobald Straße und Hausnummer
         // stehen, ist die Liste erledigt und Weiter/Enter wieder frei.
@@ -1687,7 +1702,8 @@
           e.preventDefault();
           if (eintraege.length && vorschlagIndex >= 0) {
             vorschlagUebernehmen(eintraege[vorschlagIndex].getAttribute('data-name'),
-                                 eintraege[vorschlagIndex].getAttribute('data-ort'));
+                                 eintraege[vorschlagIndex].getAttribute('data-ort'),
+                                 eintraege[vorschlagIndex].getAttribute('data-id'));
           } else {
             vorschlaegeSchliessen();
             lageErmitteln();
@@ -1710,7 +1726,7 @@
         var li = e.target.closest('li');
         if (!li) return;
         e.preventDefault();
-        vorschlagUebernehmen(li.getAttribute('data-name'), li.getAttribute('data-ort'));
+        vorschlagUebernehmen(li.getAttribute('data-name'), li.getAttribute('data-ort'), li.getAttribute('data-id'));
       });
     }
 
@@ -2087,6 +2103,17 @@
           rw.push('Verfahren: Ertragswert (Kaltmiete liegt vor, Zustand geht nicht ein)');
           rw.push('Jahresnettokaltmiete: ' + kaltmiete.toFixed(2) + ' x 12 = ' + (kaltmiete*12).toFixed(2) + ' EUR');
           rw.push('Ertragswert: ' + (kaltmiete*12).toFixed(2) + ' x ' + multiplikator.toFixed(4) + ' = ' + value.toFixed(2) + ' EUR');
+        } else if (gemeinsameKandidaten.length && window.GemeinsameBewertung) {
+          var gemeinsamWert = window.GemeinsameBewertung.calculate(
+            {type: art, living: wohnflaeche, condition: zustand}, gemeinsameKandidaten);
+          if (!gemeinsamWert) return null;
+          value = gemeinsamWert.raw;
+          preisProQm = gemeinsamWert.pricePerSqm;
+          artFaktor = gemeinsamWert.objectFactor;
+          rw.push('Verfahren: einheitliche Roman-Becker-Basis');
+          rw.push('Wohnflaeche ' + wohnflaeche + ' m2 x ' + preisProQm + ' EUR/m2 x Objektart ' + artFaktor + ' x Zustand ' + faktor + ' = ' + value.toFixed(2) + ' EUR');
+          rw.push('Quelle: ' + gemeinsamWert.source);
+          if (gemeinsamWert.ambiguous) rw.push('Die Adresse liegt in einem Ueberschneidungsbereich. Verwendet wurde der hoehere vollstaendige Gebietswert.');
         } else {
           // Sachwert-Fallback: m² × Preis/m² der Lage × Objektart-Faktor × Zustand
           value = wohnflaeche * preisProQm * artFaktor * faktor;
@@ -2272,6 +2299,7 @@
       if (strasseFeld && strasseFeld.value.trim()) lageErmitteln();
     });
   </script>
+  <script src="stadtteile/gemeinsame-bewertung.js" defer></script>
   <script src="stadtteile/strassen-hausnummern.js" defer></script>
   <script src="stadtteile/strassen-rhein-erft.js" defer></script>
   <script src="stadtteile/search.js" defer></script>
