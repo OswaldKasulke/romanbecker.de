@@ -154,7 +154,7 @@ function aktion_adresse(string $id, string $nr, string $plz): array
     }
     $entry = ['id' => $id, 'name' => $e['n'], 'city' => $e['o'], 'region' => $e['r']];
     if (!$abschnitte) {
-        return ['valid' => false, 'message' => 'Straße, Postleitzahl und Hausnummer ergeben im Straßen-Master keinen Treffer.',
+        return ['valid' => false, 'message' => 'Diese Hausnummer gibt es in dieser Straße und Postleitzahl nicht.',
                 'entry' => $entry, 'candidates' => []];
     }
 
@@ -181,7 +181,7 @@ function aktion_adresse(string $id, string $nr, string $plz): array
         }
     }
     if (!$kandidaten) {
-        return ['valid' => false, 'message' => 'Die vollständige Adresse existiert im amtlichen Gebäudereferenzbestand nicht.',
+        return ['valid' => false, 'message' => 'Diese Adresse können wir nicht bestätigen. Bitte Hausnummer und Postleitzahl prüfen.',
                 'entry' => $entry, 'candidates' => []];
     }
     $teile = [];

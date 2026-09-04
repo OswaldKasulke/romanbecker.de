@@ -813,8 +813,8 @@
 
           <!-- STEP 4: Zusatzinfos -->
           <div class="step" data-step="4">
-            <h2 class="step__title">Amtliche Modellmerkmale</h2>
-            <p class="step__subtitle" id="step3-subtitle">Nur die Merkmale, die der zuständige Gutachterausschuss für diese Adresse und Objektart verwendet.</p>
+            <h2 class="step__title">Angaben zur Immobilie</h2>
+            <p class="step__subtitle" id="step3-subtitle">Wir fragen nur ab, was für diese Adresse tatsächlich in die Bewertung eingeht.</p>
 
             <div id="field-modellfelder"></div>
 
@@ -887,7 +887,7 @@
           <!-- STEP 5: Zustand + Baujahr -->
           <div class="step" data-step="5">
             <h2 class="step__title">Baujahr</h2>
-            <p class="step__subtitle">Das Baujahr wird nach der amtlichen Koeffiziententabelle umgerechnet. Ein eigener pauschaler Zustandsfaktor wird nicht verwendet.</p>
+            <p class="step__subtitle">Das Baujahr geht mit den amtlichen Werten in die Berechnung ein.</p>
 
             <div class="condition-options" style="display:none">
               <label class="condition-option">
@@ -1159,9 +1159,19 @@
     }
 
     function nextStep(from) {
+      // Der Nutzer kann "Weiter" klicken, ohne das Strassenfeld zu verlassen —
+      // die Lage (und damit die PLZ) muss dann trotzdem stehen. Die Adresse
+      // wird auf dem Server geprueft, also erst deren Antwort abwarten.
+      if (from === 2) {
+        lageErmitteln();
+        lageWartet.then(function () {
+          if (!validateStep(2)) return;
+          prepareStep3();
+          showStep(3);
+        });
+        return;
+      }
       if (!validateStep(from)) return;
-      if (from === 1) {}
-      if (from === 2) prepareStep3();
       if (from === 3) prepareStep4();
       showStep(from + 1);
     }
@@ -1211,9 +1221,6 @@
       }
 
       if (step === 2) {
-        // Der Nutzer kann "Weiter" klicken, ohne das Strassenfeld zu verlassen —
-        // die Lage (und damit die PLZ) muss dann trotzdem stehen.
-        lageErmitteln();
         var immoPlz = document.getElementById('immo_plz');
         var fieldImmoPlz = document.getElementById('field-immo-plz');
         var fieldImmoStrasse = document.getElementById('field-immo-strasse');
@@ -1221,7 +1228,7 @@
           fieldImmoStrasse.classList.add('field--error');
           lageZeile.className = 'lage-treffer lage-treffer--frage';
           if (!lageZeile.textContent) {
-            lageZeile.textContent = 'Bitte eine gültige Straße und Hausnummer aus dem gemeinsamen Straßenverzeichnis auswählen.';
+            lageZeile.textContent = 'Bitte eine Straße aus der Liste wählen und die Hausnummer angeben.';
           }
           valid = false;
         } else {
@@ -1336,6 +1343,11 @@
     // erkannteLage ist die einzige Stelle, an der die Bewertung die Lage liest.
     var erkannteLage = null;   // {veedel, plz, ueberHausnummer} oder null
     var gemeinsameAuswahlId = '', gemeinsameAuswahlName = '', gemeinsameKandidaten = [];
+    // Strassen- und Adressverzeichnis liegen auf dem Server. Beide Abfragen sind
+    // deshalb asynchron: der Laufzaehler verwirft Antworten auf inzwischen
+    // ueberholte Eingaben, lageWartet haelt die laufende Adresspruefung fest,
+    // damit "Weiter" nicht entscheidet, bevor die Antwort da ist.
+    var vorschlagLauf = 0, vorschlagTimer = null, lageLauf = 0, lageWartet = Promise.resolve();
     var modellMerkmale = {}, letztesGemeinsamesErgebnis = null;
     var letzteAdresse = null;  // zuletzt ausgewerteter Feldinhalt
 
@@ -1435,17 +1447,23 @@
       if (!api) return;
       var reineStrasse = text.replace(/[\s,]+\d+\s*[a-zA-Z]?\s*$/, '').trim();
       if (reineStrasse.length < 3) { vorschlaegeSchliessen(); return; }
-      var namen = api.search(reineStrasse, 10, plzFeld ? plzFeld.value : '');
-      if (!namen.length) { vorschlaegeSchliessen(); return; }
+      var laufId = ++vorschlagLauf;
+      clearTimeout(vorschlagTimer);
+      vorschlagTimer = setTimeout(function () {
+        api.searchRemote(reineStrasse, 10, plzFeld ? plzFeld.value : '').then(function (namen) {
+          if (laufId !== vorschlagLauf) return;
+          if (!namen.length) { vorschlaegeSchliessen(); return; }
 
-      vorschlagListe.innerHTML = namen.map(function (e, i) {
-        return '<li role="option" id="vorschlag-' + i + '" data-name="' + e.name.replace(/"/g, '&quot;') +
-               '" data-id="' + e.id.replace(/"/g, '&quot;') + '" data-ort="' + e.city.replace(/"/g, '&quot;') + '">' +
-               e.name + '<span>' + e.city + (e.areas.length === 1 ? ' · ' + e.areas[0] : '') + '</span></li>';
-      }).join('');
-      vorschlagListe.classList.add('offen');
-      strasseFeld.setAttribute('aria-expanded', 'true');
-      vorschlagIndex = -1;
+          vorschlagListe.innerHTML = namen.map(function (e, i) {
+            return '<li role="option" id="vorschlag-' + i + '" data-name="' + e.name.replace(/"/g, '&quot;') +
+                   '" data-id="' + e.id.replace(/"/g, '&quot;') + '" data-ort="' + e.city.replace(/"/g, '&quot;') + '">' +
+                   e.name + '<span>' + e.city + (e.areas.length === 1 ? ' · ' + e.areas[0] : '') + '</span></li>';
+          }).join('');
+          vorschlagListe.classList.add('offen');
+          strasseFeld.setAttribute('aria-expanded', 'true');
+          vorschlagIndex = -1;
+        });
+      }, 180);
     }
 
     function vorschlagUebernehmen(name, ort, id) {
@@ -1642,22 +1660,28 @@
       // Straße/Ort-Kombination bleibt beim anschliessenden Tippen der Hausnummer
       // erhalten; die Hausnummer kann mehrere Preisgebiete liefern.
       if (gemeinsameAuswahlId && window.GemeinsameBewertung) {
-        var gemeinsam = window.GemeinsameBewertung.resolve(gemeinsameAuswahlId, hausnummerAus(text), plzFeld ? plzFeld.value : '');
-        gemeinsameKandidaten = gemeinsam.candidates || [];
-        if (!gemeinsam.valid) {
-          lageZeile.className = 'lage-treffer lage-treffer--frage';
-          lageZeile.textContent = gemeinsam.message;
-          return;
-        }
-        var c = gemeinsameKandidaten[0];
-        if (c.region === 'koeln') {
-          erkannteLage = {veedel:c.area, plz:c.zip, ueberHausnummer:!!hausnummerAus(text)};
-        } else {
-          erkanntesUmland = {gemeinde:c.city, plz:c.zip, ortsteil:c.area, region:c.region};
-        }
-        if (ortFeld) ortFeld.value = c.city;
-        lageZeile.className = 'lage-treffer';
-        lageZeile.innerHTML = 'Lage erkannt: <strong>' + c.city + (c.area ? '-' + c.area : '') + '</strong> · PLZ ' + c.zip;
+        var laufId = ++lageLauf;
+        gemeinsameKandidaten = [];
+        lageWartet = window.GemeinsameBewertung
+          .resolveRemote(gemeinsameAuswahlId, hausnummerAus(text), plzFeld ? plzFeld.value : '')
+          .then(function (gemeinsam) {
+            if (laufId !== lageLauf) return;
+            gemeinsameKandidaten = gemeinsam.candidates || [];
+            if (!gemeinsam.valid) {
+              lageZeile.className = 'lage-treffer lage-treffer--frage';
+              lageZeile.textContent = gemeinsam.message;
+              return;
+            }
+            var c = gemeinsameKandidaten[0];
+            if (c.region === 'koeln') {
+              erkannteLage = {veedel:c.area, plz:c.zip, ueberHausnummer:!!hausnummerAus(text)};
+            } else {
+              erkanntesUmland = {gemeinde:c.city, plz:c.zip, ortsteil:c.area, region:c.region};
+            }
+            if (ortFeld) ortFeld.value = c.city;
+            lageZeile.className = 'lage-treffer';
+            lageZeile.innerHTML = 'Lage erkannt: <strong>' + c.city + (c.area ? '-' + c.area : '') + '</strong> · PLZ ' + c.zip;
+          });
         return;
       }
 
