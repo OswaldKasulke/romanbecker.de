@@ -1148,14 +1148,16 @@
       var art = document.querySelector('input[name="objektart"]:checked');
       if (!art) return;
       var isHaus = art.value === 'haus';
+      var isGrund = art.value === 'grundstueck';
       var fieldWf = document.getElementById('field-wohnflaeche');
       var fieldGf = document.getElementById('field-grundstueck');
       var wfInput = document.getElementById('wohnflaeche');
       var wfHint = document.getElementById('wohnflaeche-hint');
-      fieldWf.style.display = 'block';
-      wfInput.required = true;
+      // Ein unbebautes Grundstueck hat keine Wohnflaeche.
+      fieldWf.style.display = isGrund ? 'none' : 'block';
+      wfInput.required = !isGrund;
       wfHint.style.display = 'none';
-      fieldGf.style.display = isHaus ? 'block' : 'none';
+      fieldGf.style.display = (isHaus || isGrund) ? 'block' : 'none';
     }
 
     function nextStep(from) {
@@ -1192,8 +1194,10 @@
 
       fieldZimmer.style.display = 'none';
       fieldEinheiten.style.display = 'none';
-      fieldErschliessung.style.display = 'none';
-      fieldMiete.style.display = 'none';
+      // Das Mehrfamilienhaus rechnet ueber die Miete, das Grundstueck ueber den
+      // Bodenrichtwert — beide brauchen hier ihr eigenes Feld.
+      fieldErschliessung.style.display = art === 'grundstueck' ? 'block' : 'none';
+      fieldMiete.style.display = art === 'mehrfamilienhaus' ? 'block' : 'none';
 
       modellfelderBauen();
     }
@@ -1247,14 +1251,14 @@
         var fieldWf = document.getElementById('field-wohnflaeche');
         var art = document.querySelector('input[name="objektart"]:checked').value;
 
-        if (!wf.value || parseFloat(wf.value) < 10) {
+        if (art !== 'grundstueck' && (!wf.value || parseFloat(wf.value) < 10)) {
           fieldWf.classList.add('field--error');
           valid = false;
         } else {
           fieldWf.classList.remove('field--error');
         }
 
-        if (art === 'haus') {
+        if (art === 'haus' || art === 'grundstueck') {
           var gf = document.getElementById('grundstuecksflaeche');
           var fieldGf = document.getElementById('field-grundstueck');
           if (!gf.value || parseFloat(gf.value) < 10) {
@@ -1270,11 +1274,21 @@
         modellAnforderungen().filter(function (key) { return ['EGART','WHNFL','FLAE','BJ'].indexOf(key) < 0; }).forEach(function (key) {
           if (modellMerkmale[key] === undefined || modellMerkmale[key] === '') valid = false;
         });
+        // Ohne Nettokaltmiete gibt es beim Mehrfamilienhaus keinen Ertragswert.
+        var art4 = document.querySelector('input[name="objektart"]:checked');
+        if (art4 && art4.value === 'mehrfamilienhaus' && !(modellAttribute().KALTMIETE > 0)) {
+          document.getElementById('field-miete-group').classList.add('field--error');
+          valid = false;
+        } else {
+          document.getElementById('field-miete-group').classList.remove('field--error');
+        }
       }
 
       if (step === 5) {
+        var art5 = document.querySelector('input[name="objektart"]:checked');
+        var istIRW5 = art5 && (art5.value === 'wohnung' || art5.value === 'haus');
         var baujahr = document.getElementById('baujahr');
-        if (!baujahr.value || parseFloat(baujahr.value) < 1760) valid = false;
+        if (istIRW5 && (!baujahr.value || parseFloat(baujahr.value) < 1760)) valid = false;
       }
 
       if (step === 6) {
@@ -1374,6 +1388,19 @@
       Object.keys(modellMerkmale).forEach(function (key) {
         if (modellMerkmale[key] !== '') a[key] = parseFloat(modellMerkmale[key]);
       });
+      // Mehrfamilienhaus rechnet ueber die Miete, Grundstueck ueber den
+      // Bodenrichtwert — beides steckt seit 05.09.2026 im gemeinsamen Kern.
+      if (art && art.value === 'mehrfamilienhaus') {
+        var mIst = parseFloat((document.getElementById('miete_ist').value || '').replace(',', '.')) || 0;
+        var mIstJ = parseFloat((document.getElementById('miete_ist_jahr').value || '').replace(',', '.')) || 0;
+        var mSoll = parseFloat((document.getElementById('miete_soll').value || '').replace(',', '.')) || 0;
+        var mSollJ = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',', '.')) || 0;
+        a.KALTMIETE = mIst || (mIstJ / 12) || mSoll || (mSollJ / 12);
+      }
+      if (art && art.value === 'grundstueck') {
+        a.FLAE = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
+        a.ERSCHLIESSUNG = document.getElementById('erschliessung').value || 'voll';
+      }
       return a;
     }
 
@@ -2066,13 +2093,21 @@
       // Verbindlicher gemeinsamer 2026-Kern für Wohnungen und Häuser ohne
       // Mietwertverfahren. Die nachfolgende Altrechnung bleibt nur noch für
       // historische, in der Oberfläche nicht angebotene Objektarten stehen.
-      if (art === 'wohnung' || art === 'haus') {
+      if (art === 'wohnung' || art === 'haus' || art === 'mehrfamilienhaus' || art === 'grundstueck') {
         if (!gemeinsameKandidaten.length || !window.GemeinsameBewertung) return null;
         var a = modellAttribute();
         var irw = window.GemeinsameBewertung.calculate({type: art, attributes: a}, gemeinsameKandidaten);
         letztesGemeinsamesErgebnis = irw;
         rw.push('Adresse: ' + strasseFeld.value + ', ' + plz + ' ' + (ortFeld.value || '') + '.');
-        rw.push('IRW-Zone: ' + irw.zone_id + '; Stichtag ' + irw.stichtag + '; Ausgangswert ' + irw.immobilienrichtwert_eur_m2 + ' EUR/m2.');
+        if (art === 'mehrfamilienhaus' || art === 'grundstueck') {
+          rw.push('Verfahren: ' + irw.verfahren + '; ' + irw.berechnungsart + '.');
+          rw.push('Grundlage: ' + irw.modellquelle + '.');
+          rw.push('Gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
+          if (irw.untergrenze_gegriffen) rw.push('Die Untergrenze aus 10 EUR/m2 Kaltmiete hat gegriffen.');
+          lastRechenweg = rw.join('\n');
+          return irw.value;
+        }
+        rw.push('Richtwertzone: ' + irw.zone_id + '; Stichtag ' + irw.stichtag + '; Ausgangswert ' + irw.immobilienrichtwert_eur_m2 + ' EUR/m2.');
         rw.push('Modell: ' + irw.modellquelle + '; Rechenart ' + irw.berechnungsart + '.');
         rw.push('Objektmerkmale: ' + JSON.stringify(a) + '.');
         rw.push('Angepasster Wert: ' + irw.pricePerSqm + ' EUR/m2; gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
