@@ -203,10 +203,12 @@ try {
 
     $mail->setFrom(SMTP_USER, 'Webseite Roman Becker');
     $mail->addAddress('rb@datenschwester.de', 'Roman Becker');
-    // Die Maklerseiten gehen an Doreen, sonst an keine weitere Adresse.
-    if ($site === 'BGL' || $site === 'LEV' || $site === 'SS') {
-        $mail->addAddress('Doreen.Kaschner@evernest.com', 'Doreen Kaschner');
-    }
+    // Testphase ab 05.09.2026: Leads gehen ausschliesslich an Roman.
+    // Doreen ist voruebergehend aus dem Verteiler genommen; zum Reaktivieren
+    // die folgenden vier Zeilen wieder einkommentieren.
+    // if ($site === 'BGL' || $site === 'LEV' || $site === 'SS') {
+    //     $mail->addAddress('Doreen.Kaschner@evernest.com', 'Doreen Kaschner');
+    // }
     if (!empty($email)) {
         $mail->addReplyTo($email, $name);
     }
