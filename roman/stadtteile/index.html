@@ -142,6 +142,12 @@
       grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
       gap: 0.625rem;
     }
+    /* Zwei Karten in einem 6-spaltigen Raster wirken verloren –
+       der Verweis auf die Schwesterseiten bekommt ein eigenes Mass. */
+    .st-index-grid--paar {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      max-width: 620px;
+    }
 
     .st-index-card {
       display: block;
@@ -769,14 +775,14 @@
       </div>
 
       <p class="text-muted mb-8 max-w-prose" style="margin-top:2.5rem;">Für Bergisch Gladbach und Leverkusen führen meine Kollegen von Stark &amp; Hoffmann eigene Seiten – mit Stadtteilprofilen, Bodenrichtwerten und amtlichen Marktdaten für die jeweilige Stadt.</p>
-      <div class="st-index-grid">
+      <div class="st-index-grid st-index-grid--paar">
         <a href="https://immobilienmakler-bergisch-gladbach.de/" class="st-index-card">
-          <div class="st-index-card__name">Immobilienmakler Bergisch Gladbach</div>
-          <div class="st-index-card__price">25 Stadtteile · Stark &amp; Hoffmann</div>
+          <div class="st-index-card__name">Bergisch Gladbach ↗</div>
+          <div class="st-index-card__price">25 Stadtteile, eigene Marktseite</div>
         </a>
         <a href="https://leverkusen-makler.de/" class="st-index-card">
-          <div class="st-index-card__name">Immobilienmakler Leverkusen</div>
-          <div class="st-index-card__price">Stadtteile &amp; Marktdaten</div>
+          <div class="st-index-card__name">Leverkusen ↗</div>
+          <div class="st-index-card__price">Stadtteile und Marktdaten</div>
         </a>
       </div>
     </div>
