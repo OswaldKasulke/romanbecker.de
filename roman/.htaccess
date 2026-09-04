@@ -20,6 +20,11 @@ RewriteEngine On
 # nicht ins Web. Die Regel deckt gleich .git, .env & Co. mit ab.
 # /.well-known/ bleibt bewusst offen: dort liegt die ACME-Challenge, ohne sie
 # scheitert die Zertifikatserneuerung.
+# Der zusammengebaute Strassen- und Adressmaster wird nie ausgeliefert. Zugriff
+# ausschliesslich serverseitig durch bewertung-adressen.php. Zweite Sperre liegt
+# als eigene .htaccess im Verzeichnis.
+RewriteRule ^bewertung-daten(/|$) - [F,L]
+
 RewriteRule ^\.well-known/ - [L]
 RewriteRule (^|/)\.        - [F,L]
 
