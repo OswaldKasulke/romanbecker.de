@@ -14,6 +14,15 @@ AddCharset UTF-8 .html .css .js .json .xml .txt
 
 RewriteEngine On
 
+# Punkt-Dateien und -Ordner nie ausliefern. Anlass: .ftp-deploy-sync-state.json
+# (Statusdatei der FTP-Deploy-Action) war oeffentlich abrufbar und listet mit 84 KB
+# den kompletten Dateibestand der Seite. Die Datei muss oben liegen, gehoert aber
+# nicht ins Web. Die Regel deckt gleich .git, .env & Co. mit ab.
+# /.well-known/ bleibt bewusst offen: dort liegt die ACME-Challenge, ohne sie
+# scheitert die Zertifikatserneuerung.
+RewriteRule ^\.well-known/ - [L]
+RewriteRule (^|/)\.        - [F,L]
+
 # Eine kanonische Adresse in genau einem Schritt: HTTPS und ohne www.
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^romanbecker\.de$ [NC]

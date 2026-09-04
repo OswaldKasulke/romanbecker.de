@@ -84,6 +84,39 @@ jobs:
           port: 21
           timeout: 120000
 
+      # Canary: nach dem Upload nachsehen, ob der Server wirklich den Repo-Stand
+      # ausliefert. Anlass ist der 02.09.2026 — vier fremde FTP-Vollsyncs haben
+      # romanbecker.de auf den Stand von Mitte Juni zurueckgesetzt. Die
+      # Deploy-Action merkt so etwas nie: sie vergleicht nur gegen ihre eigene
+      # .ftp-deploy-sync-state.json und haelt den Server fuer aktuell. Die Seite
+      # stand zwei Tage mit schwarzem Header da, alle Laeufe gruen.
+      # Die beiden Stylesheets reichen als Waechter — sie haengen an jeder Seite
+      # und aendern sich selten, also praktisch keine Fehlalarme.
+      - name: Canary – liefert der Server den Repo-Stand aus?
+        if: github.ref == 'refs/heads/main'
+        run: |
+          fail=0
+          for f in stadtteile/shared.css bodenrichtwert.css; do
+            want=$(sha256sum "roman/$f" | cut -d' ' -f1)
+            got=""
+            for try in 1 2 3; do
+              got=$(curl -fsS --max-time 30 "https://romanbecker.de/$f?canary=${GITHUB_RUN_ID}.$try" | sha256sum | cut -d' ' -f1)
+              if [ "$got" = "$want" ]; then break; fi
+              echo "Versuch $try fuer $f noch abweichend – warte 10 s"
+              sleep 10
+            done
+            if [ "$got" = "$want" ]; then
+              echo "OK   $f"
+            else
+              echo "::error::$f weicht ab – Repo $want, live $got. Der Server liefert nicht aus, was im Repo steht."
+              fail=1
+            fi
+          done
+          if [ "$fail" = 1 ]; then
+            echo "Naechster Schritt: .ftp-deploy-sync-state.json auf dem Server umbenennen oder loeschen und den Workflow neu starten – das erzwingt einen Vollsync (dauert ~7 Minuten statt ~20 Sekunden)."
+            exit 1
+          fi
+
       - name: IndexNow – geänderte Seiten an Bing/Yandex melden
         if: github.ref == 'refs/heads/main'
         run: |
