@@ -669,8 +669,7 @@
           <div class="progress__step" data-step="5">5</div>
           <div class="progress__line" data-line="5"></div>
           <div class="progress__step" data-step="6">6</div>
-          <div class="progress__line" data-line="6"></div>
-          <div class="progress__step" data-step="7">7</div>
+          
         </div>
 
         <form id="bewertung" novalidate>
@@ -754,7 +753,6 @@
                        aria-controls="strassen-vorschlaege">
                 <ul class="vorschlaege" id="strassen-vorschlaege" role="listbox"></ul>
               </div>
-              <p class="field__hint">Gemeinsame Suche für Köln, Rhein-Erft-Kreis, Leverkusen und Bergisch Gladbach. Mit Hausnummer wird das Preisgebiet exakt bestimmt.</p>
               <p class="lage-treffer" id="immo-lage" aria-live="polite"></p>
             </div>
 
@@ -805,18 +803,9 @@
               <p class="field__hint">Optional bei Wohnungen.</p>
             </div>
 
-            <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
-            </div>
-          </div>
 
-          <!-- STEP 4: Zusatzinfos -->
-          <div class="step" data-step="4">
-            <h2 class="step__title">Angaben zur Immobilie</h2>
-            <p class="step__subtitle" id="step3-subtitle">Wir fragen nur ab, was für diese Adresse tatsächlich in die Bewertung eingeht.</p>
 
-            <div id="field-modellfelder"></div>
+            
 
             <!-- Zimmer (Wohnung / Haus) -->
             <div class="field" id="field-zimmer" style="display:none">
@@ -879,15 +868,13 @@
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
             </div>
           </div>
 
-          <!-- STEP 5: Zustand + Baujahr -->
-          <div class="step" data-step="5">
+          <div class="step" data-step="4">
             <h2 class="step__title">Baujahr</h2>
-            <p class="step__subtitle">Das Baujahr geht mit den amtlichen Werten in die Berechnung ein.</p>
 
             <div class="condition-options" style="display:none">
               <label class="condition-option">
@@ -952,13 +939,13 @@
             </div>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(5)">Zurück</button>
-              <button type="button" class="btn btn--primary" onclick="nextStep(5)">Weiter</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
+              <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
             </div>
           </div>
 
-          <!-- STEP 6: Kontaktdaten -->
-          <div class="step" data-step="6">
+          <!-- STEP 5: Kontaktdaten -->
+          <div class="step" data-step="5">
             <h2 class="step__title">Ihre Kontaktdaten</h2>
             <p class="step__subtitle">Für den Versand Ihrer persönlichen Bewertung.</p>
 
@@ -1011,13 +998,13 @@
             <p id="calculation-error" class="field__error" role="alert" style="display:none;margin-top:1rem;"></p>
 
             <div class="step__buttons">
-              <button type="button" class="btn btn--secondary" onclick="prevStep(6)">Zurück</button>
+              <button type="button" class="btn btn--secondary" onclick="prevStep(5)">Zurück</button>
               <button type="button" class="btn btn--primary btn--large" onclick="submitForm()">Bewertung anfordern</button>
             </div>
           </div>
 
-          <!-- STEP 7: Ergebnis -->
-          <div class="step" data-step="7">
+          <!-- STEP 6: Ergebnis -->
+          <div class="step" data-step="6">
             <div class="result">
               <div class="result__icon">
                 <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -1105,7 +1092,7 @@
     // STATE
     // ===========================
     var currentStep = 1;
-    var totalSteps = 7;
+    var totalSteps = 6;
 
     // ===========================
     // STEP NAVIGATION
@@ -1158,6 +1145,19 @@
       wfInput.required = !isGrund;
       wfHint.style.display = 'none';
       fieldGf.style.display = (isHaus || isGrund) ? 'block' : 'none';
+
+      var art = document.querySelector('input[name="objektart"]:checked').value;
+      var fieldZimmer = document.getElementById('field-zimmer');
+      var fieldEinheiten = document.getElementById('field-einheiten');
+      var fieldErschliessung = document.getElementById('field-erschliessung');
+      var fieldMiete = document.getElementById('field-miete-group');
+
+      fieldZimmer.style.display = 'none';
+      fieldEinheiten.style.display = 'none';
+      // Das Mehrfamilienhaus rechnet ueber die Miete, das Grundstueck ueber den
+      // Bodenrichtwert — beide brauchen hier ihr eigenes Feld.
+      fieldErschliessung.style.display = art === 'grundstueck' ? 'block' : 'none';
+      fieldMiete.style.display = art === 'mehrfamilienhaus' ? 'block' : 'none';
     }
 
     function nextStep(from) {
@@ -1174,7 +1174,6 @@
         return;
       }
       if (!validateStep(from)) return;
-      if (from === 3) prepareStep4();
       showStep(from + 1);
     }
 
@@ -1185,23 +1184,6 @@
     // ===========================
     // CONDITIONAL FIELDS
     // ===========================
-    function prepareStep4() {
-      var art = document.querySelector('input[name="objektart"]:checked').value;
-      var fieldZimmer = document.getElementById('field-zimmer');
-      var fieldEinheiten = document.getElementById('field-einheiten');
-      var fieldErschliessung = document.getElementById('field-erschliessung');
-      var fieldMiete = document.getElementById('field-miete-group');
-
-      fieldZimmer.style.display = 'none';
-      fieldEinheiten.style.display = 'none';
-      // Das Mehrfamilienhaus rechnet ueber die Miete, das Grundstueck ueber den
-      // Bodenrichtwert — beide brauchen hier ihr eigenes Feld.
-      fieldErschliessung.style.display = art === 'grundstueck' ? 'block' : 'none';
-      fieldMiete.style.display = art === 'mehrfamilienhaus' ? 'block' : 'none';
-
-      modellfelderBauen();
-    }
-
     // ===========================
     // VALIDATION
     // ===========================
@@ -1258,6 +1240,14 @@
           fieldWf.classList.remove('field--error');
         }
 
+        // Ohne Nettokaltmiete gibt es beim Mehrfamilienhaus keinen Ertragswert.
+        if (art === 'mehrfamilienhaus' && !(modellAttribute().KALTMIETE > 0)) {
+          document.getElementById('field-miete-group').classList.add('field--error');
+          valid = false;
+        } else {
+          document.getElementById('field-miete-group').classList.remove('field--error');
+        }
+
         if (art === 'haus' || art === 'grundstueck') {
           var gf = document.getElementById('grundstuecksflaeche');
           var fieldGf = document.getElementById('field-grundstueck');
@@ -1271,27 +1261,13 @@
       }
 
       if (step === 4) {
-        modellAnforderungen().filter(function (key) { return ['EGART','WHNFL','FLAE','BJ'].indexOf(key) < 0; }).forEach(function (key) {
-          if (modellMerkmale[key] === undefined || modellMerkmale[key] === '') valid = false;
-        });
-        // Ohne Nettokaltmiete gibt es beim Mehrfamilienhaus keinen Ertragswert.
-        var art4 = document.querySelector('input[name="objektart"]:checked');
-        if (art4 && art4.value === 'mehrfamilienhaus' && !(modellAttribute().KALTMIETE > 0)) {
-          document.getElementById('field-miete-group').classList.add('field--error');
-          valid = false;
-        } else {
-          document.getElementById('field-miete-group').classList.remove('field--error');
-        }
-      }
-
-      if (step === 5) {
         var art5 = document.querySelector('input[name="objektart"]:checked');
         var istIRW5 = art5 && (art5.value === 'wohnung' || art5.value === 'haus');
         var baujahr = document.getElementById('baujahr');
         if (istIRW5 && (!baujahr.value || parseFloat(baujahr.value) < 1760)) valid = false;
       }
 
-      if (step === 6) {
+      if (step === 5) {
         // Validate required contact fields
         var fields = [
           { id: 'vorname', fieldId: 'field-vorname' },
@@ -1410,31 +1386,6 @@
       return window.GemeinsameBewertung.requiredFields(art.value, gemeinsameKandidaten, modellAttribute());
     }
 
-    function modellfelderBauen() {
-      var box = document.getElementById('field-modellfelder');
-      var art = document.querySelector('input[name="objektart"]:checked');
-      if (!box || !art) return;
-      var extras = modellAnforderungen().filter(function (key) {
-        return ['EGART', 'WHNFL', 'FLAE', 'BJ'].indexOf(key) < 0;
-      });
-      if (!extras.length) {
-        box.innerHTML = '<p class="field__hint">Für dieses Modell sind keine weiteren Angaben nötig.</p>';
-        return;
-      }
-      box.innerHTML = extras.map(function (key) {
-        var info = window.GemeinsameBewertung.fieldInfo(key, art.value, gemeinsameKandidaten, modellAttribute());
-        var label = info.label + (info.unit ? ' in ' + info.unit : '') + ' *';
-        if (info.kind === 'select') {
-          return '<div class="field"><label for="modell-' + key + '">' + label + '</label><select id="modell-' + key + '" data-modell="' + key + '"><option value="">Bitte wählen</option>' + info.options.map(function (o) {
-            return '<option value="' + o.value + '"' + (String(modellMerkmale[key] || '') === String(o.value) ? ' selected' : '') + '>' + o.label + '</option>';
-          }).join('') + '</select></div>';
-        }
-        return '<div class="field"><label for="modell-' + key + '">' + label + '</label><input id="modell-' + key + '" type="number" data-modell="' + key + '" value="' + (modellMerkmale[key] || '') + '"></div>';
-      }).join('');
-      box.querySelectorAll('[data-modell]').forEach(function (el) {
-        el.addEventListener('input', function () { modellMerkmale[this.getAttribute('data-modell')] = this.value; });
-      });
-    }
 
     // Zweiter Datensatz: der Rhein-Erft-Kreis. Anderer Zuschnitt als Köln —
     // Ortseinheit ist die Gemeinde, und 655 Straßennamen kommen in mehreren
@@ -2283,7 +2234,7 @@
     // SUBMIT
     // ===========================
     function submitForm() {
-      if (!validateStep(6)) return;
+      if (!validateStep(5)) return;
 
       var calculationError = document.getElementById('calculation-error');
       calculationError.style.display = 'none';
@@ -2352,7 +2303,7 @@
       // Der vollstaendige Rechenweg steht weiterhin in der Lead-Mail an Roman
       // (lastRechenweg), nicht auf der Seite.
 
-      showStep(7);
+      showStep(6);
       // Google Ads Conversion Event
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', { event_category: 'Immobilienbewertung', event_label: 'Ergebnis angezeigt' });
