@@ -135,22 +135,24 @@ RewriteRule ^immobilienmakler-rheinisch-bergisch/roesrath/?$ https://immobilienm
 RewriteRule ^stadtteile/leverkusen\.html$ https://immobilienmakler-bergisch-gladbach.de/#staedte [R=301,L,NE]
 RewriteRule ^immobilienmakler-rheinisch-bergisch/?$ https://immobilienmakler-bergisch-gladbach.de/#staedte [R=301,L,NE]
 
-# Rhein-Kreis Neuss: am 15.08.2026 entfernt, am 05.09.2026 mit Dormagen und
-# Rommerskirchen wieder aufgebaut. Die alten /stadtteile/-URLs zeigen jetzt auf
-# die neuen Ortsseiten statt auf die Uebersicht — das Ranking der alten Dormagen-URL
-# geht sonst ueber die Hub-Weiterleitung verloren.
+# Rhein-Kreis Neuss: Dormagen und Rommerskirchen haben seit dem 05.09.2026 wieder
+# eine eigene Ortsseite. Einen Kreis-Hub gibt es bewusst NICHT — die Uebersicht
+# steht als Abschnitt auf der Startseite. Die alten /stadtteile/-URLs zeigen direkt
+# auf die Ortsseiten; ueber eine Sammel-Weiterleitung ginge ihr Ranking verloren.
 RewriteRule ^stadtteile/dormagen\.html$ /immobilienmakler-rhein-kreis-neuss/dormagen/ [R=301,L]
 RewriteRule ^stadtteile/rommerskirchen\.html$ /immobilienmakler-rhein-kreis-neuss/rommerskirchen/ [R=301,L]
-# Juechen hat weiterhin keine eigene Seite -> Kreis-Hub
-RewriteRule ^stadtteile/juechen\.html$ /immobilienmakler-rhein-kreis-neuss/ [R=301,L]
-RewriteRule ^immobilienmakler-rhein-kreis-neuss/juechen/?$ /immobilienmakler-rhein-kreis-neuss/ [R=301,L]
+# Der blosse Pfad hat keine Seite -> Umland-Abschnitt der Startseite ([NE] wegen #)
+RewriteRule ^immobilienmakler-rhein-kreis-neuss/?$ /#rhein-kreis-neuss [R=301,L,NE]
+# Juechen hat weiterhin keine eigene Seite
+RewriteRule ^stadtteile/juechen\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^immobilienmakler-rhein-kreis-neuss/juechen/?$ /stadtteile/ [R=301,L]
 RewriteRule ^bodenrichtwert-bergisch-gladbach\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-leichlingen\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-odenthal\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-overath\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-roesrath\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-dormagen\.html$ /immobilienmakler-rhein-kreis-neuss/dormagen/ [R=301,L]
-RewriteRule ^bodenrichtwert-juechen\.html$ /immobilienmakler-rhein-kreis-neuss/ [R=301,L]
+RewriteRule ^bodenrichtwert-juechen\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-rommerskirchen\.html$ /immobilienmakler-rhein-kreis-neuss/rommerskirchen/ [R=301,L]
 
 RewriteRule ^bodenrichtwert-alfter\.html$ /bodenrichtwert-koeln.html [R=301,L]

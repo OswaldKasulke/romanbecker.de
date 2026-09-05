@@ -119,7 +119,6 @@
       {t:'Wesseling', u:'/immobilienmakler-rhein-erft/wesseling/', c:'Umland', k:'wesseling 50389 rhein-erft-kreis rhein makler immobilien haus wohnung verkaufen grundstück Im Blauen Garn Langgasse Schützenweg Eichholzer Str.'},
 {t:'Efferen (Hürth)', u:'/immobilienmakler-rhein-erft/huerth/efferen/', c:'Umland', k:'efferen huerth hürth 50354 rhein-erft-kreis makler immobilien haus wohnung verkaufen grundstück linie 18 studierendendorf kölner stadtgrenze suelz klettenberg'},
 {t:'Stommeln (Pulheim)', u:'/immobilienmakler-rhein-erft/pulheim/stommeln/', c:'Umland', k:'stommeln pulheim 50259 rhein-erft-kreis makler immobilien haus wohnung verkaufen grundstück windmühle synagoge aquarena bahnhof re8 rb27'},
-{t:'Immobilienmakler Rhein-Kreis Neuss', u:'/immobilienmakler-rhein-kreis-neuss/', c:'Umland', k:'rhein-kreis neuss dormagen rommerskirchen makler umland bodenrichtwert'},
 {t:'Dormagen', u:'/immobilienmakler-rhein-kreis-neuss/dormagen/', c:'Umland', k:'dormagen 41539 41540 41542 rhein-kreis neuss makler immobilien haus wohnung verkaufen grundstück chempark zons knechtsteden nievenheim hackenbroich s11'},
 {t:'Rommerskirchen', u:'/immobilienmakler-rhein-kreis-neuss/rommerskirchen/', c:'Umland', k:'rommerskirchen 41569 rhein-kreis neuss makler immobilien haus wohnung verkaufen grundstück sinsteden oekoven eckum nettesheim gillbach re8 rb27'},
       {t:'Ratgeber: Zwangsversteigerung', u:'/ratgeber/zwangsversteigerung.html', c:'Ratgeber', k:'zwangsversteigerung auktion bieter gebot gericht insolvenz schulden vermeiden'},
