@@ -1208,10 +1208,15 @@
       }
       if (!validateStep(from)) { fehlendeMelden(); return; }
       fehlendeMelden();
+      // Ein Grundstueck hat kein Baujahr - der Schritt entfaellt dort.
+      var artN = document.querySelector('input[name="objektart"]:checked');
+      if (from === 3 && artN && artN.value === 'grundstueck') { showStep(5); return; }
       showStep(from + 1);
     }
 
     function prevStep(from) {
+      var artZ = document.querySelector('input[name="objektart"]:checked');
+      if (from === 5 && artZ && artZ.value === 'grundstueck') { showStep(3); return; }
       showStep(from - 1);
     }
 

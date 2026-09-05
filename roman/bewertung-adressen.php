@@ -161,38 +161,30 @@ function aktion_ort(string $plz): array
 function ohneHausnummer(array $e, string $id, string $plz): array
 {
     $entry = ['id' => $id, 'name' => $e['n'], 'city' => $e['o'], 'region' => $e['r']];
-    $key = $e['r'] . '|' . $e['o'] . '|' . $e['k'];
-    $amtlich = (lade(DATEN . '/adressen/' . shard($key) . '.json') ?? [])[$key] ?? [];
-    if (!$amtlich) {
-        return ['valid' => false, 'message' => 'Bitte die Hausnummer angeben.', 'entry' => $entry, 'candidates' => []];
-    }
-    // Ortsteil je Abschnitt aus dem Strassenmaster, denn er geht beim
-    // Mehrfamilienhaus ueber den Ertragsfaktor in den Preis ein.
+    // Den Preis bestimmt das Veedel. Die Hausnummer wird also nur gebraucht,
+    // wenn die Strasse innerhalb der Postleitzahl durch mehrere Veedel laeuft -
+    // das trifft auf 2,5 Prozent der Strassen zu.
     $gebiete = [];
     foreach ($e['b'] as $b) {
         if ($plz === '' || $b[2] === $plz) {
             $gebiete[$b[2] . '|' . ($b[3] ?? '')] = [$b[2], $b[3] ?? ''];
         }
     }
-    $varianten = [];
-    foreach ($amtlich as $a) {
-        foreach ($gebiete as $g) {
-            $varianten[json_encode([$a[3], $g], JSON_UNESCAPED_UNICODE)] = [$a[3], $g];
-        }
-    }
-    if (count($varianten) !== 1) {
+    if (count($gebiete) !== 1) {
         return ['valid' => false,
-                'message' => 'Für diese Straße hängt der Wert von der Hausnummer ab. Bitte die Hausnummer angeben.',
+                'message' => count($gebiete) > 1
+                    ? 'Diese Straße verläuft durch mehrere Veedel. Bitte die Hausnummer angeben.'
+                    : 'Straße und Postleitzahl passen nicht zusammen.',
                 'entry' => $entry, 'candidates' => []];
     }
-    [$gruppen, $g] = array_values($varianten)[0];
+    [$zip, $area] = array_values($gebiete)[0];
     $kandidat = [
-        'region' => $e['r'], 'city' => $e['o'], 'area' => $g[1], 'zip' => $g[0],
+        'region' => $e['r'], 'city' => $e['o'], 'area' => $area, 'zip' => $zip,
         'street' => $e['n'], 'houseNumber' => null, 'supplement' => '',
-        'zoneGroups' => (object) $gruppen, 'official' => true,
+        'zoneGroups' => (object) [], 'official' => true,
     ];
     return ['valid' => true,
-            'message' => trim($g[0] . ' ' . $e['o']) . ($g[1] ? ' · ' . $g[1] : ''),
+            'message' => trim($zip . ' ' . $e['o']) . ($area ? ' · ' . $area : ''),
             'entry' => $entry, 'candidates' => [$kandidat]];
 }
 
