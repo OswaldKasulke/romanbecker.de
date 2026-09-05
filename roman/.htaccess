@@ -219,7 +219,7 @@ RewriteRule ^stadtteile/bezirk-porz\.html$       /stadtteile/porz.html       [R=
 RewriteRule ^stadtteile/bezirk-chorweiler\.html$ /stadtteile/chorweiler.html [R=301,L]
 RewriteRule ^flurkarte/?$              /ratgeber/flurkarte.html                         [R=301,L]
 RewriteRule ^notarkosten-beim-immobilienkauf/?$ /ratgeber/notarkosten-beim-immobilienkauf.html [R=301,L]
-RewriteRule ^smart-heizung/?$          /ratgeber/smart-heizung.html                     [R=301,L]
+RewriteRule ^smart-heizung/?$          /ratgeber/smarthome.html                         [R=301,L]
 
 # --- Catch-All: jeder Top-Level-Slug → /ratgeber/<slug>.html (wenn Datei existiert) ---
 #     Deckt alle 30+ WP-Ratgeber-Seiten ab, ohne jede einzeln listen zu müssen.
