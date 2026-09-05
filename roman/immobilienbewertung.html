@@ -1038,10 +1038,7 @@
                 <p style="margin:0;font-size:0.9rem;line-height:1.5;color:#b71c1c;"><strong>Ihre Anfrage konnte nicht automatisch übermittelt werden.</strong> Bitte rufen Sie mich direkt an oder schreiben Sie mir per WhatsApp, damit ich Ihre Bewertung persönlich erhalte: <a href="tel:+491775156969" style="color:#b71c1c;text-decoration:underline;">+49 177 515 69 69</a></p>
               </div>
 
-              <div id="result-grundstueck-hinweis" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
-                <p style="margin:0 0 0.4rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Hinweis zur Grundstücksbewertung</p>
-                <p style="margin:0;font-size:0.9rem;line-height:1.5;">Der angezeigte Wert basiert auf der Nutzung als <strong>Einfamilienhaus-Grundstück</strong>. Sollte auf dem Grundstück ein <strong>Mehrfamilienhaus</strong> realisierbar sein (z.&nbsp;B. durch entsprechende Ausweisung im Bebauungsplan), kann der tatsächliche Marktwert um ein <strong>Vielfaches höher</strong> liegen. Eine genaue Einschätzung erfordert die Prüfung des Bebauungsplans und eine persönliche Besichtigung.</p>
-              </div>
+              
 
               <div id="result-keine-miete-hinweis" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
                 <p style="margin:0 0 0.4rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Hinweis zur Mietannahme</p>
@@ -1050,7 +1047,7 @@
 
               <div class="result__note">
                 <p><strong>Wichtiger Hinweis zur individuellen Preisgestaltung</strong></p>
-                <p>Bitte beachten Sie, dass dieser berechnete Wert als fundierte Orientierungshilfe dient. Der tatsächliche Angebotspreis am Markt kann von diesem Wert abweichen, wenn besondere Merkmale vorliegen:</p>
+                <p>Der berechnete Wert ist eine Orientierung. Der Angebotspreis am Markt kann davon abweichen, wenn besondere Merkmale vorliegen:</p>
                 <p><strong>Besondere Lage:</strong> Immobilien in Top-Lagen (z.&nbsp;B. Köln-Lindenthal am Rautenstrauchkanal) erzielen signifikante Preisaufschläge.</p>
                 <p id="result-note-objekttyp"><strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.</p>
                 <p><strong>Individuelle Ausstattung:</strong> Exklusive Einbauten oder historische Details werden in der Standardformel nicht vollumfänglich erfasst.</p>
@@ -2347,8 +2344,6 @@
         spanneZeile.textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
       }
 
-      // Grundstück-Hinweis ein-/ausblenden
-      document.getElementById('result-grundstueck-hinweis').style.display = (bedient && art === 'grundstueck') ? 'block' : 'none';
 
       // Hinweis "keine Mietangabe -> beste Marktmiete unterstellt" ein-/ausblenden
       var mieteIstCheck      = parseFloat((document.getElementById('miete_ist').value      || '').replace(',','.')) || 0;
@@ -2360,7 +2355,7 @@
       // Objekt-Typ-Hinweis je nach Objektart anpassen
       var objekttypHinweis = document.getElementById('result-note-objekttyp');
       if (art === 'grundstueck') {
-        objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Lässt der Bebauungsplan den Bau eines <strong>Mehrfamilienhauses</strong> zu, weichen die erzielbaren Preise <strong>signifikant</strong> vom angezeigten Wert ab — ein MFH-Grundstück ist deutlich mehr wert als ein reines EFH-Grundstück. Die Bebauungsrichtlinien sollten vor dem Verkauf geprüft werden.';
+        objekttypHinweis.innerHTML = '<strong>Bebauung:</strong> Der Wert unterstellt ein <strong>Einfamilienhaus-Grundst\u00fcck</strong>. L\u00e4sst der Bebauungsplan ein <strong>Mehrfamilienhaus</strong> zu, liegt der Marktwert deutlich h\u00f6her.';
       } else {
         objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.';
       }
