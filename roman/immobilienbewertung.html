@@ -855,7 +855,7 @@
               <label for="gstand">Zustand und Ausstattung *</label>
               <select id="gstand" name="gstand">
                 <option value="">Bitte wählen</option>
-                <option value="1">1 – sehr einfach</option>
+                <option value="1">1 – sehr einfach (Kernsanierung)</option>
                 <option value="2">2 – sehr einfach – einfach</option>
                 <option value="3">3 – einfach</option>
                 <option value="4">4 – einfach – mittel</option>
@@ -864,7 +864,7 @@
                 <option value="7">7 – gehoben</option>
                 <option value="8">8 – gehoben – stark gehoben</option>
                 <option value="9">9 – stark gehoben</option>
-                <option value="10">10 – Luxus</option>
+                <option value="10">10 – Luxus (Neubau oder Kernsanierung)</option>
               </select>
             </div>
 
@@ -1039,10 +1039,10 @@
               <div class="result__note">
                 <p><strong>Wichtiger Hinweis zur individuellen Preisgestaltung</strong></p>
                 <p>Der berechnete Wert ist eine Orientierung. Der Angebotspreis am Markt kann davon abweichen, wenn besondere Merkmale vorliegen:</p>
-                <p><strong>Besondere Lage:</strong> Immobilien in Top-Lagen (z.&nbsp;B. Köln-Lindenthal am Rautenstrauchkanal) erzielen signifikante Preisaufschläge.</p>
-                <p id="result-note-objekttyp"><strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.</p>
-                <p><strong>Individuelle Ausstattung:</strong> Exklusive Einbauten oder historische Details werden in der Standardformel nicht vollumfänglich erfasst.</p>
-                <p><strong>Mein Tipp:</strong> Für eine exakte Punktlandung beim Verkaufspreis empfiehlt sich eine persönliche Begehung durch mich.</p>
+                <p><strong>Besondere Lage:</strong> Innerhalb eines Veedels gibt es Top-Lagen, die deutliche Preisaufschläge erzielen.</p>
+                <p id="result-note-objekttyp"><strong>Objekt-Typ:</strong> Besondere Wohnformen wie Penthouse oder Loft unterliegen eigenen Marktmechanismen.</p>
+                <p><strong>Individuelle Ausstattung:</strong> Exklusive Einbauten oder historische Details erfasst die Formel nicht.</p>
+                <p><strong>Tipp:</strong> Für eine exakte Punktlandung beim Verkaufspreis empfiehlt sich eine persönliche Besichtigung.</p>
               </div>
 
               <div class="result__cta">
@@ -2342,7 +2342,7 @@
       if (art === 'grundstueck') {
         objekttypHinweis.innerHTML = '<strong>Bebauung:</strong> Der Wert unterstellt ein <strong>Einfamilienhaus-Grundst\u00fcck</strong>. L\u00e4sst der Bebauungsplan ein <strong>Mehrfamilienhaus</strong> zu, liegt der Marktwert deutlich h\u00f6her.';
       } else {
-        objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Besondere Wohnformen, wie zum Beispiel ein Penthouse oder Loft, unterliegen eigenen Marktmechanismen.';
+        objekttypHinweis.innerHTML = '<strong>Objekt-Typ:</strong> Besondere Wohnformen wie Penthouse oder Loft unterliegen eigenen Marktmechanismen.';
       }
 
       // Kein Hinweis auf die Rechengrundlage im Ergebnis: Woher die Lagewerte
