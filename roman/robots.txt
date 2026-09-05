@@ -1,68 +1,100 @@
 # robots.txt — romanbecker.de
 # Alle relevanten Crawler explizit erlaubt (inkl. AI-Bots).
-# Format: jeder UA-Block hat sowohl "Allow: /" als auch "Disallow:" (leer)
-# damit auch strenge Parser es eindeutig als "alles erlaubt" lesen.
+# Ausnahme: die Strassenlinks der Stadtteilseiten.
+#
+# Die 94 Stadtteilseiten verlinken zusammen 5.956 Strassen auf das
+# Bewertungsformular. Im HTML steht die Strasse als Fragment
+# (/immobilienbewertung.html#strasse=...), Crawler rufen aber weiter die
+# alte Query-Form ab, die sie aus ihrem Index kennen. Messung ueber die
+# Access-Logs 28.08.-04.09.2026: 7.688 Abrufe mit strasse=, gegenueber
+# 151 Abrufen der Bewertungsseite ohne Parameter — 43,7 % des gesamten
+# Logvolumens. Verursacher: PetalBot 5.042, Bingbot 1.150, SemrushBot 274.
+# Die Seite hat ein Self-Canonical auf die parameterlose URL, indexiert
+# wurde also nichts; es ist reine Crawl-Last.
+#
+# Zwei Regeln je Block, weil ein Crawler nur seinen eigenen Block liest:
+#   Disallow: /immobilienbewertung.html?   — reiner Praefix, auch fuer
+#                                            einfache Parser eindeutig
+#   Disallow: /*?strasse=                  — dieselben Parameter ueberall sonst
+# Die parameterlose /immobilienbewertung.html bleibt erlaubt: sie ist
+# kuerzer als die Regel und wird vom Praefix nicht getroffen.
+# gclid/gbraid/wbraid bleiben bewusst offen (Ads-Zielseiten).
 
 User-agent: *
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 # --- Klassische Suchmaschinen ---
 User-agent: Googlebot
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: Googlebot-Image
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: Bingbot
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 # --- AI / LLM Crawler ---
 User-agent: GPTBot
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: ChatGPT-User
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: OAI-SearchBot
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: ClaudeBot
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: anthropic-ai
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: Claude-Web
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: PerplexityBot
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: Google-Extended
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: CCBot
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: Applebot
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 User-agent: Applebot-Extended
 Allow: /
-Disallow:
+Disallow: /immobilienbewertung.html?
+Disallow: /*?strasse=
 
 Sitemap: https://romanbecker.de/sitemap.xml
