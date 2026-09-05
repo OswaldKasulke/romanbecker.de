@@ -821,16 +821,7 @@
               <input type="number" id="einheiten" name="einheiten" placeholder="z.B. 6" min="2" max="100">
             </div>
 
-            <!-- Erschließung (Grundstück) -->
-            <div class="field" id="field-erschliessung" style="display:none">
-              <label for="erschliessung">Erschließungsstatus</label>
-              <select id="erschliessung" name="erschliessung">
-                <option value="">Bitte wählen</option>
-                <option value="voll">Voll erschlossen</option>
-                <option value="teil">Teilerschlossen</option>
-                <option value="nicht">Nicht erschlossen</option>
-              </select>
-            </div>
+            
 
             <!-- Miete IST / SOLL (Wohnung / Haus / MFH) -->
             <div id="field-miete-group" style="display:none">
@@ -1173,14 +1164,12 @@
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var fieldZimmer = document.getElementById('field-zimmer');
       var fieldEinheiten = document.getElementById('field-einheiten');
-      var fieldErschliessung = document.getElementById('field-erschliessung');
       var fieldMiete = document.getElementById('field-miete-group');
 
       fieldZimmer.style.display = 'none';
       fieldEinheiten.style.display = 'none';
       // Das Mehrfamilienhaus rechnet ueber die Miete, das Grundstueck ueber den
       // Bodenrichtwert — beide brauchen hier ihr eigenes Feld.
-      fieldErschliessung.style.display = art === 'grundstueck' ? 'block' : 'none';
       fieldMiete.style.display = art === 'mehrfamilienhaus' ? 'block' : 'none';
     }
 
@@ -1432,7 +1421,6 @@
       if (gs && gs.value) a.GSTAND = parseInt(gs.value, 10);
       if (art && art.value === 'grundstueck') {
         a.FLAE = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
-        a.ERSCHLIESSUNG = document.getElementById('erschliessung').value || 'voll';
       }
       return a;
     }
@@ -2229,13 +2217,7 @@
       var value = 0;
 
       if (art === 'grundstueck') {
-        var erschlFaktor = { voll: 1.0, teil: 0.75, nicht: 0.5 };
-        var erschl = document.getElementById('erschliessung').value;
-        var eFaktor = erschlFaktor[erschl] || 1.0;
-        value = grundstuecksflaeche * (bodenrichtwert * 0.7) * eFaktor;
-        rw.push('Verfahren: Bodenwert');
-        rw.push('Flaeche ' + grundstuecksflaeche + ' m2 x (Bodenrichtwert ' + bodenrichtwert + ' x 0,7) x Erschliessung ' + eFaktor + ' = ' + value.toFixed(2) + ' EUR');
-
+        return null;
       } else {
         var mieteIst     = parseFloat((document.getElementById('miete_ist').value      || '').replace(',','.')) || 0;
         var mieteIstJahr = parseFloat((document.getElementById('miete_ist_jahr').value  || '').replace(',','.')) || 0;
@@ -2403,7 +2385,6 @@
       formData.append('modellmerkmale', JSON.stringify(modellAttribute()));
       formData.append('zimmer', document.getElementById('zimmer').value);
       formData.append('einheiten', document.getElementById('einheiten').value);
-      formData.append('erschliessung', document.getElementById('erschliessung').value);
       formData.append('miete_ist', document.getElementById('miete_ist').value);
       formData.append('miete_ist_jahr', document.getElementById('miete_ist_jahr').value);
       formData.append('miete_soll', document.getElementById('miete_soll').value);
