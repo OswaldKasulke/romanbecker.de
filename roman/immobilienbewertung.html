@@ -1409,7 +1409,7 @@
     }
 
     function hausnummerAus(text) {
-      var m = String(text || '').match(/[\s,]+(\d+\s*[a-zA-Z]?)\s*$/);
+      var m = String(text || '').match(/[\s,]+(\d+\s*[a-zA-Z]?(?:\s*[-–\/]\s*\d+\s*[a-zA-Z]?)?)\s*$/);
       return m ? m[1].replace(/\s+/g, '') : '';
     }
 
@@ -1423,7 +1423,9 @@
     function vorschlaegeZeigen(text) {
       var api = window.GemeinsameBewertung;
       if (!api) return;
-      var reineStrasse = text.replace(/[\s,]+\d+\s*[a-zA-Z]?\s*$/, '').trim();
+      // Auch Hausnummernbereiche abschneiden ("Kaiser-Wilhelm-Ring 17-21"),
+      // sonst bleibt die Nummer im Suchbegriff und die Trefferliste bleibt leer.
+      var reineStrasse = text.replace(/[\s,]+\d+\s*[a-zA-Z]?(?:\s*[-–\/]\s*\d+\s*[a-zA-Z]?)?\s*$/, '').trim();
       if (reineStrasse.length < 3) { vorschlaegeSchliessen(); return; }
       var laufId = ++vorschlagLauf;
       clearTimeout(vorschlagTimer);

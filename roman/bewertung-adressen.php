@@ -46,10 +46,16 @@ function nrm(?string $v): string
 /** Wie house() im Browser: Zahl plus normalisierter Zusatz, sonst null. */
 function hausnummer(string $v): ?array
 {
-    if (!preg_match('/^\s*(\d+)\s*([A-Za-z0-9\-\/]*)\s*$/', $v, $m)) {
+    if (!preg_match('/^\s*(\d+)\s*([A-Za-z0-9\-\/ ]*)\s*$/', $v, $m)) {
         return null;
     }
-    return [(int) $m[1], nrm($m[2])];
+    // Hausnummernbereiche wie "17-21" sind keine Zusaetze: der amtliche Bestand
+    // kennt als Zusatz nur Buchstaben. Gerechnet wird mit der ersten Nummer.
+    $zusatz = nrm($m[2]);
+    if (preg_match('/\d/', $zusatz)) {
+        $zusatz = '';
+    }
+    return [(int) $m[1], $zusatz];
 }
 
 /** Wie span(): ungerade Nummern gegen Feld 0, gerade gegen Feld 1. */
