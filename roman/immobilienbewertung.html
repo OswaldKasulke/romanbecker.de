@@ -2139,7 +2139,9 @@
           lastRechenweg = rw.join('\n');
           return irw.value;
         }
-        rw.push('Richtwertzone: ' + irw.zone_id + '; Stichtag ' + irw.stichtag + '; Ausgangswert ' + irw.immobilienrichtwert_eur_m2 + ' EUR/m2.');
+        if (irw.zone_id) rw.push('Richtwertzone: ' + irw.zone_id + '; Stichtag ' + irw.stichtag + '; Ausgangswert ' + irw.immobilienrichtwert_eur_m2 + ' EUR/m2.');
+        else rw.push('Ausgangswert ' + irw.immobilienrichtwert_eur_m2 + ' EUR/m2 fuer ' + irw.lage + ' (gepflegter Wert, fuer diese Adresse ist kein amtlicher Richtwert veroeffentlicht).');
+        if (irw.preisquelle && irw.zone_id) rw.push('Ausgangswert aus dem Preis-Master statt des amtlichen Richtwerts von ' + irw.amtlicher_richtwert_eur_m2 + ' EUR/m2.');
         rw.push('Modell: ' + irw.modellquelle + '; Rechenart ' + irw.berechnungsart + '.');
         rw.push('Objektmerkmale: ' + JSON.stringify(a) + '.');
         rw.push('Angepasster Wert: ' + irw.pricePerSqm + ' EUR/m2; gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
