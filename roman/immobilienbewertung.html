@@ -734,6 +734,7 @@
               </select>
             </div>
 
+            <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
             <div class="step__buttons">
               <div></div>
               <button type="button" class="btn btn--primary" onclick="nextStep(1)">Weiter</button>
@@ -745,8 +746,21 @@
             <h2 class="step__title">Adresse der Immobilie</h2>
             <p class="step__subtitle">Wo befindet sich die Immobilie?</p>
 
+            <div class="field-row">
+              <div class="field" id="field-immo-plz">
+                <label for="immo_plz">PLZ *</label>
+                <input type="text" id="immo_plz" name="immo_plz" placeholder="50939" maxlength="5" inputmode="numeric" required>
+                <p class="field__hint" id="immo-plz-hinweis"></p>
+                <p class="field__error">Bitte PLZ eingeben.</p>
+              </div>
+              <div class="field">
+                <label for="immo_ort">Ort</label>
+                <input type="text" id="immo_ort" name="immo_ort" placeholder="wird eingetragen" readonly>
+              </div>
+            </div>
+
             <div class="field" id="field-immo-strasse">
-              <label for="immo_strasse">Straße + Hausnr.</label>
+              <label for="immo_strasse">Straße + Hausnr. *</label>
               <div class="field__suche">
                 <input type="text" id="immo_strasse" name="immo_strasse" placeholder="Musterstraße 12"
                        autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list"
@@ -756,25 +770,13 @@
               <p class="lage-treffer" id="immo-lage" aria-live="polite"></p>
             </div>
 
-            <div class="field-row">
-              <div class="field" id="field-immo-plz">
-                <label for="immo_plz">PLZ *</label>
-                <input type="text" id="immo_plz" name="immo_plz" placeholder="50939" maxlength="5" required>
-                <p class="field__hint" id="immo-plz-hinweis"></p>
-                <p class="field__error">Bitte PLZ eingeben.</p>
-              </div>
-              <div class="field">
-                <label for="immo_ort">Ort</label>
-                <input type="text" id="immo_ort" name="immo_ort" placeholder="Köln" value="Köln">
-              </div>
-            </div>
-
             <div class="field" id="field-immo-veedel" style="display:none;">
               <label for="immo_veedel">Veedel</label>
               <select id="immo_veedel" name="immo_veedel"></select>
               <p class="field__hint">Diese Straße verläuft durch mehrere Veedel – bitte auswählen.</p>
             </div>
 
+            <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
             <div class="step__buttons">
               <button type="button" class="btn btn--secondary" onclick="prevStep(2)">Zurück</button>
               <button type="button" class="btn btn--primary" onclick="nextStep(2)">Weiter</button>
@@ -884,6 +886,7 @@
               </select>
             </div>
 
+            <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
             <div class="step__buttons">
               <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
               <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
@@ -955,6 +958,7 @@
               <input type="number" id="baujahr" name="baujahr" placeholder="z.B. 1965" min="1800" max="2026">
             </div>
 
+            <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
             <div class="step__buttons">
               <button type="button" class="btn btn--secondary" onclick="prevStep(4)">Zurück</button>
               <button type="button" class="btn btn--primary" onclick="nextStep(4)">Weiter</button>
@@ -1014,6 +1018,7 @@
 
             <p id="calculation-error" class="field__error" role="alert" style="display:none;margin-top:1rem;"></p>
 
+            <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
             <div class="step__buttons">
               <button type="button" class="btn btn--secondary" onclick="prevStep(5)">Zurück</button>
               <button type="button" class="btn btn--primary btn--large" onclick="submitForm()">Bewertung anfordern</button>
@@ -1179,6 +1184,25 @@
       fieldMiete.style.display = art === 'mehrfamilienhaus' ? 'block' : 'none';
     }
 
+    // Sagt dem Nutzer, was konkret fehlt, statt ihn nur gegen eine rote
+    // Umrandung laufen zu lassen.
+    var pflichtTexte = {
+      'field-immo-strasse': 'Straße aus der Trefferliste', 'field-immo-plz': 'Postleitzahl',
+      'field-wohnflaeche': 'Wohnfläche', 'field-grundstueck': 'Grundstücksfläche',
+      'field-gstand': 'Zustand und Ausstattung', 'field-miete-group': 'Nettokaltmiete',
+      'field-vorname': 'Vorname', 'field-nachname': 'Nachname', 'field-email': 'E-Mail', 'field-telefon': 'Telefon'
+    };
+    function fehlendeMelden() {
+      var box = document.querySelector('.step.active .fehlende-angaben');
+      if (!box) return;
+      var offen = Object.keys(pflichtTexte).filter(function (id) {
+        var el = document.getElementById(id);
+        return el && el.classList.contains('field--error') && el.style.display !== 'none';
+      }).map(function (id) { return pflichtTexte[id]; });
+      box.textContent = offen.length ? 'Es fehlt noch: ' + offen.join(', ') + '.' : '';
+      box.style.display = offen.length ? 'block' : 'none';
+    }
+
     function nextStep(from) {
       // Der Nutzer kann "Weiter" klicken, ohne das Strassenfeld zu verlassen —
       // die Lage (und damit die PLZ) muss dann trotzdem stehen. Die Adresse
@@ -1186,13 +1210,15 @@
       if (from === 2) {
         lageErmitteln();
         lageWartet.then(function () {
-          if (!validateStep(2)) return;
+          if (!validateStep(2)) { fehlendeMelden(); return; }
+          fehlendeMelden();
           prepareStep3();
           showStep(3);
         });
         return;
       }
-      if (!validateStep(from)) return;
+      if (!validateStep(from)) { fehlendeMelden(); return; }
+      fehlendeMelden();
       showStep(from + 1);
     }
 
@@ -1348,6 +1374,7 @@
     document.getElementById('immo_plz').addEventListener('input', function () {
       gemeinsameKandidaten = [];
       letzteAdresse = null;
+      ortEintragen();
       if (gemeinsameAuswahlId && hausnummerAus(strasseFeld.value)) lageErmitteln();
     });
 
@@ -1450,13 +1477,33 @@
       vorschlagIndex = -1;
     }
 
+    // Der Ort steht im Adressbestand: sobald die PLZ fuenfstellig ist, wird er
+    // eingetragen. Nur 50226 gehoert zu zwei Orten (Frechen und Kerpen), dort
+    // entscheidet erst die Strassenauswahl.
+    var ortLauf = 0;
+    function ortEintragen() {
+      if (!plzFeld || !ortFeld || !window.GemeinsameBewertung) return;
+      var lauf = ++ortLauf;
+      window.GemeinsameBewertung.ortRemote(plzFeld.value).then(function (a) {
+        if (lauf !== ortLauf) return;
+        var hinweis = document.getElementById('immo-plz-hinweis');
+        if (!a.bekannt) {
+          ortFeld.value = '';
+          if (hinweis) hinweis.textContent = /^\d{5}$/.test(plzFeld.value) ? 'Diese Postleitzahl liegt außerhalb meines Gebiets.' : '';
+          return;
+        }
+        ortFeld.value = a.orte.length === 1 ? a.orte[0] : '';
+        if (hinweis) hinweis.textContent = a.orte.length > 1 ? 'Diese Postleitzahl gehört zu ' + a.orte.join(' und ') + '.' : '';
+      });
+    }
+
     function vorschlaegeZeigen(text) {
       var api = window.GemeinsameBewertung;
       if (!api) return;
       // Auch Hausnummernbereiche abschneiden ("Kaiser-Wilhelm-Ring 17-21"),
       // sonst bleibt die Nummer im Suchbegriff und die Trefferliste bleibt leer.
       var reineStrasse = text.replace(/[\s,]+\d+\s*[a-zA-Z]?(?:\s*[-–\/]\s*\d+\s*[a-zA-Z]?)?\s*$/, '').trim();
-      if (reineStrasse.length < 3) { vorschlaegeSchliessen(); return; }
+      if (reineStrasse.length < 2) { vorschlaegeSchliessen(); return; }
       var laufId = ++vorschlagLauf;
       clearTimeout(vorschlagTimer);
       vorschlagTimer = setTimeout(function () {
@@ -1673,7 +1720,7 @@
         var laufId = ++lageLauf;
         gemeinsameKandidaten = [];
         lageWartet = window.GemeinsameBewertung
-          .resolveRemote(gemeinsameAuswahlId, hausnummerAus(text), plzFeld ? plzFeld.value : '')
+          .resolveRemote(gemeinsameAuswahlId, hausnummerAus(text), plzFeld && /^\d{5}$/.test(plzFeld.value) ? plzFeld.value : '')
           .then(function (gemeinsam) {
             if (laufId !== lageLauf) return;
             gemeinsameKandidaten = gemeinsam.candidates || [];
@@ -1688,6 +1735,8 @@
             } else {
               erkanntesUmland = {gemeinde:c.city, plz:c.zip, ortsteil:c.area, region:c.region};
             }
+            // Die Postleitzahl steht im Adressbestand — sie muss niemand raten.
+            if (plzFeld && plzFeld.value !== c.zip) { plzFeld.value = c.zip; plzAutomatisch(true); }
             if (ortFeld) ortFeld.value = c.city;
             lageZeile.className = 'lage-treffer';
             lageZeile.innerHTML = 'Lage erkannt: <strong>' + c.city + (c.area ? '-' + c.area : '') + '</strong> · PLZ ' + c.zip;

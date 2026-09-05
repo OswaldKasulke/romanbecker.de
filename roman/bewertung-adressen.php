@@ -130,15 +130,40 @@ function aktion_suche(string $q, string $plz, int $max): array
                 $areas[] = $p[1];
             }
         }
-        $out[] = ['id' => $x[0], 'name' => $x[1], 'city' => $x[3], 'region' => $x[4], 'areas' => $areas];
+        // Postleitzahlen mitgeben: hat die Strasse genau eine, kann das Formular
+        // sie nach der Auswahl selbst eintragen.
+        $zips = [];
+        foreach ($x[7] as $p) {
+            if ($p[0] !== '' && !in_array($p[0], $zips, true)) {
+                $zips[] = $p[0];
+            }
+        }
+        sort($zips);
+        $out[] = ['id' => $x[0], 'name' => $x[1], 'city' => $x[3], 'region' => $x[4], 'areas' => $areas, 'zips' => $zips];
     }
     return $out;
+}
+
+function aktion_ort(string $plz): array
+{
+    $plz = trim($plz);
+    if (!preg_match('/^\\d{5}$/', $plz)) {
+        return ['plz' => $plz, 'orte' => [], 'bekannt' => false];
+    }
+    $karte = lade(DATEN . '/plz.json') ?? [];
+    $e = $karte[$plz] ?? null;
+    if ($e === null) {
+        return ['plz' => $plz, 'orte' => [], 'bekannt' => false];
+    }
+    return ['plz' => $plz, 'orte' => $e['orte'], 'bekannt' => true];
 }
 
 function aktion_adresse(string $id, string $nr, string $plz): array
 {
     $plz = trim($plz);
-    if (!preg_match('/^\d{5}$/', $plz)) {
+    // Leere Postleitzahl ist erlaubt: mit Strasse und Hausnummer laesst sie sich
+    // bestimmen. Dann werden alle Postleitzahlen der Strasse durchprobiert.
+    if ($plz !== '' && !preg_match('/^\d{5}$/', $plz)) {
         return ['valid' => false, 'message' => 'Bitte eine fünfstellige Postleitzahl eingeben.', 'candidates' => []];
     }
     $strassen = lade(DATEN . '/strassen/' . shard($id) . '.json') ?? [];
@@ -154,7 +179,7 @@ function aktion_adresse(string $id, string $nr, string $plz): array
 
     $abschnitte = [];
     foreach ($e['b'] as $b) {
-        if ($b[2] === $plz && (inSpanne($b, $n) || ($b[0] === null && $b[1] === null))) {
+        if (($plz === '' || $b[2] === $plz) && (inSpanne($b, $n) || ($b[0] === null && $b[1] === null))) {
             $abschnitte[] = $b;
         }
     }
@@ -173,14 +198,14 @@ function aktion_adresse(string $id, string $nr, string $plz): array
             if (!inSpanne($a, $n) || nrm((string) $a[2]) !== $zusatz) {
                 continue;
             }
-            $sig = $e['r'] . '|' . $e['o'] . '|' . $plz . '|' . ($b[3] ?? '') . '|'
+            $sig = $e['r'] . '|' . $e['o'] . '|' . $b[2] . '|' . ($b[3] ?? '') . '|'
                  . json_encode($a[3], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             if (isset($gesehen[$sig])) {
                 continue;
             }
             $gesehen[$sig] = true;
             $kandidaten[] = [
-                'region' => $e['r'], 'city' => $e['o'], 'area' => $b[3], 'zip' => $plz,
+                'region' => $e['r'], 'city' => $e['o'], 'area' => $b[3], 'zip' => $b[2],
                 'street' => $e['n'], 'houseNumber' => $n, 'supplement' => $zusatz,
                 'zoneGroups' => (object) $a[3], 'official' => true,
             ];
@@ -231,10 +256,13 @@ $aktion = $_GET['a'] ?? '';
 if ($aktion === 'stand') {
     raus(lade(DATEN . '/stand.json') ?? ['fehler' => 'Datenbestand fehlt']);
 }
+if ($aktion === 'ort') {
+    raus(aktion_ort((string) ($_GET['plz'] ?? '')));
+}
 if ($aktion === 'suche') {
     raus(aktion_suche((string) ($_GET['q'] ?? ''), (string) ($_GET['plz'] ?? ''), (int) ($_GET['max'] ?? 10)));
 }
 if ($aktion === 'adresse') {
     raus(aktion_adresse((string) ($_GET['id'] ?? ''), (string) ($_GET['nr'] ?? ''), (string) ($_GET['plz'] ?? '')));
 }
-raus(['fehler' => 'Unbekannte Aktion. Erlaubt: stand, suche, adresse.'], 400);
+raus(['fehler' => 'Unbekannte Aktion. Erlaubt: stand, ort, suche, adresse.'], 400);
