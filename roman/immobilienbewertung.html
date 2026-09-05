@@ -723,16 +723,7 @@
               </label>
             </div>
 
-            <div class="field" id="field-bauweise" style="display:none;margin-top:var(--space-6)">
-              <label for="bauweise">Bauweise *</label>
-              <select id="bauweise" name="bauweise">
-                <option value="">Bitte wählen</option>
-                <option value="1">Freistehend</option>
-                <option value="2">Doppelhaushälfte</option>
-                <option value="4">Reihenmittelhaus</option>
-                <option value="5">Reihenendhaus</option>
-              </select>
-            </div>
+            
 
             <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
             <div class="step__buttons">
@@ -1236,10 +1227,6 @@
             setTimeout(function() { el.style.borderColor = ''; }, 1500);
           });
         }
-        if (art && art.value === 'haus' && !document.getElementById('bauweise').value) {
-          document.getElementById('field-bauweise').classList.add('field--error');
-          valid = false;
-        }
       }
 
       if (step === 2) {
@@ -1359,7 +1346,6 @@
     });
     document.querySelectorAll('input[name="objektart"]').forEach(function (el) {
       el.addEventListener('change', function () {
-        document.getElementById('field-bauweise').style.display = this.value === 'haus' ? 'block' : 'none';
       });
     });
     document.getElementById('immo_plz').addEventListener('input', function () {
@@ -1405,7 +1391,6 @@
       };
       if (art && art.value === 'haus') {
         a.FLAE = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
-        a.EGART = parseInt(document.getElementById('bauweise').value, 10) || 0;
       }
       Object.keys(modellMerkmale).forEach(function (key) {
         if (modellMerkmale[key] !== '') a[key] = parseFloat(modellMerkmale[key]);
@@ -2376,7 +2361,6 @@
       var formData = new FormData();
       formData.append('type', 'immobilienbewertung');
       formData.append('objektart', document.querySelector('input[name="objektart"]:checked').value);
-      formData.append('bauweise', document.getElementById('bauweise').value);
       formData.append('wohnflaeche', document.getElementById('wohnflaeche').value);
       formData.append('grundstuecksflaeche', document.getElementById('grundstuecksflaeche').value);
       var zustandEl = document.querySelector('input[name="zustand"]:checked');

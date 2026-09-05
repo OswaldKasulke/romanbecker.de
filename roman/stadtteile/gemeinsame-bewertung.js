@@ -29,7 +29,8 @@ function resolveRemote(id,houseNumber,postalCode){var plz=String(postalCode||"")
 function objektfeld(type){var k=norm(type);if(k==="wohnung"||k==="eigentumswohnung"||k==="etw")return"w";if(k==="haus"||k==="einfamilienhaus"||k==="zweifamilienhaus")return"h";return null;}
 function masterpreis(c,feld){if(!c||!c.area)return null;var e=P[c.region+"|"+c.city+"|"+c.area];if(!e)return null;var v=e[feld];return(typeof v==="number"&&v>0)?v:null;}
 function zustandsfaktor(g){var stufen=(D.zustand&&D.zustand.stufen)||{},n=Math.round(num(g));if(!(n>=1&&n<=10))return null;var e=stufen[String(n)];return e?Number(e.faktor):null;}
-function requiredFields(type,candidates,attrs){attrs=attrs||{};return norm(type)==="haus"&&(attrs.EGART===undefined||attrs.EGART==="")?["EGART"]:[];}
+// Unterarten des Hauses gibt es nicht mehr - der Preis kommt aus dem Veedel.
+function requiredFields(){return[];}
 function fieldInfo(field,type,candidates,attrs){var base=F[field]||{anzeige:field};return{key:field,label:base.anzeige||field,unit:base.einheit||"",kind:"number",options:[]};}
 function evaluate(){fail("Diese Rechenart gibt es nicht mehr.");}
 
