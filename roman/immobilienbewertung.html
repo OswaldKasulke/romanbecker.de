@@ -867,6 +867,23 @@
               <p class="field__error" id="miete-group-error" style="display:none;">Bei Mehrfamilienhäusern ist mindestens eine Mietangabe (IST oder SOLL, monatlich oder jährlich) erforderlich.</p>
             </div>
 
+            <div class="field" id="field-gstand">
+              <label for="gstand">Zustand und Ausstattung *</label>
+              <select id="gstand" name="gstand">
+                <option value="">Bitte wählen</option>
+                <option value="1">1 – sehr einfach</option>
+                <option value="2">2 – sehr einfach – einfach</option>
+                <option value="3">3 – einfach</option>
+                <option value="4">4 – einfach – mittel</option>
+                <option value="5">5 – mittel</option>
+                <option value="6">6 – mittel – gehoben</option>
+                <option value="7">7 – gehoben</option>
+                <option value="8">8 – gehoben – stark gehoben</option>
+                <option value="9">9 – stark gehoben</option>
+                <option value="10">10 – Luxus</option>
+              </select>
+            </div>
+
             <div class="step__buttons">
               <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
               <button type="button" class="btn btn--primary" onclick="nextStep(3)">Weiter</button>
@@ -951,19 +968,19 @@
 
             <div class="field-row">
               <div class="field" id="field-vorname">
-                <label for="vorname">Vorname</label>
+                <label for="vorname">Vorname *</label>
                 <input type="text" id="vorname" name="vorname" placeholder="Vorname" required>
                 <p class="field__error">Bitte Vorname eingeben.</p>
               </div>
               <div class="field" id="field-nachname">
-                <label for="nachname">Nachname</label>
+                <label for="nachname">Nachname *</label>
                 <input type="text" id="nachname" name="nachname" placeholder="Nachname" required>
                 <p class="field__error">Bitte Nachname eingeben.</p>
               </div>
             </div>
 
             <div class="field" id="field-email">
-              <label for="email">E-Mail</label>
+              <label for="email">E-Mail *</label>
               <input type="email" id="email" name="email" placeholder="100g-eiersalat@gmx.net" required>
               <p class="field__error">Bitte gültige E-Mail eingeben.</p>
             </div>
@@ -975,7 +992,7 @@
             </div>
 
             <div class="field">
-              <label for="kontakt_strasse">Ihre Adresse (Straße &amp; Hausnummer)</label>
+              <label for="kontakt_strasse">Ihre Adresse (optional)</label>
               <input type="text" id="kontakt_strasse" name="kontakt_strasse" placeholder="Musterstraße 12">
             </div>
 
@@ -1145,6 +1162,8 @@
       wfInput.required = !isGrund;
       wfHint.style.display = 'none';
       fieldGf.style.display = (isHaus || isGrund) ? 'block' : 'none';
+      // Ein unbebautes Grundstueck hat keinen Gebaeudezustand.
+      document.getElementById('field-gstand').style.display = isGrund ? 'none' : 'block';
 
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var fieldZimmer = document.getElementById('field-zimmer');
@@ -1246,6 +1265,15 @@
           valid = false;
         } else {
           document.getElementById('field-miete-group').classList.remove('field--error');
+        }
+
+        var gsFeld = document.getElementById('field-gstand');
+        gsFeld.style.display = art === 'grundstueck' ? 'none' : 'block';
+        if (art !== 'grundstueck' && !document.getElementById('gstand').value) {
+          gsFeld.classList.add('field--error');
+          valid = false;
+        } else {
+          gsFeld.classList.remove('field--error');
         }
 
         if (art === 'haus' || art === 'grundstueck') {
@@ -1373,6 +1401,8 @@
         var mSollJ = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',', '.')) || 0;
         a.KALTMIETE = mIst || (mIstJ / 12) || mSoll || (mSollJ / 12);
       }
+      var gs = document.getElementById('gstand');
+      if (gs && gs.value) a.GSTAND = parseInt(gs.value, 10);
       if (art && art.value === 'grundstueck') {
         a.FLAE = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
         a.ERSCHLIESSUNG = document.getElementById('erschliessung').value || 'voll';
