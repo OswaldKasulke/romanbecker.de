@@ -158,6 +158,44 @@ function aktion_ort(string $plz): array
     return ['plz' => $plz, 'orte' => $e['orte'], 'bekannt' => true];
 }
 
+function ohneHausnummer(array $e, string $id, string $plz): array
+{
+    $entry = ['id' => $id, 'name' => $e['n'], 'city' => $e['o'], 'region' => $e['r']];
+    $key = $e['r'] . '|' . $e['o'] . '|' . $e['k'];
+    $amtlich = (lade(DATEN . '/adressen/' . shard($key) . '.json') ?? [])[$key] ?? [];
+    if (!$amtlich) {
+        return ['valid' => false, 'message' => 'Bitte die Hausnummer angeben.', 'entry' => $entry, 'candidates' => []];
+    }
+    // Ortsteil je Abschnitt aus dem Strassenmaster, denn er geht beim
+    // Mehrfamilienhaus ueber den Ertragsfaktor in den Preis ein.
+    $gebiete = [];
+    foreach ($e['b'] as $b) {
+        if ($plz === '' || $b[2] === $plz) {
+            $gebiete[$b[2] . '|' . ($b[3] ?? '')] = [$b[2], $b[3] ?? ''];
+        }
+    }
+    $varianten = [];
+    foreach ($amtlich as $a) {
+        foreach ($gebiete as $g) {
+            $varianten[json_encode([$a[3], $g], JSON_UNESCAPED_UNICODE)] = [$a[3], $g];
+        }
+    }
+    if (count($varianten) !== 1) {
+        return ['valid' => false,
+                'message' => 'Für diese Straße hängt der Wert von der Hausnummer ab. Bitte die Hausnummer angeben.',
+                'entry' => $entry, 'candidates' => []];
+    }
+    [$gruppen, $g] = array_values($varianten)[0];
+    $kandidat = [
+        'region' => $e['r'], 'city' => $e['o'], 'area' => $g[1], 'zip' => $g[0],
+        'street' => $e['n'], 'houseNumber' => null, 'supplement' => '',
+        'zoneGroups' => (object) $gruppen, 'official' => true,
+    ];
+    return ['valid' => true,
+            'message' => trim($g[0] . ' ' . $e['o']) . ($g[1] ? ' · ' . $g[1] : ''),
+            'entry' => $entry, 'candidates' => [$kandidat]];
+}
+
 function aktion_adresse(string $id, string $nr, string $plz): array
 {
     $plz = trim($plz);
@@ -170,6 +208,13 @@ function aktion_adresse(string $id, string $nr, string $plz): array
     $e = $strassen[$id] ?? null;
     if ($e === null) {
         return ['valid' => false, 'message' => 'Bitte eine Straße aus der Liste auswählen.', 'candidates' => []];
+    }
+    // Ohne Hausnummer geht es, wenn der Wert an dieser Strasse ueberall gleich
+    // ist - das trifft auf rund vier von fuenf Strassen zu. Wo die Strasse durch
+    // mehrere Richtwertzonen laeuft, entscheidet die Hausnummer ueber den Preis
+    // (Weisshausstr.: ungerade 4.770, gerade 3.510 EUR/m2), dann wird sie verlangt.
+    if (trim($nr) === '') {
+        return ohneHausnummer($e, $id, $plz);
     }
     $h = hausnummer($nr);
     if ($h === null) {
@@ -217,7 +262,7 @@ function aktion_adresse(string $id, string $nr, string $plz): array
     }
     $teile = [];
     foreach ($kandidaten as $c) {
-        $teile[] = $c['zip'] . ' ' . $c['city'] . ($c['area'] ? ' · ' . $c['area'] : '');
+        $teile[] = trim($c['zip'] . ' ' . $c['city']) . ($c['area'] ? ' · ' . $c['area'] : '');
     }
     return ['valid' => true, 'message' => implode(' / ', $teile), 'entry' => $entry, 'candidates' => $kandidaten];
 }
