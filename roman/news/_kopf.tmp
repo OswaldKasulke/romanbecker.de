@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Neues Heizungsgesetz 2026: Was in Köln jetzt gilt | Kölner Immobilien NEWS</title>
+  <meta name="description" content="Das Gebäudemodernisierungsgesetz streicht die 65-Prozent-Regel. Was das für die 72,7 Prozent gasbeheizten Kölner Wohnungen und ihren Wert bedeutet.">
+  <link rel="canonical" href="https://romanbecker.de/news/gebaeudemodernisierungsgesetz-koeln.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="65-Prozent-Regel gestrichen: Neues Heizungsrecht seit dem 29. Juli | Kölner Immobilien NEWS">
+  <meta property="og:description" content="Das Gebäudemodernisierungsgesetz streicht die 65-Prozent-Regel. Was das für die 72,7 Prozent gasbeheizten Kölner Wohnungen und ihren Wert bedeutet.">
+  <meta property="og:url" content="https://romanbecker.de/news/gebaeudemodernisierungsgesetz-koeln.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "65-Prozent-Regel gestrichen: Neues Heizungsrecht gilt seit dem 29. Juli",
+    "description": "Das Gebäudemodernisierungsgesetz hat das Gebäudeenergiegesetz abgelöst. Die 65-Prozent-Regel für neue Heizungen ist entfallen.",
+    "url": "https://romanbecker.de/news/gebaeudemodernisierungsgesetz-koeln.html",
+    "datePublished": "2026-09-06",
+    "dateModified": "2026-09-06",
+    "articleSection": "Kölner Immobilien NEWS",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilien | Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    }
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--text, #000000); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text, #000000); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--text, #000000); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 700px; }
+    .news-meta { font-size: 0.85rem; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); padding-bottom: var(--space-4); margin-bottom: var(--space-8); }
+    .news-meta strong { color: var(--text, #000000); }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .news-table { width: 100%; border-collapse: collapse; margin: var(--space-6) 0; font-size: 0.92rem; }
+    .news-table th, .news-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--gray-200); text-align: right; color: var(--gray-600); }
+    .news-table th { color: var(--text, #000000); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .news-table th:first-child, .news-table td:first-child { text-align: left; }
+    .news-table td:first-child { color: var(--text, #000000); }
+    .news-table-wrap { overflow-x: auto; }
+    .news-table caption { caption-side: top; text-align: left; font-size: 0.8rem; color: var(--gray-600); padding-bottom: 0.5rem; }
+    .news-sources { background: var(--gray-100); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0 0; }
+    .news-sources h2 { font-size: 0.9rem !important; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin: 0 0 var(--space-4) !important; }
+    .news-sources ol { font-size: 0.85rem; margin-left: 1.2rem; }
+    .news-sources a { word-break: break-word; }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+  </style>
+</head>
