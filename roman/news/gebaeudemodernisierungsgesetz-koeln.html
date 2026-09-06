@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Neues Heizungsgesetz 2026: Was in Köln jetzt gilt | Kölner Immobilien NEWS</title>
+  <meta name="description" content="Das Gebäudemodernisierungsgesetz streicht die 65-Prozent-Regel. Was das für die 72,7 Prozent gasbeheizten Kölner Wohnungen und ihren Wert bedeutet.">
+  <link rel="canonical" href="https://romanbecker.de/news/gebaeudemodernisierungsgesetz-koeln.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="65-Prozent-Regel gestrichen: Neues Heizungsrecht seit dem 29. Juli | Kölner Immobilien NEWS">
+  <meta property="og:description" content="Das Gebäudemodernisierungsgesetz streicht die 65-Prozent-Regel. Was das für die 72,7 Prozent gasbeheizten Kölner Wohnungen und ihren Wert bedeutet.">
+  <meta property="og:url" content="https://romanbecker.de/news/gebaeudemodernisierungsgesetz-koeln.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "65-Prozent-Regel gestrichen: Neues Heizungsrecht gilt seit dem 29. Juli",
+    "description": "Das Gebäudemodernisierungsgesetz hat das Gebäudeenergiegesetz abgelöst. Die 65-Prozent-Regel für neue Heizungen ist entfallen.",
+    "url": "https://romanbecker.de/news/gebaeudemodernisierungsgesetz-koeln.html",
+    "datePublished": "2026-09-06",
+    "dateModified": "2026-09-06",
+    "articleSection": "Kölner Immobilien NEWS",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilien | Immobilienmakler Köln",
+      "url": "https://romanbecker.de/"
+    }
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--text, #000000); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text, #000000); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--text, #000000); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 700px; }
+    .news-meta { font-size: 0.85rem; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); padding-bottom: var(--space-4); margin-bottom: var(--space-8); }
+    .news-meta strong { color: var(--text, #000000); }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .news-table { width: 100%; border-collapse: collapse; margin: var(--space-6) 0; font-size: 0.92rem; }
+    .news-table th, .news-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--gray-200); text-align: right; color: var(--gray-600); }
+    .news-table th { color: var(--text, #000000); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .news-table th:first-child, .news-table td:first-child { text-align: left; }
+    .news-table td:first-child { color: var(--text, #000000); }
+    .news-table-wrap { overflow-x: auto; }
+    .news-table caption { caption-side: top; text-align: left; font-size: 0.8rem; color: var(--gray-600); padding-bottom: 0.5rem; }
+    .news-sources { background: var(--gray-100); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0 0; }
+    .news-sources h2 { font-size: 0.9rem !important; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin: 0 0 var(--space-4) !important; }
+    .news-sources ol { font-size: 0.85rem; margin-left: 1.2rem; }
+    .news-sources a { word-break: break-word; }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+  </style>
+</head>
+<body>
+
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/news/">News</a>
+          <a href="https://romanbecker.de/stadtteile/">Stadtteile</a>
+          <a href="https://romanbecker.de/ratgeber/">Ratgeber</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Sofort-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/news/">Kölner Immobilien NEWS</a>
+      <span>›</span>
+      Neues Heizungsrecht 2026
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Kölner Immobilien NEWS · Roman Becker</div>
+      <h1>65-Prozent-Regel gestrichen: Neues Heizungsrecht gilt seit dem 29. Juli</h1>
+      <p>Das Gebäudemodernisierungsgesetz hat das Gebäudeenergiegesetz abgelöst. Für Köln ist das eine Nachricht mit Gewicht: Nach dem Zensus 2022 wurden 72,7 Prozent aller Kölner Wohnungen mit Gas beheizt.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+
+<p class="news-meta"><strong>6. September 2026</strong> · Roman Becker, romanbecker.de · Quellen der Zahlen: Deutscher Bundestag, Bundesregierung und Stadt Köln</p>
+
+<p>Die Pflicht, neue Heizungen zu mindestens 65 Prozent mit erneuerbaren Energien zu betreiben, ist entfallen. Für Eigentümer ändert sich damit eine Grundlage, die in Verkaufsverhandlungen regelmäßig eine Rolle spielt.</p>
+
+<h2>Bundestag beschloss das Gesetz mit 323 zu 271 Stimmen</h2>
+<p>Der Bundestag hat das <strong>Gebäudemodernisierungsgesetz (GModG)</strong> am 10. Juli 2026 mit 323 Ja- zu 271 Nein-Stimmen beschlossen. Verkündet wurde es am 28. Juli 2026 im Bundesgesetzblatt, die wesentlichen Neuregelungen gelten seit dem <strong>29. Juli 2026</strong>. Es ersetzt das Gebäudeenergiegesetz.</p>
+<p>Die zentrale Änderung: Die pauschale Vorgabe, dass neu eingebaute Heizungen ihre Wärme zu mindestens 65 Prozent aus erneuerbaren Energien erzeugen müssen, ist gestrichen. Neben Wärmepumpen, Fernwärme und Biomasse bleiben damit auch neue Gas- und Ölheizungen zulässig. An die Stelle der Quote tritt eine Beimischungspflicht für den Brennstoff.</p>
+
+<div class="factbox">
+  <p><strong>Auf einen Blick</strong></p>
+  <p>• <strong>Beschluss im Bundestag:</strong> 10. Juli 2026, 323 Ja- zu 271 Nein-Stimmen</p>
+  <p>• <strong>Verkündung im Bundesgesetzblatt:</strong> 28. Juli 2026</p>
+  <p>• <strong>Wesentliche Neuregelungen gelten seit:</strong> 29. Juli 2026</p>
+  <p>• <strong>65-Prozent-Regel:</strong> ersatzlos gestrichen</p>
+  <p>• <strong>Neue Gas- und Ölheizungen:</strong> weiterhin zulässig</p>
+  <p>• <strong>Beimischungspflicht klimaneutraler Brennstoffe:</strong> 10 Prozent ab 2029, 60 Prozent ab 2040, 100 Prozent ab 2045</p>
+</div>
+
+<h2>Köln heizt zu 72,7 Prozent mit Gas</h2>
+<p>Wie stark das den Kölner Bestand betrifft, zeigt die städtische Auswertung „So heizt Köln“ auf Basis der Gebäude- und Wohnungszählung des Zensus 2022 (Stichtag 15. Mai 2022). Zu diesem Zeitpunkt gab es in Köln <strong>142.726 Gebäude</strong> mit Wohnraum und <strong>567.401 Wohnungen</strong>.</p>
+
+<div class="news-table-wrap">
+<table class="news-table">
+  <caption>Energieträger der Kölner Wohnungen, Zensus 2022 (Stichtag 15. 05. 2022)</caption>
+  <thead>
+    <tr><th>Energieträger</th><th>Anteil der Wohnungen</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Gas</td><td>72,7 %</td></tr>
+    <tr><td>Fernwärme (verschiedene Energieträger)</td><td>15,7 %</td></tr>
+    <tr><td>fossil insgesamt (Gas, Heizöl, Kohle)</td><td>mindestens 80,5 %</td></tr>
+    <tr><td>erneuerbar insgesamt</td><td>mindestens 2,1 %</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Der Anteil schwankt erheblich zwischen den Veedeln. Solarthermie, Geothermie und Wärmepumpen kamen am häufigsten am Stadtrand vor, in der Innenstadt praktisch gar nicht.</p>
+
+<div class="news-table-wrap">
+<table class="news-table">
+  <caption>Anteil der Wohnungen mit Solar-/Geothermie und Wärmepumpen, ausgewählte Stadtteile</caption>
+  <thead>
+    <tr><th>Stadtteil</th><th>Anteil</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="https://romanbecker.de/stadtteile/widdersdorf.html">Köln-Widdersdorf</a></td><td>12,6 %</td></tr>
+    <tr><td><a href="https://romanbecker.de/stadtteile/hahnwald.html">Köln-Hahnwald</a></td><td>10,8 %</td></tr>
+    <tr><td><a href="https://romanbecker.de/stadtteile/fuehlingen.html">Köln-Fühlingen</a></td><td>10,0 %</td></tr>
+    <tr><td><a href="https://romanbecker.de/stadtteile/altstadt-sued.html">Köln-Altstadt-Süd</a></td><td>0,2 %</td></tr>
+    <tr><td><a href="https://romanbecker.de/stadtteile/neustadt-sued.html">Köln-Neustadt-Süd</a></td><td>0,2 %</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Auch das Baujahr schlägt durch: In Gebäuden von vor 1919 wurden 84,7 Prozent der Wohnungen mit Gas beheizt, in Gebäuden der Jahre 1970 bis 1979 nur 54,5 Prozent – dort erreichte Fernwärme 27,1 Prozent. In Ein- und Zweifamilienhäusern spielte Heizöl mit 13,6 Prozent eine deutlich größere Rolle als in Mehrfamilienhäusern mit 6,5 Prozent.</p>
+
+<p>Zur Einordnung der Datenqualität: Die Zahlen stammen vom Mai 2022 und sind damit über vier Jahre alt. Für 11,3 Prozent der Gebäude und 16,4 Prozent der Wohnungen musste die Stadt Angaben schätzen.</p>
+
+<h2>Der Kölner Wärmeplan verweist auf ein Gesetz, das es nicht mehr gibt</h2>
+<p>Die Stadt Köln hat ihre erste Kommunale Wärmeplanung am 4. März 2026 als fertiggestellt gemeldet. Sie teilt das Stadtgebiet danach ein, ob sich ein Gebiet für Fern- und Nahwärme oder für dezentrale Lösungen eignet. In derselben Mitteilung hält die Stadt fest, der Plan selbst begründe keine Pflichten – verbindliche Verpflichtungen ergäben sich „aus dem geltenden Gebäudeenergiegesetz“. Genau dieses Gesetz wurde knapp fünf Monate später ersetzt.</p>
+<p>Der Plan bleibt als Orientierung nützlich, weil er zeigt, wo ein Fernwärmeanschluss realistisch ist. Die RheinEnergie investiert nach Angaben der Stadt rund zwei Milliarden Euro in die Infrastruktur, darunter eine Flusswasser-Wärmepumpe mit 150 Megawatt thermischer Leistung bis 2028.</p>
+
+<h2>Was das für Eigentümer bedeutet</h2>
+<p>Für Verkäufer verschiebt sich ein Verhandlungsargument. Unter dem alten Recht war eine ältere Gasheizung ein Posten, den Kaufinteressenten als absehbare Pflichtinvestition ansetzen konnten. Diese rechtliche Grundlage besteht so nicht mehr – die Beimischungspflicht ab 2029 wirkt über den Brennstoffpreis, nicht über einen Austauschzwang.</p>
+<p>Verschwunden ist das Thema damit nicht, es hat nur die Form gewechselt: Wer heute eine Gasheizung betreibt, trägt ab 2029 steigende Brennstoffkosten.</p>
+
+<div class="doc-note">
+  <p><strong>Einordnung:</strong> Ob und wie sich das im Preis eines konkreten Objekts niederschlägt, hängt von Baujahr, Zustand der Anlage und der Lage im Wärmeplan ab. Für die rechtliche Bewertung des Einzelfalls ist fachlicher Rat einzuholen; dieser Beitrag ersetzt keine Rechtsberatung.</p>
+</div>
+
+<h2>Ausblick</h2>
+<p>Offen ist, wie sich die Beimischungsquote ab 2029 auf die Gaspreise auswirkt – dazu liegen belastbare Zahlen bislang nicht vor. Für Köln ist der nächste erkennbare Schritt die Fortschreibung der Wärmeplanung, die alle fünf Jahre zu aktualisieren ist.</p>
+
+<div class="news-sources">
+  <h2>Quellen</h2>
+  <ol>
+    <li>Deutscher Bundestag, „Bundestag beschließt Heizungsgesetz-Novelle“, Abstimmung vom 10. 07. 2026, abgerufen 06. 09. 2026 – <a href="https://www.bundestag.de/dokumente/textarchiv/2026/kw28-de-heizungsgesetz-1194534" target="_blank" rel="noopener">https://www.bundestag.de/dokumente/textarchiv/2026/kw28-de-heizungsgesetz-1194534</a></li>
+    <li>Bundesregierung, „Neues Gebäudemodernisierungsgesetz“, Verkündung im Bundesgesetzblatt am 28. 07. 2026, Inkrafttreten 29. 07. 2026, abgerufen 06. 09. 2026 – <a href="https://www.bundesregierung.de/breg-de/aktuelles/neues-gebaeudemodernisierungsgesetz-2430284" target="_blank" rel="noopener">https://www.bundesregierung.de/breg-de/aktuelles/neues-gebaeudemodernisierungsgesetz-2430284</a></li>
+    <li>Stadt Köln, Amt für Stadtentwicklung und Statistik, „So heizt Köln – Ergebnisse des Zensus 2022“, Kölner Statistische Nachrichten 14/2025, abgerufen 06. 09. 2026 – <a href="https://www.stadt-koeln.de/mediaasset/content/pdf15/statistik-bauen-und-wohnen/so_heizt_koeln_-_ergebnisse_des_zensus_2022.pdf" target="_blank" rel="noopener">https://www.stadt-koeln.de/mediaasset/content/pdf15/statistik-bauen-und-wohnen/so_heizt_koeln_-_ergebnisse_des_zensus_2022.pdf</a></li>
+    <li>Stadt Köln, „Kommunale Wärmeplanung ist fertiggestellt“, veröffentlicht 04. 03. 2026, abgerufen 06. 09. 2026 – <a href="https://www.stadt-koeln.de/politik-und-verwaltung/presse/mitteilungen/28239/index.html" target="_blank" rel="noopener">https://www.stadt-koeln.de/politik-und-verwaltung/presse/mitteilungen/28239/index.html</a></li>
+  </ol>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Unverbindliche Immobilienbewertung</span>
+        <h2>Was heißt das für Ihr Objekt?</h2>
+        <p>Wie Heizung und Baujahr den Wert Ihrer Immobilie im jeweiligen Veedel beeinflussen, lässt sich nur am Einzelfall beurteilen. Ich sehe mir das an – unverbindlich, diskret und ohne Zeitdruck.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEITERE NEWS -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav" style="margin-top:0;padding:var(--space-6);background:var(--gray-100);border-radius:var(--radius);">
+        <h3 style="font-size:0.9rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray-600);margin-bottom:var(--space-4);">Mehr aus Kölner Immobilien NEWS</h3>
+        <div class="ratgeber-nav-links" style="display:flex;flex-wrap:wrap;gap:var(--space-2);">
+          <a href="https://romanbecker.de/news/" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Alle Meldungen</a>
+          <a href="https://romanbecker.de/news/bauzinsen-anstieg-juli-2026.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Bauzinsen Juli 2026</a>
+          <a href="https://romanbecker.de/news/baugenehmigungen-koeln-halbjahr-2026.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Baugenehmigungen Köln</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/stadtteile/" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Alle Veedel</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
+          <span>© 2026 Roman Becker Immobilien</span>
+          <address>Kaiser-Wilhelm-Ring 17-21, 50672 Köln</address>
+        </div>
+        <div class="footer__links">
+          <a href="https://romanbecker.de/leistungen.html">Leistungen</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
+          <a href="https://romanbecker.de/news/">Kölner Immobilien NEWS</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/mietspiegel.html">Mietspiegel Köln</a>
+          <a href="https://romanbecker.de/datenschutz.html">Datenschutz</a>
+          <a href="https://romanbecker.de/impressum.html">Impressum</a>
+          <a href="https://romanbecker.de/agb.html">AGB</a>
+          <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler für Köln &amp; das Rheinland tätig. Die Beiträge unter Kölner Immobilien NEWS dienen der allgemeinen Information und ersetzen keine Rechts-, Steuer- oder Finanzberatung im Einzelfall. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
