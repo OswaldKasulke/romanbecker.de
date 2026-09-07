@@ -789,11 +789,10 @@
             </div>
 
             <div class="field" id="field-grundstueck">
-              <label for="grundstuecksflaeche">Grundstücksfläche</label>
+              <label for="grundstuecksflaeche" id="grundstueck-label">Grundstücksfläche</label>
               <div class="field__unit" data-unit="m²">
                 <input type="number" id="grundstuecksflaeche" name="grundstuecksflaeche" placeholder="z.B. 450" min="0" max="100000">
               </div>
-              <p class="field__hint">Optional bei Wohnungen.</p>
             </div>
 
 
@@ -1152,6 +1151,11 @@
       wfInput.required = !isGrund;
       wfHint.style.display = 'none';
       fieldGf.style.display = (isHaus || isGrund) ? 'block' : 'none';
+      // Beim Haus rechnet das Modell mit Wohnflaeche x Preis je m2 x
+      // Zustandsfaktor — die Grundstuecksflaeche geht nicht ein und ist deshalb
+      // freiwillig. Beim Grundstueck ist sie die Rechengroesse und Pflicht.
+      document.getElementById('grundstueck-label').textContent =
+        isHaus ? 'Grundstücksfläche (optional)' : 'Grundstücksfläche';
       // Ein unbebautes Grundstueck hat keinen Gebaeudezustand.
       document.getElementById('field-gstand').style.display = isGrund ? 'none' : 'block';
 
@@ -1286,7 +1290,7 @@
           gsFeld.classList.remove('field--error');
         }
 
-        if (art === 'haus' || art === 'grundstueck') {
+        if (art === 'grundstueck') {
           var gf = document.getElementById('grundstuecksflaeche');
           var fieldGf = document.getElementById('field-grundstueck');
           if (!gf.value || parseFloat(gf.value) < 10) {
