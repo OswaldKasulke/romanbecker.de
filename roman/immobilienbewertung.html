@@ -2125,6 +2125,14 @@
         if (art === 'mehrfamilienhaus' || art === 'grundstueck') {
           rw.push('Verfahren: ' + irw.verfahren + '; ' + irw.berechnungsart + '.');
           rw.push('Grundlage: ' + irw.modellquelle + '.');
+          // Die Rechenzeile fehlte: das Verfahren nannte "Jahresnettokaltmiete
+          // durch Bruttorendite", die Jahresnettokaltmiete selbst stand nirgends -
+          // der Wert war aus dem Protokoll nicht nachrechenbar.
+          rw.push('Rechnung: ' + (art === 'grundstueck'
+            ? irw.bodenrichtwert_eur_m2 + ' EUR/m2 Bodenrichtwert x ' + String(irw.faktor).replace('.', ',')
+              + ' -> ' + irw.pricePerSqm + ' EUR/m2 x ' + a.FLAE + ' m2'
+            : irw.jahresnettokaltmiete + ' EUR Jahresnettokaltmiete x Faktor ' + irw.faktor.toFixed(2))
+            + ' = ' + irw.value + ' EUR.');
           rw.push('Gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
           if (irw.untergrenze_gegriffen) rw.push('Die Untergrenze aus 10 EUR/m2 Kaltmiete hat gegriffen.');
           lastRechenweg = rw.join('\n');
