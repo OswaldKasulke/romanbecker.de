@@ -1048,6 +1048,12 @@
               <div class="result__cta">
                 <a href="tel:+491775156969" class="btn btn--primary btn--large">Jetzt anrufen: +49 177 515 69 69</a>
                 <a href="/danke.html" class="btn btn--secondary btn--large" onclick="if(typeof gtag==='function'){gtag('event','conversion',{event_category:'Immobilienbewertung',event_label:'CTA geklickt'})}">Beratungsgespräch vereinbaren</a>
+                <!-- Zurueck zur Eingabe. Die drei Schwesterrechner haben diesen Schritt
+                     laengst, hier fehlte er: wer sich bei Flaeche oder Zustand vertippt
+                     hatte, kam am Ergebnis nicht mehr heraus. Beschriftung und Ziel
+                     wie dort - prevStep(6) fuehrt auf Schritt 5 zurueck, auch beim
+                     Grundstueck, bei dem Schritt 4 uebersprungen wird. -->
+                <button type="button" class="btn btn--secondary" onclick="prevStep(6)">Angaben ändern</button>
               </div>
             </div>
           </div>
