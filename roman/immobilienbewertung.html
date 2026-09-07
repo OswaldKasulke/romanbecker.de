@@ -851,7 +851,7 @@
             </div>
 
             <div class="field" id="field-gstand">
-              <label for="gstand">Zustand und Ausstattung *</label>
+              <label for="gstand" id="gstand-label">Zustand und Ausstattung *</label>
               <select id="gstand" name="gstand">
                 <option value="">Bitte wählen</option>
                 <option value="1">1 – sehr einfach (Kernsanierung)</option>
@@ -1142,14 +1142,17 @@
       if (!art) return;
       var isHaus = art.value === 'haus';
       var isGrund = art.value === 'grundstueck';
+      var isMfh = art.value === 'mehrfamilienhaus';
       var fieldWf = document.getElementById('field-wohnflaeche');
       var fieldGf = document.getElementById('field-grundstueck');
       var wfInput = document.getElementById('wohnflaeche');
       var wfHint = document.getElementById('wohnflaeche-hint');
       // Ein unbebautes Grundstueck hat keine Wohnflaeche.
       fieldWf.style.display = isGrund ? 'none' : 'block';
-      wfInput.required = !isGrund;
-      wfHint.style.display = 'none';
+      // Der Ertragswert rechnet nur mit der Miete. Die Wohnflaeche setzt dort
+      // allein die 10-Euro-Untergrenze und ist deshalb freiwillig.
+      wfInput.required = !isGrund && !isMfh;
+      wfHint.style.display = isMfh ? 'block' : 'none';
       fieldGf.style.display = (isHaus || isGrund) ? 'block' : 'none';
       // Beim Haus rechnet das Modell mit Wohnflaeche x Preis je m2 x
       // Zustandsfaktor — die Grundstuecksflaeche geht nicht ein und ist deshalb
@@ -1158,6 +1161,9 @@
         isHaus ? 'Grundstücksfläche (optional)' : 'Grundstücksfläche';
       // Ein unbebautes Grundstueck hat keinen Gebaeudezustand.
       document.getElementById('field-gstand').style.display = isGrund ? 'none' : 'block';
+      // Der Zustandsfaktor geht nur in den Preis-Master ein, nicht in den Ertragswert.
+      document.getElementById('gstand-label').textContent =
+        isMfh ? 'Zustand und Ausstattung (optional)' : 'Zustand und Ausstattung *';
 
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var fieldZimmer = document.getElementById('field-zimmer');
@@ -1266,7 +1272,7 @@
         var fieldWf = document.getElementById('field-wohnflaeche');
         var art = document.querySelector('input[name="objektart"]:checked').value;
 
-        if (art !== 'grundstueck' && (!wf.value || parseFloat(wf.value) < 10)) {
+        if (art !== 'grundstueck' && art !== 'mehrfamilienhaus' && (!wf.value || parseFloat(wf.value) < 10)) {
           fieldWf.classList.add('field--error');
           valid = false;
         } else {
@@ -1283,7 +1289,7 @@
 
         var gsFeld = document.getElementById('field-gstand');
         gsFeld.style.display = art === 'grundstueck' ? 'none' : 'block';
-        if (art !== 'grundstueck' && !document.getElementById('gstand').value) {
+        if (art !== 'grundstueck' && art !== 'mehrfamilienhaus' && !document.getElementById('gstand').value) {
           gsFeld.classList.add('field--error');
           valid = false;
         } else {
