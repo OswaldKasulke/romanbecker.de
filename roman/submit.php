@@ -174,15 +174,24 @@ if ($nachricht)   $body .= "\nNachricht:\n$nachricht\n";
 
 // Lead zuerst dauerhaft sichern, BEVOR der Mailversand versucht wird.
 // So geht die Anfrage nicht verloren, selbst wenn SMTP komplett ausfällt.
+// Die Google-Ads-Klickkennung schicken die Schwesterseiten mit, wenn der
+// Besucher über eine Anzeige gekommen ist (Auto-Tagging hängt ?gclid= an die
+// Ziel-URL). Sie wird nur protokolliert; gemeldet wird die Conversion später
+// aus leads.log heraus per API. Deshalb braucht keine Seite ein Zählpixel.
+$gclid = isset($_POST['gclid']) ? substr(trim((string) $_POST['gclid']), 0, 200) : '';
+if (!preg_match('/^[A-Za-z0-9_-]*$/', $gclid)) $gclid = '';
+
 $leadRecord = [
     'zeit'     => date('c'),
     'type'     => $type,
+    'site'     => $site,
     'name'     => $name,
     'telefon'  => $telefon,
     'email'    => $email,
     'immo_ort' => $immo_ort,
     'ergebnis' => $ergebnis,
     'rechenweg' => $rechenweg,
+    'gclid'    => $gclid,
     'mail_sent' => null, // wird unten gesetzt
 ];
 $leadLogPath = __DIR__ . '/leads.log';
