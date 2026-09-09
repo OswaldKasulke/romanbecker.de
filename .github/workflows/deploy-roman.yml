@@ -66,7 +66,6 @@ jobs:
           protocol: ftp
           port: 21
           timeout: 120000
-          state-name: .ftp-deploy-sync-state-2026-09-09.json
 
       - name: FTP Deploy (Produktion) – zweiter Versuch
         if: github.ref == 'refs/heads/main' && steps.ftp_prod.outcome == 'failure'
@@ -84,7 +83,6 @@ jobs:
           protocol: ftp
           port: 21
           timeout: 120000
-          state-name: .ftp-deploy-sync-state-2026-09-09.json
 
       # Canary: nach dem Upload nachsehen, ob der Server wirklich den Repo-Stand
       # ausliefert. Anlass ist der 02.09.2026 — vier fremde FTP-Vollsyncs haben
