@@ -62,23 +62,23 @@ RewriteRule ^marktanalyse/?$ /ratgeber/grundstuecksmarktbericht-koeln.html [R=30
 # Marktbericht: folgt dem jaehrlichen Grundstuecksmarktbericht statt dem
 # Quartal und sitzt seit 21.08.2026 im Ratgeber-Silo. Alle Altadressen zeigen
 # direkt auf das Ziel, keine Ketten.
-RewriteRule ^marktanalyse/koeln-q2-2026\.html$ /ratgeber/marktanalyse.html [R=301,L]
-RewriteRule ^marktanalyse/koeln-q3-2026\.html$ /ratgeber/marktanalyse.html [R=301,L]
-RewriteRule ^marktanalyse/koeln-2026\.html$    /ratgeber/marktanalyse.html [R=301,L]
-RewriteRule ^ratgeber/hypothek\.html$ /ratgeber/grundschuld.html [R=301,L]
-RewriteRule ^ratgeber/smart-heizung\.html$ /ratgeber/smarthome.html [R=301,L]
-RewriteRule ^ratgeber/vergleichsmiete\.html$ /mietspiegel.html [R=301,L]
-RewriteRule ^ratgeber/mietspiegel\.html$ /mietspiegel.html [R=301,L]
+RewriteRule ^marktanalyse/koeln-q2-2026(\.html|/)$ /ratgeber/marktanalyse.html [R=301,L]
+RewriteRule ^marktanalyse/koeln-q3-2026(\.html|/)$ /ratgeber/marktanalyse.html [R=301,L]
+RewriteRule ^marktanalyse/koeln-2026(\.html|/)$    /ratgeber/marktanalyse.html [R=301,L]
+RewriteRule ^ratgeber/hypothek(\.html|/)$ /ratgeber/grundschuld.html [R=301,L]
+RewriteRule ^ratgeber/smart-heizung(\.html|/)$ /ratgeber/smarthome.html [R=301,L]
+RewriteRule ^ratgeber/vergleichsmiete(\.html|/)$ /mietspiegel.html [R=301,L]
+RewriteRule ^ratgeber/mietspiegel(\.html|/)$ /mietspiegel.html [R=301,L]
 RewriteRule ^mietspiegel-koeln\.html$ /mietspiegel.html [R=301,L]
 
 # Zusammengelegt zu fenster-tueren-dach.html (vier duenne Einzelseiten)
-RewriteRule ^ratgeber/fenster\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
-RewriteRule ^ratgeber/verglasung\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
-RewriteRule ^ratgeber/daecher\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
-RewriteRule ^ratgeber/haustueren\.html$ /ratgeber/fenster-tueren-dach.html [R=301,L]
+RewriteRule ^ratgeber/fenster(\.html|/)$ /ratgeber/fenster-tueren-dach.html [R=301,L]
+RewriteRule ^ratgeber/verglasung(\.html|/)$ /ratgeber/fenster-tueren-dach.html [R=301,L]
+RewriteRule ^ratgeber/daecher(\.html|/)$ /ratgeber/fenster-tueren-dach.html [R=301,L]
+RewriteRule ^ratgeber/haustueren(\.html|/)$ /ratgeber/fenster-tueren-dach.html [R=301,L]
 
-RewriteRule ^ratgeber/niesbrauch-wohnrecht\.html$      /ratgeber/niessbrauch-wohnrecht.html      [R=301,L]
-RewriteRule ^ratgeber/niesbrauch-kapitalisieren\.html$ /ratgeber/niessbrauch-kapitalisieren.html [R=301,L]
+RewriteRule ^ratgeber/niesbrauch-wohnrecht(\.html|/)$      /ratgeber/niessbrauch-wohnrecht.html      [R=301,L]
+RewriteRule ^ratgeber/niesbrauch-kapitalisieren(\.html|/)$ /ratgeber/niessbrauch-kapitalisieren.html [R=301,L]
 
 # Leverkusen-Seiten entfernt (09.08.2026) -> Uebersichten (301)
 RewriteRule ^bodenrichtwert-leverkusen\.html$ /bodenrichtwert-koeln.html [R=301,L]
@@ -87,18 +87,18 @@ RewriteRule ^bodenrichtwert-leverkusen\.html$ /bodenrichtwert-koeln.html [R=301,
 # Eschweiler entfernt (14.08.2026, Staedteregion Aachen ausserhalb des Einzugsgebiets) -> Uebersichten (301)
 RewriteRule ^bodenrichtwert-eschweiler\.html$ /bodenrichtwert-koeln.html [R=301,L]
 
-RewriteRule ^stadtteile/eschweiler\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/eschweiler(\.html|/)$ /stadtteile/ [R=301,L]
 
 # Rhein-Sieg-Kreis komplett entfernt (15.08.2026) -> Uebersichten (301)
-RewriteRule ^stadtteile/alfter\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/bornheim\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/lohmar\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/much\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/neunkirchen-seelscheid\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/niederkassel\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/sankt-augustin\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/swisttal\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/troisdorf\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/alfter(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/bornheim(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/lohmar(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/much(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/neunkirchen-seelscheid(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/niederkassel(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/sankt-augustin(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/swisttal(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/troisdorf(\.html|/)$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-sieg/alfter/?$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-sieg/bornheim/?$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-sieg/lohmar/?$ /stadtteile/ [R=301,L]
@@ -111,8 +111,8 @@ RewriteRule ^immobilienmakler-rhein-sieg/troisdorf/?$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-sieg/?$ /stadtteile/ [R=301,L]
 
 # Kreis Dueren entfernt (15.08.2026): Fokus auf Koeln und Rhein-Erft -> Uebersichten (301)
-RewriteRule ^stadtteile/dueren\.html$ /stadtteile/ [R=301,L]
-RewriteRule ^stadtteile/juelich\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/dueren(\.html|/)$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/juelich(\.html|/)$ /stadtteile/ [R=301,L]
 RewriteRule ^bodenrichtwert-dueren\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-juelich\.html$ /bodenrichtwert-koeln.html [R=301,L]
 
@@ -139,12 +139,12 @@ RewriteRule ^immobilienmakler-rheinisch-bergisch/?$ https://immobilienmakler-ber
 # eine eigene Ortsseite. Einen Kreis-Hub gibt es bewusst NICHT — die Uebersicht
 # steht als Abschnitt auf der Startseite. Die alten /stadtteile/-URLs zeigen direkt
 # auf die Ortsseiten; ueber eine Sammel-Weiterleitung ginge ihr Ranking verloren.
-RewriteRule ^stadtteile/dormagen\.html$ /immobilienmakler-rhein-kreis-neuss/dormagen/ [R=301,L]
-RewriteRule ^stadtteile/rommerskirchen\.html$ /immobilienmakler-rhein-kreis-neuss/rommerskirchen/ [R=301,L]
+RewriteRule ^stadtteile/dormagen(\.html|/)$ /immobilienmakler-rhein-kreis-neuss/dormagen/ [R=301,L]
+RewriteRule ^stadtteile/rommerskirchen(\.html|/)$ /immobilienmakler-rhein-kreis-neuss/rommerskirchen/ [R=301,L]
 # Der blosse Pfad hat keine Seite -> Umland-Abschnitt der Startseite ([NE] wegen #)
 RewriteRule ^immobilienmakler-rhein-kreis-neuss/?$ /#rhein-kreis-neuss [R=301,L,NE]
 # Juechen hat weiterhin keine eigene Seite
-RewriteRule ^stadtteile/juechen\.html$ /stadtteile/ [R=301,L]
+RewriteRule ^stadtteile/juechen(\.html|/)$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-kreis-neuss/juechen/?$ /stadtteile/ [R=301,L]
 RewriteRule ^bodenrichtwert-bergisch-gladbach\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-leichlingen\.html$ /bodenrichtwert-koeln.html [R=301,L]
@@ -168,15 +168,15 @@ RewriteRule ^bodenrichtwert-troisdorf\.html$ /bodenrichtwert-koeln.html [R=301,L
 
 # Umland-Orte in Kreis-Silos umgezogen (14.08.2026) -> 301
 # Rhein-Erft-Kreis
-RewriteRule ^stadtteile/bedburg\.html$ /immobilienmakler-rhein-erft/bedburg/ [R=301,L]
-RewriteRule ^stadtteile/bergheim\.html$ /immobilienmakler-rhein-erft/bergheim/ [R=301,L]
-RewriteRule ^stadtteile/bruehl\.html$ /immobilienmakler-rhein-erft/bruehl/ [R=301,L]
-RewriteRule ^stadtteile/erftstadt\.html$ /immobilienmakler-rhein-erft/erftstadt/ [R=301,L]
-RewriteRule ^stadtteile/frechen\.html$ /immobilienmakler-rhein-erft/frechen/ [R=301,L]
-RewriteRule ^stadtteile/huerth\.html$ /immobilienmakler-rhein-erft/huerth/ [R=301,L]
-RewriteRule ^stadtteile/kerpen\.html$ /immobilienmakler-rhein-erft/kerpen/ [R=301,L]
-RewriteRule ^stadtteile/pulheim\.html$ /immobilienmakler-rhein-erft/pulheim/ [R=301,L]
-RewriteRule ^stadtteile/wesseling\.html$ /immobilienmakler-rhein-erft/wesseling/ [R=301,L]
+RewriteRule ^stadtteile/bedburg(\.html|/)$ /immobilienmakler-rhein-erft/bedburg/ [R=301,L]
+RewriteRule ^stadtteile/bergheim(\.html|/)$ /immobilienmakler-rhein-erft/bergheim/ [R=301,L]
+RewriteRule ^stadtteile/bruehl(\.html|/)$ /immobilienmakler-rhein-erft/bruehl/ [R=301,L]
+RewriteRule ^stadtteile/erftstadt(\.html|/)$ /immobilienmakler-rhein-erft/erftstadt/ [R=301,L]
+RewriteRule ^stadtteile/frechen(\.html|/)$ /immobilienmakler-rhein-erft/frechen/ [R=301,L]
+RewriteRule ^stadtteile/huerth(\.html|/)$ /immobilienmakler-rhein-erft/huerth/ [R=301,L]
+RewriteRule ^stadtteile/kerpen(\.html|/)$ /immobilienmakler-rhein-erft/kerpen/ [R=301,L]
+RewriteRule ^stadtteile/pulheim(\.html|/)$ /immobilienmakler-rhein-erft/pulheim/ [R=301,L]
+RewriteRule ^stadtteile/wesseling(\.html|/)$ /immobilienmakler-rhein-erft/wesseling/ [R=301,L]
 
 
 # Rheinisch-Bergischer Kreis
@@ -185,7 +185,7 @@ RewriteRule ^stadtteile/wesseling\.html$ /immobilienmakler-rhein-erft/wesseling/
 
 
 # Düren: alter Slug mit Doppel-r (Tippfehler) -> korrekt dueren (301)
-RewriteRule ^stadtteile/duerren\.html$    /stadtteile/               [R=301,L]
+RewriteRule ^stadtteile/duerren(\.html|/)$    /stadtteile/               [R=301,L]
 RewriteRule ^bodenrichtwert-duerren\.html$ /bodenrichtwert-koeln.html  [R=301,L]
 
 # 2) Legacy-URLs einer alten Site-Struktur (vor /ratgeber/-Prefix-Umstellung)
@@ -207,16 +207,16 @@ RewriteRule ^abschreibung-bei-immobilien/?$ /ratgeber/abschreibung-bei-immobilie
 RewriteRule ^eigenbedarfsklage/?$      /ratgeber/eigenbedarfsklage.html                 [R=301,L]
 
 # --- eigenbedarfsklage-2 wurde in eigenbedarfsklage.html zusammengeführt (2026-07-05) ---
-RewriteRule ^ratgeber/eigenbedarfsklage-2\.html$ /ratgeber/eigenbedarfsklage.html       [R=301,L]
+RewriteRule ^ratgeber/eigenbedarfsklage-2(\.html|/)$ /ratgeber/eigenbedarfsklage.html       [R=301,L]
 
 # --- heizungsgesetz + gebaeudeenergiegesetz in heizungsgesetz-aenderung.html zusammengeführt (2026-07-14) ---
-RewriteRule ^ratgeber/heizungsgesetz\.html$        /ratgeber/heizungsgesetz-aenderung.html [R=301,L]
-RewriteRule ^ratgeber/gebaeudeenergiegesetz\.html$ /ratgeber/heizungsgesetz-aenderung.html [R=301,L]
+RewriteRule ^ratgeber/heizungsgesetz(\.html|/)$        /ratgeber/heizungsgesetz-aenderung.html [R=301,L]
+RewriteRule ^ratgeber/gebaeudeenergiegesetz(\.html|/)$ /ratgeber/heizungsgesetz-aenderung.html [R=301,L]
 
 # --- Bezirks-Hubseiten entfernt (2026-07-23): kannibalisierten die
 #     gleichnamigen Stadtteilseiten porz.html / chorweiler.html ---
-RewriteRule ^stadtteile/bezirk-porz\.html$       /stadtteile/porz.html       [R=301,L]
-RewriteRule ^stadtteile/bezirk-chorweiler\.html$ /stadtteile/chorweiler.html [R=301,L]
+RewriteRule ^stadtteile/bezirk-porz(\.html|/)$       /stadtteile/porz.html       [R=301,L]
+RewriteRule ^stadtteile/bezirk-chorweiler(\.html|/)$ /stadtteile/chorweiler.html [R=301,L]
 RewriteRule ^flurkarte/?$              /ratgeber/flurkarte.html                         [R=301,L]
 RewriteRule ^notarkosten-beim-immobilienkauf/?$ /ratgeber/notarkosten-beim-immobilienkauf.html [R=301,L]
 RewriteRule ^smart-heizung/?$          /ratgeber/smarthome.html                         [R=301,L]
@@ -239,6 +239,10 @@ RewriteRule ^([^/]+)/?$ /$1.html [R=301,L]
 RewriteRule ^startseite-alex/?$ / [R=301,L]
 
 # 3) URL-Hygiene: trailing-slash → .html (Stadtteile + ratgeber/ Sub-Pfade)
+#    ACHTUNG: Diese Regel darf nur greifen, wenn die .html-Variante NICHT selbst
+#    weitergeleitet wird - sonst entsteht eine Kette /x/ → /x.html → /ziel.html.
+#    Deshalb tragen die Umzugsregeln oben das Muster (\.html|/)$ und fangen die
+#    Slash-Variante direkt mit ab.
 #    Beispiel: /stadtteile/suelz/ → /stadtteile/suelz.html
 #    Cond: .html-Variante im Document Root existiert (verhindert 404-Ketten)
 RewriteCond %{REQUEST_URI} !\.html/?$
