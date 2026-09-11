@@ -81,7 +81,7 @@ RewriteRule ^ratgeber/niesbrauch-wohnrecht(\.html|/)$      /ratgeber/niessbrauch
 RewriteRule ^ratgeber/niesbrauch-kapitalisieren(\.html|/)$ /ratgeber/niessbrauch-kapitalisieren.html [R=301,L]
 
 # Leverkusen-Seiten entfernt (09.08.2026) -> Uebersichten (301)
-RewriteRule ^bodenrichtwert-leverkusen\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-leverkusen\.html$ https://leverkusen-makler.de/bodenrichtwert-leverkusen/ [R=301,L]
 
 
 # Eschweiler entfernt (14.08.2026, Staedteregion Aachen ausserhalb des Einzugsgebiets) -> Uebersichten (301)
@@ -146,10 +146,14 @@ RewriteRule ^immobilienmakler-rhein-kreis-neuss/?$ /#rhein-kreis-neuss [R=301,L,
 # Juechen hat weiterhin keine eigene Seite
 RewriteRule ^stadtteile/juechen(\.html|/)$ /stadtteile/ [R=301,L]
 RewriteRule ^immobilienmakler-rhein-kreis-neuss/juechen/?$ /stadtteile/ [R=301,L]
-RewriteRule ^bodenrichtwert-bergisch-gladbach\.html$ /bodenrichtwert-koeln.html [R=301,L]
+# Diese vier Orte haben auf einer Schwesterseite eine Seite, die den
+# Bodenrichtwert wirklich behandelt - dorthin statt auf die Koelner Seite.
+# Die uebrigen Umland-Umleitungen bleiben auf /bodenrichtwert-koeln.html:
+# die Seite erklaert den Weg ueber BORIS NRW, der fuer jede NRW-Kommune gilt.
+RewriteRule ^bodenrichtwert-bergisch-gladbach\.html$ https://immobilienmakler-bergisch-gladbach.de/bergisch-gladbach/ [R=301,L]
 RewriteRule ^bodenrichtwert-leichlingen\.html$ /bodenrichtwert-koeln.html [R=301,L]
-RewriteRule ^bodenrichtwert-odenthal\.html$ /bodenrichtwert-koeln.html [R=301,L]
-RewriteRule ^bodenrichtwert-overath\.html$ /bodenrichtwert-koeln.html [R=301,L]
+RewriteRule ^bodenrichtwert-odenthal\.html$ https://immobilienmakler-bergisch-gladbach.de/odenthal/ [R=301,L]
+RewriteRule ^bodenrichtwert-overath\.html$ https://immobilienmakler-bergisch-gladbach.de/overath/ [R=301,L]
 RewriteRule ^bodenrichtwert-roesrath\.html$ /bodenrichtwert-koeln.html [R=301,L]
 RewriteRule ^bodenrichtwert-dormagen\.html$ /immobilienmakler-rhein-kreis-neuss/dormagen/ [R=301,L]
 RewriteRule ^bodenrichtwert-juechen\.html$ /bodenrichtwert-koeln.html [R=301,L]
