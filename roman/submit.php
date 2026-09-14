@@ -46,6 +46,23 @@ function clean($val) {
     return htmlspecialchars(strip_tags(trim($val ?? '')));
 }
 
+function ist_zustelltest($name, $email) {
+    $probe = strtolower((string)$name . ' ' . (string)$email);
+    return strpos($probe, 'zustelltest') !== false
+        || strpos($probe, 'livettest') !== false
+        || strpos($probe, 'livetest') !== false
+        || strpos($probe, '@example.com') !== false;
+}
+
+function lead_log_schreiben($path, $record, &$error) {
+    $line = json_encode($record, JSON_UNESCAPED_UNICODE) . "\n";
+    $ok = @file_put_contents($path, $line, FILE_APPEND | LOCK_EX);
+    if ($ok !== false) return true;
+    $last = error_get_last();
+    $error = $last && isset($last['message']) ? $last['message'] : 'file_put_contents fehlgeschlagen';
+    return false;
+}
+
 // Kontaktfelder
 $vorname        = clean($_POST['vorname'] ?? '');
 $nachname       = clean($_POST['nachname'] ?? '');
@@ -58,6 +75,7 @@ $preisspanne    = clean($_POST['preisspanne'] ?? '');
 $nachricht      = clean($_POST['nachricht'] ?? '');
 $empfohlen      = clean($_POST['empfohlen'] ?? '');
 $site            = clean($_POST['site'] ?? 'roman');
+$istZustelltest  = ist_zustelltest($name_raw, $email);
 
 // Kontakt-Adresse des Interessenten
 $kontakt_strasse = clean($_POST['kontakt_strasse'] ?? '');
@@ -239,12 +257,20 @@ $leadRecord['mail_sent'] = $mailSent;
 if (!$mailSent) {
     $leadRecord['mail_error'] = $mailError;
 }
-@file_put_contents($leadLogPath, json_encode($leadRecord, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX);
+$leadLogError = '';
+$leadLogOk = lead_log_schreiben($leadLogPath, $leadRecord, $leadLogError);
 
 if ($mailSent) {
     http_response_code(200);
     echo 'OK';
 } else {
     http_response_code(500);
-    echo 'Fehler beim Senden.';
+    if ($istZustelltest) {
+        $antwort = 'Fehler beim Senden.';
+        if ($mailError) $antwort .= ' SMTP: ' . $mailError;
+        if (!$leadLogOk) $antwort .= ' Leadlog: ' . $leadLogError;
+        echo $antwort;
+    } else {
+        echo 'Fehler beim Senden.';
+    }
 }

@@ -3,9 +3,17 @@
 
 Options -MultiViews
 
-# Lead-Backup-Log enthält personenbezogene Daten — nie öffentlich zugänglich machen
+# Lead-Backup-Log enthaelt personenbezogene Daten - nie oeffentlich zugaenglich machen.
+# Beide Varianten sind bewusst gesetzt: alte Apache-2.2-Konfigurationen ignorieren
+# "Require", neuere ignorieren "Deny from all" nur innerhalb alter Direktiven.
 <Files "leads.log">
+  <IfModule mod_authz_core.c>
   Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
 </Files>
 
 # Zeichensatz UTF-8 im HTTP-Header
