@@ -62,6 +62,7 @@ jobs:
             **/leads.log
             scripts/**
             data/**
+          state-name: .ftp-deploy-sync-state-roman-v2.json
           server-dir: /romanbecker.de/root/
           protocol: ftp
           port: 21
@@ -79,6 +80,7 @@ jobs:
             **/leads.log
             scripts/**
             data/**
+          state-name: .ftp-deploy-sync-state-roman-v2.json
           server-dir: /romanbecker.de/root/
           protocol: ftp
           port: 21
@@ -96,7 +98,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           fail=0
-          for f in index.html immobilienbewertung.html stadtteile/shared.css bodenrichtwert.css; do
+          for f in index.html immobilienbewertung.html stadtteile/shared.css bodenrichtwert.css submit.php .htaccess; do
             want=$(sha256sum "roman/$f" | cut -d' ' -f1)
             got=""
             for try in 1 2 3; do
