@@ -210,7 +210,10 @@ try {
     $mail->Port       = SMTP_PORT;
     $mail->CharSet    = 'UTF-8';
 
-    $mail->setFrom(SMTP_USER, 'Webseite Roman Becker');
+    // Leads der Schwesterseiten tragen deren Domain als Absendernamen - der Name
+    // Roman Becker hat bei Stark & Hoffmann und JPT nichts zu suchen, auch nicht in
+    // Mails, die spaeter an deren Postfaecher weitergehen.
+    $mail->setFrom(SMTP_USER, isset($siteLabels[$site]) ? 'Webseite ' . $siteLabels[$site] : 'Webseite Roman Becker');
     $mail->addAddress('rb@datenschwester.de', 'Roman Becker');
     // Testphase ab 05.09.2026: Leads gehen ausschliesslich an Roman.
     // Doreen ist voruebergehend aus dem Verteiler genommen; zum Reaktivieren
