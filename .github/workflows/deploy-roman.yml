@@ -96,9 +96,11 @@ jobs:
       # und aendern sich selten, also praktisch keine Fehlalarme.
       - name: Canary – liefert der Server den Repo-Stand aus?
         if: github.ref == 'refs/heads/main'
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           fail=0
-          for f in index.html immobilienbewertung.html stadtteile/shared.css bodenrichtwert.css submit.php .htaccess; do
+          for f in index.html immobilienbewertung.html stadtteile/shared.css bodenrichtwert.css; do
             want=$(sha256sum "roman/$f" | cut -d' ' -f1)
             got=""
             for try in 1 2 3; do
@@ -114,8 +116,23 @@ jobs:
               fail=1
             fi
           done
+          # submit.php und .htaccess gibt der Server nie als Quelltext heraus:
+          # PHP wird ausgefuehrt (GET -> 405), .htaccess ist gesperrt (403).
+          # Ueber HTTPS waere der Vergleich deshalb immer rot - beide per FTP holen.
+          # Anlass 14.09.2026: ein erneut gestarteter alter Deploy-Lauf hatte
+          # beide Dateien mit dem Stand des Vor-Commits ueberschrieben.
+          for f in submit.php .htaccess; do
+            want=$(sha256sum "roman/$f" | cut -d' ' -f1)
+            got=$(curl -fsS --max-time 60 --user "w019d9c9:${FTP_PASSWORD}" "ftp://w019d9c9.kasserver.com/romanbecker.de/root/$f" | sha256sum | cut -d' ' -f1)
+            if [ "$got" = "$want" ]; then
+              echo "OK   $f (per FTP)"
+            else
+              echo "::error::$f weicht ab – Repo $want, Server $got. Auf dem Server liegt nicht, was im Repo steht."
+              fail=1
+            fi
+          done
           if [ "$fail" = 1 ]; then
-            echo "Naechster Schritt: .ftp-deploy-sync-state.json auf dem Server umbenennen oder loeschen und den Workflow neu starten – das erzwingt einen Vollsync (dauert ~7 Minuten statt ~20 Sekunden)."
+            echo "Naechster Schritt: .ftp-deploy-sync-state-roman-v2.json auf dem Server umbenennen oder loeschen und den Workflow neu starten – das erzwingt einen Vollsync (dauert ~7 Minuten statt ~20 Sekunden). Alte Laeufe nie per 'Re-run' wiederholen: sie deployen den alten Commit."
             exit 1
           fi
 
