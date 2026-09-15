@@ -29,6 +29,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # News muessen ueber die Seitensuche auffindbar sein. Anlass 15.09.2026: drei
+      # Beitraege gingen ohne Eintrag in stadtteile/search.js online, "Leitzins"
+      # fand nichts. Fehlt ein Eintrag, bricht der Lauf vor dem Upload ab.
+      - name: News im Suchindex?
+        run: |
+          fehlt=0
+          for f in roman/news/*.html; do
+            name=$(basename "$f")
+            [ "$name" = "index.html" ] && continue
+            if ! grep -q "u:'/news/$name'" roman/stadtteile/search.js; then
+              echo "::error::$f fehlt im Suchindex roman/stadtteile/search.js – IDX-Eintrag mit c:'News' und Stichworten ergaenzen."
+              fehlt=1
+            fi
+          done
+          exit $fehlt
+
       - name: Install PHPMailer via Composer
         run: |
           cd roman
