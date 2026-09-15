@@ -61,6 +61,8 @@ jobs:
           define('REPORT_SECRET', '${{ secrets.ROMAN_REPORT_SECRET }}');
           EOF
 
+      # state-name v3 seit 15.09.2026: dritter Rueckfall auf den Juni-Stand
+      # (13:52-13:58 MESZ, shared.css wieder 12.335 Bytes). Neuer Name = Vollsync.
       # Der all-inkl-FTP bricht sporadisch ab (Laeufe #368 und #380). Der erste
       # Versuch darf deshalb scheitern, ohne den Job rot zu faerben; schlaegt er
       # fehl, laeuft ein zweiter. Erst wenn auch der scheitert, ist der Job rot.
@@ -78,7 +80,7 @@ jobs:
             **/leads.log
             scripts/**
             data/**
-          state-name: .ftp-deploy-sync-state-roman-v2.json
+          state-name: .ftp-deploy-sync-state-roman-v3.json
           server-dir: /romanbecker.de/root/
           protocol: ftp
           port: 21
@@ -96,7 +98,7 @@ jobs:
             **/leads.log
             scripts/**
             data/**
-          state-name: .ftp-deploy-sync-state-roman-v2.json
+          state-name: .ftp-deploy-sync-state-roman-v3.json
           server-dir: /romanbecker.de/root/
           protocol: ftp
           port: 21
