@@ -2121,7 +2121,7 @@
         var a = modellAttribute();
         var irw = window.GemeinsameBewertung.calculate({type: art, attributes: a}, gemeinsameKandidaten);
         letztesGemeinsamesErgebnis = irw;
-        rw.push('Adresse: ' + strasseFeld.value + ', ' + plz + ' ' + (ortFeld.value || '') + '.');
+        rw.push('Adresse: ' + strasseFeld.value.trim() + ', ' + plz + ' ' + (ortFeld.value || '') + '.');
         if (art === 'mehrfamilienhaus' || art === 'grundstueck') {
           rw.push('Verfahren: ' + irw.verfahren + '; ' + irw.berechnungsart + '.');
           rw.push('Grundlage: ' + irw.modellquelle + '.');
