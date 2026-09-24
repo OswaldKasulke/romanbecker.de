@@ -233,7 +233,7 @@ function buildKoelnSection(listings, L) {
       <span class="section-label">${L.koelnLabel}</span>
       <h2 class="section-title">${L.koelnTitle}</h2>
 
-      <div class="listings-carousel splide" aria-label="${L.koelnAria}">
+      <div class="listings-carousel splide" role="region" aria-label="${L.koelnAria}">
         <div class="splide__track">
           <div class="splide__list">
 ${cards}
