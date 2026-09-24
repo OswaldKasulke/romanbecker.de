@@ -1202,7 +1202,7 @@ function buildPage(page) {
         <a href="https://romanbecker.de/agb/">AGB &amp; Datenschutz</a>
       </div>
       <p>&copy; 2026 Roman Becker &middot; Immobilienmakler K&ouml;ln &middot; EVERNEST GmbH</p>
-      <p style="margin-top: var(--space-2);">Wei&szlig;hausstra&szlig;e 23, 50939 K&ouml;ln &middot; <a href="tel:+491775156969">+49 177 515 69 69</a> &middot; <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a> &middot; <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a></p>
+      <p style="margin-top: var(--space-2);">Datenschwester GmbH, Wei&szlig;hausstra&szlig;e 23, 50939 K&ouml;ln-S&uuml;lz &middot; <a href="tel:+491775156969">+49 177 515 69 69</a> &middot; <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a> &middot; <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </footer>
 

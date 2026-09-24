@@ -455,7 +455,7 @@ ${nbH}
         <a href="https://romanbecker.de/agb/">AGB &amp; Datenschutz</a>
       </div>
       <p>\u00a9 2026 Roman Becker \u00b7 Immobilienmakler K\u00f6ln \u00b7 EVERNEST GmbH</p>
-      <p style="margin-top:var(--space-2);">Weißhausstraße 23, 50939 K\u00f6ln \u00b7 <a href="tel:+491775156969">+49 177 515 69 69</a> \u00b7 <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a> \u00b7 <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a></p>
+      <p style="margin-top:var(--space-2);">Datenschwester GmbH, Weißhausstraße 23, 50939 K\u00f6ln-S\u00fclz \u00b7 <a href="tel:+491775156969">+49 177 515 69 69</a> \u00b7 <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a> \u00b7 <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </footer>
 </body>

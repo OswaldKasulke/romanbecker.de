@@ -392,7 +392,7 @@ ${tableRows}
         <div class="footer__brand">
           <strong>Immobilienmakler &amp; Immobilienbewertung Köln</strong>
           <span>© 2026 Roman Becker Immobilien</span>
-          <address>Weißhausstraße 23, 50939 Köln</address>
+          <address>Datenschwester GmbH, Weißhausstraße 23, 50939 Köln-Sülz</address>
         </div>
         <div class="footer__links">
           <a href="https://romanbecker.de/immobilienbewertung.html">Immobilienbewertung</a>
