@@ -257,7 +257,7 @@ return `<!DOCTYPE html>
     "@graph": [
       {
         "@type": "RealEstateAgent",
-        "name": "Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung ${fn}",
+        "name": "Roman Becker Immobilien",
         "url": "https://romanbecker.de/stadtteile/${d.s}.html",
         "telephone": "+491775156969",
         "email": "roman.becker@evernest.com",
@@ -266,7 +266,7 @@ return `<!DOCTYPE html>
         "geo": {"@type":"GeoCoordinates","latitude":${d.lat},"longitude":${d.lng}},
         "areaServed": {"@type":"Place","name":"${fn}"},
         "priceRange": "\u20ac\u20ac\u20ac",
-        "openingHours": "Mo-Sa 09:00-20:00"
+        "openingHours": "Mo-Sa 08:30-19:30"
       },
       {
         "@type": "BreadcrumbList",
