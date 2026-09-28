@@ -23,6 +23,7 @@ for r in d["reviews"]:
     karten.append(f'''        <figure class="review-card">
           <div class="review-card__stars" aria-label="{r["stars"]} von 5 Sternen">{sterne(r["stars"])}</div>
           <blockquote class="review-card__text">„{e(r["text"])}“</blockquote>
+          <button type="button" class="rv-mehr" hidden>mehr</button>
           <figcaption class="review-card__author">{e(r["author"])}{link}</figcaption>
         </figure>''')
 
