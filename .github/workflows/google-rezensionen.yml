@@ -1,0 +1,50 @@
+name: Google-Rezensionen
+
+# Zweimal pro Woche neue Google-Rezensionen nachladen (Places API (New)).
+# Die API liefert je Abfrage hoechstens 5 Rezensionen; das Skript ergaenzt die
+# Datei deshalb nur und ersetzt nie. Ein Commit vom GITHUB_TOKEN loest keinen
+# push-Workflow aus - der Deploy wird darum am Ende ausdruecklich gestartet.
+on:
+  schedule:
+    - cron: '15 4 * * 1,4'   # Montag und Donnerstag, 04:15 UTC
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: 'Ergebnis committen und deployen'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: google-rezensionen
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rezensionen abfragen
+        env:
+          GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
+        run: python3 scripts/google_reviews.py --out data/google-reviews.json --place-id ChIJ1UyDnGMlv0cRMVr3pf0D9KE
+      - name: Karussell in die Startseite schreiben
+        run: python3 scripts/render_reviews.py
+      - name: Committen und deployen
+        if: github.event_name == 'schedule' || inputs.commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/google-reviews.json roman/index.html
+          if git diff --cached --quiet; then echo "Keine Aenderung."; exit 0; fi
+          git commit -m "Google-Rezensionen aktualisiert"
+          git push
+          gh workflow run deploy-roman.yml --ref main
+      - name: Ergebnis zeigen
+        if: always()
+        run: git diff HEAD~0 --stat; cat data/google-reviews.json | head -40
