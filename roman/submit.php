@@ -106,6 +106,13 @@ $rechenweg          = trim((string)($_POST['rechenweg'] ?? ''));
 $rechenweg          = str_replace(["\r"], '', $rechenweg);
 $rechenweg          = preg_replace('/[^\P{C}\n]+/u', '', $rechenweg);
 
+// Suchprofil (Kaufinteressenten der Schwesterseiten)
+$such_objektart = clean($_POST['such_objektart'] ?? '');
+$such_lage      = clean($_POST['such_lage'] ?? '');
+$such_budget    = clean($_POST['such_budget'] ?? '');
+$such_flaeche   = clean($_POST['such_flaeche'] ?? '');
+$such_zimmer    = clean($_POST['such_zimmer'] ?? '');
+
 // Pflichtfelder prüfen
 if (empty($name) || empty($telefon)) {
     http_response_code(400);
@@ -120,9 +127,13 @@ $siteLabels = [
     'SS'  => 'makler-schael-sick.de',
 ];
 $siteLabel = $siteLabels[$site] ?? 'romanbecker.de';
-$subject = $type === 'immobilienbewertung'
-    ? 'Neue Immobilienbewertung von ' . $name . ' – ' . $siteLabel
-    : 'Neue Kontaktanfrage von ' . $name . ' – ' . $siteLabel;
+if ($type === 'immobilienbewertung') {
+    $subject = 'Neue Immobilienbewertung von ' . $name . ' – ' . $siteLabel;
+} elseif ($type === 'suchprofil') {
+    $subject = 'Neues Suchprofil von ' . $name . ' – ' . $siteLabel;
+} else {
+    $subject = 'Neue Kontaktanfrage von ' . $name . ' – ' . $siteLabel;
+}
 
 // E-Mail-Body
 $body = "Neue Anfrage über $siteLabel\n";
@@ -135,6 +146,16 @@ $body .= "Telefon:  $telefon\n";
 if ($email)           $body .= "E-Mail:   $email\n";
 if ($kontakt_strasse) $body .= "Straße:   $kontakt_strasse\n";
 if ($kontakt_plz || $kontakt_ort) $body .= "Ort:      $kontakt_plz $kontakt_ort\n";
+
+// Suchprofil
+if ($such_objektart || $such_lage || $such_budget || $such_flaeche || $such_zimmer) {
+    $body .= "\n── SUCHPROFIL ───────────────────\n";
+    if ($such_objektart) $body .= "Objektart:     $such_objektart\n";
+    if ($such_lage)      $body .= "Wunschlage:    $such_lage\n";
+    if ($such_budget)    $body .= "Budget bis:    $such_budget €\n";
+    if ($such_flaeche)   $body .= "Fläche ab:     $such_flaeche m²\n";
+    if ($such_zimmer)    $body .= "Zimmer ab:     $such_zimmer\n";
+}
 
 // Immobilien-Adresse
 if ($immo_strasse || $immo_plz || $immo_ort) {
@@ -207,6 +228,7 @@ $leadRecord = [
     'telefon'  => $telefon,
     'email'    => $email,
     'immo_ort' => $immo_ort,
+    'such_lage' => $such_lage,
     'ergebnis' => $ergebnis,
     'rechenweg' => $rechenweg,
     'gclid'    => $gclid,
