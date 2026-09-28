@@ -1799,6 +1799,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"></noscript>
   <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<link rel="stylesheet" href="/footer.css">
 </head>
 <body>
 
@@ -1807,12 +1808,9 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     <div class="nav__inner">
       <a href="/en/" class="nav__logo" aria-label="Roman Becker Immobilien – Real Estate Agent &amp; Property Valuation Cologne"><span class="nav__logo-primary">Roman Becker Immobilien</span><span class="nav__logo-sep"> | </span><span class="nav__logo-sub">Real Estate Agent &amp; Property Valuation Cologne</span></a>
       <div class="nav__links">
-        <a href="/leistungen.html">Services</a>
-        <a href="#fuer-wen">For Sellers</a>
-        <a href="/bautraeger.html">For Developers</a>
-        <a href="#stadtteile">Districts</a>
-        <a href="#faq">FAQ</a>
-        <a href="/ratgeber/">Guides</a>
+        <a href="/en/">Home</a>
+        <a href="#stadtteile">Your District</a>
+        <a href="/immobilienbewertung.html">Online Valuation</a>
         <a href="#kontakt">Contact</a>
       </div>
       <div class="nav__search" id="navSearch">
@@ -1829,11 +1827,9 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
       </button>
     </div>
     <div class="nav__mobile" role="navigation" aria-label="Main menu">
-      <a href="#fuer-wen" onclick="this.parentElement.classList.remove('active')">For Sellers</a>
-      <a href="/bautraeger.html" onclick="this.parentElement.classList.remove('active')">For Developers</a>
-      <a href="#stadtteile" onclick="this.parentElement.classList.remove('active')">Districts</a>
-      <a href="#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
-      <a href="/ratgeber/" onclick="this.parentElement.classList.remove('active')">Guides</a>
+      <a href="/en/" onclick="this.parentElement.classList.remove('active')">Home</a>
+      <a href="#stadtteile" onclick="this.parentElement.classList.remove('active')">Your District</a>
+      <a href="/immobilienbewertung.html" onclick="this.parentElement.classList.remove('active')">Online Valuation</a>
       <a href="#kontakt" onclick="this.parentElement.classList.remove('active')">Contact</a>
       <a href="/" class="nav__mobile-phone" style="display:block;">🇩🇪 Zur deutschen Version</a>
       <a href="tel:+491775156969" class="nav__mobile-phone">+49 177 515 69 69</a>
@@ -3743,19 +3739,32 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   </main>
 
   <!-- FOOTER -->
-  <footer id="footer" class="footer">
+  <footer id="footer" class="footer rb-footer">
     <div class="container">
-      <div class="footer__inner">
-        <div class="footer__brand">
-          <strong>Real Estate Agent &amp; Property Valuation Cologne</strong>
-          <span style="color:rgba(255,255,255,0.5);font-size:0.875rem;">© 2026 Roman Becker Immobilien</span>
+      <div class="rb-footer__grid">
+        <div class="rb-footer__col">
+          <p class="rb-footer__h">Address</p>
+          <address>Roman Becker Immobilien<br>Datenschwester GmbH<br>Weißhausstraße 23<br>50939 Cologne-Sülz, Germany</address>
+          <p><a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a><br><a href="tel:+491775156969">+49 177 515 69 69</a></p>
+          <a class="rb-footer__google" href="https://www.google.com/maps/search/?api=1&amp;query=Roman%20Becker%20Immobilien&amp;query_place_id=ChIJ1UyDnGMlv0cRMVr3pf0D9KE" target="_blank" rel="noopener"><strong>5.0</strong><span class="rb-footer__stars">★★★★★</span><span>on Google</span></a>
         </div>
-        <div class="footer__links">
-          <a href="https://romanbecker.de/datenschutz.html">Privacy Policy</a>
-          <a href="https://romanbecker.de/impressum.html">Legal Notice</a>
-          <a href="https://romanbecker.de/agb.html">Terms &amp; Conditions</a>
+        <div class="rb-footer__col">
+          <p class="rb-footer__h">Company</p>
+          <ul class="rb-footer__list"><li><a href="#ueber-roman">About me</a></li><li><a href="https://romanbecker.de/leistungen.html">Services (German)</a></li><li><a href="https://romanbecker.de/bautraeger.html">For Developers (German)</a></li><li><a href="https://romanbecker.de/impressum.html">Legal Notice</a></li><li><a href="https://romanbecker.de/datenschutz.html">Privacy Policy</a></li><li><a href="https://romanbecker.de/agb.html">Terms &amp; Conditions</a></li></ul>
+        </div>
+        <div class="rb-footer__col">
+          <p class="rb-footer__h">Free Valuation</p>
+          <p>What is your property worth? Get an online valuation in one minute – free and without obligation.</p>
+          <a class="rb-footer__btn" href="https://romanbecker.de/immobilienbewertung.html">Online Property Valuation</a>
+          <p class="rb-footer__h">Follow</p>
+          <div class="rb-footer__social"><a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+        </div>
+        <div class="rb-footer__col">
+          <p class="rb-footer__h">Properties &amp; Guides</p>
+          <ul class="rb-footer__list"><li><a href="https://romanbecker.de/immobilien-verkaufen-koeln.html">Sell a property (German)</a></li><li><a href="#objekte-koeln">Property listings</a></li><li><a href="#stadtteile">Your district</a></li><li><a href="#rhein-erft-kreis">Rhein-Erft district</a></li><li><a href="https://romanbecker.de/ratgeber/">Guides (German)</a></li><li><a href="https://romanbecker.de/bodenrichtwert-koeln.html">Land values Cologne (German)</a></li></ul>
         </div>
       </div>
+      <div class="rb-footer__bottom"><span>© 2026 Roman Becker Immobilien</span><a href="https://www.datenschwester.de" rel="noopener">Web development: datenschwester.de</a></div>
       <p class="footer__disclaimer">
         <strong>Legal notice:</strong> Roman Becker works as an independent real estate agent across Greater Cologne &amp; the Rhineland. All prices are non-binding. Errors and changes excepted. Market data and price ranges are indicative and do not constitute a purchase price guarantee.
       </p>
