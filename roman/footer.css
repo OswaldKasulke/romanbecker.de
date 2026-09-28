@@ -1,0 +1,23 @@
+/* Footer nach Evernest-Vorbild, vier Spalten (28.09.2026).
+   Eigene Datei, weil die Seiten auf drei Stylesheets verteilt sind
+   (shared.css, bodenrichtwert.css, Inline) - so wirkt es ueberall gleich. */
+.rb-footer__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.5rem;margin-bottom:2.5rem}
+@media (max-width:1000px){.rb-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.rb-footer__grid{grid-template-columns:minmax(0,1fr);gap:2rem}}
+.rb-footer__h{font-size:1.125rem;font-weight:700;color:#fff;margin:0 0 1.125rem}
+.rb-footer__col a,.rb-footer__col address,.rb-footer__col p{font-size:.9375rem;line-height:1.7}
+.rb-footer__col address{font-style:normal;color:rgba(255,255,255,.75);margin:0 0 1rem}
+.rb-footer__col p{color:rgba(255,255,255,.75);margin:0 0 1rem}
+.rb-footer__list{list-style:none;margin:0;padding:0}
+.rb-footer__list li{margin:0 0 .45rem}
+.rb-footer .rb-footer__col a{color:rgba(255,255,255,.75);text-decoration:none}
+.rb-footer .rb-footer__col a:hover{color:#fff}
+.rb-footer .rb-footer__google{display:inline-flex;align-items:center;gap:.6rem;margin-top:.5rem;padding:.6rem .9rem;border:1px solid rgba(255,255,255,.25);border-radius:10px;color:#fff}
+.rb-footer__google strong{font-size:1.25rem;color:#fff}
+.rb-footer__stars{color:var(--gold,#c2a990);letter-spacing:1px}
+.rb-footer .rb-footer__col .rb-footer__btn{display:inline-block;margin:.25rem 0 1.5rem;padding:.75rem 1.25rem;border-radius:8px;background:var(--gold,#c2a990);color:#111;font-weight:600;text-decoration:none}
+.rb-footer .rb-footer__col .rb-footer__btn:hover{color:#111;filter:brightness(1.05)}
+.rb-footer__social{display:flex;gap:1rem;align-items:center}
+.rb-footer__social svg{width:22px;height:22px;display:block}
+.rb-footer__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem;font-size:.8125rem;color:rgba(255,255,255,.5);margin-bottom:1.25rem}
+.rb-footer .rb-footer__bottom a{color:rgba(255,255,255,.5)}
