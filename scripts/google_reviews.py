@@ -66,6 +66,14 @@ def main():
         autor = (r.get("authorAttribution") or {}).get("displayName", "").strip()
         if not text or not autor or any(x.lower() in (autor + " " + text).lower() for x in a.exclude):
             continue
+        # Von Hand uebernommene Eintraege (ohne id) bekommen beim ersten Treffer
+        # die API-Angaben: Link zur Rezension und Datum.
+        alt = next((x for x in d["reviews"] if not x.get("id") and x["author"].strip().lower() == autor.lower()), None)
+        if alt:
+            alt.update(id=r.get("name", ""), text=text, stars=int(r.get("rating", 5)),
+                       source_url=r.get("googleMapsUri") or alt.get("source_url") or d["profile_url"],
+                       published=(r.get("publishTime") or "")[:10])
+            continue
         if (autor.lower(), text[:60]) in bekannt:
             continue
         d["reviews"].append({
@@ -80,6 +88,7 @@ def main():
     d["reviews"].sort(key=lambda r: r.get("published") or "", reverse=True)
     if json.dumps({**d, "checked_at": d.get("checked_at")}, sort_keys=True, ensure_ascii=False) != vorher:
         d["checked_at"] = heute
+    os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     json.dump(d, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     open(a.out, "a", encoding="utf-8").write("\n")
     print(f'{d["profile_name"]}: {d.get("rating")} bei {d["count"]} Rezensionen, '

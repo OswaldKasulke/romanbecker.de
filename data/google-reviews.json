@@ -1,0 +1,37 @@
+{
+  "profile_name": "Roman Becker Immobilien",
+  "profile_url": "https://www.google.com/maps/search/?api=1&query=Roman%20Becker%20Immobilien&query_place_id=ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
+  "place_id": "ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
+  "rating": "5,0",
+  "count": 31,
+  "checked_at": "2026-09-28",
+  "reviews": [
+    {
+      "id": "",
+      "author": "Emil Reiter",
+      "stars": 5,
+      "text": "Sehr professionelle und angenehme Zusammenarbeit! Herr Becker hat meine Immobilie in Sülz hervorragend vermarktet und erfolgreich verkauft. Ich habe mich jederzeit gut beraten und bestens betreut gefühlt.",
+      "source_url": "",
+      "verified_at": "2026-09-28",
+      "published": ""
+    },
+    {
+      "id": "",
+      "author": "Florian Freihofer",
+      "stars": 5,
+      "text": "Die Besichtigung mit Herrn Roman Becker war rundum perfekt. Er war hervorragend vorbereitet, hat sich viel Zeit genommen und uns persönlich betreut. Man hatte zu keiner Zeit das Gefühl, nur eine Nummer zu sein, sondern wirklich individuell beraten zu werden.",
+      "source_url": "",
+      "verified_at": "2026-09-28",
+      "published": ""
+    },
+    {
+      "id": "",
+      "author": "Dirk Intrup",
+      "stars": 5,
+      "text": "Selten war ein Makler so fachkundig, und selten wurde ein derart tiefgehendes Wissen über die zukünftigen baulichen Maßnahmen vermittelt. Sehr zu empfehlen.",
+      "source_url": "",
+      "verified_at": "2026-09-28",
+      "published": ""
+    }
+  ]
+}

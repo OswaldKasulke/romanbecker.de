@@ -1814,6 +1814,19 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
 .mz-stat__delta{font-size:.8125rem;color:var(--gray-600);margin-top:var(--space-1)}
 .mz-quelle{font-size:.8125rem;color:var(--gray-600);margin-top:var(--space-6)}
 @media (max-width:480px){.mz-stat__value{font-size:1.375rem}}
+/* Rezensions-Karussell (28.09.2026): drei Karten nebeneinander, weitere per Pfeil/Wischen. */
+.rv-carousel{position:relative}
+.rv-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2*var(--space-6))/3);gap:var(--space-6);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:4px 0 12px}
+.rv-track::-webkit-scrollbar{display:none}
+.rv-track .review-card{scroll-snap-align:start;margin:0;display:flex;flex-direction:column}
+.rv-track .review-card__text{margin:0 0 var(--space-4);flex:1;font-style:italic}
+.rv-track .review-card__author{font-weight:700;display:flex;flex-direction:column;gap:.25rem}
+.review-card__link{font-weight:400;font-size:.8125rem;color:var(--gray-600);text-decoration:underline}
+.rv-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,0,0,.12);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:1.75rem;line-height:1;cursor:pointer;color:inherit}
+.rv-nav--prev{left:-22px}.rv-nav--next{right:-22px}
+.rv-nav[disabled]{opacity:0;pointer-events:none}
+@media (max-width:900px){.rv-track{grid-auto-columns:calc((100% - var(--space-4))/2);gap:var(--space-4)}}
+@media (max-width:600px){.rv-track{grid-auto-columns:88%}.rv-nav{display:none}}
 </style>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"></noscript>
@@ -3177,26 +3190,30 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
       <div class="reviews__header">
         <a href="https://www.google.com/maps/search/?api=1&amp;query=Roman%20Becker%20Immobilien&amp;query_place_id=ChIJ1UyDnGMlv0cRMVr3pf0D9KE" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;" aria-label="Verifizierte Kundenstimmen auf Google ansehen">
           <div class="reviews__stars">★★★★★</div>
-          <div class="reviews__rating">5,0 von 5,0 auf Google</div>
+          <div class="reviews__rating">5,0 von 5,0 auf Google · 31 Rezensionen</div>
         </a>
       </div>
 
-      <div class="grid-3">
-        <div class="review-card">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">„Sehr professionelle und angenehme Zusammenarbeit! Herr Becker hat meine Immobilie in Sülz hervorragend vermarktet und erfolgreich verkauft. Ich habe mich jederzeit gut beraten und bestens betreut gefühlt."</p>
-          <div class="review-card__author">Emil Reiter</div>
+      <div class="rv-carousel">
+        
+        <div class="rv-track" tabindex="0" aria-label="Google-Rezensionen">
+        <figure class="review-card">
+          <div class="review-card__stars" aria-label="5 von 5 Sternen">★★★★★</div>
+          <blockquote class="review-card__text">„Sehr professionelle und angenehme Zusammenarbeit! Herr Becker hat meine Immobilie in Sülz hervorragend vermarktet und erfolgreich verkauft. Ich habe mich jederzeit gut beraten und bestens betreut gefühlt.“</blockquote>
+          <figcaption class="review-card__author">Emil Reiter</figcaption>
+        </figure>
+        <figure class="review-card">
+          <div class="review-card__stars" aria-label="5 von 5 Sternen">★★★★★</div>
+          <blockquote class="review-card__text">„Die Besichtigung mit Herrn Roman Becker war rundum perfekt. Er war hervorragend vorbereitet, hat sich viel Zeit genommen und uns persönlich betreut. Man hatte zu keiner Zeit das Gefühl, nur eine Nummer zu sein, sondern wirklich individuell beraten zu werden.“</blockquote>
+          <figcaption class="review-card__author">Florian Freihofer</figcaption>
+        </figure>
+        <figure class="review-card">
+          <div class="review-card__stars" aria-label="5 von 5 Sternen">★★★★★</div>
+          <blockquote class="review-card__text">„Selten war ein Makler so fachkundig, und selten wurde ein derart tiefgehendes Wissen über die zukünftigen baulichen Maßnahmen vermittelt. Sehr zu empfehlen.“</blockquote>
+          <figcaption class="review-card__author">Dirk Intrup</figcaption>
+        </figure>
         </div>
-        <div class="review-card">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">„Die Besichtigung mit Herrn Roman Becker war rundum perfekt. Er war hervorragend vorbereitet, hat sich viel Zeit genommen und uns persönlich betreut. Man hatte zu keiner Zeit das Gefühl, nur eine Nummer zu sein, sondern wirklich individuell beraten zu werden."</p>
-          <div class="review-card__author">Florian Freihofer</div>
-        </div>
-        <div class="review-card">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">„Selten war ein Makler so fachkundig, und selten wurde ein derart tiefgehendes Wissen über die zukünftigen baulichen Maßnahmen vermittelt. Sehr zu empfehlen."</p>
-          <div class="review-card__author">Dirk Intrup</div>
-        </div>
+        
       </div>
     </div>
   </section>
@@ -4031,6 +4048,17 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
       });
     });
   </script>
+<script>
+/* Rezensions-Karussell: Pfeile blaettern um eine Seite, am Rand werden sie ausgeblendet. */
+document.querySelectorAll('.rv-carousel--scroll').forEach(function(k){
+  var t=k.querySelector('.rv-track'),p=k.querySelector('.rv-nav--prev'),n=k.querySelector('.rv-nav--next');
+  function stand(){p.disabled=t.scrollLeft<5;n.disabled=t.scrollLeft+t.clientWidth>=t.scrollWidth-5;}
+  function seite(){return t.clientWidth+(parseFloat(getComputedStyle(t).columnGap)||0);}
+  p.addEventListener('click',function(){t.scrollBy({left:-seite(),behavior:'smooth'});});
+  n.addEventListener('click',function(){t.scrollBy({left:seite(),behavior:'smooth'});});
+  t.addEventListener('scroll',stand,{passive:true});window.addEventListener('resize',stand);stand();
+});
+</script>
 </body>
 <!-- force-redeploy: 2026-09-09 restore-current-homepage -->
 </html>
