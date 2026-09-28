@@ -363,6 +363,14 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   color: var(--gray-600);
   line-height: 1.4;
 }
+/* Handy: Kacheln duerfen schmaler als ihr laengstes Wort werden, sonst
+   schieben "Ein-/Zweifamilienhaus" & Co. die Seite ueber den Rand (28.09.2026). */
+@media (max-width: 480px) {
+  .market-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .market-stat { min-width: 0; padding: var(--space-4) var(--space-3); }
+  .market-stat__value { font-size: 1.375rem; }
+  .market-stat__label { -webkit-hyphens: auto; hyphens: auto; overflow-wrap: break-word; }
+}
 
 /* MAP */
 .map-container {
