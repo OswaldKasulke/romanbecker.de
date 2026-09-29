@@ -2,7 +2,11 @@ name: Update Roman Listings
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Täglich um 06:00 UTC
+    # GitHub startet geplante Laeufe oft Stunden zu spaet (29.09.2026: 06:00 UTC
+    # eingetragen, gelaufen 10-12 UTC). Zwei fruehe Termine, damit der Abgleich
+    # morgens steht; der zweite aendert nichts, wenn der erste durch ist.
+    - cron: '7 1 * * *'
+    - cron: '7 4 * * *'
   workflow_dispatch:       # Manuell auslösbar
 
 permissions:
