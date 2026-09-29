@@ -48,7 +48,8 @@ def main():
         print("Profil gefunden:", treffer["places"][0]["displayName"]["text"], pid)
 
     p = rufe(f"{API}/places/{pid}?languageCode=de",
-             maske="id,displayName,rating,userRatingCount,googleMapsUri,reviews")
+             maske="id,displayName,rating,userRatingCount,googleMapsUri,reviews,websiteUri,formattedAddress")
+    print("Profil:", p["displayName"]["text"], "|", p.get("formattedAddress", ""), "| Website im Profil:", p.get("websiteUri", "(keine)"))
     heute = datetime.date.today().isoformat()
     vorher = json.dumps(d, sort_keys=True, ensure_ascii=False)
 
