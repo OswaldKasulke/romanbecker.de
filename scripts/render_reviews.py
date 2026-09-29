@@ -32,7 +32,7 @@ pfeile = len(karten) > 3
 abschnitt = f'''<section id="bewertungen" class="section">
     <div class="container">
       <div class="reviews__header">
-        <a href="{e(d["profile_url"])}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;" aria-label="Verifizierte Kundenstimmen auf Google ansehen">
+        <a href="{e(d["profile_url"])}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
           <div class="reviews__stars">★★★★★</div>
           <div class="reviews__rating">{e(d["rating"])} von 5,0 auf Google{anzahl}</div>
         </a>

@@ -42,7 +42,10 @@ const KOELN_BOUNDS = {
 };
 const KOELN_MAX_LISTINGS = 100;
 const UA = 'Mozilla/5.0 (compatible; RomanBeckerSite/1.0)';
-const IMG_PARAMS = '?w=960&h=600&fit=fill&fm=jpg&q=85';
+const IMG_PARAMS = '?w=720&h=450&fit=fill&fm=webp&q=75';
+// Zuerst sichtbare Karten; der Rest liegt in einem <template> und wird beim
+// Blaettern nachgeladen (PageSpeed: DOM-Groesse, 29.09.2026).
+const KOELN_FIRST = 24;
 
 
 // ---------------------------------------------------------------------------
@@ -225,7 +228,8 @@ function buildKoelnSection(listings, L) {
   <!-- KOELN-LISTINGS-END -->`;
   }
 
-  const cards = shown.map(l => buildCard(l, L)).join('\n');
+  const cards = shown.slice(0, KOELN_FIRST).map(l => buildCard(l, L)).join('\n');
+  const more  = shown.slice(KOELN_FIRST).map(l => buildCard(l, L)).join('\n');
 
   return `  <!-- KOELN-LISTINGS-START -->
   <section id="objekte-koeln" data-toc="${L.koelnToc}" class="section">
@@ -240,6 +244,9 @@ ${cards}
           </div>
         </div>
       </div>
+      <template class="listings-more">
+${more}
+      </template>
 
       <div class="objekte__cta">
         <div class="objekte__buttons">
