@@ -5,27 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Analytics (nur nach Einwilligung) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      wait_for_update: 500
-    });
-    function loadAnalytics() {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
-      document.head.appendChild(s);
-      gtag('js', new Date());
-      gtag('consent', 'update', { analytics_storage: 'granted' });
-      gtag('config', 'G-HQXZQF4ZBN');
-    }
-    if (localStorage.getItem('cookie_consent') === 'granted') {
-      loadAnalytics();
-    }
-  </script>
+
   <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
   <script>
     (function() {
@@ -161,6 +141,8 @@
   <link rel="stylesheet" href="/fonts/inter.css">
   <link rel="stylesheet" href="shared.css">
 <link rel="preload" href="/footer.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/footer.css"></noscript>
+<link rel="stylesheet" href="/privacy-settings.css">
+<script defer src="/privacy-settings.js" data-measurement="G-HQXZQF4ZBN" data-storage="cookie_consent" data-privacy="/datenschutz.html"></script>
 </head>
 <body>
   <header class="site-header">
@@ -336,7 +318,7 @@
       <h2>Haus oder Wohnung in Köln-Elsdorf kaufen oder verkaufen – aktuelle Marktdaten</h2>
       <p class="text-muted mb-8 max-w-prose">Als Immobilienmakler Köln Elsdorf berate ich Verkäufer und Käufer auf Basis aktueller Vergleichsdaten. Die folgenden Werte geben Ihnen eine erste Orientierung – für eine individuelle Bewertung Ihrer Immobilie sprechen Sie mich gerne an.</p>
       <div class="market-grid">
-        
+
         <div class="market-stat"><div class="market-stat__value">~2.717 €</div><div class="market-stat__label">Kaufpreis pro m²<br>Mehrfamilienhaus<br>Stadtbezirk Porz</div></div>
       </div><p class="text-muted" style="font-size:0.8125rem;margin-top:var(--space-3);">Berichtszeitraum 2025 · Quelle: <a href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB2026_Digitalversion.pdf" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Grundstücksmarktbericht 2026 für die Stadt Köln</a>. Eigentumswohnungen: Kapitel 6.1 (Weiterverkauf). Drei- und Mehrfamilienhäuser: Kapitel 5.2. Diese beiden Werte weist der Bericht nur für den gesamten Stadtbezirk Porz aus, nicht für den einzelnen Stadtteil. Für Ein- und Zweifamilienhäuser in Köln-Elsdorf enthält der Bericht keine Auswertung.</p>
       <p style="margin-top:1.5rem;font-size:0.9375rem;"><a href="/bodenrichtwert-koeln.html" style="color:var(--gold);font-weight:600;">→ Aktuelle Bodenrichtwerte Köln 2026</a></p>
@@ -573,7 +555,8 @@
         Roman Becker ist als Immobilienmakler Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
       </p>
     </div>
-  </footer>
+  <p><a href="/datenschutz.html#privacy-settings" data-privacy-open>Datenschutzeinstellungen</a></p>
+</footer>
   <script src="search.js" defer></script>
   <script src="page-toc.js" defer></script>
   <script src="strassen-pin.js" defer></script>

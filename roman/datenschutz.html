@@ -5,27 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Analytics (nur nach Einwilligung) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      wait_for_update: 500
-    });
-    function loadAnalytics() {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
-      document.head.appendChild(s);
-      gtag('js', new Date());
-      gtag('consent', 'update', { analytics_storage: 'granted' });
-      gtag('config', 'G-HQXZQF4ZBN');
-    }
-    if (localStorage.getItem('cookie_consent') === 'granted') {
-      loadAnalytics();
-    }
-  </script>
+
   <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
   <script>
     (function() {
@@ -77,6 +57,8 @@
   </style>
 
 <link rel="preload" href="/footer.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/footer.css"></noscript>
+<link rel="stylesheet" href="/privacy-settings.css">
+<script defer src="/privacy-settings.js" data-measurement="G-HQXZQF4ZBN" data-storage="cookie_consent" data-privacy="/datenschutz.html"></script>
 </head>
 <body>
 
@@ -171,7 +153,7 @@
     <h3>Cookies</h3>
     <p>Unsere Internetseiten verwenden so genannte „Cookies". Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.</p>
     <p>Cookies können von uns (First-Party-Cookies) oder von Drittunternehmen stammen (sog. Third-Party-Cookies). Third-Party-Cookies ermöglichen die Einbindung bestimmter Dienstleistungen von Drittunternehmen innerhalb von Websites (z. B. Cookies zur Abwicklung von Zahlungsdienstleistungen).</p>
-    <p>Cookies haben verschiedene Funktionen. Zahlreiche Cookies sind technisch notwendig, da bestimmte Websitefunktionen ohne diese nicht funktionieren würden (z. B. die Warenkorbfunktion oder die Anzeige von Videos). Andere Cookies können zur Auswertung des Nutzerverhaltens oder zu Werbezwecken verwendet werden. Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs, zur Bereitstellung bestimmter, von Ihnen erwünschter Funktionen (z. B. für die Warenkorbfunktion) oder zur Optimierung der Website (z. B. Cookies zur Messung des Webpublikums) erforderlich sind (notwendige Cookies), werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert, sofern keine andere Rechtsgrundlage angegeben wird. Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren.</p>
+    <p>Google Analytics verwendet Cookies ausschließlich nach Ihrer ausdrücklichen Zustimmung zur Statistik (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG). Ihre Auswahl und die Version der Datenschutzeinstellungen werden im localStorage gespeichert, damit wir die Entscheidung bei weiteren Seitenaufrufen beachten können (§ 25 Abs. 2 Nr. 2 TDDDG). Diese Einstellungswerte dienen nicht als Besucherkennung. Sie können Ihre Auswahl jederzeit über „Datenschutzeinstellungen“ im Footer ändern oder widerrufen.</p>
 
     <h3>Server-Log-Dateien</h3>
     <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
@@ -188,14 +170,23 @@
     <h3>Kontaktformular</h3>
     <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde. Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.</p>
 
+    <h3>Online-Immobilienbewertung</h3>
+    <p>Bei einer Online-Bewertung verarbeiten wir Ihre Objektangaben wie Adresse, Objektart, Flächen, Baujahr, Zustand und gegebenenfalls Mieteinnahmen sowie die angegebenen Kontaktdaten. Die Adressprüfung unter romanbecker.de/bewertung-adressen.php erhält bereits während der Eingabe Adressangaben für Vorschläge und die Prüfung der Objektlage. Die Berechnung erfolgt im Browser. Bei der Anfrage werden die Angaben zusammen mit dem Ergebnis und dem Rechenweg über romanbecker.de/submit.php zur Bearbeitung übermittelt. Rechtsgrundlage für die angefragte Bewertung und vertragsbezogene Kontaktaufnahme ist Art. 6 Abs. 1 lit. b DSGVO. Eine Zustimmung zur Statistik ist hierfür nicht erforderlich.</p>
     <h2>5. Analyse-Tools</h2>
 
     <h3>Google Analytics</h3>
-    <p>Diese Website nutzt Google Analytics, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Google Analytics verwendet sog. „Cookies", die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.</p>
-    <p>Google Analytics wird auf dieser Website nur nach Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) aktiviert. Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie die Cookie-Einstellungen über den Link im Footer dieser Seite zurücksetzen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt unberührt. Wir nutzen Google Analytics mit dem Zusatz „_anonymizeIp()", sodass IP-Adressen nur gekürzt weiterverarbeitet werden.</p>
+    <p>Diese Website nutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Google Analytics verwendet sog. „Cookies", die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.</p>
+    <p>Google Analytics wird nur nach Ihrer ausdrücklichen Einwilligung zur Statistik aktiviert (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG). Sie können die Statistik jederzeit mit Wirkung für die Zukunft über <a href="#privacy-settings" data-privacy-open>Datenschutzeinstellungen</a> abwählen. Dabei wird die Messung gestoppt und die von dieser Website gesetzten Analytics-Cookies werden gelöscht. Die Rechtmäßigkeit der vorherigen Verarbeitung bleibt unberührt.</p><p>Verarbeitet werden unter anderem Seitenaufrufe, Zeitpunkt und Dauer des Besuchs, verweisende Seiten sowie Angaben zu Gerät und Browser. Google verwendet bei Zugriffen aus der EU die IP-Adresse zur Ableitung einer ungefähren Region und verwirft sie nach eigenen Angaben, bevor die Daten gespeichert werden. Das macht die übrigen Nutzungsdaten nicht automatisch anonym.</p>
     <p>Weitere Informationen zur Datennutzung durch Google sowie Einstellungs- und Widerspruchsmöglichkeiten finden Sie in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</p>
 
     <h2>6. Plugins und Tools</h2>
+
+    <h3>Externe Immobilienbilder (Contentful)</h3>
+    <p>Immobilienbilder werden teilweise über images.ctfassets.net von Contentful geladen. Beim Abruf erhält der Bilddienst Ihre IP-Adresse und technische Angaben zur Anfrage. Die Bilder dienen der Darstellung der Immobilienangebote. Sie werden derzeit unabhängig von der Auswahl zur Analytics-Statistik geladen. Informationen des Anbieters: <a href="https://www.contentful.com/legal/privacy-and-data-protection/privacy-notice/" target="_blank" rel="noopener noreferrer">Contentful-Datenschutzhinweise</a>.</p>
+    <h3>OpenStreetMap</h3>
+    <p>Auf Stadtteil- und Ortsseiten binden wir Karten der OpenStreetMap Foundation ein. Beim Laden der Karte verbindet sich Ihr Browser mit www.openstreetmap.org und tile.openstreetmap.org. Dabei werden Ihre IP-Adresse und technische Anfragedaten an die Kartenanbieter übermittelt. Die Karten dienen der Darstellung der Lage und werden derzeit unabhängig von der Analytics-Auswahl geladen. Weitere Informationen: <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener noreferrer">Datenschutzhinweise der OpenStreetMap Foundation</a>.</p>
+    <h3>JavaScript-Bibliothek über jsDelivr</h3>
+    <p>Für die Darstellung von Bildergalerien wird auf einzelnen Seiten die Bibliothek Splide von cdn.jsdelivr.net abgerufen. Dabei erhält der Auslieferungsdienst Ihre IP-Adresse und technische Anfragedaten. Der Abruf erfolgt derzeit unabhängig von der Analytics-Auswahl. Informationen des Anbieters: <a href="https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net" target="_blank" rel="noopener noreferrer">jsDelivr-Datenschutzhinweise</a>.</p>
 
     <h3>Google Fonts</h3>
     <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Die Google Fonts sind lokal installiert. Eine Verbindung zu Servern von Google findet dabei nicht statt.</p>
@@ -250,7 +241,8 @@
         Roman Becker ist als Immobilienmakler Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
       </p>
     </div>
-  </footer>
+  <p><a href="/datenschutz.html#privacy-settings" data-privacy-open>Datenschutzeinstellungen</a></p>
+</footer>
 
   <script src="stadtteile/search.js" defer></script>
   <script src="stadtteile/page-toc.js" defer></script>

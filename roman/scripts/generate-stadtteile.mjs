@@ -181,27 +181,7 @@ return `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Analytics (nur nach Einwilligung) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      wait_for_update: 500
-    });
-    function loadAnalytics() {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
-      document.head.appendChild(s);
-      gtag('js', new Date());
-      gtag('consent', 'update', { analytics_storage: 'granted' });
-      gtag('config', 'G-HQXZQF4ZBN');
-    }
-    if (localStorage.getItem('cookie_consent') === 'granted') {
-      loadAnalytics();
-    }
-  </script>
+
   <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
   <script>
     (function() {
@@ -310,6 +290,8 @@ ${faqLD}
   </script>
   <link rel="stylesheet" href="/fonts/inter.css">
   <link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="/privacy-settings.css">
+<script defer src="/privacy-settings.js" data-measurement="G-HQXZQF4ZBN" data-storage="cookie_consent" data-privacy="/datenschutz.html"></script>
 </head>
 <body>
   <header class="site-header">
@@ -457,7 +439,8 @@ ${nbH}
       <p>\u00a9 2026 Roman Becker \u00b7 Immobilienmakler K\u00f6ln \u00b7 EVERNEST GmbH</p>
       <p style="margin-top:var(--space-2);">Datenschwester GmbH, Weißhausstraße 23, 50939 K\u00f6ln-S\u00fclz \u00b7 <a href="tel:+491775156969">+49 177 515 69 69</a> \u00b7 <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a> \u00b7 <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a></p>
     </div>
-  </footer>
+  <p><a href="/datenschutz.html#privacy-settings" data-privacy-open>Datenschutzeinstellungen</a></p>
+</footer>
 </body>
 </html>`;
 }

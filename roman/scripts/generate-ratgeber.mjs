@@ -987,27 +987,7 @@ function buildPage(page) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Analytics (nur nach Einwilligung) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      wait_for_update: 500
-    });
-    function loadAnalytics() {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
-      document.head.appendChild(s);
-      gtag('js', new Date());
-      gtag('consent', 'update', { analytics_storage: 'granted' });
-      gtag('config', 'G-HQXZQF4ZBN');
-    }
-    if (localStorage.getItem('cookie_consent') === 'granted') {
-      loadAnalytics();
-    }
-  </script>
+
   <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
   <script>
     (function() {
@@ -1092,6 +1072,8 @@ function buildPage(page) {
     .ratgeber-nav-links a { font-size: 0.85rem; color: var(--gray-600); text-decoration: none; padding: 0.25rem 0.6rem; border: 1px solid var(--gray-200); border-radius: 4px; }
     .ratgeber-nav-links a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
   </style>
+<link rel="stylesheet" href="/privacy-settings.css">
+<script defer src="/privacy-settings.js" data-measurement="G-HQXZQF4ZBN" data-storage="cookie_consent" data-privacy="/datenschutz.html"></script>
 </head>
 <body>
 
@@ -1204,7 +1186,8 @@ function buildPage(page) {
       <p>&copy; 2026 Roman Becker &middot; Immobilienmakler K&ouml;ln &middot; EVERNEST GmbH</p>
       <p style="margin-top: var(--space-2);">Datenschwester GmbH, Wei&szlig;hausstra&szlig;e 23, 50939 K&ouml;ln-S&uuml;lz &middot; <a href="tel:+491775156969">+49 177 515 69 69</a> &middot; <a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a> &middot; <a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener">Instagram</a></p>
     </div>
-  </footer>
+  <p><a href="/datenschutz.html#privacy-settings" data-privacy-open>Datenschutzeinstellungen</a></p>
+</footer>
 
   <!-- MOBILE CALL BUTTON -->
   <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
