@@ -5,7 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Analytics (nur nach Einwilligung) -->
-
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
   <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
   <script>
     (function() {
@@ -596,8 +616,6 @@
 }
   </script>
 <link rel="preload" href="/footer.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/footer.css"></noscript>
-<link rel="stylesheet" href="/privacy-settings.css">
-<script defer src="/privacy-settings.js" data-measurement="G-HQXZQF4ZBN" data-storage="cookie_consent" data-privacy="/datenschutz.html"></script>
 </head>
 <body>
 
@@ -649,7 +667,7 @@
           <div class="progress__step" data-step="5">5</div>
           <div class="progress__line" data-line="5"></div>
           <div class="progress__step" data-step="6">6</div>
-
+          
         </div>
 
         <form id="bewertung" novalidate>
@@ -703,7 +721,7 @@
               </label>
             </div>
 
-
+            
 
             <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
             <div class="step__buttons">
@@ -777,7 +795,7 @@
 
 
 
-
+            
 
             <!-- Zimmer (Wohnung / Haus) -->
             <div class="field" id="field-zimmer" style="display:none">
@@ -791,7 +809,7 @@
               <input type="number" id="einheiten" name="einheiten" placeholder="z.B. 6" min="2" max="100">
             </div>
 
-
+            
 
             <!-- Miete IST / SOLL (Wohnung / Haus / MFH) -->
             <div id="field-miete-group" style="display:none">
@@ -1008,7 +1026,7 @@
                 <p style="margin:0;font-size:0.9rem;line-height:1.5;color:#b71c1c;"><strong>Ihre Anfrage konnte nicht automatisch übermittelt werden.</strong> Bitte rufen Sie mich direkt an oder schreiben Sie mir per WhatsApp, damit ich Ihre Bewertung persönlich erhalte: <a href="tel:+491775156969" style="color:#b71c1c;text-decoration:underline;">+49 177 515 69 69</a></p>
               </div>
 
-
+              
 
               <div id="result-keine-miete-hinweis" style="display:none;background:var(--gold-light,#fdf8ee);border-left:3px solid var(--gold);padding:0.875rem 1rem;border-radius:0 6px 6px 0;margin:1rem 0;text-align:left;">
                 <p style="margin:0 0 0.4rem;font-weight:600;color:var(--gold-dark,#8a6a00);">Hinweis zur Mietannahme</p>
@@ -1078,8 +1096,7 @@
         Roman Becker ist als Immobilienmakler Köln &amp; Rheinland tätig. Alle Preisangaben unverbindlich. Irrtümer und Änderungen vorbehalten. Marktdaten und Preisspannen sind Richtwerte und stellen keine Kaufpreisgarantie dar.
       </p>
     </div>
-  <p><a href="/datenschutz.html#privacy-settings" data-privacy-open>Datenschutzeinstellungen</a></p>
-</footer>
+  </footer>
 
   <script>
     // ===========================

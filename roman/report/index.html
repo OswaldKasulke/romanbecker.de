@@ -6,7 +6,27 @@
   <meta name="robots" content="noindex, nofollow">
 
   <!-- Google Analytics (nur nach Einwilligung) -->
-
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
   <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
   <script>
     (function() {
@@ -101,8 +121,6 @@
     h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
   </style>
 
-<link rel="stylesheet" href="/privacy-settings.css">
-<script defer src="/privacy-settings.js" data-measurement="G-HQXZQF4ZBN" data-storage="cookie_consent" data-privacy="/datenschutz.html"></script>
 </head>
 <body>
 
@@ -337,7 +355,6 @@
 
 <footer>
   Erstellt von fuerte.digital · April 2026 · Für Roman Becker, Immobilienmakler Köln
-<p><a href="/datenschutz.html#privacy-settings" data-privacy-open>Datenschutzeinstellungen</a></p>
 </footer>
 
 </body>
