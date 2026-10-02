@@ -865,6 +865,32 @@
               </select>
             </div>
 
+            <!-- Vermietung (Wohnung / Haus): vermietet rechnet der Kern mit
+                 Jahresnettokaltmiete x 25 / 22 / 20 nach Mietdauer. -->
+            <div class="field" id="field-vermietet" style="display:none">
+              <label for="vermietet">Ist die Immobilie vermietet? *</label>
+              <select id="vermietet" name="vermietet" onchange="vermietungUmschalten()">
+                <option value="">Bitte wählen</option>
+                <option value="frei">Nein, frei oder selbst genutzt</option>
+                <option value="vermietet">Ja, vermietet</option>
+              </select>
+            </div>
+            <div id="field-vermietung-details" style="display:none">
+              <div class="field" id="field-mietdauer">
+                <label for="mietdauer">Vermietet seit *</label>
+                <select id="mietdauer" name="mietdauer">
+                  <option value="">Bitte wählen</option>
+                  <option value="1">weniger als 3 Jahren</option>
+                  <option value="2">3 bis 8 Jahren</option>
+                  <option value="3">mehr als 8 Jahren</option>
+                </select>
+              </div>
+              <div class="field" id="field-vermietet-miete">
+                <label for="vermietet_miete">Monatliche Nettokaltmiete in € *</label>
+                <input type="text" inputmode="decimal" id="vermietet_miete" name="vermietet_miete" placeholder="z. B. 900">
+              </div>
+            </div>
+
             <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
             <div class="step__buttons">
               <button type="button" class="btn btn--secondary" onclick="prevStep(3)">Zurück</button>
@@ -1180,6 +1206,21 @@
       // Das Mehrfamilienhaus rechnet ueber die Miete, das Grundstueck ueber den
       // Bodenrichtwert — beide brauchen hier ihr eigenes Feld.
       fieldMiete.style.display = art === 'mehrfamilienhaus' ? 'block' : 'none';
+      document.getElementById('field-vermietet').style.display =
+        (art === 'wohnung' || art === 'haus') ? 'block' : 'none';
+      vermietungUmschalten();
+    }
+
+    function vermietungUmschalten() {
+      var sichtbar = document.getElementById('field-vermietet').style.display !== 'none';
+      document.getElementById('field-vermietung-details').style.display =
+        sichtbar && document.getElementById('vermietet').value === 'vermietet' ? 'block' : 'none';
+    }
+
+    function istVermietet() {
+      var art = document.querySelector('input[name="objektart"]:checked');
+      return !!art && (art.value === 'wohnung' || art.value === 'haus') &&
+        document.getElementById('vermietet').value === 'vermietet';
     }
 
     // Sagt dem Nutzer, was konkret fehlt, statt ihn nur gegen eine rote
@@ -1188,6 +1229,7 @@
       'field-immo-strasse': 'Straße aus der Trefferliste', 'field-immo-plz': 'Postleitzahl',
       'field-wohnflaeche': 'Wohnfläche', 'field-grundstueck': 'Grundstücksfläche',
       'field-gstand': 'Zustand und Ausstattung', 'field-miete-group': 'Nettokaltmiete',
+      'field-vermietet': 'Vermietung', 'field-mietdauer': 'Vermietet seit', 'field-vermietet-miete': 'Monatliche Nettokaltmiete',
       'field-vorname': 'Vorname', 'field-nachname': 'Nachname', 'field-email': 'E-Mail', 'field-telefon': 'Telefon'
     };
     function fehlendeMelden() {
@@ -1301,6 +1343,16 @@
           gsFeld.classList.remove('field--error');
         }
 
+        var istWH = art === 'wohnung' || art === 'haus';
+        var fVerm = document.getElementById('field-vermietet');
+        var fDauer = document.getElementById('field-mietdauer');
+        var fVMiete = document.getElementById('field-vermietet-miete');
+        fVerm.classList.toggle('field--error', istWH && !document.getElementById('vermietet').value);
+        fDauer.classList.toggle('field--error', istVermietet() && !document.getElementById('mietdauer').value);
+        fVMiete.classList.toggle('field--error', istVermietet() && !(modellAttribute().KALTMIETE > 0));
+        if (fVerm.classList.contains('field--error') || fDauer.classList.contains('field--error') ||
+            fVMiete.classList.contains('field--error')) valid = false;
+
         if (art === 'grundstueck') {
           var gf = document.getElementById('grundstuecksflaeche');
           var fieldGf = document.getElementById('field-grundstueck');
@@ -1404,6 +1456,17 @@
     var plzHinweis    = document.getElementById('immo-plz-hinweis');
     var vorschlagIndex = -1;
 
+    // Zahlenformat wie in den anderen drei Rechnern: das hintere Trennzeichen
+    // trennt die Dezimalen ("1.200" = 1200, "900,50" = 900.5, "1200.50" = 1200.5).
+    function zahlDe(w) {
+      if (!w) return 0;
+      var t = String(w).replace(/[^0-9.,-]/g, ''), k = t.lastIndexOf(','), p = t.lastIndexOf('.');
+      if (k > -1 && p > -1) { t = k > p ? t.replace(/\./g, '').replace(',', '.') : t.replace(/,/g, ''); }
+      else if (k > -1) { t = (t.split(',').length > 2 || /,\d{3}$/.test(t)) ? t.replace(/,/g, '') : t.replace(',', '.'); }
+      else if (p > -1) { t = (t.split('.').length > 2 || /\.\d{3}$/.test(t)) ? t.replace(/\./g, '') : t; }
+      return Number(t) || 0;
+    }
+
     function modellAttribute() {
       var art = document.querySelector('input[name="objektart"]:checked');
       var a = {
@@ -1424,6 +1487,11 @@
         var mSoll = parseFloat((document.getElementById('miete_soll').value || '').replace(',', '.')) || 0;
         var mSollJ = parseFloat((document.getElementById('miete_soll_jahr').value || '').replace(',', '.')) || 0;
         a.KALTMIETE = mIst || (mIstJ / 12) || mSoll || (mSollJ / 12);
+      }
+      if (istVermietet()) {
+        a.VERMIETET = 1;
+        a.MIETDAUER = parseInt(document.getElementById('mietdauer').value, 10) || 0;
+        a.KALTMIETE = zahlDe(document.getElementById('vermietet_miete').value);
       }
       var gs = document.getElementById('gstand');
       if (gs && gs.value) a.GSTAND = parseInt(gs.value, 10);
@@ -2140,6 +2208,14 @@
             + ' = ' + irw.value + ' EUR.');
           rw.push('Gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
           if (irw.untergrenze_gegriffen) rw.push('Die Untergrenze aus 10 EUR/m2 Kaltmiete hat gegriffen.');
+          lastRechenweg = rw.join('\n');
+          return irw.value;
+        }
+        if (irw.verfahren === 'Vermietet') {
+          rw.push('Verfahren: vermietet seit ' + irw.mietdauer + '; ' + irw.berechnungsart + '.');
+          rw.push('Monatliche Nettokaltmiete ' + a.KALTMIETE + ' EUR -> Jahresnettokaltmiete ' + irw.jahresnettokaltmiete + ' EUR.');
+          rw.push('Rechnung: ' + irw.jahresnettokaltmiete + ' EUR Jahresnettokaltmiete x ' + irw.faktor + ' = ' + irw.value + ' EUR.');
+          rw.push('Gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
           lastRechenweg = rw.join('\n');
           return irw.value;
         }
