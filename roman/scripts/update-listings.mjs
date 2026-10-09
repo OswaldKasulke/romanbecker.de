@@ -63,6 +63,7 @@ const LANGS = [
     useHeadline: true,
     titleFallback: 'Immobilie',
     sold: 'Verkauft',
+    reserved: 'Reserviert',
     priceOnRequest: 'Preis auf Anfrage',
     from: 'Ab',
     koelnLabel: 'Immobilienangebote',
@@ -80,6 +81,7 @@ const LANGS = [
     useHeadline: false,
     titleFallback: 'Property',
     sold: 'Sold',
+    reserved: 'Reserved',
     priceOnRequest: 'Price on request',
     from: 'From',
     koelnLabel: 'Properties',
@@ -114,6 +116,7 @@ function mapListing(item) {
   return {
     id:        item.sys?.id,
     sold:      item.salesStatus === 'sold',
+    reserved:  item.salesStatus === 'reserved',
     hidePrice: !!item.hidePrice,
     priceRaw:  epd.priceFrom ?? epd.price ?? null,
     priceFrom: epd.priceFrom != null,
@@ -189,7 +192,8 @@ function buildCard(l, L) {
   const price  = priceString(l, L);
   const meta   = l.address ? `${l.address} — ${price}` : price;
   const imgSrc = l.imageUrl ? `${l.imageUrl}${IMG_PARAMS}` : '';
-  const badge  = l.sold ? `\n                  <div class="listing-card__badge">${L.sold}</div>` : '';
+  const badgeText = l.sold ? L.sold : l.reserved ? L.reserved : '';
+  const badge  = badgeText ? `\n                  <div class="listing-card__badge">${badgeText}</div>` : '';
   return `            <div class="splide__slide">
               <div class="listing-card">
                 <a class="listing-card__link" href="${l.url}" target="_blank" rel="noopener">
