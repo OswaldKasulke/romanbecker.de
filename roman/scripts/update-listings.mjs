@@ -152,6 +152,11 @@ function isKoelnArea(item) {
   return cities.some(c => addr.includes(c));
 }
 
+// Objekt liegt in der Stadt Köln (displayAddress "Köln-Sürth, 50999" bzw. "Köln, 50667").
+function isKoeln(l) {
+  return /^Köln\b/.test(l.address);
+}
+
 async function fetchKoelnListings() {
   // Use the search API with the Köln bounding box.
   // Die API wertet die Bounds aus; zusaetzlich filtern wir per PLZ (50xxx–53xxx),
@@ -174,10 +179,12 @@ async function fetchKoelnListings() {
 
   return koeln
     .map(mapListing)
-    // Galerie von teuer zu günstig: aktive vor verkauft, dann Preis absteigend
-    // (Objekte ohne Preis / "auf Anfrage" ans Ende).
+    // Reihenfolge (Roman, 12.10.2026): aktive Kölner Objekte zuerst, dann die
+    // übrigen aktiven, dann verkaufte — jeweils Preis absteigend
+    // (Objekte ohne Preis / "auf Anfrage" ans Ende ihrer Gruppe).
     .sort((a, b) => {
-      if (!!a.sold !== !!b.sold) return a.sold ? 1 : -1;
+      const rang = (l) => (l.sold ? 2 : isKoeln(l) ? 0 : 1);
+      if (rang(a) !== rang(b)) return rang(a) - rang(b);
       return (b.priceRaw ?? 0) - (a.priceRaw ?? 0);
     })
     .slice(0, KOELN_MAX_LISTINGS);
