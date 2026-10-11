@@ -1455,6 +1455,7 @@
     var veedelWrapper = document.getElementById('field-immo-veedel');
     var plzHinweis    = document.getElementById('immo-plz-hinweis');
     var vorschlagIndex = -1;
+    var autoWahl = false;
 
     // Zahlenformat wie in den anderen drei Rechnern: das hintere Trennzeichen
     // trennt die Dezimalen ("1.200" = 1200, "900,50" = 900.5, "1200.50" = 1200.5).
@@ -1574,6 +1575,13 @@
         api.searchRemote(reineStrasse, 10, plzFeld ? plzFeld.value : '').then(function (namen) {
           if (laufId !== vorschlagLauf) return;
           if (!namen.length) { vorschlaegeSchliessen(); return; }
+          // Kam die Adresse auf einmal ins Feld (Autofill, Einfuegen) und gibt
+          // es genau einen Treffer, wird er direkt uebernommen.
+          if (autoWahl && namen.length === 1 && hausnummerAus(strasseFeld.value) && !gemeinsameAuswahlId) {
+            autoWahl = false;
+            vorschlagUebernehmen(namen[0].name, namen[0].city, namen[0].id);
+            return;
+          }
 
           vorschlagListe.innerHTML = namen.map(function (e, i) {
             return '<li role="option" id="vorschlag-' + i + '" data-name="' + e.name.replace(/"/g, '&quot;') +
@@ -1871,7 +1879,15 @@
     }
 
     if (strasseFeld) {
+      // Gespeicherte Browser-Adressen bringen oft einen Zusatz hinter der
+      // Hausnummer mit ("Weisshausstrasse 23, Datenschwester GmbH") - alles ab
+      // dem Komma nach der Nummer faellt weg, sonst findet die Suche nichts.
+      var letzterWert = '';
       strasseFeld.addEventListener('input', function () {
+        var bereinigt = this.value.replace(/^(.*?\D[\s,]+\d+\s*[a-zA-Z]?(?:\s*[-–\/]\s*\d+\s*[a-zA-Z]?)?)\s*,.*$/, '$1');
+        if (bereinigt !== this.value) this.value = bereinigt;
+        autoWahl = this.value.length - letzterWert.length > 2;
+        letzterWert = this.value;
         var text = this.value.trim();
         if (gemeinsameAuswahlName && text.indexOf(gemeinsameAuswahlName) !== 0) {
           gemeinsameAuswahlId = ''; gemeinsameAuswahlName = ''; gemeinsameKandidaten = [];
