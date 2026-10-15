@@ -1637,6 +1637,8 @@
       strasseFeld.value = name;
       letzterWert = name;
       if (nr && !hausnrFeld.value.trim()) hausnrFeld.value = nr;
+      document.getElementById('field-immo-strasse').classList.remove('field--error');
+      fehlendeMelden();
       gemeinsameAuswahlId = id || '';
       gemeinsameAuswahlName = name || '';
       gemeinsameKandidaten = [];
@@ -1850,12 +1852,11 @@
             // Die Postleitzahl steht im Adressbestand — sie muss niemand raten.
             if (plzFeld && plzFeld.value !== c.zip) { plzFeld.value = c.zip; plzAutomatisch(true); }
             if (ortFeld) ortFeld.value = c.city;
-            // Adresse vollstaendig: alte Fehlermarken und "Es fehlt noch" weg.
-            if (hausnrFeld.value.trim()) {
-              document.getElementById('field-immo-strasse').classList.remove('field--error');
-              document.getElementById('field-immo-hausnr').classList.remove('field--error');
-              fehlendeMelden();
-            }
+            // Strasse steht: ihre Fehlermarke weg und "Es fehlt noch" neu
+            // schreiben - sonst nennt die Zeile die gewaehlte Strasse weiter.
+            document.getElementById('field-immo-strasse').classList.remove('field--error');
+            if (hausnrFeld.value.trim()) document.getElementById('field-immo-hausnr').classList.remove('field--error');
+            fehlendeMelden();
             lageZeile.className = 'lage-treffer';
             lageZeile.innerHTML = 'Lage erkannt: <strong>' + c.city + (c.area ? '-' + c.area : '') + '</strong> · PLZ ' + c.zip;
           });
@@ -1950,7 +1951,10 @@
         if (!gemeinsameAuswahlId) vorschlaegeZeigen(this.value.trim());
       });
       hausnrFeld.addEventListener('input', function () {
-        document.getElementById('field-immo-hausnr').classList.remove('field--error');
+        if (this.value.trim()) {
+          document.getElementById('field-immo-hausnr').classList.remove('field--error');
+          fehlendeMelden();
+        }
         lageErmitteln();
       });
       hausnrFeld.addEventListener('keydown', function (e) {
