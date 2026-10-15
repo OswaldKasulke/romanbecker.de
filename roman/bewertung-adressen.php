@@ -230,6 +230,25 @@ function aktion_adresse(string $id, string $nr, string $plz): array
     $amtlich = (lade(DATEN . '/adressen/' . shard($key) . '.json') ?? [])[$key] ?? [];
     $kandidaten = [];
     $gesehen = [];
+    // Kennen die Gebaeudereferenzen die Strasse gar nicht (Plaetze, Uferwege,
+    // Neubaustrassen - rund 320 Strassen), laesst sich die Nummer nicht pruefen.
+    // Das Veedel kommt dann allein aus dem Strassenverzeichnis: Strasse, PLZ und
+    // Nummernbereich. Bleiben mehrere Veedel, gilt die Regel "hoechster Endwert".
+    if (!$amtlich) {
+        foreach ($abschnitte as $b) {
+            $sig = $b[2] . '|' . ($b[3] ?? '');
+            if (isset($gesehen[$sig])) {
+                continue;
+            }
+            $gesehen[$sig] = true;
+            $kandidaten[] = [
+                'region' => $e['r'], 'city' => $e['o'], 'area' => $b[3], 'zip' => $b[2],
+                'street' => $e['n'], 'houseNumber' => $n, 'supplement' => $zusatz,
+                'zoneGroups' => (object) [], 'official' => false,
+            ];
+        }
+        $abschnitte = [];
+    }
     foreach ($abschnitte as $b) {
         foreach ($amtlich as $a) {
             if (!inSpanne($a, $n) || nrm((string) $a[2]) !== $zusatz) {
