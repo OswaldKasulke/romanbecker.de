@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics (nur nach Einwilligung) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      wait_for_update: 500
+    });
+    function loadAnalytics() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HQXZQF4ZBN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', 'G-HQXZQF4ZBN');
+    }
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      loadAnalytics();
+    }
+  </script>
+  <!-- GA4 Event-Tracking: Telefon, E-Mail, WhatsApp, Formular -->
+  <script>
+    (function() {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          track('click_phone', { phone_number: href.replace('tel:', '') });
+        } else if (href.indexOf('mailto:') === 0) {
+          track('click_email', { email_address: href.replace('mailto:', '').split('?')[0] });
+        } else if (/wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com/.test(href)) {
+          track('click_whatsapp');
+        }
+      }, true);
+      document.addEventListener('submit', function(e) {
+        var f = e.target;
+        if (!f || f.nodeName !== 'FORM') return;
+        track('generate_lead', {
+          form_id: f.id || 'unknown',
+          form_destination: f.action || '',
+          page_path: location.pathname
+        });
+      }, true);
+    })();
+  </script>
+
+  <title>Köln baut bezahlbar: Rat lockert Bauvorgaben | Kölner Immobilien NEWS</title>
+  <meta name="description" content="Der Kölner Rat lockert Vorgaben zu Energiestandard, Stellplätzen und Grünflächen. Was der Beschluss vom 8. Oktober für Grundstückseigentümer bedeutet.">
+  <link rel="canonical" href="https://romanbecker.de/news/koeln-baut-bezahlbar-ratsbeschluss.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Köln baut bezahlbar: Rat lockert Bauvorgaben | Kölner Immobilien NEWS">
+  <meta property="og:description" content="Der Kölner Rat lockert Vorgaben zu Energiestandard, Stellplätzen und Grünflächen. Was der Beschluss vom 8. Oktober für Grundstückseigentümer bedeutet.">
+  <meta property="og:url" content="https://romanbecker.de/news/koeln-baut-bezahlbar-ratsbeschluss.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "Köln senkt eigene Bauvorgaben: Rat beschließt „Köln baut bezahlbar“",
+    "description": "Der Kölner Rat lockert Vorgaben zu Energiestandard, Stellplätzen und Grünflächen. Was der Beschluss vom 8. Oktober für Grundstückseigentümer bedeutet.",
+    "url": "https://romanbecker.de/news/koeln-baut-bezahlbar-ratsbeschluss.html",
+    "datePublished": "2026-10-15",
+    "dateModified": "2026-10-15",
+    "articleSection": "Kölner Immobilien NEWS",
+    "author": {
+      "@type": "Person",
+      "name": "Roman Becker",
+      "url": "https://romanbecker.de/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Roman Becker Immobilien",
+      "url": "https://romanbecker.de/"
+    }
+  }
+  </script>
+
+  <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://romanbecker.de/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/fonts/inter.css">
+  <link rel="stylesheet" href="../stadtteile/shared.css">
+  <style>
+    .article-content { max-width: 800px; }
+    .article-content h2 { font-family: var(--font-heading); font-size: 1.5rem; margin: 2rem 0 0.75rem; color: var(--text, #000000); }
+    .article-content h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--text, #000000); }
+    .article-content p { color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+    .article-content ul, .article-content ol { color: var(--gray-600); line-height: 1.75; margin: 0 0 1rem 1.5rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { color: var(--text, #000000); font-weight: 600; }
+    .article-hero { background: var(--navy); color: var(--white); padding: var(--space-16) 0 var(--space-12); }
+    .article-hero h1 { font-family: var(--font-heading); font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: var(--space-4); color: var(--white); }
+    .article-hero p { color: var(--gold-light); font-size: 1.1rem; max-width: 700px; }
+    .news-meta { font-size: 0.85rem; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); padding-bottom: var(--space-4); margin-bottom: var(--space-8); }
+    .news-meta strong { color: var(--text, #000000); }
+    .factbox { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .factbox p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .news-table { width: 100%; border-collapse: collapse; margin: var(--space-6) 0; font-size: 0.92rem; }
+    .news-table th, .news-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--gray-200); text-align: right; color: var(--gray-600); }
+    .news-table th { color: var(--text, #000000); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .news-table th:first-child, .news-table td:first-child { text-align: left; }
+    .news-table td:first-child { color: var(--text, #000000); }
+    .news-table-wrap { overflow-x: auto; }
+    .news-table caption { caption-side: top; text-align: left; font-size: 0.8rem; color: var(--gray-600); padding-bottom: 0.5rem; }
+    .news-sources { background: var(--gray-100); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0 0; }
+    .news-sources h2 { font-size: 0.9rem !important; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin: 0 0 var(--space-4) !important; }
+    .news-sources ol { font-size: 0.85rem; margin-left: 1.2rem; }
+    .news-sources a { word-break: break-word; }
+    h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+  </style>
+<link rel="preload" href="/footer.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/footer.css"></noscript>
+</head>
+<body>
+
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a href="https://romanbecker.de/" class="site-header__logo"><span class="site-header__logo-primary">Roman Becker Immobilien <span class="site-header__logo-tag">(START)</span></span><span class="site-header__logo-sub">Immobilienmakler &amp; Immobilienbewertung Köln</span></a>
+        <nav class="site-header__nav" aria-label="Hauptnavigation">
+          <a href="https://romanbecker.de/">Startseite</a>
+          <a href="https://romanbecker.de/stadtteile/">Ihr Veedel</a>
+          <a href="https://romanbecker.de/immobilienbewertung.html">Online-Immobilienbewertung</a>
+          <a href="https://romanbecker.de/#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav__search" id="navSearch">
+          <input class="nav__search-input" id="navSearchInput" type="text" placeholder="" autocomplete="off" aria-label="Suche">
+          <button class="nav__search-btn" id="navSearchBtn" aria-label="Suche öffnen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </button>
+          <div class="nav__search-dropdown" id="navSearchDropdown"></div>
+        </div>
+        <a href="tel:+491775156969" class="site-header__cta">+49 177 515 69 69</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+  
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="https://romanbecker.de/">Start</a>
+      <span>›</span>
+      <a href="https://romanbecker.de/news/">Kölner Immobilien NEWS</a>
+      <span>›</span>
+      Köln baut bezahlbar
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="hero__badge">✓ Kölner Immobilien NEWS · Roman Becker</div>
+      <h1>Köln senkt eigene Bauvorgaben: Rat beschließt „Köln baut bezahlbar“</h1>
+      <p>Der Kölner Stadtrat hat am 8. Oktober 2026 beschlossen, städtische Vorgaben für den Wohnungsbau zu lockern – beim Energiestandard, bei Stellplätzen und bei Grünflächen. Das betrifft vor allem Eigentümer von Grundstücken, Baulücken und Häusern mit Aufstockungspotenzial in Köln.</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="article-content">
+<p class="news-meta"><strong>15. Oktober 2026</strong> · Roman Becker, romanbecker.de · Quelle: Stadt Köln (Pressemitteilung vom 12. Oktober 2026)</p>
+<h2>Rat beschließt Maßnahmenpaket für günstigeres Bauen</h2>
+<p>Nach Angaben der Stadt Köln hat der Rat die zentralen Maßnahmen aus dem Prozess „Köln baut bezahlbar – Wohnen für alle“ in seiner Sitzung am Donnerstag, 8. Oktober 2026, mehrheitlich beschlossen. Die Stadt veröffentlichte die Mitteilung dazu am 12. Oktober 2026. Ziel ist laut Stadt, die Rahmenbedingungen so zu verändern, dass Wohnungsbauprojekte wieder wirtschaftlich umgesetzt werden können.</p>
+<p>Vorausgegangen war ein rund fünfmonatiger Prozess, in dem etwa 150 Vertreterinnen und Vertreter aus Verwaltung und Wohnungswirtschaft untersucht haben, wie Bauen in Köln einfacher und kostengünstiger werden kann. Dabei entstanden rund 150 Maßnahmen und Lösungsansätze, darunter 22 Vorschläge zur Anpassung kommunaler Vorgaben.</p>
+<h2>Energiestandard, Stellplätze, Grünflächen: die drei größten Hebel</h2>
+<p>Die Stadt nennt drei Bereiche als die wichtigsten Stellschrauben:</p>
+<ul>
+  <li><strong>Energiestandard:</strong> Statt des bisher geforderten Effizienzhaus-40-Standards können Bauherren künftig auch den gesetzlichen Standard nach dem Gebäudemodernisierungsgesetz wählen – in Verbindung mit einer klimaneutralen Wärmeversorgung. Die Stadt bezeichnet das als einen der großen Hebel zur Senkung der Baukosten.</li>
+  <li><strong>Stellplätze:</strong> Beim Studierendenwohnen entfällt die Stellplatzpflicht. Für kleinere Vorhaben in Baulücken und bei Aufstockungen hatten Verwaltung und Wohnungswirtschaft vorgeschlagen, auf den Stellplatznachweis zu verzichten. Nach Angaben der Stadt hat der Rat diese Erleichterung noch „deutlich ausgeweitet“. Wie weit genau, nennt die Mitteilung nicht.</li>
+  <li><strong>Grünflächen:</strong> Die bisherigen Flächenvorgaben werden reduziert. Ausgeglichen werden soll das durch zusätzliche Begrünung auf privaten Flächen, in räumlicher Nähe oder durch hochwertige Dachbegrünung.</li>
+</ul>
+<p>Auch bei Spielplätzen und weiteren städtischen Standards wurden laut Stadt Anpassungen vereinbart. Einzelheiten dazu enthält die Mitteilung nicht. Ein begleitendes Monitoring soll zeigen, ob die Maßnahmen tatsächlich Kosten senken, Verfahren beschleunigen und zu mehr Wohnungsbau führen.</p>
+<h2>Was sich in Köln konkret ändert</h2>
+<p>Die Beschlüsse betreffen kommunale Vorgaben – also Anforderungen, die die Stadt Köln zusätzlich zu denen von Bund und Land stellt. Oberbürgermeister Torsten Burmester sagte dazu: „Die eigentliche Bewährungsprobe beginnt nun mit der Umsetzung.“</p>
+<p>Die Stellplatzregel zielt nach Darstellung der Stadt ausdrücklich auf kleinere Wohnungsbauprojekte und die Nachverdichtung bestehender Quartiere. Gemeint sind etwa das Schließen einer Baulücke oder ein zusätzliches Geschoss auf einem bestehenden Haus.</p>
+<h2>Was das für Eigentümer bedeutet</h2>
+<p>Unsere Einordnung: Für Eigentümer von Wohnungen im Bestand ändert der Beschluss unmittelbar wenig. Relevanter ist er für alle, die ein Grundstück, eine Baulücke oder ein Haus mit Ausbau- oder Aufstockungsreserve besitzen. Wenn Bauen günstiger wird, kann ein Vorhaben auf einem solchen Grundstück wirtschaftlich werden, das vorher nicht aufging – und damit für Bauträger und Investoren interessanter.</p>
+<p>Ob und in welchem Umfang sich das in höheren Grundstückspreisen niederschlägt, lässt sich heute nicht sagen. Das hängt davon ab, wie die Erleichterungen in den Genehmigungsverfahren angewendet werden, und von Faktoren außerhalb des Beschlusses, etwa den Finanzierungskosten. Welche Regel für ein bestimmtes Grundstück gilt, ist im Einzelfall mit dem Bauamt oder einem Architekten zu klären.</p>
+<p>Zum gesetzlichen Energiestandard, auf den die Stadt jetzt verweist, hat romanbecker.de bereits berichtet: <a href="https://romanbecker.de/news/gebaeudemodernisierungsgesetz-koeln.html">65-Prozent-Regel gestrichen: Neues Heizungsrecht gilt seit dem 29. Juli</a>.</p>
+<h2>Ausblick</h2>
+<p>Offen ist, ab wann die Erleichterungen in laufenden und neuen Verfahren angewendet werden – die Mitteilung nennt dazu kein Datum. Die vollständige Beschlussvorlage ist im Ratsinformationssystem der Stadt Köln einsehbar. Ob das Paket wirkt, soll das angekündigte Monitoring zeigen; Ergebnisse dazu liegen noch nicht vor.</p>
+
+<div class="news-sources">
+  <h2>Quellen</h2>
+  <ol>
+    <li>Stadt Köln, Amt für Presse- und Öffentlichkeitsarbeit, „Köln beschließt weitreichende Erleichterungen für den Wohnungsbau – ‚Köln baut bezahlbar‘: Neue Rahmenbedingungen für kostengünstigeres Bauen“, veröffentlicht 12. 10. 2026, abgerufen 15. 10. 2026 – <a href="https://www.stadt-koeln.de/politik-und-verwaltung/presseservice/koeln-beschliesst-weitreichende-erleichterungen-fuer-den-wohnungsbau" target="_blank" rel="noopener">https://www.stadt-koeln.de/politik-und-verwaltung/presseservice/koeln-beschliesst-weitreichende-erleichterungen-fuer-den-wohnungsbau</a></li>
+  </ol>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Unverbindliche Immobilienbewertung</span>
+        <h2>Was heißt das für Ihr Grundstück?</h2>
+        <p>Ob ein Grundstück oder Haus in Köln durch die neuen Regeln an Wert gewinnt, lässt sich nur am Einzelfall beurteilen. Eine unverbindliche Immobilienbewertung ist der einfachste Einstieg – kostenfrei und ohne Verkaufsverpflichtung.</p>
+        <div class="cta-buttons">
+          <a href="https://romanbecker.de/immobilienbewertung.html" class="btn btn--primary">Kostenlose Immobilienbewertung</a>
+          <a href="tel:+491775156969" class="btn btn--white-outline">+49 177 515 69 69</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEITERE NEWS -->
+  <section class="section">
+    <div class="container">
+      <div class="ratgeber-nav" style="margin-top:0;padding:var(--space-6);background:var(--gray-100);border-radius:var(--radius);">
+        <h3 style="font-size:0.9rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray-600);margin-bottom:var(--space-4);">Mehr aus Kölner Immobilien NEWS</h3>
+        <div class="ratgeber-nav-links" style="display:flex;flex-wrap:wrap;gap:var(--space-2);">
+          <a href="https://romanbecker.de/news/" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Alle Meldungen</a>
+          <a href="https://romanbecker.de/news/gebaeudemodernisierungsgesetz-koeln.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Neues Heizungsrecht 2026</a>
+          <a href="https://romanbecker.de/news/baugenehmigungen-koeln-halbjahr-2026.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Baugenehmigungen Köln</a>
+          <a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Grundstücksmarktbericht Köln</a>
+          <a href="https://romanbecker.de/stadtteile/" style="font-size:0.85rem;color:var(--gray-600);text-decoration:none;padding:0.25rem 0.6rem;border:1px solid var(--gray-200);border-radius:4px;">Alle Veedel</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer rb-footer">
+    <div class="container">
+      <div class="rb-footer__grid">
+        <div class="rb-footer__col">
+          <p class="rb-footer__h">Anschrift</p>
+          <address>Roman Becker Immobilien<br>Datenschwester GmbH<br>Weißhausstraße 23<br>50939 Köln-Sülz</address>
+          <p><a href="mailto:roman.becker@evernest.com">roman.becker@evernest.com</a><br><a href="tel:+491775156969">+49 177 515 69 69</a></p>
+          <a class="rb-footer__google" href="https://www.google.com/maps/search/?api=1&amp;query=Roman%20Becker%20Immobilien&amp;query_place_id=ChIJ1UyDnGMlv0cRMVr3pf0D9KE" target="_blank" rel="noopener"><strong>5,0</strong><span class="rb-footer__stars">★★★★★</span><span>auf Google</span></a>
+        </div>
+        <div class="rb-footer__col">
+          <p class="rb-footer__h">Unternehmen</p>
+          <ul class="rb-footer__list"><li><a href="https://romanbecker.de/#ueber-roman">Über mich</a></li><li><a href="https://romanbecker.de/leistungen.html">Leistungen</a></li><li><a href="https://romanbecker.de/bautraeger.html">Für Bauträger</a></li><li><a href="https://romanbecker.de/news/">News</a></li><li><a href="https://romanbecker.de/impressum.html">Impressum</a></li><li><a href="https://romanbecker.de/datenschutz.html">Datenschutz</a></li><li><a href="https://romanbecker.de/agb.html">AGB</a></li></ul>
+        </div>
+        <div class="rb-footer__col">
+          <p class="rb-footer__h">Kostenlose Bewertung</p>
+          <p>Was ist Ihre Immobilie wert? In einer Minute online bewerten – kostenlos und unverbindlich.</p>
+          <a class="rb-footer__btn" href="https://romanbecker.de/immobilienbewertung.html">Online-Immobilienbewertung</a>
+          <p class="rb-footer__h">Folgen</p>
+          <div class="rb-footer__social"><a href="https://www.instagram.com/roman_becker_immobilien/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+        </div>
+        <div class="rb-footer__col">
+          <p class="rb-footer__h">Immobilien &amp; Ratgeber</p>
+          <ul class="rb-footer__list"><li><a href="https://romanbecker.de/immobilien-verkaufen-koeln.html">Immobilie verkaufen in Köln</a></li><li><a href="https://romanbecker.de/immobilienbewertung.html">Immobilie bewerten</a></li><li><a href="https://romanbecker.de/immobiliengutachter-koeln.html">Immobiliengutachter Köln</a></li><li><a href="https://romanbecker.de/#objekte-koeln">Immobilienangebote</a></li><li><a href="https://romanbecker.de/stadtteile/">Ihr Veedel</a></li><li><a href="https://romanbecker.de/immobilienmakler-rhein-erft/">Rhein-Erft-Kreis</a></li><li><a href="https://romanbecker.de/ratgeber/">Ratgeber</a></li><li><a href="https://romanbecker.de/ratgeber/grundstuecksmarktbericht-koeln.html">Grundstücksmarktbericht Köln</a></li><li><a href="https://romanbecker.de/mietspiegel.html">Mietspiegel Köln</a></li><li><a href="https://romanbecker.de/bodenrichtwert-koeln.html">Bodenrichtwert Köln</a></li></ul>
+        </div>
+      </div>
+      <div class="rb-footer__bottom"><span>© 2026 Roman Becker Immobilien</span><a href="https://www.datenschwester.de" rel="noopener">Webentwicklung: datenschwester.de</a></div>
+      <p class="footer__disclaimer">
+        Roman Becker ist als Immobilienmakler Köln &amp; Rheinland tätig. Die Beiträge unter Kölner Immobilien NEWS dienen der allgemeinen Information und ersetzen keine Rechts-, Steuer- oder Finanzberatung im Einzelfall. Alle Angaben ohne Gewähr; Irrtümer und Änderungen vorbehalten.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE CALL BUTTON -->
+  <a href="tel:+491775156969" class="mobile-cta" aria-label="Jetzt anrufen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.15 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.35a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <script src="../stadtteile/search.js" defer></script>
+  <script src="../stadtteile/page-toc.js" defer></script>
+</body>
+</html>
