@@ -330,6 +330,14 @@
         grid-template-columns: 1fr;
       }
   }
+    /* Straße breit, Hausnummer schmal daneben - auch am Handy in einer Zeile. */
+    .field-row.field-row--adresse { grid-template-columns: 1fr 7rem; }
+    @media (max-width: 480px) {
+      .field-row.field-row--adresse { grid-template-columns: 1fr 5.5rem; gap: 0.75rem; }
+    }
+    /* type="search" nur, damit Chrome kein Adress-Autofill darueberlegt -
+       das Loeschkreuz der Suchfelder wird nicht gebraucht. */
+    #immo_strasse::-webkit-search-cancel-button, #immo_hausnr::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
     /* ===========================
        CONDITION RADIO
     =========================== */
@@ -738,7 +746,7 @@
             <div class="field-row">
               <div class="field" id="field-immo-plz">
                 <label for="immo_plz">PLZ *</label>
-                <input type="text" id="immo_plz" name="immo_plz" placeholder="50939" maxlength="5" inputmode="numeric" required>
+                <input type="text" id="immo_plz" name="immo_plz" placeholder="50939" maxlength="5" inputmode="numeric" autocomplete="off" required>
                 <p class="field__hint" id="immo-plz-hinweis"></p>
                 <p class="field__error">Bitte PLZ eingeben.</p>
               </div>
@@ -748,16 +756,25 @@
               </div>
             </div>
 
-            <div class="field" id="field-immo-strasse">
-              <label for="immo_strasse">Straße + Hausnr. *</label>
-              <div class="field__suche">
-                <input type="text" id="immo_strasse" name="immo_strasse" placeholder="Ersten 2 Buchstaben der Straße eintippen und aus der Liste wählen"
-                       autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list"
-                       aria-controls="strassen-vorschlaege">
-                <ul class="vorschlaege" id="strassen-vorschlaege" role="listbox"></ul>
+            <!-- type="search": Chrome legt dort kein Adress-Autofill ueber die
+                 Trefferliste (autocomplete="off" allein ignoriert Chrome). -->
+            <div class="field-row field-row--adresse">
+              <div class="field" id="field-immo-strasse">
+                <label for="immo_strasse">Straße *</label>
+                <div class="field__suche">
+                  <input type="search" id="immo_strasse" name="immo_strasse" placeholder="Ersten 2 Buchstaben eintippen und aus der Liste wählen"
+                         autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list"
+                         aria-controls="strassen-vorschlaege">
+                  <ul class="vorschlaege" id="strassen-vorschlaege" role="listbox"></ul>
+                </div>
               </div>
-              <p class="lage-treffer" id="immo-lage" aria-live="polite"></p>
+              <div class="field" id="field-immo-hausnr">
+                <label for="immo_hausnr">Hausnr. *</label>
+                <input type="search" id="immo_hausnr" name="immo_hausnr" placeholder="z. B. 12a" maxlength="12" autocomplete="off">
+                <p class="field__error">Bitte Hausnummer eingeben.</p>
+              </div>
             </div>
+            <p class="lage-treffer" id="immo-lage" aria-live="polite"></p>
 
             <div class="field" id="field-immo-veedel" style="display:none;">
               <label for="immo_veedel">Veedel</label>
@@ -1226,7 +1243,7 @@
     // Sagt dem Nutzer, was konkret fehlt, statt ihn nur gegen eine rote
     // Umrandung laufen zu lassen.
     var pflichtTexte = {
-      'field-immo-strasse': 'Straße aus der Trefferliste', 'field-immo-plz': 'Postleitzahl',
+      'field-immo-strasse': 'Straße aus der Trefferliste', 'field-immo-hausnr': 'Hausnummer', 'field-immo-plz': 'Postleitzahl',
       'field-wohnflaeche': 'Wohnfläche', 'field-grundstueck': 'Grundstücksfläche',
       'field-gstand': 'Zustand und Ausstattung', 'field-miete-group': 'Nettokaltmiete',
       'field-vermietet': 'Vermietung', 'field-mietdauer': 'Vermietet seit', 'field-vermietet-miete': 'Monatliche Nettokaltmiete',
@@ -1305,6 +1322,13 @@
           valid = false;
         } else {
           fieldImmoStrasse.classList.remove('field--error');
+        }
+        var fieldImmoHausnr = document.getElementById('field-immo-hausnr');
+        if (!hausnrFeld.value.trim()) {
+          fieldImmoHausnr.classList.add('field--error');
+          valid = false;
+        } else {
+          fieldImmoHausnr.classList.remove('field--error');
         }
         if (!immoPlz.value || immoPlz.value.length < 5) {
           fieldImmoPlz.classList.add('field--error');
@@ -1425,7 +1449,7 @@
       gemeinsameKandidaten = [];
       letzteAdresse = null;
       ortEintragen();
-      if (gemeinsameAuswahlId && hausnummerAus(strasseFeld.value)) lageErmitteln();
+      if (gemeinsameAuswahlId && hausnrFeld.value.trim()) lageErmitteln();
     });
 
     // ===========================
@@ -1447,6 +1471,7 @@
     var letzteAdresse = null;  // zuletzt ausgewerteter Feldinhalt
 
     var strasseFeld   = document.getElementById('immo_strasse');
+    var hausnrFeld    = document.getElementById('immo_hausnr');
     var plzFeld       = document.getElementById('immo_plz');
     var ortFeld       = document.getElementById('immo_ort');
     var lageZeile     = document.getElementById('immo-lage');
@@ -1530,6 +1555,12 @@
       return f(a) === f(b);
     }
 
+    // Straße und Hausnummer stehen in zwei Feldern; geprueft wird wie zuvor
+    // auf dem Server (Strassen durch mehrere Veedel brauchen die Nummer).
+    function volleStrasse() {
+      return (strasseFeld.value.trim() + ' ' + hausnrFeld.value.trim()).trim();
+    }
+
     function hausnummerAus(text) {
       var m = String(text || '').match(/[\s,]+(\d+\s*[a-zA-Z]?(?:\s*[-–\/]\s*\d+\s*[a-zA-Z]?)?)\s*$/);
       return m ? m[1].replace(/\s+/g, '') : '';
@@ -1596,8 +1627,12 @@
     }
 
     function vorschlagUebernehmen(name, ort, id) {
+      // Wer die Nummer mit ins Straßenfeld getippt hat, findet sie danach im
+      // Hausnummernfeld wieder.
       var nr = hausnummerAus(strasseFeld.value);
-      strasseFeld.value = nr ? name + ' ' + nr : name + ' ';
+      strasseFeld.value = name;
+      letzterWert = name;
+      if (nr && !hausnrFeld.value.trim()) hausnrFeld.value = nr;
       gemeinsameAuswahlId = id || '';
       gemeinsameAuswahlName = name || '';
       gemeinsameKandidaten = [];
@@ -1606,7 +1641,7 @@
       if (ort && ortFeld) { ortFeld.value = ort; letzteAdresse = null; }
       vorschlaegeSchliessen();
       lageErmitteln();
-      strasseFeld.focus();
+      if (hausnrFeld.value.trim()) { strasseFeld.focus(); } else { hausnrFeld.focus(); }
     }
 
     // Das Auswahlfeld dient beiden Datensaetzen: in Köln steht dort das Veedel,
@@ -1774,10 +1809,11 @@
 
     function lageErmitteln() {
       var text = (strasseFeld.value || '').trim();
+      var nr = hausnrFeld.value.trim();
       // Unveraendertes Feld nicht neu auswerten — sonst wuerde eine von Hand
       // getroffene Auswahl beim naechsten Aufruf wieder verworfen.
-      if (text === letzteAdresse) return;
-      letzteAdresse = text;
+      if (text + '|' + nr === letzteAdresse) return;
+      letzteAdresse = text + '|' + nr;
       erkannteLage = null;
       erkanntesUmland = null;
       plzAutomatisch(false);
@@ -1792,7 +1828,7 @@
         var laufId = ++lageLauf;
         gemeinsameKandidaten = [];
         lageWartet = window.GemeinsameBewertung
-          .resolveRemote(gemeinsameAuswahlId, hausnummerAus(text), plzFeld && /^\d{5}$/.test(plzFeld.value) ? plzFeld.value : '')
+          .resolveRemote(gemeinsameAuswahlId, nr, plzFeld && /^\d{5}$/.test(plzFeld.value) ? plzFeld.value : '')
           .then(function (gemeinsam) {
             if (laufId !== lageLauf) return;
             gemeinsameKandidaten = gemeinsam.candidates || [];
@@ -1803,13 +1839,19 @@
             }
             var c = gemeinsameKandidaten[0];
             if (c.region === 'koeln') {
-              erkannteLage = {veedel:c.area, plz:c.zip, ueberHausnummer:!!hausnummerAus(text)};
+              erkannteLage = {veedel:c.area, plz:c.zip, ueberHausnummer:!!nr};
             } else {
               erkanntesUmland = {gemeinde:c.city, plz:c.zip, ortsteil:c.area, region:c.region};
             }
             // Die Postleitzahl steht im Adressbestand — sie muss niemand raten.
             if (plzFeld && plzFeld.value !== c.zip) { plzFeld.value = c.zip; plzAutomatisch(true); }
             if (ortFeld) ortFeld.value = c.city;
+            // Adresse vollstaendig: alte Fehlermarken und "Es fehlt noch" weg.
+            if (hausnrFeld.value.trim()) {
+              document.getElementById('field-immo-strasse').classList.remove('field--error');
+              document.getElementById('field-immo-hausnr').classList.remove('field--error');
+              fehlendeMelden();
+            }
             lageZeile.className = 'lage-treffer';
             lageZeile.innerHTML = 'Lage erkannt: <strong>' + c.city + (c.area ? '-' + c.area : '') + '</strong> · PLZ ' + c.zip;
           });
@@ -1898,6 +1940,13 @@
         lageErmitteln();
       });
       strasseFeld.addEventListener('change', lageErmitteln);
+      hausnrFeld.addEventListener('input', function () {
+        document.getElementById('field-immo-hausnr').classList.remove('field--error');
+        lageErmitteln();
+      });
+      hausnrFeld.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); lageErmitteln(); nextStep(2); }
+      });
       strasseFeld.addEventListener('blur', function () {
         // Klick auf einen Vorschlag zuerst durchlassen
         setTimeout(function () { vorschlaegeSchliessen(); lageErmitteln(); }, 150);
@@ -2210,7 +2259,7 @@
         var a = modellAttribute();
         var irw = window.GemeinsameBewertung.calculate({type: art, attributes: a}, gemeinsameKandidaten);
         letztesGemeinsamesErgebnis = irw;
-        rw.push('Adresse: ' + strasseFeld.value.trim() + ', ' + plz + ' ' + (ortFeld.value || '') + '.');
+        rw.push('Adresse: ' + volleStrasse() + ', ' + plz + ' ' + (ortFeld.value || '') + '.');
         if (art === 'mehrfamilienhaus' || art === 'grundstueck') {
           rw.push('Verfahren: ' + irw.verfahren + '; ' + irw.berechnungsart + '.');
           rw.push('Grundlage: ' + irw.modellquelle + '.');
@@ -2494,7 +2543,7 @@
       formData.append('miete_ist_jahr', document.getElementById('miete_ist_jahr').value);
       formData.append('miete_soll', document.getElementById('miete_soll').value);
       formData.append('miete_soll_jahr', document.getElementById('miete_soll_jahr').value);
-      formData.append('immo_strasse', document.getElementById('immo_strasse').value);
+      formData.append('immo_strasse', volleStrasse());
       formData.append('immo_plz', document.getElementById('immo_plz').value);
       formData.append('ausserhalb_gebiet', bedient ? '' : 'ja — kein Wert angezeigt, Lage ausserhalb Koeln/Umland');
       formData.append('immo_veedel', erkannteLage ? 'Köln-' + erkannteLage.veedel
