@@ -169,6 +169,16 @@
     .footer { background: var(--navy); padding: var(--space-12) 0; }
     /* HEADER SEARCH */
     .nav__search { position: relative; display: flex; align-items: center; }
+      /* Marktzahlen Koeln (Grundstuecksmarktbericht 2026), seit 15.10.2026 hier statt auf der Startseite.
+           Weiss mit Rand, weil der Abschnitt selbst --off-white ist. */
+    .mz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);margin-top:var(--space-8)}
+    @media (min-width:768px){.mz-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    .mz-stat{text-align:center;padding:var(--space-6) var(--space-3);background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);min-width:0}
+    .mz-stat__value{font-size:1.75rem;font-weight:700;color:#7a5c3e;margin-bottom:var(--space-1)}
+    .mz-stat__label{font-size:.875rem;color:var(--gray-800,#333);line-height:1.4;-webkit-hyphens:auto;hyphens:auto}
+    .mz-stat__delta{font-size:.8125rem;color:var(--gray-600);margin-top:var(--space-1)}
+    .mz-quelle{font-size:.8125rem;color:var(--gray-600);margin-top:var(--space-6)}
+    @media (max-width:480px){.mz-stat__value{font-size:1.375rem}}
   </style>
   <!-- Google Analytics (nur nach Einwilligung) -->
   <script>
@@ -407,6 +417,16 @@
     <div class="container">
       <span class="section-label">Aktuelle Marktpreise</span>
       <h2>Was Immobilien in Köln aktuell kosten</h2>
+      <h3 style="margin-top:var(--space-6)">Der Markt in Zahlen</h3>
+      <p class="text-muted max-w-prose">Amtlich registrierte Kaufverträge und Umsätze im gesamten Kölner Stadtgebiet im Jahr 2025.</p>
+      <div class="mz-grid">
+        <div class="mz-stat"><div class="mz-stat__value">7.831</div><div class="mz-stat__label">Kaufverträge</div><div class="mz-stat__delta">+8 % zu 2024</div></div>
+        <div class="mz-stat"><div class="mz-stat__value">5,68 Mrd. €</div><div class="mz-stat__label">Geldumsatz</div><div class="mz-stat__delta">+21 % zu 2024</div></div>
+        <div class="mz-stat"><div class="mz-stat__value">1.406</div><div class="mz-stat__label">Ein- und Zweifamilien&shy;häuser verkauft</div><div class="mz-stat__delta">+5 % zu 2024</div></div>
+        <div class="mz-stat"><div class="mz-stat__value">5.132</div><div class="mz-stat__label">Wohnungs- und Teileigentum verkauft</div><div class="mz-stat__delta">+9 % zu 2024</div></div>
+      </div>
+      <p class="mz-quelle">Quelle: <a href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB2026_Digitalversion.pdf" target="_blank" rel="noopener">Gutachterausschuss für Grundstückswerte in der Stadt Köln, Grundstücksmarktbericht 2026, S. 14 und 17 ↗</a></p>
+      <h3 style="margin-top:var(--space-10,2.5rem)">Preise nach Lage</h3>
       <p class="text-muted mb-8 max-w-prose">Die Preisspannen variieren je nach Stadtteil erheblich. Hier ein Überblick über die wichtigsten Kölner Lagen (Stand 2026).</p>
       <div class="markt-grid">
         <div class="markt-card">
