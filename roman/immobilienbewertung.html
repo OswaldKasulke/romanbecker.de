@@ -1944,6 +1944,11 @@
         lageErmitteln();
       });
       strasseFeld.addEventListener('change', lageErmitteln);
+      // Wieder ins Feld geklickt (etwa nach "Weiter"), Straße noch nicht
+      // gewählt: Trefferliste neu zeigen, wie auf den anderen drei Seiten.
+      strasseFeld.addEventListener('focus', function () {
+        if (!gemeinsameAuswahlId) vorschlaegeZeigen(this.value.trim());
+      });
       hausnrFeld.addEventListener('input', function () {
         document.getElementById('field-immo-hausnr').classList.remove('field--error');
         lageErmitteln();
