@@ -338,7 +338,7 @@
     /* type="search" nur, damit Chrome kein Adress-Autofill darueberlegt -
        das Loeschkreuz der Suchfelder wird nicht gebraucht. */
     #lage_eingabe::-webkit-search-cancel-button, #lage_nr::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
-    /* Beschriftung von Strasse/Hausnummer per CSS: Chrome erkennt Adressfelder
+    /* Beschriftung von PLZ/Ort/Strasse/Hausnummer per CSS: Chrome erkennt Adressfelder
        an Beschriftung, name und id ("Straße", "strasse") und legt dann sein
        Adress-Autofill ueber die Trefferliste - autocomplete="off" ignoriert es. */
     .label-css::before { content: attr(data-t); }
@@ -749,14 +749,14 @@
 
             <div class="field-row">
               <div class="field" id="field-immo-plz">
-                <label for="immo_plz">PLZ *</label>
-                <input type="text" id="immo_plz" name="immo_plz" placeholder="50939" maxlength="5" inputmode="numeric" autocomplete="off" required>
+                <label for="lage_plz" class="label-css" data-t="PLZ *"></label>
+                <input type="text" id="lage_plz" placeholder="50939" maxlength="5" inputmode="numeric" autocomplete="off" required>
                 <p class="field__hint" id="immo-plz-hinweis"></p>
                 <p class="field__error">Bitte PLZ eingeben.</p>
               </div>
               <div class="field">
-                <label for="immo_ort">Ort</label>
-                <input type="text" id="immo_ort" name="immo_ort" placeholder="wird eingetragen" readonly>
+                <label for="lage_ort" class="label-css" data-t="Ort"></label>
+                <input type="text" id="lage_ort" placeholder="wird eingetragen" readonly>
               </div>
             </div>
 
@@ -1314,7 +1314,7 @@
       }
 
       if (step === 2) {
-        var immoPlz = document.getElementById('immo_plz');
+        var immoPlz = document.getElementById('lage_plz');
         var fieldImmoPlz = document.getElementById('field-immo-plz');
         var fieldImmoStrasse = document.getElementById('field-immo-strasse');
         if (!gemeinsameKandidaten.length) {
@@ -1449,7 +1449,7 @@
       el.addEventListener('change', function () {
       });
     });
-    document.getElementById('immo_plz').addEventListener('input', function () {
+    document.getElementById('lage_plz').addEventListener('input', function () {
       gemeinsameKandidaten = [];
       letzteAdresse = null;
       ortEintragen();
@@ -1476,8 +1476,8 @@
 
     var strasseFeld   = document.getElementById('lage_eingabe');
     var hausnrFeld    = document.getElementById('lage_nr');
-    var plzFeld       = document.getElementById('immo_plz');
-    var ortFeld       = document.getElementById('immo_ort');
+    var plzFeld       = document.getElementById('lage_plz');
+    var ortFeld       = document.getElementById('lage_ort');
     var lageZeile     = document.getElementById('immo-lage');
     var vorschlagListe = document.getElementById('strassen-vorschlaege');
     var veedelFeld    = document.getElementById('immo_veedel');
@@ -2253,7 +2253,7 @@
       var grundstuecksflaeche = parseFloat(document.getElementById('grundstuecksflaeche').value) || 0;
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
       var zustand = zustandEl ? zustandEl.value : '3';
-      var plz = (document.getElementById('immo_plz').value || '').trim();
+      var plz = (document.getElementById('lage_plz').value || '').trim();
 
       // Verbindlicher gemeinsamer 2026-Kern für Wohnungen und Häuser ohne
       // Mietwertverfahren. Die nachfolgende Altrechnung bleibt nur noch für
@@ -2481,7 +2481,7 @@
       // 16,67, Bodenrichtwert 700) — ein Koelner Durchschnitt, der ueber eine
       // Immobilie in Hamburg nichts aussagt. Dann lieber keine Zahl als eine
       // erfundene.
-      var plzErgebnis = (document.getElementById('immo_plz').value || '').trim();
+      var plzErgebnis = (document.getElementById('lage_plz').value || '').trim();
       var bedient = gemeinsameKandidaten.length > 0 && !!letztesGemeinsamesErgebnis;
       var ausserhalb = document.getElementById('result-ausserhalb');
       var wertZeile = document.getElementById('result-value');
@@ -2548,13 +2548,13 @@
       formData.append('miete_soll', document.getElementById('miete_soll').value);
       formData.append('miete_soll_jahr', document.getElementById('miete_soll_jahr').value);
       formData.append('immo_strasse', volleStrasse());
-      formData.append('immo_plz', document.getElementById('immo_plz').value);
+      formData.append('immo_plz', document.getElementById('lage_plz').value);
       formData.append('ausserhalb_gebiet', bedient ? '' : 'ja — kein Wert angezeigt, Lage ausserhalb Koeln/Umland');
       formData.append('immo_veedel', erkannteLage ? 'Köln-' + erkannteLage.veedel
                                     : erkanntesUmland ? erkanntesUmland.gemeinde +
                                         (erkanntesUmland.ortsteil ? ' · ' + erkanntesUmland.ortsteil : '')
                                     : '');
-      formData.append('immo_ort', document.getElementById('immo_ort').value);
+      formData.append('immo_ort', document.getElementById('lage_ort').value);
       formData.append('website', document.getElementById('bw-website').value);
       formData.append('vorname', document.getElementById('vorname').value);
       formData.append('nachname', document.getElementById('nachname').value);
@@ -2585,7 +2585,7 @@
     (function () {
       try {
         var p = new URLSearchParams(location.hash.slice(1));
-        var map = { strasse: 'lage_eingabe', ort: 'immo_ort', plz: 'immo_plz' };
+        var map = { strasse: 'lage_eingabe', ort: 'lage_ort', plz: 'lage_plz' };
         Object.keys(map).forEach(function (key) {
           var val = p.get(key);
           var el = document.getElementById(map[key]);
