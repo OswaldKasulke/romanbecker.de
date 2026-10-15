@@ -337,7 +337,11 @@
     }
     /* type="search" nur, damit Chrome kein Adress-Autofill darueberlegt -
        das Loeschkreuz der Suchfelder wird nicht gebraucht. */
-    #immo_strasse::-webkit-search-cancel-button, #immo_hausnr::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
+    #lage_eingabe::-webkit-search-cancel-button, #lage_nr::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
+    /* Beschriftung von Strasse/Hausnummer per CSS: Chrome erkennt Adressfelder
+       an Beschriftung, name und id ("Straße", "strasse") und legt dann sein
+       Adress-Autofill ueber die Trefferliste - autocomplete="off" ignoriert es. */
+    .label-css::before { content: attr(data-t); }
     /* ===========================
        CONDITION RADIO
     =========================== */
@@ -756,21 +760,21 @@
               </div>
             </div>
 
-            <!-- type="search": Chrome legt dort kein Adress-Autofill ueber die
-                 Trefferliste (autocomplete="off" allein ignoriert Chrome). -->
+            <!-- Neutrale ids ohne name und Beschriftung per CSS (.label-css): sonst
+                 legt Chrome sein Adress-Autofill ueber die Trefferliste. -->
             <div class="field-row field-row--adresse">
               <div class="field" id="field-immo-strasse">
-                <label for="immo_strasse">Straße *</label>
+                <label for="lage_eingabe" class="label-css" data-t="Straße *"></label>
                 <div class="field__suche">
-                  <input type="search" id="immo_strasse" name="immo_strasse" placeholder="Ersten 2 Buchstaben eintippen und aus der Liste wählen"
+                  <input type="search" id="lage_eingabe" placeholder="Ersten 2 Buchstaben eintippen und aus der Liste wählen"
                          autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list"
                          aria-controls="strassen-vorschlaege">
                   <ul class="vorschlaege" id="strassen-vorschlaege" role="listbox"></ul>
                 </div>
               </div>
               <div class="field" id="field-immo-hausnr">
-                <label for="immo_hausnr">Hausnr. *</label>
-                <input type="search" id="immo_hausnr" name="immo_hausnr" placeholder="z. B. 12a" maxlength="12" autocomplete="off">
+                <label for="lage_nr" class="label-css" data-t="Hausnr. *"></label>
+                <input type="search" id="lage_nr" placeholder="z. B. 12a" maxlength="12" autocomplete="off">
                 <p class="field__error">Bitte Hausnummer eingeben.</p>
               </div>
             </div>
@@ -1470,8 +1474,8 @@
     var modellMerkmale = {}, letztesGemeinsamesErgebnis = null;
     var letzteAdresse = null;  // zuletzt ausgewerteter Feldinhalt
 
-    var strasseFeld   = document.getElementById('immo_strasse');
-    var hausnrFeld    = document.getElementById('immo_hausnr');
+    var strasseFeld   = document.getElementById('lage_eingabe');
+    var hausnrFeld    = document.getElementById('lage_nr');
     var plzFeld       = document.getElementById('immo_plz');
     var ortFeld       = document.getElementById('immo_ort');
     var lageZeile     = document.getElementById('immo-lage');
@@ -2581,7 +2585,7 @@
     (function () {
       try {
         var p = new URLSearchParams(location.hash.slice(1));
-        var map = { strasse: 'immo_strasse', ort: 'immo_ort', plz: 'immo_plz' };
+        var map = { strasse: 'lage_eingabe', ort: 'immo_ort', plz: 'immo_plz' };
         Object.keys(map).forEach(function (key) {
           var val = p.get(key);
           var el = document.getElementById(map[key]);
