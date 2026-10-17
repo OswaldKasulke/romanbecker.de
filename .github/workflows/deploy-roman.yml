@@ -45,6 +45,13 @@ jobs:
           done
           exit $fehlt
 
+      # Sicherheitsnetz: keine Seite darf mit Fotos von images.ctfassets.net,
+      # OSM-iframes oder ohne consent.js live gehen (DSGVO-Prüfung 17.10.2026).
+      - name: Fremdinhalte lokal ablegen
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 roman/scripts/fremdinhalte_lokal.py
+
       - name: Install PHPMailer via Composer
         run: |
           cd roman

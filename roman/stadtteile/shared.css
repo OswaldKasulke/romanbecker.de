@@ -756,3 +756,28 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .brw-tab tbody tr:last-child td { border-bottom:none; }
 .brw-wrap { overflow-x:auto; margin-bottom:0.5rem; }
 .brw-quelle { font-size:0.8125rem; color:var(--gray-600); margin-top:0.9rem; line-height:1.6; }
+
+/* Statisches Kartenbild statt OSM-iframe (keine Verbindung zu Dritten, DSGVO 17.10.2026) */
+.map-container .osm-static {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.map-container .osm-static img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.map-container .osm-static span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border-top-left-radius: 4px;
+}

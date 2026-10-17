@@ -32,13 +32,20 @@ jobs:
       - name: Update Stadtteil/Umland listings
         run: node roman/scripts/update-stadtteil-listings.mjs
 
+      # Objektfotos (images.ctfassets.net) und Karten auf den eigenen Server holen,
+      # damit beim Seitenaufruf keine IP an Dritte geht. DSGVO-Prüfung 17.10.2026.
+      - name: Fremdinhalte lokal ablegen
+        run: |
+          python3 -m pip install --quiet Pillow
+          python3 roman/scripts/fremdinhalte_lokal.py
+
       - name: Regenerate sitemap
         run: python3 roman/scripts/generate-sitemap.py
 
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet roman/index.html roman/en/index.html roman/bautraeger.html roman/stadtteile/ roman/sitemap.xml; then
+          if git add -N roman/img/ && git diff --quiet roman/index.html roman/en/index.html roman/bautraeger.html roman/stadtteile/ roman/immobilienmakler-rhein-erft/ roman/img/ roman/sitemap.xml; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changes detected."
           else
@@ -51,6 +58,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add roman/index.html roman/en/index.html roman/bautraeger.html roman/stadtteile/ roman/sitemap.xml
+          git add roman/index.html roman/en/index.html roman/bautraeger.html roman/stadtteile/ roman/immobilienmakler-rhein-erft/ roman/img/ roman/sitemap.xml
           git commit -m "chore(roman): update Evernest listings + Standorte + Sitemap [automated]"
           git push

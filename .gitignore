@@ -6,3 +6,4 @@ dist/
 roman/vendor/
 roman/smtp-config.php
 roman/leads.log
+roman/scripts/.osm-cache/
