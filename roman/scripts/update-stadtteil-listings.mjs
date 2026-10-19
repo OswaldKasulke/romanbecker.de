@@ -566,9 +566,8 @@ function referenzUeberschrift(html, display, hatVerkaufteKarten) {
   const ve = html.indexOf('<!-- VERKAUFT-END -->');
   if (vs === -1 || ve === -1) return html;
   const block = html.slice(vs, ve);
-  const neu = hatVerkaufteKarten
-    ? `Weitere verkaufte Immobilien in ${display}`
-    : `In ${display} verkaufte Immobilien`;
+  // Seit 19.10.2026 einheitlich „Verkaufte Immobilien in X“ (Block „Aus dem Netzwerk“).
+  const neu = `Verkaufte Immobilien in ${display}`;
   const ersetzt = block.replace(/<h2>(?:Weitere verkaufte Immobilien in |In )[^<]*<\/h2>/,
     `<h2>${escapeAttr(neu)}</h2>`);
   return ersetzt === block ? html : html.slice(0, vs) + ersetzt + html.slice(ve);
