@@ -22,6 +22,11 @@ AddCharset UTF-8 .html .css .js .json .xml .txt
 
 RewriteEngine On
 
+# Objektfotos (Evernest-Bestand) seit 19.10.2026 entfernt. Der FTP-Deploy loescht
+# nicht, deshalb liegen die Dateien noch auf dem Server: hier sperren (410).
+RewriteRule ^img/objekte/ - [G,L]
+RewriteRule ^img/logenplatz-aussen\.webp$ - [G,L]
+
 # Punkt-Dateien und -Ordner nie ausliefern. Anlass: .ftp-deploy-sync-state.json
 # (Statusdatei der FTP-Deploy-Action) war oeffentlich abrufbar und listet mit 84 KB
 # den kompletten Dateibestand der Seite. Die Datei muss oben liegen, gehoert aber

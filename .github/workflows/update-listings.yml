@@ -1,12 +1,9 @@
 name: Update Roman Listings
 
 on:
-  schedule:
-    # GitHub startet geplante Laeufe oft Stunden zu spaet (29.09.2026: 06:00 UTC
-    # eingetragen, gelaufen 10-12 UTC). Zwei fruehe Termine, damit der Abgleich
-    # morgens steht; der zweite aendert nichts, wenn der erste durch ist.
-    - cron: '7 1 * * *'
-    - cron: '7 4 * * *'
+  # Zeitplan am 19.10.2026 abgeschaltet: Angebote auf Wunsch von Evernest
+  # (Hannes) von der Seite entfernt. Nicht wieder einschalten, sonst kehren
+  # die Karten zurueck.
   workflow_dispatch:       # Manuell auslösbar
 
 permissions:
