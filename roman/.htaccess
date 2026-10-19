@@ -25,7 +25,11 @@ RewriteEngine On
 # Objektfotos (Evernest-Bestand) seit 19.10.2026 entfernt. Der FTP-Deploy loescht
 # nicht, deshalb liegen die Dateien noch auf dem Server: hier sperren (410).
 RewriteRule ^img/objekte/ - [G,L]
+# Interner Projekt-Report (April 2026) nicht oeffentlich (19.10.2026).
+RewriteRule ^report(/|$) - [F,L]
 RewriteRule ^img/logenplatz-aussen\.webp$ - [G,L]
+RewriteRule ^evernest-logo(-clean)?\.(svg|jpg)$ - [G,L]
+RewriteRule ^marktanalyse/evernest-standorte-[^/]*\.webp$ - [G,L]
 
 # Punkt-Dateien und -Ordner nie ausliefern. Anlass: .ftp-deploy-sync-state.json
 # (Statusdatei der FTP-Deploy-Action) war oeffentlich abrufbar und listet mit 84 KB

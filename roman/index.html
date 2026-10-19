@@ -804,10 +804,6 @@ font-size: 0.8125rem;
 .section { padding: var(--space-8) 0; }
 .section-title { font-size: 1.0625rem; line-height: 1.25; }
 }
-.evernest-map { margin: var(--space-8) 0 0; display: flex; flex-direction: column; align-items: center; }
-.evernest-map img { display: block; width: 68%; height: auto; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
-@media (max-width: 767px) { .evernest-map img { width: 94%; } }
-.evernest-map figcaption { font-size: 0.85rem; color: var(--gray-500); margin-top: var(--space-2); text-align: center; }
 .trust {
 background: #888888;
 padding: var(--space-12) 0;
@@ -1058,29 +1054,6 @@ color: var(--gold);
 font-weight: 700;
 flex-shrink: 0;
 margin-top: 1px;
-}
-.about__evernest {
-font-size: 0.875rem;
-color: var(--gray-600);
-margin-bottom: var(--space-4);
-}
-.about__evernest-logo {
-display: flex;
-align-items: center;
-gap: var(--space-3);
-margin-bottom: var(--space-3);
-}
-.about__evernest-logo img {
-height: 44px;
-width: auto;
-border-radius: 4px;
-}
-.about__evernest-label {
-font-size: 0.75rem;
-font-weight: 600;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(--gray-500);
 }
 .listings-carousel .splide__track {
 border-radius: var(--radius-lg);
@@ -1912,7 +1885,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
       <div class="about__grid">
         <div class="about__text">
           <span class="section-label">Über Roman Becker</span>
-          <h2>Lokale Expertise. Deutschlandweites EVERNEST Netzwerk.</h2>
+          <h2>Lokale Expertise. Persönliche Begleitung.</h2>
           <p class="about__bio">
             Ich komme ursprünglich aus Hamburg und lebe seit 20 Jahren in Köln. Zu Hause sind wir in Sülz: Unsere Kinder gehen auf die KGS, und meine Frau arbeitet als Kinderzahnärztin am Heumarkt.
           </p>
@@ -1920,10 +1893,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
             Als Kapitalanleger und Vermieter weiß ich, worauf es bei Immobilieninvestments ankommt. Die Fragen, die Eigentümer beim Verkauf beschäftigen, kenne ich aus eigener Erfahrung: Welcher Mieter passt zu meiner Immobilie? Lohnt sich ein Restnutzungsdauergutachten, um Steuern zu sparen? Was kostet eine Renovierung oder Sanierung? Was ist die Immobilie wirklich wert, und worauf kommt es am Ende an?
           </p>
           <p class="about__bio">
-            Bei Ihrem Verkauf begleite ich Sie persönlich. Dahinter steht das EVERNEST-Netzwerk: rund 20 Kolleginnen und Kollegen in Köln, Teams in <a href="https://immobilienmakler-bergisch-gladbach.de/" target="_blank" rel="noopener">Bergisch Gladbach</a>, <a href="https://leverkusen-makler.de/" target="_blank" rel="noopener">Leverkusen</a>, Siegburg und Bonn sowie 50 weitere Standorte, mit denen wir Marktdaten und Vermarktungsstrategien austauschen. Unser Back-Office kümmert sich im Hintergrund um die Abwicklung, bucht Fotografen und übernimmt Marketing, Legal und Technik.
-          </p>
-          <p class="about__bio">
-            Ich bin Teil eines starken Teams.
+            Bei Ihrem Verkauf begleite ich Sie persönlich.
           </p>
           <p class="about__bio">
             <a href="stadtteile/suelz.html" class="btn btn--primary">Mehr zu meinem Veedel Sülz →</a>
@@ -1956,7 +1926,7 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     <div class="container">
       <span class="section-label">Makler Köln · Mein Vorgehen</span>
       <h2 class="section-title">Wie erziele ich regelmäßig Höchstpreise?</h2>
-      <p class="section-subtitle" style="max-width:100%;"><strong>Drei Worte: Reichweite, Reichweite, Reichweite.</strong><br>Ich erreiche Käufer auf <strong>allen</strong> großen Immobilienportalen, auf Social Media und über den Käufer-Newsletter — mit professionellen Exposés, hochwertigen Fotos, überzeugendem Video-Content und speziell für Ihre Immobilie produziertem Social-Media-Content. Und weil meine vielen vielen Kolleginnen und Kollegen im EVERNEST-Netzwerk die allerbeste Unterstützung sind.</p>
+      <p class="section-subtitle" style="max-width:100%;"><strong>Drei Worte: Reichweite, Reichweite, Reichweite.</strong><br>Ich erreiche Käufer auf <strong>allen</strong> großen Immobilienportalen, auf Social Media und über den Käufer-Newsletter — mit professionellen Exposés, hochwertigen Fotos, überzeugendem Video-Content und speziell für Ihre Immobilie produziertem Social-Media-Content.</p>
 
       <div class="prozess__steps">
         <div class="prozess__step">
@@ -2084,7 +2054,6 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     </div>
   </section>
 
-  <!-- ÜBER EVERNEST -->
 
 
   <!-- BEWERTUNGEN -->
@@ -2625,22 +2594,12 @@ Vielen Dank für die tolle Betreuung – gerne wieder, Herr Becker. :)“</block
       <span class="section-label">Netzwerk &amp; Empfehlung</span>
       <h2 class="section-title">Zusammenarbeiten oder weiterempfehlen</h2>
 
-      <div class="grid-3">
+      <div class="grid-2">
         <div class="empfehlung__card">
           <span class="section-label">Für Netzwerkpartner</span>
           <h3>Notare, Steuerberater &amp; Rechtsanwälte</h3>
           <p>Sie betreuen Mandanten, die eine Immobilie verkaufen möchten oder müssen? Ich freue mich über Ihre Empfehlung und garantiere eine diskrete, professionelle Betreuung Ihrer Klienten.</p>
           <a href="#kontakt" class="btn btn--primary">Kontakt aufnehmen</a>
-        </div>
-        <div class="empfehlung__card">
-          <span class="section-label">Kollegen in der Region</span>
-          <h3>Meine Kollegen vor Ort</h3>
-          <p>Empfehlen kann ich Ihnen meine Kollegen aus dem EVERNEST-Netzwerk: Für Bergisch Gladbach, Leverkusen und die rechtsrheinischen Veedel führen sie eigene Marktseiten – mit Stadtteilprofilen, Bodenrichtwerten und lokalen Marktdaten.</p>
-          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <a href="https://immobilienmakler-bergisch-gladbach.de/" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Bergisch Gladbach</a>
-            <a href="https://leverkusen-makler.de/" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Leverkusen</a>
-            <a href="https://makler-schael-sick.de/" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Schäl Sick</a>
-          </div>
         </div>
         <div class="empfehlung__card">
           <span class="section-label">Tippgeber-Programm</span>

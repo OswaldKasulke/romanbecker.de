@@ -255,12 +255,6 @@ try {
     // Mails, die spaeter an deren Postfaecher weitergehen.
     $mail->setFrom(SMTP_USER, isset($siteLabels[$site]) ? 'Webseite ' . $siteLabels[$site] : 'Webseite Roman Becker');
     $mail->addAddress('rb@datenschwester.de', 'Roman Becker');
-    // Testphase ab 05.09.2026: Leads gehen ausschliesslich an Roman.
-    // Doreen ist voruebergehend aus dem Verteiler genommen; zum Reaktivieren
-    // die folgenden vier Zeilen wieder einkommentieren.
-    // if ($site === 'BGL' || $site === 'LEV' || $site === 'SS') {
-    //     $mail->addAddress('Doreen.Kaschner@evernest.com', 'Doreen Kaschner');
-    // }
     if (!empty($email)) {
         $mail->addReplyTo($email, $name);
     }
