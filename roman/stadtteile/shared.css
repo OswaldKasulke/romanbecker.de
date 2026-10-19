@@ -605,7 +605,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 }
 
 /* ============================================================
-   Straßenverzeichnis (koeln.de) – Straße → Sofort-Bewertung, 📍 → Karte
+   Straßenverzeichnis (koeln.de) – Straße → Online-Bewertung, 📍 → Karte
    ============================================================ */
 .strassen-directory .strassen-details {
   border: 1px solid var(--gray-200);
