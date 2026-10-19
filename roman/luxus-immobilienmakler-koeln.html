@@ -168,9 +168,10 @@
     .premium-card__title { font-weight: 700; color: var(--text, #000000); margin-bottom: 0.625rem; font-size: 1rem; }
     .premium-card__text { color: var(--gray-600); font-size: 0.875rem; line-height: 1.65; }
     /* TRUST SECTION */
-    .trust-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; padding: var(--space-12) 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: var(--space-12); }
+    .trust-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: var(--space-12) 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: var(--space-12); }
     @media (max-width: 900px) {
     .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    .trust-bar > :last-child:nth-child(odd) { grid-column: 1 / -1; }
   }
     .trust-item { text-align: center; }
     .trust-item__val { font-size: 1.75rem; font-weight: 700; color: var(--text, #000000); display: block; }

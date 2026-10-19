@@ -90,9 +90,10 @@
     .hero__trust-item { display: flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.8125rem; }
     .hero__trust-item svg { flex-shrink: 0; }
     /* STATS */
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: var(--space-12) 0; border-top: 1px solid rgba(255,255,255,0.08); margin-top: var(--space-12); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: var(--space-12) 0; border-top: 1px solid rgba(255,255,255,0.08); margin-top: var(--space-12); }
     @media (max-width: 700px) {
     .stats { grid-template-columns: repeat(2, 1fr); }
+    .stats > :last-child:nth-child(odd) { grid-column: 1 / -1; }
   }
     .stat__value { font-size: 2rem; font-weight: 700; color: var(--gold); display: block; }
     .stat__label { font-size: 0.8125rem; color: rgba(255,255,255,0.6); }
