@@ -73,7 +73,7 @@ for (const datei of readdirSync(join(ROOT, 'stadtteile')).filter(f => f.endsWith
 '      <span class="section-label">Straßenverzeichnis</span>\n' +
 '      <h2>Alle Straßen in Köln-' + esc(kurz) + '</h2>\n' +
 '      <p class="text-muted mb-8 max-w-prose">Sie besitzen eine Immobilie in einer dieser ' + anzahl +
-' Straßen in ' + esc(kurz) + '? Ein Klick auf den Straßennamen startet Ihre kostenlose Sofort-Bewertung mit ' +
+' Straßen in ' + esc(kurz) + '? Ein Klick auf den Straßennamen startet Ihre kostenlose Online-Bewertung mit ' +
 'vorausgefüllter Adresse – oder zeigen Sie die Lage mit 📍 direkt auf der Karte.</p>\n' +
 '      <details class="strassen-details">\n' +
 '        <summary>Straßenverzeichnis ' + esc(kurz) + ' anzeigen (' + anzahl + ' Straßen)</summary>\n' +
