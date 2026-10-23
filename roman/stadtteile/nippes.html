@@ -228,11 +228,6 @@
   <!-- Shared CSS -->
   <link rel="stylesheet" href="shared.css">
 <link rel="preload" href="/footer.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/footer.css"></noscript>
-<style>
-.ref-card__sub{font-size:0.8125rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-600);margin:var(--space-4) 0 var(--space-1)}
-.ref-card__streets{font-size:1.0625rem;line-height:1.7;margin:0}
-.ref-card__question{margin:var(--space-4) 0 0;color:var(--gray-600)}.ref-card__question a{color:inherit;text-decoration:underline;text-underline-offset:3px}
-</style>
 </head>
 <body>
 
@@ -335,12 +330,21 @@
       <div class="card ref-card">
         <div class="ref-card__text">
           <span class="section-label">Aus dem Netzwerk</span>
-          <h2>Immobilien in Nippes</h2>
-          <h3 class="ref-card__sub">Aktuell in der Vermarktung</h3>
-          <p class="ref-card__streets">Kempener Straße, Lokomotivstraße, Scharnhorststraße</p>
-          <h3 class="ref-card__sub">Verkaufte Immobilien</h3>
-          <p class="ref-card__streets">Louis-Ferdinand-Straße, Florastraße, Turmstraße, Mauenheimer Straße, Kuenstraße, Bülowstraße, Neusser Straße</p>
-          <p class="ref-card__question">Fragen? <a href="https://romanbecker.de/#kontakt">Sprechen Sie mich an</a></p>
+          <h2>Verkaufte Immobilien in Nippes</h2>
+          <p class="text-muted" style="font-size:0.875rem;margin-bottom:var(--space-3);">Über das Netzwerk verkaufte Immobilien der letzten drei Jahre (Auswahl).</p>
+          <ul class="infra-list object-list" style="margin-bottom: var(--space-4);">
+            <li><span class="infra-icon">•</span> <span>Louis-Ferdinand-Straße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Florastraße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Turmstraße (Wohnung, 4 Einheiten)</span></li>
+            <li><span class="infra-icon">•</span> <span>Mauenheimer Straße (Wohnung, 2 Einheiten)</span></li>
+            <li><span class="infra-icon">•</span> <span>Kuenstraße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Bülowstraße (Wohnung)</span></li>
+            <li><span class="infra-icon">•</span> <span>Neusser Straße (Wohnung)</span></li>
+          </ul>
+        </div>
+        <div class="ref-card__stat">
+          <div class="ref-card__number">11</div>
+          <div class="ref-card__label" style="color: var(--gray-600);">über das Netzwerk<br>verkaufte Objekte in Nippes</div>
         </div>
       </div>
     </div>
