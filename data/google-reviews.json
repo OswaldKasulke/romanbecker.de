@@ -4,7 +4,7 @@
   "place_id": "ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
   "rating": "5,0",
   "count": 34,
-  "checked_at": "2026-10-26",
+  "checked_at": "2026-10-29",
   "reviews": [
     {
       "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT25jMlZ6QlJPRU5SY1Zsc1ZsVkNjRGxhWlU1VVFtYxAB",
@@ -41,6 +41,15 @@
       "source_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xoblkwWjBjbWhtVEc1UUxVSTRXRUZrVDNoblozYxAB!2m1!1s0x47bf25639c834cd5:0xa1f403fda5f75a31",
       "verified_at": "2026-09-28",
       "published": "2026-05-19"
+    },
+    {
+      "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xWb2FqSmZhall6UmpOMlpUUkliVTFGVFMxNWJWRRAB",
+      "author": "Thorsten Steinhübel",
+      "stars": 5,
+      "text": "Hochzufrieden. Herr Becker hat uns als Erbengemeinschaft hervorragend betreut und den Verkauf des Mehrfamilienhauses in kürzester Zeit realisiert. Vorbildliche Kommunikation, Termintreue, Einhaltung von Zusagen und moderatives Geschick zeichnen ihn aus. Kann Herrn Becker uneingeschränkt weiterempfehlen.",
+      "source_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xWb2FqSmZhall6UmpOMlpUUkliVTFGVFMxNWJWRRAB!2m1!1s0x47bf25639c834cd5:0xa1f403fda5f75a31",
+      "verified_at": "2026-10-29",
+      "published": "2026-04-15"
     },
     {
       "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tKS2NFYzBjRjl5TjBOUGJHaHpUVFp5TWpSSk9XYxAB",
