@@ -213,6 +213,7 @@ const html = `<!DOCTYPE html>
   <meta property="og:title" content="Immobilienmarkt Köln ${REPORT_LABEL} — amtliche Kaufpreise nach Stadtteilen">
   <meta property="og:description" content="Amtliche Kaufpreise für Eigentumswohnungen und Häuser in den Kölner Stadtteilen, aus dem Grundstücksmarktbericht der Stadt Köln.">
   <meta property="og:url" content="${REPORT_URL}">
+  <meta property="og:image" content="https://romanbecker.de/roman-portrait.jpg">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="de_DE">
 <link rel="icon" href="https://romanbecker.de/favicon.svg" type="image/svg+xml">

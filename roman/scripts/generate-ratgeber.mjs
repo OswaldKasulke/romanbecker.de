@@ -1047,6 +1047,7 @@ function buildPage(page) {
   <meta property="og:title" content="${page.title} – Roman Becker - EVERNEST | Immobilienmakler & Immobilienbewertung K\xf6ln">
   <meta property="og:description" content="${page.desc} — Roman Becker (EVERNEST), Immobilienmakler K\xf6ln.">
   <meta property="og:url" content="https://romanbecker.de/ratgeber/${page.slug}.html">
+  <meta property="og:image" content="https://romanbecker.de/roman-portrait.jpg">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="de_DE">
 
