@@ -175,12 +175,12 @@
     /* FOOTER */
     .footer { background: var(--navy); padding: var(--space-12) 0; margin-top: auto; }
     /* Bodenrichtwert-Karten (ersetzt die breiten 2-Spalten-Tabellen) */
-    .brw-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0.6rem; margin:1rem 0 2.5rem; }
+    .brw-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.6rem; margin:1rem 0 2.5rem; }
     @media (min-width:640px) {
-    .brw-grid{ grid-template-columns:repeat(3,1fr); }
+    .brw-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
   }
     @media (min-width:960px) {
-    .brw-grid{ grid-template-columns:repeat(4,1fr); }
+    .brw-grid{ grid-template-columns:repeat(4,minmax(0,1fr)); }
   }
     .brw-card { display:flex; flex-direction:column; gap:0.15rem;
       background:var(--white,#fff); border:1px solid var(--gray-200,#e5e7eb);
