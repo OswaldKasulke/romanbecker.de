@@ -45,7 +45,7 @@ jobs:
           done
           exit $fehlt
 
-      # Sicherheitsnetz: keine Seite darf mit Fotos von images.ctfassets.net,
+      # Sicherheitsnetz: keine Seite darf mit einer Adresse von images.ctfassets.net,
       # OSM-iframes oder ohne consent.js live gehen (DSGVO-Prüfung 17.10.2026).
       - name: Fremdinhalte lokal ablegen
         run: |

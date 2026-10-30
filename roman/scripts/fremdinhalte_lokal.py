@@ -185,7 +185,8 @@ def main():
             p = os.path.join(d, f)
             alt = open(p, encoding="utf-8").read()
             neu = bearbeiten(alt, stat)
-            if re.search(r'<(img|iframe)\b[^>]*\s(?:src|data-consent-src)=["\']https://(images\.ctfassets\.net|www\.openstreetmap\.org)', neu, re.I):
+            # Seit 30.10.2026 auch Meta-/JSON-LD-Bilder: keine Adresse von Evernest/Contentful mehr
+            if re.search(r'<(img|iframe)\b[^>]*\s(?:src|data-consent-src)=["\']https://www\.openstreetmap\.org|ctfassets\.net|contentful\.com', neu, re.I):
                 rest.append(os.path.relpath(p, ROOT))
             if neu != alt:
                 dateien += 1
