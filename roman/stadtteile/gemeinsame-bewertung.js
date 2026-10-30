@@ -42,7 +42,7 @@ if(!c)fail("Bitte zuerst eine vollständige Adresse auswählen.");
 var stufe=V.stufen[String(Math.round(num(a.MIETDAUER)))];if(!stufe)fail("Bitte angeben, seit wann die Immobilie vermietet ist.");
 var miete=num(a.KALTMIETE);if(!(miete>0))fail("Bitte die monatliche Nettokaltmiete angeben.");
 var f=Number(stufe.faktor),jahr=miete*12,total=roundTotal(jahr*f),flaeche=num(a.WHNFL);
-return{verfahren:"Vermietet",modellquelle:"Vermietet seit "+stufe.bezeichnung+": "+f+" Jahresnettokaltmieten",
+return{verfahren:"Vermietet",ungerundet:jahr*f,modellquelle:"Vermietet seit "+stufe.bezeichnung+": "+f+" Jahresnettokaltmieten",
 berechnungsart:"Jahresnettokaltmiete × "+f,faktor:f,mietdauer:stufe.bezeichnung,
 jahresnettokaltmiete:jahr,region:c.region,gemeinde:c.city,lage:c.area||"",
 adresse:{plz:c.zip,strasse:c.street,hausnummer:String(c.houseNumber||"")+(c.supplement||""),ort:c.city,ortsteil:c.area},
@@ -71,7 +71,7 @@ function ausMaster(input,candidates){
   });
   if(!beste)fail("Für dieses Veedel ist noch kein Preis gepflegt. Wir schauen uns die Immobilie gern persönlich an.");
   beste.value=beste.endwert;beste.low=beste.untergrenze;beste.high=beste.obergrenze;
-  beste.pricePerSqm=beste.preis_je_m2;beste.raw=beste.preis_je_m2_ungerundet*flaeche;
+  beste.pricePerSqm=beste.preis_je_m2;beste.raw=beste.preis_je_m2_ungerundet*flaeche;beste.ungerundet=beste.preis_je_m2*flaeche;
   beste.source=beste.modellquelle;beste.mehrdeutig=false;beste.varianten=[];
   return beste;
 }
@@ -89,7 +89,7 @@ var re=rendite(c),m=100/re.satz,R2=Z.mehrfamilienhaus;
 var wert=miete*12*m,flaeche=num(a.WHNFL),
     untergrenze=flaeche>0?flaeche*R2.mindestmiete_eur_je_m2*12*m:0,gegriffen=wert<untergrenze;
 if(gegriffen)wert=untergrenze;var total=roundTotal(wert);
-return{verfahren:"Ertragswert",modellquelle:"Bruttorendite "+String(re.satz).replace(".",",")+" % ("+re.lage+")",
+return{verfahren:"Ertragswert",ungerundet:wert,modellquelle:"Bruttorendite "+String(re.satz).replace(".",",")+" % ("+re.lage+")",
 berechnungsart:"Jahresnettokaltmiete ÷ Bruttorendite",bruttorendite_prozent:re.satz,faktor:m,
 jahresnettokaltmiete:miete*12,untergrenze_gegriffen:gegriffen,region:c.region,gemeinde:c.city,lage:c.area||"",
 adresse:{plz:c.zip,strasse:c.street,hausnummer:String(c.houseNumber||"")+(c.supplement||""),ort:c.city,ortsteil:c.area},
@@ -106,7 +106,7 @@ if(!c)fail("Bitte zuerst eine vollständige Adresse auswählen.");
 var brw=Z.bodenrichtwert_plz[c.zip];if(!brw)fail("Für diese Lage liegt uns kein Bodenrichtwert vor. Wir schauen uns das Grundstück gern persönlich an.");
 var flaeche=num(a.FLAE);if(!(flaeche>0))fail("Bitte die Grundstücksgröße angeben.");
 var f=Number(Z.grundstueck.faktor),jem2=brw*f,total=roundTotal(flaeche*jem2);
-return{verfahren:"Bodenwert",modellquelle:"Bodenrichtwert "+c.zip+": "+brw+" €/m²",
+return{verfahren:"Bodenwert",ungerundet:flaeche*jem2,modellquelle:"Bodenrichtwert "+c.zip+": "+brw+" €/m²",
 berechnungsart:"Bodenrichtwert × Fläche × "+String(f).replace(".",","),
 bodenrichtwert_eur_m2:brw,faktor:f,region:c.region,gemeinde:c.city,lage:c.area||"",
 adresse:{plz:c.zip,strasse:c.street,hausnummer:String(c.houseNumber||"")+(c.supplement||""),ort:c.city,ortsteil:c.area},

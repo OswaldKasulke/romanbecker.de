@@ -1012,7 +1012,7 @@
 
             <div class="field" id="field-email">
               <label for="email">E-Mail *</label>
-              <input type="email" id="email" name="email" placeholder="100g-eiersalat@gmx.net" required>
+              <input type="email" id="email" name="email" required>
               <p class="field__error">Bitte gültige E-Mail eingeben.</p>
             </div>
 
@@ -1040,7 +1040,7 @@
 
             <div class="gdpr">
               <input type="checkbox" id="gdpr" name="gdpr" required>
-              <label for="gdpr">Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden. <a href="/datenschutz.html">Datenschutzerklärung</a></label>
+              <label for="gdpr">Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Bewertungsanfrage gespeichert und verarbeitet werden. Details in der <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>. *</label>
             </div>
 
             <p id="calculation-error" class="field__error" role="alert" style="display:none;margin-top:1rem;"></p>
@@ -1092,7 +1092,6 @@
 
               <div class="result__cta">
                 <a href="tel:+491775156969" class="btn btn--primary btn--large">Jetzt anrufen: +49 177 515 69 69</a>
-                <a href="/danke.html" class="btn btn--secondary btn--large" onclick="if(typeof gtag==='function'){gtag('event','conversion',{event_category:'Immobilienbewertung',event_label:'CTA geklickt'})}">Beratungsgespräch vereinbaren</a>
                 <!-- Zurueck zur Eingabe. Die drei Schwesterrechner haben diesen Schritt
                      laengst, hier fehlte er: wer sich bei Flaeche oder Zustand vertippt
                      hatte, kam am Ergebnis nicht mehr heraus. Beschriftung und Ziel
@@ -2273,35 +2272,39 @@
         var a = modellAttribute();
         var irw = window.GemeinsameBewertung.calculate({type: art, attributes: a}, gemeinsameKandidaten);
         letztesGemeinsamesErgebnis = irw;
-        rw.push('Adresse: ' + volleStrasse() + ', ' + plz + ' ' + (ortFeld.value || '') + '.');
+        // Zahlen und Sätze wie in den drei Schwesterrechnern (BGL, LEV, Schäl Sick):
+        // gleiche Formate, Rechenzeile mit ungerundetem Ergebnis, danach der gerundete Endwert.
+        var eurG = function (v) { return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR', minimumFractionDigits: 0, maximumFractionDigits: 2}).format(v); };
+        var eur = function (v) { return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR', maximumFractionDigits: 0}).format(Math.round(v / 1000) * 1000); };
+        var de = function (v) { return Number(v).toLocaleString('de-DE'); };
+        var ortsteil = irw.adresse && irw.adresse.ortsteil;
+        rw.push('Adresse: ' + volleStrasse() + ', ' + plz + ' ' + (ortFeld.value || '') + (ortsteil ? ' · ' + ortsteil : '') + '.');
         if (art === 'mehrfamilienhaus' || art === 'grundstueck') {
           rw.push('Verfahren: ' + irw.verfahren + '; ' + irw.berechnungsart + '.');
           rw.push('Grundlage: ' + irw.modellquelle + '.');
-          // Die Rechenzeile fehlte: das Verfahren nannte "Jahresnettokaltmiete
-          // durch Bruttorendite", die Jahresnettokaltmiete selbst stand nirgends -
-          // der Wert war aus dem Protokoll nicht nachrechenbar.
           rw.push('Rechnung: ' + (art === 'grundstueck'
-            ? irw.bodenrichtwert_eur_m2 + ' EUR/m2 Bodenrichtwert x ' + String(irw.faktor).replace('.', ',')
-              + ' -> ' + irw.pricePerSqm + ' EUR/m2 x ' + a.FLAE + ' m2'
-            : irw.jahresnettokaltmiete + ' EUR Jahresnettokaltmiete x Faktor ' + irw.faktor.toFixed(2))
-            + ' = ' + irw.value + ' EUR.');
-          rw.push('Gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
-          if (irw.untergrenze_gegriffen) rw.push('Die Untergrenze aus 10 EUR/m2 Kaltmiete hat gegriffen.');
+            ? de(irw.bodenrichtwert_eur_m2) + ' €/m² Bodenrichtwert × ' + String(irw.faktor).replace('.', ',')
+              + ' → ' + de(irw.pricePerSqm) + ' €/m² × ' + de(a.FLAE) + ' m²'
+            : eurG(irw.jahresnettokaltmiete) + ' Jahresnettokaltmiete × Faktor ' + irw.faktor.toFixed(2))
+            + ' = ' + eurG(irw.ungerundet) + '.');
+          rw.push('Gerundeter Endwert ' + eur(irw.value) + '; Spanne ±10 % ' + eur(irw.low) + ' bis ' + eur(irw.high) + '.');
+          if (irw.untergrenze_gegriffen) rw.push('Die Untergrenze aus 10 €/m² Kaltmiete hat gegriffen — die angegebene Miete liegt darunter.');
           lastRechenweg = rw.join('\n');
           return irw.value;
         }
         if (irw.verfahren === 'Vermietet') {
           rw.push('Verfahren: vermietet seit ' + irw.mietdauer + '; ' + irw.berechnungsart + '.');
-          rw.push('Monatliche Nettokaltmiete ' + a.KALTMIETE + ' EUR -> Jahresnettokaltmiete ' + irw.jahresnettokaltmiete + ' EUR.');
-          rw.push('Rechnung: ' + irw.jahresnettokaltmiete + ' EUR Jahresnettokaltmiete x ' + irw.faktor + ' = ' + irw.value + ' EUR.');
-          rw.push('Gerundeter Endwert ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
+          rw.push('Monatliche Nettokaltmiete ' + eurG(a.KALTMIETE) + ' → Jahresnettokaltmiete ' + eurG(irw.jahresnettokaltmiete) + '.');
+          rw.push('Rechnung: ' + eurG(irw.jahresnettokaltmiete) + ' Jahresnettokaltmiete × ' + irw.faktor + ' = ' + eurG(irw.ungerundet) + '.');
+          rw.push('Gerundeter Endwert ' + eur(irw.value) + '; Spanne ±10 % ' + eur(irw.low) + ' bis ' + eur(irw.high) + '.');
           lastRechenweg = rw.join('\n');
           return irw.value;
         }
-        rw.push('Preis-Master ' + irw.lage + ': ' + irw.preis_master_eur_m2 + ' EUR/m2.');
-        rw.push('Zustand und Ausstattung ' + (a.GSTAND || '-') + ' -> Faktor ' + irw.zustandsfaktor + '.');
-        rw.push(irw.pricePerSqm + ' EUR/m2 x ' + a.WHNFL + ' m2 = ' + irw.value + ' EUR; Spanne +/-10 % ' + irw.low + ' bis ' + irw.high + ' EUR.');
-        if (irw.mehrdeutig) rw.push('Mehrere vollständige Varianten wurden gerechnet; gemäß Regel wurde der höchste Endwert gewählt: ' + irw.varianten.map(function (v) { return v.zone_id + ': ' + v.value + ' EUR'; }).join('; ') + '.');
+        rw.push('Preis-Master ' + irw.lage + ': ' + de(irw.preis_master_eur_m2) + ' €/m².');
+        rw.push('Zustand und Ausstattung ' + (a.GSTAND || '—') + ' → Faktor ' + irw.zustandsfaktor + '.');
+        rw.push(de(irw.pricePerSqm) + ' €/m² × ' + de(a.WHNFL) + ' m² = ' + eurG(irw.ungerundet) + '.');
+        rw.push('Gerundeter Endwert ' + eur(irw.value) + '; Spanne ±10 % ' + eur(irw.low) + ' bis ' + eur(irw.high) + '.');
+        if (irw.mehrdeutig) rw.push('Mehrere vollständige Varianten wurden gerechnet; gemäß Regel wurde der höchste Endwert gewählt: ' + irw.varianten.map(function (v) { return v.zone_id + ': ' + eur(v.value); }).join('; ') + '.');
         lastRechenweg = rw.join('\n');
         return irw.value;
       }
@@ -2510,7 +2513,7 @@
         if (wertLabel) wertLabel.style.display = '';
         ausserhalb.style.display = 'none';
         wertZeile.textContent = formatCurrency(value);
-        spanneZeile.textContent = 'Bandbreite: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
+        spanneZeile.textContent = 'Orientierungsspanne: ' + formatCurrency(low) + ' – ' + formatCurrency(high);
       }
 
 
@@ -2544,7 +2547,7 @@
       // Send data via email (submit.php)
       var formData = new FormData();
       formData.append('type', 'immobilienbewertung');
-      formData.append('objektart', document.querySelector('input[name="objektart"]:checked').value);
+      formData.append('objektart', ({wohnung: 'Wohnung', haus: 'Haus', mehrfamilienhaus: 'Mehrfamilienhaus', grundstueck: 'Grundstück'})[document.querySelector('input[name="objektart"]:checked').value] || document.querySelector('input[name="objektart"]:checked').value);
       formData.append('wohnflaeche', document.getElementById('wohnflaeche').value);
       formData.append('grundstuecksflaeche', document.getElementById('grundstuecksflaeche').value);
       var zustandEl = document.querySelector('input[name="zustand"]:checked');
@@ -2574,6 +2577,7 @@
       formData.append('kontakt_plz', document.getElementById('kontakt_plz').value);
       formData.append('kontakt_ort', document.getElementById('kontakt_ort').value);
       formData.append('ergebnis', formatCurrency(value));
+      formData.append('preisspanne', bedient && value > 0 ? formatCurrency(low) + ' – ' + formatCurrency(high) : '');
       formData.append('rechenweg', lastRechenweg);
 
       fetch('submit.php', {
