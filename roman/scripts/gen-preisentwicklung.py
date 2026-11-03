@@ -2,22 +2,26 @@
 # -*- coding: utf-8 -*-
 """
 Baut für eine Veedelseite den Abschnitt „Wohnungspreise 2015 bis 2024“:
-Liniendiagramm (statisches SVG, ohne JavaScript), Zahlentabelle und Quellen.
+Liniendiagramm (statisches SVG, ohne JavaScript) und Quellenzeile. Tabelle und
+ausführliche Quellenangabe hat Roman am 03.11.2026 gestrichen („nur den Chart“,
+„Quelle nur Gutachterausschuss“); die Belege je Jahrgang stehen in QUELLEN.
 
 Daten : ../data/veedelseiten-wohnungspreise-2015-2024.csv (Repo-Wurzel, nicht deployt).
         Abgeschrieben aus der Stadtteiltabelle „Kaufpreise für Eigentumswohnungen“
         der Grundstücksmarktberichte Köln 2016–2025 (Baujahre insgesamt, Neubau,
         Weiterverkauf und Umwandlung, 60–100 m² Wohnfläche).
 Aufruf: python3 scripts/gen-preisentwicklung.py suelz.html  → gibt den Abschnitt aus
+        python3 scripts/gen-preisentwicklung.py --einbauen      → setzt ihn auf allen
+        Seiten direkt hinter den Bodenrichtwert-Abschnitt (ersetzt einen vorhandenen)
 Nur Seiten mit Einstufung A oder B (alle zehn Jahre vorhanden) bekommen einen Abschnitt.
 """
-import csv, html, sys
+import csv, html, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CSV = ROOT.parent / 'data' / 'veedelseiten-wohnungspreise-2015-2024.csv'
 JAHRE = list(range(2015, 2025))
-# Bericht (Jahrgang) → gedruckte Seite der Stadtteiltabelle und amtliches PDF
+# Belege: Bericht (Jahrgang) → gedruckte Seite der Stadtteiltabelle und amtliches PDF
 QUELLEN = {
     2016: (50, 'https://epflicht.ulb.uni-bonn.de/download/pdf/279049'),
     2017: (48, 'https://epflicht.ulb.uni-bonn.de/download/pdf/337625'),
@@ -65,14 +69,8 @@ def abschnitt(z):
     name = z['seitenname']
     stadtteil = z['amtlicher_stadtteil']
     werte = {j: int(z[f'mittel_{j}']) for j in JAHRE}
-    anzahl = {j: int(z[f'n_{j}']) for j in JAHRE}
     diff = round((werte[2024] / werte[2015] - 1) * 100)
     bezug = '' if z['eigener_stadtteil'] == 'ja' else f' Der Gutachterausschuss weist {html.escape(name)} nicht gesondert aus; die Werte gelten für den amtlichen Stadtteil {html.escape(stadtteil)}.'
-    wenige = ''
-    if z['einstufung'].startswith('B'):
-        wenige = ' In einzelnen Jahren lagen weniger als zehn auswertbare Verträge vor; dort kann schon ein einzelner Neubau- oder Luxusverkauf den Mittelwert stark verschieben.'
-    zeilen = ''.join(f'<tr><td>{j}</td><td class="num">{de(werte[j])} €</td><td class="num">{anzahl[j]}</td></tr>' for j in JAHRE)
-    quellen = ', '.join(f'<a href="{u}" target="_blank" rel="noopener" style="color:inherit;">{b}</a> (S.&nbsp;{s})' for b, (s, u) in QUELLEN.items())
     return f'''  <!-- PREISENTWICKLUNG (scripts/gen-preisentwicklung.py) -->
   <section class="section" id="preisentwicklung">
     <div class="container">
@@ -82,24 +80,37 @@ def abschnitt(z):
       <figure style="margin:0 0 var(--space-6);">
         {diagramm(werte, name)}
       </figure>
-      <table class="cost-table" style="max-width:820px;">
-        <thead><tr><th>Kaufjahr</th><th class="num">Ø Kaufpreis je m²</th><th class="num">Verträge</th></tr></thead>
-        <tbody>{zeilen}</tbody>
-      </table>
-      <p class="text-muted" style="font-size:0.8125rem;max-width:820px;">Durchschnitt der im jeweiligen Jahr verkauften Wohnungen mit 60 bis 100&nbsp;m², Neubau, Weiterverkauf und Umwandlung zusammen; nur auswertbare Kaufverträge, nicht alle Verkäufe im Stadtteil. Es ist kein Preisindex: Die Werte hängen auch davon ab, welche Wohnungen in einem Jahr verkauft wurden.{wenige} Quelle: Gutachterausschuss für Grundstückswerte in der Stadt Köln, Grundstücksmarktberichte {quellen}.</p>
+      <p class="text-muted" style="font-size:0.8125rem;max-width:820px;">Quelle: Gutachterausschuss</p>
     </div>
   </section>
 '''
 
 
+def einbauen(seiten):
+    """Abschnitt hinter dem Bodenrichtwert-Abschnitt einsetzen; ein vorhandener wird ersetzt."""
+    alt = re.compile(r'\n  <!-- PREISENTWICKLUNG \(scripts/gen-preisentwicklung\.py\) -->.*?</section>\n', re.S)
+    for name, z in sorted(seiten.items()):
+        if z['einstufung'][0] not in 'AB':
+            continue
+        datei = ROOT / 'stadtteile' / name
+        s = alt.sub('', datei.read_text(encoding='utf-8'))
+        treffer = list(re.finditer(r'<h2[^>]*>Bodenrichtwert', s))
+        if len(treffer) != 1:
+            sys.exit(f'{name}: {len(treffer)} Bodenrichtwert-Abschnitte')
+        ende = s.index('</section>', treffer[0].end()) + len('</section>\n')
+        datei.write_text(s[:ende] + '\n' + abschnitt(z) + s[ende:], encoding='utf-8')
+        print(name)
+
+
 def main():
     seiten = {Path(r['seite']).name: r for r in csv.DictReader(open(CSV, encoding='utf-8')) if '/stadtteile/' in r['seite']}
+    if sys.argv[1:] == ['--einbauen']:
+        return einbauen(seiten)
     for s in sys.argv[1:]:
         z = seiten.get(s)
         if not z or z['einstufung'][0] not in 'AB':
             sys.exit(f'{s}: keine vollständige Zehnjahresreihe')
         sys.stdout.write(abschnitt(z))
-
 
 if __name__ == '__main__':
     main()
