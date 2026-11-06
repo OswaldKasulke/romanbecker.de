@@ -88,6 +88,21 @@
     .example-table tr:last-child td { border-bottom: none; }
     .zins-widget-wrapper { margin: 2rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--gray-200); }
     .zins-widget-wrapper iframe { display: block; width: 100%; border: none; min-height: 320px; }
+    .zins-tabelle-wrap { overflow-x: auto; margin: 1.5rem 0 0.5rem; }
+    .zins-tabelle { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .zins-tabelle caption { caption-side: top; text-align: left; font-size: 0.8rem; color: var(--gray-600); padding-bottom: 0.5rem; }
+    .zins-tabelle th, .zins-tabelle td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--gray-200); text-align: right; color: var(--gray-600); }
+    .zins-tabelle th { color: var(--text, #000000); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .zins-tabelle th:first-child, .zins-tabelle td:first-child { text-align: left; color: var(--text, #000000); }
+    .zins-tabelle td strong { color: var(--text, #000000); font-size: 1.05rem; }
+    .zins-einzelwerte { margin: 0.5rem 0 1rem; }
+    .zins-einzelwerte summary { cursor: pointer; font-size: 0.9rem; color: var(--gray-600); }
+    .zins-einzelwerte .zins-tabelle { font-size: 0.85rem; }
+    .zins-hinweis-alt { font-size: 0.85rem; color: var(--gray-600); }
+    .zins-quellen { background: var(--gray-100); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1rem 0 1.5rem; font-size: 0.85rem; }
+    .zins-quellen p { margin-bottom: 0.4rem; font-size: 0.85rem; }
+    .zins-quellen ol { margin: 0 0 0 1.2rem; font-size: 0.85rem; }
+    .zins-quellen a { word-break: break-word; }
     .zins-source { font-size: 0.8rem; color: var(--gray-500); text-align: right; margin-top: 0.4rem; }
     .cta-box { background: #e5e7eb; color: #000000; border: 1px solid #d7dbe0; border-radius: var(--radius); padding: 2.5rem 2rem; margin: 2.5rem 0; text-align: center; }
     .cta-box h3 { color: #000000; font-size: 1.3rem; margin: 0 0 0.75rem; }
@@ -108,7 +123,7 @@
       "name": "Wie hoch sind die Bauzinsen aktuell?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bauzinsen ändern sich täglich. Der konkrete Satz hängt von Bonität, Eigenkapitalanteil, Zinsbindung und Beleihungsauslauf ab. Die tagesaktuellen Konditionen für die gängigen Laufzeiten finden Sie in der Zinstabelle von Interhyp; eine Beratung bei einem Finanzierungsvermittler lohnt sich."
+        "text": "Bauzinsen ändern sich täglich. Der konkrete Satz hängt von Bonität, Eigenkapitalanteil, Zinsbindung und Beleihungsauslauf ab. Auf dieser Seite steht der Mittelwert der effektiven Jahreszinsen von ING, 1822direkt und Interhyp für 10 und 15 Jahre Zinsbindung bei 60, 80 und 90 % Beleihungsauslauf, mit Stand-Datum je Quelle."
       }
     },
     {
@@ -180,14 +195,48 @@
     <div class="container">
       <div class="article-content">
 
-        <h2>Aktuelle Bauzinsen (Quelle: Interhyp)</h2>
-        <p>Die Zinskonditionen stammen von <strong>Interhyp</strong>, Deutschlands größtem Vermittler für private Baufinanzierungen. Sie werden täglich aktualisiert und zeigen repräsentative Konditionen für verschiedene Laufzeiten – tagesaktuell direkt bei Interhyp abrufbar.</p>
+<!-- BAUZINSEN-START -->
+        <h2>Aktuelle Bauzinsen: Mittelwert aus ING, 1822direkt und Interhyp</h2>
+        <p>Die Tabelle zeigt den <strong>Mittelwert der effektiven Jahreszinsen</strong> von drei öffentlich einsehbaren Zinstabellen – der ING, der 1822direkt (Direktbank der Frankfurter Sparkasse) und des Vermittlers Interhyp – für 10 und 15 Jahre Zinsbindung bei 60, 80 und 90 % Beleihungsauslauf. Aktualisiert am 06.11.2026.</p>
 
-        <div class="zins-widget-wrapper" style="padding:1.5rem; text-align:center;">
-          <p style="margin:0 0 1rem; color:var(--gray-700);">Interhyp aktualisiert die Konditionen täglich. Die aktuelle Zinstabelle sehen Sie direkt bei Interhyp:</p>
-          <a href="https://www.interhyp.de/bauzinsen/" target="_blank" rel="noopener" class="btn btn--gold">Aktuelle Bauzinsen bei Interhyp ansehen &rarr;</a>
+        <div class="zins-tabelle-wrap">
+          <table class="zins-tabelle">
+            <caption>Effektiver Jahreszins p. a., Mittelwert aus drei Quellen</caption>
+            <thead><tr><th>Zinsbindung</th><th>60 % Beleihung</th><th>80 % Beleihung</th><th>90 % Beleihung</th></tr></thead>
+            <tbody>
+              <tr><td>10 Jahre</td><td><strong>4,16 %</strong></td><td><strong>4,22 %</strong></td><td><strong>4,43 %</strong></td></tr>
+              <tr><td>15 Jahre</td><td><strong>4,40 %</strong></td><td><strong>4,46 %</strong></td><td><strong>4,63 %</strong></td></tr>
+            </tbody>
+          </table>
         </div>
-        <p class="zins-source">Datenquelle: <a href="https://www.interhyp.de/bauzinsen/" target="_blank" rel="noopener">interhyp.de/bauzinsen</a> – täglich aktualisiert</p>
+
+        <details class="zins-einzelwerte">
+          <summary>Einzelwerte je Quelle anzeigen</summary>
+          <div class="zins-tabelle-wrap">
+          <table class="zins-tabelle">
+            <thead><tr><th>Quelle</th><th>Zinsbindung</th><th>60 %</th><th>80 %</th><th>90 %</th></tr></thead>
+            <tbody>
+              <tr><td>ING</td><td>10 Jahre</td><td>4,36 %</td><td>4,44 %</td><td>4,63 %</td></tr>
+              <tr><td>ING</td><td>15 Jahre</td><td>4,68 %</td><td>4,74 %</td><td>4,87 %</td></tr>
+              <tr><td>1822direkt</td><td>10 Jahre</td><td>3,98 %</td><td>3,97 %</td><td>4,15 %</td></tr>
+              <tr><td>1822direkt</td><td>15 Jahre</td><td>4,19 %</td><td>4,21 %</td><td>4,34 %</td></tr>
+              <tr><td>Interhyp</td><td>10 Jahre</td><td>4,13 %</td><td>4,25 %</td><td>4,50 %</td></tr>
+              <tr><td>Interhyp</td><td>15 Jahre</td><td>4,33 %</td><td>4,43 %</td><td>4,67 %</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </details>
+          <p class="zins-hinweis-alt">Hinweis: Die Angaben von 1822direkt (Stand 27.08.2026) sind älter als 30 Tage; der Anbieter hat seine Tabelle seitdem nicht aktualisiert.</p>
+
+        <div class="zins-quellen">
+          <p><strong>Quellen</strong> (effektiver Jahreszins, jeweils wie vom Anbieter veröffentlicht):</p>
+          <ol>
+            <li><strong>ING</strong> – Konditionsliste Nr. 58, gültig ab 05.11.2026, Darlehen ab 300.000 € – <a href="https://www.ing.de/dokumente/partner/baufi-konditionen-online/" target="_blank" rel="noopener">https://www.ing.de/dokumente/partner/baufi-konditionen-online/</a></li>
+            <li><strong>1822direkt</strong> – Stand 27.08.2026 – <a href="https://www.1822direkt.de/baufinanzierung/bauzinsen/" target="_blank" rel="noopener">https://www.1822direkt.de/baufinanzierung/bauzinsen/</a></li>
+            <li><strong>Interhyp</strong> – Konditionen vom 26.10.2026 bis 01.11.2026; Spalten „unter 70 %“ und „über 90 %“ als 60 % bzw. 90 % geführt – <a href="https://www.interhyp.de/bauzinsen/" target="_blank" rel="noopener">https://www.interhyp.de/bauzinsen/</a></li>
+          </ol>
+        </div>
+<!-- BAUZINSEN-END -->
 
         <div class="info-box">
           <p><strong>Hinweis:</strong> Die angezeigten Zinssätze sind Richtwerte. Der tatsächliche Zinssatz hängt von Ihrer Bonität, dem Eigenkapitalanteil, der Laufzeit und dem Beleihungsauslauf ab.</p>
