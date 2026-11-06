@@ -1,13 +1,13 @@
 name: Update Bauzinsen
 
-# Wöchentlich: liest die Zinstabellen von ING (PDF), 1822direkt und Interhyp,
+# Alle 2 Wochen (montags in geraden Kalenderwochen): liest die Zinstabellen von ING (PDF), 1822direkt und Interhyp,
 # bildet den Mittelwert und schreibt ihn in roman/ratgeber/bauzinsen.html.
 # Ist eine Quelle nicht lesbar, bricht das Skript ab und die Seite bleibt
 # unverändert (Lauf wird rot). Deploy danach über workflow_run in deploy-roman.yml.
 
 on:
   schedule:
-    - cron: '0 6 * * 1'   # montags 06:00 UTC
+    - cron: '0 6 * * 1'   # montags 06:00 UTC; ungerade KW werden im Job übersprungen
   workflow_dispatch:
 
 permissions:
@@ -17,16 +17,31 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      - name: Nur gerade Kalenderwochen (2-Wochen-Takt)
+        id: takt
+        run: |
+          kw=$(date -u +%V)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ $((10#$kw % 2)) -ne 0 ]; then
+            echo "KW $kw ungerade – kein Lauf."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Checkout
+        if: steps.takt.outputs.run == 'true'
         uses: actions/checkout@v4
 
       - name: pdftotext installieren
+        if: steps.takt.outputs.run == 'true'
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
 
       - name: Bauzinsen aktualisieren
+        if: steps.takt.outputs.run == 'true'
         run: python3 roman/scripts/update-bauzinsen.py
 
       - name: Commit and push
+        if: steps.takt.outputs.run == 'true'
         run: |
           if git diff --quiet roman/ratgeber/bauzinsen.html; then
             echo "Keine Änderung."
