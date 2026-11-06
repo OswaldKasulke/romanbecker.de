@@ -95,7 +95,9 @@ RewriteRule ^ratgeber/daecher(\.html|/)$ /ratgeber/fenster-tueren-dach.html [R=3
 RewriteRule ^ratgeber/haustueren(\.html|/)$ /ratgeber/fenster-tueren-dach.html [R=301,L]
 
 RewriteRule ^ratgeber/niesbrauch-wohnrecht(\.html|/)$      /ratgeber/niessbrauch-wohnrecht.html      [R=301,L]
-RewriteRule ^ratgeber/niesbrauch-kapitalisieren(\.html|/)$ /ratgeber/niessbrauch-kapitalisieren.html [R=301,L]
+RewriteRule ^ratgeber/niesbrauch-kapitalisieren(\.html|/)$ /ratgeber/niessbrauch-wohnrecht.html#niessbrauch-berechnen [R=301,NE,L]
+# 07.11.2026: Nießbrauch kapitalisieren in Nießbrauch & Wohnrecht aufgegangen
+RewriteRule ^ratgeber/niessbrauch-kapitalisieren(\.html|/)$ /ratgeber/niessbrauch-wohnrecht.html#niessbrauch-berechnen [R=301,NE,L]
 
 # Leverkusen-Seiten entfernt (09.08.2026) -> Uebersichten (301)
 RewriteRule ^bodenrichtwert-leverkusen\.html$ https://leverkusen-makler.de/bodenrichtwert-leverkusen/ [R=301,L]

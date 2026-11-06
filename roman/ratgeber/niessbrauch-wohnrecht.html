@@ -33,11 +33,11 @@
     })();
   </script>
 
-  <title>Nießbrauch & Wohnrecht auf Lebenszeit – Auswirkungen beim Immobilienverkauf</title>
-  <meta name="description" content="Nießbrauch und Wohnrecht auf Lebenszeit erklärt: Was bedeuten sie für den Immobilienwert, den Verkauf und die Erbschaft? Alles Wichtige für Eigentümer in.">
+  <title>Nießbrauch & Wohnrecht: Wert berechnen, Verkauf, Erbschaft</title>
+  <meta name="description" content="Nießbrauch und Wohnrecht auf Lebenszeit: Wert berechnen (Jahreswert × Vervielfältiger, 18,6-Regel), Rechenbeispiel und was das für Verkauf, Schenkung und Erbschaft bedeutet.">
   <link rel="canonical" href="https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html">
 
-  <meta property="og:title" content="Nießbrauch & Wohnrecht auf Lebenszeit – Auswirkungen beim Immobilienverkauf">
+  <meta property="og:title" content="Nießbrauch & Wohnrecht: Wert berechnen, Verkauf, Erbschaft">
   <meta property="og:description" content="Nießbrauch und Wohnrecht auf Lebenszeit: Was bedeuten sie für Wert, Verkauf und Erbschaft? Erklärt von Makler Roman Becker, Köln.">
   <meta property="og:url" content="https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html">
   <meta property="og:image" content="https://romanbecker.de/roman-portrait.jpg">
@@ -53,7 +53,7 @@
     "url": "https://romanbecker.de/ratgeber/niessbrauch-wohnrecht.html",
     "author": { "@type": "Person", "name": "Roman Becker", "url": "https://romanbecker.de/" },
     "publisher": { "@type": "Organization", "name": "Roman Becker Immobilien", "url": "https://romanbecker.de/" },
-    "dateModified": "2026-06-09"
+    "dateModified": "2026-11-07"
   }
   </script>
 
@@ -86,8 +86,14 @@
     .compare-card ul { margin: 0; padding-left: 1.25rem; color: var(--gray-600); font-size: 0.9375rem; }
     .compare-card li { margin-bottom: 0.4rem; }
     h2 { font-size: 2rem; font-weight: 500; line-height: 1.2; }
+    .doc-note { background: var(--gray-100); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; }
+    .doc-note p { margin-bottom: 0; }
+    .formula { background: var(--navy); color: var(--white); border-radius: var(--radius); padding: var(--space-6); margin: var(--space-8) 0; text-align: center; font-size: 1.15rem; font-weight: 600; }
+    .calc-table { width: 100%; border-collapse: collapse; margin: var(--space-4) 0 var(--space-8); font-size: 0.95rem; }
+    .calc-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--gray-200); color: var(--gray-600); }
+    .calc-table td:last-child { text-align: right; white-space: nowrap; color: var(--text, #000000); font-weight: 600; }
+    .calc-table tr:last-child td { border-top: 2px solid var(--navy); border-bottom: none; color: var(--text, #000000); font-weight: 700; }
   </style>
-          <a href="https://romanbecker.de/ratgeber/niessbrauch-kapitalisieren.html">Nießbrauch kapitalisieren</a>
 
   <script type="application/ld+json">
   {
@@ -116,6 +122,22 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Ja. Der Nießbrauch selbst ist nach § 1059 BGB nicht übertragbar – er wechselt also nicht den Inhaber. Übertragen wird das Eigentum, und zwar belastet: Der Käufer erwirbt die Immobilie mit dem bestehenden Nießbrauch, der Berechtigte bleibt derselbe. Entsprechend reduziert sich der Kaufpreis um den kapitalisierten Wert des Rechts. Gelöscht wird es nur mit Bewilligung des Berechtigten oder mit dessen Tod."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie berechnet man den Wert eines Nießbrauchs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Kapitalwert des Nießbrauchs ergibt sich aus Jahreswert × Vervielfältiger. Der Jahreswert ist der jährliche wirtschaftliche Nutzen (in der Regel die Jahresnettokaltmiete bzw. der Mietwert bei Eigennutzung), höchstens jedoch der Steuerwert der Immobilie geteilt durch 18,6 (§ 16 BewG). Der Vervielfältiger richtet sich bei lebenslangem Nießbrauch nach Alter und Geschlecht des Berechtigten (§ 14 BewG, jährliche BMF-Tabelle), bei befristetem Nießbrauch nach der Laufzeit (§ 13 BewG)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist die 18,6-Regel beim Nießbrauch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nach § 16 BewG darf der Jahreswert einer Nutzung höchstens den Steuerwert des Wirtschaftsguts geteilt durch 18,6 betragen. Bei einer Immobilie mit einem Steuerwert von 500.000 Euro liegt der maximale Jahreswert also bei rund 26.882 Euro. Liegt die tatsächliche Jahresmiete darunter, ist diese maßgeblich."
       }
     }
   ]
@@ -163,7 +185,7 @@
     <div class="container">
       <div class="hero__badge">✓ Immobilienwissen von Roman Becker · Makler Köln</div>
       <h1>Nießbrauch &amp; Wohnrecht auf Lebenszeit</h1>
-      <p>Was bedeuten diese Rechte für Immobilienwert, Verkauf und Erbschaft – und wie unterscheiden sie sich?</p>
+      <p>Was bedeuten diese Rechte für Immobilienwert, Verkauf und Erbschaft, wie unterscheiden sie sich – und wie berechnet man ihren Wert?</p>
     </div>
   </section>
 
@@ -203,19 +225,49 @@
 
         <h2>Auswirkungen auf den Immobilienwert</h2>
         <p>Sowohl Nießbrauch als auch Wohnrecht auf Lebenszeit reduzieren den Verkehrswert einer Immobilie erheblich – denn ein Käufer erwirbt zwar das Eigentum, kann die Immobilie aber weder selbst nutzen noch vermieten, solange der Berechtigte lebt.</p>
-        <p>Der Wertabschlag wird anhand des sogenannten <strong>Kapitalwerts des Rechts</strong> berechnet:</p>
-        <ul>
-          <li><strong>Jahreswert</strong> (ortsübliche Jahreskaltmiete oder Mietwert)</li>
-          <li>multipliziert mit dem <strong>statistischen Vervielfältiger</strong> (abhängig vom Alter und Geschlecht der berechtigten Person – aus den Sterbetafeln des Bundesfinanzministeriums)</li>
-        </ul>
-        <p>Je jünger die berechtigte Person, desto höher der Wertabschlag – weil das Recht statistisch länger andauert.</p>
-
-        <h3>Beispiel: Wohnrecht einer 70-jährigen Person</h3>
-        <p>Immobilienwert ohne Belastung: 600.000 €. Ortsübliche Jahreskaltmiete: 18.000 €. Vervielfältiger für eine 70-jährige Frau (ca.): 10,0. Kapitalwert des Wohnrechts: 18.000 € × 10 = <strong>180.000 €</strong>. Verkehrswert mit Wohnrecht: ca. <strong>420.000 €</strong>.</p>
+        <p>Der Wertabschlag entspricht dem sogenannten <strong>Kapitalwert des Rechts</strong>. Je jünger die berechtigte Person, desto höher der Abschlag – weil das Recht statistisch länger andauert. Wie der Kapitalwert berechnet wird, steht im folgenden Abschnitt.</p>
 
         <div class="info-box">
           <p><strong>Praxistipp von Roman Becker:</strong> In der Praxis ist der erzielbare Kaufpreis oft noch deutlich niedriger als der rechnerische Verkehrswert – denn viele Käufer scheuen die Unsicherheit und Wartezeit. Immobilien mit Nießbrauch oder Wohnrecht sind ein Spezialmarkt, den ich gut kenne.</p>
         </div>
+
+        <h2 id="niessbrauch-berechnen">Nießbrauch berechnen: So wird der Wert kapitalisiert</h2>
+        <p>Das Nutzungsrecht ist Geld wert, und dieser Wert lässt sich <strong>kapitalisieren</strong>, also in einen einmaligen Kapitalbetrag umrechnen. Darauf kommt es an, wenn eine Immobilie mit Nießbrauch oder Wohnrecht <strong>verschenkt, vererbt oder verkauft</strong> wird.</p>
+
+        <div class="formula">Kapitalwert des Nießbrauchs = Jahreswert × Vervielfältiger</div>
+
+        <h3>Schritt 1: Der Jahreswert</h3>
+        <p>Der Jahreswert ist der <strong>jährliche wirtschaftliche Nutzen</strong> des Rechts. Bei einer vermieteten Immobilie ist das in der Regel die <strong>Jahresnettokaltmiete</strong>; bei Eigennutzung wird die ortsübliche Nettokaltmiete angesetzt, die der Berechtigte durch das Recht spart.</p>
+        <p>Wichtig ist die <strong>Deckelung nach § 16 BewG</strong> (die „18,6-Regel“): Der Jahreswert darf höchstens <strong>den Steuerwert der Immobilie geteilt durch 18,6</strong> betragen. Diese Grenze verhindert, dass der Nießbrauch rechnerisch mehr wert ist als die Immobilie selbst.</p>
+
+        <h3>Schritt 2: Der Vervielfältiger</h3>
+        <p>Der Vervielfältiger (Kapitalisierungsfaktor) bildet ab, <strong>wie lange</strong> das Recht voraussichtlich läuft:</p>
+        <ul>
+          <li><strong>Lebenslanger Nießbrauch (Leibnießbrauch):</strong> Der Faktor richtet sich nach <strong>Alter und Geschlecht</strong> des Berechtigten (§ 14 BewG). Das Bundesfinanzministerium veröffentlicht dazu <strong>jährlich eine Tabelle</strong> mit getrennten Werten für Männer und Frauen auf Basis der aktuellen Sterbetafel – maßgeblich ist der Bewertungsstichtag. Die verbindliche Tabelle finden Sie hier: <a href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Erbschaft_Schenkungsteuerrecht/2026-10-22-bewert-lebensl-nutzung-leistung-1-1-27.html" target="_blank" rel="noopener">BMF – Vervielfältiger für Stichtage ab 1. Januar 2027</a>. Faustregel: je jünger die Person, desto höher der Faktor; Frauen liegen wegen der höheren Lebenserwartung über Männern.</li>
+          <li><strong>Befristeter Nießbrauch (feste Laufzeit):</strong> Hier wird der Barwert über die Jahre abgezinst (§ 13 BewG, gesetzlicher Zinssatz 5,5 %). Der Faktor steigt mit der Laufzeit, höchstens auf <strong>18,589</strong>.</li>
+        </ul>
+
+        <h3>Rechenbeispiel</h3>
+        <p>Eine vermietete Eigentumswohnung in Köln, Verkehrs-/Steuerwert <strong>500.000 €</strong>, Jahresnettokaltmiete <strong>15.000 €</strong>. Berechtigte: eine Frau, 70 Jahre, lebenslanger Nießbrauch.</p>
+        <table class="calc-table">
+          <tr><td>Höchst-Jahreswert nach § 16 BewG (500.000 € ÷ 18,6)</td><td>26.882 €</td></tr>
+          <tr><td>Tatsächliche Jahresnettokaltmiete (liegt darunter → maßgeblich)</td><td>15.000 €</td></tr>
+          <tr><td>Vervielfältiger, Frau, 70 J. (beispielhaft, BMF-Tabelle)</td><td>≈ 10,0</td></tr>
+          <tr><td>Kapitalwert des Nießbrauchs (15.000 € × 10,0)</td><td>≈ 150.000 €</td></tr>
+        </table>
+        <p>Der Nießbrauch ist in diesem Beispiel rund <strong>150.000 €</strong> wert. Bei einer Schenkung mindert dieser Betrag den steuerlichen Wert der Immobilie; bei einem Verkauf mit vorbehaltenem Nießbrauch reduziert er den Kaufpreis entsprechend. Für ein Wohnrecht gilt dieselbe Rechnung.</p>
+
+        <div class="doc-note">
+          <p><strong>Hinweis:</strong> Der Vervielfältiger im Beispiel ist gerundet und dient nur der Veranschaulichung. Der genaue Faktor ergibt sich aus der jeweils gültigen BMF-Tabelle für das Kalenderjahr und dem exakten Alter. Die verbindliche Berechnung – gerade für das Finanzamt – gehört in die Hände eines Steuerberaters oder Notars.</p>
+        </div>
+
+        <h3>Wofür man die Kapitalisierung braucht</h3>
+        <ul>
+          <li><strong>Schenkung / vorweggenommene Erbfolge:</strong> Wer eine Immobilie zu Lebzeiten überträgt, aber den Nießbrauch behält, senkt den steuerpflichtigen Wert um den Kapitalwert des Nießbrauchs.</li>
+          <li><strong>Erbschaft:</strong> Ein auf der Immobilie lastender Nießbrauch mindert den steuerlichen Wert des geerbten Objekts.</li>
+          <li><strong>Verkauf mit vorbehaltenem Nießbrauch:</strong> Der Kaufpreis wird um den kapitalisierten Nießbrauch reduziert.</li>
+          <li><strong>Ablösung / Verzicht:</strong> Soll ein Nießbrauch vorzeitig aufgehoben werden, dient der Kapitalwert als Grundlage für eine faire Abfindung.</li>
+        </ul>
 
         <h2>Kann man eine Immobilie mit Nießbrauch oder Wohnrecht verkaufen?</h2>
         <p>Ja – der Eigentümer kann die Immobilie trotz eingetragenem Nießbrauch oder Wohnrecht verkaufen. Das Recht bleibt jedoch bestehen und geht auf den Käufer über. Der neue Eigentümer muss es respektieren – er kann also nicht einziehen oder vermieten.</p>
