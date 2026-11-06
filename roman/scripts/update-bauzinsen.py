@@ -140,11 +140,24 @@ def build(sources, today):
     if old:
         names = ", ".join(f'{s["name"]} (Stand {s["stand"]:%d.%m.%Y})' for s in old)
         note_old = f'\n          <p class="zins-hinweis-alt">Hinweis: Die Angaben von {names} sind älter als 30 Tage; der Anbieter hat seine Tabelle seitdem nicht aktualisiert.</p>'
+    # Kölner Rechenbeispiel: Mittelwert ETW (alle Teilmärkte, Kap. 6.1.3) laut
+    # Grundstücksmarktbericht 2026 der Stadt Köln (Berichtszeitraum 2025)
+    qm_preis, qm = 4709, 80
+    kaufpreis = qm_preis * qm
+    darlehen = round(kaufpreis * 0.8)
+    z = avg[10][80]
+    rate = darlehen * (z / 100 + 0.02) / 12
+    eur = lambda x: f"{x:,.0f}".replace(",", ".") + " €"
+    koeln = f"""
+        <h2>Was die Bauzinsen für eine Wohnung in Köln bedeuten</h2>
+        <p>Einen eigenen Kölner Bauzins gibt es nicht: Banken kalkulieren nach Zinsbindung, Beleihungsauslauf und Bonität, nicht nach Stadt. Was die Zinsen in Köln bedeuten, zeigt sich deshalb am Kaufpreis.</p>
+        <p>Der Grundstücksmarktbericht 2026 der Stadt Köln nennt für Eigentumswohnungen einen stadtweiten Mittelwert von {eur(qm_preis)} je Quadratmeter Wohnfläche über alle Kauffälle aus Weiterverkauf, Neubau und Umwandlung (Kapitel 6.1.3, Berichtszeitraum 2025). Eine {qm}-m²-Wohnung kostet damit rund {eur(kaufpreis)}. Bei 80 % Finanzierung ({eur(darlehen)}), dem aktuellen Mittelwert von {pct(z)} für 10 Jahre und 2 % anfänglicher Tilgung liegt die Monatsrate bei rund <strong>{eur(rate)}</strong>. Kaufnebenkosten sind darin nicht enthalten; die Rechnung verwendet den effektiven Jahreszins als Näherung.</p>
+        <p class="zins-source">Quelle Kaufpreis: <a href="https://www.gars.nrw/images/user/GA_K%C3%B6ln/GMB2026_Digitalversion.pdf" target="_blank" rel="noopener">Gutachterausschuss Köln, Grundstücksmarktbericht 2026, Kap. 6.1.3</a></p>"""
     quellen = "\n".join(
         f'            <li><strong>{s["name"]}</strong> – {s["detail"]} – <a href="{s["url"]}" target="_blank" rel="noopener">{s["url"]}</a></li>'
         for s in sources)
     return f"""<!-- BAUZINSEN-START -->
-        <h2>Aktuelle Bauzinsen: Mittelwert aus ING, 1822direkt und Interhyp</h2>
+        <h2>Bauzinsen aktuell: Mittelwert aus ING, 1822direkt und Interhyp</h2>
         <p>Die Tabelle zeigt den <strong>Mittelwert der effektiven Jahreszinsen</strong> von drei öffentlich einsehbaren Zinstabellen – der ING, der 1822direkt (Direktbank der Frankfurter Sparkasse) und des Vermittlers Interhyp – für 10 und 15 Jahre Zinsbindung bei 60, 80 und 90 % Beleihungsauslauf. Aktualisiert am {today:%d.%m.%Y}.</p>
 
         <div class="zins-tabelle-wrap">
@@ -174,18 +187,25 @@ def build(sources, today):
           <ol>
 {quellen}
           </ol>
-        </div>
-<!-- BAUZINSEN-END -->"""
+        </div>{koeln}
+<!-- BAUZINSEN-END -->""", avg
 
 
 def main():
     today = dt.date.today()
     sources = [ing(), d1822(), interhyp()]
     page = PAGE.read_text(encoding="utf-8")
-    new_block = build(sources, today)
+    new_block, avg = build(sources, today)
     if "<!-- BAUZINSEN-START -->" not in page:
         sys.exit("Marker <!-- BAUZINSEN-START --> fehlt in bauzinsen.html")
     out = re.sub(r"<!-- BAUZINSEN-START -->.*?<!-- BAUZINSEN-END -->", lambda m: new_block, page, flags=re.S)
+    desc = (f"Bauzinsen Köln aktuell (Stand {today:%d.%m.%Y}): 10 Jahre ab {pct(avg[10][60])}, "
+            f"15 Jahre ab {pct(avg[15][60])} effektiv – Mittelwert aus ING, 1822direkt und Interhyp, mit Kölner Rechenbeispiel.")
+    out = re.sub(r'(<meta name="description" content=")[^"]*(")', lambda m: m.group(1) + desc + m.group(2), out, count=1)
+    out = re.sub(r'(<meta property="og:description" content=")[^"]*(")', lambda m: m.group(1) + desc + m.group(2), out, count=1)
+    out = re.sub(r'("description": ")[^"]*(",\n    "url": "https://romanbecker.de/ratgeber/bauzinsen.html")',
+                 lambda m: m.group(1) + desc + m.group(2), out, count=1)
+    out = re.sub(r'"dateModified": "\d{4}-\d\d-\d\d"', f'"dateModified": "{today:%Y-%m-%d}"', out, count=1)
     if out != page:
         PAGE.write_text(out, encoding="utf-8")
         print("bauzinsen.html aktualisiert")
