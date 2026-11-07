@@ -3,12 +3,12 @@
 
 Liest die effektiven Jahreszinsen für 10 und 15 Jahre Zinsbindung bei 60, 80 und
 90 % Beleihungsauslauf aus drei öffentlichen Quellen, bildet je Zelle den
-Mittelwert und schreibt den Block zwischen <!-- BAUZINSEN-START --> und
+Mittelwert der Quellen, die für diese Zelle einen Wert veröffentlichen, und schreibt den Block zwischen <!-- BAUZINSEN-START --> und
 <!-- BAUZINSEN-END --> neu.
 
 Quellen:
   ING        – offizielle Konditionsliste (PDF), Darlehen ab 300.000 EUR
-  1822direkt – Tabelle „Aktuelle Bauzinsen“ (Direktbank der Frankfurter Sparkasse)
+  Sparda-Bank Hamburg – Tageskonditionen (nur bis 60 % Beleihung, ab 150.000 EUR)
   Interhyp   – Zinstabelle (Spalten „unter 70 %“, „bei 80 %“, „über 90 %“)
 
 Bricht mit Fehler ab, wenn eine Quelle nicht lesbar ist – dann bleibt die Seite
@@ -28,7 +28,7 @@ PAGE = ROOT / "ratgeber" / "bauzinsen.html"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 Chrome/130 Safari/537.36"
 
 URL_ING = "https://www.ing.de/dokumente/partner/baufi-konditionen-online/"
-URL_1822 = "https://www.1822direkt.de/baufinanzierung/bauzinsen/"
+URL_SPARDA = "https://www.sparda-bank-hamburg.de/kredit-und-baufinanzierung/immobilien-finanzierung/baufinanzierung.html"
 URL_IH = "https://www.interhyp.de/bauzinsen/"
 
 YEARS = (10, 15)
@@ -87,17 +87,25 @@ def ing():
             "url": URL_ING, "vals": vals}
 
 
-def d1822():
-    t = text_of(get(URL_1822))
-    vals, stand = {}, None
+def sparda():
+    t = text_of(get(URL_SPARDA))
+    i = t.find("Tageskonditionen bis 60 % Verkehrswert")
+    if i < 0:
+        raise ValueError("Sparda: Konditionstabelle nicht gefunden")
+    seg = t[i:i + 900]
+    vals = {}
     for y in YEARS:
-        m = re.search(rf"Sollzinsbindung: {y} Jahre .*?60 % (\d,\d\d) % (\d,\d\d) % .*?80 % (\d,\d\d) % (\d,\d\d) % .*?90 % (\d,\d\d) % (\d,\d\d) % .*?\(Stand: (\d\d\.\d\d\.\d{{4}})\)", t)
+        m = re.search(rf"{y} Jahre ab 50\.000 Euro (\d,\d\d) % (\d,\d\d) % ab 150\.000 Euro (\d,\d\d) % (\d,\d\d) %", seg)
         if not m:
-            raise ValueError(f"1822direkt: {y} Jahre nicht gefunden")
-        vals[y] = {60: num(m.group(2)), 80: num(m.group(4)), 90: num(m.group(6))}
-        stand = de_date(m.group(7))
-    return {"name": "1822direkt", "stand": stand, "detail": f"Stand {stand:%d.%m.%Y}",
-            "url": URL_1822, "vals": vals}
+            raise ValueError(f"Sparda: {y} Jahre nicht gefunden")
+        vals[y] = {60: num(m.group(4))}
+    m = re.search(r"Stand: (\d\d\.\d\d\.\d{4})", seg)
+    if not m:
+        raise ValueError("Sparda: Stand nicht gefunden")
+    stand = de_date(m.group(1))
+    return {"name": "Sparda-Bank Hamburg", "stand": stand,
+            "detail": f"Tageskonditionen, Stand {stand:%d.%m.%Y}, bis 60 % Verkehrswert, ab 150.000 € (für 80 % und 90 % veröffentlicht die Bank keine Werte)",
+            "url": URL_SPARDA, "vals": vals}
 
 
 def interhyp():
@@ -122,11 +130,17 @@ def interhyp():
 
 
 def pct(x: float) -> str:
-    return f"{x:.2f}".replace(".", ",") + " %"
+    from decimal import Decimal, ROUND_HALF_UP
+    d = Decimal(repr(round(x, 6))).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    return f"{d}".replace(".", ",") + " %"
 
 
 def build(sources, today):
-    avg = {y: {l: sum(s["vals"][y][l] for s in sources) / len(sources) for l in LTVS} for y in YEARS}
+    def mittel(y, l):
+        w = [s["vals"][y][l] for s in sources if l in s["vals"][y]]
+        return sum(w) / len(w)
+    avg = {y: {l: mittel(y, l) for l in LTVS} for y in YEARS}
+    anz = {l: sum(1 for s in sources if l in s["vals"][YEARS[0]]) for l in LTVS}
     rows = "\n".join(
         f'              <tr><td>{y} Jahre</td>' + "".join(f"<td><strong>{pct(avg[y][l])}</strong></td>" for l in LTVS) + "</tr>"
         for y in YEARS)
@@ -134,7 +148,7 @@ def build(sources, today):
     for s in sources:
         for y in YEARS:
             src_rows.append(f'              <tr><td>{s["name"]}</td><td>{y} Jahre</td>' +
-                            "".join(f"<td>{pct(s['vals'][y][l])}</td>" for l in LTVS) + "</tr>")
+                            "".join(f"<td>{pct(s['vals'][y][l]) if l in s['vals'][y] else '–'}</td>" for l in LTVS) + "</tr>")
     old = [s for s in sources if (today - s["stand"]).days > 30]
     note_old = ""
     if old:
@@ -145,7 +159,7 @@ def build(sources, today):
     qm_preis, qm = 4709, 80
     kaufpreis = qm_preis * qm
     darlehen = round(kaufpreis * 0.8)
-    z = avg[10][80]
+    z = float(pct(avg[10][80]).replace(" %", "").replace(",", "."))  # mit dem angezeigten, gerundeten Wert rechnen
     rate = darlehen * (z / 100 + 0.02) / 12
     eur = lambda x: f"{x:,.0f}".replace(",", ".") + " €"
     koeln = f"""
@@ -157,13 +171,13 @@ def build(sources, today):
         f'            <li><strong>{s["name"]}</strong> – {s["detail"]} – <a href="{s["url"]}" target="_blank" rel="noopener">{s["url"]}</a></li>'
         for s in sources)
     return f"""<!-- BAUZINSEN-START -->
-        <h2>Bauzinsen aktuell: Mittelwert aus ING, 1822direkt und Interhyp</h2>
-        <p>Die Tabelle zeigt den <strong>Mittelwert der effektiven Jahreszinsen</strong> von drei öffentlich einsehbaren Zinstabellen – der ING, der 1822direkt (Direktbank der Frankfurter Sparkasse) und des Vermittlers Interhyp – für 10 und 15 Jahre Zinsbindung bei 60, 80 und 90 % Beleihungsauslauf. Aktualisiert am {today:%d.%m.%Y}.</p>
+        <h2>Bauzinsen aktuell: Mittelwert aus ING, Sparda-Bank Hamburg und Interhyp</h2>
+        <p>Die Tabelle zeigt den <strong>Mittelwert der effektiven Jahreszinsen</strong> aus öffentlich einsehbaren Zinstabellen – der ING, der Sparda-Bank Hamburg und des Vermittlers Interhyp – für 10 und 15 Jahre Zinsbindung bei 60, 80 und 90 % Beleihungsauslauf. Die Sparda-Bank veröffentlicht nur Werte bis 60 % Beleihung; die Spalten 80 % und 90 % sind deshalb der Mittelwert aus {anz[80]} Quellen, die Spalte 60 % aus {anz[60]}. Aktualisiert am {today:%d.%m.%Y}.</p>
 
         <div class="zins-tabelle-wrap">
           <table class="zins-tabelle">
-            <caption>Effektiver Jahreszins p. a., Mittelwert aus drei Quellen</caption>
-            <thead><tr><th>Zinsbindung</th><th>60 % Beleihung</th><th>80 % Beleihung</th><th>90 % Beleihung</th></tr></thead>
+            <caption>Effektiver Jahreszins p. a., Mittelwert je Spalte (Anzahl Quellen im Spaltenkopf)</caption>
+            <thead><tr><th>Zinsbindung</th><th>60 % Beleihung ({anz[60]})</th><th>80 % Beleihung ({anz[80]})</th><th>90 % Beleihung ({anz[90]})</th></tr></thead>
             <tbody>
 {rows}
             </tbody>
@@ -193,14 +207,14 @@ def build(sources, today):
 
 def main():
     today = dt.date.today()
-    sources = [ing(), d1822(), interhyp()]
+    sources = [ing(), sparda(), interhyp()]
     page = PAGE.read_text(encoding="utf-8")
     new_block, avg = build(sources, today)
     if "<!-- BAUZINSEN-START -->" not in page:
         sys.exit("Marker <!-- BAUZINSEN-START --> fehlt in bauzinsen.html")
     out = re.sub(r"<!-- BAUZINSEN-START -->.*?<!-- BAUZINSEN-END -->", lambda m: new_block, page, flags=re.S)
     desc = (f"Bauzinsen Köln aktuell (Stand {today:%d.%m.%Y}): 10 Jahre ab {pct(avg[10][60])}, "
-            f"15 Jahre ab {pct(avg[15][60])} effektiv – Mittelwert aus ING, 1822direkt und Interhyp, mit Kölner Rechenbeispiel.")
+            f"15 Jahre ab {pct(avg[15][60])} effektiv – Mittelwert aus ING, Sparda-Bank Hamburg und Interhyp, mit Kölner Rechenbeispiel.")
     out = re.sub(r'(<meta name="description" content=")[^"]*(")', lambda m: m.group(1) + desc + m.group(2), out, count=1)
     out = re.sub(r'(<meta property="og:description" content=")[^"]*(")', lambda m: m.group(1) + desc + m.group(2), out, count=1)
     out = re.sub(r'("description": ")[^"]*(",\n    "url": "https://romanbecker.de/ratgeber/bauzinsen.html")',
