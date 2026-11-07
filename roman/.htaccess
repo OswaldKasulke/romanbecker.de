@@ -50,6 +50,11 @@ RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^romanbecker\.de$ [NC]
 RewriteRule ^ https://romanbecker.de%{REQUEST_URI} [R=301,L,NE]
 
+# /index.html und /<ordner>/index.html -> Ordner-URL (301). THE_REQUEST statt
+# Pfad, damit der interne DirectoryIndex-Aufruf keine Schleife ausloest.
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ https://romanbecker.de/$1 [R=301,L,NE]
+
 # Sicherheitsheader fuer alle ausgelieferten Dateien.
 <IfModule mod_headers.c>
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
