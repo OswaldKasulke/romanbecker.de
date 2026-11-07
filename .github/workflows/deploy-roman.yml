@@ -128,8 +128,10 @@ jobs:
           for f in index.html immobilienbewertung.html stadtteile/shared.css bodenrichtwert.css; do
             want=$(sha256sum "roman/$f" | cut -d' ' -f1)
             got=""
+            # /index.html leitet seit 08.11.2026 per 301 auf / um – die Startseite unter / abrufen
+            url="$f"; [ "$f" = "index.html" ] && url=""
             for try in 1 2 3; do
-              got=$(curl -fsS --max-time 30 "https://romanbecker.de/$f?canary=${GITHUB_RUN_ID}.$try" | sha256sum | cut -d' ' -f1)
+              got=$(curl -fsS --max-time 30 "https://romanbecker.de/$url?canary=${GITHUB_RUN_ID}.$try" | sha256sum | cut -d' ' -f1)
               if [ "$got" = "$want" ]; then break; fi
               echo "Versuch $try fuer $f noch abweichend – warte 10 s"
               sleep 10
