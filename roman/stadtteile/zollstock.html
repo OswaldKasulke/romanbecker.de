@@ -358,7 +358,95 @@
   <!-- REFERENZ -->
   
 
-  <!-- VERKAUFT-START -->
+    <!-- FALLBEISPIEL-START -->
+<style>
+.case__intro { max-width: 46rem; margin-bottom: var(--space-4,1rem); }
+.case__gallery { display:grid; grid-template-columns: 2fr 1fr 1fr; gap:.5rem; margin: 0 0 var(--space-4,1rem); height: 260px; }
+.case__gallery figure { margin:0; position:relative; overflow:hidden; border-radius:8px; background: var(--gray-100,#f3f4f6); }
+.case__gallery img { width:100%; height:100%; object-fit:cover; display:block; }
+@media (max-width: 700px){ .case__gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 190px 120px; height:auto; } .case__gallery figure:first-child { grid-column: 1 / span 2; } }
+.case__gallery figcaption { position:absolute; left:.35rem; bottom:.35rem; background:rgba(0,0,0,.6); color:#fff; font-size:.65rem; padding:.1rem .4rem; border-radius:3px; }
+@media (max-width: 600px){ .case__gallery figcaption { display:none; } }
+.case__stats { display:flex; flex-wrap:wrap; gap:.4rem 1.5rem; margin:0 0 var(--space-6,1.5rem); padding:0; list-style:none; font-size:.875rem; color: var(--gray-600,#4b5563); }
+.case__stats strong { color: var(--gold,#b8975a); font-size:1.125rem; margin-right:.3rem; }
+.case__cols { display:grid; grid-template-columns:1fr; gap: var(--space-6,1.5rem); }
+@media (min-width: 900px){ .case__cols { grid-template-columns: 3fr 2fr; } }
+.case h3 { font-size:1rem; margin:0 0 .5rem; }
+.case ul.case__list { list-style:none; padding:0; margin:0 0 var(--space-4,1rem); }
+.case ul.case__list li { position:relative; padding-left:1.1rem; margin-bottom:.3rem; line-height:1.45; font-size:.9rem; color: var(--gray-700,#374151); }
+.case ul.case__list li::before { content:""; position:absolute; left:0; top:.55em; width:.4rem; height:.4rem; border-radius:50%; background: var(--gold,#b8975a); }
+.case__timeline { list-style:none; margin:0; padding:0 0 0 1rem; border-left:2px solid var(--gold,#b8975a); font-size:.875rem; }
+.case__timeline li { position:relative; padding:0 0 .35rem .6rem; line-height:1.35; }
+.case__timeline li::before { content:""; position:absolute; left:calc(-1rem - 5px); top:.3em; width:8px; height:8px; border-radius:50%; background:#fff; border:2px solid var(--gold,#b8975a); }
+.case__timeline li.is-key::before { background: var(--gold,#b8975a); }
+.case__timeline time { font-weight:700; color: var(--gray-500,#6b7280); margin-right:.35rem; }
+.case__timeline span { color: var(--gray-800,#1f2937); }
+.case__result { margin-top: var(--space-4,1rem); padding: .9rem 1.1rem; border-radius:8px; background: var(--gold-light,#fdf8ee); border-left:3px solid var(--gold,#b8975a); font-size:.9rem; }
+.case__result p { margin:0 0 .4rem; line-height:1.5; }
+.case__result p:last-child { margin:0; }
+</style>
+<section class="section case" id="fallbeispiel">
+  <div class="container">
+    <span class="section-label">Fallbeispiel</span>
+    <h2>Verkauft in Zollstock: 2-Zimmer-Wohnung mit Wohnküche</h2>
+    <p class="text-muted leading-relaxed case__intro">
+      Eine kleine Wohnung, viele Interessenten: Alle Kaufabsichtserklärungen lagen über dem Angebotspreis.
+    </p>
+
+    <div class="case__gallery">
+      <figure><img src="fallbeispiel-zollstock-1.webp" width="1400" height="933" alt="Mehrfamilienhaus mit Grünfläche in Zollstock" loading="lazy"><figcaption>Hausansicht</figcaption></figure>
+      <figure><img src="fallbeispiel-zollstock-2.webp" width="1400" height="933" alt="Wohnküche" loading="lazy"><figcaption>Wohnküche</figcaption></figure>
+      <figure><img src="fallbeispiel-zollstock-3.webp" width="1400" height="933" alt="Zimmer" loading="lazy"><figcaption>Zimmer</figcaption></figure>
+    </div>
+
+    <ul class="case__stats">
+      <li><strong>55 m²</strong>Wohnfläche</li>
+      <li><strong>4</strong>Kaufabsichtserklärungen</li>
+      <li><strong>2 Wochen</strong>online bis zur Einigung</li>
+      <li><strong>1958</strong>Baujahr</li>
+    </ul>
+
+    <div class="case__cols">
+      <div>
+        <h3>Ausgangssituation</h3>
+        <ul class="case__list">
+          <li>2 Zimmer im ersten Obergeschoss mit großer Wohnküche.</li>
+          <li>Die Eigentümerin hatte schon zuvor mit mir verkauft.</li>
+        </ul>
+
+        <h3>Was ich gemacht habe</h3>
+        <ul class="case__list">
+          <li>Angebotspreis kalkuliert und mit der Eigentümerin festgelegt.</li>
+          <li>Exposé erstellt und mit ihr abgestimmt.</li>
+          <li>Kaufabsichtserklärungen eingeholt und verglichen.</li>
+          <li>Finanzierung der Käufer nachgehalten, Kaufvertrag und Notartermin abgestimmt, Übergabe durchgeführt.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Zeitstrahl</h3>
+        <ol class="case__timeline">
+          <li class="is-key"><time>Juli 2025</time><span>Preiskalkulation, Maklerauftrag</span></li>
+          <li><time>Anfang August 2025</time><span>Exposé-Entwurf</span></li>
+          <li class="is-key"><time>Mitte August 2025</time><span>Online, erste Besichtigungen</span></li>
+          <li class="is-key"><time>Ende August 2025</time><span>Kaufabsichtserklärungen, Einigung</span></li>
+          <li><time>September 2025</time><span>Finanzierung</span></li>
+          <li><time>Oktober 2025</time><span>Kaufvertragsentwurf</span></li>
+          <li class="is-key"><time>November 2025</time><span>Beurkundung beim Notar</span></li>
+          <li class="is-key"><time>Januar 2026</time><span>Übergabe</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="case__result">
+      <p><strong>Ergebnis:</strong> Rund zwei Wochen nach dem Online-Start gab es vier Kaufabsichtserklärungen, jede über dem Angebotspreis. Beurkundet wurde im November, übergeben Anfang Januar.</p>
+      <p><strong>Fazit:</strong> Ein Preis, der Nachfrage erzeugt, ist oft besser als ein hoher Preis, der keine erzeugt. Hier haben die Interessenten selbst gemerkt, dass sie mehr bieten müssen.</p>
+      <p>Sie möchten in Zollstock verkaufen? <a href="https://romanbecker.de/#kontakt" style="font-weight:700;color:inherit;">→ Sprechen Sie mich an</a></p>
+    </div>
+  </div>
+</section>
+<!-- FALLBEISPIEL-END -->
+
+<!-- VERKAUFT-START -->
   <section class="section">
     <div class="container">
       <div class="card ref-card">
