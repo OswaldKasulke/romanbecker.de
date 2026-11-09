@@ -256,48 +256,41 @@
       <h2>Bodenrichtwerte in Rommerskirchen – nach Ortsteil</h2>
       <p class="text-muted leading-relaxed mb-6" style="max-width:820px;">Der Bodenrichtwert ist der amtliche Durchschnittswert für unbebauten Grund je Quadratmeter. Für Rommerskirchen weist der Gutachterausschuss 21 Wohnbauland-Zonen aus. Hier die Werte je Ortsteil.</p>
       <style>
-      .brw-grid { display:grid; grid-template-columns:1fr; margin:1rem 0; }
-      .brw-grid .cost-table { margin:0; font-size:.875rem; }
-      .brw-grid .cost-table th { padding:.4rem .75rem; }
-      .brw-grid .cost-table td { padding:.3rem .75rem; }
-      .brw-grid .brw-rest thead { display:none; }
+      .brw-grid { margin:1rem 0; border:1px solid var(--gray-200); border-radius:6px; overflow:hidden; font-size:.875rem; color:var(--gray-600); }
+      .brw-head, .brw-row { display:flex; justify-content:space-between; gap:1rem; padding:.35rem .75rem; }
+      .brw-head { background:var(--navy); color:var(--white); font-weight:600; }
+      .brw-main { font-weight:700; border-bottom:1px solid var(--gray-200); }
+      .brw-list { margin:0; display:grid; grid-template-columns:1fr; }
+      .brw-row dt, .brw-row dd { margin:0; font-weight:inherit; }
+      .brw-row dd { white-space:nowrap; }
+      .brw-row:nth-child(even) { background:var(--gray-100); }
       @media (min-width:900px) {
-        .brw-grid { grid-template-columns:repeat(3,1fr); column-gap:1.25rem; align-items:start; }
-        .brw-grid .brw-rest thead { display:table-header-group; }
+        .brw-list { grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(5,auto); grid-auto-flow:column; }
+        .brw-row:nth-child(even) { background:none; }
+        .brw-row:nth-child(5n+2), .brw-row:nth-child(5n+4) { background:var(--gray-100); }
+        .brw-row:nth-child(n+6) { border-left:1px solid var(--gray-200); }
       }
       </style>
       <div class="brw-grid">
-        <table class="cost-table">
-          <thead><tr><th>Ortsteil</th><th class="num">Bodenrichtwert</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Rommerskirchen (Hauptort)</strong></td><td class="num"><strong>310 – 340 €/m²</strong></td></tr>
-            <tr><td>Eckum</td><td class="num">310 €/m²</td></tr>
-            <tr><td>Gill</td><td class="num">280 €/m²</td></tr>
-            <tr><td>Nettesheim-Butzheim</td><td class="num">260 €/m²</td></tr>
-            <tr><td>Vanikum</td><td class="num">200 – 250 €/m²</td></tr>
-            <tr><td>Evinghoven</td><td class="num">240 €/m²</td></tr>
-          </tbody>
-        </table>
-        <table class="cost-table brw-rest">
-          <thead><tr><th>Ortsteil</th><th class="num">Bodenrichtwert</th></tr></thead>
-          <tbody>
-            <tr><td>Widdeshoven</td><td class="num">240 €/m²</td></tr>
-            <tr><td>Hoeningen</td><td class="num">230 – 240 €/m²</td></tr>
-            <tr><td>Anstel</td><td class="num">230 €/m²</td></tr>
-            <tr><td>Frixheim</td><td class="num">230 €/m²</td></tr>
-            <tr><td>Ramrath</td><td class="num">230 €/m²</td></tr>
-          </tbody>
-        </table>
-        <table class="cost-table brw-rest">
-          <thead><tr><th>Ortsteil</th><th class="num">Bodenrichtwert</th></tr></thead>
-          <tbody>
-            <tr><td>Villau</td><td class="num">230 €/m²</td></tr>
-            <tr><td>Oekoven</td><td class="num">220 €/m²</td></tr>
-            <tr><td>Deelen</td><td class="num">200 – 210 €/m²</td></tr>
-            <tr><td>Sinsteden</td><td class="num">200 €/m²</td></tr>
-            <tr><td>Ueckinghoven</td><td class="num">190 €/m²</td></tr>
-          </tbody>
-        </table>
+        <div class="brw-head"><span>Ortsteil</span><span>Bodenrichtwert Wohnbauland</span></div>
+        <div class="brw-head brw-main" style="background:none;color:inherit;"><span>Rommerskirchen (Hauptort)</span><span>310 – 340 €/m²</span></div>
+        <dl class="brw-list">
+          <div class="brw-row"><dt>Eckum</dt><dd>310 €/m²</dd></div>
+          <div class="brw-row"><dt>Gill</dt><dd>280 €/m²</dd></div>
+          <div class="brw-row"><dt>Nettesheim-Butzheim</dt><dd>260 €/m²</dd></div>
+          <div class="brw-row"><dt>Vanikum</dt><dd>200 – 250 €/m²</dd></div>
+          <div class="brw-row"><dt>Evinghoven</dt><dd>240 €/m²</dd></div>
+          <div class="brw-row"><dt>Widdeshoven</dt><dd>240 €/m²</dd></div>
+          <div class="brw-row"><dt>Hoeningen</dt><dd>230 – 240 €/m²</dd></div>
+          <div class="brw-row"><dt>Anstel</dt><dd>230 €/m²</dd></div>
+          <div class="brw-row"><dt>Frixheim</dt><dd>230 €/m²</dd></div>
+          <div class="brw-row"><dt>Ramrath</dt><dd>230 €/m²</dd></div>
+          <div class="brw-row"><dt>Villau</dt><dd>230 €/m²</dd></div>
+          <div class="brw-row"><dt>Oekoven</dt><dd>220 €/m²</dd></div>
+          <div class="brw-row"><dt>Deelen</dt><dd>200 – 210 €/m²</dd></div>
+          <div class="brw-row"><dt>Sinsteden</dt><dd>200 €/m²</dd></div>
+          <div class="brw-row"><dt>Ueckinghoven</dt><dd>190 €/m²</dd></div>
+        </dl>
       </div>
       <p class="text-muted" style="font-size:0.875rem;max-width:820px;margin-top:var(--space-4);">Median über alle 21 Wohnbauland-Zonen: <strong>230 €/m²</strong>, niedrigster ausgewiesener Wert im Gemeindegebiet 105 €/m². Stichtag 01.01.2026, Quelle: <a href="https://www.boris.nrw/boris-nrw/" target="_blank" rel="noopener">BORIS.NRW</a>, Gutachterausschuss für Grundstückswerte im Rhein-Kreis Neuss.</p>
     </div>
