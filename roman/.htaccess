@@ -76,6 +76,9 @@ RewriteRule ^objekte/?$   /#objekte-koeln [R=301,L,NE]
 RewriteRule ^immobilien/?$ /#objekte-koeln [R=301,L,NE]
 RewriteRule ^angebote/?$   /#objekte-koeln [R=301,L,NE]
 
+# Gutachter-Seite am 09.11.2026 entfernt (kaum Klicks, Roman ist kein Gutachter) -> Bewertungsseite
+RewriteRule ^immobiliengutachter-koeln(\.html)?$ https://romanbecker.de/immobilienbewertung.html [R=301,L,NE]
+
 # Nießbrauch-Seiten: alte Einfach-s-Slugs -> korrekte Doppel-s-Slugs (301)
 
 # Weitere Zusammenlegungen duenner Ratgeber-Seiten
