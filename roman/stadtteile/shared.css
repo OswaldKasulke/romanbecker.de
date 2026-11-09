@@ -69,6 +69,8 @@ a { color: inherit; }
 /* Der Abstand des letzten Blocks einer Section liegt ohnehin im Section-Padding. */
 .section > .container > .mb-12:last-child,
 .section > .container > .mb-8:last-child { margin-bottom: 0; }
+/* Kennzahl-Kacheln tragen inline margin-bottom: var(--space-12); als letzter Block doppelt das die Lücke zur nächsten Section. */
+.section > .container > .market-grid:last-child { margin-bottom: 0 !important; }
 
 /* TYPOGRAPHY */
 h1 { font-family: var(--font-heading); font-size: clamp(1.875rem, 3.6vw, 2.5rem); font-weight: 700; line-height: 1.2; color: var(--text, #000000); }
