@@ -211,6 +211,94 @@
 
 
   
+  <!-- FALLBEISPIEL-START -->
+<style>
+.case__intro { max-width: 46rem; margin-bottom: var(--space-4,1rem); }
+.case__gallery { display:grid; grid-template-columns: 2fr 1fr 1fr; gap:.5rem; margin: 0 0 var(--space-4,1rem); height: 260px; }
+.case__gallery figure { margin:0; position:relative; overflow:hidden; border-radius:8px; background: var(--gray-100,#f3f4f6); }
+.case__gallery img { width:100%; height:100%; object-fit:cover; display:block; }
+@media (max-width: 700px){ .case__gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 190px 120px; height:auto; } .case__gallery figure:first-child { grid-column: 1 / span 2; } }
+.case__gallery figcaption { position:absolute; left:.35rem; bottom:.35rem; background:rgba(0,0,0,.6); color:#fff; font-size:.65rem; padding:.1rem .4rem; border-radius:3px; }
+@media (max-width: 600px){ .case__gallery figcaption { display:none; } }
+.case__stats { display:flex; flex-wrap:wrap; gap:.4rem 1.5rem; margin:0 0 var(--space-6,1.5rem); padding:0; list-style:none; font-size:.875rem; color: var(--gray-600,#4b5563); }
+.case__stats strong { color: var(--gold,#b8975a); font-size:1.125rem; margin-right:.3rem; }
+.case__cols { display:grid; grid-template-columns:1fr; gap: var(--space-6,1.5rem); }
+@media (min-width: 900px){ .case__cols { grid-template-columns: 3fr 2fr; } }
+.case h3 { font-size:1rem; margin:0 0 .5rem; }
+.case ul.case__list { list-style:none; padding:0; margin:0 0 var(--space-4,1rem); }
+.case ul.case__list li { position:relative; padding-left:1.1rem; margin-bottom:.3rem; line-height:1.45; font-size:.9rem; color: var(--gray-700,#374151); }
+.case ul.case__list li::before { content:""; position:absolute; left:0; top:.55em; width:.4rem; height:.4rem; border-radius:50%; background: var(--gold,#b8975a); }
+.case__timeline { list-style:none; margin:0; padding:0 0 0 1rem; border-left:2px solid var(--gold,#b8975a); font-size:.875rem; }
+.case__timeline li { position:relative; padding:0 0 .35rem .6rem; line-height:1.35; }
+.case__timeline li::before { content:""; position:absolute; left:calc(-1rem - 5px); top:.3em; width:8px; height:8px; border-radius:50%; background:#fff; border:2px solid var(--gold,#b8975a); }
+.case__timeline li.is-key::before { background: var(--gold,#b8975a); }
+.case__timeline time { font-weight:700; color: var(--gray-500,#6b7280); margin-right:.35rem; }
+.case__timeline span { color: var(--gray-800,#1f2937); }
+.case__result { margin-top: var(--space-4,1rem); padding: .9rem 1.1rem; border-radius:8px; background: var(--gold-light,#fdf8ee); border-left:3px solid var(--gold,#b8975a); font-size:.9rem; }
+.case__result p { margin:0 0 .4rem; line-height:1.5; }
+.case__result p:last-child { margin:0; }
+</style>
+<section class="section case" id="fallbeispiel">
+  <div class="container">
+    <span class="section-label">Fallbeispiel</span>
+    <h2>Verkauft im Rheinauhafen: vermietete Wohnung mit Rheinblick</h2>
+    <p class="text-muted leading-relaxed case__intro">
+      Eine Eigentumswohnung direkt am Rhein, neben den Kranhäusern, zum Zeitpunkt des Verkaufs vermietet.
+    </p>
+
+    <div class="case__gallery">
+      <figure><img src="fallbeispiel-rheinauhafen-1.webp" width="1400" height="933" alt="Wohnhaus an der Rheinauhafen-Promenade" loading="lazy"><figcaption>Promenade</figcaption></figure>
+      <figure><img src="fallbeispiel-rheinauhafen-2.webp" width="1400" height="933" alt="Blick vom Balkon über den Rhein" loading="lazy"><figcaption>Blick vom Balkon</figcaption></figure>
+      <figure><img src="fallbeispiel-rheinauhafen-3.webp" width="1400" height="933" alt="Wohnbereich mit bodentiefen Fenstern" loading="lazy"><figcaption>Wohnbereich</figcaption></figure>
+    </div>
+
+    <ul class="case__stats">
+      <li><strong>148 m²</strong>Wohnfläche</li>
+      <li><strong>25 m²</strong>Balkon</li>
+      <li><strong>2006</strong>Baujahr</li>
+      <li><strong>4,5 Monate</strong>Auftrag bis Notar</li>
+    </ul>
+
+    <div class="case__cols">
+      <div>
+        <h3>Ausgangssituation</h3>
+        <ul class="case__list">
+          <li>Die Wohnung kam über mein Netzwerk zu mir.</li>
+          <li>Sie war vermietet. Besichtigungen waren deshalb nur in wenigen Zeitfenstern möglich.</li>
+          <li>Im Rheinauhafen standen zur gleichen Zeit weitere Wohnungen zum Verkauf.</li>
+        </ul>
+
+        <h3>Was ich gemacht habe</h3>
+        <ul class="case__list">
+          <li>Wohnflächenberechnung und Fototermin organisiert.</li>
+          <li>Zunächst ohne Innenfotos vermarktet und die wenigen Besichtigungstermine gezielt vergeben.</li>
+          <li>Den Eigentümer laufend mit Vermarktungsupdates informiert.</li>
+          <li>Kaufabsichtserklärung und Kaufvertragsentwurf zwischen Käufer, Eigentümer und Notar abgestimmt.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Zeitstrahl</h3>
+        <ol class="case__timeline">
+          <li class="is-key"><time>März 2023</time><span>Maklerauftrag unterschrieben</span></li>
+          <li><time>April 2023</time><span>Wohnflächenberechnung, Fototermin</span></li>
+          <li><time>Mai 2023</time><span>Exposé-Entwurf</span></li>
+          <li><time>Juni 2023</time><span>Erste Anfrage des späteren Käufers</span></li>
+          <li class="is-key"><time>Juli 2023</time><span>Besichtigung, Kaufabsichtserklärung</span></li>
+          <li><time>Anfang August 2023</time><span>Kaufvertragsentwurf</span></li>
+          <li class="is-key"><time>August 2023</time><span>Beurkundung beim Notar</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="case__result">
+      <p><strong>Ergebnis:</strong> Vom Maklerauftrag bis zum Notar vergingen rund viereinhalb Monate – trotz Mieterin, wenigen Terminen und Wettbewerb in derselben Lage.</p>
+      <p><strong>Fazit:</strong> Eine vermietete Wohnung lässt sich auch in dieser Preisklasse verkaufen. Entscheidend war hier ein Angebotspreis, der im Vergleich zu den anderen Wohnungen im Rheinauhafen passte.</p>
+      <p>Sie verkaufen eine vermietete Wohnung? <a href="https://romanbecker.de/#kontakt" style="font-weight:700;color:inherit;">→ Sprechen Sie mich an</a></p>
+    </div>
+  </div>
+</section>
+<!-- FALLBEISPIEL-END -->
+
 <!-- VERKAUFT-START -->
   <section class="section">
     <div class="container">
