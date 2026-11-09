@@ -261,8 +261,8 @@
       .brw-grid .cost-table th { padding:.4rem .75rem; }
       .brw-grid .cost-table td { padding:.3rem .75rem; }
       .brw-grid .brw-rest thead { display:none; }
-      @media (min-width:760px) {
-        .brw-grid { grid-template-columns:1fr 1fr; column-gap:1.5rem; }
+      @media (min-width:900px) {
+        .brw-grid { grid-template-columns:repeat(3,1fr); column-gap:1.25rem; align-items:start; }
         .brw-grid .brw-rest thead { display:table-header-group; }
       }
       </style>
@@ -276,16 +276,21 @@
             <tr><td>Nettesheim-Butzheim</td><td class="num">260 €/m²</td></tr>
             <tr><td>Vanikum</td><td class="num">200 – 250 €/m²</td></tr>
             <tr><td>Evinghoven</td><td class="num">240 €/m²</td></tr>
-            <tr><td>Widdeshoven</td><td class="num">240 €/m²</td></tr>
-            <tr><td>Hoeningen</td><td class="num">230 – 240 €/m²</td></tr>
           </tbody>
         </table>
         <table class="cost-table brw-rest">
           <thead><tr><th>Ortsteil</th><th class="num">Bodenrichtwert</th></tr></thead>
           <tbody>
+            <tr><td>Widdeshoven</td><td class="num">240 €/m²</td></tr>
+            <tr><td>Hoeningen</td><td class="num">230 – 240 €/m²</td></tr>
             <tr><td>Anstel</td><td class="num">230 €/m²</td></tr>
             <tr><td>Frixheim</td><td class="num">230 €/m²</td></tr>
             <tr><td>Ramrath</td><td class="num">230 €/m²</td></tr>
+          </tbody>
+        </table>
+        <table class="cost-table brw-rest">
+          <thead><tr><th>Ortsteil</th><th class="num">Bodenrichtwert</th></tr></thead>
+          <tbody>
             <tr><td>Villau</td><td class="num">230 €/m²</td></tr>
             <tr><td>Oekoven</td><td class="num">220 €/m²</td></tr>
             <tr><td>Deelen</td><td class="num">200 – 210 €/m²</td></tr>
