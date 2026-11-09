@@ -75,6 +75,7 @@ a { color: inherit; }
 /* Kein Rest-Abstand am Ende einer Section: letzter Absatz einer Spalte und letzter Block. */
 .section > .container > :last-child { margin-bottom: 0; }
 .section .grid-2 > div > :last-child { margin-bottom: 0; }
+.section > .container > :first-child { margin-top: 0; }
 
 /* TYPOGRAPHY */
 h1 { font-family: var(--font-heading); font-size: clamp(1.875rem, 3.6vw, 2.5rem); font-weight: 700; line-height: 1.2; color: var(--text, #000000); }
