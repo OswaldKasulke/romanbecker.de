@@ -1,0 +1,4 @@
+# Dummy-Seite: nicht in Suchmaschinen (auch PDFs/Bilder)
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
