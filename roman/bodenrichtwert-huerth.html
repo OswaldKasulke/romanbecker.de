@@ -56,18 +56,35 @@
       <span class="section-label">Übersicht 2026</span>
       <h2>Bodenrichtwerte Hürth 2026 – nach Ortsteil</h2>
       <p class="text-muted mb-8 max-w-prose">Die folgenden Richtwerte basieren auf den Daten des Gutachterausschusses Rhein-Erft-Kreis / BORIS NRW. Richtwerte für durchschnittliche Wohnbaugrundstücke in mittleren Lagen.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Ortsteil / Lage</th><th>PLZ</th><th>Bodenrichtwert (ca.)</th></tr></thead>
-          <tbody><tr><td>Hürth-Mitte / Hermülheim</td><td>50354</td><td>560–670 €/m²</td></tr>
-              <tr><td>Efferen</td><td>50354</td><td>570–720 €/m²</td></tr>
-              <tr><td>Kalscheuren</td><td>50354</td><td>320 €/m²</td></tr>
-              <tr><td>Alstädten-Burbach</td><td>50354</td><td>500–530 €/m²</td></tr>
-              <tr><td>Gleuel</td><td>50354</td><td>360–480 €/m²</td></tr>
-              <tr><td>Fischenich</td><td>50354</td><td>350–500 €/m²</td></tr>
-              <tr><td>Stotzheim</td><td>50354</td><td>530–560 €/m²</td></tr>
-              <tr><td>Kendenich</td><td>50354</td><td>350–440 €/m²</td></tr></tbody>
-        </table>
+      <style>
+      .brw-grid { margin:1rem 0; border:1px solid var(--gray-200); border-radius:6px; overflow:hidden; font-size:.875rem; color:var(--gray-600); background:var(--white); }
+      .brw-head, .brw-row { display:flex; justify-content:space-between; gap:1rem; padding:.35rem .75rem; }
+      .brw-head { background:var(--navy); color:var(--white); font-weight:600; }
+      .brw-main { font-weight:700; border-bottom:1px solid var(--gray-200); }
+      .brw-list { margin:0; display:grid; grid-template-columns:1fr; }
+      .brw-row dt, .brw-row dd { margin:0; font-weight:inherit; }
+      .brw-row dd { white-space:nowrap; }
+      .brw-row:nth-child(even) { background:var(--gray-100); }
+      .brw-sub { font-size:.8125rem; opacity:.8; margin-left:.35rem; }
+      @media (min-width:900px) {
+        .brw-list { grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,auto); grid-auto-flow:column; }
+        .brw-row:nth-child(even) { background:none; }
+        .brw-row:nth-child(3n+2) { background:var(--gray-100); }
+        .brw-row:nth-child(n+4) { border-left:1px solid var(--gray-200); }
+      }
+      </style>
+      <div class="brw-grid">
+        <div class="brw-head"><span>Ortsteil / Lage · PLZ</span><span>Bodenrichtwert (ca.)</span></div>
+        <dl class="brw-list">
+          <div class="brw-row"><dt>Hürth-Mitte / Hermülheim<span class="brw-sub">50354</span></dt><dd>560–670 €/m²</dd></div>
+          <div class="brw-row"><dt>Efferen<span class="brw-sub">50354</span></dt><dd>570–720 €/m²</dd></div>
+          <div class="brw-row"><dt>Kalscheuren<span class="brw-sub">50354</span></dt><dd>320 €/m²</dd></div>
+          <div class="brw-row"><dt>Alstädten-Burbach<span class="brw-sub">50354</span></dt><dd>500–530 €/m²</dd></div>
+          <div class="brw-row"><dt>Gleuel<span class="brw-sub">50354</span></dt><dd>360–480 €/m²</dd></div>
+          <div class="brw-row"><dt>Fischenich<span class="brw-sub">50354</span></dt><dd>350–500 €/m²</dd></div>
+          <div class="brw-row"><dt>Stotzheim<span class="brw-sub">50354</span></dt><dd>530–560 €/m²</dd></div>
+          <div class="brw-row"><dt>Kendenich<span class="brw-sub">50354</span></dt><dd>350–440 €/m²</dd></div>
+        </dl>
       </div>
       <p class="table-note">Quelle: Der Gutachterausschuss Rhein-Erft-Kreis über BORIS NRW (Open Data, Datensatz vom 03.08.2026, Stichtag 01.01.2026). Ausgewiesen ist je Ortsteil die Spanne der amtlichen Bodenrichtwertzonen für Wohnbauflächen (42 Zonen). Werte für typische Wohnbaugrundstücke; Speziallagen und Sonderbaurechte können erheblich abweichen. Angaben ohne Gewähr. Offizielle Auskunft: <a href="https://www.boris.nrw.de/boris-nrw/" target="_blank" rel="noopener" style="color:var(--gold);">www.boris.nrw.de</a></p>
     </div></section>

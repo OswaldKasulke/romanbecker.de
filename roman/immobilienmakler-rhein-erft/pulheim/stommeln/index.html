@@ -157,19 +157,34 @@
       <span class="section-label">Amtliche Bodenrichtwerte</span>
       <h2>Was der Grund und Boden in Stommeln wert ist</h2>
       <p class="text-muted leading-relaxed mb-6" style="max-width:820px;">Der Bodenrichtwert ist der amtliche Durchschnittswert für unbebauten Grund je Quadratmeter. Für Stommeln weist der Gutachterausschuss sechs Zonen aus – hier alle sechs mit Namen, damit Sie Ihre Lage zuordnen können.</p>
-      <table class="cost-table" style="max-width:820px;">
-        <thead>
-          <tr><th>Richtwertzone Stommeln</th><th>Art / Bauweise</th><th class="num">Bodenrichtwert</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Fliestedener Weg</td><td>Wohnbaufläche, eingeschossig</td><td class="num"><strong>590 €/m²</strong></td></tr>
-          <tr><td>Zum Geyener Kreuz</td><td>Wohnbaufläche, zweigeschossig</td><td class="num"><strong>590 €/m²</strong></td></tr>
-          <tr><td>Hauptstraße / Nettegasse</td><td>Dorfgebiet, zweigeschossig</td><td class="num">560 €/m²</td></tr>
-          <tr><td>Neusser Gasse</td><td>allg. Wohngebiet, ein- bis zweigeschossig</td><td class="num">560 €/m²</td></tr>
-          <tr><td>Lindlacher Weg</td><td>Wohnbaufläche, zweigeschossig</td><td class="num">530 €/m²</td></tr>
-          <tr><td>Bruchstraße</td><td>Wohnbaufläche, eingeschossig</td><td class="num">510 €/m²</td></tr>
-        </tbody>
-      </table>
+      <style>
+      .brw-grid { margin:1rem 0; border:1px solid var(--gray-200); border-radius:6px; overflow:hidden; font-size:.875rem; color:var(--gray-600); background:var(--white); }
+      .brw-head, .brw-row { display:flex; justify-content:space-between; gap:1rem; padding:.35rem .75rem; }
+      .brw-head { background:var(--navy); color:var(--white); font-weight:600; }
+      .brw-main { font-weight:700; border-bottom:1px solid var(--gray-200); }
+      .brw-list { margin:0; display:grid; grid-template-columns:1fr; }
+      .brw-row dt, .brw-row dd { margin:0; font-weight:inherit; }
+      .brw-row dd { white-space:nowrap; }
+      .brw-row:nth-child(even) { background:var(--gray-100); }
+      .brw-sub { display:block; font-size:.8125rem; opacity:.8; }
+      @media (min-width:900px) {
+        .brw-list { grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(2,auto); grid-auto-flow:column; }
+        .brw-row:nth-child(even) { background:none; }
+        .brw-row:nth-child(2n+2) { background:var(--gray-100); }
+        .brw-row:nth-child(n+3) { border-left:1px solid var(--gray-200); }
+      }
+      </style>
+      <div class="brw-grid">
+        <div class="brw-head"><span>Richtwertzone Stommeln · Art / Bauweise</span><span>Bodenrichtwert</span></div>
+        <dl class="brw-list">
+          <div class="brw-row"><dt>Fliestedener Weg<span class="brw-sub">Wohnbaufläche, eingeschossig</span></dt><dd><strong>590 €/m²</strong></dd></div>
+          <div class="brw-row"><dt>Zum Geyener Kreuz<span class="brw-sub">Wohnbaufläche, zweigeschossig</span></dt><dd><strong>590 €/m²</strong></dd></div>
+          <div class="brw-row"><dt>Hauptstraße / Nettegasse<span class="brw-sub">Dorfgebiet, zweigeschossig</span></dt><dd>560 €/m²</dd></div>
+          <div class="brw-row"><dt>Neusser Gasse<span class="brw-sub">allg. Wohngebiet, ein- bis zweigeschossig</span></dt><dd>560 €/m²</dd></div>
+          <div class="brw-row"><dt>Lindlacher Weg<span class="brw-sub">Wohnbaufläche, zweigeschossig</span></dt><dd>530 €/m²</dd></div>
+          <div class="brw-row"><dt>Bruchstraße<span class="brw-sub">Wohnbaufläche, eingeschossig</span></dt><dd>510 €/m²</dd></div>
+        </dl>
+      </div>
       <p class="text-muted" style="font-size:0.875rem;max-width:820px;margin-top:var(--space-4);">Median der fünf Wohnbauland-Zonen: <strong>560 €/m²</strong>. Stichtag 01.01.2026, Quelle: <a href="https://www.boris.nrw/boris-nrw/" target="_blank" rel="noopener">BORIS.NRW</a>, Gutachterausschuss für Grundstückswerte im Rhein-Erft-Kreis.</p>
     </div>
   </section>

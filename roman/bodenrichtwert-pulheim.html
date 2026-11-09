@@ -75,19 +75,36 @@
         <span class="section-label">Übersicht 2026</span>
         <h2>Bodenrichtwerte Pulheim 2026 – nach Ortsteil</h2>
         <p class="text-muted mb-8 max-w-prose">Die folgenden Richtwerte basieren auf den Daten des Gutachterausschusses Rhein-Erft-Kreis / BORIS NRW. Sie gelten für durchschnittliche Wohnbaugrundstücke in mittleren Lagen.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Ortsteil / Lage</th><th>PLZ</th><th>Bodenrichtwert (ca.)</th></tr></thead>
-            <tbody><tr><td>Pulheim-Zentrum</td><td>50259</td><td>610–690 €/m²</td></tr>
-              <tr><td>Brauweiler</td><td>50259</td><td>610–660 €/m²</td></tr>
-              <tr><td>Stommeln</td><td>50259</td><td>510–590 €/m²</td></tr>
-              <tr><td>Sinnersdorf</td><td>50259</td><td>600–610 €/m²</td></tr>
-              <tr><td>Geyen</td><td>50259</td><td>570–610 €/m²</td></tr>
-              <tr><td>Sinthern</td><td>50259</td><td>570–610 €/m²</td></tr>
-              <tr><td>Ingendorf</td><td>50259</td><td>420 €/m²</td></tr>
-              <tr><td>Dansweiler</td><td>50259</td><td>620 €/m²</td></tr></tbody>
-          </table>
-        </div>
+      <style>
+      .brw-grid { margin:1rem 0; border:1px solid var(--gray-200); border-radius:6px; overflow:hidden; font-size:.875rem; color:var(--gray-600); background:var(--white); }
+      .brw-head, .brw-row { display:flex; justify-content:space-between; gap:1rem; padding:.35rem .75rem; }
+      .brw-head { background:var(--navy); color:var(--white); font-weight:600; }
+      .brw-main { font-weight:700; border-bottom:1px solid var(--gray-200); }
+      .brw-list { margin:0; display:grid; grid-template-columns:1fr; }
+      .brw-row dt, .brw-row dd { margin:0; font-weight:inherit; }
+      .brw-row dd { white-space:nowrap; }
+      .brw-row:nth-child(even) { background:var(--gray-100); }
+      .brw-sub { font-size:.8125rem; opacity:.8; margin-left:.35rem; }
+      @media (min-width:900px) {
+        .brw-list { grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,auto); grid-auto-flow:column; }
+        .brw-row:nth-child(even) { background:none; }
+        .brw-row:nth-child(3n+2) { background:var(--gray-100); }
+        .brw-row:nth-child(n+4) { border-left:1px solid var(--gray-200); }
+      }
+      </style>
+      <div class="brw-grid">
+        <div class="brw-head"><span>Ortsteil / Lage · PLZ</span><span>Bodenrichtwert (ca.)</span></div>
+        <dl class="brw-list">
+          <div class="brw-row"><dt>Pulheim-Zentrum<span class="brw-sub">50259</span></dt><dd>610–690 €/m²</dd></div>
+          <div class="brw-row"><dt>Brauweiler<span class="brw-sub">50259</span></dt><dd>610–660 €/m²</dd></div>
+          <div class="brw-row"><dt>Stommeln<span class="brw-sub">50259</span></dt><dd>510–590 €/m²</dd></div>
+          <div class="brw-row"><dt>Sinnersdorf<span class="brw-sub">50259</span></dt><dd>600–610 €/m²</dd></div>
+          <div class="brw-row"><dt>Geyen<span class="brw-sub">50259</span></dt><dd>570–610 €/m²</dd></div>
+          <div class="brw-row"><dt>Sinthern<span class="brw-sub">50259</span></dt><dd>570–610 €/m²</dd></div>
+          <div class="brw-row"><dt>Ingendorf<span class="brw-sub">50259</span></dt><dd>420 €/m²</dd></div>
+          <div class="brw-row"><dt>Dansweiler<span class="brw-sub">50259</span></dt><dd>620 €/m²</dd></div>
+        </dl>
+      </div>
         <p class="table-note">Quelle: Der Gutachterausschuss Rhein-Erft-Kreis über BORIS NRW (Open Data, Datensatz vom 03.08.2026, Stichtag 01.01.2026). Ausgewiesen ist je Ortsteil die Spanne der amtlichen Bodenrichtwertzonen für Wohnbauflächen (29 Zonen). Werte für typische Wohnbaugrundstücke; Speziallagen und Sonderbaurechte können erheblich abweichen. Angaben ohne Gewähr. Offizielle Auskunft: <a href="https://www.boris.nrw.de/boris-nrw/" target="_blank" rel="noopener" style="color:var(--gold);">www.boris.nrw.de</a></p>
       </div>
     </section>

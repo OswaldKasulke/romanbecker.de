@@ -75,18 +75,35 @@
         <span class="section-label">Übersicht 2026</span>
         <h2>Bodenrichtwerte Frechen 2026 – nach Ortsteil</h2>
         <p class="text-muted mb-8 max-w-prose">Die folgenden Richtwerte basieren auf den Daten des Gutachterausschusses Rhein-Erft-Kreis / BORIS NRW. Sie gelten für durchschnittliche Wohnbaugrundstücke in mittleren Lagen.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Ortsteil / Lage</th><th>PLZ</th><th>Bodenrichtwert (ca.)</th></tr></thead>
-            <tbody><tr><td>Frechen-Zentrum</td><td>50226</td><td>410–630 €/m²</td></tr>
-              <tr><td>Königsdorf</td><td>50226</td><td>570–730 €/m²</td></tr>
-              <tr><td>Bachem</td><td>50226</td><td>510–570 €/m²</td></tr>
-              <tr><td>Buschbell</td><td>50226</td><td>410–580 €/m²</td></tr>
-              <tr><td>Grefrath</td><td>50226</td><td>340 €/m²</td></tr>
-              <tr><td>Habbelrath</td><td>50226</td><td>340 €/m²</td></tr>
-              <tr><td>Benzelrath</td><td>50226</td><td>400–530 €/m²</td></tr></tbody>
-          </table>
-        </div>
+      <style>
+      .brw-grid { margin:1rem 0; border:1px solid var(--gray-200); border-radius:6px; overflow:hidden; font-size:.875rem; color:var(--gray-600); background:var(--white); }
+      .brw-head, .brw-row { display:flex; justify-content:space-between; gap:1rem; padding:.35rem .75rem; }
+      .brw-head { background:var(--navy); color:var(--white); font-weight:600; }
+      .brw-main { font-weight:700; border-bottom:1px solid var(--gray-200); }
+      .brw-list { margin:0; display:grid; grid-template-columns:1fr; }
+      .brw-row dt, .brw-row dd { margin:0; font-weight:inherit; }
+      .brw-row dd { white-space:nowrap; }
+      .brw-row:nth-child(even) { background:var(--gray-100); }
+      .brw-sub { font-size:.8125rem; opacity:.8; margin-left:.35rem; }
+      @media (min-width:900px) {
+        .brw-list { grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(2,auto); grid-auto-flow:column; }
+        .brw-row:nth-child(even) { background:none; }
+        .brw-row:nth-child(2n+2) { background:var(--gray-100); }
+        .brw-row:nth-child(n+3) { border-left:1px solid var(--gray-200); }
+      }
+      </style>
+      <div class="brw-grid">
+        <div class="brw-head"><span>Ortsteil / Lage · PLZ</span><span>Bodenrichtwert (ca.)</span></div>
+        <div class="brw-head brw-main" style="background:none;color:inherit;"><span>Frechen-Zentrum<span class="brw-sub">50226</span></span><span>410–630 €/m²</span></div>
+        <dl class="brw-list">
+          <div class="brw-row"><dt>Königsdorf<span class="brw-sub">50226</span></dt><dd>570–730 €/m²</dd></div>
+          <div class="brw-row"><dt>Bachem<span class="brw-sub">50226</span></dt><dd>510–570 €/m²</dd></div>
+          <div class="brw-row"><dt>Buschbell<span class="brw-sub">50226</span></dt><dd>410–580 €/m²</dd></div>
+          <div class="brw-row"><dt>Grefrath<span class="brw-sub">50226</span></dt><dd>340 €/m²</dd></div>
+          <div class="brw-row"><dt>Habbelrath<span class="brw-sub">50226</span></dt><dd>340 €/m²</dd></div>
+          <div class="brw-row"><dt>Benzelrath<span class="brw-sub">50226</span></dt><dd>400–530 €/m²</dd></div>
+        </dl>
+      </div>
         <p class="table-note">Quelle: Der Gutachterausschuss Rhein-Erft-Kreis über BORIS NRW (Open Data, Datensatz vom 03.08.2026, Stichtag 01.01.2026). Ausgewiesen ist je Ortsteil die Spanne der amtlichen Bodenrichtwertzonen für Wohnbauflächen (41 Zonen). Werte für typische Wohnbaugrundstücke; Speziallagen und Sonderbaurechte können erheblich abweichen. Angaben ohne Gewähr. Offizielle Auskunft: <a href="https://www.boris.nrw.de/boris-nrw/" target="_blank" rel="noopener" style="color:var(--gold);">www.boris.nrw.de</a></p>
       </div>
     </section>
