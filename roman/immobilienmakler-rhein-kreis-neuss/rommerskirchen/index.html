@@ -137,6 +137,104 @@
     </div>
   </section>
 
+  <!-- FALLBEISPIEL-START -->
+<style>
+.case__intro { max-width: 46rem; margin-bottom: var(--space-4,1rem); }
+.case__gallery { display:grid; grid-template-columns: 2fr 1fr 1fr; gap:.5rem; margin: 0 0 var(--space-4,1rem); height: 260px; }
+.case__gallery figure { margin:0; position:relative; overflow:hidden; border-radius:8px; background: var(--gray-100,#f3f4f6); }
+.case__gallery img { width:100%; height:100%; object-fit:cover; display:block; }
+@media (max-width: 700px){ .case__gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 190px 120px; height:auto; } .case__gallery figure:first-child { grid-column: 1 / span 2; } }
+.case__gallery figcaption { position:absolute; left:.35rem; bottom:.35rem; background:rgba(0,0,0,.6); color:#fff; font-size:.65rem; padding:.1rem .4rem; border-radius:3px; }
+@media (max-width: 600px){ .case__gallery figcaption { display:none; } }
+.case__stats { display:flex; flex-wrap:wrap; gap:.4rem 1.5rem; margin:0 0 var(--space-6,1.5rem); padding:0; list-style:none; font-size:.875rem; color: var(--gray-600,#4b5563); }
+.case__stats strong { color: var(--gold,#b8975a); font-size:1.125rem; margin-right:.3rem; }
+.case__cols { display:grid; grid-template-columns:1fr; gap: var(--space-6,1.5rem); }
+@media (min-width: 900px){ .case__cols { grid-template-columns: 3fr 2fr; } }
+.case h3 { font-size:1rem; margin:0 0 .5rem; }
+.case ul.case__list { list-style:none; padding:0; margin:0 0 var(--space-4,1rem); }
+.case ul.case__list li { position:relative; padding-left:1.1rem; margin-bottom:.3rem; line-height:1.45; font-size:.9rem; color: var(--gray-700,#374151); }
+.case ul.case__list li::before { content:""; position:absolute; left:0; top:.55em; width:.4rem; height:.4rem; border-radius:50%; background: var(--gold,#b8975a); }
+.case__timeline { list-style:none; margin:0; padding:0 0 0 1rem; border-left:2px solid var(--gold,#b8975a); font-size:.875rem; }
+.case__timeline li { position:relative; padding:0 0 .35rem .6rem; line-height:1.35; }
+.case__timeline li::before { content:""; position:absolute; left:calc(-1rem - 5px); top:.3em; width:8px; height:8px; border-radius:50%; background:#fff; border:2px solid var(--gold,#b8975a); }
+.case__timeline li.is-key::before { background: var(--gold,#b8975a); }
+.case__timeline time { font-weight:700; color: var(--gray-500,#6b7280); margin-right:.35rem; }
+.case__timeline span { color: var(--gray-800,#1f2937); }
+.case__result { margin-top: var(--space-4,1rem); padding: .9rem 1.1rem; border-radius:8px; background: var(--gold-light,#fdf8ee); border-left:3px solid var(--gold,#b8975a); font-size:.9rem; }
+.case__result p { margin:0 0 .4rem; line-height:1.5; }
+.case__result p:last-child { margin:0; }
+</style>
+<section class="section case" id="fallbeispiel">
+  <div class="container">
+    <span class="section-label">Fallbeispiel</span>
+    <h2>Verkauft in Rommerskirchen-Anstel: Mehrfamilienhaus aus einer Erbschaft</h2>
+    <p class="text-muted leading-relaxed case__intro">
+      Ein Haus aus dem Jahr 1968, seit dem Bau in Familienbesitz, verkauft im Auftrag einer Erbengemeinschaft.
+      Hier steht, wie der Verkauf abgelaufen ist – ohne Kaufpreis, aber mit den Daten, die sich belegen lassen.
+    </p>
+
+    <div class="case__gallery">
+      <figure><img src="/immobilienmakler-rhein-kreis-neuss/rommerskirchen/fallbeispiel-hausansicht.webp" width="1200" height="800" alt="Mehrfamilienhaus mit Klinkerfassade und Garage in Rommerskirchen-Anstel" loading="lazy"><figcaption>Straßenansicht</figcaption></figure>
+      <figure><img src="/immobilienmakler-rhein-kreis-neuss/rommerskirchen/fallbeispiel-garten.webp" width="1200" height="800" alt="Garten mit Terrasse und altem Baumbestand" loading="lazy"><figcaption>Garten und Terrasse</figcaption></figure>
+      <figure><img src="/immobilienmakler-rhein-kreis-neuss/rommerskirchen/fallbeispiel-wohnraum.webp" width="1200" height="800" alt="Wohnraum im Originalzustand mit Holzdecke" loading="lazy"><figcaption>Wohnraum im Originalzustand</figcaption></figure>
+    </div>
+
+    <ul class="case__stats">
+      <li><strong>309 m²</strong>Wohnfläche</li>
+      <li><strong>1.009 m²</strong>Grundstück</li>
+      <li><strong>20</strong>Besichtigungstermine</li>
+      <li><strong>3 Wochen</strong>online bis zum Zuschlag</li>
+    </ul>
+
+    <div class="case__cols">
+      <div>
+        <h3>Ausgangssituation</h3>
+        <ul class="case__list">
+          <li>Vorher war das Haus lange bei einem Makler vor Ort in der Vermarktung.</li>
+          <li>Verkauf durch eine Erbengemeinschaft mit mehreren Miterben. Sind mehrere Erben beteiligt, ist ein Verkauf nicht einfach: Alle müssen informiert sein und mitgenommen werden.</li>
+          <li>Massivbau von 1968, über die Jahre erweitert: drei Wohnungen und eine Gewerbeeinheit.</li>
+          <li>Sanierungsbedürftig: Energieeffizienzklasse F, Ölheizung von 2010, Fenster im Erd- und Obergeschoss von 1979.</li>
+        </ul>
+
+        <h3>Was ich gemacht habe</h3>
+        <ul class="case__list">
+          <li>Alle Erben laufend informiert und die Abstimmung untereinander moderiert, damit jeder den Weg mitgehen konnte.</li>
+          <li>Bewertung vor Ort und professionelle Fotoaufnahmen, auch mit der Drohne.</li>
+          <li>Unterlagen beschafft und geprüft, darunter Baulastenauskunft, Grundbuch und einen neuen Energieausweis.</li>
+          <li>Alle Unterlagen vor der Besichtigung für Interessenten online bereitgestellt.</li>
+          <li>18 der 20 Besichtigungen an drei Sammelterminen gebündelt, Zweitbesichtigungen für ernsthafte Interessenten, auch mit Architekt.</li>
+          <li>Kaufvertrag mit dem Notar abgestimmt: Änderungswünsche der Miterben, Aufteilung des Kaufpreises unter den Erben, Vertretung eines Miterben beim Termin.</li>
+          <li>Schlüsselübergabe erst nach vollständiger Zahlung des Kaufpreises.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Zeitstrahl</h3>
+        <ol class="case__timeline">
+          <li><time>Mitte September 2025</time><span>Bewertung im Haus</span></li>
+          <li class="is-key"><time>Mitte September 2025</time><span>Maklerauftrag (qualifizierter Alleinauftrag) von den Erben unterschrieben</span></li>
+          <li><time>Ende September 2025</time><span>Fotoaufnahmen, auch mit der Drohne</span></li>
+          <li><time>Anfang Oktober 2025</time><span>Grundrisse, Energieausweis, Exposé-Entwurf</span></li>
+          <li class="is-key"><time>Mitte Oktober 2025</time><span>Exposé von allen Erben freigegeben, online auf den Portalen</span></li>
+          <li><time>Ende Oktober 2025</time><span>Besichtigungen, Zweitbesichtigungen, erste Kaufangebote</span></li>
+          <li class="is-key"><time>Anfang November 2025</time><span>Zuschlag durch die Erben</span></li>
+          <li><time>Kurz vor Weihnachten 2025</time><span>Gutachtertermin der Bank im Haus</span></li>
+          <li><time>Februar 2026</time><span>Finanzierungszusage der Bank</span></li>
+          <li class="is-key"><time>März 2026</time><span>Beurkundung beim Notar</span></li>
+          <li class="is-key"><time>Mai 2026</time><span>Übergabe an den Käufer</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="case__result">
+      <p><strong>Ergebnis:</strong> Drei Wochen nach dem Online-Start stand der Käufer fest. Danach zog sich alles sehr in die Länge: Der Gutachtertermin der Bank fand erst kurz vor Weihnachten statt, die Finanzierungszusage kam erst im Februar. In dieser Zeit habe ich die Erbengemeinschaft mit regelmäßigen Updates auf dem Laufenden gehalten und den Kontakt zur Bank gesucht. Nach der Zusage folgten Kaufvertrag und Abstimmung mit allen Miterben – im März 2026 wurde beurkundet, Anfang Mai war die Übergabe.</p>
+      <p><strong>Fazit:</strong> Die eigentliche Vermarktung war schnell. Mit meiner Erfahrung konnte ich die Interessenten bei Fragen zum Haus, zu den Unterlagen und zur Finanzierung gut unterstützen. Ab einem gewissen Punkt ist man aber auf Dritte angewiesen – Gutachter, Banken, Notare. Einen Verkauf kann man dann nicht immer beschleunigen, gerade wenn rund um Weihnachten viele Feiertage liegen.</p>
+      <p>Sie verkaufen eine geerbte Immobilie? <a href="https://romanbecker.de/#kontakt" style="font-weight:700;color:inherit;">→ Sprechen Sie mich an</a></p>
+    </div>
+  </div>
+</section>
+<!-- FALLBEISPIEL-END -->
+
+
 
   <section class="section">
     <div class="container">
