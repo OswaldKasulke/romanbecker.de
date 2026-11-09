@@ -5,6 +5,8 @@
  * (scripts/fremdinhalte_lokal.py), dafür braucht es keine Einwilligung.
  *
  *   localStorage cookie_consent = granted | denied
+ *   localStorage cookie_consent_meta = {"v": Textversion, "t": Zeitpunkt ISO} – Nachweis,
+ *   welcher Bannertext wann bestätigt oder abgelehnt wurde (seit 09.11.2026).
  *
  * Widerruf: Link „Cookie-Einstellungen“ im Footer jeder Seite und Knopf
  * [data-consent-reset] in der Datenschutzerklärung.
@@ -12,6 +14,8 @@
 (function () {
   'use strict';
   var KEY = 'cookie_consent';
+  var META_KEY = 'cookie_consent_meta';
+  var TEXT_VERSION = '2026-10-17';
   var GA_ID = 'G-HQXZQF4ZBN';
   var EN = (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0;
 
@@ -30,7 +34,12 @@
   };
 
   function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
-  function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function set(v) {
+    try {
+      localStorage.setItem(KEY, v);
+      localStorage.setItem(META_KEY, JSON.stringify({ v: TEXT_VERSION, t: new Date().toISOString() }));
+    } catch (e) {}
+  }
 
   var gaLoaded = false;
   function loadGA() {
@@ -110,7 +119,7 @@
 
   /* Widerruf: Entscheidung löschen, GA-Cookies entfernen, neu laden -> Banner erscheint. */
   function reset() {
-    try { localStorage.removeItem(KEY); } catch (e) {}
+    try { localStorage.removeItem(KEY); localStorage.removeItem(META_KEY); } catch (e) {}
     /* GA zuerst abschalten, sonst schreibt es _ga_* beim Verlassen der Seite neu. */
     window['ga-disable-' + GA_ID] = true;
     if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'denied' });
