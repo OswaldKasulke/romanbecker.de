@@ -263,7 +263,7 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
 .hero {
   background: var(--navy);
   color: var(--white);
-  padding: var(--space-16) 0 var(--space-20);
+  padding: var(--space-8) 0; /* einheitlich 32 px wie alle Sektionen */
 }
 .hero h1 { color: var(--white); margin-bottom: var(--space-4); }
 .hero__subtitle {
@@ -296,6 +296,10 @@ h3 { font-family: var(--font-heading); font-size: clamp(1.1rem, 2.5vw, 1.375rem)
   color: var(--gold);
   margin-bottom: var(--space-6);
 }
+
+/* Hero: kein Restabstand am Ende/Anfang */
+.hero > .container > :last-child, .hero .hero__grid > div > :last-child, .article-hero > .container > :last-child { margin-bottom: 0; }
+.hero > .container > :first-child, .article-hero > .container > :first-child { margin-top: 0; }
 
 /* GRIDS */
 .grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
