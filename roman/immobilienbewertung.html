@@ -801,18 +801,18 @@
             <p class="step__subtitle">Geben Sie die Fläche(n) an.</p>
 
             <div class="field" id="field-wohnflaeche">
-              <label for="wohnflaeche">Wohnfläche</label>
+              <label for="wohnflaeche" id="wohnflaeche-label">Wohnfläche in m² *</label>
               <div class="field__unit" data-unit="m²">
-                <input type="number" id="wohnflaeche" name="wohnflaeche" placeholder="z.B. 120" min="10" max="10000" required>
+                <input type="number" id="wohnflaeche" name="wohnflaeche" placeholder="z. B. 120" min="10" max="10000" required>
               </div>
               <p class="field__error">Bitte geben Sie die Wohnfläche ein.</p>
               <p class="field__hint" id="wohnflaeche-hint" style="display:none;">Optional bei Mehrfamilienhäusern.</p>
             </div>
 
             <div class="field" id="field-grundstueck">
-              <label for="grundstuecksflaeche" id="grundstueck-label">Grundstücksfläche</label>
+              <label for="grundstuecksflaeche" id="grundstueck-label">Grundstücksfläche in m² *</label>
               <div class="field__unit" data-unit="m²">
-                <input type="number" id="grundstuecksflaeche" name="grundstuecksflaeche" placeholder="z.B. 450" min="0" max="100000">
+                <input type="number" id="grundstuecksflaeche" name="grundstuecksflaeche" placeholder="z. B. 450" min="0" max="100000">
               </div>
             </div>
 
@@ -823,13 +823,13 @@
             <!-- Zimmer (Wohnung / Haus) -->
             <div class="field" id="field-zimmer" style="display:none">
               <label for="zimmer">Anzahl Zimmer</label>
-              <input type="number" id="zimmer" name="zimmer" placeholder="z.B. 4" min="1" max="30">
+              <input type="number" id="zimmer" name="zimmer" placeholder="z. B. 4" min="1" max="30">
             </div>
 
             <!-- Wohneinheiten (Mehrfamilienhaus) -->
             <div class="field" id="field-einheiten" style="display:none">
               <label for="einheiten">Anzahl Wohneinheiten</label>
-              <input type="number" id="einheiten" name="einheiten" placeholder="z.B. 6" min="2" max="100">
+              <input type="number" id="einheiten" name="einheiten" placeholder="z. B. 6" min="2" max="100">
             </div>
 
             
@@ -840,14 +840,14 @@
                 <div class="field">
                   <label for="miete_ist">Kaltmiete IST (monatlich)</label>
                   <div class="field__unit" data-unit="€">
-                    <input type="number" id="miete_ist" name="miete_ist" placeholder="z.B. 1.200" min="0">
+                    <input type="number" id="miete_ist" name="miete_ist" placeholder="z. B. 1.200" min="0">
                   </div>
                   <p class="field__hint">Aktuelle Kaltmiete – 0 bei Eigennutzung</p>
                 </div>
                 <div class="field">
                   <label for="miete_ist_jahr">Kaltmiete IST (jährlich)</label>
                   <div class="field__unit" data-unit="€">
-                    <input type="number" id="miete_ist_jahr" name="miete_ist_jahr" placeholder="z.B. 14.400" min="0">
+                    <input type="number" id="miete_ist_jahr" name="miete_ist_jahr" placeholder="z. B. 14.400" min="0">
                   </div>
                   <p class="field__hint">Alternativ zur monatlichen Angabe</p>
                 </div>
@@ -856,14 +856,14 @@
                 <div class="field">
                   <label for="miete_soll">Kaltmiete SOLL (monatlich)</label>
                   <div class="field__unit" data-unit="€">
-                    <input type="number" id="miete_soll" name="miete_soll" placeholder="z.B. 1.400" min="0">
+                    <input type="number" id="miete_soll" name="miete_soll" placeholder="z. B. 1.400" min="0">
                   </div>
                   <p class="field__hint">Erzielbare Marktmiete</p>
                 </div>
                 <div class="field">
                   <label for="miete_soll_jahr">Kaltmiete SOLL (jährlich)</label>
                   <div class="field__unit" data-unit="€">
-                    <input type="number" id="miete_soll_jahr" name="miete_soll_jahr" placeholder="z.B. 16.800" min="0">
+                    <input type="number" id="miete_soll_jahr" name="miete_soll_jahr" placeholder="z. B. 16.800" min="0">
                   </div>
                   <p class="field__hint">Alternativ zur monatlichen Angabe</p>
                 </div>
@@ -982,8 +982,8 @@
             </div>
 
             <div class="field" style="margin-top:var(--space-8)">
-              <label for="baujahr">Baujahr</label>
-              <input type="number" id="baujahr" name="baujahr" placeholder="z.B. 1965" min="1760" max="2026">
+              <label for="baujahr" id="baujahr-label">Baujahr *</label>
+              <input type="number" id="baujahr" name="baujahr" placeholder="z. B. 1965" min="1760" max="2026">
             </div>
 
             <p class="fehlende-angaben" style="display:none;color:#c0392b;margin:0 0 0.75rem;"></p>
@@ -1211,12 +1211,17 @@
       // Zustandsfaktor — die Grundstuecksflaeche geht nicht ein und ist deshalb
       // freiwillig. Beim Grundstueck ist sie die Rechengroesse und Pflicht.
       document.getElementById('grundstueck-label').textContent =
-        isHaus ? 'Grundstücksfläche (optional)' : 'Grundstücksfläche';
+        isHaus ? 'Grundstücksfläche in m² (optional)' : 'Grundstücksfläche in m² *';
       // Ein unbebautes Grundstueck hat keinen Gebaeudezustand.
       document.getElementById('field-gstand').style.display = isGrund ? 'none' : 'block';
       // Der Zustandsfaktor geht nur in den Preis-Master ein, nicht in den Ertragswert.
       document.getElementById('gstand-label').textContent =
         isMfh ? 'Zustand und Ausstattung (optional)' : 'Zustand und Ausstattung *';
+      // Beschriftungen wie in den anderen drei Rechnern (Pflichtangaben mit Stern).
+      document.getElementById('wohnflaeche-label').textContent =
+        isMfh ? 'Wohnfläche in m² (optional)' : 'Wohnfläche in m² *';
+      document.getElementById('baujahr-label').textContent =
+        (!isGrund && !isMfh) ? 'Baujahr *' : 'Baujahr';
 
       var art = document.querySelector('input[name="objektart"]:checked').value;
       var fieldZimmer = document.getElementById('field-zimmer');
@@ -2302,7 +2307,7 @@
           return irw.value;
         }
         rw.push('Preis-Master ' + irw.lage + ': ' + de(irw.preis_master_eur_m2) + ' €/m².');
-        rw.push('Zustand und Ausstattung ' + (a.GSTAND || '—') + ' → Faktor ' + irw.zustandsfaktor + '.');
+        rw.push('Zustand und Ausstattung ' + (a.GSTAND || '—') + ' → Faktor ' + String(irw.zustandsfaktor).replace('.', ',') + '.');
         rw.push(de(irw.pricePerSqm) + ' €/m² × ' + de(a.WHNFL) + ' m² = ' + eurG(irw.ungerundet) + '.');
         rw.push('Gerundeter Endwert ' + eur(irw.value) + '; Spanne ±10 % ' + eur(irw.low) + ' bis ' + eur(irw.high) + '.');
         if (irw.mehrdeutig) rw.push('Mehrere vollständige Varianten wurden gerechnet; gemäß Regel wurde der höchste Endwert gewählt: ' + irw.varianten.map(function (v) { return v.zone_id + ': ' + eur(v.value); }).join('; ') + '.');
