@@ -3,9 +3,27 @@
   "profile_url": "https://www.google.com/maps/search/?api=1&query=Roman%20Becker%20Immobilien&query_place_id=ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
   "place_id": "ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
   "rating": "5,0",
-  "count": 35,
-  "checked_at": "2026-11-02",
+  "count": 36,
+  "checked_at": "2026-11-12",
   "reviews": [
+    {
+      "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xKWUxXbHBUbXBoU3pWR1ZubDFUVVpaY1hBdFprRRAB",
+      "author": "Klaus Schröder",
+      "stars": 5,
+      "text": "Ich hatte mit Herrn Becker eine ausgesprochen angenehme und informative Wohnungsbesichtigung. Er nahm sich ausreichend Zeit, beantwortete meine Fragen offen und kompetent und vermittelte einen sehr freundlichen und professionellen Eindruck.\n\nBesonders positiv hervorheben möchte ich die unkomplizierte Kommunikation und die schnelle Rückmeldung im Anschluss an die Besichtigung.\n\nIch habe mich sehr gut betreut gefühlt und kann Herrn Becker uneingeschränkt weiterempfehlen. Vielen Dank!",
+      "source_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xKWUxXbHBUbXBoU3pWR1ZubDFUVVpaY1hBdFprRRAB!2m1!1s0x47bf25639c834cd5:0xa1f403fda5f75a31",
+      "verified_at": "2026-11-12",
+      "published": "2026-10-30"
+    },
+    {
+      "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xselNrNTBXbWw2T1Y4eWRrWnRkSHB3VmtwM1RGRRAB",
+      "author": "Heinz Bayer",
+      "stars": 5,
+      "text": "Herr Becker macht einen großartigen Job, er ist stets bemüht, zielorientiert gute Lösungen zu finden. Der Kauf unserer Immobilie gestaltete sich als recht kompliziert und wir denken, ohne ihn wäre der Vertrag nicht zu Stande gekommen\nEr hat sich jederzeit professionell eingesetzt.",
+      "source_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xselNrNTBXbWw2T1Y4eWRrWnRkSHB3VmtwM1RGRRAB!2m1!1s0x47bf25639c834cd5:0xa1f403fda5f75a31",
+      "verified_at": "2026-11-12",
+      "published": "2026-10-25"
+    },
     {
       "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT25jMlZ6QlJPRU5SY1Zsc1ZsVkNjRGxhWlU1VVFtYxAB",
       "author": "Laura Broich",
