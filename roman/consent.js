@@ -1,6 +1,6 @@
 /* Einwilligung für romanbecker.de – auf allen Seiten eingebunden.
  *
- * Gefragt wird nur noch nach der Statistik (Google Analytics 4 + Ahrefs Web Analytics). Objektfotos,
+ * Gefragt wird nur noch nach der Statistik (Google Analytics 4). Objektfotos,
  * Karten, Schriften und Skripte liegen seit 17.10.2026 auf dem eigenen Server
  * (scripts/fremdinhalte_lokal.py), dafür braucht es keine Einwilligung.
  *
@@ -15,18 +15,18 @@
   'use strict';
   var KEY = 'cookie_consent';
   var META_KEY = 'cookie_consent_meta';
-  var TEXT_VERSION = '2026-11-15';
+  var TEXT_VERSION = '2026-10-17';
   var GA_ID = 'G-HQXZQF4ZBN';
   var EN = (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0;
 
   var T = EN ? {
-    text: 'We would like to use Google Analytics and Ahrefs Web Analytics to measure which pages are read. Google Analytics sets cookies; both services receive usage data. Without your consent none of this happens and the site works fully. Details in our ',
+    text: 'We would like to use Google Analytics to measure which pages are read. This sets cookies and transmits data to Google. Without your consent none of this happens and the site works fully. Details in our ',
     privacy: 'privacy policy',
     yes: 'Accept',
     no: 'Decline',
     settings: 'Cookie settings'
   } : {
-    text: 'Wir würden gern mit Google Analytics und Ahrefs Web Analytics messen, welche Seiten gelesen werden. Google Analytics setzt dafür Cookies, beide Dienste erhalten Nutzungsdaten. Ohne Ihre Zustimmung geschieht nichts davon – die Seite funktioniert vollständig. Einzelheiten in der ',
+    text: 'Wir würden gern mit Google Analytics messen, welche Seiten gelesen werden. Das setzt Cookies und überträgt Daten an Google. Ohne Ihre Zustimmung geschieht nichts davon – die Seite funktioniert vollständig. Einzelheiten in der ',
     privacy: 'Datenschutzerklärung',
     yes: 'Einverstanden',
     no: 'Ablehnen',
@@ -56,24 +56,6 @@
     window.gtag('js', new Date());
     window.gtag('consent', 'update', { analytics_storage: 'granted' });
     window.gtag('config', GA_ID);
-  }
-
-  /* Ahrefs Web Analytics (cookiefrei) – ebenfalls nur nach Zustimmung (seit 15.11.2026). */
-  var AHREFS_KEY = 'K5UwGbcpCVsBSAsjrQjhgg';
-  var ahrefsLoaded = false;
-  /* Wer vor dem 15.11.2026 zugestimmt hat, hat nur Google Analytics gesehen -> kein Ahrefs. */
-  function ahrefsConsented() {
-    try { var m = JSON.parse(localStorage.getItem(META_KEY) || '{}'); return m.v >= '2026-11-15'; }
-    catch (e) { return false; }
-  }
-  function loadAhrefs() {
-    if (ahrefsLoaded || !ahrefsConsented()) return;
-    ahrefsLoaded = true;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://analytics.ahrefs.com/analytics.js';
-    s.setAttribute('data-key', AHREFS_KEY);
-    document.head.appendChild(s);
   }
 
   function deleteGACookies() {
@@ -126,7 +108,7 @@
       b.addEventListener('click', function () {
         set(x[2]);
         d.parentNode.removeChild(d);
-        if (x[2] === 'granted') { loadGA(); loadAhrefs(); }
+        if (x[2] === 'granted') loadGA();
       });
       btns.appendChild(b);
     });
@@ -177,7 +159,6 @@
     if (c === null) showBanner();
     /* Seiten ohne eigenes Kopfskript: GA hier laden. Mit Kopfskript ist es schon geladen. */
     else if (c === 'granted' && typeof window.loadAnalytics !== 'function') loadGA();
-    if (c === 'granted') loadAhrefs();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
