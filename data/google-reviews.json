@@ -4,8 +4,17 @@
   "place_id": "ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
   "rating": "5,0",
   "count": 36,
-  "checked_at": "2026-11-12",
+  "checked_at": "2026-11-16",
   "reviews": [
+    {
+      "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2sxSGRYQlBaVWN5TVRKTlQwaExhMHBMYlhGSFZFRRAB",
+      "author": "Nina B.",
+      "stars": 5,
+      "text": "Die Zusammenarbeit war durchweg professionell und sehr angenehm. Herr Becker hat immer versucht die bestmögliche Option für uns herauszuholen und war höchst engagiert über den gesamten Zeitraum hinweg.\nUneingeschränkte Weiterempfehlung.",
+      "source_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2sxSGRYQlBaVWN5TVRKTlQwaExhMHBMYlhGSFZFRRAB!2m1!1s0x47bf25639c834cd5:0xa1f403fda5f75a31",
+      "verified_at": "2026-11-16",
+      "published": "2026-11-10"
+    },
     {
       "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xKWUxXbHBUbXBoU3pWR1ZubDFUVVpaY1hBdFprRRAB",
       "author": "Klaus Schröder",
