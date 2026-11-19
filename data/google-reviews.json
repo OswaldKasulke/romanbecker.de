@@ -3,8 +3,8 @@
   "profile_url": "https://www.google.com/maps/search/?api=1&query=Roman%20Becker%20Immobilien&query_place_id=ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
   "place_id": "ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
   "rating": "5,0",
-  "count": 36,
-  "checked_at": "2026-11-16",
+  "count": 37,
+  "checked_at": "2026-11-19",
   "reviews": [
     {
       "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2sxSGRYQlBaVWN5TVRKTlQwaExhMHBMYlhGSFZFRRAB",
@@ -32,6 +32,15 @@
       "source_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xselNrNTBXbWw2T1Y4eWRrWnRkSHB3VmtwM1RGRRAB!2m1!1s0x47bf25639c834cd5:0xa1f403fda5f75a31",
       "verified_at": "2026-11-12",
       "published": "2026-10-25"
+    },
+    {
+      "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT25WV1YwaExNM1ZmV1RsNWRtWjJRV3hpZUZJMmMwRRAB",
+      "author": "Rolf Janssen",
+      "stars": 5,
+      "text": "Den Verkauf meiner Immobilie in Berlin hat Herrn Becker sehr schnell und professionell übernommen. Er hat sich um alle Schritte des Verkaufsprozesses gekümmert und ein sehr marktgerechten Preis erzielt. Ich würde Herrn Becker jederzeit empfehlen und werde auch meine zukünftigen Immobilientätigkeiten über ihn tätigen.",
+      "source_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT25WV1YwaExNM1ZmV1RsNWRtWjJRV3hpZUZJMmMwRRAB!2m1!1s0x47bf25639c834cd5:0xa1f403fda5f75a31",
+      "verified_at": "2026-11-19",
+      "published": "2026-09-20"
     },
     {
       "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT25jMlZ6QlJPRU5SY1Zsc1ZsVkNjRGxhWlU1VVFtYxAB",
