@@ -3,9 +3,18 @@
   "profile_url": "https://www.google.com/maps/search/?api=1&query=Roman%20Becker%20Immobilien&query_place_id=ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
   "place_id": "ChIJ1UyDnGMlv0cRMVr3pf0D9KE",
   "rating": "5,0",
-  "count": 40,
-  "checked_at": "2026-11-23",
+  "count": 41,
+  "checked_at": "2026-11-26",
   "reviews": [
+    {
+      "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xwbVVIUklRa1ZIVW5WRVUwWkNlblZCUTBsVE5YYxAB",
+      "author": "Lars S",
+      "stars": 5,
+      "text": "Ich kann Roman Becker als Makler uneingeschränkt weiterempfehlen! Von Anfang an war die Zusammenarbeit sehr angenehm und professionell. Er ist äußerst freundlich, zuverlässig und kompetent.\n\nVielen Dank, dass wir den Besichtigungstermin so schnell und flexibel realisieren konnten.",
+      "source_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xwbVVIUklRa1ZIVW5WRVUwWkNlblZCUTBsVE5YYxAB!2m1!1s0x47bf25639c834cd5:0xa1f403fda5f75a31",
+      "verified_at": "2026-11-26",
+      "published": "2026-11-23"
+    },
     {
       "id": "places/ChIJ1UyDnGMlv0cRMVr3pf0D9KE/reviews/Ci9DQUlRQUNvZENodHljRjlvT25JdFNrVlFhVWxXUkRZM0xVRnNVMFJITmt4M04zYxAB",
       "author": "Armend I.",
