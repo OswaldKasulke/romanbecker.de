@@ -1,9 +1,9 @@
 name: Update Bauzinsen
 
-# Alle 2 Wochen (montags in geraden Kalenderwochen): liest die Zinstabellen von ING (PDF), 1822direkt und Interhyp,
+# Alle 2 Wochen (montags in geraden Kalenderwochen): liest die Zinstabellen von ING (PDF), Sparda-Bank Hamburg und Interhyp,
 # bildet den Mittelwert und schreibt ihn in roman/ratgeber/bauzinsen.html.
-# Ist eine Quelle nicht lesbar, bricht das Skript ab und die Seite bleibt
-# unverändert (Lauf wird rot). Deploy danach über workflow_run in deploy-roman.yml.
+# Fällt eine Quelle aus, wird mit den übrigen weitergerechnet (Warnung im Log);
+# nur wenn gar nichts lesbar ist, bleibt die Seite unverändert (Lauf rot). Deploy danach über workflow_run in deploy-roman.yml.
 
 on:
   schedule:

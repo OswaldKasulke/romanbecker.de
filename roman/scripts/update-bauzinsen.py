@@ -11,8 +11,9 @@ Quellen:
   Sparda-Bank Hamburg – Tageskonditionen (nur bis 60 % Beleihung, ab 150.000 EUR)
   Interhyp   – Zinstabelle (Spalten „unter 70 %“, „bei 80 %“, „über 90 %“)
 
-Bricht mit Fehler ab, wenn eine Quelle nicht lesbar ist – dann bleibt die Seite
-unverändert.
+Fällt eine Quelle aus, wird mit den übrigen weitergerechnet (Warnung im Log).
+Bricht nur ab, wenn für eine Tabellenzelle gar kein Wert mehr vorliegt – dann
+bleibt die Seite unverändert.
 """
 import datetime as dt
 import html
@@ -76,7 +77,7 @@ def ing():
         if tm:
             tier = tm.group(1)
         if "effektiv" in line and tier == "300.000" and year in YEARS:
-            cols = [num(x) for x in re.findall(r"(\d,\d\d)%", line)]
+            cols = [num(x) for x in re.findall(r"(\d,\d\d) ?%", line)]
             if len(cols) != 6:
                 raise ValueError(f"ING: unerwartete Spalten in {line!r}")
             # Spalten: bis 60, 70, 80, 85, 90, 95 %
@@ -95,7 +96,7 @@ def sparda():
     seg = t[i:i + 900]
     vals = {}
     for y in YEARS:
-        m = re.search(rf"{y} Jahre ab 50\.000 Euro (\d,\d\d) % (\d,\d\d) % ab 150\.000 Euro (\d,\d\d) % (\d,\d\d) %", seg)
+        m = re.search(rf"{y} Jahre ab 50\.000 Euro (\d,\d\d) ?% (\d,\d\d) ?% ab 150\.000 Euro (\d,\d\d) ?% (\d,\d\d) ?%", seg)
         if not m:
             raise ValueError(f"Sparda: {y} Jahre nicht gefunden")
         vals[y] = {60: num(m.group(4))}
@@ -116,7 +117,7 @@ def interhyp():
     seg = t[i:i + 1500]
     vals = {}
     for y in YEARS:
-        m = re.search(rf"{y} Jahre (\d,\d\d) % (\d,\d\d) % (\d,\d\d) %", seg)
+        m = re.search(rf"{y} Jahre (\d,\d\d) ?% (\d,\d\d) ?% (\d,\d\d) ?%", seg)
         if not m:
             raise ValueError(f"Interhyp: {y} Jahre nicht gefunden")
         vals[y] = {60: num(m.group(1)), 80: num(m.group(2)), 90: num(m.group(3))}
@@ -135,9 +136,22 @@ def pct(x: float) -> str:
     return f"{d}".replace(".", ",") + " %"
 
 
+GENITIV = {"ING": "der ING", "Sparda-Bank Hamburg": "der Sparda-Bank Hamburg", "Interhyp": "des Vermittlers Interhyp"}
+
+
+def aufzaehlung(teile):
+    return teile[0] if len(teile) == 1 else ", ".join(teile[:-1]) + " und " + teile[-1]
+
+
+def quellen_text(n):
+    return "1 Quelle" if n == 1 else f"{n} Quellen"
+
+
 def build(sources, today):
     def mittel(y, l):
         w = [s["vals"][y][l] for s in sources if l in s["vals"][y]]
+        if not w:
+            raise ValueError(f"keine Quelle liefert einen Wert für {y} Jahre / {l} %")
         return sum(w) / len(w)
     avg = {y: {l: mittel(y, l) for l in LTVS} for y in YEARS}
     anz = {l: sum(1 for s in sources if l in s["vals"][YEARS[0]]) for l in LTVS}
@@ -170,9 +184,16 @@ def build(sources, today):
     quellen = "\n".join(
         f'            <li><strong>{s["name"]}</strong> – {s["detail"]} – <a href="{s["url"]}" target="_blank" rel="noopener">{s["url"]}</a></li>'
         for s in sources)
+    namen = aufzaehlung([s["name"] for s in sources])
+    genitiv = aufzaehlung([GENITIV.get(s["name"], s["name"]) for s in sources])
+    if len(set(anz.values())) > 1:
+        spalten = (f" Die Sparda-Bank veröffentlicht nur Werte bis 60 % Beleihung; die Spalten 80 % und 90 % sind deshalb der Mittelwert aus "
+                   f"{quellen_text(anz[80])}, die Spalte 60 % aus {quellen_text(anz[60])}.")
+    else:
+        spalten = ""
     return f"""<!-- BAUZINSEN-START -->
-        <h2>Bauzinsen aktuell: Mittelwert aus ING, Sparda-Bank Hamburg und Interhyp</h2>
-        <p>Die Tabelle zeigt den <strong>Mittelwert der effektiven Jahreszinsen</strong> aus öffentlich einsehbaren Zinstabellen – der ING, der Sparda-Bank Hamburg und des Vermittlers Interhyp – für 10 und 15 Jahre Zinsbindung bei 60, 80 und 90 % Beleihungsauslauf. Die Sparda-Bank veröffentlicht nur Werte bis 60 % Beleihung; die Spalten 80 % und 90 % sind deshalb der Mittelwert aus {anz[80]} Quellen, die Spalte 60 % aus {anz[60]}. Aktualisiert am {today:%d.%m.%Y}.</p>
+        <h2>Bauzinsen aktuell: Mittelwert aus {namen}</h2>
+        <p>Die Tabelle zeigt den <strong>Mittelwert der effektiven Jahreszinsen</strong> aus öffentlich einsehbaren Zinstabellen – {genitiv} – für 10 und 15 Jahre Zinsbindung bei 60, 80 und 90 % Beleihungsauslauf.{spalten} Aktualisiert am {today:%d.%m.%Y}.</p>
 
         <div class="zins-tabelle-wrap">
           <table class="zins-tabelle">
@@ -207,14 +228,25 @@ def build(sources, today):
 
 def main():
     today = dt.date.today()
-    sources = [ing(), sparda(), interhyp()]
+    sources, fehler = [], []
+    for f in (ing, sparda, interhyp):
+        try:
+            sources.append(f())
+        except Exception as e:  # eine kaputte Quelle soll den Lauf nicht abbrechen
+            fehler.append(f"{f.__name__}: {e}")
+            print(f"::warning title=Bauzinsen-Quelle ausgefallen::{f.__name__}: {e}")
+    if not sources:
+        sys.exit("Keine Quelle lesbar – Seite bleibt unverändert")
     page = PAGE.read_text(encoding="utf-8")
-    new_block, avg = build(sources, today)
+    try:
+        new_block, avg = build(sources, today)
+    except ValueError as e:
+        sys.exit(f"Abbruch, Seite bleibt unverändert: {e}")
     if "<!-- BAUZINSEN-START -->" not in page:
         sys.exit("Marker <!-- BAUZINSEN-START --> fehlt in bauzinsen.html")
     out = re.sub(r"<!-- BAUZINSEN-START -->.*?<!-- BAUZINSEN-END -->", lambda m: new_block, page, flags=re.S)
     desc = (f"Bauzinsen Köln aktuell (Stand {today:%d.%m.%Y}): 10 Jahre ab {pct(avg[10][60])}, "
-            f"15 Jahre ab {pct(avg[15][60])} effektiv – Mittelwert aus ING, Sparda-Bank Hamburg und Interhyp, mit Kölner Rechenbeispiel.")
+            f"15 Jahre ab {pct(avg[15][60])} effektiv – Mittelwert aus {aufzaehlung([s['name'] for s in sources])}, mit Kölner Rechenbeispiel.")
     out = re.sub(r'(<meta name="description" content=")[^"]*(")', lambda m: m.group(1) + desc + m.group(2), out, count=1)
     out = re.sub(r'(<meta property="og:description" content=")[^"]*(")', lambda m: m.group(1) + desc + m.group(2), out, count=1)
     out = re.sub(r'("description": ")[^"]*(",\n    "url": "https://romanbecker.de/ratgeber/bauzinsen.html")',
@@ -227,6 +259,8 @@ def main():
         print("keine Änderung")
     for s in sources:
         print(s["name"], s["stand"], s["vals"])
+    if fehler:
+        print("Ausgefallene Quellen:", "; ".join(fehler))
 
 
 if __name__ == "__main__":
